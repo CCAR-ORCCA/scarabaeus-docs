@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. LSB &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9cdfcecb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'orbit_det_rsts/lsb';</script>
+    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. ProcessNoiseCovariance" href="processnoisecovariance.html" />
+    <link rel="prev" title="3. LKF" href="lkf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide_rsts/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial_files/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_guide_rsts/dev_guide.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide_rsts/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial_files/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_guide_rsts/dev_guide.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/cannonballsrp.html">1. CannonBallSRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/forcemodel.html">4. ForceModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/nplatesrp.html">6. nPlateSRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/threebodygravity.html">9. ThreeBodyGravity</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/missionsequence.html">1. MissionSequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/propagator.html">2. Propagator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/scenariosetup.html">3. ScenarioSetup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/statearray.html">4. StateArray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/trajectory.html">5. Trajectory</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerreal.html">4. DopplerReal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurement.html">5. Measurement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurementdataset.html">6. MeasurementDataSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurementsimulator.html">7. MeasurementSimulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/ramptablemanager.html">8. RampTableManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">9. RangeIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">10. RangeRateIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">11. SequentialRangingReal</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="filterdatamanager.html">1. FilterDataManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filterod.html">2. FilterOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lkf.html">3. LKF</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. LSB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solutionod.html">6. SolutionOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="srif.html">7. SRIF</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/orbitalelements.html">4. OrbitalElements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting.html">6. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../lib_ref.html" class="nav-link"><span class="gold">Library Reference</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">4. </span>LSB</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="lsb">
+<h1><span class="section-number">4. </span>LSB<a class="headerlink" href="#lsb" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.LSB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LSB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajectory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_covariance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="filterod.html#scarabaeus.FilterOD" title="scarabaeus.orbitDetermination.FilterOD.FilterOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterOD</span></code></a></p>
+<p>Implements a Batch Least-Squares (LSB) filter for spacecraft orbit determination.</p>
+<p>This class applies a weighted least-squares estimation approach to estimate
+the state deviation and covariance of a spacecraft trajectory based on measurement data.
+The method follows the minimum variance weighted least squares principle, where
+the measurement noise covariance serves as the weighting matrix. The batch approach
+enables estimation over a complete dataset at once rather than sequentially.</p>
+<p>The LSB filter is capable of handling:
+- Sequential estimation across multiple trajectory legs (if applicable).
+- Full information estimation, meaning that it operates on the entire dataset at once.
+- Nonlinear trajectory dynamics, leveraging state transition matrices (STMs)</p>
+<blockquote>
+<div><p>to propagate measurement sensitivities.</p>
+</div></blockquote>
+<p>The solution minimizes the residuals in a weighted sense, ensuring an optimal
+state estimate given the available measurements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trajectory</strong> (<a class="reference internal" href="filterod.html#scarabaeus.FilterOD" title="scarabaeus.FilterOD"><em>FilterOD</em></a>) – The reference trajectory for orbit determination. This contains:
+- The nominal spacecraft trajectory,
+- The state transition matrices (STMs) used for propagating covariance and deviations.</p></li>
+<li><p><strong>initial_covariance</strong> (<a class="reference internal" href="../utils_rsts/covariancematrix.html#scarabaeus.CovarianceMatrix" title="scarabaeus.CovarianceMatrix"><em>CovarianceMatrix</em></a>) – The initial covariance matrix, representing the uncertainty in the estimated state.</p></li>
+<li><p><strong>measurement_data</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – A list of measurement observations, each containing:
+- Measurement time.
+- Residuals between observed and predicted measurements.
+- Measurement covariance matrix.
+- Partial derivatives (Jacobian of the observation model).</p></li>
+<li><p><strong>dataset_names</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – Names of the datasets used in the estimation process.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="filterod.html#scarabaeus.FilterOD" title="scarabaeus.FilterOD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.FilterOD</span></code></a></dt><dd><p>Base class for orbit determination filters.</p>
+</dd>
+<dt><a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SolutionOD</span></code></a></dt><dd><p>Stores estimated covariance history and postfit residuals.</p>
+</dd>
+<dt><a class="reference internal" href="../utils_rsts/covariancematrix.html#scarabaeus.CovarianceMatrix" title="scarabaeus.CovarianceMatrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.CovarianceMatrix</span></code></a></dt><dd><p>Defines measurement noise covariance.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This method requires an a priori trajectory and covariance.</p></li>
+<li><p>If using sequential mode (multiple legs), proper mapping of covariance and deviations
+across trajectory legs is necessary.</p></li>
+<li><p>Measurement updates refine the estimated state iteratively.</p></li>
+<li><p>LSB is not recursive like Kalman filtering; it operates on the full dataset at once.</p></li>
+</ul>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>Tapley, B. D., Schutz, B. E., &amp; Born, G. H. (2004). Statistical orbit determination. Elsevier.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="kn">import</span> <span class="n">CovarianceMatrix</span><span class="p">,</span> <span class="n">SolutionOD</span><span class="p">,</span> <span class="n">LSB</span>
+
+<span class="c1"># Initialize trajectory model</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">FilterOD</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># Define initial covariance matrix</span>
+<span class="n">initial_covariance</span> <span class="o">=</span> <span class="n">CovarianceMatrix</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># Load measurement data</span>
+<span class="n">measurement_data</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+
+<span class="c1"># Define dataset names</span>
+<span class="n">dataset_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Doppler&quot;</span><span class="p">,</span> <span class="s2">&quot;Range&quot;</span><span class="p">]</span>
+
+<span class="c1"># Initialize and compute batch least-squares solution</span>
+<span class="n">lsb_filter</span> <span class="o">=</span> <span class="n">LSB</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="n">initial_covariance</span><span class="p">,</span> <span class="n">measurement_data</span><span class="p">,</span> <span class="n">dataset_names</span><span class="p">)</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="n">lsb_filter</span><span class="o">.</span><span class="n">compute_batch</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated covariance history:&quot;</span><span class="p">,</span> <span class="n">solution</span><span class="o">.</span><span class="n">covariance_history</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.LSB.compute_batch" title="scarabaeus.LSB.compute_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_batch</span></code></a>([meas_corr, ...])</p></td>
+<td><p>Computes the batch least-squares solution for orbit determination.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.LSB.map_covariance_definition_node" title="scarabaeus.LSB.map_covariance_definition_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">map_covariance_definition_node</span></code></a>(...[, ...])</p></td>
+<td><p>Reinitializes the covariance matrix based on the new state vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.LSB.map_deviation_definition_node" title="scarabaeus.LSB.map_deviation_definition_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">map_deviation_definition_node</span></code></a>(...[, ...])</p></td>
+<td><p>Reinitializes the deviation vector based on the new state vector.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.LSB.map_stm_definition_node" title="scarabaeus.LSB.map_stm_definition_node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">map_stm_definition_node</span></code></a>(counter_events, old_STM)</p></td>
+<td><p>Reinitializes the State Transition Matrix (STM) based on the new state vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.LSB.observability_test" title="scarabaeus.LSB.observability_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observability_test</span></code></a>([print_obs, threshold, ...])</p></td>
+<td><p>Perform an observability test on the trajectory to assess the rank of the observability matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.LSB.unwrap_residuals" title="scarabaeus.LSB.unwrap_residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unwrap_residuals</span></code></a>(postfit_residuals, ...)</p></td>
+<td><p>Unwraps the postfit residuals and assigns them to their respective datasets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.LSB.validate_sequence_batch" title="scarabaeus.LSB.validate_sequence_batch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_sequence_batch</span></code></a>()</p></td>
+<td><p>Validates the sequence of state vectors for batch filtering.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.compute_batch">
+<span class="sig-name descname"><span class="pre">compute_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meas_corr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_back_sequence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.compute_batch" title="Link to this definition">#</a></dt>
+<dd><p>Computes the batch least-squares solution for orbit determination.</p>
+<p>This method handles both mission sequence and non- cases, ensuring proper
+state deviation and covariance estimation across trajectory segments (legs).
+It applies a weighted least-squares approach with measurement noise covariance
+as the weighting matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>meas_corr</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>, </em><em>optional</em>) – Correction factors for measurement covariance. Defaults to None.</p></li>
+<li><p><strong>map_back_sequence</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, maps the final leg deviation and covariance
+back to previous legs. Defaults to True.</p></li>
+<li><p><strong>print_output</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – If True, prints progress information. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Object containing the estimated state and covariance history and postfit residuals.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD">SolutionOD</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.map_covariance_definition_node">
+<span class="sig-name descname"><span class="pre">map_covariance_definition_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counter_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_covariance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_augment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.map_covariance_definition_node" title="Link to this definition">#</a></dt>
+<dd><p>Reinitializes the covariance matrix based on the new state vector.</p>
+<p>This method takes the old covariance matrix and adjusts it according to the new state vector.
+It accounts for changes in the state dimensions due to sequence-based events (such as maneuvers),
+and augments or reduces the covariance matrix accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counter_events</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The current event counter to identify the correct state definitions.</p></li>
+<li><p><strong>old_covariance</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – The old covariance matrix to be reinitialized.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated covariance matrix, adjusted for the new state vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.map_deviation_definition_node">
+<span class="sig-name descname"><span class="pre">map_deviation_definition_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counter_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_deviation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_augment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.map_deviation_definition_node" title="Link to this definition">#</a></dt>
+<dd><p>Reinitializes the deviation vector based on the new state vector.</p>
+<p>This method adjusts the deviation vector (state deviations) to reflect the changes in the
+state vector due to sequence-based events. It handles augmenting or reducing the deviation vector depending on the flag provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counter_events</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The current event counter to identify the correct state definitions.</p></li>
+<li><p><strong>old_deviation</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – The old deviation vector to be reinitialized.</p></li>
+<li><p><strong>flag_augment</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag indicating whether the deviation vector should be augmented or reduced. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated deviation vector, adjusted for the new state vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.map_stm_definition_node">
+<span class="sig-name descname"><span class="pre">map_stm_definition_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counter_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_STM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flag_augment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.map_stm_definition_node" title="Link to this definition">#</a></dt>
+<dd><p>Reinitializes the State Transition Matrix (STM) based on the new state vector.</p>
+<p>This method adjusts the State Transition Matrix (STM) to account for changes in the
+state vector due to sequence-based events, and augments or reduces the STM accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>counter_events</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The current event counter to identify the correct state definitions.</p></li>
+<li><p><strong>old_STM</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a>) – The old state transition matrix to be reinitialized.</p></li>
+<li><p><strong>flag_augment</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Flag to determine if augmentation is needed. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated state transition matrix (STM), adjusted for the new state vector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.observability_test">
+<span class="sig-name descname"><span class="pre">observability_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_obs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meas_corr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.observability_test" title="Link to this definition">#</a></dt>
+<dd><p>Perform an observability test on the trajectory to assess the rank of the observability matrix.</p>
+<p>This method calculates the information matrix and the observability matrix, which are used to determine the
+observability of the system. It also prints properties of the observability matrix, such as its rank and positive definiteness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>print_obs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag to print observability properties. Defaults to False.</p></li>
+<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Threshold value for positive definiteness check of the information matrix. Defaults to 1e-1.</p></li>
+<li><p><strong>meas_corr</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>, </em><em>optional</em>) – List of correlation factors for measurement covariance. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the observability test is called in sequence mode.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p>information_matrix (numpy.ndarray): The information matrix, which represents the inverse of the covariance matrix.</p></li>
+<li><p>observability_matrix (numpy.ndarray): The observability matrix, which describes the system’s ability to be observed.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.unwrap_residuals">
+<span class="sig-name descname"><span class="pre">unwrap_residuals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">postfit_residuals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.unwrap_residuals" title="Link to this definition">#</a></dt>
+<dd><p>Unwraps the postfit residuals and assigns them to their respective datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>postfit_residuals</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – A list of postfit residuals.</p></li>
+<li><p><strong>dataset_names</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>) – A list of distinct dataset names.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary where each key represents a dataset name and the corresponding value is a list of residuals and sigmas.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.LSB.validate_sequence_batch">
+<span class="sig-name descname"><span class="pre">validate_sequence_batch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.LSB.validate_sequence_batch" title="Link to this definition">#</a></dt>
+<dd><p>Validates the sequence of state vectors for batch filtering.</p>
+<p>This method checks whether all state vector elements in the previous sequence leg are present in the current sequence leg.
+It ensures that no state vector elements are missing or incorrectly matched, which is crucial for maintaining consistency
+during batch filtering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If an inconsistency is detected between state vector legs, an exception is raised, indicating the specific</p></li>
+<li><p><strong>missing elements.</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lkf.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>LKF</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="processnoisecovariance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>ProcessNoiseCovariance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.compute_batch"><code class="docutils literal notranslate"><span class="pre">LSB.compute_batch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.map_covariance_definition_node"><code class="docutils literal notranslate"><span class="pre">LSB.map_covariance_definition_node()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.map_deviation_definition_node"><code class="docutils literal notranslate"><span class="pre">LSB.map_deviation_definition_node()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.map_stm_definition_node"><code class="docutils literal notranslate"><span class="pre">LSB.map_stm_definition_node()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.observability_test"><code class="docutils literal notranslate"><span class="pre">LSB.observability_test()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.unwrap_residuals"><code class="docutils literal notranslate"><span class="pre">LSB.unwrap_residuals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.LSB.validate_sequence_batch"><code class="docutils literal notranslate"><span class="pre">LSB.validate_sequence_batch()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/orbit_det_rsts/lsb.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
