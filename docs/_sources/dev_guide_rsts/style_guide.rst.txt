@@ -1,0 +1,421 @@
+.. _style_guide:
+.. create a gold color role for headers
+.. raw:: html
+
+    <style> .gold {color:rgb(207 184 124)} </style>
+
+.. role:: gold
+
+.. create a role that makes bolded text colored blue as well
+.. raw:: html
+
+    <style> .bold {font-weight: bold; color:rgb(2 119 189)} </style>
+
+.. role:: bold
+
+=====================================
+:gold:`Scarabaeus Coding Conventions`
+=====================================
+
+--------------------
+:bold:`Introduction`
+--------------------
+This document describes conventions for developing in the Scarabaeus library. Much of these 
+conventions are derived from Python's `PEP 8 style guide <https://peps.python.org/pep-0008/>`_; 
+wherever some convention is not explicitly stated in the following guide, refer to it for guidance. 
+Additionally, docstrings follow Numpy's `dev manual <https://numpydoc.readthedocs.io/en/latest/example.html#example>`_ 
+for formatting.
+
+The guidelines layed out below exist to serve two purposes:
+
+- to ensure a coherent, readable protocol while developing for Scarabaeus
+- to make maintaining Scarabaeus's documentation as easy as possible
+
+Each section of this document explains a section of a given template script (provided at the end). 
+Following along in order should explain the purpose and formatting of each section, allowing us to build 
+the template over the course of this reading.
+
+One final note to remember from the PEP 8 style guide:
+    "... code is read much more often than it is written... know when to be inconsistent - sometimes style guide recommendations just aren't applicable. When in doubt, use your best judgment. Look at other examples and decide what looks best."
+
+-------------------
+:bold:`Code Layout`
+-------------------
+In the following sections of the Code Layout, we will walk through each componently and explain the reasoning behind 
+the decisions that have been made. Note that the entire file is available to view at the bottom of this document and contains 
+more comments to supplement it. Many of these comments have been removed in the following code snippets for brevity.
+
+File Header
+===========
+The first component of a Scarabaeus script is the File Header.
+
+Many file names abbreviate their respective class. The header defines the :bold:`full` name of the 
+class to be described by the contents of the script. For example, the :class:`ArrayWUnits` file name, 
+as well as class name, are an abbreviation of its full name "Array With Units". 
+
+Our template script, with file name ``TmpltClass``, will thus have a header that looks like:
+
+.. code-block:: python
+    :linenos:
+
+    #===========================#
+    #   CLASS: TEMPLATE CLASS   #
+    #===========================#
+
+Note that the header text is set between two bars of equals signs. The text itself is centered in these bars 
+with three spaces on either side. All three lines are book-ended with another hash symbol for consistency.
+
+Notes and To-Do's
+=================
+Below the file header, we should place any Notes or To-do's that might be relevant to the script.
+ 
+- ``NOTE``'s are used to make anyone looking at your script aware of some information. For example, we could tell someone where to find this guide for more information on our template script.
+- ``TODO``'s are used to track any changes or updates that might need to be made in the code.
+
+Sometimes it makes more sense to leave a Note or Todo directly in the code. If this occurs, make sure to 
+also mention it along with its location at the top of the script with all of the other Note's and Todo's. 
+This ensures that they can be seen at a quick glance and won't be lost deep down in the code.
+
+With these guidelines set, the next piece of our template script becomes:
+
+.. code-block:: python
+    :linenos:
+
+    #===========================#
+    #   CLASS: TEMPLATE CLASS   #
+    #===========================#
+    # NOTE: Mark any information of note here using the NOTE identifier
+
+    # TODO: Mark any planned changes/updates here using the TODO identifier
+
+Imports
+=======
+Our first section of the script contains our imported libraries. Each section title is placed between two bars 
+of dashes with the text centered in the middle with :bold:`two` spaces. Like the file header, all three lines 
+are book-ended by hash marks.
+
+All classes within Scarabaeus should import the library itself, using the shortening convention by importing 
+as ``scb``:
+
+.. code-block:: python
+    :linenos:
+
+    #-----------#
+    #  Include  #
+    #-----------#
+    import scarabaeus as scb               # standard for shortening Scarabaeus
+
+    # some commonly used (but not required) imports
+    from scarabaeus import Constants       # contains all of the values that should be kept constant across Scarabaeus
+    from scarabaeus import typing as scbt  # allows for type-hinting Scarabaeus classes
+
+    import csv                             # used to read csv files, a common file type used within Scarabaeus
+    from typing import Literal             # useful for type-hinting
+    import numpy as np                     # offers many standard physical constants and math operations
+    import numpy.typing as npt             # allows for type-hinting numpy classes like matrix, array-like, etc
+
+Most commonly used imports have been included here in this template, but note that the only required one is 
+the Scarabaeus library itself. The second import, Constants, contains values for many physical constants, as well 
+as parameters for planets and other celestial objects. For more information, see the :ref:`User Guide section on Constants <constants>`.
+
+Generating Units
+================
+The next section, Generating Units, is commonly used, but not always required. Many times, you may need to use 
+:ref:`units <units-in-scb>` in your script. If you do, include this section. Otherwise, skip it entirely.
+
+.. note:: Remember to follow the section titling conventions outlined in the Imports section.
+
+We will be using units in our example script, and so the following will go over the different ways you might consider 
+implementing them:
+
+.. code-block:: python
+    :linenos:
+
+    #------------------#
+    #  Generate Units  #
+    #------------------#
+    # NOTE: skip this section if no units are required
+
+    # if you know you'll be working with specific units, you can generate them here before the class
+    sec = scb.UnitsArray.from_name("s")
+    km  = scb.UnitsArray.from_name("km")
+
+    # you can also generate all of the base units in one line
+    kg, km, sec, rad = scb.UnitsOperator.gen_base_units()
+
+    # generate common units in one line (while developing, only create necessary units when finished)
+    kg, km, sec, rad, meter, AU, min, hour, day, deg, Newton = scb.UnitsArray.generate_common_units()
+
+    # or create more specific units that you might need
+    grav_param_unit = km**3*sec**-2
+
+- The first comment shows how units should be defined in your script using :class:`UnitsArray`. :bold:`This is the recommended way to define units in Scarabaeus`.
+- The second comment shows how to generate all base units and the third shows how to generate all common units. These two methods are useful :bold:`while developing` in the scenario where you are unsure of what units you will be using.
+
+.. note:: Remember to clean these up once you've finalized what units you're using in your script, as defined by the first comment.
+
+- Finally, the last commment provides an example for how to create your own compound units. Many times, you might need to use some units that aren't in Scarabaeus' unit library by default. Instead of continuosly redefining these units, define them once during setup and use them throughout the script.
+
+Class Header and Main Docstring
+===============================
+Now that we've prepared our script, it's time to start writing code for the new object itself. First we need 
+to define the class and whatever class it might inherit from.
+
+Next, we need to populate the main docstring for the class. It consists of 7 inidividual component definitions 
+sandwiched (and indented) between two sets of triple quotation marks ``"""``. These definitions are:
+
+- Summary: 
+    Succinct, high level description of the class and its use cases. The first sentence or two 
+    should be enough to get an idea of the object. Then, leave a space and provide any more information 
+    that's necessary.
+- Parameters: 
+    This section acts as a place to quickly see what inputs a class requires, as well as 
+    what those requirements do and how they're used. Additionally, any optional inputs are also defined 
+    in the same way here.
+- Raises: 
+    Reference for any error messages that the class might raise. Simple ``Error``'s generally need 
+    not be defined here as their messages are usually self-explanatory. However, any errors that are more 
+    complex or require more explanation than that which can be relayed by an error message should be defined 
+    here.
+- See Also: 
+    Quick-glance section to provide any other objects that might be relevant to this class.
+- References: 
+    This is a place to house all citations to papers, textbooks, or outside resources that the 
+    class references. Additionally, citations that provide helpful or more in-depth information, as well as 
+    act as additional reading; these should be held here too.
+- Notes: 
+    This section keeps any information pertaining to a class that needs to be noted. Additionally, if a class 
+    summary becomes overly long, more nuanced/in-depth information should be moved to the Notes section so as 
+    not to make the summary too overwhelming.
+- Examples: 
+    This is a place to provide a few examples showing how to create the class and use some of its 
+    major functionalities. These should be as focused on the class itself as possible - try to not include 
+    other Scarabaeus objects as much as possible. Comprehensive examples should instead be placed in the 
+    :ref:`tutorials section <tutorials>`.
+
+.. note:: Many times, the main docstring can become very large and make reading the code itself difficult. Remember that in VSCode, all docstrings can be collapsed by clicking the ``\/`` arrow beside the line number of the first ``"""``.
+
+For a more in-depth explanation of why each of these sections are defined as they are and what exactly they should 
+contain, see the Documentation_ section below.
+
+.. code-block:: python
+    :linenos:
+
+    #--------------------#
+    #  Class Definition  #
+    #--------------------#
+    class TemplateClassV2(scb.Body):
+    """
+        This class exists as an example to show the format of the object-oriented programming style, format 
+        for automatic documentation, and capitalization preferences for titles, properties, and methods 
+        in Scarabaeus.
+
+        .. warning:: Remember to leave space between the brief explanation sentence(s) and any more relevant high level information.
+        
+        The following provides examples for many common formatting use cases. See the Notes section for less 
+        common examples, or these references for reStructuredText [1]_ and how to use it in Sphinx [2]_. This 
+        cheat sheet [3]_ is also helpful. This is also a good place to see how to reference sources throughout 
+        the main docstring using the ``[#]_`` format. 
+
+        .. note :: Use the double back ticks to display as code. Like this ````text to display as code````.
+
+        To place warnings and notes, use the ``.. warning:: Some warning`` and ``.. note:: Some note`` 
+        directives respectively.
+
+        Bulleted lists can be created using ``-``'s like so:
+
+        - **Bold** text with double asterisks ``**bold text**``.
+        - *Italicize* text with single asterisks ``*italic text*``.
+
+        Numbered lists can be created using ``#.`` like so:
+
+        #. The first item in the list
+        #. The second item in the list
+        #. The third item in the list
+
+        Parameters
+        ----------
+        parent_arg : tuple[str, int | str, ArrayWUnits]
+            An input to demonstrate how Sphinx handles inheritance, show the correct 
+            way to define properties in child classes, and provide an example for static 
+            typing with tuples.
+
+            Note that arguments used for defining parent class properties should not
+            be taken in as tuples; **in this case it is only being used as an example.
+
+        arg_one : int | str
+            An input to demonstrate a typed parameter with more than one accepted type.
+
+        arg_two : ArrayWUnits, optional
+            An input to demonstrate input validation, in this case ensuring ArrayWUnits 
+            have the expected dimensions.
+            
+            Additionally, to demonstrate optional inputs. Defaults to :code:`None`
+
+        arg_three : str, optional
+            An input to demonstrate file input and help with showing private methods 
+            (see :func:`__utility_template__`). Defaults to :code:`None`
+
+        Raises
+        ------
+        ValueError
+            Expected :class:`ArrayWUnits` object with :class:`PhysicalType` of :math:`\\frac{km^3}{s^2}`
+
+        See Also
+        --------
+        scarabaeus.ArrayWUnits : to reference similar or important classes to this one. Note that Body, the parent class of this template, will automatically be referenced by Sphinx as a base and so does not need to be included in a See Also.
+
+        Notes
+        -----
+        The notes section exists to provide additional or more in-depth information pertaining to a class.
+
+        As noted in the summary, this section contains examples for a few less common formatting options. 
+        The first is creating tables like this one:
+
+        +---------+---------------+--------+-----------+
+        | Planets | Dwarf Planets | Moons  | Asteroids |
+        +=========+===============+========+===========+
+        | Jupiter | Pluto         | Tethys | Justitia  |
+        +---------+---------------+--------+-----------+
+        | Saturn  | Haumea        | Phobos | Bennu     |
+        +---------+---------------+--------+-----------+
+
+        This :ref:`generator <https://www.tablesgenerator.com/text_tables>` makes creating these tables 
+        significantly easier. Note that hyperlinks can be created using the syntax ``:ref:`text <link>``` as 
+        was just done, but it is recomended to use the References section whenever possible.
+
+        We also illustrated how to use LaTeX syntax for creating in-line math definitions, but entire equations 
+        can also be created like so:
+
+        .. math::
+
+            x = y + 2
+
+        Quotes can be created using a single indent surrounded by quotation marks:
+            "Quotes are very nice. - me"
+
+        References
+        ----------
+        .. [1] https://docutils.sourceforge.io/rst.html
+        .. [2] https://sublime-and-sphinx-guide.readthedocs.io/en/latest/topics.html
+        .. [3] https://bashtage.github.io/sphinx-material/rst-cheatsheet/rst-cheatsheet.html
+
+        Examples
+        --------
+        .. code-block:: python
+            :linenos:
+
+            ## EXAMPLE: You can write examples to illustrate usage of the class here:
+            # create necessary inputs
+            kg = scb.UnitsArray.from_name("kg")
+            tuple_example = ("this is an", "example", scb.ArrayWUnits(1, kg))
+
+            # define the example object
+            example_class = scb.TemplateClass(val_1, val_2, val_3)
+    """
+
+Initialization
+==============
+.. code-block:: python
+    :linenos:
+
+    #-------------#
+    # Constructor #
+    #-------------#
+    def __init__(self, parent_args : tuple[str, int | str], arg_one : int | str, 
+                 arg_two : scb.ArrayWUnits = None, arg_three : str = None):
+        # parent properties
+        super().__init__(parent_args)
+
+        # class properties
+        self._prop_one    = arg_one                               # no extra input validation, private definition with single "_"
+        self.prop_two     = arg_two                               # calling this property's setter, no "_"
+        self._prop_three  = self.__utility_template__(arg_three)  # calling a private utility class, see __utility_template__() for more
+
+        self.prop_four    = (arg_one, arg_two)                    # example of a property set with tuple input, no "_"
+
+Properties
+==========
+.. code-block:: python
+    :linenos:
+
+    #-------------------------#
+    # region ====> Properties #
+    #-------------------------#
+    @property
+    def prop_one(self):
+        """
+            Some info about this property.
+
+            :base: TemplateClassV2
+            :type: int or str
+        """
+        return self._prop_one
+
+    @property 
+    def prop_two(self):
+        """
+            Some info about this property.
+
+            :base: TemplateClassV2
+            :type: :class:`ArrayWUnits`, :class:`PhysicalType` of :math:`\\frac{km^3}{s^2}`
+        """
+        return self._prop_two
+    
+    @prop_two.setter
+    def prop_two(self, input_val):
+        # Let's assume that we expect arg_two to be given in grav_param_units (kg^3/s^2) defined in the # Generate Units # section:
+        if isinstance(input_val, scb.ArrayWUnits):
+            if input_val.units != grav_param_unit:
+                # The given units are incorrect, raise an error
+                raise ValueError("arg_two should be an ArrayWUnits object with PhysicalType of 'km^3/s^2', not ", input_val.physicalType)
+            else:
+                # Given units are correct, allow property definition
+                self._prop_two = input_val
+        elif isinstance(input_val, type(None)):
+            # In this instance, since the default value for arg_two is 'None', an input value of 'None' must also be valid
+            self._prop_two = input_val
+    
+    @property
+    def prop_three(self):
+        """
+            Some info about this property.
+
+            :base: TemplateClassV2
+            :type: str
+        """
+        return self._prop_three
+
+    # endregion => Properties #
+    #-------------------------#
+
+Note that
+
+Type Hinting
+============
+.. code-block:: python
+    :linenos:
+
+Input Validation
+================
+.. code-block:: python
+    :linenos:
+
+Writing Functions
+=================
+
+---------------------
+:bold:`Documentation`
+---------------------
+There is more than just writing code when it comes to developing a script for Scarabaeus. Documenting how 
+something works is just as important as making sure that it works. If someone can't figure out how to use what 
+you've created, then it isn't any use to anyone.
+
+The following section details the standards that you should keep in mind while documenting your code. It also 
+provides a simple overview for understanding how external documentation is created for Scarabaeus. For an in-depth 
+document on this subject, see :ref:`Maintaining the External Resource <ex-res-maint>`.
+
+
+
+
+See :ref:`how the documentation renders<rendered-template>`.

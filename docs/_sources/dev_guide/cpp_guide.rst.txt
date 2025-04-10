@@ -1,0 +1,157 @@
+
+Setup to Interface C++ with Python scripts 
+==========================================
+Last revised by S. Pattamudu-Manoharan on 2025 FEB 4
+
+Mac Setup Guide
+---------------
+
+1. **Check if Clang is already installed**
+   - Run the following command:
+     ```
+     clang --version
+     ```
+   - If Clang is installed, it will display the version details.
+   - If not, proceed to the installation steps below.
+
+   **Install Clang**
+   - Install Xcode Command Line Tools (which include Clang) by running:
+     ```
+     xcode-select --install
+     ```
+   - Follow the on-screen instructions to complete the installation.
+
+   **Verify Installation**
+   - After installation, check if Clang is properly installed:
+     ```
+     clang --version
+     ```
+   - This should display the Clang version.
+
+
+2. **Install Required Python Packages to interface with C++**
+   - Install `setuptools`, `wheel`, and `pybind11`:
+     ```
+     pip install setuptools wheel pybind11
+     ```
+
+3. **Install Eigen**
+   - Install Eigen using Homebrew:
+     
+     ```
+     brew install eigen
+     ```
+
+4. **Verify Eigen Installation**
+   - Run:
+     ```
+     brew list eigen
+     ```
+   - Copy the path that contains the `include` folder.
+
+5. **Update Setup.py file**
+   - Paste the copied Eigen path into the `setup.py` file.
+
+6. **Build the Python Package**
+   - Run:
+     ```
+     python setup.py build
+     ```
+
+7. **Add the C++ build files path to your environment, follow these steps:** 
+   Append the following line to your Bash profile configuration file:
+
+   .. warning::
+      **Avoid exposing sensitive information** when sharing your screen.  
+      The command ``nano ~/.bash_profile`` opens a file that may contain credentials, API keys, or environment variables.  
+
+   - Run: to open the .bash_profile
+
+     ```
+     nano ~/.bash_profile
+     ```
+
+   - Add the following line
+
+     ```
+     export PYTHONPATH='$PYTHONPATH:/your_cpp_build_path'
+     ```
+   Update 'your_cpp_build_path' with the path of the directory that contains the compiled .so files.
+
+   Click on control + X and then Y to save and exit the file.
+
+   - Apply the changes by running this command:
+     
+     ```
+     source ~/.bash_profile
+     ```
+
+
+
+8. **Run the Python Test Code**
+   - Finally, execute the test script "CPP_setup_verification.py" to verify the setup.
+
+
+
+
+
+Windows Setup Guide
+-------------------
+
+
+1. **Install C++ Build Tools for Visual Studio**
+   - Download and install from:  
+     `https://visualstudio.microsoft.com/downloads/?q=build+tools`
+
+    - During installation, ensure to select **"C++ Development"** from the available options.
+    - This will download and install the necessary components, approximately **6.7GB** in size.
+    - These tools are required for building and compiling C++ extensions.
+
+
+2. **Install Required Python Packages**
+   - Run the following command:
+     ```bash
+     pip install setuptools wheel
+     ```
+
+3. **C++ Extension Configuration**
+   -------------------------------
+
+   **Download Eigen**  
+   - Get the latest version from:  
+     `https://eigen.tuxfamily.org/dox/GettingStarted.html`
+
+   **Store Eigen in a Safe Location**  
+   - Extract and place it in a secure directory, such as:
+     ```
+     C:\Program Files\Eigen
+     ```
+     
+   **Set the Eigen Path in Environment Variables**  
+   - Add the Eigen include directory to the environment variable:
+
+   **Include Eigen Directory in the Setup.py file**
+    ```python 
+    eigen_include_dir = "C:\your_eigen_folder_path"
+    ```
+
+4. **Set the C++ Build Path in Environment Variables**  
+   - Add the C++ build path to the environment variable
+
+   ```
+   C:Users/your_build_path/
+   ```
+
+5. **Build the Python Package**
+   - Run:
+     ```bash
+     python setup.py build
+     ```
+
+6. **Run the Python Test Code**
+   - Finally, execute the cpp_test.py script to verify the setup.
+   
+
+
+
+================================================

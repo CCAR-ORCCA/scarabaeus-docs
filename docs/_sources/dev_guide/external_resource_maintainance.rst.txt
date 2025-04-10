@@ -1,0 +1,317 @@
+.. _ex-res-maint:
+.. create a gold color role
+.. raw:: html
+
+    <style> .gold {color:rgb(207 184 124)} </style>
+
+.. role:: gold
+
+.. create a role that makes bolded text colored blue as well
+.. raw:: html
+
+    <style> .bold {font-weight: bold; color:rgb(2 119 189)} </style>
+
+.. role:: bold
+
+==========================================
+:gold:`Scarabaeus External Resource Guide`
+==========================================
+--------------------
+:bold:`Introduction`
+--------------------
+Besides the functionality itself, there are two other important components of writing a class for Scarabaeus:
+ 
+#. Auto-generated documentation: providing information for display here in Scarabaeus' resources
+#. In-code documentation: general commenting for the actual code
+
+The file ``TemplateClass.py`` has been set up as an example to follow when writing a class or methods for Scarabaeus. This document 
+will highlight the standards and formatting presented within ``TemplateClass.py`` and explain their reasons for inclusion.
+
+.. note::
+    The template code is available in its entirety within Scarabaeus under ``TemplateClass.py``, or :ref:`here in the documentation <show-code>`.
+
+------------------------------------
+:bold:`Auto-Generated Documentation`
+------------------------------------
+This entire documentation resource is generated using `Sphinx <https://www.sphinx-doc.org/en/master/>`_.
+This section will isolate the relevant parts of ``TemplateClass.py`` to focus on how Sphinx uses the information you provide to generate 
+a searchable, cross-referenced website. 
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How to Write Auto-Documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Below we will walk through each component of the template to show how it presents when built by Sphinx. Note that all in-code
+comments and duplicate Sphinx-related material have been removed from the template to make it easier to see what Sphinx requires.
+Also, some methods have been ommitted from this section because they exist more to demonstrate in-code practices and so will be
+shown during the ` section.
+
+----
+
+-----------------------------------------
+:bold:`Maintaining the External Resource`
+-----------------------------------------
+
+----
+
+Need to fill this in later
+
+.. _docstring-format-guide:
+-----------------------------------------
+:bold:`Writing for the External Resource`
+-----------------------------------------
+The bulk of the information we must provide is given in the form of multiple docstrings throughout the file. These docstrings must follow a 
+specific format to ensure cohesion throughout the resource. This format follows a modified version of Numpy's `dev manual <https://numpydoc.readthedocs.io/en/latest/example.html#example>`_. 
+There are three types of docstring that each serve different purposes in creating a comprehensive resource for a Scarabaeus class:
+
+#. Class Docstring     - the main source of information for a Scarabaeus class.
+#. Property Docstrings - supplementary information for the Class Docstring detailing class properties.
+#. Method Docstrings   - information describing the use of a method.
+
+In the following sections we will walk through the formatting as well as the purpose of each of these types. These sections will provide references 
+for formatting these docstrings. They are interpreted by Sphinx using the .rst format. For a helpful list of formatting rules in .rst, see 
+`this cheat sheet <https://www.odoo.com/documentation/18.0/contributing/documentation/rst_guidelines.html>`_ for more. Addtionally, if you 
+would like to include tables in your documentation, `this generator <https://www.tablesgenerator.com/text_tables>`_ set to "Text" makes it 
+much easier to do so.
+
+----
+
+===============
+Class Docstring
+===============
+The first and most important docstring type is the Class Docstring. It is placed directly below the class definition in the code and consists of 
+anywhere from three to seven different subsections, depending on the complexity of the class and the relevance of the subsections. Some of these 
+subsections are mandatory and others are discretionary, denoted in the list below:
+
+#. The Class Description - :bold:`mandatory`
+#. The Parameters Section - :bold:`mandatory`
+#. The Raises Section - :bold:`at discretion`
+#. The See Also Section - :bold:`at discretion`, recomended
+#. The Notes Section - :bold:`at discretion`, recomended
+#. The References Section - :bold:`at discretion`
+#. The Examples Section - :bold:`mandatory`
+
+All of these sections are placed within the same docstring, book-ended by two sets of three quotation marks. All of the contents should be indented 
+one space inwards. It will take the below form (this is a helpful copy-paste template), with the following sections providing more detail:
+
+.. code-block:: python
+
+    #--------------------#
+    #  Class Definition  #
+    #--------------------#
+    class ClassName:
+        """
+            CLASS DESC
+
+            Parameters
+            ----------
+            arg : type
+                DESC
+            
+            arg_two : type or other_type, optional
+                DESC. Defaults to ``default_value``.
+
+            Raises
+            ------
+            REMOVE IF NO SPECIAL ERRORS
+
+            See Also
+            --------
+            REMOVE IF NO SEE ALSOS
+
+            Notes
+            -----
+            REMOVE IF NO NOTES
+
+            References
+            ----------
+            REMOVE IF NO REFERENCES
+
+            Examples
+            --------
+            .. code-block:: python
+
+                # initial setup
+                import scarabaeus as scb
+        """
+
+^^^^^^^^^^^^^^^^^^^^^
+The Class Description
+^^^^^^^^^^^^^^^^^^^^^
+The first section of the Class Docstring is the Class Description, which, as its name suggests, provides information about the 
+class. This is a :bold:`mandatory` inclusion in the Class Docstring, so make sure you've filled it out during your documentation 
+process.
+
+.. code-block:: python
+
+    """
+        Here you should provide a sentence or two concisely explaining the class and its functions.
+
+        If necessary, you can provide a longer explanation on the line(s) below the first brief summary. For 
+        anything more nuanced or complex, refer to the Notes section. The Class Description should be 
+        easily digestible, so try not to bog it down with highly technical components of the class.
+
+        ...
+    """
+
+It's important to be descriptive when writing this section. Look at some of the class descriptions in other classes throughout 
+Scarabaeus and notice that they don't assume the user has much prior knowledge about the class. It's easy to write a quick two-sentence 
+blurb about a class when you've been engrossed in its development for the past month, but make sure that you aren't taking your 
+intimate knowledge of it for granted when writing its description. :bold:`Nothing should be ambiguous`.
+
+^^^^^^^^^^^^^^^^^^^^^^
+The Parameters Section
+^^^^^^^^^^^^^^^^^^^^^^
+The next section, the Parameters section, is also a :bold:`mandatory` inclusion in the Class Docstring. This is because it's where 
+we provide information detailing the inputs, or parameters, of the class' ``__init__`` function. Where the Class Description told the 
+user what the class does, the Parameters Section tells the user how we expect them to set the class up to perform those actions.
+
+The code below provides
+
+.. code-block:: python
+
+    """
+        ...
+
+        Parameters
+        ----------
+
+
+        ...
+    """
+
+^^^^^^^^^^^^^^^^^^
+The Raises Section
+^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    """
+        ...
+
+        Raises
+        ------
+
+
+        ...
+    """
+
+^^^^^^^^^^^^^^^^^^^^
+The See Also Section
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    """
+        ...
+
+        See Also
+        --------
+
+
+        ...
+    """
+
+^^^^^^^^^^^^^^^^^
+The Notes Section
+^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    """
+        ...
+
+        Notes
+        -----
+
+
+        ...
+    """
+
+^^^^^^^^^^^^^^^^^^^^^^
+The References Section
+^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    """
+        ...
+
+        References
+        ----------
+
+
+        ...
+    """
+
+^^^^^^^^^^^^^^^^^^^^
+The Examples Section
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    """
+        ...
+
+        Examples
+        --------
+        Here we'll describe what we're providing an example for. In this case, we're using 
+        our TemplateClass to perform some dummy operation. We'll use the code-block directive to 
+        tell Sphinx to render our example as a copyable block of Python code below:
+
+        .. code-block:: python
+
+            # initial setup
+            import scarabaeus as scb
+
+            # call some dummy method
+            answer = scb.TemplateClass.general_template_method(1)
+
+            # make sure to provide the example's solution
+            >>> print(answer)
+            'Print out of the answer here'
+    """
+
+.. note::
+    You :bold:`must provide a print out solution` to any examples you provide. The code you place in the Examples section is purposefully :bold:`not` run by Sphinx during compilation firstly to reduce build time, but also, more importantly, to make sure developers check the code they're providing works. 
+
+----
+
+===================
+Property Docstrings
+===================
+
+.. code-block:: python
+
+    """
+        DESC
+
+        :base:
+        :type:
+    """
+
+----
+
+=================
+Method Docstrings
+=================
+Stuff on subsection 1
+
+.. code-block:: python
+
+    import scarabaeus as scb
+
+    # give code examples like this
+    print('hi mattia')
+
+    >>> 'hi mattia'
+
+----
+
+Subsection 2
+============
+Can also do lists like this
+
+#. first
+#. second
+#. third
+
+Hyperlink like this:
+:ref:`text <link>`
+
+Link other pages in the external resource like this:
+:ref:`text <ex-res-maint>`
