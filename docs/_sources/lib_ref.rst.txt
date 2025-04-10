@@ -1,0 +1,262 @@
+.. _library-reference:
+
+.. create a gold color role
+.. raw:: html
+
+    <style> .gold {color:rgb(207 184 124)} </style>
+
+.. role:: gold
+
+.. create a blue color role
+.. raw:: html
+
+    <style> .blue {color:rgb(2 119 189)} </style>
+
+.. role:: blue
+
+=========================
+:gold:`Library Reference`
+=========================
+This reference manual details the modules, classes, and methods included in Scarabaeus. Each module 
+contains classes relevant to itself. For more in-depth descriptions of each module, 
+see its respective section below.
+
+|
+
+----
+
+-------------------
+:blue:`Body Module`
+-------------------
+The classes described in this module define body objects in the orbit determination process. 
+This includes planets, ground stations, and spacecraft.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Body Classes:
+
+   ./body_rsts/body.rst
+   ./body_rsts/groundstation.rst
+   ./body_rsts/celestialbody.rst
+
+|
+
+----
+
+-----------------------
+:blue:`Dynamics Module`
+-----------------------
+The classes described in this module provide functionality for modeling the dynamic environment 
+acting on a spacecraft. This includes modeling of Keplerian accelerations, 3rd body perturbations, 
+solar radiation pressure, higher-order fidelity gravitational modeling (spherical harmonics, polyhedral), 
+and finite burn modeling.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Dynamics Classes:
+
+   ./dynamics_rsts/cannonballsrp.rst
+   ./dynamics_rsts/dynamicmodel.rst
+   ./dynamics_rsts/finiteburn.rst
+   ./dynamics_rsts/forcemodel.rst
+   ./dynamics_rsts/impulsiveburn.rst
+   ./dynamics_rsts/nplatesrp.rst
+   ./dynamics_rsts/pointmassgravity.rst
+   ./dynamics_rsts/sphericalharmonicsgravity.rst
+   ./dynamics_rsts/threebodygravity.rst
+
+|
+
+----
+
+--------------------------
+:blue:`Environment Module`
+--------------------------
+The classes described in this module provide a set of high-level representations used to define the environment 
+describing an orbit-determination scenario.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Environment Classes:
+
+   ./environment_rsts/missionsequence.rst
+   ./environment_rsts/propagator.rst
+   ./environment_rsts/scenariosetup.rst
+   ./environment_rsts/statearray.rst
+   ./environment_rsts/trajectory.rst
+
+|
+
+----
+
+-----------------------
+:blue:`Guidance Module`
+-----------------------
+The classes described in this module provide functionality for guidance tasks such as B-Plane targeting and 
+maneuver execution.
+
+.. toctree::
+    :maxdepth: 1
+    :numbered:
+    :caption: All Guidance Classes:
+
+    ./guidance_rsts/bplane.rst
+
+|
+
+----
+
+---------------------------
+:blue:`Measurements Module`
+---------------------------
+The classes described in this module provide functionality for both computed and observed modeling, multi-type 
+modeling, generating measurement datasets, and the computation of partial derivatives. These capabilities are 
+supported by a set of ideal and real measurement models that can be used to generate both radiometric and optical observables.  
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Measurement Classes:
+
+   ./measurement_rsts/centroidingideal.rst
+   ./measurement_rsts/diffonewayrangeideal.rst
+   ./measurement_rsts/dopplerideal.rst
+   ./measurement_rsts/dopplerreal.rst
+   ./measurement_rsts/measurement.rst
+   ./measurement_rsts/measurementdataset.rst
+   ./measurement_rsts/measurementsimulator.rst
+   ./measurement_rsts/ramptablemanager.rst
+   ./measurement_rsts/rangeideal.rst
+   ./measurement_rsts/rangerateideal.rst
+   ./measurement_rsts/sequentialrangingreal.rst
+
+|
+
+----
+
+----------------------------------
+:blue:`Orbit Determination Module`
+----------------------------------
+The classes described in this module implement both orbit determination and filtering algorithms. They also include 
+filter management classes and parent methods to handle filter iteration, handling, and visualization.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Orbit Determination Classes:
+
+   ./orbit_det_rsts/filterdatamanager.rst
+   ./orbit_det_rsts/filterod.rst
+   ./orbit_det_rsts/lkf.rst
+   ./orbit_det_rsts/lsb.rst
+   ./orbit_det_rsts/processnoisecovariance.rst
+   ./orbit_det_rsts/solutionod.rst
+   ./orbit_det_rsts/srif.rst
+
+|
+
+----
+
+-------------------------
+:blue:`Spacecraft Module`
+-------------------------
+The classes described in this module provide functionalities that define various properties of a spacecraft body. 
+This includes sensors (such as imagers, antennas) and actuators (such as thrusters), structural elements, solar panels, 
+power-generation models, etc. 
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Spacecraft Classes:
+
+   ./sc_rsts/actuator.rst
+   ./sc_rsts/antenna.rst
+   ./sc_rsts/camera.rst
+   ./sc_rsts/geometry.rst
+   ./sc_rsts/instrument.rst
+   ./sc_rsts/nplatemodel.rst
+   ./sc_rsts/powermodel.rst
+   ./sc_rsts/solarpanel.rst
+   ./sc_rsts/spacecraft.rst
+   ./sc_rsts/thruster.rst
+
+|
+
+----
+
+-----------------------------
+:blue:`Time and Frame Module`
+-----------------------------
+The classes described in this module provide tools for handling reference frame and time referencing systems. As these 
+are critical elements in any orbit determination process, a dedicated set of classes are used to handle reference frame 
+definition, transformation, and storage.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Time & Frame Classes:
+
+   ./time_n_frame_rsts/arraywframe.rst
+   ./time_n_frame_rsts/epocharray.rst
+   ./time_n_frame_rsts/frame.rst
+   ./time_n_frame_rsts/spicemanager.rst
+
+|
+
+----
+
+--------------------
+:blue:`Units Module`
+--------------------
+The classes described in this module provide tools to manage both physical dimensions as well as units across the tool. 
+This capability is important to ensure correct operations, facilitate clear interfaces, and maintain continuity when performing 
+calculations using physical properties.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Units Classes:
+
+   ./units_rsts/arraywunits.rst
+   ./units_rsts/units.rst
+   ./units_rsts/dimensions.rst
+
+|
+
+----
+
+------------------------
+:blue:`Utilities Module`
+------------------------
+The classes described in this module provide utility tools leveraged across the entirety of Scarabaeus.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Utility Classes:
+
+   ./utils_rsts/covariancematrix.rst
+   ./utils_rsts/databasemanager.rst
+   ./utils_rsts/noise.rst
+   ./utils_rsts/orbitalelements.rst
+   ./utils_rsts/outlierrejection.rst
+   ./utils_rsts/plotting.rst
+   ./utils_rsts/utils.rst
+
+|
+
+--------------------------
+:blue:`Additional Classes`
+--------------------------
+Any additional classes that are not categorized within a module are documented here. This includes 
+things like the Scarabaes constants library and typing library.
+
+.. toctree::
+   :maxdepth: 1
+   :numbered:
+   :caption: All Additional Classes:
+
+   ./add_class_rsts/constants.rst
