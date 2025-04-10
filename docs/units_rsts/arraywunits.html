@@ -1,0 +1,1305 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. ArrayWUnits &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'units_rsts/arraywunits';</script>
+    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Units" href="units.html" />
+    <link rel="prev" title="4. SpiceManager" href="../time_n_frame_rsts/spicemanager.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide_rsts/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial_files/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_guide_rsts/dev_guide.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide_rsts/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial_files/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_guide_rsts/dev_guide.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/cannonballsrp.html">1. CannonBallSRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/forcemodel.html">4. ForceModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/nplatesrp.html">6. nPlateSRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/threebodygravity.html">9. ThreeBodyGravity</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/missionsequence.html">1. MissionSequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/propagator.html">2. Propagator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/scenariosetup.html">3. ScenarioSetup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/statearray.html">4. StateArray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment_rsts/trajectory.html">5. Trajectory</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerreal.html">4. DopplerReal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurement.html">5. Measurement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurementdataset.html">6. MeasurementDataSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurementsimulator.html">7. MeasurementSimulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/ramptablemanager.html">8. RampTableManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">9. RangeIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">10. RangeRateIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">11. SequentialRangingReal</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lsb.html">4. LSB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. ArrayWUnits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units.html">2. Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimensions.html">3. Dimensions</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/orbitalelements.html">4. OrbitalElements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting.html">6. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../lib_ref.html" class="nav-link"><span class="gold">Library Reference</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">1. </span>ArrayWUnits</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="arraywunits">
+<span id="docs-arraywunits"></span><h1><span class="section-number">1. </span>ArrayWUnits<a class="headerlink" href="#arraywunits" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ArrayWUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.2)"><span class="pre">dtype</span></a><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarType_co</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><span class="pre">scbt.Units</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><span class="pre">scbt.Units</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>CLASS DESC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (int | float | list <a href="#id1"><span class="problematic" id="id2">|</span></a>np.ndarray) – DESC</p></li>
+<li><p><strong>units</strong> (<em>Unit</em><em> | </em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><em>Unit</em><em>]</em>) – DESC</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.Unit</span></code></dt><dd><p>Scarabaeus-defined representation of physical units.</p>
+</dd>
+<dt><a class="reference internal" href="dimensions.html#scarabaeus.Dimensions" title="scarabaeus.Dimensions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.Dimensions</span></code></a></dt><dd><p>Scarabaeus-defined representation of phyiscal dimensions.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>While both <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">units</span></code> can optionally be given as multiple different object
+types, internally they are converted to <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code> objects to ensure numpy functionality.</p>
+<p class="rubric">References</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">stuff</span>
+</pre></div>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.homogeneous_units" title="scarabaeus.ArrayWUnits.homogeneous_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">homogeneous_units</span></code></a></p></td>
+<td><p>Boolean flag indicating whether or not all units are homogeneous or not.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.shape" title="scarabaeus.ArrayWUnits.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
+<td><p>The number of columns and rows within the ArrayWUnits object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.size" title="scarabaeus.ArrayWUnits.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a></p></td>
+<td><p>The number of elements contained within the ArrayWUnits object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.units" title="scarabaeus.ArrayWUnits.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units</span></code></a></p></td>
+<td><p>Associated units NEED BETTER DESC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.values" title="scarabaeus.ArrayWUnits.values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values</span></code></a></p></td>
+<td><p>Numeric array</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.angle_between" title="scarabaeus.ArrayWUnits.angle_between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">angle_between</span></code></a>(other)</p></td>
+<td><p>Angle between two vectors</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.append" title="scarabaeus.ArrayWUnits.append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append</span></code></a>(other[, axis])</p></td>
+<td><p>Return an ArrayWUnits object with given ArrayWUnits object appended to the back.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.are_shapes_compatible" title="scarabaeus.ArrayWUnits.are_shapes_compatible"><code class="xref py py-obj docutils literal notranslate"><span class="pre">are_shapes_compatible</span></code></a>(other)</p></td>
+<td><p>Check if the shapes of self and other are compatible to perform operations between them.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.atleast_2d" title="scarabaeus.ArrayWUnits.atleast_2d"><code class="xref py py-obj docutils literal notranslate"><span class="pre">atleast_2d</span></code></a>([awu_in])</p></td>
+<td><p>Rescast the ArrayWUnits object as arrays with atleast two dimensions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.convert_to" title="scarabaeus.ArrayWUnits.convert_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to</span></code></a>(to_convert_to)</p></td>
+<td><p>Convert all elements of an ArrayWUnits object to the given units.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.cos" title="scarabaeus.ArrayWUnits.cos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cos</span></code></a>()</p></td>
+<td><p>Trigonometric cosine operator for ArrayWUnits objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.cross" title="scarabaeus.ArrayWUnits.cross"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cross</span></code></a>(other)</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.empty" title="scarabaeus.ArrayWUnits.empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code></a>(shape)</p></td>
+<td><p>Return a new ArrayWUnits object of the given shape without initializing value entries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.exp" title="scarabaeus.ArrayWUnits.exp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp</span></code></a>()</p></td>
+<td><p>Method to generate an exponetial base e of an ArrayWUnits.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.exp2" title="scarabaeus.ArrayWUnits.exp2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp2</span></code></a>()</p></td>
+<td><p>Method to generate an exponetial base 2 an ArrayWUnits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.eye" title="scarabaeus.ArrayWUnits.eye"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eye</span></code></a>(n[, units, diag_units, m, k])</p></td>
+<td><p>Return an ArrayWUnits object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.get_shape" title="scarabaeus.ArrayWUnits.get_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_shape</span></code></a>()</p></td>
+<td><p>Retrieve the shape of an input ArrayWUnits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.inverse" title="scarabaeus.ArrayWUnits.inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse</span></code></a>()</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.is_array_numerical" title="scarabaeus.ArrayWUnits.is_array_numerical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_array_numerical</span></code></a>(arrayIn)</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.log" title="scarabaeus.ArrayWUnits.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>()</p></td>
+<td><p>Method to generate a log base e an ArrayWUnits.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.log10" title="scarabaeus.ArrayWUnits.log10"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log10</span></code></a>()</p></td>
+<td><p>Method to generate a log base 10 of an ArrayWUnits.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.log2" title="scarabaeus.ArrayWUnits.log2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log2</span></code></a>()</p></td>
+<td><p>Method to generate a log base 2 an ArrayWUnits.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.max" title="scarabaeus.ArrayWUnits.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max</span></code></a>(other)</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.norm" title="scarabaeus.ArrayWUnits.norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">norm</span></code></a>()</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.pseudo_inverse" title="scarabaeus.ArrayWUnits.pseudo_inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pseudo_inverse</span></code></a>()</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.rotate_dcm" title="scarabaeus.ArrayWUnits.rotate_dcm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate_dcm</span></code></a>(dcm)</p></td>
+<td><p>Rotate a vector with DCMs</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.sin" title="scarabaeus.ArrayWUnits.sin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sin</span></code></a>()</p></td>
+<td><p>Trigonometric sine operator for ArrayWUnits objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.summation" title="scarabaeus.ArrayWUnits.summation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summation</span></code></a>()</p></td>
+<td><p>Sum all elements in the ArrayWUnits object, if units allow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.tan" title="scarabaeus.ArrayWUnits.tan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tan</span></code></a>()</p></td>
+<td><p>Trigonometric tangent operator for ArrayWUnits objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.to_homog_units" title="scarabaeus.ArrayWUnits.to_homog_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_homog_units</span></code></a>()</p></td>
+<td><p>Convert to homogeneous units</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.transpose" title="scarabaeus.ArrayWUnits.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.unitary" title="scarabaeus.ArrayWUnits.unitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unitary</span></code></a>()</p></td>
+<td><p>Method to transform a vector into a unitary one.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWUnits.units_arithmetic" title="scarabaeus.ArrayWUnits.units_arithmetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">units_arithmetic</span></code></a>(other, operation)</p></td>
+<td><p>Internal method holding all</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>atleast_1d</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>atleast_3d</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.angle_between">
+<span class="sig-name descname"><span class="pre">angle_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.angle_between" title="Link to this definition">#</a></dt>
+<dd><p>Angle between two vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.append" title="Link to this definition">#</a></dt>
+<dd><p>Return an ArrayWUnits object with given ArrayWUnits object
+appended to the back.</p>
+<p>ArrayWUnits equivalent of <a href="#id3"><span class="problematic" id="id4">``</span></a>np.append()``[Re191ef89a701-1]_.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – The ArrayWUnits object to be appended.</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – The axis along which given ArrayWUnits objects are
+added. If not given, both self and given ArrayWUnits
+object are flattened before appending. Defaults to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>out</strong> – ArrayWUnits object with given ArrayWUnits appended to
+the end. If <code class="docutils literal notranslate"><span class="pre">axis</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">out</span></code> is is a
+flattened ArrayWUnits object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="re191ef89a701-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://numpy.org/doc/2.1/reference/generated/numpy.append.html">https://numpy.org/doc/2.1/reference/generated/numpy.append.html</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<p>Append two ArrayWUnits objects without specifying axis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># initial setup</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="linenos"> 3</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">kg</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;kg&#39;</span><span class="p">)</span>             <span class="c1"># generate units</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">one</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">kg</span><span class="p">)</span> <span class="c1"># initialize AWU&#39;s</span>
+<span class="linenos"> 8</span><span class="n">two</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">kg</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1"># no axis specified</span>
+<span class="linenos">11</span><span class="n">one</span> <span class="o">=</span> <span class="n">one</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">two</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">1.</span> <span class="mf">2.</span> <span class="mf">3.</span> <span class="mf">4.</span><span class="p">]</span> <span class="p">[</span><span class="n">kg</span> <span class="o">...</span> <span class="n">kg</span><span class="p">]</span>              <span class="c1"># flat AWU</span>
+</pre></div>
+</div>
+<p>Notice that, despite appending to a column vector, since no axis was
+given the return ArrayWUnits is a flattened row vector.</p>
+<p>Append row vector to compatible matrix:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># initial setup</span>
+<span class="linenos"> 2</span><span class="n">km</span><span class="p">,</span> <span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;unitless&#39;</span><span class="p">])</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">three_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">km</span>      <span class="p">,</span> <span class="n">unitless</span><span class="p">,</span> <span class="n">unitless</span><span class="p">],</span>
+<span class="linenos"> 5</span>                      <span class="p">[</span><span class="n">unitless</span><span class="p">,</span> <span class="n">km</span>      <span class="p">,</span> <span class="n">unitless</span><span class="p">],</span>
+<span class="linenos"> 6</span>                      <span class="p">[</span><span class="n">unitless</span><span class="p">,</span> <span class="n">unitless</span><span class="p">,</span> <span class="n">km</span>      <span class="p">]])</span>
+<span class="linenos"> 7</span><span class="n">three</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">three_mat</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">four_row</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">km</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># equal rows -&gt; append to first axis</span>
+<span class="linenos">12</span><span class="n">three_ax_0</span> <span class="o">=</span> <span class="n">three</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">four_row</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">0.</span><span class="p">]</span>
+<span class="linenos">15</span>     <span class="p">[</span><span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">0.</span><span class="p">]</span>
+<span class="linenos">16</span>     <span class="p">[</span><span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">1.</span><span class="p">]</span>
+<span class="linenos">17</span>     <span class="p">[</span><span class="mf">1.</span> <span class="mf">1.</span> <span class="mf">1.</span><span class="p">]]</span> <span class="p">[</span><span class="n">non</span><span class="o">-</span><span class="n">homogeneous</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Append column vector to compatible matrix:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># initial setup</span>
+<span class="linenos">2</span><span class="n">four_col</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">km</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="c1"># equal columns -&gt; append to second axis</span>
+<span class="linenos">5</span><span class="n">three_ax_1</span> <span class="o">=</span> <span class="n">three</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">four_col</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">1.</span><span class="p">]</span>
+<span class="linenos">8</span>     <span class="p">[</span><span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">0.</span> <span class="mf">1.</span><span class="p">]</span>
+<span class="linenos">9</span>     <span class="p">[</span><span class="mf">0.</span> <span class="mf">0.</span> <span class="mf">1.</span> <span class="mf">1.</span><span class="p">]]</span> <span class="p">[</span><span class="n">non</span><span class="o">-</span><span class="n">homogeneous</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.are_shapes_compatible">
+<span class="sig-name descname"><span class="pre">are_shapes_compatible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.are_shapes_compatible" title="Link to this definition">#</a></dt>
+<dd><p>Check if the shapes of self and other are compatible to perform operations
+between them.</p>
+<p>Currently, ArrayWUnits supports three cases of operations:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Operations between N-D arrays with the same shape</p></li>
+<li><p>Operations between an N-D array and a scalar</p></li>
+<li><p>Operations between a N-D array and a 1-D array
+whose size is equal to the size of the last dimension
+of the N-D array. This case comes in handy, for instance,
+to perform operations between a 3x1 array and a 3xN matrix.</p></li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.atleast_1d">
+<span class="sig-name descname"><span class="pre">atleast_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awu_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.atleast_1d" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.atleast_2d">
+<span class="sig-name descname"><span class="pre">atleast_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awu_in</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.atleast_2d" title="Link to this definition">#</a></dt>
+<dd><p>Rescast the ArrayWUnits object as arrays with atleast two dimensions.</p>
+<p>ArrayWUnits equivalent of <a href="#id5"><span class="problematic" id="id6">``</span></a>np.atleast_2d()``[R510aeb09ee2c-1]_.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>awu_in</strong> (<a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a><em>, </em><em>optional</em>) – NEED DESC</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>out</strong> – NEED DESC</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r510aeb09ee2c-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.atleast_2d.html">https://numpy.org/doc/stable/reference/generated/numpy.atleast_2d.html</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<p>Recast a one-dimensional ArrayWUnits as a two-dimensional
+array:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># initial setup</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">awu_1d</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">km</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># recast to a 2D array</span>
+<span class="linenos"> 9</span><span class="n">awu_2d</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">awu_1d</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">]]</span> <span class="p">[</span><span class="n">km</span><span class="p">]</span>     <span class="c1"># awu is now 2D</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.atleast_3d">
+<span class="sig-name descname"><span class="pre">atleast_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">awu_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.atleast_3d" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_convert_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.convert_to" title="Link to this definition">#</a></dt>
+<dd><p>Convert all elements of an ArrayWUnits object to the given
+units.</p>
+<p>Valid for ArrayWUnits objects containing non-homogeneous units
+as long as those units are all of the same dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>to_convert_to</strong> (<a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a>) – DESC</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>converted</strong> – DESC</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – Explain</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p class="rubric">Examples</p>
+<p>Convert a week (7 days) to seconds and back to days:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># initial setup</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">day</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;day&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">])</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">week</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">7.0</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="o">&gt;&gt;&gt;</span> <span class="mf">7.0</span> <span class="n">day</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1"># convert days to seconds</span>
+<span class="linenos">11</span><span class="n">week_sec</span> <span class="o">=</span> <span class="n">week</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="o">&gt;&gt;&gt;</span> <span class="mf">604800.0</span> <span class="n">sec</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="c1"># and seconds back to days</span>
+<span class="linenos">16</span><span class="n">week_days</span> <span class="o">=</span> <span class="n">week_sec</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">day</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="o">&gt;&gt;&gt;</span> <span class="mf">7.0</span> <span class="n">day</span>
+</pre></div>
+</div>
+<p>Convert a row vector [1 cm, 1 m, 1 km] to the equivalent values
+all defined in km [0.00001 km, 0.001 km, 1 km]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># initial setup</span>
+<span class="linenos"> 2</span><span class="n">cm</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;cm&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">])</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1"># array of different units with same dimensions</span>
+<span class="linenos"> 5</span><span class="n">cm_m_km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">cm</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">km</span><span class="p">])</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># convert all to kilometers</span>
+<span class="linenos"> 8</span><span class="n">all_km</span> <span class="o">=</span> <span class="n">cm_m_km</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">km</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">1.e-05</span> <span class="mf">1.e-03</span> <span class="mf">1.e+00</span><span class="p">]</span> <span class="p">[</span><span class="n">km</span> <span class="o">...</span> <span class="n">km</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.cos">
+<span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.cos" title="Link to this definition">#</a></dt>
+<dd><p>Trigonometric cosine operator for ArrayWUnits objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.cross">
+<span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.cross" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><em>Self</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.empty" title="Link to this definition">#</a></dt>
+<dd><p>Return a new ArrayWUnits object of the given shape without
+initializing value entries. Units are set as unitless.</p>
+<p>ArrayWUnits equivalent of <a href="#id7"><span class="problematic" id="id8">``</span></a>np.empty()``[Ra06929dc1077-1]_.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>]</em>) – The shape of the empty ArrayWUnits. One-dimensional arrays
+should be given as integers while n-dimensional arrays should be
+given as a tuple of integers.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>out</strong> – An ArrayWUnits object of given shape with empty values and unitless
+units.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="ra06929dc1077-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://numpy.org/doc/2.1/reference/generated/numpy.empty.html">https://numpy.org/doc/2.1/reference/generated/numpy.empty.html</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<p>Initialize an empty 1x3 ArrayWUnits object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="n">Unitless</span><span class="p">]</span>    <span class="c1"># uninitialized</span>
+</pre></div>
+</div>
+<p>Initialize an empty 3x3 ArrayWUnits object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="linenos">4</span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="linenos">5</span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="n">Unitless</span><span class="p">]</span>    <span class="c1"># uninitialized</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.exp">
+<span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.exp" title="Link to this definition">#</a></dt>
+<dd><p>Method to generate an exponetial base e of an ArrayWUnits.</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.exp2">
+<span class="sig-name descname"><span class="pre">exp2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.exp2" title="Link to this definition">#</a></dt>
+<dd><p>Method to generate an exponetial base 2 an ArrayWUnits.</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.eye">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">eye</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><span class="pre">scbt.Units</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diag_units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><span class="pre">scbt.Units</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.eye" title="Link to this definition">#</a></dt>
+<dd><p>Return an ArrayWUnits object.</p>
+<p>ArrayWUnits equivalent of <a href="#id9"><span class="problematic" id="id10">``</span></a>np.atleast_2d()``[Rebe92f792af7-1]_.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – NEED DESC</p></li>
+<li><p><strong>units</strong> (<a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a><em>] </em><em>| </em><em>np.array</em><em>[</em><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a><em>]</em><em>, </em><em>optional</em>) – <p>Units assigned to all elements in the ArrayWUnits object. Dependent
+on object type given:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Units</span></code>: Homogeneously united ArrayWUnits object of the given unit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">np.array</span></code> of <code class="docutils literal notranslate"><span class="pre">Units</span></code>:</p></li>
+</ul>
+</p></li>
+<li><p><strong>diag_units</strong> (<a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a><em>] </em><em>| </em><em>np.array</em><em>[</em><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units"><em>Units</em></a><em>]</em><em>, </em><em>optional</em>) – Units assigned to the diagonal only. If <code class="docutils literal notranslate"><span class="pre">diag_units</span></code> are given,
+all other units are assigned unitless.</p></li>
+<li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>)</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>out</strong> – NEED DESC</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rebe92f792af7-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.eye.html">https://numpy.org/devdocs/reference/generated/numpy.eye.html</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<p>Recast a one-dimensional ArrayWUnits as a two-dimensional
+array:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># initial setup</span>
+<span class="linenos"> 2</span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">awu_1d</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">km</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># recast to a 2D array</span>
+<span class="linenos"> 9</span><span class="n">awu_2d</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">awu_1d</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="o">&gt;&gt;&gt;</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">]]</span> <span class="p">[</span><span class="n">km</span><span class="p">]</span>     <span class="c1"># awu is now 2D</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.get_shape">
+<span class="sig-name descname"><span class="pre">get_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.get_shape" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the shape of an input ArrayWUnits.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.inverse" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.is_array_numerical">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_array_numerical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrayIn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.is_array_numerical" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.log" title="Link to this definition">#</a></dt>
+<dd><p>Method to generate a log base e an ArrayWUnits.</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.log10">
+<span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.log10" title="Link to this definition">#</a></dt>
+<dd><p>Method to generate a log base 10 of an ArrayWUnits.</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.log2">
+<span class="sig-name descname"><span class="pre">log2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.log2" title="Link to this definition">#</a></dt>
+<dd><p>Method to generate a log base 2 an ArrayWUnits.</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.max">
+<span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.max" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.norm" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.pseudo_inverse">
+<span class="sig-name descname"><span class="pre">pseudo_inverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.pseudo_inverse" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.rotate_dcm">
+<span class="sig-name descname"><span class="pre">rotate_dcm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dcm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.rotate_dcm" title="Link to this definition">#</a></dt>
+<dd><p>Rotate a vector with DCMs</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.sin">
+<span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.sin" title="Link to this definition">#</a></dt>
+<dd><p>Trigonometric sine operator for ArrayWUnits objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.summation">
+<span class="sig-name descname"><span class="pre">summation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.summation" title="Link to this definition">#</a></dt>
+<dd><p>Sum all elements in the ArrayWUnits object, if units allow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.tan">
+<span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.tan" title="Link to this definition">#</a></dt>
+<dd><p>Trigonometric tangent operator for ArrayWUnits objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.to_homog_units">
+<span class="sig-name descname"><span class="pre">to_homog_units</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.to_homog_units" title="Link to this definition">#</a></dt>
+<dd><p>Convert to homogeneous units</p>
+<p>:param
+:type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.transpose">
+<span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.transpose" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.unitary">
+<span class="sig-name descname"><span class="pre">unitary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.unitary" title="Link to this definition">#</a></dt>
+<dd><p>Method to transform a vector into a unitary one.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.units_arithmetic">
+<span class="sig-name descname"><span class="pre">units_arithmetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWUnits.units_arithmetic" title="Link to this definition">#</a></dt>
+<dd><p>Internal method holding all</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.homogeneous_units">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">homogeneous_units</span></span><a class="headerlink" href="#scarabaeus.ArrayWUnits.homogeneous_units" title="Link to this definition">#</a></dt>
+<dd><p>Boolean flag indicating whether or not all units
+are homogeneous or not.</p>
+<ul class="simple">
+<li><p>True : all units are homogeneous.</p></li>
+<li><p>False: all units are not homogeneous.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ArrayWUnits</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#scarabaeus.ArrayWUnits.shape" title="Link to this definition">#</a></dt>
+<dd><p>The number of columns and rows within the ArrayWUnits object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ArrayWUnits</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)">tuple</a>(<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)">int</a>, <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)">int</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#scarabaeus.ArrayWUnits.size" title="Link to this definition">#</a></dt>
+<dd><p>The number of elements contained within the ArrayWUnits object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ArrayWUnits</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.units">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">units</span></span><a class="headerlink" href="#scarabaeus.ArrayWUnits.units" title="Link to this definition">#</a></dt>
+<dd><p>Associated units NEED BETTER DESC</p>
+<p>Returns single unit or array -&gt; more info but remember to say this</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ArrayWUnits</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units">Units</a> | np.array([<a class="reference internal" href="units.html#scarabaeus.Units" title="scarabaeus.Units">Units</a>])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWUnits.values">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><a class="headerlink" href="#scarabaeus.ArrayWUnits.values" title="Link to this definition">#</a></dt>
+<dd><p>Numeric array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ArrayWUnits</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../time_n_frame_rsts/spicemanager.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>SpiceManager</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="units.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Units</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.angle_between"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.angle_between()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.append"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.append()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.are_shapes_compatible"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.are_shapes_compatible()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.atleast_1d"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.atleast_1d()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.atleast_2d"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.atleast_2d()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.atleast_3d"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.atleast_3d()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.convert_to"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.convert_to()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.cos"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.cos()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.cross"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.cross()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.empty"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.empty()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.exp"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.exp()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.exp2"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.exp2()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.eye"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.eye()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.get_shape"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.get_shape()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.inverse"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.inverse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.is_array_numerical"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.is_array_numerical()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.log"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.log()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.log10"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.log10()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.log2"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.log2()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.max"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.max()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.norm"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.norm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.pseudo_inverse"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.pseudo_inverse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.rotate_dcm"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.rotate_dcm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.sin"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.sin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.summation"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.summation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.tan"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.tan()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.to_homog_units"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.to_homog_units()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.transpose"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.transpose()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.unitary"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.unitary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.units_arithmetic"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.units_arithmetic()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.homogeneous_units"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.homogeneous_units</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.shape"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.shape</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.size"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.size</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.units"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.units</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWUnits.values"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits.values</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/units_rsts/arraywunits.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
