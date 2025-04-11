@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Updating the External Resource &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9cdfcecb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/updating_ext_res';</script>
+    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setup to Interface C++ with Python scripts" href="cpp_guide.html" />
+    <link rel="prev" title="Scarabaeus External Resource Guide" href="external_resource_writing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="style_guide.html"><span class="gold">Scarabaeus Coding Conventions</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="gold">Updating the External Resource</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_guide.html">Setup to Interface C++ with Python scripts</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="dev_guide_frontpage.html" class="nav-link"><span class="gold">Developer Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Updating the External Resource</span></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <span class="target" id="update-ext-res"></span><style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><section id="updating-the-external-resource">
+<h1><span class="gold">Updating the External Resource</span><a class="headerlink" href="#updating-the-external-resource" title="Link to this heading">#</a></h1>
+<p>In order for our documentation to be visible, we have to generate a new set of files with our new changes. This document will walk through
+the steps to do so.</p>
+<section id="adding-new-classes-to-the-sphinx-structure">
+<h2><span class="bold">Adding New Classes to the Sphinx Structure</span><a class="headerlink" href="#adding-new-classes-to-the-sphinx-structure" title="Link to this heading">#</a></h2>
+<p>Before we actually build the documentation, we need to update the structure of our Sphinx configuration. As an example, let’s say that we created a new
+class <code class="docutils literal notranslate"><span class="pre">NewDynamicModel.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">dynamics/</span></code> directory of Scarabaeus. In order to tell Sphinx to include all of the documentation that we’ve written
+inside of it, we need to do two things:</p>
+<ol class="arabic simple">
+<li><p>Create an autodocumentation .rst file.</p></li>
+<li><p>Add that file to the Library Reference toctree.</p></li>
+</ol>
+<section id="make-the-autodoc-rst-file">
+<h3>Make the Autodoc .rst File<a class="headerlink" href="#make-the-autodoc-rst-file" title="Link to this heading">#</a></h3>
+<p>First, we’ll make the .rst file. We’ll open the <code class="docutils literal notranslate"><span class="pre">docs\online_documentation\sphinx_files\scb_library\</span></code> directory. This is where all of the .rst’s that
+provide directives to document our classes live. You’ll notice that it’s organized with the same structure as the Scarabaeus directory is. Since our new class is
+under the <code class="docutils literal notranslate"><span class="pre">dynamics/</span></code> directory, we’ll navigate into the <code class="docutils literal notranslate"><span class="pre">scb_library\dynamics_rsts\</span></code> directory and place a new file <code class="docutils literal notranslate"><span class="pre">newdynamicmodel.rst</span></code>. The files in these
+directories correspond to their class names with no capitalization and no spaces.</p>
+<p>Inside our new .rst, we’ll place:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------</span>
+<span class="n">NewDynamicModel</span>
+<span class="o">---------------</span>
+<span class="o">..</span> <span class="n">autoclass</span><span class="p">::</span> <span class="n">scarabaeus</span><span class="o">.</span><span class="n">NewDynamicModel</span>
+    <span class="p">:</span><span class="n">members</span><span class="p">:</span>
+    <span class="p">:</span><span class="n">undoc</span><span class="o">-</span><span class="n">members</span><span class="p">:</span>
+    <span class="p">:</span><span class="n">show</span><span class="o">-</span><span class="n">inheritance</span><span class="p">:</span>
+    <span class="p">:</span><span class="n">inherited</span><span class="o">-</span><span class="n">members</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Firstly, we have the header, which denotes the name of our class in the documentation. It’s important that the “-” above and below are the same length as the header itself.
+Sphinx will raise an error if it’s not. Below this header, we have the autoclass directive. We tell it which class we want it to document in the same line that we call it.
+Then, indented below, we have a few more sub directives to pass to autoclass. These just ensure that we’re documenting everything we need to and with the correct
+formatting.</p>
+<p>With this file, Sphinx now knows how we would like for it to build the documentation for our new class.</p>
+</section>
+<section id="add-to-the-toctree">
+<h3>Add to the Toctree<a class="headerlink" href="#add-to-the-toctree" title="Link to this heading">#</a></h3>
+<p>Now we need to tell Sphinx <em>where</em> we want it to build the documentation for our new class. To do this, we’ll need to place the .rst we made above into the toctree.
+The toctree is how Sphinx structures all of its links. If we open the file <code class="docutils literal notranslate"><span class="pre">docs\online_documentation\sphinx_files\scb_library\lib_ref.rst</span></code> we’ll see multiple toctrees,
+each corresponding to a folder in Scarabaeus.</p>
+<p>We’ll find the “Dynamics” section and place the path to our new .rst in the same location it’s placed in the folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>-----------------------
+:blue:`Dynamics Module`
+-----------------------
+The classes described in this module provide functionality for modeling the dynamic environment
+acting on a spacecraft. This includes modeling of Keplerian accelerations, 3rd body perturbations,
+solar radiation pressure, higher-order fidelity gravitational modeling (spherical harmonics, polyhedral),
+and finite burn modeling.
+
+.. toctree::
+    :maxdepth: 1
+    :numbered:
+    :caption: All Dynamics Classes:
+
+    ./dynamics_rsts/cannonballsrp.rst
+    ./dynamics_rsts/dynamicmodel.rst
+    ./dynamics_rsts/finiteburn.rst
+    ./dynamics_rsts/forcemodel.rst
+    ./dynamics_rsts/impulsiveburn.rst
+    ./dynamics_rsts/newdynamicmodel.rst
+    ./dynamics_rsts/nplatesrp.rst
+    ./dynamics_rsts/pointmassgravity.rst
+    ./dynamics_rsts/sphericalharmonicsgravity.rst
+    ./dynamics_rsts/threebodygravity.rst
+</pre></div>
+</div>
+<p>Now that we’ve told Sphinx how and where to build docs for our new class, we just need to tell Sphinx to actually build, which we’ll do in the next section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If we only made changes to existing classes, not an entirely new one, we will not need to perform any of this, since Sphinx already has the information it needs to find any changes we made and include them in the new version of our documentation.</p>
+</div>
+</section>
+</section>
+<section id="building-the-html-s">
+<h2><span class="bold">Building the HTML’s</span><a class="headerlink" href="#building-the-html-s" title="Link to this heading">#</a></h2>
+<p>Now that we’ve told Sphinx everything that it needs to include in our updated version of the docs, we need to tell it to build the new version. In
+our terminal, we’ll run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">build</span> <span class="o">-</span><span class="n">M</span> <span class="n">html</span> <span class="n">docs</span><span class="o">/</span><span class="n">online_documentation</span><span class="o">/</span><span class="n">sphinx_files</span> <span class="n">docs</span><span class="o">/</span><span class="n">online_documentation</span><span class="o">/</span><span class="n">_build</span>
+</pre></div>
+</div>
+<p>This might take a second since we have a lot of information to parse through. There will most likely be a few warnings, but if it completes and we see
+the print out:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">HTML</span> <span class="n">pages</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">docs</span>\<span class="n">online_documentation</span>\<span class="n">_build</span>\<span class="n">html</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Then we know that our docs have generated. Navigate to <code class="docutils literal notranslate"><span class="pre">docs\online_documentation\_build\html</span></code> and open <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in your browser. This will
+take you to the front page of the documentation, and from there you can perform final checks, as outlined in the next section.</p>
+</section>
+<section id="final-checks">
+<h2><span class="bold">Final Checks</span><a class="headerlink" href="#final-checks" title="Link to this heading">#</a></h2>
+<p>The procedure to follow before you publish the new version is as follows:</p>
+<ol class="arabic simple">
+<li><p>Ensure that the “About Scarabaeus” page is up to date. Are all the current members correct? Missions flown and publications?</p></li>
+<li><p>If you edited any articles in the documentation, make sure that the “last edited by” section is correct.</p></li>
+<li><p>Check the pages for all of the classes you updated or created and ensure that all of your additions/removals have been included in the update and are rendering correctly.</p></li>
+</ol>
+<p>If all of these checks pass, then the documentation is ready to be published.</p>
+</section>
+<section id="updating-the-online-version">
+<h2><span class="bold">Updating the Online Version</span><a class="headerlink" href="#updating-the-online-version" title="Link to this heading">#</a></h2>
+<p>Will need to show how to push updates to the online version. Not sure exactly how we’re doing that yet, so this page section
+be left blank for now.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="external_resource_writing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="gold">Scarabaeus External Resource Guide</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cpp_guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setup to Interface C++ with Python scripts</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-new-classes-to-the-sphinx-structure"><span class="bold">Adding New Classes to the Sphinx Structure</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-autodoc-rst-file">Make the Autodoc .rst File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-to-the-toctree">Add to the Toctree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-html-s"><span class="bold">Building the HTML’s</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-checks"><span class="bold">Final Checks</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-the-online-version"><span class="bold">Updating the Online Version</span></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/dev_guide/updating_ext_res.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

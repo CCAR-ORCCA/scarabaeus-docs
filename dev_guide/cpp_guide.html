@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Setup to Interface C++ with Python scripts &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9cdfcecb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/cpp_guide';</script>
+    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Additional Resources" href="add_resources.html" />
+    <link rel="prev" title="Updating the External Resource" href="updating_ext_res.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+    Library Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="style_guide.html"><span class="gold">Scarabaeus Coding Conventions</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="updating_ext_res.html"><span class="gold">Updating the External Resource</span></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup to Interface C++ with Python scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_resources.html">Additional Resources</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="dev_guide_frontpage.html" class="nav-link"><span class="gold">Developer Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Setup to Interface C++ with Python scripts</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="setup-to-interface-c-with-python-scripts">
+<h1>Setup to Interface C++ with Python scripts<a class="headerlink" href="#setup-to-interface-c-with-python-scripts" title="Link to this heading">#</a></h1>
+<p>Last revised by S. Pattamudu-Manoharan on 2025 FEB 4</p>
+<section id="mac-setup-guide">
+<h2>Mac Setup Guide<a class="headerlink" href="#mac-setup-guide" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Check if Clang is already installed</strong>
+- Run the following command:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">clang</span> <span class="pre">--version</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If Clang is installed, it will display the version details.</p></li>
+<li><p>If not, proceed to the installation steps below.</p></li>
+</ul>
+<p><strong>Install Clang</strong>
+- Install Xcode Command Line Tools (which include Clang) by running:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">xcode-select</span> <span class="pre">--install</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Follow the on-screen instructions to complete the installation.</p></li>
+</ul>
+<p><strong>Verify Installation</strong>
+- After installation, check if Clang is properly installed:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">clang</span> <span class="pre">--version</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This should display the Clang version.</p></li>
+</ul>
+</li>
+<li><p><strong>Install Required Python Packages to interface with C++</strong>
+- Install <cite>setuptools</cite>, <cite>wheel</cite>, and <cite>pybind11</cite>:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">setuptools</span> <span class="pre">wheel</span> <span class="pre">pybind11</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Install Eigen</strong>
+- Install Eigen using Homebrew:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">brew</span> <span class="pre">install</span> <span class="pre">eigen</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Verify Eigen Installation</strong>
+- Run:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">brew</span> <span class="pre">list</span> <span class="pre">eigen</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Copy the path that contains the <cite>include</cite> folder.</p></li>
+</ul>
+</li>
+<li><p><strong>Update Setup.py file</strong>
+- Paste the copied Eigen path into the <cite>setup.py</cite> file.</p></li>
+<li><p><strong>Build the Python Package</strong>
+- Run:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Add the C++ build files path to your environment, follow these steps:</strong>
+Append the following line to your Bash profile configuration file:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Avoid exposing sensitive information</strong> when sharing your screen.
+The command <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">~/.bash_profile</span></code> opens a file that may contain credentials, API keys, or environment variables.</p>
+</div>
+<ul>
+<li><p>Run: to open the .bash_profile</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">nano</span> <span class="pre">~/.bash_profile</span>
+<span class="pre">`</span></code></p>
+</li>
+<li><p>Add the following line</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">export</span> <span class="pre">PYTHONPATH='$PYTHONPATH:/your_cpp_build_path'</span>
+<span class="pre">`</span></code></p>
+</li>
+</ul>
+<p>Update ‘your_cpp_build_path’ with the path of the directory that contains the compiled .so files.</p>
+<p>Click on control + X and then Y to save and exit the file.</p>
+<ul>
+<li><p>Apply the changes by running this command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">source</span> <span class="pre">~/.bash_profile</span>
+<span class="pre">`</span></code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Run the Python Test Code</strong>
+- Finally, execute the test script “CPP_setup_verification.py” to verify the setup.</p></li>
+</ol>
+</section>
+<section id="windows-setup-guide">
+<h2>Windows Setup Guide<a class="headerlink" href="#windows-setup-guide" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Install C++ Build Tools for Visual Studio</strong>
+- Download and install from:</p>
+<blockquote>
+<div><blockquote>
+<div><p><cite>https://visualstudio.microsoft.com/downloads/?q=build+tools</cite></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>During installation, ensure to select <strong>“C++ Development”</strong> from the available options.</p></li>
+<li><p>This will download and install the necessary components, approximately <strong>6.7GB</strong> in size.</p></li>
+<li><p>These tools are required for building and compiling C++ extensions.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Install Required Python Packages</strong>
+- Run the following command:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">setuptools</span> <span class="pre">wheel</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Download Eigen</strong>
+- Get the latest version from:</p>
+<blockquote>
+<div><p><cite>https://eigen.tuxfamily.org/dox/GettingStarted.html</cite></p>
+</div></blockquote>
+<p><strong>Store Eigen in a Safe Location</strong>
+- Extract and place it in a secure directory, such as:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">C:\Program</span> <span class="pre">Files\Eigen</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<p><strong>Set the Eigen Path in Environment Variables</strong>
+- Add the Eigen include directory to the environment variable:</p>
+<dl class="simple">
+<dt><strong>Include Eigen Directory in the Setup.py file</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">eigen_include_dir</span> <span class="pre">=</span> <span class="pre">&quot;C:\your_eigen_folder_path&quot;</span>
+<span class="pre">`</span></code></p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Set the C++ Build Path in Environment Variables</strong>
+- Add the C++ build path to the environment variable</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">C:Users/your_build_path/</span>
+<span class="pre">`</span></code></p>
+</li>
+<li><p><strong>Build the Python Package</strong>
+- Run:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Run the Python Test Code</strong>
+- Finally, execute the cpp_test.py script to verify the setup.</p></li>
+</ol>
+<hr class="docutils" />
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="updating_ext_res.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="gold">Updating the External Resource</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="add_resources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Additional Resources</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mac-setup-guide">Mac Setup Guide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-setup-guide">Windows Setup Guide</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/dev_guide/cpp_guide.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
