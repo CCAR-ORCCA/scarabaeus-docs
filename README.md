@@ -1,1 +1,1 @@
-`_sources` folder not necessary
+Scarabaeus documentation!
