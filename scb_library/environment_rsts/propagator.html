@@ -1,0 +1,1407 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Propagator &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/environment_rsts/propagator';</script>
+    <link rel="icon" href="../../_static/ORCCA_logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. ScenarioSetup" href="scenariosetup.html" />
+    <link rel="prev" title="1. MissionSequence" href="missionsequence.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../lib_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../lib_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/cannonballsrp.html">1. CannonBallSRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/forcemodel.html">4. ForceModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/nplatesrp.html">6. nPlateSRP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/threebodygravity.html">9. ThreeBodyGravity</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="missionsequence.html">1. MissionSequence</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Propagator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenariosetup.html">3. ScenarioSetup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statearray.html">4. StateArray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trajectory.html">5. Trajectory</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerreal.html">4. DopplerReal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurement.html">5. Measurement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurementdataset.html">6. MeasurementDataSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/measurementsimulator.html">7. MeasurementSimulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/mediacorrections.html">8. MediaCorrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/ramptablemanager.html">9. RampTableManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lsb.html">4. LSB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/orbitalelements.html">4. OrbitalElements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../lib_ref.html" class="nav-link"><span class="gold">API Reference</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">2. </span>Propagator</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="propagator">
+<h1><span class="section-number">2. </span>Propagator<a class="headerlink" href="#propagator" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.Propagator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Propagator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_body:</span> <span class="pre">~scarabaeus.body.Body.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector:</span> <span class="pre">scbt.StateArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tspan:</span> <span class="pre">~scarabaeus.timeAndFrame.EpochArray.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">third_body:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cannonball_SRP:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nPlate_SRP:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_info=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finite_burn=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">impulsive_burn_approx=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_masses:</span> <span class="pre">list[str]</span> <span class="pre">=</span> <span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">2.220446049250313e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">2.220446049250313e-14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrator:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'DOP853'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate_STM:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STM0=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">look_event:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame:</span> <span class="pre">~scarabaeus.timeAndFrame.Frame.Frame</span> <span class="pre">=</span> <span class="pre">J2000</span> <span class="pre">(0</span> <span class="pre">-</span> <span class="pre">SOLAR</span> <span class="pre">SYSTEM</span> <span class="pre">BARYCENTER)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_to_original_frame:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Propagator" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Scarabaeus’ interface to propagators.</p>
+<p>Supports numerical integration via two different algorithms:</p>
+<ul class="simple">
+<li><p>Scipy’s DOP853 <a class="reference internal" href="#r1a77653c747e-1" id="id1">[1]</a></p></li>
+<li><p>PyASA <a class="reference internal" href="#r1a77653c747e-2" id="id2">[2]</a></p></li>
+</ul>
+<p>Using one of these algorithms, integrates the ordinary differential equations (ODEs) that describe
+the system’s dynamics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_body</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><em>Body</em></a>) – The body to be propagated.</p></li>
+<li><p><strong>state_vector</strong> (<a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><em>StateArray</em></a>) – The initial state vector of the body to be propagated.</p></li>
+<li><p><strong>tspan</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><em>EpochArray</em></a>) – The timespan over which the propagation should occur.</p></li>
+<li><p><strong>third_body</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Indicates whether thirdy body accelerations should be incorporated into
+the dynamics of the propagation. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>cannonball_SRP</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Indicates whether SRP accelerations should be incorporated into the
+dynamics of the propagation via the cannonball model. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>nPlate_SRP</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Indicates whether SRP accelerations should be incorporated into the
+dynamics of the propagation via the N-Plate model. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>sph_harm</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Indicates whether accelerations due to spherical harmonics should be
+incorporated into the dynamics of the propagation. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>sph_harm_info</strong> (<em>dict optional</em>) – Necessary information to define spherical harmonics. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>finite_burn</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Indicates whether accelerations due to a finite burn or multiple finite
+burns should be incorporated into the dynamics of the propagation.
+Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>impulsive_burn_approx</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>point_masses</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – List of all point masses to be included in the dynamics of the propagation.
+Unused if <code class="docutils literal notranslate"><span class="pre">third_body</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p></li>
+<li><p><strong>atol</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The absolute tolerance of the propagator. Defaults to <code class="docutils literal notranslate"><span class="pre">2.220446049250313e-14</span></code>.</p></li>
+<li><p><strong>rtol</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The relative tolerance of the propagator. Defaults to <code class="docutils literal notranslate"><span class="pre">2.220446049250313e-14</span></code>.</p></li>
+<li><p><strong>integrator</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – <p>The integrator to be used in the propagation. Can select from:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'PyASA'</span></code> - WORK IN PROGRESS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'DOP853'</span></code> - the current supported numerical integrator.</p></li>
+</ul>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">'DOP853'</span></code>.</p>
+</p></li>
+<li><p><strong>propagate_STM</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Indicates if the initial STM should be propagated. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>STM0</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><em>numpy.ndarray</em></a><em>, </em><em>optional</em>) – Initial State Transition Matrix. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>look_event</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – WORK IN PROGRESS. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>base_frame</strong> (<a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><em>Frame</em></a>)</p></li>
+<li><p><strong>convert_to_original_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../dynamics_rsts/forcemodel.html#scarabaeus.ForceModel" title="scarabaeus.ForceModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.ForceModel</span></code></a>, <a class="reference internal" href="../dynamics_rsts/cannonballsrp.html#scarabaeus.CannonballSRP" title="scarabaeus.CannonballSRP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.CannonballSRP</span></code></a>, <a class="reference internal" href="../dynamics_rsts/nplatesrp.html#scarabaeus.nPlateSRP" title="scarabaeus.nPlateSRP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.nPlateSRP</span></code></a>, <a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html#scarabaeus.SphericalHarmonicsGravity" title="scarabaeus.SphericalHarmonicsGravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SphericalHarmonicsGravity</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">sccarabaeus.ThreeBodyGravity</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r1a77653c747e-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.DOP853.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.DOP853.html</a></p>
+</div>
+<div class="citation" id="r1a77653c747e-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.researchgate.net/publication/265787854_IAS15_A_fast_adaptive_high-order_integrator_for_gravitational_dynamics_accurate_to_machine_precision_over_a_billion_orbits">https://www.researchgate.net/publication/265787854_IAS15_A_fast_adaptive_high-order_integrator_for_gravitational_dynamics_accurate_to_machine_precision_over_a_billion_orbits</a></p>
+</div>
+</div>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.As" title="scarabaeus.Propagator.As"><code class="xref py py-obj docutils literal notranslate"><span class="pre">As</span></code></a></p></td>
+<td><p>Dynamic Matrices of the propagated state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.STM" title="scarabaeus.Propagator.STM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STM</span></code></a></p></td>
+<td><p>State Transition Matrix array corresponding to the propagated solution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.STM0" title="scarabaeus.Propagator.STM0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STM0</span></code></a></p></td>
+<td><p>The initial State Transition Matrix (STM).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.STM_frame" title="scarabaeus.Propagator.STM_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STM_frame</span></code></a></p></td>
+<td><p>The frame ratios of the State Transition Matrix (STM).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.STM_units" title="scarabaeus.Propagator.STM_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STM_units</span></code></a></p></td>
+<td><p>The units of the State Transition Matrix (STM).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.atol" title="scarabaeus.Propagator.atol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">atol</span></code></a></p></td>
+<td><p>Absolute tolerance for numerical integration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.base_frame" title="scarabaeus.Propagator.base_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base_frame</span></code></a></p></td>
+<td><p>The base reference frame for propagation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.dynamics_mode_list" title="scarabaeus.Propagator.dynamics_mode_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamics_mode_list</span></code></a></p></td>
+<td><p>List of active dynamics modes during propagation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.finite_burn" title="scarabaeus.Propagator.finite_burn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finite_burn</span></code></a></p></td>
+<td><p>Indicates whether finite burns are considered.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.force_model" title="scarabaeus.Propagator.force_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">force_model</span></code></a></p></td>
+<td><p>Force model used for propagation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.full_state_vector" title="scarabaeus.Propagator.full_state_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">full_state_vector</span></code></a></p></td>
+<td><p>The state vector associated with the propagation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.full_state_vector_original_frames" title="scarabaeus.Propagator.full_state_vector_original_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">full_state_vector_original_frames</span></code></a></p></td>
+<td><p>The state vector not associated with the propagation, but with the original frames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.impulsive_burn" title="scarabaeus.Propagator.impulsive_burn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">impulsive_burn</span></code></a></p></td>
+<td><p>Indicates whether impulsive burns are included.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.impulsive_burn_approx" title="scarabaeus.Propagator.impulsive_burn_approx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">impulsive_burn_approx</span></code></a></p></td>
+<td><p>Indicates whether impulsive burns are approximated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.integrator" title="scarabaeus.Propagator.integrator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">integrator</span></code></a></p></td>
+<td><p>The numerical integrator used for propagation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.look_event" title="scarabaeus.Propagator.look_event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">look_event</span></code></a></p></td>
+<td><p>The event type for the propagator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.main_body" title="scarabaeus.Propagator.main_body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main_body</span></code></a></p></td>
+<td><p>The primary celestial body for the propagator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.origin" title="scarabaeus.Propagator.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></p></td>
+<td><p>The origin body in the reference frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.point_masses" title="scarabaeus.Propagator.point_masses"><code class="xref py py-obj docutils literal notranslate"><span class="pre">point_masses</span></code></a></p></td>
+<td><p>List of point masses for third-body gravitational effects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.propagate_STM" title="scarabaeus.Propagator.propagate_STM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate_STM</span></code></a></p></td>
+<td><p>Indicates whether the State Transition Matrix (STM) is propagated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.propagated_state_array" title="scarabaeus.Propagator.propagated_state_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagated_state_array</span></code></a></p></td>
+<td><p>State array corresponding to the propagated solution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.propagated_state_array_original_frame" title="scarabaeus.Propagator.propagated_state_array_original_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagated_state_array_original_frame</span></code></a></p></td>
+<td><p>The state vector not associated propagated, but with the original frames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.reduced_state_vector" title="scarabaeus.Propagator.reduced_state_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reduced_state_vector</span></code></a></p></td>
+<td><p>The state vector associated with the propagation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.rtol" title="scarabaeus.Propagator.rtol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtol</span></code></a></p></td>
+<td><p>Relative tolerance for numerical integration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.sph_harm_info" title="scarabaeus.Propagator.sph_harm_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sph_harm_info</span></code></a></p></td>
+<td><p>Spherical harmonics information for gravity modeling.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.state" title="scarabaeus.Propagator.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code></a></p></td>
+<td><p>State array corresponding to the propagated solution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.state_frames" title="scarabaeus.Propagator.state_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_frames</span></code></a></p></td>
+<td><p>The frames of the State.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.state_units" title="scarabaeus.Propagator.state_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_units</span></code></a></p></td>
+<td><p>The units of the State .</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.t0" title="scarabaeus.Propagator.t0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t0</span></code></a></p></td>
+<td><p>The initial epoch for propagation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.times" title="scarabaeus.Propagator.times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">times</span></code></a></p></td>
+<td><p>Time array corresponding to the propagated solution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.tspan" title="scarabaeus.Propagator.tspan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tspan</span></code></a></p></td>
+<td><p>The time span over which propagation occurs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.tspan_original_frame" title="scarabaeus.Propagator.tspan_original_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tspan_original_frame</span></code></a></p></td>
+<td><p>The time span over which propagation occurs in the original frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.ys" title="scarabaeus.Propagator.ys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ys</span></code></a></p></td>
+<td><p>Numerical solution of the propagated state.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.convert_to_original_frames" title="scarabaeus.Propagator.convert_to_original_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to_original_frames</span></code></a>(propagated_state)</p></td>
+<td><p>Converts the propagated state back to the original frames.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.from_dict" title="scarabaeus.Propagator.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a>(data)</p></td>
+<td><p>Creates a Propagator instance from a dictionary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.ode" title="scarabaeus.Propagator.ode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ode</span></code></a>(epoch, Y, reduced_indices_map, ...)</p></td>
+<td><p>Compute the time derivative of the state and the Jacobian (STM derivative) for integration by the propagator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.precompute_indices" title="scarabaeus.Propagator.precompute_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">precompute_indices</span></code></a>()</p></td>
+<td><p>Precompute and return indices for position, reduced state, and full state vectors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.propagate" title="scarabaeus.Propagator.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>()</p></td>
+<td><p>Propagates the state of the system using numerical integration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.reinitialize" title="scarabaeus.Propagator.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>([main_body, state_vector, ...])</p></td>
+<td><p>Reinitializes the Propagator object with new or updated attribute values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.to_dict" title="scarabaeus.Propagator.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>()</p></td>
+<td><p>Returns all attributes of the Propagator class as a dictionary.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.convert_to_original_frames">
+<span class="sig-name descname"><span class="pre">convert_to_original_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propagated_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Propagator.convert_to_original_frames" title="Link to this definition">#</a></dt>
+<dd><p>Converts the propagated state back to the original frames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>propagated_state</strong> (<a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><em>StateArray</em></a>) – The state array after propagation in the base frame.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new state array with components converted back to their original frames.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray">StateArray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></span><a class="headerlink" href="#scarabaeus.Propagator.from_dict" title="Link to this definition">#</a></dt>
+<dd><p>Creates a Propagator instance from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – A dictionary representation of a Propagator instance.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new instance of the Propagator class.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.Propagator">Propagator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.ode">
+<span class="sig-name descname"><span class="pre">ode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduced_indices_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduced_indices_dot_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices_dot_map</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Propagator.ode" title="Link to this definition">#</a></dt>
+<dd><p>Compute the time derivative of the state and the Jacobian (STM derivative)
+for integration by the propagator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current epoch (float)</p></li>
+<li><p><strong>Y</strong> (<em>array</em>) – Concatenated state vector and STM (np.array)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Time derivative of state and Jacobian to be integrated (np.array)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.precompute_indices">
+<span class="sig-name descname"><span class="pre">precompute_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Propagator.precompute_indices" title="Link to this definition">#</a></dt>
+<dd><p>Precompute and return indices for position, reduced state, and full state vectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of dictionaries containing precomputed indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.propagate">
+<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Propagator.propagate" title="Link to this definition">#</a></dt>
+<dd><p>Propagates the state of the system using numerical integration.</p>
+<p>This method integrates the ordinary differential equations (ODEs) that describe the system’s dynamics
+using the specified integration method. The integration is performed over the time span defined by
+the initial and final times of the system’s time vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>None</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.reinitialize">
+<span class="sig-name descname"><span class="pre">reinitialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">scbt.StateArray</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tspan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">third_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cannonball_SRP</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nPlate_SRP</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finite_burn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">impulsive_burn_approx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_masses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate_STM</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STM0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">look_event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_to_original_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.Propagator"><span class="pre">Propagator</span></a></span></span><a class="headerlink" href="#scarabaeus.Propagator.reinitialize" title="Link to this definition">#</a></dt>
+<dd><p>Reinitializes the Propagator object with new or updated attribute values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>main_body</strong> (<em>scb.Body</em><em>, </em><em>optional</em>) – The primary celestial body for the propagator.</p></li>
+<li><p><strong>state_vector</strong> (<em>scbt.StateArray</em><em>, </em><em>optional</em>) – Updated state vector.</p></li>
+<li><p><strong>tspan</strong> (<em>scb.EpochArray</em><em>, </em><em>optional</em>) – Updated time span for propagation.</p></li>
+<li><p><strong>third_body</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for third-body effects.</p></li>
+<li><p><strong>cannonball_SRP</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for cannonball SRP model.</p></li>
+<li><p><strong>nPlate_SRP</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for n-Plate SRP model.</p></li>
+<li><p><strong>sph_harm</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for spherical harmonics gravity model.</p></li>
+<li><p><strong>sph_harm_info</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>, </em><em>optional</em>) – Updated spherical harmonics information.</p></li>
+<li><p><strong>finite_burn</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for finite-burn thrust modeling.</p></li>
+<li><p><strong>point_masses</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – Updated point masses for third-body effects.</p></li>
+<li><p><strong>atol</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Absolute tolerance for integration.</p></li>
+<li><p><strong>rtol</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Relative tolerance for integration.</p></li>
+<li><p><strong>integrator</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Integrator type (e.g., ‘DOP853’ or ‘PyASA’).</p></li>
+<li><p><strong>propagate_STM</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Flag for propagating STM.</p></li>
+<li><p><strong>STM0</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Updated initial State Transition Matrix.</p></li>
+<li><p><strong>look_event</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Event type for the propagator.</p></li>
+<li><p><strong>base_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Base reference frame for propagation.</p></li>
+<li><p><strong>impulsive_burn_approx</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>)</p></li>
+<li><p><strong>convert_to_original_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new instance of the Propagator class with updated attributes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.Propagator">Propagator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.Propagator.to_dict" title="Link to this definition">#</a></dt>
+<dd><p>Returns all attributes of the Propagator class as a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary representation of the Propagator instance.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.As">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">As</span></span><a class="headerlink" href="#scarabaeus.Propagator.As" title="Link to this definition">#</a></dt>
+<dd><p>Dynamic Matrices of the propagated state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.STM">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STM</span></span><a class="headerlink" href="#scarabaeus.Propagator.STM" title="Link to this definition">#</a></dt>
+<dd><p>State Transition Matrix array corresponding to the propagated solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.STM0">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STM0</span></span><a class="headerlink" href="#scarabaeus.Propagator.STM0" title="Link to this definition">#</a></dt>
+<dd><p>The initial State Transition Matrix (STM).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.STM_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STM_frame</span></span><a class="headerlink" href="#scarabaeus.Propagator.STM_frame" title="Link to this definition">#</a></dt>
+<dd><p>The frame ratios of the State Transition Matrix (STM).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.STM_units">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STM_units</span></span><a class="headerlink" href="#scarabaeus.Propagator.STM_units" title="Link to this definition">#</a></dt>
+<dd><p>The units of the State Transition Matrix (STM).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.atol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">atol</span></span><a class="headerlink" href="#scarabaeus.Propagator.atol" title="Link to this definition">#</a></dt>
+<dd><p>Absolute tolerance for numerical integration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.base_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base_frame</span></span><a class="headerlink" href="#scarabaeus.Propagator.base_frame" title="Link to this definition">#</a></dt>
+<dd><p>The base reference frame for propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.dynamics_mode_list">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dynamics_mode_list</span></span><a class="headerlink" href="#scarabaeus.Propagator.dynamics_mode_list" title="Link to this definition">#</a></dt>
+<dd><p>List of active dynamics modes during propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.finite_burn">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">finite_burn</span></span><a class="headerlink" href="#scarabaeus.Propagator.finite_burn" title="Link to this definition">#</a></dt>
+<dd><p>Indicates whether finite burns are considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.force_model">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">force_model</span></span><a class="headerlink" href="#scarabaeus.Propagator.force_model" title="Link to this definition">#</a></dt>
+<dd><p>Force model used for propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scb.ForceModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.full_state_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">full_state_vector</span></span><a class="headerlink" href="#scarabaeus.Propagator.full_state_vector" title="Link to this definition">#</a></dt>
+<dd><p>The state vector associated with the propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scbt.StateArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.full_state_vector_original_frames">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">full_state_vector_original_frames</span></span><a class="headerlink" href="#scarabaeus.Propagator.full_state_vector_original_frames" title="Link to this definition">#</a></dt>
+<dd><p>The state vector not associated with the propagation, but with
+the original frames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scbt.StateArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.impulsive_burn">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">impulsive_burn</span></span><a class="headerlink" href="#scarabaeus.Propagator.impulsive_burn" title="Link to this definition">#</a></dt>
+<dd><p>Indicates whether impulsive burns are included.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.impulsive_burn_approx">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">impulsive_burn_approx</span></span><a class="headerlink" href="#scarabaeus.Propagator.impulsive_burn_approx" title="Link to this definition">#</a></dt>
+<dd><p>Indicates whether impulsive burns are approximated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.integrator">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">integrator</span></span><a class="headerlink" href="#scarabaeus.Propagator.integrator" title="Link to this definition">#</a></dt>
+<dd><p>The numerical integrator used for propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.look_event">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">look_event</span></span><a class="headerlink" href="#scarabaeus.Propagator.look_event" title="Link to this definition">#</a></dt>
+<dd><p>The event type for the propagator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.main_body">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">main_body</span></span><a class="headerlink" href="#scarabaeus.Propagator.main_body" title="Link to this definition">#</a></dt>
+<dd><p>The primary celestial body for the propagator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scb.Body</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.origin">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#scarabaeus.Propagator.origin" title="Link to this definition">#</a></dt>
+<dd><p>The origin body in the reference frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scb.Body</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.point_masses">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point_masses</span></span><a class="headerlink" href="#scarabaeus.Propagator.point_masses" title="Link to this definition">#</a></dt>
+<dd><p>List of point masses for third-body gravitational effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.propagate_STM">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propagate_STM</span></span><a class="headerlink" href="#scarabaeus.Propagator.propagate_STM" title="Link to this definition">#</a></dt>
+<dd><p>Indicates whether the State Transition Matrix (STM) is propagated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.propagated_state_array">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propagated_state_array</span></span><a class="headerlink" href="#scarabaeus.Propagator.propagated_state_array" title="Link to this definition">#</a></dt>
+<dd><p>State array corresponding to the propagated solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.propagated_state_array_original_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propagated_state_array_original_frame</span></span><a class="headerlink" href="#scarabaeus.Propagator.propagated_state_array_original_frame" title="Link to this definition">#</a></dt>
+<dd><p>The state vector not associated propagated, but with
+the original frames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scbt.StateArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.reduced_state_vector">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reduced_state_vector</span></span><a class="headerlink" href="#scarabaeus.Propagator.reduced_state_vector" title="Link to this definition">#</a></dt>
+<dd><p>The state vector associated with the propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scbt.StateArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.rtol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rtol</span></span><a class="headerlink" href="#scarabaeus.Propagator.rtol" title="Link to this definition">#</a></dt>
+<dd><p>Relative tolerance for numerical integration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.sph_harm_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_info</span></span><a class="headerlink" href="#scarabaeus.Propagator.sph_harm_info" title="Link to this definition">#</a></dt>
+<dd><p>Spherical harmonics information for gravity modeling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.state">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#scarabaeus.Propagator.state" title="Link to this definition">#</a></dt>
+<dd><p>State array corresponding to the propagated solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.state_frames">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_frames</span></span><a class="headerlink" href="#scarabaeus.Propagator.state_frames" title="Link to this definition">#</a></dt>
+<dd><p>The frames of the State.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.state_units">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_units</span></span><a class="headerlink" href="#scarabaeus.Propagator.state_units" title="Link to this definition">#</a></dt>
+<dd><p>The units of the State .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.t0">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t0</span></span><a class="headerlink" href="#scarabaeus.Propagator.t0" title="Link to this definition">#</a></dt>
+<dd><p>The initial epoch for propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scb.EpochArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.times">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">times</span></span><a class="headerlink" href="#scarabaeus.Propagator.times" title="Link to this definition">#</a></dt>
+<dd><p>Time array corresponding to the propagated solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.tspan">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tspan</span></span><a class="headerlink" href="#scarabaeus.Propagator.tspan" title="Link to this definition">#</a></dt>
+<dd><p>The time span over which propagation occurs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scb.EpochArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.tspan_original_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tspan_original_frame</span></span><a class="headerlink" href="#scarabaeus.Propagator.tspan_original_frame" title="Link to this definition">#</a></dt>
+<dd><p>The time span over which propagation occurs in the original frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>scb.EpochArray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.ys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ys</span></span><a class="headerlink" href="#scarabaeus.Propagator.ys" title="Link to this definition">#</a></dt>
+<dd><p>Numerical solution of the propagated state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Propagator</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="missionsequence.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>MissionSequence</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="scenariosetup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>ScenarioSetup</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.convert_to_original_frames"><code class="docutils literal notranslate"><span class="pre">Propagator.convert_to_original_frames()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.from_dict"><code class="docutils literal notranslate"><span class="pre">Propagator.from_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.ode"><code class="docutils literal notranslate"><span class="pre">Propagator.ode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.precompute_indices"><code class="docutils literal notranslate"><span class="pre">Propagator.precompute_indices()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.propagate"><code class="docutils literal notranslate"><span class="pre">Propagator.propagate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.reinitialize"><code class="docutils literal notranslate"><span class="pre">Propagator.reinitialize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.to_dict"><code class="docutils literal notranslate"><span class="pre">Propagator.to_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.As"><code class="docutils literal notranslate"><span class="pre">Propagator.As</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.STM"><code class="docutils literal notranslate"><span class="pre">Propagator.STM</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.STM0"><code class="docutils literal notranslate"><span class="pre">Propagator.STM0</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.STM_frame"><code class="docutils literal notranslate"><span class="pre">Propagator.STM_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.STM_units"><code class="docutils literal notranslate"><span class="pre">Propagator.STM_units</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.atol"><code class="docutils literal notranslate"><span class="pre">Propagator.atol</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.base_frame"><code class="docutils literal notranslate"><span class="pre">Propagator.base_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.dynamics_mode_list"><code class="docutils literal notranslate"><span class="pre">Propagator.dynamics_mode_list</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.finite_burn"><code class="docutils literal notranslate"><span class="pre">Propagator.finite_burn</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.force_model"><code class="docutils literal notranslate"><span class="pre">Propagator.force_model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.full_state_vector"><code class="docutils literal notranslate"><span class="pre">Propagator.full_state_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.full_state_vector_original_frames"><code class="docutils literal notranslate"><span class="pre">Propagator.full_state_vector_original_frames</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.impulsive_burn"><code class="docutils literal notranslate"><span class="pre">Propagator.impulsive_burn</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.impulsive_burn_approx"><code class="docutils literal notranslate"><span class="pre">Propagator.impulsive_burn_approx</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.integrator"><code class="docutils literal notranslate"><span class="pre">Propagator.integrator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.look_event"><code class="docutils literal notranslate"><span class="pre">Propagator.look_event</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.main_body"><code class="docutils literal notranslate"><span class="pre">Propagator.main_body</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.origin"><code class="docutils literal notranslate"><span class="pre">Propagator.origin</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.point_masses"><code class="docutils literal notranslate"><span class="pre">Propagator.point_masses</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.propagate_STM"><code class="docutils literal notranslate"><span class="pre">Propagator.propagate_STM</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.propagated_state_array"><code class="docutils literal notranslate"><span class="pre">Propagator.propagated_state_array</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.propagated_state_array_original_frame"><code class="docutils literal notranslate"><span class="pre">Propagator.propagated_state_array_original_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.reduced_state_vector"><code class="docutils literal notranslate"><span class="pre">Propagator.reduced_state_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.rtol"><code class="docutils literal notranslate"><span class="pre">Propagator.rtol</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.sph_harm_info"><code class="docutils literal notranslate"><span class="pre">Propagator.sph_harm_info</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.state"><code class="docutils literal notranslate"><span class="pre">Propagator.state</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.state_frames"><code class="docutils literal notranslate"><span class="pre">Propagator.state_frames</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.state_units"><code class="docutils literal notranslate"><span class="pre">Propagator.state_units</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.t0"><code class="docutils literal notranslate"><span class="pre">Propagator.t0</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.times"><code class="docutils literal notranslate"><span class="pre">Propagator.times</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.tspan"><code class="docutils literal notranslate"><span class="pre">Propagator.tspan</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.tspan_original_frame"><code class="docutils literal notranslate"><span class="pre">Propagator.tspan_original_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.ys"><code class="docutils literal notranslate"><span class="pre">Propagator.ys</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/scb_library/environment_rsts/propagator.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

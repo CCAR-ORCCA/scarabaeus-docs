@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Setup and installation guide for Scarabaeus." lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus, setup guide, install" name="keywords" />
+
+    <title>Install and Set Up Scarabaeus &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/setup_and_use';</script>
+    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MongoDB Installation and Setup" href="db_setup.html" />
+    <link rel="prev" title="User Guide" href="user_guide_frontpage.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_guide/dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
+    Learn Scarabaeus
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../dev_guide/dev_guide_frontpage.html">
+    Developer Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb.html">
+    About Scarabaeus
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="gold">Install and Set Up Scarabaeus</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="db_setup.html"><span class="gold">MongoDB Installation and Setup</span></a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Data Flow and Processes</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="external_libraries.html"><span class="gold">Libraries</span></a></li>
+</ul></details></li></ul></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="user_guide_frontpage.html" class="nav-link"><span class="gold">User Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Install and Set Up Scarabaeus</span></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <span class="target" id="scarabaeus-setup"></span><style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><section id="install-and-set-up-scarabaeus">
+<h1><span class="gold">Install and Set Up Scarabaeus</span><a class="headerlink" href="#install-and-set-up-scarabaeus" title="Link to this heading">#</a></h1>
+<p>Last revised by M. Pugliatti on 2025 FEB 4</p>
+<section id="prerequisites">
+<h2><span class="bold">Prerequisites</span><a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>There are a few additional tools that must be intalled before installing Scarabaeus.</p>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h3>
+<p>Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.</p>
+<p>Install the recomemended version of Python - <a class="reference external" href="https://www.python.org/downloads/release/python-3119/">3.11.9</a></p>
+</section>
+<section id="git">
+<h3>Git<a class="headerlink" href="#git" title="Link to this heading">#</a></h3>
+<p>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. Install
+Git if your machine does not already have it. Most Mac and Linux machines will have Git already installed.</p>
+<p>Install Git - <a class="reference external" href="https://git-scm.com/downloads/">Git Download</a></p>
+</section>
+<section id="integrated-development-environment-ide">
+<h3>Integrated Development Environment (IDE)<a class="headerlink" href="#integrated-development-environment-ide" title="Link to this heading">#</a></h3>
+<p>Use any IDE or text editor you like. We encourage the use of an IDE that has add-ons to make development a bit easier. Most developers on the team use VSCode for its large
+ecosystem of powerful extensions. For SCB, we recommend using <strong>VSCode</strong> as your IDE, with the following extensions:</p>
+<ul class="simple">
+<li><p>GitLens - <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">link</a></p></li>
+<li><p>SonarQube - <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode">link</a></p></li>
+</ul>
+<ul class="simple">
+<li><p>Python - <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">link</a></p></li>
+<li><p>Pylance - <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance">link</a></p></li>
+</ul>
+</section>
+</section>
+<section id="clone-scarabaeus-repository">
+<h2><span class="bold">Clone Scarabaeus Repository</span><a class="headerlink" href="#clone-scarabaeus-repository" title="Link to this heading">#</a></h2>
+<p>Clone the Scarabaeus repository to your local machine. You will need to setup some form of secure access between your machine and Gitlab before you are able to do this. The
+options for secure access are below. We highly recommend using SSH.</p>
+<p>To setup a secure access method:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>SSH - Recommended</strong>:</dt><dd><ul>
+<li><p>On Gitlab, go to your <strong>Preferences</strong>. This can be done by clicking on your <strong>user icon</strong> in the top right corner, and the selecting <strong>Preferences</strong>.</p></li>
+<li><p>Navigate to the menu on the far left of the screen and click on the <strong>SSH Keys</strong> option. This will have a key icon to the left of the text.</p></li>
+<li><p>Follow the instructions on this page for adding an SSH key. The page contains links to documentation for how to set up the private and public key pair. We understand this process can be somewhat confusing so if you have any trouble please reach out to a fellow developer for assistance.</p></li>
+<li><p>General GitLab SSH documentation can be found on the <a class="reference external" href="https://docs.gitlab.com/ee/user/ssh.html">GitLab SSH Docs</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Alternatively:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>HTTPS - Not Recommended</strong>:</dt><dd><ul>
+<li><p>This process involves generating Gitlab Tokens. If you would like to use this method please reference the Gitlab documentation for a how-to.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Once you have a secure access method set up you can clone the Scarabaeus repository. You may do this via a terminal or your IDE. We recommend using your IDE as it makes
+things slightly simpler but this is up to you. The following instructions will be for cloning via SSH.</p>
+<p><strong>Cloning via VSC</strong>:</p>
+<ul class="simple">
+<li><p>Navigate to the Scarabaeus project on Gitlab and click on the Clone button shown in the image below.</p></li>
+<li><p>Copy the link under “Clone with SSH” (the one that starts with git&#64;).</p></li>
+<li><p>Now navigate to VSCode, open a new window, and clock on the Clone Git Repository… option under the Start menu (center left of the window). Your screen should look like the image below.</p></li>
+<li><p>Next, paste the link you copied from Gitlab into the bar at the top of the VSCode window. From there follow the prompts to clone the repository.</p></li>
+</ul>
+<p><a class="reference internal" href="../_images/clone_repo_screenshot.png"><img alt="pic1" src="../_images/clone_repo_screenshot.png" style="width: 45%;" /></a>  <a class="reference internal" href="../_images/VSCode_New_Window.png"><img alt="pic2" src="../_images/VSCode_New_Window.png" style="width: 45%;" /></a></p>
+<p><strong>Cloning via Command Line</strong>:</p>
+<p>In the terminal type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@orccagitlab</span><span class="o">.</span><span class="n">colorado</span><span class="o">.</span><span class="n">edu</span><span class="p">:</span><span class="n">javi9068</span><span class="o">/</span><span class="n">scarabaeus</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Refer to <a class="reference external" href="https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html">GitLab CLI Cloning Guide</a> for extra documentations on cloning via command line.</p>
+</section>
+<section id="add-scarabaeus-package-to-python-path">
+<h2><span class="gold">Add Scarabaeus Package to Python Path</span><a class="headerlink" href="#add-scarabaeus-package-to-python-path" title="Link to this heading">#</a></h2>
+<p>Steps to add the <code class="docutils literal notranslate"><span class="pre">scarabaeus/src</span></code> folder path to the Python path for both macOS and Windows.</p>
+<p><strong>Steps for macOS</strong></p>
+<ol class="arabic">
+<li><p>Open Terminal.</p></li>
+<li><p>Run the following command to edit your <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> file:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">nano</span> <span class="o">~/.</span><span class="n">zshrc</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Enter your PC’s password</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> file, add the following line to set the Python path:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PYTHONPATH=$PYTHONPATH:/path/to/scarabaeus/src
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">/path/to/scarabaeus/src</span></code> with the absolute path of the <strong>src folder</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">/Users/yourusername/path/to/scarabaeus/src</span></code>).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Press <cite>Ctrl + O</cite> and press <cite>Enter</cite>, then <cite>Ctrl + X</cite> to exit the editor and save the changes.</p></li>
+<li><p>Apply the changes by running:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">zshrc</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Close this terminal and connect to the <strong>LASP VPN</strong>.</p></li>
+<li><p>Make sure to add the <code class="docutils literal notranslate"><span class="pre">db_config.json</span></code> file to the config folder (It contains the DB Credentials - DB Name, HostName, URI, Port Number).</p></li>
+</ol>
+<p><strong>Steps for Windows</strong></p>
+<ol class="arabic simple">
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">Win</span> <span class="pre">+</span> <span class="pre">R</span></code> to open the Run dialog.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">sysdm.cpl</span></code> and press Enter to open the System Properties window.</p></li>
+<li><p>In the System Properties window, click on the “Advanced” tab.</p></li>
+<li><p>Click on the “Environment Variables” button at the bottom.</p></li>
+<li><p>In the Environment Variables window, under the “User variables” section, click on “New…” to create a new environment variable.</p></li>
+<li><p>In the “Variable name” field, enter <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code>.</p></li>
+<li><p>In the “Variable value” field, enter the absolute path of the src folder (e.g., <code class="docutils literal notranslate"><span class="pre">C:\path\to\SCB\src</span></code>).</p></li>
+<li><p>Click OK to save the new environment variable.</p></li>
+<li><p>Close the remaining windows by clicking OK.</p></li>
+</ol>
+</section>
+<section id="creating-a-virtual-environment">
+<h2><span class="bold">Creating a Virtual Environment</span><a class="headerlink" href="#creating-a-virtual-environment" title="Link to this heading">#</a></h2>
+<p>To create a virtual environment (venv) you have two options:</p>
+<section id="from-terminal">
+<h3>From Terminal<a class="headerlink" href="#from-terminal" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="o">.</span><span class="n">venv</span>
+<span class="o">.</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>  <span class="c1"># On Windows</span>
+<span class="n">source</span> <span class="o">.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>  <span class="c1"># On macOS/Linux</span>
+</pre></div>
+</div>
+<p>To deactivate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</section>
+<section id="in-vsc">
+<h3>In VSC<a class="headerlink" href="#in-vsc" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Go to the search bar on top and click it</p></li>
+<li><p>Select <strong>Show and Run Commands &gt;</strong></p></li>
+<li><p>Select <strong>Python: Create Environment…</strong></p></li>
+<li><p>Select <strong>Venv</strong></p></li>
+<li><p>Either <strong>Use Existing</strong> or <strong>Delete and Recreate</strong></p></li>
+<li><p>Select the python interpreter as <strong>Python 3.11.9</strong></p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></li>
+</ul>
+<p>and the venv will be generated following the list of libraries specified in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p>
+</section>
+</section>
+<section id="library-installation">
+<h2><span class="bold">Library Installation</span><a class="headerlink" href="#library-installation" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>From Terminal<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>Install required packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>In VSC<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>Libraries are already installed in the last step of the venv generation.</p>
+</section>
+<section id="external">
+<h3>External<a class="headerlink" href="#external" title="Link to this heading">#</a></h3>
+<p>Additionally, othe rdependencies (DWN, IAS15) needs to be installed manually from terminal</p>
+<p>Install IAS15 integrator dependencies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">pyasa</span><span class="o">/.</span>
+</pre></div>
+</div>
+<p>On Windows, manually copy the shared library:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">&lt;</span><span class="n">venv</span><span class="o">&gt;/</span><span class="n">Lib</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pyasalib</span><span class="o">.</span><span class="n">dll</span> <span class="o">&lt;</span><span class="n">venv</span><span class="o">&gt;/</span><span class="n">Lib</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pyasa</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>where <cite>&lt;venv&gt;</cite> is your virtual environment directory.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="user_guide_frontpage.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="gold">User Guide</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="db_setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="gold">MongoDB Installation and Setup</span></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites"><span class="bold">Prerequisites</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-scarabaeus-repository"><span class="bold">Clone Scarabaeus Repository</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-scarabaeus-package-to-python-path"><span class="gold">Add Scarabaeus Package to Python Path</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-virtual-environment"><span class="bold">Creating a Virtual Environment</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-terminal">From Terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-vsc">In VSC</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library-installation"><span class="bold">Library Installation</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">From Terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">In VSC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external">External</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/user_guide/setup_and_use.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
