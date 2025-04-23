@@ -37,10 +37,10 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -55,7 +55,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/time_n_frame_rsts/spicemanager';</script>
-    <link rel="icon" href="../../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1. ArrayWUnits" href="../units_rsts/arraywunits.html" />
@@ -321,7 +321,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/forcemodel.html">4. ForceModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpulsiveBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/nplatesrp.html">6. nPlateSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
@@ -452,6 +452,810 @@
                   
   <section id="spicemanager">
 <h1><span class="section-number">4. </span>SpiceManager<a class="headerlink" href="#spicemanager" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpiceManager</span></span><a class="headerlink" href="#scarabaeus.SpiceManager" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Wraps many SpiceyPy <a class="reference internal" href="#r7ed8db36927e-1" id="id1">[1]</a> functions
+NEED MORE</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r7ed8db36927e-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Annex et al., (2020). SpiceyPy: a Pythonic Wrapper for the SPICE Toolkit. Journal of Open Source Software, 5(46), 2050, <a class="reference external" href="https://doi.org/10.21105/joss.02050">https://doi.org/10.21105/joss.02050</a></p>
+</div>
+<div class="citation" id="r7ed8db36927e-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Acton, C.H.; “Ancillary Data Services of NASA’s Navigation and Ancillary Information Facility;” Planetary and Space Science, Vol. 44, No. 1, pp. 65-70, 1996. DOI 10.1016/0032-0633(95)00107-7</p>
+</div>
+<div class="citation" id="r7ed8db36927e-3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>Charles Acton, Nathaniel Bachman, Boris Semenov, Edward Wright; A look toward the future in the handling of space science mission geometry; Planetary and Space Science (2017); 10.1016/j.pss.2017.02.013</p>
+</div>
+</div>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.YDS2et" title="scarabaeus.SpiceManager.YDS2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">YDS2et</span></code></a>(year, doy, sec)</p></td>
+<td><p>Convert year, day, sec format into ephemeris times.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.check_kernel_status_in_pool" title="scarabaeus.SpiceManager.check_kernel_status_in_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_kernel_status_in_pool</span></code></a>(kernel_filename)</p></td>
+<td><p>Check if a Spice kernel is loaded in the kernel pool.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.clear_kernels" title="scarabaeus.SpiceManager.clear_kernels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_kernels</span></code></a>()</p></td>
+<td><p>Clears all loaded SPICE kernels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.def_new_body" title="scarabaeus.SpiceManager.def_new_body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">def_new_body</span></code></a>(name, spiceId)</p></td>
+<td><p>Define a new celestial body in the SPICE kernel.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.et2YDS" title="scarabaeus.SpiceManager.et2YDS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">et2YDS</span></code></a>(et)</p></td>
+<td><p>Convert ephemeris times to year, day, and seconds format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.frame_id_to_frame_name" title="scarabaeus.SpiceManager.frame_id_to_frame_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frame_id_to_frame_name</span></code></a>(frame_id)</p></td>
+<td><p>This method generetes the frame id given its name</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.frame_name_to_frame_id" title="scarabaeus.SpiceManager.frame_name_to_frame_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">frame_name_to_frame_id</span></code></a>(frame_name)</p></td>
+<td><p>This method generetes the frame name given its frame id</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_STMs" title="scarabaeus.SpiceManager.get_STMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_STMs</span></code></a>(trgt_bdy, epoch_time, ...)</p></td>
+<td><p>Retrieve the State Transition Matrices (STMs) for a given target body, epoch time, reference frame, and origin.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_attitude" title="scarabaeus.SpiceManager.get_attitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attitude</span></code></a>(trgt_bdy, epoch_time, ...)</p></td>
+<td><p>Get the attitude of a target body at a specified epoch time. Parameters: ----------- cls : class     The class itself, used to access class methods and attributes. trgt_bdy : str or Body     The target body for which the attitude is to be determined. Can be an instance of Body or a string representing the body's name. epoch_time : float or EpochArray     The epoch time at which the attitude is to be determined. Can be an instance of EpochArray or a float representing the time. reference_frame : str or Frame     The reference frame in which the attitude is to be determined. Can be a string or an instance of Frame. tol : int     The tolerance value for the attitude determination. Returns: -------- tuple     A tuple containing:     - ArrayWUnits: The state vector of the target body. - ArrayWUnits: The angular velocity of the target body. - ArrayWUnits: The angular acceleration of the target body.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_frame_w_spice_id" title="scarabaeus.SpiceManager.get_frame_w_spice_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frame_w_spice_id</span></code></a>(id_number)</p></td>
+<td><p>get frame_code and name associated with the frame_id number</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_id_from_string" title="scarabaeus.SpiceManager.get_id_from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_id_from_string</span></code></a>(name_string)</p></td>
+<td><p>This method generetes the body spice id given its name</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_lighttime" title="scarabaeus.SpiceManager.get_lighttime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_lighttime</span></code></a>(trgt_bdy, epoch_time, ...[, ...])</p></td>
+<td><p>Calculate the light time between a target and an origin at a given epoch time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_name_from_id" title="scarabaeus.SpiceManager.get_name_from_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_name_from_id</span></code></a>(spice_id)</p></td>
+<td><p>This method generetes the body name given its spice id</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_observer_target_visibility_windows" title="scarabaeus.SpiceManager.get_observer_target_visibility_windows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_observer_target_visibility_windows</span></code></a>(...)</p></td>
+<td><p>Determine the visibility windows between an observer and a target within a specified time range.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_parameters" title="scarabaeus.SpiceManager.get_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parameters</span></code></a>(trgt_bdy, epoch_time, ...)</p></td>
+<td><p>Retrieve parameters from JSON files based on the given target, epoch_time, reference_frame, and origin.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_pos" title="scarabaeus.SpiceManager.get_pos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pos</span></code></a>(trgt_bdy, epoch_time, ...[, ab_correct])</p></td>
+<td><p>Get the position of a target body relative to an origin body at a specified epoch time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_propagator_settings" title="scarabaeus.SpiceManager.get_propagator_settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_propagator_settings</span></code></a>(trgt_bdy, ...)</p></td>
+<td><p>Retrieves the propagator settings for a given target, reference frame, and origin from JSON files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_state" title="scarabaeus.SpiceManager.get_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state</span></code></a>(trgt_bdy, epoch_time, ...[, ...])</p></td>
+<td><p>Retrieve the state (position and velocity) of a target body relative to an origin body at a specified epoch time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_vel" title="scarabaeus.SpiceManager.get_vel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_vel</span></code></a>(trgt_bdy, epoch_time, ...[, ab_correct])</p></td>
+<td><p>Get the velocity of a target body relative to an origin at a specified epoch time.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_xfrm" title="scarabaeus.SpiceManager.get_xfrm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xfrm</span></code></a>(frame_from, frame_to, epoch)</p></td>
+<td><p>This method returns the DCM rotation matrix between frame_from and frame_to at a given epoch</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.increase_kernel_priority" title="scarabaeus.SpiceManager.increase_kernel_priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">increase_kernel_priority</span></code></a>(kernel_filename)</p></td>
+<td><p>This function increases the priority of kernel to the top of the pool for kernels of the same type by unloading then loading it.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.list_all_frames" title="scarabaeus.SpiceManager.list_all_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_all_frames</span></code></a>([max_id])</p></td>
+<td><p>This method generate a list of all frames with +- the value between max_id</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.load_kernel" title="scarabaeus.SpiceManager.load_kernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_kernel</span></code></a>(kernel_filenames)</p></td>
+<td><p>Load SPICE kernels into the SPICE system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.load_kernel_from_mkfile" title="scarabaeus.SpiceManager.load_kernel_from_mkfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_kernel_from_mkfile</span></code></a>(furnshKernelFilename)</p></td>
+<td><p>Load a SPICE kernel from a given MK file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.matrix_times_vector" title="scarabaeus.SpiceManager.matrix_times_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_times_vector</span></code></a>(matrix, vector)</p></td>
+<td><p>Multiply a 3x3 double precision matrix with a 3-dimensional double precision vector.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.name_to_ID" title="scarabaeus.SpiceManager.name_to_ID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name_to_ID</span></code></a>(name)</p></td>
+<td><p>Converts a given name to its corresponding ID in the kernel pool.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.print_kernels" title="scarabaeus.SpiceManager.print_kernels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_kernels</span></code></a>()</p></td>
+<td><p>Prints the list of kernels loaded.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.str2et" title="scarabaeus.SpiceManager.str2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str2et</span></code></a>(s)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.unload_kernel_from_pool" title="scarabaeus.SpiceManager.unload_kernel_from_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_kernel_from_pool</span></code></a>(kernel_filename)</p></td>
+<td><p>Unload a kernel from the pool.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_spk_segment_type9" title="scarabaeus.SpiceManager.write_spk_segment_type9"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_spk_segment_type9</span></code></a>(SPK_name, ...[, ...])</p></td>
+<td><p>Write a segment of type 9 to an SPK file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><strong>cal2et</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>et2cal</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>et2jd</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>et2sclk</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>et2utc</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>get_intervals</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>jd2et</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>sclk2et</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>utc2et</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>utc2tdb</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.clear_kernels">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear_kernels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.clear_kernels" title="Link to this definition">#</a></dt>
+<dd><p>Clears all loaded SPICE kernels.</p>
+<p>This method calls the <cite>spice.kclear()</cite> function to clear all loaded SPICE kernels from memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="code docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_STMs">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_STMs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">scbt.Body</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_STMs" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the State Transition Matrices (STMs) for a given target body, epoch time, reference frame, and origin.
+:param trgt_bdy: The target body or its name.
+:type trgt_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>
+:param epoch_time: The epoch time for which the STM is required.
+:type epoch_time: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>
+:param reference_frame: The reference frame or its name.
+:type reference_frame: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>
+:param obsvr_bdy: The origin body or its name.
+:type obsvr_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The State Transition Matrix (STM) corresponding to the closest epoch time.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the STM JSON file could not be located or if the epoch time does not fall within any sequence leg or is out of range in STM data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_attitude">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_attitude" title="Link to this definition">#</a></dt>
+<dd><p>Get the attitude of a target body at a specified epoch time.
+Parameters:
+———–
+cls : class</p>
+<blockquote>
+<div><p>The class itself, used to access class methods and attributes.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>trgt_bdy<span class="classifier">str or Body</span></dt><dd><p>The target body for which the attitude is to be determined. Can be an instance of Body or a string representing the body’s name.</p>
+</dd>
+<dt>epoch_time<span class="classifier">float or EpochArray</span></dt><dd><p>The epoch time at which the attitude is to be determined. Can be an instance of EpochArray or a float representing the time.</p>
+</dd>
+<dt>reference_frame<span class="classifier">str or Frame</span></dt><dd><p>The reference frame in which the attitude is to be determined. Can be a string or an instance of Frame.</p>
+</dd>
+<dt>tol<span class="classifier">int</span></dt><dd><p>The tolerance value for the attitude determination.</p>
+</dd>
+</dl>
+<section id="returns">
+<h2><span class="section-number">4. </span>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>tuple</dt><dd><p>A tuple containing:
+- ArrayWUnits: The state vector of the target body.
+- ArrayWUnits: The angular velocity of the target body.
+- ArrayWUnits: The angular acceleration of the target body.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_lighttime">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_lighttime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aberration_correction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'None'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_lighttime" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the light time between a target and an origin at a given epoch time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trgt_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The target body or its name as a string.</p></li>
+<li><p><strong>epoch_time</strong> (<a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch time at which to calculate the light time.</p></li>
+<li><p><strong>reference_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – The reference frame or its name as a string.</p></li>
+<li><p><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The origin body or its name as a string.</p></li>
+<li><p><strong>aberration_correction</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – The aberration correction to apply. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>light_time</strong> – The light time as an array with units.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_parameters">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_parameters" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve parameters from JSON files based on the given target, epoch_time, reference_frame, and origin.
+:param trgt_bdy: The target body name or Body object.
+:type trgt_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>
+:param epoch_time: The epoch time for which parameters are needed.
+:type epoch_time: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>
+:param reference_frame: The reference frame name or Frame object.
+:type reference_frame: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>
+:param obsvr_bdy: The origin body name or Body object.
+:type obsvr_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An array of parameters with associated units.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If multiple matching JSON files are found.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If no matching JSON file is found.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the given epoch_time does not fall within any leg’s epochsTDB.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_pos">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ab_correct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'None'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_pos" title="Link to this definition">#</a></dt>
+<dd><p>Get the position of a target body relative to an origin body at a specified epoch time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trgt_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The target body for which the position is to be determined. Can be a string or a Body object.</p></li>
+<li><p><strong>epoch_time</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch time at which the position is to be determined. Can be a float or an EpochArray object.</p></li>
+<li><p><strong>reference_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – The reference frame in which the position is to be determined. Can be a string or a Frame object.</p></li>
+<li><p><strong>obsvr_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The observing body from which the position is to be measured. Can be a string or a Body object.</p></li>
+<li><p><strong>ab_correct</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Aberration correction to be applied. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pos</strong> – The position of the target body relative to the origin body, expressed in units of kilometers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_propagator_settings">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_propagator_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_propagator_settings" title="Link to this definition">#</a></dt>
+<dd><p>Retrieves the propagator settings for a given target, reference frame, and origin from JSON files.
+:param trgt_bdy: The target body or its name.
+:type trgt_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>
+:param reference_frame: The reference frame or its name.
+:type reference_frame: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>
+:param obsvr_bdy: The origin body or its name.
+:type obsvr_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The propagator settings data from the corresponding JSON file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the settings JSON file could not be located.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_state">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aberration_correction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'None'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_state" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the state (position and velocity) of a target body relative to an origin body at a specified epoch time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trgt_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The target body for which the state is to be retrieved. Can be a string name or a Body object.</p></li>
+<li><p><strong>epoch_time</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch time at which the state is to be retrieved. Can be an EpochArray object or a float representing the time.</p></li>
+<li><p><strong>reference_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – The reference frame in which the state is to be retrieved. Can be a Frame object or a string name.</p></li>
+<li><p><strong>obsvr_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The observing body relative to which the state is to be retrieved. Can be a string name or a Body object.</p></li>
+<li><p><strong>aberration_correction</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – The aberration correction to be applied. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>state</strong> – An array containing the state (position and velocity) of the target body with associated units.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_vel">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_vel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ab_correct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'None'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_vel" title="Link to this definition">#</a></dt>
+<dd><p>Get the velocity of a target body relative to an origin at a specified epoch time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trgt_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The target body for which the velocity is to be determined. Can be a string or a Body object.</p></li>
+<li><p><strong>epoch_time</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch time at which the velocity is to be determined. Can be an EpochArray or a float.</p></li>
+<li><p><strong>reference_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – The reference frame in which the velocity is to be determined. Can be a string or a Frame object.</p></li>
+<li><p><strong>obsvr_bdy</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The origin relative to which the velocity is to be determined. Can be a string or a Body object.</p></li>
+<li><p><strong>ab_correct</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Aberration correction to be applied. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>vel</strong> – The velocity of the target body as an ArrayWUnits object with the appropriate units.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.print_kernels">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">print_kernels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.print_kernels" title="Link to this definition">#</a></dt>
+<dd><p>Prints the list of kernels loaded.</p>
+<p>This method retrieves the list of kernels loaded using the SPICE library
+and prints each kernel’s source and description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="code docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.write_spk_segment_type9">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write_spk_segment_type9</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SPK_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SPK_SEG_ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs_TDB</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree_poly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_SPICE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters_JSON</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STMs_JSON</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_definition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_definition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.write_spk_segment_type9" title="Link to this definition">#</a></dt>
+<dd><p>Write a segment of type 9 to an SPK file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SPK_name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the SPK file.</p></li>
+<li><p><strong>body_ID</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The ID of the body.</p></li>
+<li><p><strong>origin_ID</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The ID of the origin.</p></li>
+<li><p><strong>ref_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The reference frame.</p></li>
+<li><p><strong>epochs_TDB</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – The array of epochs in TDB format.</p></li>
+<li><p><strong>degree_poly</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The degree of the polynomial.</p></li>
+<li><p><strong>num_states</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The number of states.</p></li>
+<li><p><strong>state_SPICE</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – The array of states for SPICE format.</p></li>
+<li><p><strong>parameters_JSON</strong> (<em>optional</em>, <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – The array of parameters for JSON format.</p></li>
+<li><p><strong>STMs_JSON</strong> (<em>optional</em>, <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – The array of state transition matrices for JSON format.</p></li>
+<li><p><strong>state_definition</strong> (<em>optional</em>, <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – The state definition.</p></li>
+<li><p><strong>sequence_definition</strong> (<em>optional</em>, <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>) – The sequence definition.</p></li>
+<li><p><strong>propagator_settings</strong> (<em>optional</em>, <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – The propagator settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.YDS2et">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">YDS2et</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sec</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.YDS2et" title="Link to this definition">#</a></dt>
+<dd><p>Convert year, day, sec format into ephemeris times.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.cal2et">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cal2et</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.cal2et" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.check_kernel_status_in_pool">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_kernel_status_in_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.check_kernel_status_in_pool" title="Link to this definition">#</a></dt>
+<dd><p>Check if a Spice kernel is loaded in the kernel pool.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kernel_filename</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Filename of the kernel to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns True if the kernel is in the pool and False if not.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.def_new_body">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">def_new_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spiceId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.def_new_body" title="Link to this definition">#</a></dt>
+<dd><p>Define a new celestial body in the SPICE kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the celestial body.</p></li>
+<li><p><strong>spiceId</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The SPICE ID of the celestial body.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.et2YDS">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">et2YDS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">et</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.et2YDS" title="Link to this definition">#</a></dt>
+<dd><p>Convert ephemeris times to year, day, and seconds format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.et2cal">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">et2cal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">et</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.et2cal" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.et2jd">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">et2jd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">et</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'J'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utclen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.et2jd" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.et2sclk">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">et2sclk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">et</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.et2sclk" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.et2utc">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">et2utc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">et</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ISOC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utclen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">27</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.et2utc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.frame_id_to_frame_name">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_id_to_frame_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.frame_id_to_frame_name" title="Link to this definition">#</a></dt>
+<dd><p>This method generetes the frame id given its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame_id</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – frame id of the reference frame</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>frame’s spice name</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>frame_id is different than the usual body_id used in spice</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.frame_name_to_frame_id">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_name_to_frame_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.frame_name_to_frame_id" title="Link to this definition">#</a></dt>
+<dd><p>This method generetes the frame name given its frame id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame_name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – frame name of the reference frame</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>frame’s spice id</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>frame_id is different than the usual body_id used in spice</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_frame_w_spice_id">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame_w_spice_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_frame_w_spice_id" title="Link to this definition">#</a></dt>
+<dd><p>get frame_code and name associated with the frame_id number</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id_number</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The frame id number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(3,3) rotation matrix to transform between frame_from to frame_to</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_id_from_string">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_id_from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.get_id_from_string" title="Link to this definition">#</a></dt>
+<dd><p>This method generetes the body spice id given its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name_string</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Spice name of the body</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>body’s spice id</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>id</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_intervals">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spkFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_intervals" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_name_from_id">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_name_from_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spice_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.get_name_from_id" title="Link to this definition">#</a></dt>
+<dd><p>This method generetes the body name given its spice id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spice_id</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Spice id of the body</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>body’s spice name</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_observer_target_visibility_windows">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_observer_target_visibility_windows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obsvr_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.Body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">scbt.EpochArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'obs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abcorr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'None'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crdsys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LATITUDINAL'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LATITUDE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_intervals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_observer_target_visibility_windows" title="Link to this definition">#</a></dt>
+<dd><p>Determine the visibility windows between an observer and a target within a specified time range.</p>
+<p>Parameters:
+obsvr_bdy (Union[str, scbt.Body]):</p>
+<blockquote>
+<div><p>The observer, either as a string name or a scbt.Body object.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>trgt_bdy (Union[str, scbt.Body]):</dt><dd><p>The target, either as a string name or a scbt.Body object.</p>
+</dd>
+<dt>epoch_start (Union[float, scbt.EpochArray]):</dt><dd><p>The start time of the observation window.</p>
+</dd>
+<dt>epoch_end (Union[float, scbt.EpochArray]):</dt><dd><p>he end time of the observation window.</p>
+</dd>
+<dt>step_size (float, optional):</dt><dd><p>The step size in seconds for the search. Default is 300.0.</p>
+</dd>
+<dt>angle_limit (float, optional):</dt><dd><p>The angular limit for visibility in degrees. Default is 10.0.</p>
+</dd>
+<dt>inframe (str, optional):</dt><dd><p>The reference frame for the observation. Default is “obs”.</p>
+</dd>
+<dt>abcorr (str, optional):</dt><dd><p>Aberration correction. Default is “None”.</p>
+</dd>
+<dt>crdsys (str, optional):</dt><dd><p>Coordinate system. Default is “LATITUDINAL”.</p>
+</dd>
+<dt>coord (str, optional):</dt><dd><p>Coordinate type. Default is “LATITUDE”.</p>
+</dd>
+<dt>relate (str, optional):</dt><dd><p>Relational operator for the coordinate comparison. Default is “&gt;”.</p>
+</dd>
+<dt>adjust (float, optional):</dt><dd><p>Adjustment value for the search. Default is 0.0.</p>
+</dd>
+<dt>num_intervals (int, optional):</dt><dd><p>Maximum number of intervals for the search. Default is 1000.</p>
+</dd>
+</dl>
+<p>Returns:
+tuple: A tuple containing the number of visibility windows and a list of visibility windows.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_xfrm">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_xfrm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_from</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.get_xfrm" title="Link to this definition">#</a></dt>
+<dd><p>This method returns the DCM rotation matrix between frame_from and frame_to at a given epoch</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_from</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the source frame (needs to be spice defined)</p></li>
+<li><p><strong>frame_to</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the target frame (needs to be spice defined)</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – ephemeris epoch to convert between the two epochs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(3,3) rotation matrix to transform between frame_from to frame_to</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>both frame_from and frame_to needs to be spice-defined reference frames</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.increase_kernel_priority">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">increase_kernel_priority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.increase_kernel_priority" title="Link to this definition">#</a></dt>
+<dd><p>This function increases the priority of kernel
+to the top of the pool for kernels of the same type
+by unloading then loading it.</p>
+<p>Note: this is the method recommended by the Spice
+documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kernel_filename</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Filename of the</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.jd2et">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">jd2et</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.jd2et" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.list_all_frames">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_all_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.list_all_frames" title="Link to this definition">#</a></dt>
+<dd><p>This method generate a list of all frames with +- the value between max_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_id</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – maximum frame id to check</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of the reference frames detected in the pool</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>frame_id is different than the usual body_id used in spice</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.load_kernel">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_filenames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.load_kernel" title="Link to this definition">#</a></dt>
+<dd><p>Load SPICE kernels into the SPICE system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kernel_filenames</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – A single kernel filename or a list of kernel filenames to be loaded.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.load_kernel_from_mkfile">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_kernel_from_mkfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">furnshKernelFilename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.load_kernel_from_mkfile" title="Link to this definition">#</a></dt>
+<dd><p>Load a SPICE kernel from a given MK file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>furnshKernelFilename</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The filename of the MK file to load.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.matrix_times_vector">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">matrix_times_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vector</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.matrix_times_vector" title="Link to this definition">#</a></dt>
+<dd><p>Multiply a 3x3 double precision matrix with a
+3-dimensional double precision vector.</p>
+<p><a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/mxv_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/mxv_c.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> (<em>np.array</em>) – rotation matrix</p></li>
+<li><p><strong>vector</strong> (<em>np.array</em>) – vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>vector</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.name_to_ID">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name_to_ID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.name_to_ID" title="Link to this definition">#</a></dt>
+<dd><p>Converts a given name to its corresponding ID in the kernel pool.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name to be converted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ID corresponding to the given name, or None if the name is not found in the kernel pool.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a> or <em>None</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.sclk2et">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sclk2et</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scId</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sclk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.sclk2et" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.str2et">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">str2et</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.str2et" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.unload_kernel_from_pool">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unload_kernel_from_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.unload_kernel_from_pool" title="Link to this definition">#</a></dt>
+<dd><p>Unload a kernel from the pool. If the kernel is not in the
+pool then no action is taken.
+:param kernel_filename: Filename of the Spice kernel being unloaded.
+:type kernel_filename: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.utc2et">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">utc2et</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.utc2et" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.utc2tdb">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">utc2tdb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.utc2tdb" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.kernel_folder">
+<span class="sig-name descname"><span class="pre">kernel_folder</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'C:\\Users\\Zack\\pythonVSCode\\scarabaeus/data/kernels/scenario'</span></em><a class="headerlink" href="#scarabaeus.SpiceManager.kernel_folder" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.kernel_list">
+<span class="sig-name descname"><span class="pre">kernel_list</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#scarabaeus.SpiceManager.kernel_list" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.poly_interp_deg">
+<span class="sig-name descname"><span class="pre">poly_interp_deg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#scarabaeus.SpiceManager.poly_interp_deg" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.poly_interp_par_deg">
+<span class="sig-name descname"><span class="pre">poly_interp_par_deg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#scarabaeus.SpiceManager.poly_interp_par_deg" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -492,6 +1296,64 @@
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.clear_kernels"><code class="docutils literal notranslate"><span class="pre">SpiceManager.clear_kernels()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_STMs"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_STMs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_attitude"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_attitude()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_lighttime"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_lighttime()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_parameters"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_parameters()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_pos"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_pos()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_propagator_settings"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_propagator_settings()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_state"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_state()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_vel"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_vel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.print_kernels"><code class="docutils literal notranslate"><span class="pre">SpiceManager.print_kernels()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.write_spk_segment_type9"><code class="docutils literal notranslate"><span class="pre">SpiceManager.write_spk_segment_type9()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.YDS2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.YDS2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.cal2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.cal2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.check_kernel_status_in_pool"><code class="docutils literal notranslate"><span class="pre">SpiceManager.check_kernel_status_in_pool()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.def_new_body"><code class="docutils literal notranslate"><span class="pre">SpiceManager.def_new_body()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.et2YDS"><code class="docutils literal notranslate"><span class="pre">SpiceManager.et2YDS()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.et2cal"><code class="docutils literal notranslate"><span class="pre">SpiceManager.et2cal()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.et2jd"><code class="docutils literal notranslate"><span class="pre">SpiceManager.et2jd()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.et2sclk"><code class="docutils literal notranslate"><span class="pre">SpiceManager.et2sclk()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.et2utc"><code class="docutils literal notranslate"><span class="pre">SpiceManager.et2utc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.frame_id_to_frame_name"><code class="docutils literal notranslate"><span class="pre">SpiceManager.frame_id_to_frame_name()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.frame_name_to_frame_id"><code class="docutils literal notranslate"><span class="pre">SpiceManager.frame_name_to_frame_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_frame_w_spice_id"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_frame_w_spice_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_id_from_string"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_id_from_string()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_intervals"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_intervals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_name_from_id"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_name_from_id()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_observer_target_visibility_windows"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_observer_target_visibility_windows()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.get_xfrm"><code class="docutils literal notranslate"><span class="pre">SpiceManager.get_xfrm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.increase_kernel_priority"><code class="docutils literal notranslate"><span class="pre">SpiceManager.increase_kernel_priority()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.jd2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.jd2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.list_all_frames"><code class="docutils literal notranslate"><span class="pre">SpiceManager.list_all_frames()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.load_kernel"><code class="docutils literal notranslate"><span class="pre">SpiceManager.load_kernel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.load_kernel_from_mkfile"><code class="docutils literal notranslate"><span class="pre">SpiceManager.load_kernel_from_mkfile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.matrix_times_vector"><code class="docutils literal notranslate"><span class="pre">SpiceManager.matrix_times_vector()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.name_to_ID"><code class="docutils literal notranslate"><span class="pre">SpiceManager.name_to_ID()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.sclk2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.sclk2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.str2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.str2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.unload_kernel_from_pool"><code class="docutils literal notranslate"><span class="pre">SpiceManager.unload_kernel_from_pool()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.utc2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.utc2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.utc2tdb"><code class="docutils literal notranslate"><span class="pre">SpiceManager.utc2tdb()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.kernel_folder"><code class="docutils literal notranslate"><span class="pre">SpiceManager.kernel_folder</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.kernel_list"><code class="docutils literal notranslate"><span class="pre">SpiceManager.kernel_list</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.poly_interp_deg"><code class="docutils literal notranslate"><span class="pre">SpiceManager.poly_interp_deg</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.poly_interp_par_deg"><code class="docutils literal notranslate"><span class="pre">SpiceManager.poly_interp_par_deg</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
@@ -536,7 +1398,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

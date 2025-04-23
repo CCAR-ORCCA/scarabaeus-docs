@@ -2,19 +2,27 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Data Flow" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/scb_data_flow.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised by M. Pugliatti on 2025 FEB 4 As described in the OD process, the DWN pre-process the actual radiometric quantities that are observed by a network of ground-stations (e.g. Deep Space Network or DSN, ESTRACK, etc.) and OpNav data. In doing so, the DWN also generate auxiliary data needed by computed models (e.g. for tropo/iono corrections, frequency data, turn-around ratios, etc.) These former quantities are referred to as the “observed” ones , while the latter as “auxiliary” data...." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="Last revised by M. Pugliatti on 2025 FEB 4 As described in the OD process, the DWN pre-process the actual radiometric quantities that are observed by a network of ground-stations (e.g. Deep Space Network or DSN, ESTRACK, etc.) and OpNav data. In doing so, the DWN also generate auxiliary data needed by computed models (e.g. for tropo/iono corrections, frequency data, turn-around ratios, etc.) These former quantities are referred to as the “observed” ones , while the latter as “auxiliary” data...." />
 
     <title>Data Flow &#8212; Scarabaeus  documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -31,7 +39,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
@@ -49,7 +57,7 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/scb_data_flow';</script>
-    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Libraries" href="external_libraries.html" />
@@ -60,7 +68,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -119,11 +127,9 @@
   
     
     
-      
     
-    
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -384,10 +390,11 @@
   <span class="target" id="scb-dataflow"></span><style> .gold {color:rgb(207 184 124)} </style><section id="data-flow">
 <h1><span class="gold">Data Flow</span><a class="headerlink" href="#data-flow" title="Link to this heading">#</a></h1>
 <p>Last revised by M. Pugliatti on 2025 FEB 4</p>
-<p>As described in <span class="xref std std-ref">the OD process</span>, the DWN pre-process the actual radiometric quantities that are observed by a network of ground-stations (e.g. Deep Space Network or DSN, ESTRACK, etc.) and OpNav data. In doing so, the DWN also generate auxiliary data needed by computed models (e.g. for tropo/iono corrections, frequency data, turn-around ratios, etc.)
+<p>As described in <a class="reference internal" href="the_od_process.html#the-od-process"><span class="std std-ref">the OD process</span></a>, the DWN pre-process the actual radiometric quantities that are observed by a network of ground-stations (e.g. Deep Space Network or DSN, ESTRACK, etc.) and OpNav data. In doing so, the DWN also generate auxiliary data needed by computed models (e.g. for tropo/iono corrections, frequency data, turn-around ratios, etc.)
 These former quantities are referred to as the “observed” ones , while the latter as “auxiliary” data.
 These “auxiliary” data is feeded to SCB measurement models, which implement the computed formulations from [Moyer2000] for the available measurement types. This data flow is represented in the image below, which shows how the database (DB) is going to interact with SCB and the DWN.</p>
-<p><a class="reference internal" href="../../images/external_resource_images/data_flow.png"><img alt="pic1" src="../../images/external_resource_images/data_flow.png" style="width: 100%;" /></a></p>
+<a class="reference internal image-reference" href="../_images/data_flow.png"><img alt="../_images/data_flow.png" src="../_images/data_flow.png" style="width: 100%;" />
+</a>
 <ul class="simple">
 <li><p><strong>[Moyer2000]</strong> T.D. Moyer, <em>Formulation for Observed and Computed Values of Deep Space Network Data Types for Navigation</em>, JPL/NASA, 2000.</p></li>
 </ul>
@@ -475,7 +482,7 @@ These “auxiliary” data is feeded to SCB measurement models, which implement 
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

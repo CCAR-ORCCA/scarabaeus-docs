@@ -37,10 +37,10 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -56,7 +56,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/utils_rsts/orbitalelements';</script>
-    <link rel="icon" href="../../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="5. OutlierRejection" href="outlierrejection.html" />
@@ -322,7 +322,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/forcemodel.html">4. ForceModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpulsiveBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/nplatesrp.html">6. nPlateSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
@@ -455,11 +455,11 @@
 <h1><span class="section-number">4. </span>OrbitalElements<a class="headerlink" href="#orbitalelements" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.OrbitalElements">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OrbitalElements</span></span><a class="headerlink" href="#scarabaeus.OrbitalElements" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OrbitalElements</span></span><a class="headerlink" href="#scarabaeus.OrbitalElements" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Provides methods for converting between state vectors and orbital elements.</p>
 <p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.OrbitalElements.rv2coe" title="scarabaeus.OrbitalElements.rv2coe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rv2coe</span></code></a>(grav_param, r, v[, threshHold])</p></td>
 <td><p>Converts from vectors to classical orbital elements.</p></td>
@@ -474,21 +474,20 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>grav_param</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Standard gravitational parameter in <span class="math notranslate nohighlight">\(\frac{km^3}{s^2}\)</span>.</p></li>
-<li><p><strong>r</strong> (<em>np.ndarray</em>) – Position vector in kilometers.</p></li>
-<li><p><strong>v</strong> (<em>np.ndarray</em>) – Velocity vector in kilometers per second.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Tolerance for eccentricity and inclination checks. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-8</span></code>.</p></li>
-<li><p><strong>threshHold</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>)</p></li>
+<li><p><strong>grav_param</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Standard gravitational parameter in <span class="math notranslate nohighlight">\(\frac{km^3}{s^2}\)</span>.</p></li>
+<li><p><strong>r</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Position vector in kilometers.</p></li>
+<li><p><strong>v</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Velocity vector in kilometers per second.</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – Tolerance for eccentricity and inclination checks. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-8</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>p</strong> (<em>float</em>) – Semi-latus rectum of parameter in kilometers.</p></li>
-<li><p><strong>ecc</strong> (<em>float</em>) – Eccentricity.</p></li>
-<li><p><strong>inc</strong> (<em>float</em>) – Inclination in radians.</p></li>
-<li><p><strong>raan</strong> (<em>float</em>) – Right ascension of the ascending node in radians.</p></li>
-<li><p><strong>argp</strong> (<em>float</em>) – Argument of Perigee in radians.</p></li>
-<li><p><strong>nu</strong> (<em>float</em>) – True Anomaly in radians.</p></li>
+<li><p><strong>p</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Semi-latus rectum of parameter in kilometers.</p></li>
+<li><p><strong>ecc</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Eccentricity.</p></li>
+<li><p><strong>inc</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Inclination in radians.</p></li>
+<li><p><strong>raan</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Right ascension of the ascending node in radians.</p></li>
+<li><p><strong>argp</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Argument of Perigee in radians.</p></li>
+<li><p><strong>nu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – True Anomaly in radians.</p></li>
 </ul>
 </p>
 </dd>
@@ -601,7 +600,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
