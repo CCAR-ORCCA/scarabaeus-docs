@@ -1,0 +1,918 @@
+.. _writing-for-ext-res:
+.. create a gold color role
+.. raw:: html
+
+    <style> .gold {color:rgb(207 184 124)} </style>
+
+.. role:: gold
+
+.. create a role that makes bolded text colored blue as well
+.. raw:: html
+
+    <style> .bold {font-weight: bold; color:rgb(2 119 189)} </style>
+
+.. role:: bold
+
+==========================================
+:gold:`Scarabaeus External Resource Guide`
+==========================================
+Last revised by Z. Ellis on 2025 MAR 11
+
+--------------------
+:bold:`Introduction`
+--------------------
+The external resource, where you are now, consists of two separate kinds of information:
+
+#. Auto-Generated Script Documents in the Library Reference
+#. Custom Non-Script Articles
+
+In addition to the coding conventions we explored in the `previous section <style_guide>`_, it's also important that we provide 
+information to populate Scarabaeus' external resource. We do this by automatically generating documentation for every class and method 
+in Scarabaeus. Thhis document explains the steps necessary for ensuring that auto-generated documentation builds 
+and renders correctly by providing generalized standards and formatting rules when writing a class or methods for Scarabaeus.
+
+The file ``TemplateClass.py`` has been set up as an extra example to follow as well. It is available in its entirety within Scarabaeus under 
+``docs/TemplateClass.py``, or :ref:`here in the documentation <show-code>`.
+
+For details on how to create an article that is not generated from a script, articles like this one, see LINK.
+
+----
+
+.. _docstring-format-guide:
+
+-----------------------------------------------------
+:bold:`Documenting Scripts for the Library Reference`
+-----------------------------------------------------
+
+This entire documentation resource is generated using `Sphinx <https://www.sphinx-doc.org/en/master/>`_. The bulk of the information we must 
+provide to Sphinx is given in the form of multiple docstrings throughout the file. These docstrings must follow a specific format to ensure 
+cohesion throughout the resource. This format follows a modified version of Numpy's `dev manual <https://numpydoc.readthedocs.io/en/latest/example.html#example>`_. 
+There are three types of docstring that each serve different purposes in creating a comprehensive resource for a Scarabaeus class:
+
+#. Class Docstring     - the main source of information for a Scarabaeus class.
+#. Property Docstrings - supplementary information for the Class Docstring detailing class properties.
+#. Method Docstrings   - information describing the use of a method.
+
+In the following sections we will walk through the formatting as well as the purpose of each of these types. These sections will provide references 
+for formatting these docstrings. They are interpreted by Sphinx using the .rst format. For a helpful list of formatting rules in .rst, see 
+`this cheat sheet <https://www.odoo.com/documentation/18.0/contributing/documentation/rst_guidelines.html>`_. Addtionally, if you 
+would like to include tables in your documentation, `this generator <https://www.tablesgenerator.com/text_tables>`_ set to "Text" makes it 
+much easier to do so.
+
+.. note:: Many times, docstrings can become very large and make reading the code itself difficult. Remember that in VSCode, all docstrings can be collapsed by clicking the down arrow beside the line number of the first ``"""``.
+
+----
+
+-------------------------------
+:bold:`General Docstring Rules`
+-------------------------------
+Before we talk about the different kinds of docstrings, we should first note a few general rules that apply to all of them. These are meant to guide you 
+in writing informative documentation while maintaining a general style throughout.
+
+Writing Descriptions
+====================
+In general, descriptions should be as informative as possible. There will always be some prior knowledge expected of the user, but try to remember that 
+most people won't take the time to read through every line of the source code. Make sure that your explanations don't leave any ambiguity.
+
+Additionally, as a stylistic note, when writing a description, try not to use phrases like "this class" or "this method". These tend to be superfluos and make the 
+documentation more bloated than it needs to be. For example, instead of "this method generates xyz", consider simply "generates xyz". It's a small detail, but following 
+this guideline will help make your writing more succint as well as maintain a consistent style across the documentation.
+
+Many times our variable or method names include abbreviations. The documentation gives us an opportunity to give context to these abbreviations. For example, if we have 
+the property ``STM0``, when we give it a property description we should note the full name like:
+
+.. code-block:: python
+
+    @property
+    def STM0(self) -> dict:
+        """
+            Initial state transition matrix (STM).
+        """
+
+Finally, for writing descriptions, there are a few oddities that come with how Sphinx reads in our documentation:
+
+#. When using math formatting, make sure to use double "\" to denote a command. It will not work otherwise.
+#. To denote in-line code, make sure to use double back ticks "``". It will not render as in-line otherwise.
+#. Descriptions should end with periods.
+#. Type-hinting numpy arrays in the docstring require the full name: ``numpy.ndarray``.
+
+.. Defining Dictionaries
+.. =====================
+.. There are two scenarios where we would need to document a ``dict`` object:
+
+.. #. Taking it as an input
+.. #. Returning it as an output
+
+.. In both of these scenarios, it's important that the user knows exactly what is inside of the dictionary, either so that they can provide all of the necessary 
+.. infomration, or so that they know all of the data that they have access to.
+
+.. .. code-block:: python
+
+..     """
+..         dict_return : dict
+..             A dictionary containing the following data:
+
+..             * ``'key 1'`` : ArrayWUnits
+..                 Info about the first key. Expressed in some units.
+..             * ``'key 2'`` : int
+..                 Info about the second key.
+..     """
+
+Defining ArrayWUnits
+====================
+When documenting ArrayWUnits objects, make sure to include their recommended units as well. If there are no recommended units, include the 
+dimensions instead.
+
+To ensure a consistent style throughout the resource, be sure to follow the structure "<definition>. <units specification>." For fractional units, 
+use the ``:math:`` directive. See the example Class Docstring (see sections below): 
+
+.. code-block:: python
+
+    """
+        Parameters
+        ----------
+        awu_input : ArrayWUnits
+            The AWU being documented. Recommend expressed in units of :math:`\\frac{km}{s^2}`.
+    """
+
+The description will render as:
+
+    "The AWU being documented. Recommend expressed in units of :math:`\\frac{km}{s^2}`."
+
+For none-compound units, spell them out instead:
+
+.. code-block:: python
+
+    """
+        The AWU being documented. Expressed in units of Newtons.
+        
+        :base: TemplateClass
+        :type: ArrayWUnits
+    """
+
+Notice that in this example we're defining an ArrayWUnits in a Property Docstring (see sections below) instead of a Class Docstring like the previous 
+example. This "<definition>. <units specification>." applies anywhere we might need to define an ArrayWUnits object.
+
+Since AWU's can hold vectorial and matrix infomration, it's also important for us to note the size and shape if it isn't a scalar value. This combined 
+with our unit specification gives us an example like:
+
+.. code-block:: python
+
+    """
+        Parameters
+        ----------
+        position : ArrayWUnits
+            3x1 vector describing the spacecraft's position. Expressed in units of kilometers.
+    """
+
+----
+
+-----------------------
+:bold:`Class Docstring`
+-----------------------
+The first and most important docstring type is the Class Docstring. It is placed directly below the class definition in the code and consists of 
+anywhere from two to seven different subsections, depending on the complexity of the class and the relevance of the subsections. Some of these 
+subsections are mandatory and others are discretionary, denoted in the list below:
+
+#. The Class Description - :bold:`mandatory`
+#. The Parameters Section - :bold:`mandatory`
+#. The Raises Section - :bold:`at discretion`
+#. The See Also Section - :bold:`at discretion`, recommended
+#. The Notes Section - :bold:`at discretion`, recommended
+#. The References Section - :bold:`at discretion`
+#. The Examples Section - :bold:`at discretion`, recommended
+
+All of these sections are placed within the same docstring, book-ended by two sets of three quotation marks. All of the contents should be indented 
+once inwards. It will take the below form (this is a helpful copy-paste template), with the following sections providing more detail:
+
+.. code-block:: python
+
+    """
+        CLASS DESCRIPTION
+
+        Parameters
+        ----------
+        arg : type
+            DESC
+        
+        arg_two : type or other_type, optional
+            DESC. Defaults to ``default_value``.
+
+        Raises
+        ------
+        REMOVE IF NO SPECIAL ERRORS
+
+        See Also
+        --------
+        REMOVE IF NO SEE ALSOS
+
+        Notes
+        -----
+        REMOVE IF NO NOTES
+
+        References
+        ----------
+        REMOVE IF NO REFERENCES
+
+        Examples
+        --------
+        .. code-block:: python
+
+            # initial setup
+            import scarabaeus as scb
+    """
+
+The Class Description
+=====================
+The first section of the Class Docstring is the Class Description, which, as its name suggests, provides information about the 
+class. This is a :bold:`mandatory` inclusion in the Class Docstring, so make sure you've filled it out during your documentation 
+process.
+
+.. code-block:: python
+
+    """
+        Here you should provide a sentence or two concisely explaining the class and its 
+        functions.
+
+        If necessary, you can provide a longer explanation on the line(s) below the 
+        first brief summary. For anything more nuanced or complex, refer to the Notes 
+        section. The Class Description should be easily digestible, so try not to bog 
+        it down with highly technical components of the class.
+
+        You may split the additional summary into more than one paragraph.
+
+        ...
+    """
+
+.. _writing-rationale:
+
+It's important to be descriptive when writing this section. Look at some of the class descriptions in other classes throughout 
+Scarabaeus and notice that they don't assume the user has much prior knowledge about the class. It's easy to write a quick two-sentence 
+blurb about a class when you've been engrossed in its development for the past month, but make sure that you aren't taking your 
+intimate knowledge of it for granted when writing its description. :bold:`Nothing should be ambiguous`.
+
+The Parameters Section
+======================
+The next section, the Parameters section, is also a :bold:`mandatory` inclusion in the Class Docstring. This is because it's where 
+we provide information detailing the inputs, or parameters, of the class' ``__init__`` function. Where the Class Description told the 
+user what the class does, the Parameters Section tells the user how we expect them to set the class up to perform those actions.
+
+Assume that we wish to document a class with an ``__init__`` that looks like so:
+
+.. code-block:: python
+
+    from scarabaeus import ArrayWUnits
+
+    def __init__(self, arg_1 : ArrayWUnits, arg_two : float | list[float] = None, 
+                 arg_three : bool = False)
+
+We can see that, per `the style guide <style_guide>`_, all arguments have been typed correctly. We have three inputs, two of which are 
+optional. In order to document this properly, let's first begin with ``arg_1``, which we expect to be an ArrayWUnits object. Remember 
+from the Gneral Rules section that we should format this accordingly:
+
+.. code-block:: python
+
+    """
+        ...
+
+        Parameters
+        ----------
+        arg_1 : ArrayWUnits
+            Short description of what we expect the argument to be. Since this is 
+            an AWU input, we should also note what kind of units we expect or reccommend.
+            Recommend expressed in units of kilometers.
+
+        ...
+    """
+
+Notice that we assigned the type of the argument by first writing out its name, followed by a space, colon, space, and finally its type. 
+Next, on the line below indented once, we provide a description of the argument. It's important that if our description spans more than one 
+line that the indentation remains the same, otherwise Sphinx will read the next line as a separate bit of information. It's also important 
+to note that, by our documentation conventions, that description is completed with a period.
+
+Now, let's document ``arg_2``, an optional input that can either be a single float or a list of floats. We'll leave a blank line and on 
+the one below, start the same way as before. Note that, for clarity, instead of using the union operator, we choose to simply write out "or". 
+Also, since it's an optional argument, we need to note that as well, both in the typing as well at the end of the description. Notice that we 
+give the default value surrounded by a pair of back ticks. This tells Sphinx to render it as an in-line code block.
+
+.. code-block:: python
+
+    """
+        ...
+
+        Parameters
+        ----------
+        arg_1 : ArrayWUnits
+            Short description of what we expect the argument to be. Since this is 
+            an AWU input, we should also note what kind of units we expect or reccommend.
+            Recommend expressed in units of kilometers.
+        
+        arg_2 : float or list[float], optional
+            Short description of what we expect the argument to be. Since this is an 
+            optional argument, we note that after typing as well as at the end of 
+            our description. Defaults to ``None``.
+
+        ...
+    """
+
+Finally, we'll document ``arg_3``, another optional input, this time a boolean. For an input like a boolean where it can only be set to ``True`` 
+or ``False``, we should explain what either option does. This is a good place to show the correct way to add some extra formatting in our docstrings:  
+unordered lists with the ``*`` delimiter. Since a boolean only has two states, we'll only need two entries to the list. But, if required, we could 
+always add more entries for a more complicated setup.
+
+.. note:: Ordered lists are also possible by using the ``#.`` delimiter instead of the ``*`` delimiter.
+
+.. code-block:: python
+
+    """
+        ...
+
+        Parameters
+        ----------
+        arg_1 : ArrayWUnits
+            Short description of what we expect the argument to be. Since this is 
+            an AWU input, we should also note what kind of units we expect or reccommend.
+            Recommend expressed in units of kilometers.
+        
+        arg_2 : float or list[float], optional
+            Short description of what we expect the argument to be. Since this is an 
+            optional argument, we note that after typing as well as at the end of 
+            our description. Defaults to ``None``.
+
+        arg_3 : bool, optional
+            Short description of what we expect the argument to be. We'll use an 
+            unordered list to give information on the potential states of the 
+            boolean:
+
+            * ``True``  - whatever setting it to ``True`` does
+            * ``False`` - whatever setting it to ``False`` does
+
+            Notice that we've spaced the list by one line above and below. The list 
+            will not render correctly otherwise. Defaults to ``False``.
+
+        ...
+    """
+
+Filling out the Parameters section requires a balance between descriptiveness and conciseness. If you ever feel like you're 
+spending a lot of words to describe a parameter, you can always provide a more simplified explanation and refer to the Notes 
+section. There you'll have as much space as you want to provide detailed information about the parameter. We will cover the 
+Notes section soon.
+
+The Raises Section
+==================
+This Raises Section is the first :bold:`discretionary` inclusion in the Class Docstring. This means that if the information 
+encapsulated in the subsection is not necessary, you do not need to include it. If your class doesn't raise any complex errors, 
+there's no reason to include the Raises Section and you can remove it entirely from your Class Docstring.
+
+However, if your class *does* have an error or errors that you feel it's important to note, then you should document them here. 
+Let's assume our class raises the following errors:
+
+.. code-block:: python
+
+    if bad:
+        raise ValueError('Something very bad has happened.')
+    
+    if more_bad:
+        raise TypeError('Another even worse thing has happened.')
+
+The format for noting these errors is fairly similar to how we set up our parameters in the previous section. First we'll paste the 
+error call as well as the error itself under the Raises header. It's important that we keep it all on one line, even if it it's 
+longer than the dosctring should be. Sphinx doesn't like errors being broken up over multiple lines, so we'll have to break the 
+rules here.
+
+.. code-block:: python
+
+    """
+        ...
+
+        Raises
+        ------
+        ValueError('Something very bad has happened.')
+            | Raised when you've done something very bad.
+
+        TypeError('Another even worse thing has happened.')
+            | Raised when you've done something even worse than the other error.
+
+        ...
+    """
+
+Below the error, we indent once, place a ``|`` sign, a space, and then our explanation for why this error has been raised. Similarly to 
+the error line itself, we need to make sure that our description remains on a single line. The ``|`` is also necessary. This is somewhat 
+of a bandaid fix, but Sphinx will not render correctly otherwise. We must also make sure that, if we have more than one error, we leave a 
+blank line between the two definitions, since not doing so will also break Sphinx.
+
+The See Also Section
+====================
+Our next :bold:`discretionary` inclusion in the Class Docstring is the See Also section. Note that at the beginning of this walkthrough we call 
+this subsection recommended. This is because, although not always necessary, it's highly likely that at least one other class is relevant to the 
+current one. For example, ``Units`` and ``Dimensions`` are both relevant to ``ArrayWUnits`` and so are noted in its See Also section.
+
+If there really is nothing that would be helpful to point to, then you can remove the See Also section from your docstring, but it's strongly 
+recommended that you give links to relevant classes. We can do this like so:
+
+.. code-block:: python
+
+    """
+        ...
+
+        See Also
+        --------
+        scarabaeus.Body : One-sentence description of why you might want to look here too.
+        scarabaeus.Units : Another short description of why you should look here as well.
+
+        ...
+    """
+
+This is the simplest-to-format so far! All we need is to provide a reference to the relevant class for Sphinx to generate a link to. Once we've done 
+that, we provide an optional blurb about why it's relevant, and thats it!
+
+The Notes Section
+=================
+The next section is the Notes Section, which is also :bold:`discretionary` but recommended because of its use in providing detailed 
+information about a class. If a parameter or a property (see `Property Docstrings <prop-docs>`_ below) requires an extra piece of information, 
+or if a class requires some extra background info, the Notes Section is the place to put it.
+
+Since you may want some extra formatting for your notes section, in additioned to the list functionality noted earlier, the below example 
+also provides some other formatting techniques that you may wish to implement:
+
+.. code-block:: python
+
+    """
+        ...
+
+        Notes
+        -----
+        The notes section exists to provide additional or more in-depth information 
+        pertaining to a class.
+
+        As noted above, this section contains examples for a few less common 
+        formatting options. The first of which is creating tables like this one:
+
+        +---------+---------------+--------+-----------+
+        | Planets | Dwarf Planets | Moons  | Asteroids |
+        +=========+===============+========+===========+
+        | Jupiter | Pluto         | Tethys | Justitia  |
+        +---------+---------------+--------+-----------+
+        | Saturn  | Haumea        | Phobos | Bennu     |
+        +---------+---------------+--------+-----------+
+
+        See the table generator link given in the "Documenting Scripts for the Library 
+        Reference" section of this document.
+
+        LaTeX syntax can be included like this :math:`r = \\frac{a(1-e^2)}{1+e \\cos\\theta)}`. Or entire 
+        equations can also be created like so:
+
+        .. math::
+
+            \\phi = arctan(\\frac{esin\\nu}{1+ecos\\nu})
+
+        You can even include matrices:
+
+        .. math::
+
+            \\frac{\\partial\\mathbf{a}}{\\partial \\mathbf{r}} = 
+                \\begin{bmatrix}
+                    \\frac{\\partial a_x}{\\partial x} & \\frac{\\partial a_x}{\\partial y} & \\frac{\\partial a_x}{\\partial z} \\\\
+                    \\frac{\\partial a_y}{\\partial x} & \\frac{\\partial a_y}{\\partial y} & \\frac{\\partial a_y}{\\partial z} \\\\
+                    \\frac{\\partial a_z}{\\partial x} & \\frac{\\partial a_z}{\\partial y} & \\frac{\\partial a_z}{\\partial z}
+                \\end{bmatrix}
+
+        Note that double ``\\`` are required for Sphinx to recognize them.
+
+        Quotes can be created using a single indent surrounded by quotation marks:
+        
+            "Quotes are very nice. - me"
+
+        ...
+    """
+
+For examples of a good Notes Section, see the docs for EpochArray or Dimensions.
+
+The References Section
+======================
+The next :bold:`discretionary` piece of the Class Docstring is the References Section. This is essentially a bibliography for your class and should be used 
+as a way to easily reference anything that you've used in your code. This can include constants, equations, general concepts — anything 
+that would be referenced in a paper.
+
+You can also use these references as in-text citations throughout your Class Docstring. We'll append another sentence to our Class Description 
+section from before in the example below to highlight how to use this functionality:
+
+.. code-block:: python
+
+    """
+
+        ...
+
+        ORRCA Lab [1]_ is a great lab.
+
+        References
+        ----------
+        .. [1] https://www.colorado.edu/faculty/mcmahon/orcca
+
+        .. [2] non-website sources should be cited in APA
+
+        ...
+    """
+
+All citations that are not direct links to websites should be given in APA format unless otherwise necessary. For example, take reference 3 
+from an excerpt from ``Units.py``'s Class Docstring:
+
+.. code-block:: python
+
+    """
+        References
+        ----------
+        .. [1] https://www.nist.gov/pml/owm/metric-si/si-units
+
+        .. [2] https://cneos.jpl.nasa.gov/glossary/LD.html
+
+        .. [3] XXVIII General Assembly of IAU, Beijing, 31 Aug 2012
+
+References do not have to be included as in-text citations.
+
+The Examples Section
+====================
+The Examples Section is the final component of the Class Docstring as well as one of the most important. However, there are many reasons why you may not include 
+it, which is why it's a :bold:`discretionary`, but highly recommended, inclusion. This section is a place to provide one or more examples showcasing the usage of 
+your class. Don't give extremely niche examples, but more is generally better in this case.
+
+There are some situations where your class is dependent on one or more other classes to function. Other times, there is significant setup, or your class produces 
+massive amounts of data that is difficult to parse or isn't human-readable. In situations like these, don't include an example. These sorts of "examples" are better 
+suited for tutorial articles or demos.
+
+The purpose of an example is to provide a quick and accessible chunk of code for a user to copy-paste and work with on their own. If the structure of your class 
+is anthithetical to this goal, there is no need to include an example in your docstring.
+
+.. code-block:: python
+
+    """
+        ...
+
+        Examples
+        --------
+        Here we'll describe what we're providing an example for. In this case, we're using 
+        our TemplateClass to perform some dummy operation. We'll use the code-block directive 
+        to tell Sphinx to render our example as a copyable block of Python code below:
+
+        .. code-block:: python
+
+            # initial setup
+            import scarabaeus as scb
+
+            # call some dummy method
+            answer = scb.TemplateClass.general_template_method(1)
+
+            # make sure to provide the example's solution
+            >>> print(answer)
+            'Print out of the answer here'
+        
+        We can place more examples if necssary, making sure to describe what we're doing in 
+        words before providing the example code. Note that we don't need to import 
+        Scarabaeus again in the code since it's already happened once above.
+
+        .. code-block:: python
+
+            # call some other dummy method
+            answer = scb.TemplateClass.alt_constr_template('fake_input.csv')
+
+            # make sure to provide the example's solution
+            >>> print(answer)
+            'Print out of the answer here'
+    """
+
+.. note::
+    You :bold:`must provide a print out solution` to any examples you provide. The code you place in the Examples section is purposefully :bold:`not` run by Sphinx during compilation firstly to reduce build time, but also, more importantly, to make sure developers check the code they're providing works. 
+
+The code itself is placed in the ``code-block`` directive. By passing ``python`` to this directive, the code will be rendered as 
+a python script directly in the documentation. It also provides a button to copy-paste the entire block, allowing for easy testing for 
+users.
+
+The Complete Class Docstring
+============================
+Now that we've completed all of the subsections of the Class Docstring, let's look at the entire thing in one place:
+
+.. code-block:: python
+
+    """
+        Here you should provide a sentence or two concisely explaining the class and its 
+        functions.
+
+        If necessary, you can provide a longer explanation on the line(s) below the 
+        first brief summary. For anything more nuanced or complex, refer to the Notes 
+        section. The Class Description should be easily digestible, so try not to bog 
+        it down with highly technical components of the class.
+
+        You may split the additional summary into more than one paragraph.
+
+        ORRCA Lab [1]_ is a great lab.
+
+        Parameters
+        ----------
+        arg_1 : ArrayWUnits
+            Short description of what we expect the argument to be. Since this is 
+            an AWU input, we should also note what kind of units we expect or reccommend.
+            Recommend expressed in units of kilometers.
+        
+        arg_2 : float or list[float], optional
+            Short description of what we expect the argument to be. Since this is an 
+            optional argument, we note that after typing as well as at the end of 
+            our description. Defaults to ``None``.
+
+        arg_3 : bool, optional
+            Short description of what we expect the argument to be. We'll use an 
+            unordered list to give information on the potential states of the 
+            boolean:
+
+            * ``True``  - whatever setting it to ``True`` does
+            * ``False`` - whatever setting it to ``False`` does
+
+            Notice that we've spaced the list by one line above and below. The list 
+            will not render correctly otherwise. Defaults to ``False``.
+
+        Raises
+        ------
+        ValueError('Something very bad has happened.')
+            | Raised when you've done something very bad.
+        
+        TypeError('Another even worse thing has happened.')
+            | Raised when you've done something even worse than the other error.
+
+        See Also
+        --------
+        scarabaeus.Body : One-sentence description of why you might want to look here too.
+        scarabaeus.Units : Another short description of why you should look here as well.
+
+        Notes
+        -----
+        The notes section exists to provide additional or more in-depth information 
+        pertaining to a class.
+
+        As noted above, this section contains examples for a few less common 
+        formatting options. The first of which is creating tables like this one:
+
+        +---------+---------------+--------+-----------+
+        | Planets | Dwarf Planets | Moons  | Asteroids |
+        +=========+===============+========+===========+
+        | Jupiter | Pluto         | Tethys | Justitia  |
+        +---------+---------------+--------+-----------+
+        | Saturn  | Haumea        | Phobos | Bennu     |
+        +---------+---------------+--------+-----------+
+
+        See the table generator link given in the "Documenting Scripts for the Library 
+        Reference" section of this document.
+
+        LaTeX syntax can be included like this :math:`r = \\frac{a(1-e^2)}{1+e \\cos\\theta)}`. Or entire 
+        equations can also be created like so:
+
+        .. math::
+
+            \\phi = arctan(\\frac{esin\\nu}{1+ecos\\nu})
+
+        You can even include matrices:
+
+        .. math::
+
+            \\frac{\\partial\\mathbf{a}}{\\partial \\mathbf{r}} = 
+                \\begin{bmatrix}
+                    \\frac{\\partial a_x}{\\partial x} & \\frac{\\partial a_x}{\\partial y} & \\frac{\\partial a_x}{\\partial z} \\\\
+                    \\frac{\\partial a_y}{\\partial x} & \\frac{\\partial a_y}{\\partial y} & \\frac{\\partial a_y}{\\partial z} \\\\
+                    \\frac{\\partial a_z}{\\partial x} & \\frac{\\partial a_z}{\\partial y} & \\frac{\\partial a_z}{\\partial z}
+                \\end{bmatrix}
+
+        Note that double ``\\`` are required for Sphinx to recognize them.
+
+        Quotes can be created using a single indent surrounded by quotation marks:
+        
+            "Quotes are very nice. - me"
+
+        References
+        ----------
+        .. [1] https://www.colorado.edu/faculty/mcmahon/orcca
+
+        .. [2] non-website sources should be cited in APA
+
+        Examples
+        --------
+        Here we'll describe what we're providing an example for. In this case, we're using 
+        our TemplateClass to perform some dummy operation. We'll use the code-block directive 
+        to tell Sphinx to render our example as a copyable block of Python code below:
+
+        .. code-block:: python
+
+            # initial setup
+            import scarabaeus as scb
+
+            # call some dummy method
+            answer = scb.TemplateClass.general_template_method(1)
+
+            # make sure to provide the example's solution
+            >>> print(answer)
+            'Print out of the answer here'
+        
+        We can place more examples if necssary, making sure to describe what we're doing in 
+        words before providing the example code. Note that we don't need to import 
+        Scarabaeus again in the code since it's already happened once above.
+
+        .. code-block:: python
+
+            # call some other dummy method
+            answer = scb.TemplateClass.alt_constr_template('fake_input.csv')
+
+            # make sure to provide the example's solution
+            >>> print(answer)
+            'Print out of the answer here'
+    """
+
+This is a very informative Class Docstring! They can take up a lot of space in the code though, so if you're working in an IDE like VSCode 
+(as `you should be <scarabaeus-setup>_`) don't forget to collapse the docstring section so you can focus on your code by pressing the down 
+arrow that appears beside the line number of the top ``"""`` when you put your cursor over it.
+
+----
+
+.. _prop-docs:
+
+---------------------------
+:bold:`Property Docstrings`
+---------------------------
+The next kind of docstring, the Property Docstring, is significantly simpler to implement. From `the style guide <style_guide>`_, we have 
+all of our properties defined in the properties section of the script. Each of these properties needs a docstring which describes what the property 
+is. This description, just like the Class Docstring, is placed between two sets of three quotation marks, indented once, as in the (copy-pasteable) 
+template below:
+
+.. code-block:: python
+
+    @property
+    def property_name(self) -> ArrayWUnits:
+        """
+            PROPERTY DESCRIPTION
+        """
+
+Property descriptions should be fairly concise, especially if they're containers for class inputs (no need to reiterate information you've already 
+provided). If a particular property requires a significant amount of space, provide a simple explanation and refer to the Notes Section of the 
+Class Docstring. There you can provide as much information as is necessary.
+
+The only other important thing to note, which isn't completely docstring related, is that we need to create a type hint for what kind of object the 
+property actually is using the ``->`` symbol. This is important for Sphinx formatting.
+
+.. code-block:: python
+
+    """
+        A description of the property. What does it represent in the class?
+
+        :base: TemplateClass
+        :type: Body
+    """
+
+Property Docstrings are the simplest of the three types of docstrings, but it's vital that they're included in all scripts because of the prominence 
+and necessity of properties in documentation.
+
+----
+
+-------------------------
+:bold:`Method Docstrings`
+-------------------------
+The final kind of docstring, Method Docstrings, are very similar to the Class Docstring. It can consist of anywhere from three to eight subsections, 
+noted below:
+
+#. The Method Description - :bold:`mandatory`
+#. The Parameters Section - :bold:`mandatory`
+#. The Returns Section - :bold:`mandatory`
+#. The Raises Section - :bold:`at discretion`
+#. The See Also Section - :bold:`at discretion`
+#. The Notes Section - :bold:`at discretion`
+#. The References Section - :bold:`at discretion`
+#. The Examples Section - :bold:`at discretion`
+
+All of these sections are placed within the same docstring, book-ended by two sets of three quotation marks. All of the contents should be indented 
+once inwards. It will take the below form (this is a helpful copy-paste template):
+
+.. code-block:: python
+
+    """
+        METHOD DESC
+
+        Parameters
+        ----------
+        arg : type
+            DESC
+
+        Returns
+        -------
+        describe : type
+            Explanation of return value named 'describe'.
+
+        Raises
+        ------
+        REMOVE IF NO SPECIAL ERRORS
+
+        See Also
+        --------
+        REMOVE IF NO SEE ALSOS
+
+        Notes
+        -----
+        REMOVE IF NO NOTES
+
+        References
+        ----------
+        REMOVE IF NO REFERENCES
+
+        Examples
+        --------
+        .. code-block:: python
+
+            # initial setup
+            import scarabaeus as scb
+    """
+
+This is the same structure as the Class Docstring with the addition of a Returns Section after the Parameters. However, note that the See Also, Notes, and 
+Examples Sections are :bold:`not` recommended in this case. They are used significantly less often in Method Docstrings, and it is preferable to 
+reduce their use so as not to overcrowd method documentation.
+
+Since the only new addition to this docstring is the Returns Section, we only need to outline its use. See the section on Class Docstrings for a 
+refresher on any of the other sections.
+
+The Returns Section
+===================
+The Returns Section is structured identically to the Parameters Section, except it provides information on the value or values returned instead of 
+the ones ingested. Assume that we have the following method:
+
+.. code-block:: python
+
+    def some_method(arg_1 : int) -> int:
+        """
+            METHOD DOCSTRING GOES HERE
+        """
+        # compute the answer
+        answer = arg_1 * 1
+
+        # return
+        return answer
+
+In order to properly document the value returned by this method, we'll write our Returns Section as follows:
+
+.. code-block:: python
+
+    """
+        ...
+
+        Returns
+        -------
+        answer : int
+            A description of the returned value. The name doesn't have to be the 
+            same as the method's variable. It should describe what is actually 
+            being returned.
+
+        ...
+    """
+
+Thats it! Nothing too bad. Before we finish, let's look at one other more complex situation:
+
+.. code-block:: python
+
+    def some_method(arg_1 : int) -> tuple[int, float]:
+        """
+            METHOD DOCSTRING GOES HERE
+        """
+        # compute the first part of the answer
+        first = arg_1 * 1
+
+        # and the second part
+        second = float(arg_1)
+
+        # return
+        return (first, second)
+    
+Here we have multiple return values, so we'll want to also note where in the returned tuple it occurs.
+
+.. code-block:: python
+
+    """
+        ...
+
+        Returns
+        -------
+        first, second : tuple[int, float]
+            A tuple with the following values corresponding to 
+            their respective indices:
+
+            * ``[0]`` = first : int
+                A description of the returned value. 
+            * ``[1]`` = second : float
+                A description of the returned value. 
+
+        ...
+    """
+
+Method Docstrings should follow the `same general rational <writing-rationale>` as Class Docstrings - don't be afraid to give too much information. 
+An over-explanation will always be better than an under-explanation.
+
+
+----
+
+-----------------------
+:bold:`Further Reading`
+-----------------------
+Now that you know how to write for the external resource, continue reading on to the `next section <update-ext-res>`_ to 
+learn how to direct Sphinx to include your additions, generate the updated version of the external resource, and update 
+the online version.
