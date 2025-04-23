@@ -2,19 +2,25 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" >
+<html lang="en" data-content_root="../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="5. Trajectory" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/scb_library/environment_rsts/trajectory.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
 
     <title>5. Trajectory &#8212; Scarabaeus  documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -31,7 +37,7 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
@@ -50,7 +56,7 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/environment_rsts/trajectory';</script>
-    <link rel="icon" href="../../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1. Bplane" href="../guidance_rsts/bplane.html" />
@@ -61,7 +67,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -120,11 +126,9 @@
   
     
     
-      
     
-    
-    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
-    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -318,7 +322,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/forcemodel.html">4. ForceModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html">5. ImpulsiveBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/nplatesrp.html">6. nPlateSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
@@ -451,47 +455,51 @@
 <h1><span class="section-number">5. </span>Trajectory<a class="headerlink" href="#trajectory" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_definition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_definition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STMs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator_settings_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_propagated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree_poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_definition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_definition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STMs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator_settings_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence_propagated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<blockquote>
-<div><p>Represents a spacecraft or celestial object’s trajectory in a defined reference frame and origin.</p>
-</div></blockquote>
+<p>Represents a spacecraft or celestial object’s trajectory in a defined reference frame and origin.</p>
 <p>This class encapsulates trajectory data, including position, velocity, estimated parameters,
 and state transition matrices (STMs). It supports both single-phase trajectories and multi-leg
 mission sequences.</p>
-<p>The trajectory can be initialized using:
-- Explicit position, velocity, and epoch inputs.
-- A <cite>StateArray</cite> directly from a propagator.</p>
+<p>The trajectory can be initialized using:</p>
+<ul class="simple">
+<li><p>Explicit position, velocity, and epoch inputs.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> directly from a propagator.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the trajectory.</p></li>
-<li><p><strong>position</strong> (<em>scbt.ArrayWUnits</em><em>, </em><em>optional</em>) – The position vector history of the object in the specified reference frame.</p></li>
-<li><p><strong>velocity</strong> (<em>scbt.ArrayWUnits</em><em>, </em><em>optional</em>) – The velocity vector history of the object in the specified reference frame.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><em>EpochArray</em></a><em>, </em><em>optional</em>) – The array of epochs associated with the trajectory data.</p></li>
-<li><p><strong>ref_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – The reference frame in which the trajectory is defined (e.g., “J2000”).</p></li>
-<li><p><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – The origin of the trajectory (e.g., “SUN”).</p></li>
-<li><p><strong>body</strong> (<em>scb.CelestialBody</em><em>, </em><em>optional</em>) – The celestial body or spacecraft associated with this trajectory.</p></li>
-<li><p><strong>degree_poly</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – The degree of the polynomial used for SPICE interpolation. Defaults to 3.</p></li>
-<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em> of </em><em>scb.ArrayWUnits</em><em>, </em><em>optional</em>) – Additional estimated parameters related to the trajectory (e.g., range biases,
-solar radiation pressure coefficients). Defaults to None.</p></li>
-<li><p><strong>state_definition</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>, </em><em>optional</em>) – A list defining the state vector components (e.g., position, velocity, station biases).
-Used when a single model describes the entire trajectory.</p></li>
-<li><p><strong>sequence_definition</strong> (<em>scb.MissionSequence</em><em>, </em><em>optional</em>) – Defines a sequence of trajectory legs with different state models. Used for complex
-mission phases involving maneuvers or multiple estimation regimes.</p></li>
-<li><p><strong>offset</strong> (<em>scbt.ArrayWUnits</em><em>, </em><em>optional</em>) – A fixed position offset for coordinate transformations.</p></li>
-<li><p><strong>STMs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>, </em><em>optional</em>) – The state transition matrices (STMs) associated with the trajectory.</p></li>
-<li><p><strong>propagator_settings_dict</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a><em>, </em><em>optional</em>) – A dictionary of propagator settings for numerical integration.</p></li>
-<li><p><strong>state_array</strong> (<em>scb.StateArray</em><em>, </em><em>optional</em>) – If provided, initializes the trajectory from a propagated <cite>StateArray</cite>, extracting
-position, velocity, epoch, reference frame, and parameters.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the trajectory.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – The position vector history of the object in the specified reference frame.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>velocity</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – The velocity vector history of the object in the specified reference frame.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>, <em>optional</em>) – The array of epochs associated with the trajectory data. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>ref_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – The reference frame in which the trajectory is defined (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;J2000&quot;</span></code>).
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – The origin of the trajectory (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;SUN&quot;</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>, <em>optional</em>) – The celestial body or spacecraft associated with this trajectory. Defaults to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>degree_poly</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The degree of the polynomial used for SPICE interpolation. Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – Additional estimated parameters related to the trajectory (e.g., range biases,
+solar radiation pressure coefficients). Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>state_definition</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <em>optional</em>) – A list defining the state vector components (e.g., position, velocity, station biases).
+Used when a single model describes the entire trajectory. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>sequence_definition</strong> (<a class="reference internal" href="missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.MissionSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">MissionSequence</span></code></a>, <em>optional</em>) – Defines a sequence of trajectory legs with different state models. Used for complex
+mission phases involving maneuvers or multiple estimation regimes. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>offset</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – A fixed position offset for coordinate transformations. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>STMs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <em>optional</em>) – The state transition matrices (STMs) associated with the trajectory. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>propagator_settings_dict</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, <em>optional</em>) – A dictionary of propagator settings for numerical integration. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>state_array</strong> (<a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateArray</span></code></a>, <em>optional</em>) – If provided, initializes the trajectory from a propagated <cite>StateArray</cite>, extracting
+position, velocity, epoch, reference frame, and parameters. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – <ul>
-<li><p>If both <cite>state_definition</cite> and <cite>sequence_definition</cite> are provided simultaneously.</p></li>
-<li><p>If both standard trajectory inputs and a <cite>StateArray</cite> are provided.</p></li>
-<li><p>If <cite>StateArray</cite> is missing position or velocity components.</p></li>
+<li><p>If both <code class="docutils literal notranslate"><span class="pre">state_definition</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence_definition</span></code> are provided simultaneously.</p></li>
+<li><p>If both standard trajectory inputs and a <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> are provided.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> is missing position or velocity components.</p></li>
 </ul>
 </p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If the trajectory contains fewer than two data points.</p></li>
@@ -500,48 +508,48 @@ position, velocity, epoch, reference frame, and parameters.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
-<li><p>If <cite>state_definition</cite> is provided, the trajectory follows a single continuous model.</p></li>
-<li><p>If <cite>sequence_definition</cite> is used, the trajectory consists of multiple segments (e.g.,
-before and after a maneuver).</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">state_definition</span></code> is provided, the trajectory follows a single continuous model.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">sequence_definition</span></code> is used, the trajectory consists of multiple segments (e.g., before and after a maneuver).</p></li>
 <li><p>The trajectory is stored in a SPICE kernel format for interpolation and retrieval.</p></li>
 </ul>
 <p class="rubric">Examples</p>
-<p><strong>Standard Initialization:</strong>
-.. code-block:: python</p>
-<blockquote>
-<div><p>import scarabaeus as scb</p>
-<p># Define epochs
-epoch_start = scb.SpiceManager.jd2et(2461809.72995654)
-epoch_end = scb.SpiceManager.jd2et(2461809.72995654 + 1)
-epochs = scb.EpochArray(np.linspace(epoch_start, epoch_end, 100), time_frame=”TDB”)</p>
-<p># Define position and velocity
-position = scb.ArrayWUnits(np.random.rand(100, 3), “km”)
-velocity = scb.ArrayWUnits(np.random.rand(100, 3), “km/s”)</p>
-<p># Initialize trajectory
-traj = scb.Trajectory(</p>
-<blockquote>
-<div><p>name=”Test_Trajectory”,
-position=position,
-velocity=velocity,
-epoch=epochs,
-ref_frame=”J2000”,
-origin=”SUN”,
-body=scb.CelestialBody.from_constants(“EARTH”)</p>
-</div></blockquote>
-<p>)</p>
-<p># Retrieve state at a given epoch
-state = traj.get_state(epochs[0])
-&gt;&gt;&gt; print(“Position:”, state[“position”])
-‘Position: [0.123, 0.456, 0.789] [km]’</p>
-</div></blockquote>
-<p><strong>Alternative Initialization from a Propagator:</strong>
-.. code-block:: python</p>
-<blockquote>
-<div><p># Initialize trajectory using propagated StateArray
-traj = scb.Trajectory(“Orbiter_trajectory”, state_array=propagated_state_array)</p>
-</div></blockquote>
+<p><strong>Standard Initialization:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="c1"># Define epochs</span>
+<span class="n">epoch_start</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">jd2et</span><span class="p">(</span><span class="mf">2461809.72995654</span><span class="p">)</span>
+<span class="n">epoch_end</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">jd2et</span><span class="p">(</span><span class="mf">2461809.72995654</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">epoch_start</span><span class="p">,</span> <span class="n">epoch_end</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">time_frame</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define position and velocity</span>
+<span class="n">position</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;km&quot;</span><span class="p">)</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;km/s&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initialize trajectory</span>
+<span class="n">traj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Test_Trajectory&quot;</span><span class="p">,</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">,</span>
+    <span class="n">velocity</span><span class="o">=</span><span class="n">velocity</span><span class="p">,</span>
+    <span class="n">epoch</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+    <span class="n">ref_frame</span><span class="o">=</span><span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
+    <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;SUN&quot;</span><span class="p">,</span>
+    <span class="n">body</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s2">&quot;EARTH&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Retrieve state at a given epoch</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Position:&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">])</span>
+<span class="s1">&#39;Position: [0.123, 0.456, 0.789] [km]&#39;</span>
+</pre></div>
+</div>
+<p><strong>Alternative Initialization from a Propagator:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize trajectory using propagated StateArray</span>
+<span class="n">traj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="s2">&quot;Orbiter_trajectory&quot;</span><span class="p">,</span> <span class="n">state_array</span><span class="o">=</span><span class="n">propagated_state_array</span><span class="p">)</span>
+</pre></div>
+</div>
 <p class="rubric">Attributes</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.STMs" title="scarabaeus.Trajectory.STMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STMs</span></code></a></p></td>
 <td><p>The state transition matrices (STMs) associated with the trajectory.</p></td>
@@ -580,7 +588,7 @@ traj = scb.Trajectory(“Orbiter_trajectory”, state_array=propagated_state_arr
 <td><p>The reference frame of the trajectory.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.sequence_definition" title="scarabaeus.Trajectory.sequence_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sequence_definition</span></code></a></p></td>
-<td><p>The mission sequence definition governing the trajectory's structure. This property is used when</p></td>
+<td><p>The mission sequence definition governing the trajectory's structure.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.start_epoch" title="scarabaeus.Trajectory.start_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_epoch</span></code></a></p></td>
 <td><p>The start epoch of the trajectory.</p></td>
@@ -595,7 +603,7 @@ traj = scb.Trajectory(“Orbiter_trajectory”, state_array=propagated_state_arr
 </table>
 </div>
 <p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.add_STMs" title="scarabaeus.Trajectory.add_STMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_STMs</span></code></a>(STMs)</p></td>
 <td><p>Associates state transition matrices (STMs) with the trajectory.</p></td>
@@ -624,24 +632,24 @@ traj = scb.Trajectory(“Orbiter_trajectory”, state_array=propagated_state_arr
 <dd><p>Associates state transition matrices (STMs) with the trajectory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>STMs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em> or </em><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html#scarabaeus.ArrayWFrame" title="scarabaeus.ArrayWFrame"><em>ArrayWFrame</em></a>) – A list of state transition matrices or a single ArrayWFrame object.</p>
+<dd class="field-odd"><p><strong>STMs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference internal" href="../time_n_frame_rsts/arraywframe.html#scarabaeus.ArrayWFrame" title="scarabaeus.ArrayWFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a>) – A list of state transition matrices or a single ArrayWFrame object.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.get_STM">
-<span class="sig-name descname"><span class="pre">get_STM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_leg_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory.get_STM" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_STM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_leg_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.get_STM" title="Link to this definition">#</a></dt>
 <dd><p>Retrieves the state transition matrix (STM) at a specified epoch.</p>
 <p>Queries SPICE to obtain the STM corresponding to a given epoch, considering
 optional reference frame and origin transformations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><em>EpochArray</em></a>) – The epoch at which to retrieve the STM.</p></li>
-<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Custom origin for the STM retrieval. Defaults to the trajectory’s origin.</p></li>
-<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Custom reference frame for the STM retrieval. Default is the trajectory’s reference frame.</p></li>
-<li><p><strong>idx_leg_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – The index of the trajectory leg to retrieve if the trajectory is sequence-based.
+<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch at which to retrieve the STM.</p></li>
+<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom origin for the STM retrieval. Defaults to the trajectory’s origin.</p></li>
+<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom reference frame for the STM retrieval. Default is the trajectory’s reference frame.</p></li>
+<li><p><strong>idx_leg_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The index of the trajectory leg to retrieve if the trajectory is sequence-based.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
@@ -656,37 +664,31 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.get_offset_position">
-<span class="sig-name descname"><span class="pre">get_offset_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory.get_offset_position" title="Link to this definition">#</a></dt>
-<dd><blockquote>
-<div><p>Computes the trajectory position with an applied constant offset.</p>
+<span class="sig-name descname"><span class="pre">get_offset_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.get_offset_position" title="Link to this definition">#</a></dt>
+<dd><p>Computes the trajectory position with an applied constant offset.</p>
 <p>If a reference frame transformation is required, the offset is rotated accordingly.
 The method also accounts for origin shifts when necessary.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>s</dt><dd><dl class="simple">
-<dt>epoch_input<span class="classifier">EpochArray</span></dt><dd><p>The epoch at which to compute the offset position.</p>
-</dd>
-<dt>origin_input<span class="classifier">str, optional</span></dt><dd><p>Custom origin for position computation. Defaults to the trajectory’s origin.</p>
-</dd>
-<dt>ref_frame_input<span class="classifier">str, optional</span></dt><dd><p>Custom reference frame for position computation. Defaults to the trajectory’s reference frame.</p>
-</dd>
-</dl>
-</dd>
-</dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>offset_pos</strong><span class="classifier">ArrayWUnits</span></dt><dd><p>The computed position including the constant offset. Expressed in
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch at which to compute the offset position.</p></li>
+<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom origin for position computation. Defaults to the trajectory’s origin.</p></li>
+<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom reference frame for position computation. Defaults to the trajectory’s reference frame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>offset_pos</strong> – The computed position including the constant offset. Expressed in
 units of kilometers.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -700,11 +702,11 @@ for a given epoch, considering optional reference frame and origin transformatio
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><em>EpochArray</em></a>) – The epoch at which to compute the state.</p></li>
-<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Custom origin for the state computation. Defaults to the trajectory’s origin.</p></li>
-<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Custom reference frame for the state computation. Defaults to the trajectory’s
+<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch at which to compute the state.</p></li>
+<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom origin for the state computation. Defaults to the trajectory’s origin.</p></li>
+<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom reference frame for the state computation. Defaults to the trajectory’s
 reference frame.</p></li>
-<li><p><strong>idx_leg_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a><em>, </em><em>optional</em>) – The index of the trajectory leg to retrieve if the trajectory is sequence-based.
+<li><p><strong>idx_leg_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The index of the trajectory leg to retrieve if the trajectory is sequence-based.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
@@ -721,7 +723,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -732,7 +734,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <dd><p>Updates the trajectory’s name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The new name of the trajectory.</p>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The new name of the trajectory.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -743,176 +745,98 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <dd><p>Sets the constant position offset for the trajectory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>offset</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – The constant offset in position. Expressed in units of kilometers.</p>
+<dd class="field-odd"><p><strong>offset</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – The constant offset in position. Expressed in units of kilometers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.STMs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STMs</span></span><a class="headerlink" href="#scarabaeus.Trajectory.STMs" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STMs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.STMs" title="Link to this definition">#</a></dt>
 <dd><p>The state transition matrices (STMs) associated with the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)">list</a> or None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.body">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.body" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.body" title="Link to this definition">#</a></dt>
 <dd><p>The celestial body or spacecraft associated with the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scb.CelestialBody</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.end_epoch">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_epoch</span></span><a class="headerlink" href="#scarabaeus.Trajectory.end_epoch" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_epoch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.end_epoch" title="Link to this definition">#</a></dt>
 <dd><p>The end epoch of the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray">EpochArray</a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.epoch">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">epoch</span></span><a class="headerlink" href="#scarabaeus.Trajectory.epoch" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">epoch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.epoch" title="Link to this definition">#</a></dt>
 <dd><p>The epochs associated with the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray">EpochArray</a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.name" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.name" title="Link to this definition">#</a></dt>
 <dd><p>The name of the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.offset">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#scarabaeus.Trajectory.offset" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.offset" title="Link to this definition">#</a></dt>
 <dd><p>A fixed position offset for coordinate transformations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scbt.ArrayWUnits or None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.origin">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.origin" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.origin" title="Link to this definition">#</a></dt>
 <dd><p>The origin of the trajectory.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.parameters">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.parameters" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.parameters" title="Link to this definition">#</a></dt>
 <dd><p>Additional estimated parameters associated with the trajectory. These parameters
-include mission-specific estimated values, such as:
-- Ground station range biases (e.g., clock offsets, tropospheric delays).
-- Additional environmental parameters (e.g., solar radiation pressure coefficients).
-- Model calibration parameters (e.g., empirical accelerations).</p>
-<p>If no additional parameters exist, this returns None.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scbt.ArrayWUnits or None</p>
-</dd>
-</dl>
+include mission-specific estimated values, such as:</p>
+<ul class="simple">
+<li><p>Ground station range biases (e.g., clock offsets, tropospheric delays).</p></li>
+<li><p>Additional environmental parameters (e.g., solar radiation pressure coefficients).</p></li>
+<li><p>Model calibration parameters (e.g., empirical accelerations).</p></li>
+</ul>
+<p>If no additional parameters exist, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.poly_deg">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">poly_deg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.poly_deg" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">poly_deg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.poly_deg" title="Link to this definition">#</a></dt>
 <dd><p>The degree of the polynomial used for interpolation.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.position">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><a class="headerlink" href="#scarabaeus.Trajectory.position" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.position" title="Link to this definition">#</a></dt>
 <dd><p>The position history of the trajectory in the specified reference frame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scbt.ArrayWUnits</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.propagator_settings_dict">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propagator_settings_dict</span></span><a class="headerlink" href="#scarabaeus.Trajectory.propagator_settings_dict" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propagator_settings_dict</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.propagator_settings_dict" title="Link to this definition">#</a></dt>
 <dd><p>The dictionary of propagator settings for numerical integration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)">dict</a> or None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.ref_frame">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ref_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.ref_frame" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ref_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.ref_frame" title="Link to this definition">#</a></dt>
 <dd><p>The reference frame of the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.sequence_definition">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sequence_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.environment.MissionSequence.MissionSequence"><span class="pre">MissionSequence</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.sequence_definition" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>The mission sequence definition governing the trajectory’s structure. This property is used when</dt><dd><p>the trajectory consists of multiple segments (legs), where different state definitions or
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sequence_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.environment.MissionSequence.MissionSequence"><span class="pre">MissionSequence</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.sequence_definition" title="Link to this definition">#</a></dt>
+<dd><p>The mission sequence definition governing the trajectory’s structure. This property is used when
+the trajectory consists of multiple segments (legs), where different state definitions or
 models are required for each segment.
 It is typically used for:</p>
 <ul class="simple">
@@ -920,62 +844,30 @@ It is typically used for:</p>
 <li><p>Multi-phase missions with different dynamical regimes.</p></li>
 <li><p>Modeling spacecraft transitions between different reference frames.</p></li>
 </ul>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scb.MissionSequence or None</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.start_epoch">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_epoch</span></span><a class="headerlink" href="#scarabaeus.Trajectory.start_epoch" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_epoch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.start_epoch" title="Link to this definition">#</a></dt>
 <dd><p>The start epoch of the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray">EpochArray</a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.state_definition">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.state_definition" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.state_definition" title="Link to this definition">#</a></dt>
 <dd><p>The definition of the trajectory’s state vector. This describes the structure
-of the estimated state, specifying:
-- Which variables are included in the state (e.g., position, velocity, parameters).
-- Whether they are dynamic or static.
-- Their associated reference objects (e.g., spacecraft, ground stations).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)">list</a></p>
-</dd>
-</dl>
+of the estimated state, specifying:</p>
+<ul class="simple">
+<li><p>Which variables are included in the state (e.g., position, velocity, parameters).</p></li>
+<li><p>Whether they are dynamic or static.</p></li>
+<li><p>Their associated reference objects (e.g., spacecraft, ground stations).</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.velocity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">velocity</span></span><a class="headerlink" href="#scarabaeus.Trajectory.velocity" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.Trajectory.velocity" title="Link to this definition">#</a></dt>
 <dd><p>The velocity history of the trajectory in the specified reference frame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Trajectory</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scbt.ArrayWUnits</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1100,7 +992,7 @@ of the estimated state, specifying:
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

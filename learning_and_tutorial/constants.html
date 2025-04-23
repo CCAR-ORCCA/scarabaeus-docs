@@ -2,19 +2,27 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Constants" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/learning_and_tutorial/constants.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised by M. Pugliatti on 2025 FEB 4 In SCB, constants are defined in the constants.py library and are divided into: Universal constants: contains values related to universal constants such as the speed of light c, the universal gravitational constant G, etc., Planetary bodies: contains values related to mass, GM, radius, spice ID, etc. of planetary bodies. Values can be either defined by hand or from the scipy.constants method and are saved in dictionaries. Load constants: There are 3 ..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="Last revised by M. Pugliatti on 2025 FEB 4 In SCB, constants are defined in the constants.py library and are divided into: Universal constants: contains values related to universal constants such as the speed of light c, the universal gravitational constant G, etc., Planetary bodies: contains values related to mass, GM, radius, spice ID, etc. of planetary bodies. Values can be either defined by hand or from the scipy.constants method and are saved in dictionaries. Load constants: There are 3 ..." />
 
     <title>Constants &#8212; Scarabaeus  documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -31,10 +39,10 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9cdfcecb" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -49,18 +57,18 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learning_and_tutorial/constants';</script>
-    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Developer Guide" href="../dev_guide/dev_guide_frontpage.html" />
-    <link rel="prev" title="Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Working With Units in Scarabaeus" href="units_in_scb.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -119,11 +127,9 @@
   
     
     
-      
     
-    
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -149,7 +155,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -256,7 +262,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -311,11 +317,7 @@
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="units_in_scb.html"><span class="gold">Working With Units in Scarabaeus</span></a></li>
 </ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="epochs_and_time.html"><span class="gold">Epochs and Time in Scarabaeus</span></a></li>
-</ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="gold">Constants</span></a></li>
 </ul>
 </div>
@@ -395,23 +397,23 @@
 <section id="load-constants">
 <h2><span class="bold">Load constants</span><a class="headerlink" href="#load-constants" title="Link to this heading">#</a></h2>
 <p>There are 3 methods to load constants in a script:</p>
-<section id="methoid-1-load-all-constants">
-<h3>Methoid (1): Load all constants<a class="headerlink" href="#methoid-1-load-all-constants" title="Link to this heading">#</a></h3>
+<section id="method-1-load-all-constants">
+<h3>Method (1): Load all constants<a class="headerlink" href="#method-1-load-all-constants" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
 <span class="c1"># Import costants</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constants</span>
 </pre></div>
 </div>
 </section>
-<section id="methoid-2-load-only-the-universal-constants">
-<h3>Methoid (2): Load only the universal constants<a class="headerlink" href="#methoid-2-load-only-the-universal-constants" title="Link to this heading">#</a></h3>
+<section id="method-2-load-only-the-universal-constants">
+<h3>Method (2): Load only the universal constants<a class="headerlink" href="#method-2-load-only-the-universal-constants" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus.Constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONSTANTS</span>
 </pre></div>
 </div>
 <p>this is used to load only the universal constants.</p>
 </section>
-<section id="methoid-3-load-constants-running-an-initialization-script">
-<h3>Methoid (3): Load constants running an initialization script<a class="headerlink" href="#methoid-3-load-constants-running-an-initialization-script" title="Link to this heading">#</a></h3>
+<section id="method-3-load-constants-running-an-initialization-script">
+<h3>Method (3): Load constants running an initialization script<a class="headerlink" href="#method-3-load-constants-running-an-initialization-script" title="Link to this heading">#</a></h3>
 <p>Constants are automatically loaded when running an initialization script</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus.scb_initialize</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
@@ -469,12 +471,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tutorials.html"
+       href="units_in_scb.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tutorials</p>
+        <p class="prev-next-title"><span class="gold">Working With Units in Scarabaeus</span></p>
       </div>
     </a>
     <a class="right-next"
@@ -506,9 +508,9 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-constants"><span class="bold">Load constants</span></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methoid-1-load-all-constants">Methoid (1): Load all constants</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methoid-2-load-only-the-universal-constants">Methoid (2): Load only the universal constants</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methoid-3-load-constants-running-an-initialization-script">Methoid (3): Load constants running an initialization script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-load-all-constants">Method (1): Load all constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-load-only-the-universal-constants">Method (2): Load only the universal constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-load-constants-running-an-initialization-script">Method (3): Load constants running an initialization script</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-constants"><span class="bold">Access constants</span></a><ul class="visible nav section-nav flex-column">
@@ -562,7 +564,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

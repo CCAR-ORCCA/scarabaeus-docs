@@ -2,19 +2,25 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" >
+<html lang="en" data-content_root="../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="4. ForceModel" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/scb_library/dynamics_rsts/forcemodel.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
 
     <title>4. ForceModel &#8212; Scarabaeus  documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -31,10 +37,10 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=9cdfcecb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -50,10 +56,10 @@
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/dynamics_rsts/forcemodel';</script>
-    <link rel="icon" href="../../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5. ImpusliveBurn" href="impulsiveburn.html" />
+    <link rel="next" title="5. ImpulsiveBurn" href="impulsiveburn.html" />
     <link rel="prev" title="3. FiniteBurn" href="finiteburn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -61,7 +67,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -120,11 +126,9 @@
   
     
     
-      
     
-    
-    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
-    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -150,7 +154,7 @@
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -257,7 +261,7 @@
 
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -318,7 +322,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finiteburn.html">3. FiniteBurn</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. ForceModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulsiveburn.html">5. ImpusliveBurn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulsiveburn.html">5. ImpulsiveBurn</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nplatesrp.html">6. nPlateSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
@@ -428,7 +432,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../lib_ref.html" class="nav-link"><span class="gold">Library Reference</span></a></li>
+    <li class="breadcrumb-item"><a href="../lib_ref.html" class="nav-link"><span class="gold">API Reference</span></a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">4. </span>ForceModel</span></li>
   </ul>
@@ -451,20 +455,17 @@
 <h1><span class="section-number">4. </span>ForceModel<a class="headerlink" href="#forcemodel" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ForceModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dynamics_mode_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_masses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_spacecraft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><span class="pre">Spacecraft</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_cs_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_norm_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_degree_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_dv_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ForceModel" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ForceModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dynamics_mode_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_masses</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_spacecraft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><span class="pre">Spacecraft</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_cs_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_harm_norm_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sph_degree_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_dv_flag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ForceModel" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<blockquote>
-<div><p>Computes all the accelerations and acceleration partials based on selected dynamics.</p>
+<p>Computes all the accelerations and acceleration partials based on selected dynamics.</p>
 <p>Integrates various force models, including point-mass gravity, spherical harmonics gravity,
 third-body gravity, solar radiation pressure, and thrust-related dynamics. Used for orbital
 propagation and state estimation.</p>
-</div></blockquote>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>dynamics_mode_list</strong><span class="classifier">list[str]</span></dt><dd><blockquote>
-<div><p>List of dynamics models to initialize. Supported models:</p>
-<ul class="simple">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dynamics_mode_list</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – <p>List of dynamics models to initialize. Supported models:</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">'PointMassGravity'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'ThreeBodyGravity'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'SphericalHarmonicsGravity'</span></code></p></li>
@@ -473,64 +474,38 @@ propagation and state estimation.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">'FiniteBurn'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'ImpulsiveBurn'</span></code></p></li>
 </ul>
-</div></blockquote>
+</p></li>
+<li><p><strong>state_vector</strong> (<a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateArray</span></code></a>) – The state vector of the main spacecraft, containing all dynamic and static parameters
+considered in the simulation (position, velocity, estimated parameters), the reference frame in
+which the state is defined, the origin body relative to which the state is expressed, and the
+epoch corresponding to the state.</p></li>
+<li><p><strong>point_masses</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list[str]</span></code>) – List of point masses considered for gravitational calculations.</p></li>
+<li><p><strong>main_spacecraft</strong> (<a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.Spacecraft"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spacecraft</span></code></a>) – The main spacecraft object containing mass, area, and other physical properties.</p></li>
+<li><p><strong>sph_harm_order</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The order of spherical harmonics for gravity modeling.</p></li>
+<li><p><strong>sph_harm_cs_file</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – File path to the spherical harmonics coefficient data.</p></li>
+<li><p><strong>sph_harm_body</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The celestial body for which spherical harmonics are calculated.</p></li>
+<li><p><strong>sph_harm_norm_flag</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Flag indicating whether to normalize spherical harmonics.</p></li>
+<li><p><strong>sph_degree_max</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The maximum degree for spherical harmonics calculations.</p></li>
+<li><p><strong>approx_dv_flag</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Flag indicating whether to approximate delta-v for impulsive burns.</p></li>
+<li><p><strong>t0</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The initial epoch of the simulation.</p></li>
+<li><p><strong>base_frame</strong> (<a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – The frame in which the propagation happens.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
 <dl class="simple">
-<dt>state_vector<span class="classifier">StateArray</span></dt><dd><p>The state vector of the main spacecraft, containing:</p>
-<ul class="simple">
-<li><p>All dynamic and static parameters considered in the simulation (position, velocity, estimated parameters).</p></li>
-<li><p>The reference frame in which the state is defined.</p></li>
-<li><p>The origin body relative to which the state is expressed.</p></li>
-<li><p>The epoch corresponding to the state.</p></li>
-</ul>
-</dd>
-<dt>point_masses<span class="classifier">list[str]</span></dt><dd><p>List of point masses considered for gravitational calculations.</p>
-</dd>
-<dt>main_spacecraft<span class="classifier">Spacecraft</span></dt><dd><p>The main spacecraft object containing mass, area, and other physical properties.</p>
-</dd>
-<dt>sph_harm_order<span class="classifier">int</span></dt><dd><p>The order of spherical harmonics for gravity modeling.</p>
-</dd>
-<dt>sph_harm_cs_file<span class="classifier">str</span></dt><dd><p>File path to the spherical harmonics coefficient data.</p>
-</dd>
-<dt>sph_harm_body<span class="classifier">Body</span></dt><dd><p>The celestial body for which spherical harmonics are calculated.</p>
-</dd>
-<dt>sph_harm_norm_flag<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to normalize spherical harmonics.</p>
-</dd>
-<dt>sph_degree_max<span class="classifier">int</span></dt><dd><p>The maximum degree for spherical harmonics calculations.</p>
-</dd>
-<dt>approx_dv_flag<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to approximate delta-v for impulsive burns.</p>
-</dd>
-<dt>t0<span class="classifier">EpochArray</span></dt><dd><p>The initial epoch of the simulation.</p>
+<dt><a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.DynamicModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.DynamicModel</span></code></a></dt><dd><p>Base class for dynamic models.</p>
 </dd>
 </dl>
-</dd>
-<dt><strong>base_frame</strong><span class="classifier">Frame</span></dt><dd><p>The frame in which the propagation happens.</p>
-</dd>
-<dt><strong>.. seealso::</strong></dt><dd><dl class="simple">
-<dt><a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.DynamicModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.DynamicModel</span></code></a></dt><dd><p>Base class for dynamic models. Notes —– Dynamically initializes only the requested force models. Each force model computes its own acceleration and partial derivatives. References ———- Vallado, D. A. (2013). Fundamentals of Astrodynamics and Applications, 4th Ed.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>dynamics_mode_list</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>)</p></li>
-<li><p><strong>state_vector</strong> (<a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><em>StateArray</em></a>)</p></li>
-<li><p><strong>point_masses</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a>)</p></li>
-<li><p><strong>main_spacecraft</strong> (<a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><em>Spacecraft</em></a>)</p></li>
-<li><p><strong>sph_harm_order</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>)</p></li>
-<li><p><strong>sph_harm_cs_file</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>)</p></li>
-<li><p><strong>sph_harm_body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><em>CelestialBody</em></a>)</p></li>
-<li><p><strong>sph_harm_norm_flag</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>)</p></li>
-<li><p><strong>sph_degree_max</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>)</p></li>
-<li><p><strong>approx_dv_flag</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>)</p></li>
-<li><p><strong>t0</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><em>EpochArray</em></a>)</p></li>
-<li><p><strong>base_frame</strong> (<a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><em>Frame</em></a>)</p></li>
-</ul>
-</dd>
-</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Dynamically initializes only the requested force models.</p>
+<p>Each force model computes its own acceleration and partial derivatives.</p>
+<p class="rubric">References</p>
+<p>Vallado, D. A. (2013). Fundamentals of Astrodynamics and Applications, 4th Ed.</p>
 <p class="rubric">Attributes</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ForceModel.approx_dv_flag" title="scarabaeus.ForceModel.approx_dv_flag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">approx_dv_flag</span></code></a></p></td>
 <td><p>Flag indicating whether to approximate delta-v for impulsive burns.</p></td>
@@ -572,7 +547,7 @@ propagation and state estimation.</p>
 </table>
 </div>
 <p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ForceModel.collect_parameter_dynamics" title="scarabaeus.ForceModel.collect_parameter_dynamics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">collect_parameter_dynamics</span></code></a>(name, position, ...)</p></td>
 <td><p>Retrieves the dynamic equation associated with a specified parameter.</p></td>
@@ -607,11 +582,11 @@ parameters, returning the appropriate function based on the provided name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of the dynamic parameter.</p></li>
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the affected object. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the dynamic parameter.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the affected object. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -619,7 +594,7 @@ parameters, returning the appropriate function based on the provided name.</p>
 if not found.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Callable</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -633,11 +608,11 @@ derivative computation functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The key representing the desired partial derivative computation.</p></li>
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the affected object. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The key representing the desired partial derivative computation.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the affected object. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -645,7 +620,7 @@ derivative computation functions.</p>
 otherwise None.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Callable or None</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code> or <a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -659,10 +634,10 @@ a sudden change in velocity.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -670,7 +645,7 @@ a sudden change in velocity.</p>
 of <span class="math notranslate nohighlight">\(\frac{1}{s}\)</span>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -685,10 +660,10 @@ returns the corresponding derivative.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -696,7 +671,7 @@ returns the corresponding derivative.</p>
 of <span class="math notranslate nohighlight">\(\frac{km}{s^2}\)</span>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -710,10 +685,10 @@ cumulative acceleration acting on the spacecraft.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -721,7 +696,7 @@ cumulative acceleration acting on the spacecraft.</p>
 of <span class="math notranslate nohighlight">\(\frac{km}{s^2}\)</span>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -735,10 +710,10 @@ how the acceleration changes with respect to position.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -746,7 +721,7 @@ how the acceleration changes with respect to position.</p>
 of <span class="math notranslate nohighlight">\(\frac{1}{s^2}\)</span>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -760,90 +735,90 @@ partial derivative results in an identity matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
-<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – Dictionary containing the current state parameters.</p></li>
-<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Current simulation epoch.</p></li>
-<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><em>CelestialBody</em></a>) – The celestial body influencing the dynamics.</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the position of the spacecraft. Expressed in units of kilometers.</p></li>
+<li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body influencing the dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>vel_partial</strong> – 3x3 identity matrix representing dv/dv. Unitless.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits">ArrayWUnits</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.approx_dv_flag">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">approx_dv_flag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.approx_dv_flag" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">approx_dv_flag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.approx_dv_flag" title="Link to this definition">#</a></dt>
 <dd><p>Flag indicating whether to approximate delta-v for impulsive burns.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.dynamics_mode_list">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dynamics_mode_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.ForceModel.dynamics_mode_list" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dynamics_mode_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.ForceModel.dynamics_mode_list" title="Link to this definition">#</a></dt>
 <dd><p>List of active dynamics models.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.force_models">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">force_models</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.force_models" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">force_models</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.force_models" title="Link to this definition">#</a></dt>
 <dd><p>Dictionary of initialized force models.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.main_spacecraft">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">main_spacecraft</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><span class="pre">Spacecraft</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.main_spacecraft" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">main_spacecraft</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><span class="pre">Spacecraft</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.main_spacecraft" title="Link to this definition">#</a></dt>
 <dd><p>The main spacecraft which forces are applied to.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.point_masses">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point_masses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.ForceModel.point_masses" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point_masses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.ForceModel.point_masses" title="Link to this definition">#</a></dt>
 <dd><p>Point masses considered for gravitational calculations.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.sph_degree_max">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_degree_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_degree_max" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_degree_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_degree_max" title="Link to this definition">#</a></dt>
 <dd><p>The maximum degree for spherical harmonics calculations.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.sph_harm_body">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_body" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_body</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_body" title="Link to this definition">#</a></dt>
 <dd><p>The celestial body for which spherical harmonics are calculated.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.sph_harm_cs_file">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_cs_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_cs_file" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_cs_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_cs_file" title="Link to this definition">#</a></dt>
 <dd><p>File path to the spherical harmonics coefficient data.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.sph_harm_norm_flag">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_norm_flag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_norm_flag" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_norm_flag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_norm_flag" title="Link to this definition">#</a></dt>
 <dd><p>Flag indicating whether to normalize spherical harmonics.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.sph_harm_order">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_order" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sph_harm_order</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.sph_harm_order" title="Link to this definition">#</a></dt>
 <dd><p>The order of spherical harmonics for gravity modeling.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.state_vector">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.state_vector" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.state_vector" title="Link to this definition">#</a></dt>
 <dd><p>The state vector of the main spacecraft.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModel.t0">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t0</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.t0" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t0</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></em><a class="headerlink" href="#scarabaeus.ForceModel.t0" title="Link to this definition">#</a></dt>
 <dd><p>The initial epoch of the simulation.</p>
 </dd></dl>
 
@@ -875,7 +850,7 @@ partial derivative results in an identity matrix.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>ImpusliveBurn</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>ImpulsiveBurn</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -966,7 +941,7 @@ partial derivative results in an identity matrix.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
