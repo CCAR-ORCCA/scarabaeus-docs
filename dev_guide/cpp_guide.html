@@ -2,19 +2,27 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Setup to Interface C++ with Python scripts" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/cpp_guide.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised by S. Pattamudu-Manoharan on 2025 FEB 4 Mac Setup Guide: Check if Clang is already installed* Run the following command: clang --version- If Clang is installed, it will display the version details., If not, proceed to the installation steps below.. Install Clang* Install Xcode Command Line Tools (which include Clang) by running: xcode-select --install* Follow the on-screen instructions to complete the installation. Verify Installation* After installation, check if Clang is proper..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="Last revised by S. Pattamudu-Manoharan on 2025 FEB 4 Mac Setup Guide: Check if Clang is already installed* Run the following command: clang --version- If Clang is installed, it will display the version details., If not, proceed to the installation steps below.. Install Clang* Install Xcode Command Line Tools (which include Clang) by running: xcode-select --install* Follow the on-screen instructions to complete the installation. Verify Installation* After installation, check if Clang is proper..." />
 
     <title>Setup to Interface C++ with Python scripts &#8212; Scarabaeus  documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -31,10 +39,10 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9cdfcecb" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -49,10 +57,10 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/cpp_guide';</script>
-    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Additional Resources" href="add_resources.html" />
+    <link rel="next" title="About Scarabaeus" href="../about_scb.html" />
     <link rel="prev" title="Updating the External Resource" href="updating_ext_res.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -60,7 +68,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -119,11 +127,9 @@
   
     
     
-      
     
-    
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -149,7 +155,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -256,7 +262,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -313,7 +319,6 @@
 <li class="toctree-l1"><a class="reference internal" href="external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="updating_ext_res.html"><span class="gold">Updating the External Resource</span></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Setup to Interface C++ with Python scripts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="add_resources.html">Additional Resources</a></li>
 </ul>
 </div>
 </nav></div>
@@ -387,74 +392,29 @@
 <h2>Mac Setup Guide<a class="headerlink" href="#mac-setup-guide" title="Link to this heading">#</a></h2>
 <ol class="arabic">
 <li><p><strong>Check if Clang is already installed</strong>
-- Run the following command:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">clang</span> <span class="pre">--version</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
+* Run the following command: <code class="docutils literal notranslate"><span class="pre">clang</span> <span class="pre">--version</span></code></p>
 <ul class="simple">
 <li><p>If Clang is installed, it will display the version details.</p></li>
 <li><p>If not, proceed to the installation steps below.</p></li>
 </ul>
 <p><strong>Install Clang</strong>
-- Install Xcode Command Line Tools (which include Clang) by running:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">xcode-select</span> <span class="pre">--install</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-<ul class="simple">
-<li><p>Follow the on-screen instructions to complete the installation.</p></li>
-</ul>
+* Install Xcode Command Line Tools (which include Clang) by running: <code class="docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code>
+* Follow the on-screen instructions to complete the installation.</p>
 <p><strong>Verify Installation</strong>
-- After installation, check if Clang is properly installed:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">clang</span> <span class="pre">--version</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-<ul class="simple">
-<li><p>This should display the Clang version.</p></li>
-</ul>
+* After installation, check if Clang is properly installed: <code class="docutils literal notranslate"><span class="pre">clang</span> <span class="pre">--version</span></code>
+* This should display the Clang version.</p>
 </li>
 <li><p><strong>Install Required Python Packages to interface with C++</strong>
-- Install <cite>setuptools</cite>, <cite>wheel</cite>, and <cite>pybind11</cite>:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">setuptools</span> <span class="pre">wheel</span> <span class="pre">pybind11</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-</li>
+* Install <cite>setuptools</cite>, <cite>wheel</cite>, and <cite>pybind11</cite>: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">setuptools</span> <span class="pre">wheel</span> <span class="pre">pybind11</span></code></p></li>
 <li><p><strong>Install Eigen</strong>
-- Install Eigen using Homebrew:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">brew</span> <span class="pre">install</span> <span class="pre">eigen</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-</li>
+* Install Eigen using Homebrew: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">eigen</span></code></p></li>
 <li><p><strong>Verify Eigen Installation</strong>
-- Run:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">brew</span> <span class="pre">list</span> <span class="pre">eigen</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-<ul class="simple">
-<li><p>Copy the path that contains the <cite>include</cite> folder.</p></li>
-</ul>
-</li>
+* Run: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">list</span> <span class="pre">eigen</span></code>
+* Copy the path that contains the <code class="docutils literal notranslate"><span class="pre">include</span></code> folder.</p></li>
 <li><p><strong>Update Setup.py file</strong>
-- Paste the copied Eigen path into the <cite>setup.py</cite> file.</p></li>
+* Paste the copied Eigen path into the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file.</p></li>
 <li><p><strong>Build the Python Package</strong>
-- Run:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-</li>
+* Run: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code></p></li>
 <li><p><strong>Add the C++ build files path to your environment, follow these steps:</strong>
 Append the following line to your Bash profile configuration file:</p>
 <div class="admonition warning">
@@ -463,94 +423,48 @@ Append the following line to your Bash profile configuration file:</p>
 The command <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">~/.bash_profile</span></code> opens a file that may contain credentials, API keys, or environment variables.</p>
 </div>
 <ul>
-<li><p>Run: to open the .bash_profile</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">nano</span> <span class="pre">~/.bash_profile</span>
-<span class="pre">`</span></code></p>
-</li>
-<li><p>Add the following line</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">export</span> <span class="pre">PYTHONPATH='$PYTHONPATH:/your_cpp_build_path'</span>
-<span class="pre">`</span></code></p>
-</li>
-</ul>
-<p>Update ‘your_cpp_build_path’ with the path of the directory that contains the compiled .so files.</p>
+<li><p>To open the .bash_profile, run: <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">~/.bash_profile</span></code></p></li>
+<li><p>Add the following line: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONPATH='$PYTHONPATH:/your_cpp_build_path'</span></code>
+Update ‘your_cpp_build_path’ with the path of the directory that contains the compiled .so files.</p>
 <p>Click on control + X and then Y to save and exit the file.</p>
-<ul>
-<li><p>Apply the changes by running this command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">source</span> <span class="pre">~/.bash_profile</span>
-<span class="pre">`</span></code></p>
 </li>
+<li><p>Apply the changes by running this command: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.bash_profile</span></code></p></li>
 </ul>
 </li>
 <li><p><strong>Run the Python Test Code</strong>
-- Finally, execute the test script “CPP_setup_verification.py” to verify the setup.</p></li>
+* Finally, execute the test script <code class="docutils literal notranslate"><span class="pre">&quot;CPP_setup_verification.py&quot;</span></code> to verify the setup.</p></li>
 </ol>
 </section>
 <section id="windows-setup-guide">
 <h2>Windows Setup Guide<a class="headerlink" href="#windows-setup-guide" title="Link to this heading">#</a></h2>
 <ol class="arabic">
 <li><p><strong>Install C++ Build Tools for Visual Studio</strong>
-- Download and install from:</p>
-<blockquote>
-<div><blockquote>
-<div><p><cite>https://visualstudio.microsoft.com/downloads/?q=build+tools</cite></p>
-</div></blockquote>
+* Download and install from <cite>https://visualstudio.microsoft.com/downloads/?q=build+tools</cite></p>
 <ul class="simple">
 <li><p>During installation, ensure to select <strong>“C++ Development”</strong> from the available options.</p></li>
 <li><p>This will download and install the necessary components, approximately <strong>6.7GB</strong> in size.</p></li>
 <li><p>These tools are required for building and compiling C++ extensions.</p></li>
 </ul>
-</div></blockquote>
 </li>
 <li><p><strong>Install Required Python Packages</strong>
-- Run the following command:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">setuptools</span> <span class="pre">wheel</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-</li>
-<li><p><strong>Download Eigen</strong>
-- Get the latest version from:</p>
-<blockquote>
-<div><p><cite>https://eigen.tuxfamily.org/dox/GettingStarted.html</cite></p>
-</div></blockquote>
+* Run the following command: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">setuptools</span> <span class="pre">wheel</span></code></p></li>
+<li><p><strong>C++ Extension Configuration</strong></p>
+<p><strong>Download Eigen</strong>
+* Get the latest version from: <cite>https://eigen.tuxfamily.org/dox/GettingStarted.html</cite></p>
 <p><strong>Store Eigen in a Safe Location</strong>
-- Extract and place it in a secure directory, such as:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">C:\Program</span> <span class="pre">Files\Eigen</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
+* Extract and place it in a secure directory, such as: <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Eigen</span></code></p>
 <p><strong>Set the Eigen Path in Environment Variables</strong>
-- Add the Eigen include directory to the environment variable:</p>
-<dl class="simple">
-<dt><strong>Include Eigen Directory in the Setup.py file</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
-<span class="pre">eigen_include_dir</span> <span class="pre">=</span> <span class="pre">&quot;C:\your_eigen_folder_path&quot;</span>
-<span class="pre">`</span></code></p>
-</dd>
-</dl>
+* Add the Eigen include directory to the environment variable:</p>
+<p><strong>Include Eigen Directory in the Setup.py file</strong>
+* <code class="docutils literal notranslate"><span class="pre">eigen_include_dir</span> <span class="pre">=</span> <span class="pre">&quot;C:\your_eigen_folder_path&quot;</span></code></p>
 </li>
 <li><p><strong>Set the C++ Build Path in Environment Variables</strong>
-- Add the C++ build path to the environment variable</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">C:Users/your_build_path/</span>
-<span class="pre">`</span></code></p>
-</li>
+* Add the C++ build path to the environment variable: <code class="docutils literal notranslate"><span class="pre">C:Users/your_build_path/</span></code></p></li>
 <li><p><strong>Build the Python Package</strong>
-- Run:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">`bash</span>
-<span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
-</li>
+* Run: <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code></p></li>
 <li><p><strong>Run the Python Test Code</strong>
-- Finally, execute the cpp_test.py script to verify the setup.</p></li>
+* Finally, execute the <code class="docutils literal notranslate"><span class="pre">cpp_test.py</span></code> script to verify the setup.</p></li>
 </ol>
-<hr class="docutils" />
 </section>
 </section>
 
@@ -574,11 +488,11 @@ The command <code class="docutils literal notranslate"><span class="pre">nano</s
       </div>
     </a>
     <a class="right-next"
-       href="add_resources.html"
+       href="../about_scb.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Additional Resources</p>
+        <p class="prev-next-title"><span class="gold">About Scarabaeus</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -649,7 +563,7 @@ The command <code class="docutils literal notranslate"><span class="pre">nano</s
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>

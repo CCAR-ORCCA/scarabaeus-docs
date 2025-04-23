@@ -2,19 +2,27 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Scarabaeus Coding Conventions" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/style_guide.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised by Z. Ellis on 2025 MAR 5 Introduction: This document describes conventions for developing in the Scarabaeus library. Much of these conventions are derived from Python’s PEP 8 style guide; wherever some convention is not explicitly stated in the following guide, refer to it for guidance. This document will not cover writing docstrings and instead will only note where they should be included. Be sure to follow the format described in the docstring formatting section of the Externa..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="Last revised by Z. Ellis on 2025 MAR 5 Introduction: This document describes conventions for developing in the Scarabaeus library. Much of these conventions are derived from Python’s PEP 8 style guide; wherever some convention is not explicitly stated in the following guide, refer to it for guidance. This document will not cover writing docstrings and instead will only note where they should be included. Be sure to follow the format described in the docstring formatting section of the Externa..." />
 
     <title>Scarabaeus Coding Conventions &#8212; Scarabaeus  documentation</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
   <!--
     this give us a css class that will be invisible only if js is disabled
@@ -31,10 +39,10 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=9cdfcecb" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -49,7 +57,7 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/style_guide';</script>
-    <link rel="icon" href="../_static/ORCCA_logo.png"/>
+    <link rel="icon" href="../_static/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Scarabaeus External Resource Guide" href="external_resource_writing.html" />
@@ -60,7 +68,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -119,11 +127,9 @@
   
     
     
-      
     
-    
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light" alt=""/>
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark pst-js-only" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -149,7 +155,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -256,7 +262,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
-    Library Reference
+    API Reference
   </a>
 </li>
 
@@ -313,7 +319,6 @@
 <li class="toctree-l1"><a class="reference internal" href="external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="updating_ext_res.html"><span class="gold">Updating the External Resource</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpp_guide.html">Setup to Interface C++ with Python scripts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="add_resources.html">Additional Resources</a></li>
 </ul>
 </div>
 </nav></div>
@@ -493,7 +498,7 @@ so:</p>
 <span class="c1">#  Include  #</span>
 <span class="c1">#-----------#</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>                    <span class="c1"># standardized convention for shortening Scarabaeus</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="kn">import</span><span class="p">(</span> <span class="n">Units</span><span class="p">,</span> <span class="n">ArrayWUnits</span><span class="p">,</span> <span class="c1"># directly import Scarabaeus modules</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="kn">import</span><span class="p">(</span><span class="n">Units</span><span class="p">,</span> <span class="n">ArrayWUnits</span><span class="p">,</span> <span class="c1"># directly import Scarabaeus modules</span>
                     <span class="n">Body</span><span class="p">)</span>
 
 <span class="c1"># some commonly used (but not required) imports</span>
@@ -603,7 +608,7 @@ because we don’t need it to be collapsible. However, we retain the “region�
     <span class="bp">self</span><span class="o">.</span><span class="n">_prop_three</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__utility_template</span><span class="p">(</span><span class="n">arg_three</span><span class="p">)</span>  <span class="c1"># calling a private utility class, see __utility_template() for more</span>
 </pre></div>
 </div>
-<p>Since <code class="docutils literal notranslate"><span class="pre">TemplateClass</span></code> is a child of <code class="docutils literal notranslate"><span class="pre">Body</span></code>, we’ll need to make sure that we pass any necessary parent arguments using <code class="docutils literal notranslate"><span class="pre">super()</span></code> first. Once
+<p>Since <code class="docutils literal notranslate"><span class="pre">TemplateClass</span></code> is a child of <code class="docutils literal notranslate"><span class="pre">Body</span></code> , we’ll need to make sure that we pass any necessary parent arguments using <code class="docutils literal notranslate"><span class="pre">super()</span></code> first. Once
 that’s taken care of, we can start assigning values to our properties. This can be done in one of two ways:</p>
 <ol class="arabic simple">
 <li><p>Direct assignment via <code class="docutils literal notranslate"><span class="pre">self._</span></code> - if we don’t need to validate our input at all, we can set it directly here</p></li>
@@ -611,11 +616,11 @@ that’s taken care of, we can start assigning values to our properties. This ca
 </ol>
 <p>All properties of a class should be assigned to their private version (prefixed by “_”), but depending on the situation we might need to perform some logic
 before doing so.</p>
-<p>In this example, we don’t want to do anything with <code class="docutils literal notranslate"><span class="pre">arg_one</span></code> before we assign it to a property, so we can save it directly with <code class="docutils literal notranslate"><span class="pre">self._prop_one</span> <span class="pre">=</span></code>. For <code class="docutils literal notranslate"><span class="pre">prop_three</span></code>,
+<p>In this example, we don’t want to do anything with <code class="docutils literal notranslate"><span class="pre">arg_one</span></code> before we assign it to a property, so we can save it directly with <code class="docutils literal notranslate"><span class="pre">self._prop_one</span> <span class="pre">=</span> <span class="pre">``.</span> <span class="pre">For</span> <span class="pre">``prop_three</span></code>,
 we pass <code class="docutils literal notranslate"><span class="pre">arg_three</span></code> to a utility function (more on those later) first, so we can do any conditioning or input validation there. Since we know that the value we’re
-setting it to will take the form we expect, we can directly assign out third property with <a href="#id1"><span class="problematic" id="id2">``</span></a>self._prop_three = <a href="#id3"><span class="problematic" id="id4">``</span></a>.</p>
-<p>But, let’s say that we <em>do</em> need to do a little more work with <code class="docutils literal notranslate"><span class="pre">arg_two</span></code> before saving it. Here, we can pass it through <code class="docutils literal notranslate"><span class="pre">prop_two</span></code>’s setter before we actually
-assign it to <code class="docutils literal notranslate"><span class="pre">_prop_two</span></code>. We invoke the property setter by omitting the “_” with <a href="#id5"><span class="problematic" id="id6">``</span></a>self.prop_two = <a href="#id7"><span class="problematic" id="id8">``</span></a>. In the next section, we’ll talk about how to properly
+setting it to will take the form we expect, we can directly assign out third property with <a href="#id1"><span class="problematic" id="id2">``</span></a>self._prop_three = `` .</p>
+<p>But, let’s say that we <em>do</em> need to do a little more work with <code class="docutils literal notranslate"><span class="pre">arg_two</span></code> before saving it. Here, we can pass it through <code class="docutils literal notranslate"><span class="pre">prop_two</span></code> ‘s setter before we actually
+assign it to <code class="docutils literal notranslate"><span class="pre">_prop_two</span></code> . We invoke the property setter by omitting the “_” with <a href="#id3"><span class="problematic" id="id4">``</span></a>self.prop_two = `` . In the next section, we’ll talk about how to properly
 define property setters, as well as getters.</p>
 </section>
 <section id="properties">
@@ -633,8 +638,8 @@ lets us de-clutter and compartmentalize our code. Properties are important for t
 <li><p>The propery docstring - just like we did in the section above, we’ll only note that this docstring belongs here. See the <a class="reference internal" href="external_resource_writing.html#docstring-format-guide"><span class="std std-ref">docstring formatting guide</span></a> for populating this.</p></li>
 <li><p>The return statement - a simple <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">self._property</span></code>. This ensures that whenever the property is requested, its private version is returned.</p></li>
 </ol>
-<p>For every property that we define in our <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, we must also ensure that we create a getter with this format in the Properties Section. Order them in the
-same way that they’re ordered in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code>. Since we defined them one, two, three above, we’ll define them one, two, three here.</p>
+<p>For every property that we define in our <code class="docutils literal notranslate"><span class="pre">__init__</span></code> , we must also ensure that we create a getter with this format in the Properties Section. Order them in the
+same way that they’re ordered in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> . Since we defined them one, two, three above, we’ll define them one, two, three here.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------#</span>
 <span class="c1"># region    Properties #</span>
 <span class="c1">#----------------------#</span>
@@ -688,16 +693,16 @@ same way that they’re ordered in the <code class="docutils literal notranslate
 <p class="admonition-title">Note</p>
 <p>Don’t forget the “region”/”endregion” headers encasing your Properties Section.</p>
 </div>
-<p>Notice that after we defined the getter for <code class="docutils literal notranslate"><span class="pre">prop_two</span></code>, we added another function below it. This is a property setter, and it’s extremely important for
+<p>Notice that after we defined the getter for <code class="docutils literal notranslate"><span class="pre">prop_two</span></code> , we added another function below it. This is a property setter, and it’s extremely important for
 input validation and conditioning. Any time that you want to make sure an input is of the correct type, you want to store/ingest it in some specific way (conditioning),
 or you need to perform some other kind of logic, place it in that property’s setter. A setter consists of:</p>
 <ol class="arabic simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">&#64;prop_name.setter</span></code> decorator - this tells Python that whenever <code class="docutils literal notranslate"><span class="pre">prop_name</span></code> is assigned a value it needs to run through this code first.</p></li>
-<li><p>The setter definition - this is identical to the property’s getter definition, except we also need to take in the value we’re checking itself, called <code class="docutils literal notranslate"><span class="pre">input_val</span></code>.</p></li>
+<li><p>The setter definition - this is identical to the property’s getter definition, except we also need to take in the value we’re checking itself, called <code class="docutils literal notranslate"><span class="pre">input_val</span></code> .</p></li>
 <li><p>The setter logic - whatever code we want to run <code class="docutils literal notranslate"><span class="pre">input_val</span></code> through. It needs be structured in a way that the private property is assigned.</p></li>
 </ol>
-<p>In the example above, we’re making sure that <code class="docutils literal notranslate"><span class="pre">prop_two</span></code> has been given in the correct units. Look through the code and notice that, if given the correct units,
-we assign the private property with <a href="#id9"><span class="problematic" id="id10">``</span></a>self._prop_two = <a href="#id11"><span class="problematic" id="id12">``</span></a>.</p>
+<p>In the example above, we’re making sure that <a href="#id5"><span class="problematic" id="id6">``</span></a>prop_two `` has been given in the correct units. Look through the code and notice that, if given the correct units,
+we assign the private property with <a href="#id7"><span class="problematic" id="id8">``</span></a>self._prop_two = `` .</p>
 </section>
 <section id="operator-overloading">
 <h3>Operator Overloading<a class="headerlink" href="#operator-overloading" title="Link to this heading">#</a></h3>
@@ -880,7 +885,7 @@ our properties. Since it’s an internal utility method, we add the two undersco
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
     <br/>
   </p>
 </div>
