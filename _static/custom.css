@@ -29,7 +29,7 @@ html[data-theme="light"] {
     --pst-color-background: rgb(255, 255, 255);
     --pst-color-on-background: rgb(255, 255, 255);
     --pst-color-surface: rgb(240, 240, 240);
-    --pst-color-on-surface: rgb(255, 255, 238);
+    --pst-color-on-surface: rgba(67, 181, 248, 0.483);
   
     /*****************************************************************************
     * extentions
@@ -174,4 +174,42 @@ html[data-theme="light"] {
     /* Bootstrap icons */
     --pst-breadcrumb-divider: "\f105";
   }
-  
+
+/* SPHINX-TABS Buttons */
+/* Styling for all tab buttons */
+.sphinx-tabs-panel {
+    background: transparent !important;
+    color: inherit !important;
+}
+
+/* Styling for all tab buttons */
+.sphinx-tabs-tab {
+    background-color: var(--pst-color-surface) !important;
+    color: var(--pst-color-text-base) !important;
+}
+
+/* Styling for the currently selected (active) tab */
+.sphinx-tabs-tab[aria-selected="true"] {
+    background-color: rgb(207 184 124) !important; /* Your chosen accent color */
+    color: var(--pst-color-secondary) !important;              /* text color */
+}
+
+/* The line under the active tab */
+.sphinx-tabs-tab[aria-selected="true"] {
+    border-bottom: 2px solid rgb(207 184 124) !important;
+}
+
+/* The border around the code block area itself */
+.sphinx-tabs-panel {
+    border: 1px solid rgb(207 184 124) !important;
+}
+
+/* The horizontal line under all tab buttons */
+.sphinx-tabs {
+    border-bottom: 1px solid rgb(207 184 124) !important;
+}
+
+/* Hover effect for better interactivity */
+.sphinx-tabs-tab:hover {
+    background-color: var(--pst-color-on-surface) !important;
+}
