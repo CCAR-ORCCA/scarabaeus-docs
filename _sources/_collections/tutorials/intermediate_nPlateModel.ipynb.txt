@@ -1,0 +1,336 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "0",
+   "metadata": {},
+   "source": [
+    "## N-Plate Model Attitude\n",
+    "---\n",
+    "Last revised by Z. Ellis on 2026 APR 6\n",
+    "\n",
+    "## Objectives\n",
+    "This tutorial will demonstrate "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1",
+   "metadata": {},
+   "source": [
+    "## Imports and Set Up\n",
+    "\n",
+    "Here we'll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel to use for time conversions and provide attitude information."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import scarabaeus as scb\n",
+    "from tutorial_data import tutorial_data\n",
+    "\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "# load tutorial data\n",
+    "data = tutorial_data.load()\n",
+    "\n",
+    "## units, frames, kernels\n",
+    "km, hr = scb.Units.get_units(['km', 'hr'])\n",
+    "J2000 = scb.Frame('J2000')\n",
+    "\n",
+    "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
+    "scb.SpiceManager.load_kernel_from_mkfile(data.OREX.mk)\n",
+    "scb.SpiceManager.print_kernels()    # verify C-Kernels for the S/C (sc) and solar arrays (sa)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3",
+   "metadata": {},
+   "source": [
+    "# SAY SOMETHING ABOUT THE DIFFERENT KERNELS LOADED"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4",
+   "metadata": {},
+   "source": [
+    "## Define N-Plate Model & Examine CK Panels\n",
+    "Now that we've loaded in the necessary kernels, we'll need to define an N-Plate model to utilize them. Scarabaeus uses a configuration file, which we loaded in with the rest of the tutorial data:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "n_model = scb.nPlateModel(data.OREX.nplate)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6",
+   "metadata": {},
+   "source": [
+    "We'll use `SpiceManager.ckbrief` to look at the SPICE IDs and their matching intervals loaded in with the solar array's attide C-kernel `tutorial_data/kernels/scenario/orx_sa_rel_210816_210822_v02.bc`. Note that we've defined two CK plates in the N-plate configuration JSON, IDs -64017 and -64027 , which are the first and third plate defined in the C-kernel respectively, but the third and fourth plate in the configuration JSON. Since both plates have the same interval, we can just grab the first plate from the brief, corresponding to ID -64207 or Plate 4:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# examine the ID's and intervals within the loaded C-kernel\n",
+    "brief = scb.SpiceManager.ckbrief(data.OREX.ck_sa, disp = True)\n",
+    "\n",
+    "# N-plate model defines panels -64017 and -64027 -> use their intervals from C-kernel\n",
+    "plate4 = brief[0]    # coresponds to 4th plate in the configuration file\n",
+    "start, end = plate4['TDB_INTERVAL'][0][0], plate4['TDB_INTERVAL'][0][1]     # both plates have same interval"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8",
+   "metadata": {},
+   "source": [
+    "Now we can query the normal vectors for both plates across the entire interval that they've been defined using `nPlateModel.get_ck_normals`:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# get normals information across time interval\n",
+    "orex_id = -64                                         # need s/c ID for SCLK time\n",
+    "dt = scb.ArrayWUnits(0.5, hr)                         # query every half hour\n",
+    "times = scb.EpochArray.interval(start, end, dt)       # the interval to examine\n",
+    "\n",
+    "normals = []\n",
+    "for time in times:\n",
+    "    normals.append(n_model.get_ck_normals(time, orex_id))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "10",
+   "metadata": {},
+   "source": [
+    "## Plot C-Kernel Normal Vectors\n",
+    "With the normal vectors queried from the C-kernel, we can write a function to plot their time history. This figure will let us scroll through each queried epoch and see how the normal vector changes in the body frame of OSIRIS-REx.\n",
+    "\n",
+    "> **NOTE:** the magic command `%matplotlib widget` is only placed in this notebook to allow for the figure to be interactive."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "11",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%matplotlib widget\n",
+    "def plot_normals(normals, times):\n",
+    "    from matplotlib.widgets import Button, Slider\n",
+    "    fig = plt.figure(figsize = (9, 8))\n",
+    "    axes = fig.subplot_mosaic(\n",
+    "        [['3d', 'x'],\n",
+    "         ['3d', 'x'],\n",
+    "         ['3d', 'y'],\n",
+    "         ['3d', 'y'],\n",
+    "         ['3d', 'z'],\n",
+    "         ['leg', 'z']],\n",
+    "         per_subplot_kw = {'3d' : {'projection' : '3d'}}\n",
+    "    )\n",
+    "    ax = axes['3d']\n",
+    "    fig.subplots_adjust(bottom = 0.25)\n",
+    "\n",
+    "    ## 3d representation\n",
+    "    # first normal\n",
+    "    l1 = ax.plot([0, normals[0][0][0]], [0, normals[0][0][1]], [0, normals[0][0][2]], \n",
+    "                 'b', lw = 2)\n",
+    "    p1 = ax.plot(normals[0][0][0], normals[0][0][1], normals[0][0][2], 'ro')\n",
+    "\n",
+    "    # second normal\n",
+    "    l2 = ax.plot([0, normals[0][1][0]], [0, normals[0][1][1]], [0, normals[0][1][2]], \n",
+    "                 'g', lw = 2)\n",
+    "    p2 = ax.plot(normals[0][1][0], normals[0][1][1], normals[0][1][2], 'mo')\n",
+    "\n",
+    "    ## 2d representation\n",
+    "    # extract components for both normals\n",
+    "    axx, axy, axz = axes['x'], axes['y'], axes['z']\n",
+    "    x1s, x2s, y1s, y2s, z1s, z2s = [], [], [], [], [], []\n",
+    "    for normal in normals:\n",
+    "        frst, scnd = normal[0], normal[1]\n",
+    "\n",
+    "        x1s.append(frst[0])\n",
+    "        y1s.append(frst[1])\n",
+    "        z1s.append(frst[2])\n",
+    "\n",
+    "        x2s.append(scnd[0])\n",
+    "        y2s.append(scnd[1])\n",
+    "        z2s.append(scnd[2])\n",
+    "    \n",
+    "    # get times just as values\n",
+    "    t_vals   = np.linspace(start.times.values, end.times.values, times.size)\n",
+    "\n",
+    "    # plot x component\n",
+    "    axx.plot(t_vals, x1s, 'b')\n",
+    "    axx.plot(t_vals, x2s, 'g')\n",
+    "    marker_x1 = axx.axvline(t_vals[0], ls = '--', c = 'k')\n",
+    "    dot_x1    = axx.plot(t_vals[0], x1s[0], 'ro')\n",
+    "    dot_x2    = axx.plot(t_vals[0], x2s[0], 'mo')\n",
+    "    axx.grid()\n",
+    "    axx.set_title('X Component')\n",
+    "\n",
+    "    # plot y component\n",
+    "    axy.plot(t_vals, y1s, 'b')\n",
+    "    axy.plot(t_vals, y2s, 'g')\n",
+    "    marker_y1 = axy.axvline(t_vals[0], ls = '--', c = 'k')\n",
+    "    dot_y1    = axy.plot(t_vals[0], y1s[0], 'ro')\n",
+    "    dot_y2    = axy.plot(t_vals[0], y2s[0], 'mo')\n",
+    "    axy.grid()\n",
+    "    axy.set_title('Y Component')\n",
+    "\n",
+    "    # plot z component\n",
+    "    axz.plot(t_vals, z1s, 'b')\n",
+    "    axz.plot(t_vals, z2s, 'g')\n",
+    "    marker_z1 = axz.axvline(t_vals[0], ls = '--', c = 'k')\n",
+    "    dot_z1    = axz.plot(t_vals[0], z1s[0], 'ro')\n",
+    "    dot_z2    = axz.plot(t_vals[0], z2s[0], 'mo')\n",
+    "    axz.grid()\n",
+    "    axz.set_title('Z Component')\n",
+    "\n",
+    "    ## formatting\n",
+    "    fig.suptitle(f'Queried Normals Between SCLK\\n{t_vals[0]} & {t_vals[-1]}')\n",
+    "    fig.subplots_adjust(hspace = 1.25)\n",
+    "\n",
+    "    # place legend in its own empty subplot\n",
+    "    ax_leg = axes['leg']\n",
+    "    ax_leg.set_axis_off()\n",
+    "    ax_leg.plot(0, 0, 'b', lw = 2, label = 'ORX_SA_PY_IG')\n",
+    "    ax_leg.plot(0, 0, 'g', lw = 2, label = 'ORX_SA_NY_IG')\n",
+    "    ax_leg.legend(loc = 'center')\n",
+    "\n",
+    "    # define the values to use for snapping\n",
+    "    time_ticks = np.linspace(0, len(t_vals), len(t_vals)+1)\n",
+    "    ax_amp = fig.add_axes([0.225, 0.15, 0.65, 0.03])\n",
+    "\n",
+    "    # make time slider\n",
+    "    time_slider = Slider(\n",
+    "        ax_amp, \"SCLK Ticks\", 0, len(t_vals)-1,\n",
+    "        valinit = 0, valstep = time_ticks,\n",
+    "        color = \"green\"\n",
+    "    )\n",
+    "\n",
+    "    def update(_):\n",
+    "        time = int(time_slider.val)\n",
+    "        ## first normal\n",
+    "        # extract data\n",
+    "        x_pos = normals[time][0][0]\n",
+    "        y_pos = normals[time][0][1]\n",
+    "        z_pos = normals[time][0][2]\n",
+    "        # update plots\n",
+    "        l1[0].set_data_3d([0, x_pos], [0, y_pos], [0, z_pos])\n",
+    "        p1[0].set_data_3d([x_pos, x_pos], [y_pos, y_pos], [z_pos, z_pos])\n",
+    "        marker_x1.set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_x1[0].set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_x1[0].set_ydata([x1s[time], x1s[time]])\n",
+    "        marker_y1.set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_y1[0].set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_y1[0].set_ydata([y1s[time], y1s[time]])\n",
+    "        marker_z1.set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_z1[0].set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_z1[0].set_ydata([z1s[time], z1s[time]])\n",
+    "\n",
+    "        ## second normal\n",
+    "        # extract data\n",
+    "        x_pos = normals[time][1][0]\n",
+    "        y_pos = normals[time][1][1]\n",
+    "        z_pos = normals[time][1][2]\n",
+    "        # update plots\n",
+    "        l2[0].set_data_3d([0, x_pos], [0, y_pos], [0, z_pos])\n",
+    "        p2[0].set_data_3d([x_pos, x_pos], [y_pos, y_pos], [z_pos, z_pos])\n",
+    "        dot_x2[0].set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_x2[0].set_ydata([x2s[time], x2s[time]])\n",
+    "        dot_y2[0].set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_y2[0].set_ydata([y2s[time], y2s[time]])\n",
+    "        dot_z2[0].set_xdata([t_vals[time], t_vals[time]])\n",
+    "        dot_z2[0].set_ydata([z2s[time], z2s[time]])\n",
+    "        \n",
+    "        fig.canvas.draw_idle()\n",
+    "\n",
+    "    time_slider.on_changed(update)\n",
+    "\n",
+    "    ax_reset = fig.add_axes([0.5, 0.05, 0.1, 0.04])\n",
+    "    button = Button(ax_reset, 'Reset', hovercolor='0.975')\n",
+    "\n",
+    "    def reset(event):\n",
+    "        time_slider.reset()\n",
+    "    button.on_clicked(reset)\n",
+    "\n",
+    "    plt.show()\n",
+    "\n",
+    "plot_normals(normals, times)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "12",
+   "metadata": {
+    "tags": [
+     "nbsphinx-thumbnail"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "%matplotlib inline\n",
+    "# NOTE: rerun static version of the plot so that it displays for online tutorial \n",
+    "plot_normals(normals, times)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "13",
+   "metadata": {},
+   "source": [
+    "# Conclusion\n",
+    "DESC"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
