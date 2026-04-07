@@ -2,21 +2,21 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" data-theme="dark">
+<html lang="en" data-content_root="../../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Examples" />
+<meta property="og:title" content="Propagation in Scarabaeus" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/learning_and_tutorial/learn_scb_frontpage.html" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/learning_and_tutorial/conceptual/fundamentals/frames_in_scb.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="This section provides provides guides to learn the fundamentals of Scarabaeus, Scarabaeus Conceptual Overview- Fundamentals, Propagation in Scarabaeus, Mass Propagation in Scarabaeus, Spacecraft in Scarabaeus.. Scarabaeus Tutorial Scripts- basic_Units, basic_CelestialBody.. Intermediate Tutorials:" />
+<meta property="og:description" content="Originally written by M. Pugliatti on 2025 MAR ## &lt;—————– !!! UPDATE !!! Last revised by M. Pugliatti on 2025 MAR ## &lt;—————– !!! UPDATE !!! Introduction:" />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="This section provides provides guides to learn the fundamentals of Scarabaeus, Scarabaeus Conceptual Overview- Fundamentals, Propagation in Scarabaeus, Mass Propagation in Scarabaeus, Spacecraft in Scarabaeus.. Scarabaeus Tutorial Scripts- basic_Units, basic_CelestialBody.. Intermediate Tutorials:" />
+<meta name="description" content="Originally written by M. Pugliatti on 2025 MAR ## &lt;—————– !!! UPDATE !!! Last revised by M. Pugliatti on 2025 MAR ## &lt;—————– !!! UPDATE !!! Introduction:" />
 
-    <title>Examples &#8212; Scarabaeus  documentation</title>
+    <title>Propagation in Scarabaeus &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -35,37 +35,36 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-gallery.css?v=26227f6e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'learning_and_tutorial/learn_scb_frontpage';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'learning_and_tutorial/conceptual/fundamentals/frames_in_scb';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Scarabaeus Conceptual Overview" href="conceptual/conceptual_frontpage.html" />
-    <link rel="prev" title="1. Constants" href="../scb_library/add_class_rsts/constants.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Propagation in Scarabaeus" href="../propagation/propagation_in_scb.html" />
+    <link rel="prev" title="Constants" href="constants.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -87,7 +86,7 @@
   <dialog id="pst-search-dialog">
     
 <form class="bd-search d-flex align-items-center"
-      action="../search.html"
+      action="../../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -123,7 +122,7 @@
     
   
 
-<a class="navbar-brand logo" href="../index.html">
+<a class="navbar-brand logo" href="../../../index.html">
   
   
   
@@ -132,8 +131,8 @@
     
     
     
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
-    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+    <img src="../../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
   
   
     <p class="title logo__title">Scarabaeus</p>
@@ -151,35 +150,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../user_guide/user_guide_frontpage.html">
+  <a class="nav-link nav-internal" href="../../../user_guide/user_guide_frontpage.html">
     Scarabaeus User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../../scb_library/lib_ref.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="../../learn_scb_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../dev_guide/dev_guide_frontpage.html">
+  <a class="nav-link nav-internal" href="../../../dev_guide/dev_guide_frontpage.html">
     Developer Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../about_scb.html">
+  <a class="nav-link nav-internal" href="../../../about_scb.html">
     About Scarabaeus
   </a>
 </li>
@@ -258,35 +257,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../user_guide/user_guide_frontpage.html">
+  <a class="nav-link nav-internal" href="../../../user_guide/user_guide_frontpage.html">
     Scarabaeus User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../../scb_library/lib_ref.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="../../learn_scb_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../dev_guide/dev_guide_frontpage.html">
+  <a class="nav-link nav-internal" href="../../../dev_guide/dev_guide_frontpage.html">
     Developer Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../about_scb.html">
+  <a class="nav-link nav-internal" href="../../../about_scb.html">
     About Scarabaeus
   </a>
 </li>
@@ -318,38 +317,38 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="conceptual/conceptual_frontpage.html"><span class="gold">Scarabaeus Conceptual Overview</span></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="conceptual/fundamentals/fundamentals_frontpage.html">Fundamentals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="conceptual/fundamentals/units_in_scb.html"><span class="gold">Working With Units in Scarabaeus</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="conceptual/fundamentals/epochs_and_time.html"><span class="gold">Epochs and Time in Scarabaeus</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="conceptual/fundamentals/constants.html"><span class="gold">Constants</span></a></li>
-<li class="toctree-l3"><a class="reference internal" href="conceptual/fundamentals/frames_in_scb.html"><span class="gold">Propagation in Scarabaeus</span></a></li>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../conceptual_frontpage.html"><span class="gold">Scarabaeus Conceptual Overview</span></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="fundamentals_frontpage.html">Fundamentals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="units_in_scb.html"><span class="gold">Working With Units in Scarabaeus</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="epochs_and_time.html"><span class="gold">Epochs and Time in Scarabaeus</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants.html"><span class="gold">Constants</span></a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#"><span class="gold">Propagation in Scarabaeus</span></a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/propagation/propagation_in_scb.html"><span class="gold">Propagation in Scarabaeus</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/propagation/propagation_mass_in_scb.html"><span class="gold">Mass Propagation in Scarabaeus</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/propagation/spacecraft_in_scb.html"><span class="gold">Spacecraft in Scarabaeus</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../propagation/propagation_in_scb.html"><span class="gold">Propagation in Scarabaeus</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../propagation/propagation_mass_in_scb.html"><span class="gold">Mass Propagation in Scarabaeus</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../propagation/spacecraft_in_scb.html"><span class="gold">Spacecraft in Scarabaeus</span></a></li>
 </ul>
 </details></li>
 </ul>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/tuts_frontpage.html"><span class="gold">Scarabaeus Tutorial Scripts</span></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/basics/tut_units.html"><span class="gold">basic_Units</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/basics/tut_celestialbody.html"><span class="gold">basic_CelestialBody</span></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/tuts_frontpage.html"><span class="gold">Scarabaeus Tutorial Scripts</span></a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basics/tut_units.html"><span class="gold">basic_Units</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basics/tut_celestialbody.html"><span class="gold">basic_CelestialBody</span></a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate Tutorials</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../_collections/tutorials/intermediate_CompareIntegrators.html">## Compare Integrators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_collections/tutorials/intermediate_CompareIntegrators.html">## Compare Integrators</a></li>
 
 
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../_collections/tutorials/intermediate_nPlateModel.html">## N-Plate Model Attitude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_collections/tutorials/intermediate_nPlateModel.html">## N-Plate Model Attitude</a></li>
 
 
 
@@ -366,11 +365,11 @@
   <ul class="indices-link">
         <li class="toctree-l1">
           <a class="reference internal"
-             href="../genindex.html"
+             href="../../../genindex.html"
              accesskey="I">General Index</a>
         </li>
         <li class="toctree-l1">
-          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+          <a class="reference internal" href="../../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -396,11 +395,20 @@
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
-      <a href="../index.html" class="nav-link" aria-label="Home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Examples</span></span></li>
+    
+    <li class="breadcrumb-item"><a href="../../learn_scb_frontpage.html" class="nav-link"><span class="gold">Examples</span></a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../conceptual_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Conceptual Overview</span></a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="fundamentals_frontpage.html" class="nav-link">Fundamentals</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Propagation in Scarabaeus</span></span></li>
   </ul>
 </nav>
 </div>
@@ -417,42 +425,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <span class="target" id="examples"></span><style> .gold {color:rgb(207 184 124)} </style><section id="id1">
-<h1><span class="gold">Examples</span><a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>This section provides provides guides to learn the fundamentals of Scarabaeus,</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="conceptual/conceptual_frontpage.html"><span class="gold">Scarabaeus Conceptual Overview</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/fundamentals/fundamentals_frontpage.html">Fundamentals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/propagation/propagation_in_scb.html"><span class="gold">Propagation in Scarabaeus</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/propagation/propagation_mass_in_scb.html"><span class="gold">Mass Propagation in Scarabaeus</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="conceptual/propagation/spacecraft_in_scb.html"><span class="gold">Spacecraft in Scarabaeus</span></a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/tuts_frontpage.html"><span class="gold">Scarabaeus Tutorial Scripts</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/basics/tut_units.html"><span class="gold">basic_Units</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/basics/tut_celestialbody.html"><span class="gold">basic_CelestialBody</span></a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate Tutorials</span></p>
-<div class="nbsphinx-gallery">
-<a class="reference internal" href="../_collections/tutorials/intermediate_CompareIntegrators.html">
-  <div><img alt="" src="../_images/_collections_tutorials_intermediate_CompareIntegrators_16_2.png"></div>
-  <div>## Compare Integrators</div>
-</a>
-<a class="reference internal" href="../_collections/tutorials/intermediate_nPlateModel.html">
-  <div><img alt="" src="../_images/_collections_tutorials_intermediate_nPlateModel_12_1.png"></div>
-  <div>## N-Plate Model Attitude</div>
-</a>
-</div>
-</div>
+  <span class="target" id="frames-in-scb"></span><style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><section id="propagation-in-scarabaeus">
+<h1><span class="gold">Propagation in Scarabaeus</span><a class="headerlink" href="#propagation-in-scarabaeus" title="Link to this heading">#</a></h1>
+<p>Originally written by M. Pugliatti on 2025 MAR ## &lt;—————– !!! UPDATE !!!</p>
+<p>Last revised by M. Pugliatti on 2025 MAR ## &lt;—————– !!! UPDATE !!!</p>
+<section id="introduction">
+<h2><span class="bold">Introduction</span><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
 
@@ -466,20 +445,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../scb_library/add_class_rsts/constants.html"
+       href="constants.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Constants</p>
+        <p class="prev-next-title"><span class="gold">Constants</span></p>
       </div>
     </a>
     <a class="right-next"
-       href="conceptual/conceptual_frontpage.html"
+       href="../propagation/propagation_in_scb.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Scarabaeus Conceptual Overview</span></p>
+        <p class="prev-next-title"><span class="gold">Propagation in Scarabaeus</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -495,10 +474,22 @@
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction"><span class="bold">Introduction</span></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/learning_and_tutorial/learn_scb_frontpage.rst.txt"
+      <li><a href="../../../_sources/learning_and_tutorial/conceptual/fundamentals/frames_in_scb.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
@@ -516,8 +507,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
