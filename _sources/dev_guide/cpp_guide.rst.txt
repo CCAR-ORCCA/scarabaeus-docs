@@ -1,7 +1,7 @@
 
 Setup to Interface C++ with Python scripts 
 ==========================================
-Last revised by S. Pattamudu-Manoharan on 2025 FEB 4
+Written by S. Pattamudu-Manoharan on 2025 FEB 4
 
 ---------------
 Mac Setup Guide
@@ -35,7 +35,7 @@ Mac Setup Guide
    * Paste the copied Eigen path into the ``setup.py`` file.
 
 6. **Build the Python Package**
-   * Run: ``python setup.py build``
+   * Run: ``python relative_path/setup.py build``
 
 7. **Add the C++ build files path to your environment, follow these steps:** 
    Append the following line to your Bash profile configuration file:
@@ -49,12 +49,15 @@ Mac Setup Guide
    * Add the following line: ``export PYTHONPATH='$PYTHONPATH:/your_cpp_build_path'``
      Update 'your_cpp_build_path' with the path of the directory that contains the compiled .so files.
 
-     Click on control + X and then Y to save and exit the file.
+     Click on control + O and then enter to save the changes, and then control + X to exit the editor.
 
    * Apply the changes by running this command: ``source ~/.bash_profile``
 
 8. **Run the Python Test Code**
    * Finally, execute the test script ``"CPP_setup_verification.py"`` to verify the setup.
+
+9. **Troubleshooting**
+   * If you are in a virtual environment, do ``echo 'export PYTHONPATH="$PYTHONPATH:$(pwd)/build/lib.macosx-*/your_module"' >> .venv/bin/activate`` to ensure it includes the path to your C++ build.
 
 -------------------
 Windows Setup Guide
