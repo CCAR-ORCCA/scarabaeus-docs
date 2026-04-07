@@ -7,17 +7,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Introduction to developer guide for Scarabaeus" lang="en" name="description" xml:lang="en" />
-<meta content="Scarabaeus, developer guide" name="keywords" />
-<meta property="og:title" content="Developer Guide" />
+<meta content="Tutorial for Scarabaeus developers to build compiled Rust code from source." lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus, developer guide, Rust, compiled code" name="keywords" />
+<meta property="og:title" content="Building From Source" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/dev_guide_frontpage.html" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/building_from_source.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="This section outlines the guidelines adopted by the Scarabaeus development team with regards to coding conventions, documentation and testing, as well as building compiled code and pushing/pulling from the SCB repository. Setting Up and Using the Development Environment, Building From Source." />
+<meta property="og:description" content="Scarabaeus utilizes Rust code for computationally expensive tasks. In order to develop within SCB, this code must be compiled. The following will guide a developer through the steps required to compile Rust code and bind it to SCB’s Python front end. Rust setup instructions adapted from Visual Studio Code for Scarabaeus-specific development. Install Rust: Follow the instructions provided by the rustup installer, which supports installation for Windows, macOS, and Linux. Once Rust is installed..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
-    <title>Developer Guide &#8212; Scarabaeus  documentation</title>
+    <title>Building From Source &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -59,12 +59,12 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/dev_guide_frontpage';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/building_from_source';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setting Up and Using the Development Environment" href="dev_environ.html" />
-    <link rel="prev" title="## N-Plate Model Attitude" href="../_collections/tutorials/intermediate_nPlateModel.html" />
+    <link rel="next" title="About Scarabaeus" href="../about_scb.html" />
+    <link rel="prev" title="Setting Up and Using the Development Environment" href="dev_environ.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -171,7 +171,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
     Developer Guide
   </a>
 </li>
@@ -278,7 +278,7 @@
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
     Developer Guide
   </a>
 </li>
@@ -317,9 +317,9 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="dev_environ.html"><span class="gold">Setting Up and Using the Development Environment</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_from_source.html"><span class="gold">Building From Source</span></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="gold">Building From Source</span></a></li>
 </ul>
 </div>
 </nav></div>
@@ -366,7 +366,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Developer Guide</span></span></li>
+    
+    <li class="breadcrumb-item"><a href="dev_guide_frontpage.html" class="nav-link"><span class="gold">Developer Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Building From Source</span></span></li>
   </ul>
 </nav>
 </div>
@@ -383,17 +386,50 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <span class="target" id="dev-guide"></span><style> .gold {color:rgb(207 184 124)} </style><section id="developer-guide">
-<h1><span class="gold">Developer Guide</span><a class="headerlink" href="#developer-guide" title="Link to this heading">#</a></h1>
-<p>This section outlines the guidelines adopted by the Scarabaeus development team with
-regards to coding conventions, documentation and testing, as well as building compiled code
-and pushing/pulling from the SCB repository.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_environ.html"><span class="gold">Setting Up and Using the Development Environment</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_from_source.html"><span class="gold">Building From Source</span></a></li>
-</ul>
+  <span class="target" id="buildsource"></span><style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><section id="building-from-source">
+<h1><span class="gold">Building From Source</span><a class="headerlink" href="#building-from-source" title="Link to this heading">#</a></h1>
+<p>Scarabaeus utilizes Rust code for computationally expensive tasks. In order to develop within SCB, this code must be compiled. The following will guide a developer through the steps required to compile Rust code and bind it to SCB’s Python front end.</p>
+<p>Rust setup instructions adapted from <a class="reference external" href="https://code.visualstudio.com/docs/languages/rust">Visual Studio Code</a> for Scarabaeus-specific development.</p>
+<section id="install-rust">
+<h2><span class="bold">Install Rust</span><a class="headerlink" href="#install-rust" title="Link to this heading">#</a></h2>
+<p>Follow the instructions provided by the <a class="reference external" href="https://rustup.rs/">rustup installer</a>, which supports installation for Windows, macOS, and Linux. Once Rust is installed, restart any terminal/Command Prompt and VS Code instances.</p>
+<p>Once you’ve installed Rust and restarted all terminals, check to make sure everything is installed by typing in your terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">rustc --version</span>
+</pre></div>
 </div>
+<p>This will output the version of the Rust compiler if it’s installed.</p>
+</section>
+<section id="install-and-link-rust-analyzer-extension">
+<h2><span class="bold">Install and Link rust-analyzer Extension</span><a class="headerlink" href="#install-and-link-rust-analyzer-extension" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">rust analyzer extension</a> makes writing Rust code in VS Code significantly easier by providing IDE functionalities like auto-complete, inline errors, and auto-formatting. Install it via the VS Code Extensions tab.</p>
+<p>Due to the structure of the <cite>src</cite> folder, we’ll have to manually link SCB’s Rust module <code class="docutils literal notranslate"><span class="pre">src/scarabaeus_rust/</span></code> to rust-analyzer in its settings:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code> on Windows/Linux or <code class="docutils literal notranslate"><span class="pre">Cmd</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code> on Mac</p></li>
+<li><p>Search for <cite>Preferences: Open User Settings</cite> and open it</p></li>
+<li><p>In User Settings, search for <cite>rust-analyzer: Linked Projects</cite> and select <cite>Edit in settings.json</cite></p></li>
+<li><p>In the <cite>rust-analyzer.linkedProjects</cite> field, add:
+<code class="docutils literal notranslate"><span class="pre">[&quot;src/scarabaeus_rust/Cargo.toml&quot;]</span></code></p></li>
+</ol>
+<p>This will allow rust-analyzer to link to our Cargo file. Without it, we won’t be able to utilize the IDE functionalities provided by rust-analyzer.</p>
+</section>
+<section id="build-rust-source">
+<h2><span class="bold">Build Rust Source</span><a class="headerlink" href="#build-rust-source" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="devenviron">SCB dev environment</a> includes <a class="reference external" href="https://github.com/pyo3/maturin">maturin</a>, which will allow us to build our Rust binaries as a Python package so that they’re callable within SCB’s frontend.
+SCB’s Rust source code is separated from Python source code, placed in the <code class="docutils literal notranslate"><span class="pre">src/scarabaeus_rust</span></code> folder. To compile this code, run in your terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="go">maturin develop</span>
+</pre></div>
+</div>
+<p>This will build and bind the Rust code to the Python component of SCB, allowing compiled Rust code to be called within Python. If you are working solely on Python code (under <code class="docutils literal notranslate"><span class="pre">src/scarabaeus</span></code>), you will only need to run this the first time you’ve cloned the Rust code. However, if you are developing new Rust code, continue to the next step.</p>
+</section>
+<section id="expose-new-rust-code-to-python">
+<h2><span class="bold">Expose (New) Rust Code to Python</span><a class="headerlink" href="#expose-new-rust-code-to-python" title="Link to this heading">#</a></h2>
+<p>If you are modifying or writing any Rust code, you’ll need to define and/or update its corresponding stub in the stub file <code class="docutils literal notranslate"><span class="pre">src/scarabaeus/scarabaeus_rust.pyi</span></code> before building with <code class="docutils literal notranslate"><span class="pre">maturin</span> <span class="pre">develop</span></code>. This stub file provides the docstrings used for documentation generation as well as inline definitions for any Rust code bound to Python.</p>
+<p>Additionally, if you’ve created a brand new class (Rust struct bound to Python class), youll need to add it to the <code class="docutils literal notranslate"><span class="pre">scarabaeus_rust</span></code> package in the lib file <code class="docutils literal notranslate"><span class="pre">src/scarabaeus_rust/src/lib.rs</span></code> using:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="p">.</span><span class="n">add_class</span><span class="p">::</span><span class="o">&lt;</span><span class="n">ClassName</span><span class="o">&gt;</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that the <cite>&lt;&gt;</cite> are part of the code, not to denote an insertion.</p>
+</section>
 </section>
 
 
@@ -407,20 +443,20 @@ and pushing/pulling from the SCB repository.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../_collections/tutorials/intermediate_nPlateModel.html"
+       href="dev_environ.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">## N-Plate Model Attitude</p>
+        <p class="prev-next-title"><span class="gold">Setting Up and Using the Development Environment</span></p>
       </div>
     </a>
     <a class="right-next"
-       href="dev_environ.html"
+       href="../about_scb.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Setting Up and Using the Development Environment</span></p>
+        <p class="prev-next-title"><span class="gold">About Scarabaeus</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -436,10 +472,25 @@ and pushing/pulling from the SCB repository.</p>
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-rust"><span class="bold">Install Rust</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-link-rust-analyzer-extension"><span class="bold">Install and Link rust-analyzer Extension</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-rust-source"><span class="bold">Build Rust Source</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expose-new-rust-code-to-python"><span class="bold">Expose (New) Rust Code to Python</span></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/dev_guide/dev_guide_frontpage.rst.txt"
+      <li><a href="../_sources/dev_guide/building_from_source.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

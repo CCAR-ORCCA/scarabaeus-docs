@@ -7,16 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="Additional Resources" />
+<meta property="og:title" content="Scarabaeus Developer Setup Guide" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/add_resources.html" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/dev_link.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Links to any additional resources." />
+<meta property="og:description" content="There are a few tools that developers will need while working on SCB that aren’t required for a general user. In order to use these, we’ll need to install SCB as an editable package with a few more developer tools. In your virtual environment, run: The developer environment includes the following additional dependencies: Rust Compilation: maturin: build Rust code and bind it to Python. Git Filtering: pre-commit: manage Scarabaeus Git hooks, nbstripout: remove cell results from Jupyter Noteboo..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Links to any additional resources." />
+<meta name="description" content="There are a few tools that developers will need while working on SCB that aren’t required for a general user. In order to use these, we’ll need to install SCB as an editable package with a few more developer tools. In your virtual environment, run: The developer environment includes the following additional dependencies: Rust Compilation: maturin: build Rust code and bind it to Python. Git Filtering: pre-commit: manage Scarabaeus Git hooks, nbstripout: remove cell results from Jupyter Noteboo..." />
 
-    <title>Additional Resources &#8212; Scarabaeus  documentation</title>
+    <title>Scarabaeus Developer Setup Guide &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -59,7 +59,7 @@
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/add_resources';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/dev_link';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -353,7 +353,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Additional Resources</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Scarabaeus Developer Setup Guide</span></li>
   </ul>
 </nav>
 </div>
@@ -370,9 +370,93 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="additional-resources">
-<span id="add-resources"></span><h1>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h1>
-<p>Links to any additional resources.</p>
+  <section id="scarabaeus-developer-setup-guide">
+<h1>Scarabaeus Developer Setup Guide<a class="headerlink" href="#scarabaeus-developer-setup-guide" title="Link to this heading">#</a></h1>
+<p>There are a few tools that developers will need while working on SCB that aren’t required for a general user. In order to use these, we’ll need to install SCB as an editable package with a few more developer tools. In your virtual environment, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span> <span class="o">--</span><span class="n">group</span> <span class="n">dev</span>
+</pre></div>
+</div>
+<p>The developer environment includes the following additional dependencies:</p>
+<p><strong>Rust Compilation</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pyo3/maturin">maturin</a>: build Rust code and bind it to Python</p></li>
+</ul>
+<p><strong>Git Filtering</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/pre-commit/">pre-commit</a>: manage Scarabaeus Git hooks</p></li>
+<li><p><a class="reference external" href="https://github.com/kynan/nbstripout">nbstripout</a>: remove cell results from Jupyter Notebooks when pushing to Git</p></li>
+</ul>
+<p><strong>Documentation</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/">numpydoc</a>: formatting for documentation generation</p></li>
+</ul>
+<p><strong>Testing</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a>: testing suite architecture</p></li>
+</ul>
+<p>The following sections require the packages installed with the dev environment to function.</p>
+</section>
+<section id="compiled-code">
+<h1>Compiled Code<a class="headerlink" href="#compiled-code" title="Link to this heading">#</a></h1>
+<p>Scarabaeus utilizes Rust code for computationally expensive tasks. In order to develop within SCB, this code must be compiled. This section will guide a developer through the steps required to compile Rust code and bind it to SCB’s Python front end.</p>
+<p>Rust setup instructions adapted from <a class="reference external" href="https://code.visualstudio.com/docs/languages/rust">Visual Studio Code</a> for Scarabaeus-specific development.</p>
+<section id="install-rust">
+<h2>1. Install Rust<a class="headerlink" href="#install-rust" title="Link to this heading">#</a></h2>
+<p>Follow the instructions provided by the <a class="reference external" href="https://rustup.rs/">rustup installer</a>, which supports installation for Windows, macOS, and Linux. Once Rust is installed, restart any terminal/Command Prompt and VS Code instances.</p>
+<p>Once you’ve installed Rust and restarted all terminals, check to make sure everything is installed by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rustc</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>This will output the version of the Rust compiler if it’s installed.</p>
+</section>
+<section id="install-and-link-rust-analyzer-extension">
+<h2>2. Install and Link rust-analyzer Extension<a class="headerlink" href="#install-and-link-rust-analyzer-extension" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">rust analyzer extension</a> makes writing Rust code in VS Code significantly easier by providing IDE functionalities like auto-complete, inline errors, and auto-formatting. Install it via the VS Code Extensions tab.</p>
+<p>Due to the structure of the <a class="reference internal" href="#src/"><span class="xref myst">src</span></a> folder, we’ll have to manually link <a class="reference internal" href="#src/scarabaeus_rust/"><span class="xref myst">SCB’s Rust module</span></a> to rust-analyzer in its settings:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code> on Windows/Linux or <code class="docutils literal notranslate"><span class="pre">Cmd</span></code> + <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">P</span></code> on Mac</p></li>
+<li><p>Search for <code class="docutils literal notranslate"><span class="pre">Preferences:</span> <span class="pre">Open</span> <span class="pre">User</span> <span class="pre">Settings</span></code> and open it</p></li>
+<li><p>In User Settings, search for <code class="docutils literal notranslate"><span class="pre">rust-analyzer:</span> <span class="pre">Linked</span> <span class="pre">Projects</span></code> and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">in</span> <span class="pre">settings.json</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">rust-analyzer.linkedProjects</span></code> field, add</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s2">&quot;src/scarabaeus_rust/Cargo.toml&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This will allow rust-analyzer to link to our Cargo file. Without it, we won’t be able to utilize the IDE functionalities provided by rust-analyzer.</p>
+</section>
+<section id="build-scarabaeus-rust">
+<h2>3. Build <code class="docutils literal notranslate"><span class="pre">scarabaeus_rust</span></code><a class="headerlink" href="#build-scarabaeus-rust" title="Link to this heading">#</a></h2>
+<p>The SCB dev environment includes <a class="reference external" href="https://github.com/pyo3/maturin">maturin</a>, which will allow us to build our Rust binaries as a Python package so that they’re callable within SCB’s frontend.
+SCB’s Rust source code is separated from Python source code, placed in the <a class="reference internal" href="#src/scarabaeus_rust/"><span class="xref myst">src/scarabaeus_rust</span></a> folder. To compile this code, run in your terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="n">maturin</span> <span class="n">develop</span>
+</pre></div>
+</div>
+<p>This will build and bind the Rust code to the Python component of SCB, allowing compiled Rust code to be called within Python. If you are working solely on Python code (under <a class="reference internal" href="#src/scarabaeus/"><span class="xref myst">src/scarabaeus</span></a>), you will only need to run this the first time you’ve cloned the Rust code. However, if you are developing new Rust code, continue to the next step.</p>
+</section>
+<section id="expose-rust-to-python-writing-rust-code-only">
+<h2>4. Expose Rust to Python (Writing Rust Code Only)<a class="headerlink" href="#expose-rust-to-python-writing-rust-code-only" title="Link to this heading">#</a></h2>
+<p>If you are modifying or writing any Rust code, you’ll need to define and/or update its corresponding stub in the <a class="reference internal" href="#src/scarabaeus/scarabaeus_rust.pyi"><span class="xref myst">stub file</span></a> before building with <code class="docutils literal notranslate"><span class="pre">maturin</span> <span class="pre">develop</span></code>. This stub file provides the docstrings used for documentation generation as well as inline definitions for any Rust code bound to Python.</p>
+<p>Additionally, if you’ve created a brand new class (Rust struct bound to Python class), youll need to add it to the <code class="docutils literal notranslate"><span class="pre">scarabaeus_rust</span></code> package in the <a class="reference internal" href="#src/scarabaeus_rust/src/lib.rs"><span class="xref myst">lib file</span></a> using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>m.add_class::&lt;ClassName&gt;()?;
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> are part of the code, not to denote an insertion.</p>
+</section>
+</section>
+<section id="scarabaeus-testing-suite">
+<h1>Scarabaeus Testing Suite<a class="headerlink" href="#scarabaeus-testing-suite" title="Link to this heading">#</a></h1>
+<p>INFO ABOUT TESTS</p>
+</section>
+<section id="commit-hooks">
+<h1>Commit Hooks<a class="headerlink" href="#commit-hooks" title="Link to this heading">#</a></h1>
+<p>IPYNB CELL CLEANING INFO HERE</p>
+<p>The first time you clone the repository as a developer, in the terminal run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">.</span><span class="n">venv</span><span class="p">)</span> <span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>This will add Scarabaeus’ development hooks to your Git configuration, acting as an extra layer of quality assurance when you push a commit. If the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> command is not found, ensure that you’ve installed the Scarabaeus dev environment.</p>
+<p>PLAN TO MAKE CI/CD RUNNER CHECK THAT YOUR CONFIG INCLUDES THESE HOOKS AND ONLY LET YOU PUSH IF IT DOES</p>
 </section>
 
 
@@ -397,10 +481,32 @@
 
 
   <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Scarabaeus Developer Setup Guide</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compiled-code">Compiled Code</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-rust">1. Install Rust</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-and-link-rust-analyzer-extension">2. Install and Link rust-analyzer Extension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-scarabaeus-rust">3. Build <code class="docutils literal notranslate"><span class="pre">scarabaeus_rust</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expose-rust-to-python-writing-rust-code-only">4. Expose Rust to Python (Writing Rust Code Only)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus-testing-suite">Scarabaeus Testing Suite</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-hooks">Commit Hooks</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/dev_guide/add_resources.rst.txt"
+      <li><a href="../_sources/dev_guide/dev_link.md.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>

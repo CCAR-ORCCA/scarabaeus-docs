@@ -7,17 +7,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Introduction to developer guide for Scarabaeus" lang="en" name="description" xml:lang="en" />
-<meta content="Scarabaeus, developer guide" name="keywords" />
-<meta property="og:title" content="Developer Guide" />
+<meta content="Unit testing in Scarabaeus." lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus, unit testing" name="keywords" />
+<meta property="og:title" content="Unit Tests" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/dev_guide_frontpage.html" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/dev_guide/unit_testing.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="This section outlines the guidelines adopted by the Scarabaeus development team with regards to coding conventions, documentation and testing, as well as building compiled code and pushing/pulling from the SCB repository. Setting Up and Using the Development Environment, Building From Source." />
+<meta property="og:description" content="Written by Z. Ellis on 2025 JUN 24 WIP" />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
-    <title>Developer Guide &#8212; Scarabaeus  documentation</title>
+    <title>Unit Tests &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=80994b75" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
   
   <!-- So that users can add custom icons -->
   <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -59,12 +59,11 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/dev_guide_frontpage';</script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dev_guide/unit_testing';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setting Up and Using the Development Environment" href="dev_environ.html" />
-    <link rel="prev" title="## N-Plate Model Attitude" href="../_collections/tutorials/intermediate_nPlateModel.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -170,8 +169,8 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
     Developer Guide
   </a>
 </li>
@@ -277,8 +276,8 @@
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="#">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="dev_guide_frontpage.html">
     Developer Guide
   </a>
 </li>
@@ -317,11 +316,7 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="dev_environ.html"><span class="gold">Setting Up and Using the Development Environment</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_from_source.html"><span class="gold">Building From Source</span></a></li>
-</ul>
-</div>
+  <div class="bd-toc-item navbar-nav"></div>
 </nav></div>
     </div>
   
@@ -366,7 +361,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Developer Guide</span></span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Unit Tests</span></span></li>
   </ul>
 </nav>
 </div>
@@ -383,17 +378,10 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <span class="target" id="dev-guide"></span><style> .gold {color:rgb(207 184 124)} </style><section id="developer-guide">
-<h1><span class="gold">Developer Guide</span><a class="headerlink" href="#developer-guide" title="Link to this heading">#</a></h1>
-<p>This section outlines the guidelines adopted by the Scarabaeus development team with
-regards to coding conventions, documentation and testing, as well as building compiled code
-and pushing/pulling from the SCB repository.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_environ.html"><span class="gold">Setting Up and Using the Development Environment</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_from_source.html"><span class="gold">Building From Source</span></a></li>
-</ul>
-</div>
+  <span class="target" id="unit-testing"></span><style> .gold {color:rgb(207 184 124)} </style><section id="unit-tests">
+<h1><span class="gold">Unit Tests</span><a class="headerlink" href="#unit-tests" title="Link to this heading">#</a></h1>
+<p>Written by Z. Ellis on 2025 JUN 24</p>
+<p>WIP</p>
 </section>
 
 
@@ -406,24 +394,6 @@ and pushing/pulling from the SCB repository.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../_collections/tutorials/intermediate_nPlateModel.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">## N-Plate Model Attitude</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="dev_environ.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Setting Up and Using the Development Environment</span></p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -439,7 +409,7 @@ and pushing/pulling from the SCB repository.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/dev_guide/dev_guide_frontpage.rst.txt"
+      <li><a href="../_sources/dev_guide/unit_testing.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
