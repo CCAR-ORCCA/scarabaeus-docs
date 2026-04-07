@@ -7,13 +7,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="Scarabaeus is an open-source navigation tool being developed by the Orbital Research Cluster for Celestial Applications (ORCCA) laboratory at the University of Colorado Boulder.  Scarabaeus’ architecture is based on a modular, object-oriented, Python front end with a C++ backend for computationally intensive components.  - Measurement data-centric approach and organization. - All data and calculations are associated and carried out with attached units to ensure correctness by construction. - Integration with the open-source SPICE toolkit. - User interaction entirely through Python and/or graphical interfaces for improved usability.  Under the hood, Scarabaeus is designed for high-numerical accuracy propagation using state-of-the-art integrators with a range of dynamic models including multi-body gravity, spherical harmonics or polyhedral gravity, central body gravity, cannonball or plate-based solar radiation pressure, and impulsive or finite burn thrust models.  Scarabaeus is designed to process radiometric data as well as optical navigation measurements, to answer the needs of future deep-space exploration missions." lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus is an open-source navigation tool being developed by the Orbital Research Cluster for Celestial Applications (ORCCA) laboratory at the University of Colorado Boulder.  Scarabaeus’ architecture is based on a modular, object-oriented, Python front end with a Rust backend for computationally intensive components.  - Measurement data-centric approach and organization. - All data and calculations are associated and carried out with attached units to ensure correctness by construction. - Integration with the open-source SPICE toolkit. - User interaction entirely through Python and/or graphical interfaces for improved usability.  Under the hood, Scarabaeus is designed for high-numerical accuracy propagation using state-of-the-art integrators with a range of dynamic models including multi-body gravity, spherical harmonics or polyhedral gravity, central body gravity, cannonball or plate-based solar radiation pressure, and impulsive or finite burn thrust models.  Scarabaeus is designed to process radiometric data as well as optical navigation measurements, to answer the needs of future deep-space exploration missions." lang="en" name="description" xml:lang="en" />
 <meta content="Scarabaeus, documentation, open-source, orbit determination, navigation, measurements, SPICE, ORCCA Labratory, CCAR, CU Boulder" name="keywords" />
 <meta property="og:title" content="Welcome to Scarabaeus!" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/index.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Scarabaeus is an open-source navigation tool being developed by the Orbital Research Cluster for Celestial Applications (ORCCA) laboratory at the University of Colorado Boulder. Scarabaeus’ architecture is based on a modular, object-oriented, Python front end with a C++ backend for computationally intensive components. The tool has been built with several core principles including: Measurement data-centric approach and organization., All data and calculations are associated and carried out wi..." />
+<meta property="og:description" content="Scarabaeus is an open-source navigation tool being developed by the Orbital Research Cluster for Celestial Applications (ORCCA) laboratory at the University of Colorado Boulder. Scarabaeus’ architecture is based on a modular, object-oriented, Python front end with a Rust backend for computationally intensive components. The tool has been built with several core principles including: Measurement data-centric approach and organization., All data and calculations are associated and carried out w..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=cf328a27" />
   
@@ -52,16 +53,18 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="User Guide" href="user_guide/user_guide_frontpage.html" />
+    <link rel="next" title="Scarabaeus User Guide" href="user_guide/user_guide_frontpage.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -148,7 +151,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -162,7 +165,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -253,7 +256,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -267,7 +270,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -341,15 +344,15 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><a class="only-dark reference internal image-reference" href="_images/scarabaeus_logo_dark.png"><img alt="_images/scarabaeus_logo_dark.png" class="only-dark align-right" src="_images/scarabaeus_logo_dark.png" style="width: 250px;" />
+  <style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><a class="only-dark reference internal image-reference" href="_images/scarabaeus_logo_dark.png"><img alt="_images/scarabaeus_logo_dark.png" class="align-right only-dark" src="_images/scarabaeus_logo_dark.png" width="250" />
 </a>
-<a class="only-light reference internal image-reference" href="_images/scarabaeus_logo.png"><img alt="_images/scarabaeus_logo.png" class="only-light align-right" src="_images/scarabaeus_logo.png" style="width: 250px;" />
+<a class="only-light reference internal image-reference" href="_images/scarabaeus_logo.png"><img alt="_images/scarabaeus_logo.png" class="align-right only-light" src="_images/scarabaeus_logo.png" width="250" />
 </a>
 <section id="welcome-to-scarabaeus">
 <h1><span class="gold">Welcome to Scarabaeus!</span><a class="headerlink" href="#welcome-to-scarabaeus" title="Link to this heading">#</a></h1>
 <p>Scarabaeus is an open-source navigation tool being developed by the Orbital Research
 Cluster for Celestial Applications (ORCCA) laboratory at the University of Colorado Boulder.</p>
-<p>Scarabaeus’ architecture is based on a modular, object-oriented, Python front end with a C++ backend for
+<p>Scarabaeus’ architecture is based on a modular, object-oriented, Python front end with a Rust backend for
 computationally intensive components. The tool has been built with several core principles including:</p>
 <ul class="simple">
 <li><p>Measurement data-centric approach and organization.</p></li>
@@ -381,7 +384,7 @@ use and purpose of the project. New to
 Scarabaeus? Start here!</p>
 </div>
 <div class="sd-card-footer docutils">
-<p class="sd-text-center sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info reference internal" href="user_guide/user_guide_frontpage.html#user-guide-front"><span class="std std-ref">To the User Guide</span></a></p>
+<p class="sd-text-center sd-card-text"><span class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info sd-stretched-link">To the User Guide</span></p>
 </div>
 </div>
 </div>
@@ -401,7 +404,7 @@ explanations for how each object functions
 and accepted input parameters.</p>
 </div>
 <div class="sd-card-footer docutils">
-<p class="sd-text-center sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info reference internal" href="scb_library/lib_ref.html#api-reference"><span class="std std-ref">To the API Reference</span></a></p>
+<p class="sd-text-center sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info sd-stretched-link reference external" href="https://docs.python.org/3.11/distutils/apiref.html#api-reference" title="(in Python v3.11)"><span>To the API Reference</span></a></p>
 </div>
 </div>
 </div>
@@ -420,12 +423,12 @@ and accepted input parameters.</p>
 </div>
 <div class="sd-card-body docutils">
 <p class="sd-card-text">Line-by-line walkthroughs for
-common Scarabaeus tasks. Example
+Scarabaeus tasks. Example
 demos to show holistic Scarabaeus
 functionality.</p>
 </div>
 <div class="sd-card-footer docutils">
-<p class="sd-text-center sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info reference internal" href="learning_and_tutorial/learn_scb_frontpage.html#learn"><span class="std std-ref">To Demos &amp; Tutorials</span></a></p>
+<p class="sd-text-center sd-card-text"><span class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info sd-stretched-link">To Demos &amp; Tutorials</span></p>
 </div>
 </div>
 </div>
@@ -441,11 +444,10 @@ functionality.</p>
 <div class="sd-card-body docutils">
 <p class="sd-card-text">Style guide, best practices, and
 expected standards for developing
-in Scarabaeus. Tutorials for creating
-and maintaining the unit testing suite.</p>
+in Scarabaeus.</p>
 </div>
 <div class="sd-card-footer docutils">
-<p class="sd-text-center sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info reference internal" href="dev_guide/dev_guide_frontpage.html#dev-guide"><span class="std std-ref">To the Developer Guide</span></a></p>
+<p class="sd-text-center sd-card-text"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-info sd-stretched-link reference internal" href="dev_guide/dev_guide_frontpage.html#dev-guide"><span class="std std-ref">To the Developer Guide</span></a></p>
 </div>
 </div>
 </div>
@@ -453,54 +455,8 @@ and maintaining the unit testing suite.</p>
 </div>
 <hr class="docutils" />
 <p><a class="reference internal" href="_images/ccar_logo_w_name_transparent.png"><img alt="pic1" src="_images/ccar_logo_w_name_transparent.png" style="width: 45%;" /></a>  <a class="reference internal" href="_images/ORCCA_Logo_Reverse.png"><img alt="pic2" src="_images/ORCCA_Logo_Reverse.png" style="width: 45%;" /></a></p>
-<section id="contents">
-<h2><span class="gold">Contents</span><a class="headerlink" href="#contents" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="user_guide/user_guide_frontpage.html"><span class="gold">User Guide</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/setup_and_use.html"><span class="gold">Install and Set Up Scarabaeus</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/db_setup.html"><span class="gold">MongoDB Installation and Setup</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/external_libraries.html"><span class="gold">Libraries</span></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="scb_library/lib_ref.html"><span class="gold">API Reference</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#body-module"><span class="blue">Body Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#dynamics-module"><span class="blue">Dynamics Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#environment-module"><span class="blue">Environment Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#guidance-module"><span class="blue">Guidance Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#measurements-module"><span class="blue">Measurements Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#orbit-determination-module"><span class="blue">Orbit Determination Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#spacecraft-module"><span class="blue">Spacecraft Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#time-and-frame-module"><span class="blue">Time and Frame Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#units-module"><span class="blue">Units Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#utilities-module"><span class="blue">Utilities Module</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="scb_library/lib_ref.html#additional-classes"><span class="blue">Additional Classes</span></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="learning_and_tutorial/learn_scb_frontpage.html"><span class="gold">Learn Scarabaeus</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="learning_and_tutorial/units_in_scb.html"><span class="gold">Working With Units in Scarabaeus</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="learning_and_tutorial/constants.html"><span class="gold">Constants</span></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dev_guide/dev_guide_frontpage.html"><span class="gold">Developer Guide</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dev_guide/style_guide.html"><span class="gold">Scarabaeus Coding Conventions</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev_guide/external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev_guide/updating_ext_res.html"><span class="gold">Updating the External Resource</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="dev_guide/cpp_guide.html">Setup to Interface C++ with Python scripts</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="about_scb.html"><span class="gold">About Scarabaeus</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="about_scb.html#the-team"><span class="gold">The Team</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="about_scb.html#origin-of-the-name"><span class="gold">Origin of the Name</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="about_scb.html#motivation"><span class="gold">Motivation</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="about_scb.html#related-publications"><span class="gold">Related Publications</span></a></li>
-</ul>
-</li>
-</ul>
 </div>
-</section>
 </section>
 
 
@@ -518,7 +474,7 @@ and maintaining the unit testing suite.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">User Guide</span></p>
+        <p class="prev-next-title"><span class="gold">Scarabaeus User Guide</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -561,7 +517,7 @@ and maintaining the unit testing suite.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>
