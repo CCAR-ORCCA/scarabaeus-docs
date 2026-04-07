@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
@@ -49,11 +50,13 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/environment_rsts/missionsequence';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -146,7 +149,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -160,7 +163,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -253,7 +256,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -267,7 +270,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -312,11 +315,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/cannonballsrp.html">1. CannonBallSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
@@ -326,15 +332,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/threebodygravity.html">9. ThreeBodyGravity</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. MissionSequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="propagator.html">2. Propagator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scenariosetup.html">3. ScenarioSetup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="statearray.html">4. StateArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trajectory.html">5. Trajectory</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
@@ -347,7 +359,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
@@ -355,27 +369,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">4. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">5. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">6. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">7. Thruster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
@@ -383,9 +402,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -454,7 +476,7 @@
 <h1><span class="section-number">1. </span>MissionSequence<a class="headerlink" href="#missionsequence" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MissionSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.MissionSequence" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MissionSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.MissionSequence" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents a sequence of mission segments, including propagation legs and impulsive burns.</p>
 <p>Manages the trajectory propagation structure, ensuring logical
@@ -462,16 +484,12 @@ consistency between consecutive mission segments. Defines the order of events, m
 state vectors, handles epoch continuity, and enables dynamic modeling through an associated propagator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the mission sequence.</p></li>
-<li><p><strong>propagator</strong> (<a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – The propagator responsible for simulating the spacecraft dynamics.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the mission sequence.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <ul class="simple">
 <li><p>The first leg must define the complete initial state.</p></li>
-<li><p>A leg cannot follow another leg without an intervening impulsive burn.</p></li>
 <li><p>Estimated impulsive burns must be followed by a “dv_man” parameter in the next leg.</p></li>
 <li><p>The mission sequence structure ensures strict consistency in epochs and state transitions.</p></li>
 </ul>
@@ -479,11 +497,8 @@ state vectors, handles epoch continuity, and enables dynamic modeling through an
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
 
-<span class="c1"># Define propagator</span>
-<span class="n">prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Propagator</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-
 <span class="c1"># Initialize mission sequence</span>
-<span class="n">mission</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MissionSequence</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;EMA123&quot;</span><span class="p">,</span> <span class="n">propagator</span><span class="o">=</span><span class="n">prop</span><span class="p">)</span>
+<span class="n">mission</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MissionSequence</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;EMA123&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define initial leg</span>
 <span class="n">state_vec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># Initial state vector</span>
@@ -523,11 +538,17 @@ state vectors, handles epoch continuity, and enables dynamic modeling through an
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.num_steps" title="scarabaeus.MissionSequence.num_steps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">num_steps</span></code></a></p></td>
 <td><p>Number of integration steps per leg, or None for impulsive burns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.periods" title="scarabaeus.MissionSequence.periods"><code class="xref py py-obj docutils literal notranslate"><span class="pre">periods</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.origins" title="scarabaeus.MissionSequence.origins"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origins</span></code></a></p></td>
+<td><p>List of origins for each leg in the sequence.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.periods" title="scarabaeus.MissionSequence.periods"><code class="xref py py-obj docutils literal notranslate"><span class="pre">periods</span></code></a></p></td>
 <td><p>List of time durations for each leg in the sequence, or None for impulsive burns.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.propagator" title="scarabaeus.MissionSequence.propagator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagator</span></code></a></p></td>
-<td><p>The propagator associated with the mission sequence.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.primary_body" title="scarabaeus.MissionSequence.primary_body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primary_body</span></code></a></p></td>
+<td><p>Primary propagated object for the whole sequence (must be consistent).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.props" title="scarabaeus.MissionSequence.props"><code class="xref py py-obj docutils literal notranslate"><span class="pre">props</span></code></a></p></td>
+<td><p>List of propagator models for each leg in the sequence.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.states_n" title="scarabaeus.MissionSequence.states_n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">states_n</span></code></a></p></td>
 <td><p>List of the number of states in each leg, or None for impulsive burns.</p></td>
@@ -541,27 +562,30 @@ state vectors, handles epoch continuity, and enables dynamic modeling through an
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.addBurn" title="scarabaeus.MissionSequence.addBurn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addBurn</span></code></a>(name, dV)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.addBurn" title="scarabaeus.MissionSequence.addBurn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addBurn</span></code></a>(name, dV, prop)</p></td>
 <td><p>Adds an impulsive burn to the mission sequence.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.addLeg" title="scarabaeus.MissionSequence.addLeg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addLeg</span></code></a>(name, period, state_vector[, dt, epochs])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.addLeg" title="scarabaeus.MissionSequence.addLeg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addLeg</span></code></a>(name, period, state_vector, prop[, ...])</p></td>
 <td><p>Adds a propagation leg to the mission sequence.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.check_sequence_consistency" title="scarabaeus.MissionSequence.check_sequence_consistency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_sequence_consistency</span></code></a>()</p></td>
-<td><p>Checks the consistency of the mission sequence.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.add_finite_burn" title="scarabaeus.MissionSequence.add_finite_burn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_finite_burn</span></code></a>(name, period, state_vector, prop)</p></td>
+<td><p>Add a finite burn maneuver to the mission sequence.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.validate_impulsive_burn" title="scarabaeus.MissionSequence.validate_impulsive_burn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_impulsive_burn</span></code></a>(name, dV)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.check_sequence_consistency" title="scarabaeus.MissionSequence.check_sequence_consistency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_sequence_consistency</span></code></a>()</p></td>
+<td><p>Checks mission sequence consistency (NaN-free version).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.validate_impulsive_burn" title="scarabaeus.MissionSequence.validate_impulsive_burn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_impulsive_burn</span></code></a>(name, dV, prop)</p></td>
 <td><p>Validates the parameters of an impulsive burn before adding it.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.validate_leg" title="scarabaeus.MissionSequence.validate_leg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_leg</span></code></a>(name, period, dt, state_vector)</p></td>
-<td><p>Validates the parameters of a leg before adding it to the mission sequence.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.validate_leg" title="scarabaeus.MissionSequence.validate_leg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_leg</span></code></a>(name, period, dt, state_vector, ...)</p></td>
+<td><p>Validate a propagation leg before adding it to the mission sequence.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.addBurn">
-<span class="sig-name descname"><span class="pre">addBurn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.dynamics.ImpulsiveBurn.ImpulsiveBurn"><span class="pre">ImpulsiveBurn</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.addBurn" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">addBurn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.dynamics.ImpulsiveBurn.ImpulsiveBurn"><span class="pre">ImpulsiveBurn</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.addBurn" title="Link to this definition">#</a></dt>
 <dd><p>Adds an impulsive burn to the mission sequence.</p>
 <p>Inserts an impulsive burn event, modifying the spacecraft’s
 velocity instantaneously. The burn is added between two propagation legs,
@@ -572,6 +596,7 @@ leg.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the impulsive burn.</p></li>
 <li><p><strong>dV</strong> (<a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.ImpulsiveBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a>) – The impulsive burn model defining the velocity change.</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – The propagator responsible for simulating the spacecraft dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -582,7 +607,7 @@ leg.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.addLeg">
-<span class="sig-name descname"><span class="pre">addLeg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.addLeg" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">addLeg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.addLeg" title="Link to this definition">#</a></dt>
 <dd><p>Adds a propagation leg to the mission sequence.</p>
 <p>Defines a new segment (leg) in the mission sequence, where
 the spacecraft propagates under the specified dynamical model. The user
@@ -594,6 +619,7 @@ must specify either a time step (<cite>dt</cite>) or a predefined list of epochs
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the leg.</p></li>
 <li><p><strong>period</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – The total duration of the leg in seconds.</p></li>
 <li><p><strong>state_vector</strong> (<a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateArray</span></code></a>) – The initial state of the spacecraft for the leg.</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – The propagator responsible for simulating the spacecraft dynamics.</p></li>
 <li><p><strong>dt</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – The time step used to discretize the propagation period.
 Required if <code class="docutils literal notranslate"><span class="pre">epochs</span></code> is not provided. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>epochs</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>, <em>optional</em>) – Predefined epochs for the propagation instead of computing them
@@ -608,22 +634,53 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="scarabaeus.MissionSequence.check_sequence_consistency">
-<span class="sig-name descname"><span class="pre">check_sequence_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.check_sequence_consistency" title="Link to this definition">#</a></dt>
-<dd><p>Checks the consistency of the mission sequence.</p>
-<p>Ensures that the mission sequence follows logical constraints,
-such as epoch continuity between legs, proper state vector propagation,
-and a valid ordering of estimated parameters.</p>
+<dt class="sig sig-object py" id="scarabaeus.MissionSequence.add_finite_burn">
+<span class="sig-name descname"><span class="pre">add_finite_burn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.add_finite_burn" title="Link to this definition">#</a></dt>
+<dd><p>Add a finite burn maneuver to the mission sequence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name identifier for this finite burn maneuver.</p></li>
+<li><p><strong>period</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>) – The duration of the finite burn maneuver.</p></li>
+<li><p><strong>state_vector</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>) – The state vector model defining the burn characteristics.</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – The propagator to use for this maneuver. Must have the same primary body
+as other maneuvers in the sequence.</p></li>
+<li><p><strong>dt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Quantity</span></code>, <em>optional</em>) – The time step for propagation. Either <cite>dt</cite> or <cite>epochs</cite> must be provided,
+but not both. Default is None.</p></li>
+<li><p><strong>epochs</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>, <em>optional</em>) – Pre-computed epoch array for the maneuver. Either <cite>dt</cite> or <cite>epochs</cite> must be
+provided, but not both. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If neither <cite>dt</cite> nor <cite>epochs</cite> is provided.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If both <cite>dt</cite> and <cite>epochs</cite> are provided.</p></li>
+</ul>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>This method appends the finite burn maneuver to the mission sequence and
+automatically computes the epoch vector if not provided. The method also
+performs sequence consistency checks if there are multiple maneuvers in
+the sequence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.MissionSequence.check_sequence_consistency">
+<span class="sig-name descname"><span class="pre">check_sequence_consistency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.check_sequence_consistency" title="Link to this definition">#</a></dt>
+<dd><p>Checks mission sequence consistency (NaN-free version).</p>
+<p>Enforces:
+- epoch continuity between consecutive epochs_vec entries
+- relative ordering constraint: you can add/remove components but not reorder shared ones
+- dv_man exclusivity constraints</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.validate_impulsive_burn">
-<span class="sig-name descname"><span class="pre">validate_impulsive_burn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.dynamics.ImpulsiveBurn.ImpulsiveBurn"><span class="pre">ImpulsiveBurn</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.validate_impulsive_burn" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">validate_impulsive_burn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.dynamics.ImpulsiveBurn.ImpulsiveBurn"><span class="pre">ImpulsiveBurn</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.validate_impulsive_burn" title="Link to this definition">#</a></dt>
 <dd><p>Validates the parameters of an impulsive burn before adding it.</p>
 <p>Ensures that the burn name is unique, follows a valid mission sequence
 structure, and conforms to expected data types.</p>
@@ -632,6 +689,7 @@ structure, and conforms to expected data types.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the impulsive burn.</p></li>
 <li><p><strong>dV</strong> (<a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.ImpulsiveBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a>) – The impulsive burn model.</p></li>
+<li><p><strong>prop</strong> (<a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>) – The propagator responsible for simulating the spacecraft dynamics.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -642,91 +700,89 @@ structure, and conforms to expected data types.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.validate_leg">
-<span class="sig-name descname"><span class="pre">validate_leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs_vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.validate_leg" title="Link to this definition">#</a></dt>
-<dd><p>Validates the parameters of a leg before adding it to the mission sequence.</p>
-<p>Ensures that the provided leg parameters meet structural
-and logical requirements. It checks for correct data types, consistent
-state vector definitions, and the presence of necessary inputs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the leg.</p></li>
-<li><p><strong>period</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – The duration of the leg in seconds.</p></li>
-<li><p><strong>dt</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – The time step for discretization in seconds.</p></li>
-<li><p><strong>state_vector</strong> (<a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateArray</span></code></a>) – The state vector representing the spacecraft’s state during
-the leg.</p></li>
-<li><p><strong>epochs_vec</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>, <em>optional</em>) – Predefined epochs. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
-</dd>
-</dl>
+<span class="sig-name descname"><span class="pre">validate_leg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_vector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs_vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.validate_leg" title="Link to this definition">#</a></dt>
+<dd><p>Validate a propagation leg before adding it to the mission sequence.</p>
+<p>NaN-free semantics:
+- For the first leg: epoch + full initial state must be defined.
+- For subsequent legs: epoch/pos/vel values are allowed but will be ignored by ScenarioSetup,
+which inherits values structurally from the previous leg (name/body/size match).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.dts">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#scarabaeus.MissionSequence.dts" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dts</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MissionSequence.dts" title="Link to this definition">#</a></dt>
 <dd><p>List of time step lengths used for integration in each segment.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.epochs_vec">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">epochs_vec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.MissionSequence.epochs_vec" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">epochs_vec</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.epochs_vec" title="Link to this definition">#</a></dt>
 <dd><p>List of <cite>EpochArray</cite> objects defining the timestamps associated with each mission phase.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.last_idx">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">last_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.MissionSequence.last_idx" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">last_idx</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.last_idx" title="Link to this definition">#</a></dt>
 <dd><p>Indices marking the last step of each segment within the overall timeline.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.models">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">models</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.dynamics.ImpulsiveBurn.ImpulsiveBurn"><span class="pre">ImpulsiveBurn</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.MissionSequence.models" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">models</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.dynamics.ImpulsiveBurn.ImpulsiveBurn"><span class="pre">ImpulsiveBurn</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.models" title="Link to this definition">#</a></dt>
 <dd><p>List of state models, representing either propagation states or impulsive maneuvers.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.name">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.MissionSequence.name" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.MissionSequence.name" title="Link to this definition">#</a></dt>
 <dd><p>The name of the mission sequence.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.names">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.MissionSequence.names" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">names</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.names" title="Link to this definition">#</a></dt>
 <dd><p>List of names corresponding to each sequence segment.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.num_steps">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">num_steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#scarabaeus.MissionSequence.num_steps" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_steps</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MissionSequence.num_steps" title="Link to this definition">#</a></dt>
 <dd><p>Number of integration steps per leg, or None for impulsive burns.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MissionSequence.origins">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origins</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MissionSequence.origins" title="Link to this definition">#</a></dt>
+<dd><p>List of origins for each leg in the sequence.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.periods">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">periods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.MissionSequence.periods" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">periods</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.periods" title="Link to this definition">#</a></dt>
 <dd><p>List of time durations for each leg in the sequence, or None for impulsive burns.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.MissionSequence.propagator">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">propagator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></em><a class="headerlink" href="#scarabaeus.MissionSequence.propagator" title="Link to this definition">#</a></dt>
-<dd><p>The propagator associated with the mission sequence.</p>
+<dt class="sig sig-object py" id="scarabaeus.MissionSequence.primary_body">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">primary_body</span></span><a class="headerlink" href="#scarabaeus.MissionSequence.primary_body" title="Link to this definition">#</a></dt>
+<dd><p>Primary propagated object for the whole sequence (must be consistent).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MissionSequence.props">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">props</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MissionSequence.props" title="Link to this definition">#</a></dt>
+<dd><p>List of propagator models for each leg in the sequence.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.states_n">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">states_n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#scarabaeus.MissionSequence.states_n" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">states_n</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MissionSequence.states_n" title="Link to this definition">#</a></dt>
 <dd><p>List of the number of states in each leg, or None for impulsive burns.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.types">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#scarabaeus.MissionSequence.types" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">types</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.types" title="Link to this definition">#</a></dt>
 <dd><p>List of segment types, such as <code class="docutils literal notranslate"><span class="pre">&quot;Leg&quot;</span></code> (propagation phase) or <code class="docutils literal notranslate"><span class="pre">&quot;Impulsive</span> <span class="pre">Burn&quot;</span></code>.</p>
 </dd></dl>
 
@@ -784,6 +840,7 @@ the leg.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.addBurn"><code class="docutils literal notranslate"><span class="pre">MissionSequence.addBurn()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.addLeg"><code class="docutils literal notranslate"><span class="pre">MissionSequence.addLeg()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.add_finite_burn"><code class="docutils literal notranslate"><span class="pre">MissionSequence.add_finite_burn()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.check_sequence_consistency"><code class="docutils literal notranslate"><span class="pre">MissionSequence.check_sequence_consistency()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.validate_impulsive_burn"><code class="docutils literal notranslate"><span class="pre">MissionSequence.validate_impulsive_burn()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.validate_leg"><code class="docutils literal notranslate"><span class="pre">MissionSequence.validate_leg()</span></code></a></li>
@@ -794,8 +851,10 @@ the leg.</p></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.name"><code class="docutils literal notranslate"><span class="pre">MissionSequence.name</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.names"><code class="docutils literal notranslate"><span class="pre">MissionSequence.names</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.num_steps"><code class="docutils literal notranslate"><span class="pre">MissionSequence.num_steps</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.origins"><code class="docutils literal notranslate"><span class="pre">MissionSequence.origins</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.periods"><code class="docutils literal notranslate"><span class="pre">MissionSequence.periods</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.propagator"><code class="docutils literal notranslate"><span class="pre">MissionSequence.propagator</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.primary_body"><code class="docutils literal notranslate"><span class="pre">MissionSequence.primary_body</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.props"><code class="docutils literal notranslate"><span class="pre">MissionSequence.props</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.states_n"><code class="docutils literal notranslate"><span class="pre">MissionSequence.states_n</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MissionSequence.types"><code class="docutils literal notranslate"><span class="pre">MissionSequence.types</span></code></a></li>
 </ul>
@@ -846,7 +905,7 @@ the leg.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>

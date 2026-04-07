@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
@@ -49,11 +50,13 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/dynamics_rsts/dynamicmodel';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -146,7 +149,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -160,7 +163,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -253,7 +256,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -267,7 +270,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -312,11 +315,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cannonballsrp.html">1. CannonBallSRP</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finiteburn.html">3. FiniteBurn</a></li>
@@ -326,15 +332,21 @@
 <li class="toctree-l1"><a class="reference internal" href="pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="threebodygravity.html">9. ThreeBodyGravity</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/missionsequence.html">1. MissionSequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/propagator.html">2. Propagator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/scenariosetup.html">3. ScenarioSetup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/statearray.html">4. StateArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/trajectory.html">5. Trajectory</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
@@ -347,7 +359,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
@@ -355,27 +369,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">4. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">5. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">6. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">7. Thruster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
@@ -383,9 +402,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -454,7 +476,7 @@
 <h1><span class="section-number">2. </span>DynamicModel<a class="headerlink" href="#dynamicmodel" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.DynamicModel">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DynamicModel</span></span><a class="headerlink" href="#scarabaeus.DynamicModel" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DynamicModel</span></span><a class="headerlink" href="#scarabaeus.DynamicModel" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Defines the basis for all force models used in the dynamic simulation.</p>
 <p>Provides a common interface and structure for all force models,
@@ -561,7 +583,7 @@ allowing them to be easily integrated into the simulation framework.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>

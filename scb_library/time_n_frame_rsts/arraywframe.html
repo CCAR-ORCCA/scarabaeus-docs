@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
@@ -49,17 +50,19 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/time_n_frame_rsts/arraywframe';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="2. EpochArray" href="epocharray.html" />
-    <link rel="prev" title="10. Thruster" href="../sc_rsts/thruster.html" />
+    <link rel="prev" title="7. Thruster" href="../sc_rsts/thruster.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -146,7 +149,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -160,7 +163,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -253,7 +256,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -267,7 +270,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -312,11 +315,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/cannonballsrp.html">1. CannonBallSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
@@ -326,15 +332,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/threebodygravity.html">9. ThreeBodyGravity</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/missionsequence.html">1. MissionSequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/propagator.html">2. Propagator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/scenariosetup.html">3. ScenarioSetup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/statearray.html">4. StateArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/trajectory.html">5. Trajectory</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
@@ -347,7 +359,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
@@ -355,27 +369,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">4. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">5. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">6. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">7. Thruster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. ArrayWFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="epocharray.html">2. EpochArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="frame.html">3. Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spicemanager.html">4. SpiceManager</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
@@ -383,9 +402,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -454,16 +476,16 @@
 <h1><span class="section-number">1. </span>ArrayWFrame<a class="headerlink" href="#arraywframe" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.ArrayWFrame">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ArrayWFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">units_or_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWFrame" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ArrayWFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">units_or_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWFrame" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This class define ArrayWFrame objects, which contains informations about the reference frames associated to them.
-An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a Frame on which the ArrayWUnits is specified with respect to.</p>
+<p>Defines an object that contains informations about the reference frames associated with it.</p>
+<p>An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a Frame on which the ArrayWUnits is specified with respect to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>array</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Quantity that needs to be linked with a reference frame.</p></li>
-<li><p><strong>units_or_frame</strong> (<a class="reference internal" href="../units_rsts/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-class docutils literal notranslate"><span class="pre">Units</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – scb.Units or scb.Frame objects that need to be linked with the object</p></li>
-<li><p><strong>frame</strong> (<a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>, <em>optional</em>) – scb.Frame object that need to be linked with the object. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>units_or_frame</strong> (<a class="reference internal" href="../units_rsts/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-class docutils literal notranslate"><span class="pre">Units</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – Units or Frame objects to be linked with the object</p></li>
+<li><p><strong>frame</strong> (<a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>, <em>optional</em>) – Frame object to be linked with the ArrayWFrame. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -481,7 +503,7 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus.utils.NumpyWrapper</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># generate units</span>
 <span class="n">km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
@@ -512,7 +534,7 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
 <td><p>The associated frame of the ArrayWFrame.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.quantity" title="scarabaeus.ArrayWFrame.quantity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quantity</span></code></a></p></td>
-<td><p>quantity that needs to be linked to the Frame</p></td>
+<td><p>The quantity or quantities linked to the Frame.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.shape" title="scarabaeus.ArrayWFrame.shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code></a></p></td>
 <td><p>The shape of the ArrayWFrame.</p></td>
@@ -523,12 +545,79 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.T" title="scarabaeus.ArrayWFrame.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a>()</p></td>
+<td><p>Same as self.transpose()</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.append" title="scarabaeus.ArrayWFrame.append"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append</span></code></a>(other[, axis])</p></td>
+<td><p>NEED DESC</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.convert_to" title="scarabaeus.ArrayWFrame.convert_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_to</span></code></a>(frame_target[, epoch])</p></td>
 <td><p>Convert an entire AWF from its current frame to a target frame at given epochs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.cos" title="scarabaeus.ArrayWFrame.cos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cos</span></code></a>()</p></td>
+<td><p>Trigonometric cosine operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.cross" title="scarabaeus.ArrayWFrame.cross"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cross</span></code></a>(other)</p></td>
+<td><p>Cross product operation between two ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.exp" title="scarabaeus.ArrayWFrame.exp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp</span></code></a>()</p></td>
+<td><p>Exponential operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.exp2" title="scarabaeus.ArrayWFrame.exp2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exp2</span></code></a>()</p></td>
+<td><p>Exponential base 2 operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.inverse" title="scarabaeus.ArrayWFrame.inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse</span></code></a>()</p></td>
+<td><p>Inverse operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.log" title="scarabaeus.ArrayWFrame.log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log</span></code></a>()</p></td>
+<td><p>Natural log operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.log10" title="scarabaeus.ArrayWFrame.log10"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log10</span></code></a>()</p></td>
+<td><p>Log base 10 operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.log2" title="scarabaeus.ArrayWFrame.log2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">log2</span></code></a>()</p></td>
+<td><p>Log base 2 operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.norm" title="scarabaeus.ArrayWFrame.norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">norm</span></code></a>()</p></td>
+<td><p>Matrix or vector norm operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.pseudo_inverse" title="scarabaeus.ArrayWFrame.pseudo_inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pseudo_inverse</span></code></a>()</p></td>
+<td><p>Pseudo-inverse operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.sin" title="scarabaeus.ArrayWFrame.sin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sin</span></code></a>()</p></td>
+<td><p>Trigonometric sine operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.summation" title="scarabaeus.ArrayWFrame.summation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summation</span></code></a>()</p></td>
+<td><p>Sum all elements in the ArrayWFrame object, if units allow.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.tan" title="scarabaeus.ArrayWFrame.tan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tan</span></code></a>()</p></td>
+<td><p>Trigonometric tangent operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.transpose" title="scarabaeus.ArrayWFrame.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transpose</span></code></a>()</p></td>
+<td><p>Transpose operator for ArrayWFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ArrayWFrame.unitary" title="scarabaeus.ArrayWFrame.unitary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unitary</span></code></a>()</p></td>
+<td><p>Converts a given ArrayWFrame vector into a unit vector with the same units.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.T">
+<span class="sig-name descname"><span class="pre">T</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.T" title="Link to this definition">#</a></dt>
+<dd><p>Same as self.transpose()</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#scarabaeus.ArrayWFrame.transpose" title="scarabaeus.ArrayWFrame.transpose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.ArrayWFrame.transpose</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.append" title="Link to this definition">#</a></dt>
+<dd><p>NEED DESC</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.convert_to">
 <span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.convert_to" title="Link to this definition">#</a></dt>
@@ -546,46 +635,114 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.cos">
+<span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.cos" title="Link to this definition">#</a></dt>
+<dd><p>Trigonometric cosine operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.cross">
+<span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.cross" title="Link to this definition">#</a></dt>
+<dd><p>Cross product operation between two ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.exp">
+<span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.exp" title="Link to this definition">#</a></dt>
+<dd><p>Exponential operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.exp2">
+<span class="sig-name descname"><span class="pre">exp2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.exp2" title="Link to this definition">#</a></dt>
+<dd><p>Exponential base 2 operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.inverse" title="Link to this definition">#</a></dt>
+<dd><p>Inverse operator for ArrayWFrame objects.</p>
+<p>Only valid for square matrices.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.log" title="Link to this definition">#</a></dt>
+<dd><p>Natural log operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.log10">
+<span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.log10" title="Link to this definition">#</a></dt>
+<dd><p>Log base 10 operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.log2">
+<span class="sig-name descname"><span class="pre">log2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.log2" title="Link to this definition">#</a></dt>
+<dd><p>Log base 2 operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.norm" title="Link to this definition">#</a></dt>
+<dd><p>Matrix or vector norm operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.pseudo_inverse">
+<span class="sig-name descname"><span class="pre">pseudo_inverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.pseudo_inverse" title="Link to this definition">#</a></dt>
+<dd><p>Pseudo-inverse operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.sin">
+<span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.sin" title="Link to this definition">#</a></dt>
+<dd><p>Trigonometric sine operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.summation">
+<span class="sig-name descname"><span class="pre">summation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.summation" title="Link to this definition">#</a></dt>
+<dd><p>Sum all elements in the ArrayWFrame object, if units allow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.tan">
+<span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.tan" title="Link to this definition">#</a></dt>
+<dd><p>Trigonometric tangent operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.transpose">
+<span class="sig-name descname"><span class="pre">transpose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.transpose" title="Link to this definition">#</a></dt>
+<dd><p>Transpose operator for ArrayWFrame objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.unitary">
+<span class="sig-name descname"><span class="pre">unitary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Self" title="(in Python v3.11)"><span class="pre">Self</span></a></span></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.unitary" title="Link to this definition">#</a></dt>
+<dd><p>Converts a given ArrayWFrame vector into a unit vector with the same units.</p>
+<p>Only valid for vectorial ArrayWFrame.</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.frame">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></em><a class="headerlink" href="#scarabaeus.ArrayWFrame.frame" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">frame</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.frame" title="Link to this definition">#</a></dt>
 <dd><p>The associated frame of the ArrayWFrame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ArrayWFrame</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><em>Frame</em></a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.quantity">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quantity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.ArrayWFrame.quantity" title="Link to this definition">#</a></dt>
-<dd><p>quantity that needs to be linked to the Frame</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ArrayWFrame</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
-</dd>
-</dl>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">quantity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.quantity" title="Link to this definition">#</a></dt>
+<dd><p>The quantity or quantities linked to the Frame.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ArrayWFrame.shape">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.2)"><span class="pre">ndarray</span></a></em><a class="headerlink" href="#scarabaeus.ArrayWFrame.shape" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">shape</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span><a class="headerlink" href="#scarabaeus.ArrayWFrame.shape" title="Link to this definition">#</a></dt>
 <dd><p>The shape of the ArrayWFrame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Base<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ArrayWFrame</p>
-</dd>
-<dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p>np.array</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -608,7 +765,7 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Thruster</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Thruster</p>
       </div>
     </a>
     <a class="right-next"
@@ -640,7 +797,24 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.T"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.T()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.append"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.append()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.convert_to"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.convert_to()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.cos"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.cos()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.cross"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.cross()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.exp"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.exp()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.exp2"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.exp2()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.inverse"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.inverse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.log"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.log()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.log10"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.log10()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.log2"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.log2()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.norm"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.norm()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.pseudo_inverse"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.pseudo_inverse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.sin"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.sin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.summation"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.summation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.tan"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.tan()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.transpose"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.transpose()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.unitary"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.unitary()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.frame"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.frame</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.quantity"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.quantity</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ArrayWFrame.shape"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame.shape</span></code></a></li>
@@ -692,7 +866,7 @@ An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a F
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>

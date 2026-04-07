@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
@@ -49,12 +50,15 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/dynamics_rsts/cannonballsrp';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -147,7 +151,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -161,7 +165,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -254,7 +258,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -268,7 +272,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -313,11 +317,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. CannonBallSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finiteburn.html">3. FiniteBurn</a></li>
@@ -327,15 +334,21 @@
 <li class="toctree-l1"><a class="reference internal" href="pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="threebodygravity.html">9. ThreeBodyGravity</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/missionsequence.html">1. MissionSequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/propagator.html">2. Propagator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/scenariosetup.html">3. ScenarioSetup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/statearray.html">4. StateArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/trajectory.html">5. Trajectory</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
@@ -348,7 +361,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
@@ -356,27 +371,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">4. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">5. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">6. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">7. Thruster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
@@ -384,9 +404,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -455,7 +478,7 @@
 <h1><span class="section-number">1. </span>CannonBallSRP<a class="headerlink" href="#cannonballsrp" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CannonballSRP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacecraft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><span class="pre">Spacecraft</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.CannonballSRP" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CannonballSRP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../environment_rsts/statearray.html#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacecraft</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.spacecraft.Spacecraft.Spacecraft"><span class="pre">Spacecraft</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.CannonballSRP" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.dynamics.DynamicModel.DynamicModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></p>
 <p>Models the acceleration due to Solar Radiation Pressure (SRP) using the cannonball model.</p>
 <p>This model assumes the spacecraft behaves as a perfect sphere, where the incident
@@ -537,22 +560,25 @@ and the distance from the Sun.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.area" title="scarabaeus.CannonballSRP.area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></a></p></td>
 <td><p>The cross-sectional area of the spacecraft.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.mass" title="scarabaeus.CannonballSRP.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.eta_srp" title="scarabaeus.CannonballSRP.eta_srp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eta_srp</span></code></a></p></td>
+<td><p>The SRP scale factor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.mass" title="scarabaeus.CannonballSRP.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></p></td>
 <td><p>The mass of the spacecraft, typically expressed in units of kilograms.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.origin" title="scarabaeus.CannonballSRP.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.origin" title="scarabaeus.CannonballSRP.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></p></td>
 <td><p>The celestial body that serves as the origin for the state vector.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.origin_name" title="scarabaeus.CannonballSRP.origin_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin_name</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.origin_name" title="scarabaeus.CannonballSRP.origin_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin_name</span></code></a></p></td>
 <td><p>The name of the origin body.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.p_srp" title="scarabaeus.CannonballSRP.p_srp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">p_srp</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.p_srp" title="scarabaeus.CannonballSRP.p_srp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">p_srp</span></code></a></p></td>
 <td><p>The solar radiation pressure constant at 1 AU, expreseed in units of WHAT.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_coeff" title="scarabaeus.CannonballSRP.ref_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_coeff</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_coeff" title="scarabaeus.CannonballSRP.ref_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_coeff</span></code></a></p></td>
 <td><p>The reflectivity coefficient of the spacecraft.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_frame" title="scarabaeus.CannonballSRP.ref_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_frame</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_frame" title="scarabaeus.CannonballSRP.ref_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_frame</span></code></a></p></td>
 <td><p>The reference frame in which SRP calculations are performed.</p></td>
 </tr>
 </tbody>
@@ -575,14 +601,14 @@ and the distance from the Sun.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.compute_acceleration">
-<span class="sig-name descname"><span class="pre">compute_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_acceleration" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_acceleration" title="Link to this definition">#</a></dt>
 <dd><p>Computes the acceleration due to solar radiation pressure (SRP).</p>
 <p>This method calculates the SRP acceleration experienced by the spacecraft based on its
 distance from the Sun and its physical properties.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
 <li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters, including <cite>eta_srp</cite>.</p></li>
 <li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The current simulation epoch.</p></li>
 <li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The spacecraft for which SRP acceleration is computed.</p></li>
@@ -592,14 +618,14 @@ distance from the Sun and its physical properties.</p>
 <dd class="field-even"><p><strong>srp_vec</strong> – The SRP acceleration vector (size: 3x1, units: km/s^2).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.compute_partial_by_eta">
-<span class="sig-name descname"><span class="pre">compute_partial_by_eta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_partial_by_eta" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_partial_by_eta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_partial_by_eta" title="Link to this definition">#</a></dt>
 <dd><blockquote>
 <div><p>Computes the partial derivative of SRP acceleration with respect to the SRP scale factor (<cite>eta_srp</cite>).</p>
 <p>This method determines how changes in the SRP scale factor affect the acceleration.</p>
@@ -607,17 +633,17 @@ distance from the Sun and its physical properties.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
 <li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters, including <cite>eta_srp</cite>.</p></li>
 <li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – Current simulation epoch.</p></li>
 <li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – <p>The spacecraft affected by SRP.</p>
 <dl class="field-list simple">
 <dt class="field-odd">returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>partial</strong> – The 3x1 partial derivative vector of SRP acceleration with respect to <cite>eta_srp</cite>.
-Expressed in units of <span class="math notranslate nohighlight">\(\frac{km}{s^2}\)</span>.</p>
+Assumed in units of <span class="math notranslate nohighlight">\(\frac{km}{s^2}\)</span>.</p>
 </dd>
 <dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
 </dd>
 </dl>
 </p></li>
@@ -628,45 +654,52 @@ Expressed in units of <span class="math notranslate nohighlight">\(\frac{km}{s^2
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.compute_partial_by_position">
-<span class="sig-name descname"><span class="pre">compute_partial_by_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_partial_by_position" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_partial_by_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_partial_by_position" title="Link to this definition">#</a></dt>
 <dd><p>Computes the partial derivatives of the SRP acceleration with respect to position.</p>
 <p>This method determines how the SRP acceleration varies as a function of
 the spacecraft’s position relative to the Sun.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
 <li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters, including <cite>eta_srp</cite>.</p></li>
 <li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – Current simulation epoch.</p></li>
 <li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The spacecraft affected by SRP.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>jacobian</strong> – The Jacobian matrix of SRP acceleration with respect to position (size: 3x3, units: 1/s^2).</p>
+<dd class="field-even"><p><strong>partial_a_by_pos</strong> – The 3x3 Jacobian matrix of cannonball SRP acceleration with respect to position. Assumed
+in units of <span class="math notranslate nohighlight">\(\frac{1}{s^2}\)</span>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.area">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">area</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.area" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">area</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.area" title="Link to this definition">#</a></dt>
 <dd><p>The cross-sectional area of the spacecraft.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Base<span class="colon">:</span></dt>
 <dd class="field-odd"><p>CannonballSRP</p>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CannonballSRP.eta_srp">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">eta_srp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.eta_srp" title="Link to this definition">#</a></dt>
+<dd><p>The SRP scale factor. Unitless.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.mass">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.mass" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">mass</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.mass" title="Link to this definition">#</a></dt>
 <dd><p>The mass of the spacecraft, typically expressed in units of
 kilograms.</p>
 <dl class="field-list simple">
@@ -674,14 +707,14 @@ kilograms.</p>
 <dd class="field-odd"><p>CannonballSRP</p>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.origin">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.origin" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.origin" title="Link to this definition">#</a></dt>
 <dd><p>The celestial body that serves as the origin for the state vector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Base<span class="colon">:</span></dt>
@@ -695,7 +728,7 @@ kilograms.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.origin_name">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.origin_name" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.origin_name" title="Link to this definition">#</a></dt>
 <dd><p>The name of the origin body.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Base<span class="colon">:</span></dt>
@@ -709,7 +742,7 @@ kilograms.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.p_srp">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p_srp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.p_srp" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">p_srp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.p_srp" title="Link to this definition">#</a></dt>
 <dd><p>The solar radiation pressure constant at 1 AU, expreseed
 in units of WHAT.</p>
 <dl class="field-list simple">
@@ -717,14 +750,14 @@ in units of WHAT.</p>
 <dd class="field-odd"><p>CannonballSRP</p>
 </dd>
 <dt class="field-even">Type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.ref_coeff">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ref_coeff</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.ref_coeff" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ref_coeff</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.ref_coeff" title="Link to this definition">#</a></dt>
 <dd><p>The reflectivity coefficient of the spacecraft.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Base<span class="colon">:</span></dt>
@@ -738,7 +771,7 @@ in units of WHAT.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.ref_frame">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ref_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#scarabaeus.CannonballSRP.ref_frame" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ref_frame</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.ref_frame" title="Link to this definition">#</a></dt>
 <dd><p>The reference frame in which SRP calculations are performed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Base<span class="colon">:</span></dt>
@@ -806,6 +839,7 @@ in units of WHAT.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.compute_partial_by_eta"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.compute_partial_by_eta()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.compute_partial_by_position"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.compute_partial_by_position()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.area"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.area</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.eta_srp"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.eta_srp</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.mass"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.mass</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.origin"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.origin</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CannonballSRP.origin_name"><code class="docutils literal notranslate"><span class="pre">CannonballSRP.origin_name</span></code></a></li>
@@ -860,7 +894,7 @@ in units of WHAT.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>

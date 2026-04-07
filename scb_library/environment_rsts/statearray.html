@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
@@ -49,11 +50,13 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/environment_rsts/statearray';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -146,7 +149,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -160,7 +163,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -253,7 +256,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -267,7 +270,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -312,11 +315,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/cannonballsrp.html">1. CannonBallSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/finiteburn.html">3. FiniteBurn</a></li>
@@ -326,15 +332,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics_rsts/threebodygravity.html">9. ThreeBodyGravity</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="missionsequence.html">1. MissionSequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="propagator.html">2. Propagator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scenariosetup.html">3. ScenarioSetup</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">4. StateArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trajectory.html">5. Trajectory</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
@@ -347,7 +359,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
@@ -355,27 +369,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">4. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">5. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">6. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">7. Thruster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
@@ -383,9 +402,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -454,74 +476,133 @@
 <h1><span class="section-number">4. </span>StateArray<a class="headerlink" href="#statearray" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.StateArray">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StateArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">StateArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StateDefinition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>CLASS DESCRIPTION</p>
+<p>Container for an estimation state vector at a given epoch and origin.</p>
+<p>This class holds a <em>definition</em> and corresponding <em>values</em> for a mixed state:
+spacecraft/body states (e.g., position/velocity) and scalar/vector parameters
+(e.g., SRP scale, gravity terms). The state definition is provided via a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">StateDefinition</span></code> builder, which yields the canonical tuple encoding
+expected internally.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – Epoch for which the state vector isa defined.</p></li>
-<li><p><strong>origin</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – Origin for which the state vector is defined.</p></li>
-<li><p><strong>state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – Full state vector definition.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – Epoch for which the state vector is defined (time tag of this state).</p></li>
+<li><p><strong>origin</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – Origin body with respect to which kinematic components (e.g., position/velocity) are expressed.</p></li>
+<li><p><strong>state</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">StateDefinition</span></code>) – <p>Fluent state builder. When iterated, it produces a sequence of 6-tuples:</p>
+<p><code class="docutils literal notranslate"><span class="pre">(name:</span> <span class="pre">str,</span> <span class="pre">dim:</span> <span class="pre">int,</span> <span class="pre">estimation:</span> <span class="pre">str,</span> <span class="pre">dynamics:</span> <span class="pre">str,</span> <span class="pre">owner,</span> <span class="pre">value)</span></code></p>
+<dl class="simple">
+<dt>where:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: component name. Reserved: <code class="docutils literal notranslate"><span class="pre">&quot;position&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code>.
+Arbitrary parameter names (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;eta_srp&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Cr&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;mu&quot;</span></code>) are allowed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dim</span></code>: component dimension (e.g., 3 for position/velocity; 1 for scalars).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">estimation</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;estimated&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;considered&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dynamics</span></code>: <code class="docutils literal notranslate"><span class="pre">&quot;dynamic&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;static&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">owner</span></code>: the entity the component belongs to (e.g., <a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>,
+<a class="reference internal" href="../sc_rsts/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.Spacecraft"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spacecraft</span></code></a>, <a class="reference internal" href="../body_rsts/groundstation.html#scarabaeus.GroundStation" title="scarabaeus.GroundStation"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroundStation</span></code></a>, or <code class="docutils literal notranslate"><span class="pre">None</span></code> for global params).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: initial value, typically an <a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">scarabaeus.ArrayWUnits</span></code></a>
+(vector of size <code class="docutils literal notranslate"><span class="pre">dim</span></code> for vector components; scalar for <code class="docutils literal notranslate"><span class="pre">dim</span> <span class="pre">==</span> <span class="pre">1</span></code>).</p></li>
 </ul>
 </dd>
 </dl>
+</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">StateDefinition</span></code></dt><dd><p>Fluent builder for constructing valid state components.</p>
+</dd>
+</dl>
+<p><a class="reference internal" href="../orbit_det_rsts/filterod.html#scarabaeus.FilterOD" title="scarabaeus.FilterOD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilterOD</span></code></a>, <a class="reference internal" href="../orbit_det_rsts/solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></p>
+</div>
 <p class="rubric">Notes</p>
-<p>Build a state vector.
-Input the parameter list and values as a list input</p>
-<p>Example Layout:
-parameter [string], dimension (size) [int], estimated or considered [string], dynamic or static [string], body [Body, None]
-(position, 3, estimated, dynamic, ID1, value)
-(velocity, 3, estimated, dynamic, ID1, value)
-(position, 3, estimated, static, ID2, value)
-(parameter1, 1, estimated, static, None, value)
-(parameter2, 1, estimated, dynamic, None, value)
-(parameter3, 1, considered, static, None, value)</p>
+<ul class="simple">
+<li><p><strong>Units</strong>: supply <code class="docutils literal notranslate"><span class="pre">value</span></code> with units via <a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a> (e.g., km, km/s, rad).</p></li>
+<li><p><strong>Dimensions</strong>: reserved kinematic components use <code class="docutils literal notranslate"><span class="pre">dim</span> <span class="pre">=</span> <span class="pre">3</span></code>; scalar parameters default to <code class="docutils literal notranslate"><span class="pre">dim</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p></li>
+<li><dl class="simple">
+<dt><strong>Allowed tokens</strong> (case-sensitive):</dt><dd><p><code class="docutils literal notranslate"><span class="pre">estimation</span> <span class="pre">∈</span> <span class="pre">{&quot;estimated&quot;,&quot;considered&quot;}</span></code>,
+<code class="docutils literal notranslate"><span class="pre">dynamics</span> <span class="pre">∈</span> <span class="pre">{&quot;dynamic&quot;,&quot;static&quot;}</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">StateDefinition</span></code> performs light validation (e.g., <code class="docutils literal notranslate"><span class="pre">len(value)</span> <span class="pre">==</span> <span class="pre">dim</span></code> when vector-like).</p></li>
+</ul>
 <p class="rubric">Examples</p>
-<p>Build a state vector by inputting parameter list and values as a list:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<p>Build a state vector using the fluent builder:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateDefinition</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">parameter</span> <span class="p">[</span><span class="n">string</span><span class="p">],</span> <span class="n">dimension</span> <span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">estimated</span> <span class="ow">or</span> <span class="n">considered</span> <span class="p">[</span><span class="n">string</span><span class="p">],</span> <span class="n">dynamic</span> <span class="ow">or</span> <span class="n">static</span> <span class="p">[</span><span class="n">string</span><span class="p">],</span> <span class="n">body</span> <span class="p">[</span><span class="n">Body</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
-<span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">estimated</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">ID1</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="p">(</span><span class="n">velocity</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">estimated</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">ID1</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">estimated</span><span class="p">,</span> <span class="n">static</span><span class="p">,</span> <span class="n">ID2</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimated</span><span class="p">,</span> <span class="n">static</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="p">(</span><span class="n">parameter2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">estimated</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-<span class="p">(</span><span class="n">parameter3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">considered</span><span class="p">,</span> <span class="n">static</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="c1"># Owners</span>
+<span class="n">Orbiter</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Spacecraft</span><span class="p">(</span><span class="s2">&quot;SCB-1&quot;</span><span class="p">)</span>
+<span class="n">Vesta</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="s2">&quot;Vesta&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initial values with units</span>
+<span class="n">pos_0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="o">+</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">+</span><span class="mf">1.0</span><span class="p">],</span> <span class="s2">&quot;km&quot;</span><span class="p">)</span>
+<span class="n">vel_0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span> <span class="o">-</span><span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span> <span class="s2">&quot;km/s&quot;</span><span class="p">)</span>
+<span class="n">eta_0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>  <span class="c1"># unitless</span>
+
+<span class="n">state_def</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">StateDefinition</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">pos_0</span><span class="p">)</span>                   <span class="c1"># 3D, estimated+dynamic by default</span>
+    <span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">vel_0</span><span class="p">)</span>                   <span class="c1"># 3D</span>
+    <span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;eta_srp&quot;</span><span class="p">,</span> <span class="n">Orbiter</span><span class="p">,</span> <span class="n">eta_0</span><span class="p">,</span> <span class="n">static</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># scalar, static</span>
+<span class="p">)</span>
+
+<span class="n">state_vec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="n">epoch_array</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="n">Vesta</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state_def</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Advanced: add considered/static parameters and station terms:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DSN</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-14&quot;</span><span class="p">)</span>
+<span class="n">range_bias</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;m/s&quot;</span><span class="p">)</span>  <span class="c1"># range-rate bias, considered</span>
+
+<span class="n">state_def</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">StateDefinition</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">pos_0</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">vel_0</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;Cr&quot;</span><span class="p">,</span> <span class="n">Orbiter</span><span class="p">,</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.8</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">),</span> <span class="n">static</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="n">Vesta</span><span class="p">,</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">17.8e-3</span><span class="p">,</span> <span class="s2">&quot;km^3/s^2&quot;</span><span class="p">),</span> <span class="n">estimated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">static</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">&quot;range_bias_RU&quot;</span><span class="p">,</span> <span class="n">DSN</span><span class="p">,</span> <span class="n">range_bias</span><span class="p">,</span> <span class="n">estimated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">static</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">state_vec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="n">epoch_array</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="n">Vesta</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state_def</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the builder emits an unsupported token for <code class="docutils literal notranslate"><span class="pre">estimation</span></code>/<code class="docutils literal notranslate"><span class="pre">dynamics</span></code>,
+or if a vector <code class="docutils literal notranslate"><span class="pre">value</span></code> length is inconsistent with <code class="docutils literal notranslate"><span class="pre">dim</span></code> (when validated).</p>
+</dd>
+</dl>
 <p class="rubric">Attributes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.allowed_state" title="scarabaeus.StateArray.allowed_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">allowed_state</span></code></a></p></td>
-<td><p>Representation of the allowed components in the StateArray.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.epoch" title="scarabaeus.StateArray.epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">epoch</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.epoch" title="scarabaeus.StateArray.epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">epoch</span></code></a></p></td>
 <td><p>Epoch for which the state vector is defined.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.index_rep" title="scarabaeus.StateArray.index_rep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_rep</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.index_rep" title="scarabaeus.StateArray.index_rep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_rep</span></code></a></p></td>
 <td><p>Representation of the state that links the parameters to the location of that parameter's value(s) in the state vector.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.origin" title="scarabaeus.StateArray.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.origin" title="scarabaeus.StateArray.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></p></td>
 <td><p>Origin for which the state vector is defined.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.size" title="scarabaeus.StateArray.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.size" title="scarabaeus.StateArray.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code></a></p></td>
 <td><p>Size (length) of the state vector.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.state" title="scarabaeus.StateArray.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.state" title="scarabaeus.StateArray.state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state</span></code></a></p></td>
 <td><p>Full state vector definition as defined and input to the constructor.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.state_definition" title="scarabaeus.StateArray.state_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_definition</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.state_definition" title="scarabaeus.StateArray.state_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_definition</span></code></a></p></td>
 <td><p>Parameter definition representation of the state vector.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.state_dot_definition" title="scarabaeus.StateArray.state_dot_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_dot_definition</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.state_dot_definition" title="scarabaeus.StateArray.state_dot_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_dot_definition</span></code></a></p></td>
 <td><p>Parameter definition representation of the time derivative of the state vector.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.values0" title="scarabaeus.StateArray.values0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values0</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.values0" title="scarabaeus.StateArray.values0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values0</span></code></a></p></td>
 <td><p>Numerical values of the state vectorat t0.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.values_array" title="scarabaeus.StateArray.values_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values_array</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.values_array" title="scarabaeus.StateArray.values_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">values_array</span></code></a></p></td>
 <td><p>Returns the internal <cite>_values_array</cite> attribute.</p></td>
 </tr>
 </tbody>
@@ -543,69 +624,65 @@ parameter [string], dimension (size) [int], estimated or considered [string], dy
 <td><p>Generates a state vector representation consisting of only the parameter values.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.extract_values_array" title="scarabaeus.StateArray.extract_values_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">extract_values_array</span></code></a>()</p></td>
-<td><p>Extracts the state vector representation, preserving individual parameters.</p></td>
+<td><p>Extract a body-aware representation of the state vector.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.find_indices" title="scarabaeus.StateArray.find_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_indices</span></code></a>(parameter_name, body[, flag_dot])</p></td>
 <td><p>Finds the indices of a parameter (e.g., position, velocity) in the state vector for a specific body.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.generate_allowed_state_dictionary" title="scarabaeus.StateArray.generate_allowed_state_dictionary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_allowed_state_dictionary</span></code></a>()</p></td>
-<td><p>Generate a dictionary of the components allowed in a StateArray</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.generate_state_dot_definition" title="scarabaeus.StateArray.generate_state_dot_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_state_dot_definition</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.generate_state_dot_definition" title="scarabaeus.StateArray.generate_state_dot_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_state_dot_definition</span></code></a>()</p></td>
 <td><p>Generates a standardized definition of the first time derivative of the state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.get_state_at_epoch" title="scarabaeus.StateArray.get_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state_at_epoch</span></code></a>(epoch)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.get_state_at_epoch" title="scarabaeus.StateArray.get_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state_at_epoch</span></code></a>(epoch)</p></td>
 <td><p>Retrieves the state vector for a given epoch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.make_direct_representation" title="scarabaeus.StateArray.make_direct_representation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_direct_representation</span></code></a>([y])</p></td>
-<td><p>Generates a representation of the state vector that directly links the parameters to their values.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.make_direct_representation" title="scarabaeus.StateArray.make_direct_representation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_direct_representation</span></code></a>([y])</p></td>
+<td><p>Build a direct numeric-ID-based representation of the current state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.make_index_rep" title="scarabaeus.StateArray.make_index_rep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_index_rep</span></code></a>()</p></td>
-<td><p>Generates a representation of the state that links the parameter name to the location of that parameter's value(s) in the state vector.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.make_index_rep" title="scarabaeus.StateArray.make_index_rep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_index_rep</span></code></a>()</p></td>
+<td><p>Build an index map from state definition entries to slices in the flat state vector.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.reinitialize" title="scarabaeus.StateArray.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.reinitialize" title="scarabaeus.StateArray.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>(**kwargs)</p></td>
 <td><p>Reinitializes the StateArray object with new attribute values in place.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.reinitialize_with_dv" title="scarabaeus.StateArray.reinitialize_with_dv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize_with_dv</span></code></a>(dv)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.reinitialize_with_dv" title="scarabaeus.StateArray.reinitialize_with_dv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize_with_dv</span></code></a>(dv)</p></td>
 <td><p>Reinitializes the state vector by updating the velocity field with the given delta-v.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.remove_state_at_epoch" title="scarabaeus.StateArray.remove_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_state_at_epoch</span></code></a>(epoch)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.remove_state_at_epoch" title="scarabaeus.StateArray.remove_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_state_at_epoch</span></code></a>(epoch)</p></td>
 <td><p>Removes a state at a specific epoch, ensuring consistency across parameters and reinitializing the StateArray.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.update_state_at_epoch" title="scarabaeus.StateArray.update_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_state_at_epoch</span></code></a>(epoch, updated_values)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.update_state_at_epoch" title="scarabaeus.StateArray.update_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_state_at_epoch</span></code></a>(epoch, updated_values)</p></td>
 <td><p>Updates the state at a given epoch while maintaining structure and reinitializing the StateArray.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="scarabaeus.StateArray.generate_allowed_state_dictionary">
-<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_allowed_state_dictionary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.StateArray.generate_allowed_state_dictionary" title="Link to this definition">#</a></dt>
-<dd><p>Generate a dictionary of the components allowed in a StateArray</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dictionary with the allowed name, physicalType, and size.
-(name: [physicalType, size, pattern])</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.add_state_at_epoch">
 <span class="sig-name descname"><span class="pre">add_state_at_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray.add_state_at_epoch" title="Link to this definition">#</a></dt>
-<dd><p>Adds a new state at a specific epoch, keeping epochs in order and reinitializing the StateArray.</p>
+<dd><p>Adds a new state at a specific epoch, keeping epochs in order and
+reinitializing the StateArray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>epoch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scb.EpochArray</span></code> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch at which to add the state.</p></li>
-<li><p><strong>new_values</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A dictionary where keys are parameter names and values are new state values.</p></li>
-</ul>
+<li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch at which to add the state.</p></li>
+<li><p><strong>new_values</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – <p>Dictionary where keys match self._values_array keys, i.e.
+(param_name, body_id), and values are the new state values
+for that epoch (ArrayWFrame, with frame possibly None).</p>
+<dl>
+<dt>Example keys:</dt><dd><dl class="simple">
+<dt>{</dt><dd><p>(‘position’, -1000): ArrayWFrame(…, frame=J2000),
+(‘velocity’, -1000): ArrayWFrame(…, frame=J2000),
+(‘eta_srp’, -1000): ArrayWFrame(ArrayWUnits(…), frame=None),
+(‘range_bias_1’, 399014): ArrayWFrame(ArrayWUnits(…), frame=None),</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the new state is inconsistent with existing parameters.</p>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>Raises</strong> – ValueError: If the new state is inconsistent with existing parameters.
+TypeError:  If a provided value has the wrong type.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -616,15 +693,22 @@ parameter [string], dimension (size) [int], estimated or considered [string], dy
 <dd><p>Adds additional components to the state vector and properly re-initializes the StateArray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>new_components</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>) – List of new state components to be added.
-Each component should follow the format:
-(parameter_name, size, estimated/considered, dynamic/static, body, value)</p>
+<dd class="field-odd"><p><strong>new_components</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">StateDefinition</span></code>) – New state components to be added.
+Can be either:
+- A StateDefinition object
+- A list of tuples in format: (parameter_name, size, estimated/considered, dynamic/static, body, value)</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A new re-initialized StateArray instance with the updated state.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.StateArray" title="scarabaeus.StateArray"><em>StateArray</em></a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – If new_components is not a list or StateDefinition.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If duplicate parameters are detected.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -656,7 +740,7 @@ This vector is what is used when propagating, for example.</p>
 <dd class="field-odd"><p>Vector of values that define the state.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scb.ArrayWUnits</p>
+<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -664,19 +748,23 @@ This vector is what is used when propagating, for example.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.extract_values_array">
 <span class="sig-name descname"><span class="pre">extract_values_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.StateArray.extract_values_array" title="Link to this definition">#</a></dt>
-<dd><p>Extracts the state vector representation, preserving individual parameters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>A dictionary where keys are parameter names, and values are tuples of</dt><dd><p>(values array, units array).</p>
+<dd><p>Extract a body-aware representation of the state vector.</p>
+<dl class="simple">
+<dt>For each state entry of the form:</dt><dd><p>(name, dim, est, dyn, owner, ArrayWFrame)</p>
 </dd>
 </dl>
-</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a></p>
-</dd>
-</dl>
+<p>this returns a dictionary:</p>
+<blockquote>
+<div><p>(name, spice_id) -&gt; (values, units)</p>
+</div></blockquote>
+<p>where:
+- <cite>spice_id</cite> is taken from <cite>owner.spice_id</cite> when available,
+- if <cite>owner</cite> has no <cite>spice_id</cite> (e.g. global parameter), <cite>spice_id</cite> is None.</p>
+<p>For dynamic parameters:
+- If values are given as a time history (shape (N, dim) or (N,)),
+N is checked to be consistent across parameters and with epoch.size.
+- If values are just a single vector of size <cite>dim</cite>, they are treated as
+initial values only (no time history check).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -687,7 +775,7 @@ This vector is what is used when propagating, for example.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>parameter_name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the parameter to search for (e.g., “position”, “velocity”).</p></li>
-<li><p><strong>body</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scbt.Body</span></code>) – The associated body of the parameter.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>) – The associated body of the parameter.</p></li>
 <li><p><strong>flag_dot</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Flag to indicate whether to search for the time derivative of the parameter</p></li>
 </ul>
 </dd>
@@ -727,7 +815,7 @@ This representation is used in the propagator when computing accelerations, gene
 <dd><p>Retrieves the state vector for a given epoch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>epoch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scb.EpochArray</span></code> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch for which to retrieve the state.</p>
+<dd class="field-odd"><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch for which to retrieve the state.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A new StateArray instance with only the specified epoch’s data.</p>
@@ -744,17 +832,19 @@ This representation is used in the propagator when computing accelerations, gene
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.make_direct_representation">
 <span class="sig-name descname"><span class="pre">make_direct_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.StateArray.make_direct_representation" title="Link to this definition">#</a></dt>
-<dd><p>Generates a representation of the state vector that directly links the parameters to their values.
-This is used in the propagator to extract the current state values and link them to their respective parameter definitions.</p>
+<dd><p>Build a direct numeric-ID-based representation of the current state.</p>
+<p>Each entry is keyed as (name, spice_id), where <cite>spice_id</cite> is taken from the
+owner object of that state component. Only numeric identifiers are used,
+no object or string aliases.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>y</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.array</span></code>) – Current state vector in the propagator at some time step</p>
+<dd class="field-odd"><p><strong>y</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>, <em>optional</em>) – Flat state vector at the current step. If None, uses <code class="docutils literal notranslate"><span class="pre">self.values</span></code>.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A representation that links the parameter to the parameter values directly</p>
+<dd class="field-even"><p>Mapping from (name, spice_id) → np.ndarray or scalar.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -762,18 +852,24 @@ This is used in the propagator to extract the current state values and link them
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.make_index_rep">
 <span class="sig-name descname"><span class="pre">make_index_rep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.StateArray.make_index_rep" title="Link to this definition">#</a></dt>
-<dd><p>Generates a representation of the state that links the parameter name to the location of that parameter’s value(s) in the state vector.
-This representation allows us to efficiently select slices of the state vector when it is just values of the parameters.
-This representation is used in the propagator when computing accelerations, general dynamics, and partials (the jocobian).
-For example: the first parameter in the state is a position and the second is a velocity, then the index representation will be {position: (0:3), velocity: (3:6)}</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A representation of the state vector that connects the parameters to the positions of their values in the state vector</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a></p>
+<dd><p>Build an index map from state definition entries to slices in the flat state vector.</p>
+<dl class="simple">
+<dt>For each state entry of the form:</dt><dd><p>(name, dim, est, dyn, owner, value)</p>
 </dd>
 </dl>
+<p>this returns a dictionary mapping:</p>
+<blockquote>
+<div><p>(name, spice_id) -&gt; slice(i_start, i_end)</p>
+</div></blockquote>
+<p>where:
+- <cite>spice_id</cite> is taken from <cite>owner.spice_id</cite> when available.
+- If <cite>owner</cite> has no <cite>spice_id</cite> (e.g. global parameter), the key is just <cite>name</cite>.</p>
+<p>This makes multi-body states unambiguous, e.g.:</p>
+<blockquote>
+<div><p>(‘position’, -1000) -&gt; Orbiter position slice
+(‘position’, 399)   -&gt; Earth position slice</p>
+</div></blockquote>
+<p>instead of overwriting everything under “position”.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -782,13 +878,19 @@ For example: the first parameter in the state is a position and the second is a 
 <dd><p>Reinitializes the StateArray object with new attribute values in place.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>**kwargs</strong> – Keyword arguments representing the new attribute values.</p>
+<dd class="field-odd"><p><strong>**kwargs</strong> – Keyword arguments representing the new attribute values.
+- epoch (EpochArray, optional): New epoch array
+- origin (Body, optional): New origin body
+- state (StateDefinition or list, optional): New state definition</p>
 </dd>
 </dl>
 <dl class="simple">
 <dt>Modifies:</dt><dd><p>Updates the existing instance (<cite>self</cite>) instead of creating a new one.</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>If ‘state’ is provided as a raw list of tuples, it will be automatically
+converted to a StateDefinition object for compatibility.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -797,7 +899,7 @@ For example: the first parameter in the state is a position and the second is a 
 <dd><p>Reinitializes the state vector by updating the velocity field with the given delta-v.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>dv</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scb.ImpulsiveBurn</span></code>) – The delta-v to be added to the velocity field.</p>
+<dd class="field-odd"><p><strong>dv</strong> (<a class="reference internal" href="../dynamics_rsts/impulsiveburn.html#scarabaeus.ImpulsiveBurn" title="scarabaeus.ImpulsiveBurn"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a>) – The delta-v to be added to the velocity field.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A new instance of StateArray with the updated state.</p>
@@ -805,16 +907,21 @@ For example: the first parameter in the state is a position and the second is a 
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.StateArray" title="scarabaeus.StateArray"><em>StateArray</em></a></p>
 </dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If no velocity component exists, multiple velocity components found,
+or if there’s a frame mismatch between velocity and delta-v.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.remove_state_at_epoch">
 <span class="sig-name descname"><span class="pre">remove_state_at_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray.remove_state_at_epoch" title="Link to this definition">#</a></dt>
-<dd><p>Removes a state at a specific epoch, ensuring consistency across parameters and reinitializing the StateArray.</p>
+<dd><p>Removes a state at a specific epoch, ensuring consistency across parameters
+and reinitializing the StateArray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>epoch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scb.EpochArray</span></code> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch at which to remove the state.</p>
+<dd class="field-odd"><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch at which to remove the state.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the epoch is not found in the state vector.</p>
@@ -825,87 +932,96 @@ For example: the first parameter in the state is a position and the second is a 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.update_state_at_epoch">
 <span class="sig-name descname"><span class="pre">update_state_at_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray.update_state_at_epoch" title="Link to this definition">#</a></dt>
-<dd><p>Updates the state at a given epoch while maintaining structure and reinitializing the StateArray.</p>
+<dd><p>Updates the state at a given epoch while maintaining structure and
+reinitializing the StateArray.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>epoch</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scb.EpochArray</span></code> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch at which to update the state.</p></li>
-<li><p><strong>updated_values</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – A dictionary where keys are parameter names and values are updated state values.</p></li>
+<li><p><strong>epoch</strong> (<a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The epoch at which to update the state.</p></li>
+<li><p><strong>updated_values</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – <p>Dictionary where keys match self._values_array keys, i.e.
+(param_name, body_id), and values are ArrayWFrame / ArrayWUnits
+with the <em>new</em> values for that epoch.</p>
+<p class="rubric">Example</p>
+<dl class="simple">
+<dt>{</dt><dd><p>(‘position’, -1000): ArrayWFrame(…),
+(‘velocity’, -1000): ArrayWFrame(…),
+(‘eta_srp’, -1000): ArrayWFrame(ArrayWUnits(…), None),</p>
+</dd>
+</dl>
+<p>}</p>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the epoch is not found or values are inconsistent.</p>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the epoch is not found or values are inconsistent.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – If a provided value has the wrong type.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.StateArray.allowed_state">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allowed_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.allowed_state" title="Link to this definition">#</a></dt>
-<dd><p>Representation of the allowed components in the StateArray.</p>
-</dd></dl>
-
-<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.epoch">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">epoch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.epoch" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">epoch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.epoch" title="Link to this definition">#</a></dt>
 <dd><p>Epoch for which the state vector is defined.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.index_rep">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">index_rep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.index_rep" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_rep</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.index_rep" title="Link to this definition">#</a></dt>
 <dd><p>Representation of the state that links the parameters to the location of
 that parameter’s value(s) in the state vector.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.origin">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">origin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.origin" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body_rsts/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.origin" title="Link to this definition">#</a></dt>
 <dd><p>Origin for which the state vector is defined.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.size">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.size" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">size</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.size" title="Link to this definition">#</a></dt>
 <dd><p>Size (length) of the state vector.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.state">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.state" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.state" title="Link to this definition">#</a></dt>
 <dd><p>Full state vector definition as defined and input to the constructor.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.state_definition">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.state_definition" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">state_definition</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.state_definition" title="Link to this definition">#</a></dt>
 <dd><p>Parameter definition representation of the state vector. Does not include values.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.state_dot_definition">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">state_dot_definition</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.state_dot_definition" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">state_dot_definition</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.state_dot_definition" title="Link to this definition">#</a></dt>
 <dd><p>Parameter definition representation of the time derivative of the state
 vector. Does not include values.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.values0">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values0</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.values0" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">values0</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.values0" title="Link to this definition">#</a></dt>
 <dd><p>Numerical values of the state vectorat t0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>State vector values at t0</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>scb.ArrayWUnits</p>
+<dd class="field-even"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><em>ArrayWUnits</em></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.values_array">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values_array</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></em><a class="headerlink" href="#scarabaeus.StateArray.values_array" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">values_array</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.StateArray.values_array" title="Link to this definition">#</a></dt>
 <dd><p>Returns the internal <cite>_values_array</cite> attribute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -969,7 +1085,6 @@ vector. Does not include values.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.generate_allowed_state_dictionary"><code class="docutils literal notranslate"><span class="pre">StateArray.generate_allowed_state_dictionary()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.add_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.add_state_at_epoch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.add_to_state_vector"><code class="docutils literal notranslate"><span class="pre">StateArray.add_to_state_vector()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.extract_state_definition"><code class="docutils literal notranslate"><span class="pre">StateArray.extract_state_definition()</span></code></a></li>
@@ -984,7 +1099,6 @@ vector. Does not include values.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.reinitialize_with_dv"><code class="docutils literal notranslate"><span class="pre">StateArray.reinitialize_with_dv()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.remove_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.remove_state_at_epoch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.update_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.update_state_at_epoch()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.allowed_state"><code class="docutils literal notranslate"><span class="pre">StateArray.allowed_state</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.epoch</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.index_rep"><code class="docutils literal notranslate"><span class="pre">StateArray.index_rep</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.origin"><code class="docutils literal notranslate"><span class="pre">StateArray.origin</span></code></a></li>
@@ -1042,7 +1156,7 @@ vector. Does not include values.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>

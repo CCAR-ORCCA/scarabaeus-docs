@@ -39,6 +39,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
   
@@ -49,12 +50,15 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'scb_library/dynamics_rsts/impulsiveburn';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -147,7 +151,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -161,7 +165,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -254,7 +258,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -268,7 +272,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -313,11 +317,14 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Body Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/body.html">1. Body</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/groundstation.html">2. GroundStation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body_rsts/celestialbody.html">3. CelestialBody</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details open><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Dynamics Classes:</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="cannonballsrp.html">1. CannonBallSRP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamicmodel.html">2. DynamicModel</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finiteburn.html">3. FiniteBurn</a></li>
@@ -327,15 +334,21 @@
 <li class="toctree-l1"><a class="reference internal" href="pointmassgravity.html">7. PointMassGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphericalharmonicsgravity.html">8. SphericalHarmonicsGravity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="threebodygravity.html">9. ThreeBodyGravity</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Environment Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/missionsequence.html">1. MissionSequence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/propagator.html">2. Propagator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/scenariosetup.html">3. ScenarioSetup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/statearray.html">4. StateArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../environment_rsts/trajectory.html">5. Trajectory</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Guidance Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../guidance_rsts/bplane.html">1. Bplane</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Measurement Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/centroidingideal.html">1. CentroidingIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/diffonewayrangeideal.html">2. DiffOneWayRangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/dopplerideal.html">3. DopplerIdeal</a></li>
@@ -348,7 +361,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangeideal.html">10. RangeIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/rangerateideal.html">11. RangeRateIdeal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurement_rsts/sequentialrangingreal.html">12. SequentialRangingReal</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Orbit Determination Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterdatamanager.html">1. FilterDataManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/filterod.html">2. FilterOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/lkf.html">3. LKF</a></li>
@@ -356,27 +371,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/processnoisecovariance.html">5. ProcessNoiseCovariance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/solutionod.html">6. SolutionOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../orbit_det_rsts/srif.html">7. SRIF</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Spacecraft Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/actuator.html">1. Actuator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/antenna.html">2. Antenna</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sc_rsts/camera.html">3. Camera</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/geometry.html">4. Geometry</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">5. Instrument</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">6. nPlateModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/powermodel.html">7. PowerModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/solarpanel.html">8. SolarPanel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">9. Spacecraft</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">10. Thruster</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/instrument.html">4. Instrument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/nplatemodel.html">5. nPlateModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/spacecraft.html">6. Spacecraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sc_rsts/thruster.html">7. Thruster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Time &amp; Frame Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/arraywframe.html">1. ArrayWFrame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/epocharray.html">2. EpochArray</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/frame.html">3. Frame</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame_rsts/spicemanager.html">4. SpiceManager</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Units Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/arraywunits.html">1. ArrayWUnits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/units.html">2. Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units_rsts/dimensions.html">3. Dimensions</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Utility Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/covariancematrix.html">1. CovarianceMatrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/databasemanager.html">2. DatabaseManager</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/noise.html">3. Noise</a></li>
@@ -384,9 +404,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/outlierrejection.html">5. OutlierRejection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/plotting/plotting.html">6. Plotting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils_rsts/utils.html">7. Utils</a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">All Additional Classes:</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../add_class_rsts/constants.html">1. Constants</a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -455,21 +478,17 @@
 <h1><span class="section-number">5. </span>ImpulsiveBurn<a class="headerlink" href="#impulsiveburn" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImpulsiveBurn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv_magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv_unit_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx_dv_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_dirac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_burn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ImpulsiveBurn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta_v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv_magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dv_unit_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_burn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.dynamics.DynamicModel.DynamicModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></p>
 <p>Models an impulsive maneuver for spacecraft dynamics.</p>
 <p>Represents an impulsive burn applied to a spacecraft as an instantaneous velocity change (DV).
-The burn can be defined either directly through a delta-v vector or indirectly via magnitude and direction.
-The model allows for an approximation using a Dirac delta function for numerical integration.</p>
+The burn can be defined either directly through a delta-v vector or indirectly via magnitude and direction.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>delta_v</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – The delta-v vector applied during the burn (units: km/s). Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>dv_magnitude</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – The magnitude of the delta-v (units: km/s). Required if <cite>dv_unit_vector</cite> is used. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>dv_unit_vector</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – The unit vector of the delta-v direction (unitless). Required if <cite>dv_magnitude</cite> is used. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>approx_int_flag</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – Flag indicating whether the impulsive burn should be approximated using a Dirac delta function
-for integration purposes. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-<li><p><strong>N_dirac</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – Number of discretization steps in the Dirac delta approximation. Defaults to <code class="docutils literal notranslate"><span class="pre">30</span></code>.</p></li>
 <li><p><strong>t_burn</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – The epoch at which the impulsive burn is applied. Defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
 <li><p><strong>base_frame</strong> (<a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – The frame of the propagator. If <code class="docutils literal notranslate"><span class="pre">base_frame</span> <span class="pre">=</span> <span class="pre">None</span></code>, defaults to the J2000 frame.</p></li>
 </ul>
@@ -487,7 +506,27 @@ for integration purposes. Defaults to <code class="docutils literal notranslate"
 </div>
 <p class="rubric">Notes</p>
 <p>The impulsive burn is always applied at <code class="docutils literal notranslate"><span class="pre">t_burn</span></code>.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">approx_int_flag</span> <span class="pre">=</span> <span class="pre">True</span></code>, the burn is spread over multiple integration steps using a Dirac delta function.</p>
+<p class="rubric">Attributes</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.base_frame" title="scarabaeus.ImpulsiveBurn.base_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base_frame</span></code></a></p></td>
+<td><p>The base frame at which the impulsive burn occurs</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.delta_v" title="scarabaeus.ImpulsiveBurn.delta_v"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta_v</span></code></a></p></td>
+<td><p>The delta-v vector applied in the impulsive burn.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.dv_magnitude" title="scarabaeus.ImpulsiveBurn.dv_magnitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dv_magnitude</span></code></a></p></td>
+<td><p>The magnitude of the applied delta-v.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.dv_unit_vector" title="scarabaeus.ImpulsiveBurn.dv_unit_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dv_unit_vector</span></code></a></p></td>
+<td><p>The unit vector direction of the applied delta-v.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.t_burn" title="scarabaeus.ImpulsiveBurn.t_burn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">t_burn</span></code></a></p></td>
+<td><p>The time at which the impulsive burn occurs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
@@ -506,15 +545,12 @@ for integration purposes. Defaults to <code class="docutils literal notranslate"
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_position" title="scarabaeus.ImpulsiveBurn.compute_partial_by_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_partial_by_position</span></code></a>(position, ...)</p></td>
 <td><p>Computes the partial derivative of the impulsive burn acceleration with respect to position.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.ImpulsiveBurn.dirac_delta_approx" title="scarabaeus.ImpulsiveBurn.dirac_delta_approx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dirac_delta_approx</span></code></a>(t)</p></td>
-<td><p>Computes the Dirac delta function approximation using a Gaussian function.</p></td>
-</tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.compute_TCM_covariance_gates">
-<span class="sig-name descname"><span class="pre">compute_TCM_covariance_gates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig1=3.3333333333333337e-06</span> <span class="pre">km/sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig2=0.0033333333333333335</span> <span class="pre">unitless</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig3=1.1666666666666666e-05</span> <span class="pre">km/sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig4=0.0033333333333333335</span> <span class="pre">unitless</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_TCM_covariance_gates" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_TCM_covariance_gates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.3333333333333337e-06</span> <span class="pre">km/sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0033333333333333335</span> <span class="pre">unitless</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.1666666666666666e-05</span> <span class="pre">km/sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig4</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0033333333333333335</span> <span class="pre">unitless</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_TCM_covariance_gates" title="Link to this definition">#</a></dt>
 <dd><p>Computes the covariance matrix for a Trajectory Correction Maneuver (TCM).</p>
 <p>Computes the rotated covariance matrix P based on the input sigma values
 and the direction of the delta-v.</p>
@@ -538,7 +574,7 @@ and the direction of the delta-v.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.compute_TCM_simplified_covariance">
-<span class="sig-name descname"><span class="pre">compute_TCM_simplified_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig1=0.0033333333333333335</span> <span class="pre">unitless</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig2=3.3333333333333335e-05</span> <span class="pre">km/sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig34=0.011635528346628864</span> <span class="pre">rad</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_TCM_simplified_covariance" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_TCM_simplified_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0033333333333333335</span> <span class="pre">unitless</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.3333333333333335e-05</span> <span class="pre">km/sec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig34</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.011635528346628864</span> <span class="pre">rad</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_TCM_simplified_covariance" title="Link to this definition">#</a></dt>
 <dd><p>Computes a simplified 3x3 covariance matrix for Trajectory Correction Maneuver (TCM) errors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -559,36 +595,35 @@ and the direction of the delta-v.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.compute_acceleration">
-<span class="sig-name descname"><span class="pre">compute_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_acceleration" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_acceleration" title="Link to this definition">#</a></dt>
 <dd><p>Computes the acceleration due to the impulsive burn.</p>
-<p>This method applies an instantaneous velocity change at the specified burn time.
-If Dirac delta approximation is enabled, it applies a numerically approximated force.</p>
+<p>Applies an instantaneous velocity change at the specified burn time..</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">scb.ArrayWUnits</span></code>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – Spacecraft position vector in the reference frame (size: 3x1, units: km).</p></li>
 <li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
 <li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch (units: sec).</p></li>
-<li><p><strong>body</strong> – The celestial body associated with the simulation.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body associated with the simulation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The acceleration due to the impulsive burn (size: 3x1, units: km/s^2).</p>
+<dd class="field-even"><p><strong>acc</strong> – The acceleration due to the impulsive burn (size: 3x1, units: km/s^2).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>scb.ArrayWUnits</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.compute_partial_by_dv">
-<span class="sig-name descname"><span class="pre">compute_partial_by_dv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_dv" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_partial_by_dv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_dv" title="Link to this definition">#</a></dt>
 <dd><p>Computes the partial derivative of the acceleration with respect to the delta-v.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the spacecraft’s position. Expressed in units of kilometers.</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – 3x1 vector describing the spacecraft’s position. Expressed in units of kilometers.</p></li>
 <li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
 <li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch in seconds.</p></li>
 <li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body associated with the simulation.</p></li>
@@ -598,50 +633,63 @@ If Dirac delta approximation is enabled, it applies a numerically approximated f
 <dd class="field-even"><p><strong>jacobian</strong> – The 3x3 Jacobian matrix of acceleration with respect to delta-v. Unitless.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.compute_partial_by_position">
-<span class="sig-name descname"><span class="pre">compute_partial_by_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_position" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_partial_by_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_position" title="Link to this definition">#</a></dt>
 <dd><p>Computes the partial derivative of the impulsive burn acceleration with respect to position.</p>
 <p>Since an impulsive burn directly modifies velocity rather than position,
 this derivative is always zero.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>position</strong> (<a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – 3x1 vector describing the spacecraft’s position. Expressed in units of kilometers.</p></li>
+<li><p><strong>position</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>) – 3x1 vector describing the spacecraft’s position. Expressed in units of kilometers.</p></li>
 <li><p><strong>current_state</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the current state parameters.</p></li>
 <li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Current simulation epoch in seconds.</p></li>
 <li><p><strong>body</strong> (<a class="reference internal" href="../body_rsts/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>) – The celestial body associated with the simulation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>zeros</strong> – A 3x3 matrix of zeros. Unitless.</p>
+<dd class="field-even"><p><strong>partial_a_by_pos</strong> – A 3x3 matrix of zeros. Unitless.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.dirac_delta_approx">
-<span class="sig-name descname"><span class="pre">dirac_delta_approx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.dirac_delta_approx" title="Link to this definition">#</a></dt>
-<dd><p>Computes the Dirac delta function approximation using a Gaussian function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>t</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The time at which to evaluate the approximation.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The approximated Dirac delta function value at time <cite>t</cite>.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
-</dd>
-</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.base_frame">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">base_frame</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame_rsts/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.base_frame" title="Link to this definition">#</a></dt>
+<dd><p>The base frame at which the impulsive burn occurs</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.delta_v">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">delta_v</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.delta_v" title="Link to this definition">#</a></dt>
+<dd><p>The delta-v vector applied in the impulsive burn. Expressed in units of <span class="math notranslate nohighlight">\(\frac{km}{s}\)</span>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.dv_magnitude">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dv_magnitude</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.dv_magnitude" title="Link to this definition">#</a></dt>
+<dd><p>The magnitude of the applied delta-v. Expressed in units of <span class="math notranslate nohighlight">\(\frac{km}{s}\)</span>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.dv_unit_vector">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dv_unit_vector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units_rsts/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.dv_unit_vector" title="Link to this definition">#</a></dt>
+<dd><p>The unit vector direction of the applied delta-v. Unitless.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.ImpulsiveBurn.t_burn">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">t_burn</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.ImpulsiveBurn.t_burn" title="Link to this definition">#</a></dt>
+<dd><p>The time at which the impulsive burn occurs.</p>
 </dd></dl>
 
 </dd></dl>
@@ -701,7 +749,11 @@ this derivative is always zero.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.compute_acceleration"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.compute_acceleration()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_dv"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.compute_partial_by_dv()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.compute_partial_by_position"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.compute_partial_by_position()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.dirac_delta_approx"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.dirac_delta_approx()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.base_frame"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.base_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.delta_v"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.delta_v</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.dv_magnitude"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.dv_magnitude</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.dv_unit_vector"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.dv_unit_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ImpulsiveBurn.t_burn"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn.t_burn</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -750,7 +802,7 @@ this derivative is always zero.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>
