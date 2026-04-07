@@ -8,16 +8,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta content="Introduction to, set up guide, supporting libraries, and general overview of orbit determination in the open-source navigation tool Scarabaeus." lang="en" name="description" xml:lang="en" />
-<meta content="Scarabaeus, user guide, orbit determination, overview" name="keywords" />
-<meta property="og:title" content="User Guide" />
+<meta content="Scarabaeus, user guide" name="keywords" />
+<meta property="og:title" content="Scarabaeus User Guide" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/user_guide_frontpage.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="This guide is intended to be used as an overview for Scarabaeus. It begins with a guide to set up and install the tool, as well as details on how to access necessary data through the data base. Additional supporting libraries and their uses, as well as a general walkthrough of the orbit determination process and how it functions within Scarabaeus are also spoken on. See the API Reference for details on specific classes and/or functions. Getting Started: Install and Set Up Scarabaeus- Prerequi..." />
+<meta property="og:description" content="This guide provides a conceptual overview for Scarabaeus users, including background information on the tool, how to install it, and a quickstart guide to begin using Scarabaeus as soon as possible. This is not an in-depth walkthrough of applications of Scarabaeus, see the Examples section for step-by-step tutorials and other resources. See the API Reference for details on specific objects and their functions. Getting Started: What is Scarabaeus?, Installation, Scarabaeus Quickstart. Fundamen..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
-    <title>User Guide &#8212; Scarabaeus  documentation</title>
+    <title>Scarabaeus User Guide &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=cf328a27" />
   
@@ -52,16 +53,18 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/user_guide_frontpage';</script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install and Set Up Scarabaeus" href="setup_and_use.html" />
+    <link rel="next" title="What is Scarabaeus?" href="what_is_scb.html" />
     <link rel="prev" title="Welcome to Scarabaeus!" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -149,7 +152,7 @@
     
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -163,7 +166,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -256,7 +259,7 @@
     
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
-    User Guide
+    Scarabaeus User Guide
   </a>
 </li>
 
@@ -270,7 +273,7 @@
 
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../learning_and_tutorial/learn_scb_frontpage.html">
-    Learn Scarabaeus
+    Examples
   </a>
 </li>
 
@@ -315,15 +318,18 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="setup_and_use.html"><span class="gold">Install and Set Up Scarabaeus</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="db_setup.html"><span class="gold">MongoDB Installation and Setup</span></a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Data Flow and Processes</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="what_is_scb.html"><span class="gold">What is Scarabaeus?</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html"><span class="gold">Installation</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"><span class="gold">Scarabaeus Quickstart</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals and Concepts</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
-</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="external_libraries.html"><span class="gold">Libraries</span></a></li>
-</ul></details></li></ul></div>
+</ul>
+</div>
 </nav></div>
     </div>
   
@@ -368,7 +374,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">User Guide</span></span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Scarabaeus User Guide</span></span></li>
   </ul>
 </nav>
 </div>
@@ -385,77 +391,24 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <span class="target" id="user-guide-front"></span><style> .gold {color:rgb(207 184 124)} </style><section id="user-guide">
-<h1><span class="gold">User Guide</span><a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
-<p>This guide is intended to be used as an overview for Scarabaeus. It begins with a guide
-to set up and install the tool, as well as details on how to access necessary data through the
-data base. Additional supporting libraries and their uses, as well as a general walkthrough of the
-orbit determination process and how it functions within Scarabaeus are also spoken on.</p>
-<p>See <a class="reference internal" href="../scb_library/lib_ref.html#api-reference"><span class="std std-ref">the API Reference</span></a> for details on specific classes and/or functions.</p>
+  <span class="target" id="user"></span><style> .gold {color:rgb(207 184 124)} </style><section id="scarabaeus-user-guide">
+<h1><span class="gold">Scarabaeus User Guide</span><a class="headerlink" href="#scarabaeus-user-guide" title="Link to this heading">#</a></h1>
+<p>This guide provides a conceptual overview for Scarabaeus users, including background information on the tool, how to install it, and a quickstart guide to begin using Scarabaeus as soon as possible.</p>
+<p>This is <strong>not</strong> an in-depth walkthrough of applications of Scarabaeus, see the <a class="reference internal" href="../learning_and_tutorial/learn_scb_frontpage.html#examples"><span class="std std-ref">Examples</span></a> section for step-by-step tutorials and other resources.</p>
+<p>See <a class="reference internal" href="../scb_library/lib_ref.html#api"><span class="std std-ref">the API Reference</span></a> for details on specific objects and their functions.</p>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="setup_and_use.html"><span class="gold">Install and Set Up Scarabaeus</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="setup_and_use.html#prerequisites"><span class="bold">Prerequisites</span></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#python">Python</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#git">Git</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#integrated-development-environment-ide">Integrated Development Environment (IDE)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="setup_and_use.html#clone-scarabaeus-repository"><span class="bold">Clone Scarabaeus Repository</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup_and_use.html#add-scarabaeus-package-to-python-path"><span class="gold">Add Scarabaeus Package to Python Path</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="setup_and_use.html#creating-a-virtual-environment"><span class="bold">Creating a Virtual Environment</span></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#from-terminal">From Terminal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#in-vsc">In VSC</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="setup_and_use.html#library-installation"><span class="bold">Library Installation</span></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#id5">From Terminal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#id6">In VSC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup_and_use.html#external">External</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="db_setup.html"><span class="gold">MongoDB Installation and Setup</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="db_setup.html#introduction"><span class="bold">Introduction</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="db_setup.html#windows"><span class="bold">Windows</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="db_setup.html#macos"><span class="bold">macOS</span></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="db_setup.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="db_setup.html#install-xcode-command-line-tools">Install Xcode Command-Line Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="db_setup.html#install-homebrew">Install Homebrew</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="db_setup.html#setup-lasp-credentials-to-access-mongodb"><span class="bold">Setup LASP Credentials to Access MongoDB</span></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="db_setup.html#id1">Windows</a></li>
-<li class="toctree-l3"><a class="reference internal" href="db_setup.html#macos-linux">macOS/Linux</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="what_is_scb.html"><span class="gold">What is Scarabaeus?</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html"><span class="gold">Installation</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"><span class="gold">Scarabaeus Quickstart</span></a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Data Flow and Processes</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals and Concepts</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Miscellaneous</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="external_libraries.html"><span class="gold">Libraries</span></a><ul>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#geometry-and-ephemeris"><span class="bold">Geometry and Ephemeris</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#integration"><span class="bold">Integration</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#math"><span class="bold">Math</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#plotting"><span class="bold">Plotting</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#integrated-tests-and-documentation"><span class="bold">Integrated Tests and Documentation</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#database"><span class="bold">Database</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#others-from-orcca"><span class="bold">Others from ORCCA</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="external_libraries.html#external-software"><span class="bold">External Software</span></a></li>
-</ul>
-</li>
 </ul>
 </div>
 </section>
@@ -480,11 +433,11 @@ orbit determination process and how it functions within Scarabaeus are also spok
       </div>
     </a>
     <a class="right-next"
-       href="setup_and_use.html"
+       href="what_is_scb.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Install and Set Up Scarabaeus</span></p>
+        <p class="prev-next-title"><span class="gold">What is Scarabaeus?</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -542,7 +495,7 @@ orbit determination process and how it functions within Scarabaeus are also spok
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
     <br/>
   </p>
 </div>
