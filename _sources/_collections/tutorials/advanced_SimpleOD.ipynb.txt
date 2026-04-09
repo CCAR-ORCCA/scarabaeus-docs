@@ -1,0 +1,140 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "0",
+   "metadata": {},
+   "source": [
+    "# Simple Orbit Determination\n",
+    "---\n",
+    "Last revised by Z. Ellis on 2026 APR 6\n",
+    "\n",
+    "## Objectives\n",
+    "This tutorial will demonstrate how to perform general orbit determination with Scarabaeus using a similar LEO scenario to the [Ground Station Visibility](intermediate_GroundStationVisibility.ipynb) intermediate tutorial."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1",
+   "metadata": {},
+   "source": [
+    "## Imports and Set Up\n",
+    "\n",
+    "Here we'll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import scarabaeus as scb\n",
+    "from tutorial_data import tutorial_data\n",
+    "\n",
+    "import os\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "# load tutorial data\n",
+    "data = tutorial_data.load()\n",
+    "\n",
+    "## units, frames, kernels\n",
+    "kg, km, sec, hr = scb.Units.get_units(['kg', 'km', 'sec', 'hr'])\n",
+    "J2000 = scb.Frame('J2000')\n",
+    "\n",
+    "# load tutorial meta kernel\n",
+    "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
+    "scb.SpiceManager.load_kernel_from_mkfile(data.mk)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3",
+   "metadata": {},
+   "source": [
+    "## Propagate True Trajectory\n",
+    "As we have done a few times now, we'll create a spacecraft and define "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# ## configure primary body\n",
+    "# # create an empty Earth\n",
+    "# earth = scb.CelestialBody.from_constants('EARTH')\n",
+    "\n",
+    "# # add a ground station to Earth\n",
+    "# DSS_14 = scb.GroundStation('DSS-14', 399014)\n",
+    "# earth.add_ground_station(DSS_14)\n",
+    "\n",
+    "# ## configure the orbiter spacecraft\n",
+    "# # create Spacecraft object\n",
+    "# orbiter = scb.Spacecraft(name     = 'ORCCA_ORBITER',\n",
+    "#                          spice_id = -1000,\n",
+    "#                          tot_mass = scb.ArrayWUnits(2e3, kg),\n",
+    "#                          area     = scb.ArrayWUnits(1, m**2))\n",
+    "\n",
+    "# # define propagation interval\n",
+    "# t0 = scb.EpochArray(scb.SpiceManager.cal2et('2026 JAN 01 00:00:00.000'), 'TDB')\n",
+    "# tf = scb.EpochArray(scb.SpiceManager.cal2et('2026 JAN 07 00:00:00.000'), 'TDB')\n",
+    "# dt = scb.ArrayWUnits(1, hr)\n",
+    "\n",
+    "# epochs = scb.EpochArray.interval(t0, tf, dt)\n",
+    "\n",
+    "# # define initial state\n",
+    "# pos0 = scb.ArrayWFrame(scb.ArrayWUnits([10e6, 0, 0], km    ), J2000)\n",
+    "# vel0 = scb.ArrayWFrame(scb.ArrayWUnits([0   , 7, 0], km/sec), J2000)\n",
+    "# x0   = scb.StateArray(epoch  = t0,\n",
+    "#                       origin = earth,\n",
+    "#                       state  = scb.StateDefinition()\n",
+    "#                                   .position(orbiter, pos0)\n",
+    "#                                   .velocity(orbiter, vel0))\n",
+    "\n",
+    "# ## propagate the orbiter\n",
+    "# # define keplerian dynamics, propagator, and propagate\n",
+    "# kep_dyn = scb.ForceModelTranslation(orbiter)\n",
+    "# prop    = scb.Propagator(primary_body = orbiter,\n",
+    "#                          state_vector = x0,\n",
+    "#                          tspan        = epochs,\n",
+    "#                          force_models = kep_dyn)\n",
+    "# prop.propagate()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5",
+   "metadata": {},
+   "source": [
+    "## Conclusion\n",
+    "FILL OUT"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
