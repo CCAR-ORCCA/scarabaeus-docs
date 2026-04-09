@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="## Compare Integrators" />
+<meta property="og:title" content="# Compare Integrators" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/intermediate_CompareIntegrators.html" />
 <meta property="og:site_name" content="Scarabaeus" />
@@ -16,7 +16,7 @@
 <meta property="og:image:alt" content="Scarabaeus" />
 <meta name="description" content="Last revised by Z. Ellis on 2026 MAR 30 Objectives: This tutorial will demonstrate the usage of the two different integrators supported within Scarabaeus’ Propagator class, DOP853 and IAS15, across increasingly complex dynamics configurations. The configurations are: Keplerian orbit, Keplerian orbit + third body perturbations, Keplerian orbit + third body perturbations + cannonball solar radiation pressure model, Keplerian orbit + third body perturbations + N-plate solar radiation pressure mo..." />
 
-    <title>## Compare Integrators &#8212; Scarabaeus  documentation</title>
+    <title># Compare Integrators &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cf328a27" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=80994b75" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -66,8 +66,8 @@
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="## N-Plate Model Attitude" href="intermediate_nPlateModel.html" />
-    <link rel="prev" title="basic_CelestialBody" href="../../learning_and_tutorial/tutorials/basics/tut_celestialbody.html" />
+    <link rel="next" title="# N-Plate Model Attitude" href="intermediate_nPlateModel.html" />
+    <link rel="prev" title="# Celestial Bodies in Scarabaeus" href="basics_CelestialBodies.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -342,16 +342,28 @@
 </ul>
 </details></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginner Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
+
+
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate Tutorials</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">## Compare Integrators</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Compare Integrators</a></li>
 
 
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html">## N-Plate Model Attitude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html"># N-Plate Model Attitude</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
 
 
 
@@ -405,7 +417,7 @@
     
     <li class="breadcrumb-item"><a href="../../learning_and_tutorial/learn_scb_frontpage.html" class="nav-link"><span class="gold">Examples</span></a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">## Compare Integrators</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Compare Integrators</span></li>
   </ul>
 </nav>
 </div>
@@ -422,8 +434,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="##-Compare-Integrators">
-<h1>## Compare Integrators<a class="headerlink" href="###-Compare-Integrators" title="Link to this heading">#</a></h1>
+  <section id="#-Compare-Integrators">
+<h1># Compare Integrators<a class="headerlink" href="##-Compare-Integrators" title="Link to this heading">#</a></h1>
 <p>Last revised by Z. Ellis on 2026 MAR 30</p>
 </section>
 <section id="Objectives">
@@ -699,7 +711,7 @@ propagating.</p>
 <span class="c1"># two body orbit</span>
 <span class="n">twobp</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">primary_body</span> <span class="o">=</span> <span class="n">sc</span><span class="p">)</span>
 <span class="n">twobp_errs</span> <span class="o">=</span> <span class="n">prop_and_plot_fm</span><span class="p">(</span><span class="n">twobp</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> km, i = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$^\circ$</span><span class="se">\n</span><span class="s1">&#39;</span>
-                                    <span class="s1">&#39;Earth Orbit&#39;</span><span class="p">)</span>
+                                      <span class="s1">&#39;Earth Orbit&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -801,7 +813,7 @@ Propagation complete.
 <div class="highlight"><pre>
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_9395/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
+/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_50210/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
   err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
@@ -839,6 +851,7 @@ Propagation complete.
                             Starting propagation...
 ================================================================================
  =================== IAS15 integration complete. ==================
+Propagation complete.
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -858,7 +871,6 @@ Propagation complete.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Propagation complete.
 
 ================================================================================
                             Starting propagation...
@@ -1022,7 +1034,7 @@ Propagation complete.
 
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_9395/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
+/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_50210/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
   err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
@@ -1047,6 +1059,8 @@ Propagation complete.
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
+/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
+  coeffs = np.polyfit(t_array, y_array, deg)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1061,6 +1075,8 @@ Propagation complete.
 ================================================================================
                             Starting propagation...
 ================================================================================
+ =================== IAS15 integration complete. ==================
+Propagation complete.
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1068,9 +1084,6 @@ Propagation complete.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
 </pre></div></div>
@@ -1080,8 +1093,6 @@ Propagation complete.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
 
 ================================================================================
                             Starting propagation...
@@ -1246,7 +1257,7 @@ Propagation complete.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_9395/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
+/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_50210/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
   err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
@@ -1270,6 +1281,8 @@ Propagation complete.
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
+/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
+  coeffs = np.polyfit(t_array, y_array, deg)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1291,9 +1304,6 @@ Propagation complete.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
 </pre></div></div>
@@ -1454,7 +1464,7 @@ Propagation complete.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_9395/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
+/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_50210/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
   err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
@@ -1665,7 +1675,7 @@ Propagation complete.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_9395/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
+/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_50210/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
   err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
 /Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
   coeffs = np.polyfit(t_array, y_array, deg)
@@ -1840,12 +1850,12 @@ Text(0.5, 1.0, &#39;Average Velocity Differences Between IAS15 and DOP853&#39;)
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../learning_and_tutorial/tutorials/basics/tut_celestialbody.html"
+       href="basics_CelestialBodies.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="gold">basic_CelestialBody</span></p>
+        <p class="prev-next-title"># Celestial Bodies in Scarabaeus</p>
       </div>
     </a>
     <a class="right-next"
@@ -1853,7 +1863,7 @@ Text(0.5, 1.0, &#39;Average Velocity Differences Between IAS15 and DOP853&#39;)
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">## N-Plate Model Attitude</p>
+        <p class="prev-next-title"># N-Plate Model Attitude</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1876,7 +1886,7 @@ Text(0.5, 1.0, &#39;Average Velocity Differences Between IAS15 and DOP853&#39;)
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">## Compare Integrators</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># Compare Integrators</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Set-Up">Imports and Set Up</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Define-Propagation-Parameters">Define Propagation Parameters</a></li>

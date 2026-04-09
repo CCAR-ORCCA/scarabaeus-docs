@@ -1,0 +1,205 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "cbb23516",
+   "metadata": {},
+   "source": [
+    "# Compare Integrators\n",
+    "---\n",
+    "Last revised by Z. Ellis on 2026 APR 6\n",
+    "\n",
+    "## Objectives\n",
+    "This tutorial will demonstrate "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6e9745de",
+   "metadata": {},
+   "source": [
+    "## Imports and Set Up\n",
+    "\n",
+    "Here we'll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel to use for time conversions and provide attitude information."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "e527f30d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "SCB tutorial data up to date.\n",
+      "================================================================================\n",
+      "                                 Kernels Loaded:\n",
+      "================================================================================\n",
+      "Source:   /Users/zael5647/scarabaeus/tutorials/tutorial_data/kernels/scenario/orex_mk.tm   (META)\n",
+      "Source:   tutorial_data/kernels/scenario/orx_sc_rel_210816_210822_v02.bc   (CK)\n",
+      "Source:   tutorial_data/kernels/scenario/orx_sa_rel_210816_210822_v02.bc   (CK)\n",
+      "Source:   tutorial_data/kernels/scenario/ORX_SCLKSCET_00075.tsc   (TEXT)\n",
+      "Source:   tutorial_data/kernels/lsk/naif0012.tls   (TEXT)\n",
+      "Source:   tutorial_data/kernels/scenario/orx_v14.tf   (TEXT)\n"
+     ]
+    }
+   ],
+   "source": [
+    "import scarabaeus as scb\n",
+    "from tutorial_data import tutorial_data\n",
+    "\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "# load tutorial data\n",
+    "data = tutorial_data.load()\n",
+    "\n",
+    "## units, frames, kernels\n",
+    "km, hr = scb.Units.get_units(['km', 'hr'])\n",
+    "J2000 = scb.Frame('J2000')\n",
+    "\n",
+    "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
+    "scb.SpiceManager.load_kernel_from_mkfile(data.OREX.mk)\n",
+    "scb.SpiceManager.print_kernels()    # verify C-Kernels for the S/C (sc) and solar arrays (sa)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dc274b09",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned\n",
+      "  coeffs = np.polyfit(t_array, y_array, deg)\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "--- Propagating Segment 1/1: 'LEG1' [Leg] ---\n",
+      "\n",
+      "[IC] segment='LEG1' type='Leg' epoch=820497669.18392 sec (TDB)\n",
+      "  position     n= 3 sid=10000 frame=J2000 vals[:6]=[25000000.        0.        0.]\n",
+      "  velocity     n= 3 sid=10000 frame=J2000 vals[:6]=[3. 0. 0.]\n",
+      "\n",
+      "================================================================================\n",
+      "                            Starting propagation...                             \n",
+      "================================================================================\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      " =================== DOP853 integration complete. ==================\n",
+      "Propagation complete.\n",
+      "\n",
+      "[GLOBAL STATE after 'LEG1']\n",
+      "  key=('position', 3, 10000, 'J2000', 0) -> global[0:3] = [25258448.613674797        0.                 0.         ]\n",
+      "  key=('velocity', 3, 10000, 'J2000', 0) -> global[3:6] = [2.9826662229935 0.              0.             ]\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    },
+    {
+     "ename": "SpiceFILEOPENFAIL",
+     "evalue": "\n================================================================================\n\nToolkit version: CSPICE_N0067\n\nSPICE(FILEOPENFAIL) --\n\nAttempt to create new file, 'data/kernels/scenario/TEST_TRAJ.bsp' failed. IOSTAT was 2.\n\nspkopn_c --> SPKOPN --> DAFONW --> ZZDDHOPN\n\n================================================================================",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+      "\u001b[31mSpiceFILEOPENFAIL\u001b[39m                         Traceback (most recent call last)",
+      "\u001b[32m/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_32619/1814199859.py\u001b[39m in \u001b[36m?\u001b[39m\u001b[34m()\u001b[39m\n\u001b[32m     33\u001b[39m \n\u001b[32m     34\u001b[39m mission = scb.ScenarioSetup(sequence)\n\u001b[32m     35\u001b[39m mission.propagate()\n\u001b[32m     36\u001b[39m \n\u001b[32m---> \u001b[39m\u001b[32m37\u001b[39m orbiter_traj = scb.Trajectory(\u001b[33m'TEST_TRAJ'\u001b[39m, state_array = mission.propagated_state_array)\n",
+      "\u001b[32m~/scarabaeus/src/scarabaeus/environment/Trajectory.py\u001b[39m in \u001b[36m?\u001b[39m\u001b[34m(self, name, ref_frame, origin, body, degree_poly, parameters, offset, STMs, STMs_timestamp, propagator_settings_dict, state_array, leg_array, mass_profile)\u001b[39m\n\u001b[32m    269\u001b[39m                 stms_json = self._STMs \u001b[38;5;28;01mif\u001b[39;00m is_primary \u001b[38;5;28;01melse\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m    270\u001b[39m                 prop_settings = self._propagator_settings_dict \u001b[38;5;28;01mif\u001b[39;00m is_primary \u001b[38;5;28;01melse\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m    271\u001b[39m                 mass_prof = self._mass_profile \u001b[38;5;28;01mif\u001b[39;00m is_primary \u001b[38;5;28;01melse\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m    272\u001b[39m \n\u001b[32m--> \u001b[39m\u001b[32m273\u001b[39m                 SpiceManager.write_spk_segment_type9(\n\u001b[32m    274\u001b[39m                     SPK_name=spk_name,\n\u001b[32m    275\u001b[39m                     SPK_SEG_ID=spk_segid,\n\u001b[32m    276\u001b[39m                     body=b,\n",
+      "\u001b[32m~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py\u001b[39m in \u001b[36m?\u001b[39m\u001b[34m(cls, SPK_name, SPK_SEG_ID, body, origin_ID, ref_frame, epochs_TDB, degree_poly, state_SPICE, parameters_JSON, STMs_JSON, state_definition, sequence_definition, leg_data, propagator_settings, mass_profile)\u001b[39m\n\u001b[32m   2296\u001b[39m         Returns:\n\u001b[32m   2297\u001b[39m             \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[32m   2298\u001b[39m         \"\"\"\n\u001b[32m   2299\u001b[39m         \u001b[38;5;66;03m# Handle SPK file opening\u001b[39;00m\n\u001b[32m-> \u001b[39m\u001b[32m2300\u001b[39m         SPK_handle = cls._open_spk_file(SPK_name)\n\u001b[32m   2301\u001b[39m \n\u001b[32m   2302\u001b[39m         \u001b[38;5;66;03m# Initialize\u001b[39;00m\n\u001b[32m   2303\u001b[39m         body_ID = body.spice_id\n",
+      "\u001b[32m~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py\u001b[39m in \u001b[36m?\u001b[39m\u001b[34m(SPK_name)\u001b[39m\n\u001b[32m   2385\u001b[39m                 \u001b[33mf\"Warning: SPK file '{SPK_name}' already exists. The trajectory segment will be appended to this file.\"\u001b[39m\n\u001b[32m   2386\u001b[39m             )\n\u001b[32m   2387\u001b[39m             SPK_handle = spice.spkopa(SPK_name)\n\u001b[32m   2388\u001b[39m         \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[32m-> \u001b[39m\u001b[32m2389\u001b[39m             SPK_handle = spice.spkopn(SPK_name, SPK_name, \u001b[32m0\u001b[39m)\n\u001b[32m   2390\u001b[39m \n\u001b[32m   2391\u001b[39m         \u001b[38;5;28;01mreturn\u001b[39;00m SPK_handle\n",
+      "\u001b[32m~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py\u001b[39m in \u001b[36m?\u001b[39m\u001b[34m(*args, **kwargs)\u001b[39m\n\u001b[32m    148\u001b[39m             res = f(*args, **kwargs)\n\u001b[32m    149\u001b[39m             check_for_spice_error(f)\n\u001b[32m    150\u001b[39m             \u001b[38;5;28;01mreturn\u001b[39;00m res\n\u001b[32m    151\u001b[39m         \u001b[38;5;28;01mexcept\u001b[39;00m BaseException:\n\u001b[32m--> \u001b[39m\u001b[32m152\u001b[39m             \u001b[38;5;28;01mraise\u001b[39;00m\n",
+      "\u001b[32m~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py\u001b[39m in \u001b[36m?\u001b[39m\u001b[34m(f)\u001b[39m\n\u001b[32m    128\u001b[39m         explain = getmsg(\u001b[33m\"EXPLAIN\"\u001b[39m, \u001b[32m100\u001b[39m).strip()\n\u001b[32m    129\u001b[39m         long = getmsg(\u001b[33m\"LONG\"\u001b[39m, \u001b[32m1841\u001b[39m).strip()\n\u001b[32m    130\u001b[39m         traceback = qcktrc(\u001b[32m200\u001b[39m)\n\u001b[32m    131\u001b[39m         reset()\n\u001b[32m--> \u001b[39m\u001b[32m132\u001b[39m         raise dynamically_instantiate_spiceyerror(\n\u001b[32m    133\u001b[39m             short=short, explain=explain, long=long, traceback=traceback\n\u001b[32m    134\u001b[39m         )\n",
+      "\u001b[31mSpiceFILEOPENFAIL\u001b[39m: \n================================================================================\n\nToolkit version: CSPICE_N0067\n\nSPICE(FILEOPENFAIL) --\n\nAttempt to create new file, 'data/kernels/scenario/TEST_TRAJ.bsp' failed. IOSTAT was 2.\n\nspkopn_c --> SPKOPN --> DAFONW --> ZZDDHOPN\n\n================================================================================"
+     ]
+    }
+   ],
+   "source": [
+    "# set up\n",
+    "km, sec, kg = scb.Units.get_units(['km', 'sec', 'kg'])\n",
+    "J2000 = scb.Frame('J2000')\n",
+    "\n",
+    "t0 = scb.SpiceManager.cal2et('2026 JAN 01 00:00:00.000')\n",
+    "tf = scb.SpiceManager.cal2et('2026 JAN 02 00:00:00.000')\n",
+    "epochs = scb.EpochArray(np.arange(t0, tf, 500), 'TDB')\n",
+    "\n",
+    "# bodies\n",
+    "jupiter = scb.CelestialBody.from_constants('JUPITER')\n",
+    "sc = scb.Spacecraft('TEST SC', 10000, tot_mass = scb.ArrayWUnits(1e3, kg))\n",
+    "\n",
+    "pos0 = scb.ArrayWFrame(scb.ArrayWUnits([25e6, 0, 0], km), J2000)\n",
+    "vel0 = scb.ArrayWFrame(scb.ArrayWUnits([3, 0, 0], km/sec), J2000)\n",
+    "\n",
+    "state_vector = scb.StateArray(epoch  = scb.EpochArray(scb.ArrayWUnits(t0, sec), 'TDB'),\n",
+    "                              origin = jupiter,\n",
+    "                              state  = scb.StateDefinition()\n",
+    "                                          .position(sc, pos0)\n",
+    "                                          .velocity(sc, vel0))\n",
+    "\n",
+    "# propagator\n",
+    "fm = scb.ForceModelTranslation(sc)\n",
+    "prop = scb.Propagator(primary_body  = sc, \n",
+    "                      state_vector  = state_vector, \n",
+    "                      tspan         = epochs, \n",
+    "                      force_models  = fm, \n",
+    "                      propagate_STM = False)\n",
+    "\n",
+    "# mission sequence\n",
+    "sequence = scb.MissionSequence('TEST_SEQUENCE')\n",
+    "sequence.addLeg('LEG1', scb.ArrayWUnits(86400, sec), state_vector, prop, scb.ArrayWUnits(10, sec))\n",
+    "\n",
+    "mission = scb.ScenarioSetup(sequence)\n",
+    "mission.propagate()\n",
+    "\n",
+    "# NOTE: cant specify file location so this will fail when it tries to write the file\n",
+    "orbiter_traj = scb.Trajectory('TEST_TRAJ', state_array = mission.propagated_state_array)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
