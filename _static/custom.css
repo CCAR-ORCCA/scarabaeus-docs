@@ -1,3 +1,5 @@
+/* SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder */
+/* SPDX-License-Identifier: ISC */
 /*******************************************************************************
 * light theme
 *
@@ -128,7 +130,56 @@ html[data-theme="light"] {
   html[data-theme="dark"] .bd-content img:not(.only-dark):not(.dark-light) {
     background: unset;
   }
+
+  /* hide duplicate toctrees to get around nbgallery always making one */
+  /* .bd-toc-item .bd-sidenav:nth-of-type(even) {
+    display: none;
+  } */
+  /* body[data-page="examples/examples_frontpage"] .bd-toc-item .bd-sidenav:nth-of-type(even) {
+    display: none;
+  } */
   
+/* .bd-sidebar-primary {
+   width: 18%;
+   min-width: 250px;
+   max-width: 350px;
+   padding-left: 2%;
+}
+
+.bd-sidebar-secondary {
+   width: 18%;
+   min-width: 250px;
+   max-width: 350px;
+   overflow-x: hidden;
+   word-break: break-all;
+   overflow-wrap: break-word;
+} */
+ 
+/* .bd-sidebar-secondary .toc-entry a,
+.bd-sidebar-secondary .nav-link,
+.bd-sidebar-secondary span {
+   word-break: break-word !important;
+   overflow-wrap: break-word !important;
+   white-space: normal !important;
+   display: inline-block;
+   max-width: 100%;
+} */
+
+.bd-sidebar-secondary code {
+   display: block !important;
+   word-break: break-word !important;
+   overflow-wrap: break-word !important;
+   white-space: normal !important;
+   max-width: 100%;
+}
+
+/* custom class for toctrees to be multicolumn */
+.two-column-toc ul {
+    column-count: 2;
+    column-gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
   
   html {
     /*****************************************************************************
@@ -139,7 +190,7 @@ html[data-theme="light"] {
     /* Article header is 66% of Header */
     --pst-header-height: 6rem;
     --pst-header-article-height: calc(var(--pst-header-height) * 2 / 3);
-    --pst-sidebar-secondary: 17rem;
+    --pst-sidebar-secondary: 25%
   }
   
   html {

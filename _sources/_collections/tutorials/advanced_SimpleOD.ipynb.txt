@@ -5,6 +5,8 @@
    "id": "0",
    "metadata": {},
    "source": [
+    "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
+    "<!-- SPDX-License-Identifier: ISC -->\n",
     "# Simple Orbit Determination\n",
     "---\n",
     "Last revised by Z. Ellis on 2026 APR 6\n",
@@ -31,14 +33,14 @@
    "outputs": [],
    "source": [
     "import scarabaeus as scb\n",
-    "from tutorial_data import tutorial_data\n",
+    "import supplementary as supp\n",
     "\n",
     "import os\n",
     "import numpy as np\n",
     "import matplotlib.pyplot as plt\n",
     "\n",
     "# load tutorial data\n",
-    "data = tutorial_data.load()\n",
+    "data = supp.load_data()\n",
     "\n",
     "## units, frames, kernels\n",
     "kg, km, sec, hr = scb.Units.get_units(['kg', 'km', 'sec', 'hr'])\n",
@@ -46,7 +48,7 @@
     "\n",
     "# load tutorial meta kernel\n",
     "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
-    "scb.SpiceManager.load_kernel_from_mkfile(data.mk)"
+    "scb.SpiceManager.load_kernel_from_mkfile(data.mk.path)"
    ]
   },
   {
@@ -54,8 +56,7 @@
    "id": "3",
    "metadata": {},
    "source": [
-    "## Propagate True Trajectory\n",
-    "As we have done a few times now, we'll create a spacecraft and define "
+    "## Propagate True Trajectory\n"
    ]
   },
   {
@@ -104,15 +105,6 @@
     "#                          tspan        = epochs,\n",
     "#                          force_models = kep_dyn)\n",
     "# prop.propagate()"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "5",
-   "metadata": {},
-   "source": [
-    "## Conclusion\n",
-    "FILL OUT"
    ]
   }
  ],

@@ -5,6 +5,8 @@
    "id": "0",
    "metadata": {},
    "source": [
+    "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
+    "<!-- SPDX-License-Identifier: ISC -->\n",
     "# Propagator Comparisons (IAS15 & DOP853)\n",
     "---\n",
     "Last revised by Z. Ellis on 2026 MAR 30\n",
@@ -53,7 +55,10 @@
     "kg, km, sec = scb.Units.get_units(['kg', 'km', 'sec'])\n",
     "J2000 = scb.Frame('J2000')\n",
     "\n",
-    "scb.SpiceManager.load_kernel_from_mkfile(os.getcwd() + '/data/kernels/locked/locked_generic.tm')"
+    "import supplementary as supp\n",
+    "data = supp.load_data()\n",
+    "scb.SpiceManager.clear_kernels()\n",
+    "scb.SpiceManager.load_kernel_from_mkfile(data.mk.path)"
    ]
   },
   {

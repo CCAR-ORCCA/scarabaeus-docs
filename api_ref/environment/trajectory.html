@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Trajectory" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/api_ref/environment/trajectory.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+
+    <title>Trajectory &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/environment/trajectory';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../fb/fb_index.html" />
+    <link rel="prev" title="StateDefinition" href="statedefinition.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Body</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Burn</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Orbit Determination</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spacecraft</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time &amp; Frame</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Units</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncertainty Quantification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Matrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span> <span class="pre">Quantification</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Matrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span> <span class="pre">Quantification</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/databasemanager.html"><code class="docutils literal notranslate"><span class="pre">DatabaseManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/databasemanager.html"><code class="docutils literal notranslate"><span class="pre">DatabaseManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_ref_frontpage.html" class="nav-link"><span class="gold">Scarabaeus API</span></a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="environment_index.html" class="nav-link">&lt;no title&gt;</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="trajectory">
+<h1><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code><a class="headerlink" href="#trajectory" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree_poly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STMs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STMs_timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagator_settings_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leg_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass_profile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Represents a spacecraft or celestial object’s trajectory in a defined reference frame and origin.</p>
+<p>This class encapsulates trajectory data, including position, velocity, estimated parameters,
+and state transition matrices (STMs). It supports both single-phase trajectories and multi-leg
+mission sequences.</p>
+<p>The trajectory stores the discrete time history
+<span class="math notranslate nohighlight">\(\{(t_i,\,\mathbf{r}_i,\,\dot{\mathbf{r}}_i)\}_{i=0}^{N}\)</span> and
+writes it into a SPICE SPK kernel so that the state at any epoch
+<span class="math notranslate nohighlight">\(t \in [t_0, t_N]\)</span> can be retrieved via polynomial interpolation:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{r}(t) \approx \sum_{k=0}^{d} c_k\,t^k\]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> is <code class="docutils literal notranslate"><span class="pre">degree_poly</span></code> (default 3).</p>
+<p>The trajectory can be initialized using:</p>
+<ul class="simple">
+<li><p>Explicit position, velocity, and epoch inputs.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> directly from a propagator.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the trajectory.</p></li>
+<li><p><strong>ref_frame</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – The reference frame in which the trajectory is defined (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;J2000&quot;</span></code>).
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – The origin of the trajectory (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;SUN&quot;</span></code>). Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>body</strong> (<a class="reference internal" href="../body/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.CelestialBody"><code class="xref py py-class docutils literal notranslate"><span class="pre">CelestialBody</span></code></a>, <em>optional</em>) – The celestial body or spacecraft associated with this trajectory. Defaults to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>degree_poly</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The degree of the polynomial used for SPICE interpolation. Defaults to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p><strong>parameters</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – Additional estimated parameters related to the trajectory (e.g., range biases,
+solar radiation pressure coefficients). Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>offset</strong> (<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>, <em>optional</em>) – A fixed position offset for coordinate transformations. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>STMs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <em>optional</em>) – The state transition matrices (STMs) associated with the trajectory. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>propagator_settings_dict</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, <em>optional</em>) – A dictionary of propagator settings for numerical integration. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>state_array</strong> (<a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateArray</span></code></a>, <em>optional</em>) – If provided, initializes the trajectory from a propagated <cite>StateArray</cite>, extracting
+position, velocity, epoch, reference frame, and parameters. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – <ul>
+<li><p>If both <code class="docutils literal notranslate"><span class="pre">state_definition</span></code> and <code class="docutils literal notranslate"><span class="pre">sequence_definition</span></code> are provided simultaneously.</p></li>
+<li><p>If both standard trajectory inputs and a <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> are provided.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> is missing position or velocity components.</p></li>
+</ul>
+</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#Exception" title="(in Python v3.11)"><strong>Exception</strong></a> – If the trajectory contains fewer than two data points.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">state_definition</span></code> is provided, the trajectory follows a single continuous model.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">sequence_definition</span></code> is used, the trajectory consists of multiple segments (e.g., before and after a maneuver).</p></li>
+<li><p>The trajectory is stored in a SPICE kernel format for interpolation and retrieval.</p></li>
+</ul>
+<p><strong>Saving to disk — SPK and JSON sidecars</strong></p>
+<p>Calling <a class="reference internal" href="#scarabaeus.Trajectory.write_to_spk" title="scarabaeus.Trajectory.write_to_spk"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write_to_spk()</span></code></a> writes two kinds of files that always live next to each other:</p>
+<ol class="arabic simple">
+<li><p><strong>SPK binary</strong> (<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;.bsp</span></code>) — the position/velocity time-series in SPICE
+type-9 (Lagrange interpolating polynomial) format.  State at any epoch inside
+the covered arc is retrieved via SPICE polynomial interpolation.</p></li>
+<li><p><strong>JSON sidecars</strong> — plain-text files written alongside the <code class="docutils literal notranslate"><span class="pre">.bsp</span></code> with the
+same base name and the suffixes listed below.  They carry metadata that cannot
+be embedded in a standard SPK segment:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_parameters.json</span></code> — time-history of estimated parameters (e.g. range
+biases, SRP coefficients, empirical accelerations), plus the full state
+definition that describes what each column represents.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_STMs.json</span></code> — state transition matrices and their timestamps
+(written only when STMs are attached via <a class="reference internal" href="#scarabaeus.Trajectory.add_STMs" title="scarabaeus.Trajectory.add_STMs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_STMs()</span></code></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_settings.json</span></code> — serialised <code class="docutils literal notranslate"><span class="pre">propagator_settings_dict</span></code> (force
+model, integrator tolerances, etc.) so the trajectory can be reproduced.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_mass_profile.json</span></code> — polynomial coefficients of the spacecraft mass
+as a function of time (written only when a <code class="docutils literal notranslate"><span class="pre">mass_profile</span></code> is provided).</p></li>
+</ul>
+</li>
+</ol>
+<p>Each sidecar is <strong>optional</strong>: the file is created only when the corresponding data
+is not <code class="docutils literal notranslate"><span class="pre">None</span></code>.  All four sidecars share the same path prefix as the <code class="docutils literal notranslate"><span class="pre">.bsp</span></code> so
+that loading the kernel and its associated metadata is unambiguous.</p>
+<p class="rubric">Examples</p>
+<p><strong>Standard Initialization:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="c1"># Define epochs</span>
+<span class="n">epoch_start</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">jd2et</span><span class="p">(</span><span class="mf">2461809.72995654</span><span class="p">)</span>
+<span class="n">epoch_end</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">jd2et</span><span class="p">(</span><span class="mf">2461809.72995654</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">epoch_start</span><span class="p">,</span> <span class="n">epoch_end</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span><span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define position and velocity</span>
+<span class="n">position</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;km&quot;</span><span class="p">)</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;km/s&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initialize trajectory</span>
+<span class="n">traj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Test_Trajectory&quot;</span><span class="p">,</span>
+    <span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">,</span>
+    <span class="n">velocity</span><span class="o">=</span><span class="n">velocity</span><span class="p">,</span>
+    <span class="n">epoch</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+    <span class="n">ref_frame</span><span class="o">=</span><span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
+    <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;SUN&quot;</span><span class="p">,</span>
+    <span class="n">body</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s2">&quot;EARTH&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Retrieve state at a given epoch</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">traj</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Position:&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">])</span>
+<span class="s1">&#39;Position: [0.123, 0.456, 0.789] [km]&#39;</span>
+</pre></div>
+</div>
+<p><strong>Alternative Initialization from a Propagator:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize trajectory using propagated StateArray</span>
+<span class="n">traj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="s2">&quot;Orbiter_trajectory&quot;</span><span class="p">,</span> <span class="n">state_array</span><span class="o">=</span><span class="n">propagated_state_array</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.MissionSequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.MissionSequence</span></code></a></dt><dd><p>Multi-leg trajectory container.</p>
+</dd>
+<dt><a class="reference internal" href="propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.Propagator</span></code></a></dt><dd><p>Numerical propagator that produces trajectory data.</p>
+</dd>
+<dt><a class="reference internal" href="statearray.html#scarabaeus.StateArray" title="scarabaeus.StateArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.StateArray</span></code></a></dt><dd><p>State vector passed to the propagator.</p>
+</dd>
+</dl>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.STMs" title="scarabaeus.Trajectory.STMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STMs</span></code></a></dt><dd><p>The state transition matrices (STMs) associated with the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.STMs_timestamp" title="scarabaeus.Trajectory.STMs_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STMs_timestamp</span></code></a></dt><dd><p>The epochs at which each STM was generated.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.body" title="scarabaeus.Trajectory.body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">body</span></code></a></dt><dd><p>The celestial body or spacecraft associated with the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.end_epoch" title="scarabaeus.Trajectory.end_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_epoch</span></code></a></dt><dd><p>The end epoch of the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.epoch" title="scarabaeus.Trajectory.epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">epoch</span></code></a></dt><dd><p>The epochs associated with the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.offset" title="scarabaeus.Trajectory.offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">offset</span></code></a></dt><dd><p>A fixed position offset for coordinate transformations.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.origin" title="scarabaeus.Trajectory.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></dt><dd><p>The origin of the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.parameters" title="scarabaeus.Trajectory.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></dt><dd><p>Additional estimated parameters associated with the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.poly_deg" title="scarabaeus.Trajectory.poly_deg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">poly_deg</span></code></a></dt><dd><p>The degree of the polynomial used for interpolation.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.position" title="scarabaeus.Trajectory.position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">position</span></code></a></dt><dd><p>The position history of the trajectory in the specified reference frame.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.propagator_settings_dict" title="scarabaeus.Trajectory.propagator_settings_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagator_settings_dict</span></code></a></dt><dd><p>The dictionary of propagator settings for numerical integration.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.ref_frame" title="scarabaeus.Trajectory.ref_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_frame</span></code></a></dt><dd><p>The reference frame of the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.sequence_definition" title="scarabaeus.Trajectory.sequence_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sequence_definition</span></code></a></dt><dd><p>The mission sequence definition governing the trajectory’s structure.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.spk_path" title="scarabaeus.Trajectory.spk_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spk_path</span></code></a></dt><dd><p>The filepath for the Trajectory’s associated SPK file.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.start_epoch" title="scarabaeus.Trajectory.start_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_epoch</span></code></a></dt><dd><p>The start epoch of the trajectory.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.state_definition" title="scarabaeus.Trajectory.state_definition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_definition</span></code></a></dt><dd><p>The definition of the trajectory’s state vector.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.Trajectory.velocity" title="scarabaeus.Trajectory.velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">velocity</span></code></a></dt><dd><p>The velocity history of the trajectory in the specified reference frame.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.add_STMs" title="scarabaeus.Trajectory.add_STMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_STMs</span></code></a>(STMs[, timestamps])</p></td>
+<td><p>Associates state transition matrices (STMs) with the trajectory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.get_STM" title="scarabaeus.Trajectory.get_STM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_STM</span></code></a>(epoch[, idx, max_interp_error])</p></td>
+<td><p>Retrieve the State Transition Matrix (STM) at a given epoch or by index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.get_STM_JSON" title="scarabaeus.Trajectory.get_STM_JSON"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_STM_JSON</span></code></a>(epoch_input[, origin_input, ...])</p></td>
+<td><p>Retrieves the state transition matrix (STM) at a specified epoch from JSON file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.get_STM_sequence" title="scarabaeus.Trajectory.get_STM_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_STM_sequence</span></code></a>(epoch[, idx, idx_leg, ...])</p></td>
+<td><p>Retrieve/interpolate the STM at epoch for BOTH: - non-sequence: self._STMs is (N, n^2) and self._STMs_timestamp is (N,) - sequence:    self._STMs is list-of-arrays, one per leg (or per segment-block)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.get_offset_position" title="scarabaeus.Trajectory.get_offset_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_offset_position</span></code></a>(epoch_input[, ...])</p></td>
+<td><p>Computes the trajectory position with an applied constant offset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.get_state" title="scarabaeus.Trajectory.get_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state</span></code></a>(epoch_input[, origin_input, ...])</p></td>
+<td><p>Retrieves the trajectory state at a specified epoch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.set_offset" title="scarabaeus.Trajectory.set_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_offset</span></code></a>(offset)</p></td>
+<td><p>Sets the constant position offset for the trajectory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.write_to_spk" title="scarabaeus.Trajectory.write_to_spk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_to_spk</span></code></a>(spk_path)</p></td>
+<td><p>Write the trajectory to disk as a SPICE SPK file plus JSON sidecars.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.add_STMs">
+<span class="sig-name descname"><span class="pre">add_STMs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">STMs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory.add_STMs" title="Link to this definition">#</a></dt>
+<dd><p>Associates state transition matrices (STMs) with the trajectory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>STMs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> or <a class="reference internal" href="../time_n_frame/arraywframe.html#scarabaeus.ArrayWFrame" title="scarabaeus.ArrayWFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a>) – A list of state transition matrices or a single ArrayWFrame object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.get_STM">
+<span class="sig-name descname"><span class="pre">get_STM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_interp_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.get_STM" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve the State Transition Matrix (STM) at a given epoch or by index.</p>
+<p>Uses binary search for efficient lookup and linear interpolation between
+stored STMs. Includes optional error checking for interpolation quality.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The time at which to retrieve/interpolate the STM</p></li>
+<li><p><strong>idx</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – Direct index into the STM array (used when timestamps unavailable)</p></li>
+<li><p><strong>max_interp_error</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – Maximum allowable Frobenius norm error for interpolation (default: 1e-6)
+Set to None to disable error checking</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The STM reshaped as a square matrix</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If neither timestamps nor index provided, epoch not found, or
+interpolation error exceeds threshold</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.get_STM_JSON">
+<span class="sig-name descname"><span class="pre">get_STM_JSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_leg_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.get_STM_JSON" title="Link to this definition">#</a></dt>
+<dd><p>Retrieves the state transition matrix (STM) at a specified epoch from JSON file.</p>
+<p>Queries SpiceManager to obtain the STM corresponding to a given epoch, considering
+optional reference frame and origin transformations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch at which to retrieve the STM.</p></li>
+<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom origin for the STM retrieval. Defaults to the trajectory’s origin.</p></li>
+<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom reference frame for the STM retrieval. Default is the trajectory’s reference frame.</p></li>
+<li><p><strong>idx_leg_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The index of the trajectory leg to retrieve if the trajectory is sequence-based.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>stm</strong> – The queried STM, containing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;STM&quot;</span></code> : numpy.ndarray = The state transition matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;epoch&quot;</span></code> : EpochArray = The requested epoch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;state_definition&quot;</span></code> : dict = The state definition used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;propagator_settings&quot;</span></code> : dict = The settings used for propagation, if available.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.get_STM_sequence">
+<span class="sig-name descname"><span class="pre">get_STM_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_leg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_interp_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-09</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.get_STM_sequence" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve/interpolate the STM at epoch for BOTH:
+- non-sequence: self._STMs is (N, n^2) and self._STMs_timestamp is (N,)
+- sequence:    self._STMs is list-of-arrays, one per leg (or per segment-block)</p>
+<p>Behavior (sequence):
+- if idx_leg is given: interpolate within that leg
+- else: auto-detect leg from self._legs[*][“epoch_leg”] if available,</p>
+<blockquote>
+<div><p>otherwise fall back to using global timestamps if provided.</p>
+</div></blockquote>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Works with flat STMs stored as length n^2 vectors.</p></li>
+<li><p>Uses linear interpolation in coefficient space.</p></li>
+<li><p>Handles exact hits within tol_time.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.get_offset_position">
+<span class="sig-name descname"><span class="pre">get_offset_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.get_offset_position" title="Link to this definition">#</a></dt>
+<dd><p>Computes the trajectory position with an applied constant offset.</p>
+<p>If a reference frame transformation is required, the offset is rotated accordingly.
+The method also accounts for origin shifts when necessary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch at which to compute the offset position.</p></li>
+<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom origin for position computation. Defaults to the trajectory’s origin.</p></li>
+<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom reference frame for position computation. Defaults to the trajectory’s reference frame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>offset_pos</strong> – The computed position including the constant offset. Expressed in
+units of kilometers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.get_state">
+<span class="sig-name descname"><span class="pre">get_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch_input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_frame_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx_leg_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.Trajectory.get_state" title="Link to this definition">#</a></dt>
+<dd><p>Retrieves the trajectory state at a specified epoch.</p>
+<p>Queries SPICE to obtain position, velocity, and any associated parameters
+for a given epoch, considering optional reference frame and origin transformations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch_input</strong> (<a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a>) – The epoch at which to compute the state.</p></li>
+<li><p><strong>origin_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom origin for the state computation. Defaults to the trajectory’s origin.</p></li>
+<li><p><strong>ref_frame_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Custom reference frame for the state computation. Defaults to the trajectory’s
+reference frame.</p></li>
+<li><p><strong>idx_leg_input</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The index of the trajectory leg to retrieve if the trajectory is sequence-based.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>state</strong> – The queried state, containing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;position&quot;</span></code> : ArrayWUnits = The position vector. Expressed in units of kilometers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;velocity&quot;</span></code> : ArrayWUnits = The velocity vector. Expressed in units of <span class="math notranslate nohighlight">\(\frac{km}{s}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;epoch&quot;</span></code> : EpochArray = The requested epoch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;parameters&quot;</span></code> = Any estimated parameters, if available.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;state_definition&quot;</span></code> : dict = The state definition used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;propagator_settings&quot;</span></code> : dict =  The settings used for propagation, if available.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.set_offset">
+<span class="sig-name descname"><span class="pre">set_offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.set_offset" title="Link to this definition">#</a></dt>
+<dd><p>Sets the constant position offset for the trajectory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>offset</strong> (<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – The constant offset in position. Expressed in units of kilometers.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.write_to_spk">
+<span class="sig-name descname"><span class="pre">write_to_spk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spk_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.write_to_spk" title="Link to this definition">#</a></dt>
+<dd><p>Write the trajectory to disk as a SPICE SPK file plus JSON sidecars.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.bsp</span></code> file contains the position/velocity time-series (SPICE type-9
+Lagrange segments).  Additional data that cannot be embedded in an SPK
+segment is written as plain-text JSON files with the same base path:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;spk_path</span> <span class="pre">base&gt;_parameters.json</span></code> — estimated parameters and state
+definition (written when <a class="reference internal" href="#scarabaeus.Trajectory.parameters" title="scarabaeus.Trajectory.parameters"><code class="xref py py-attr docutils literal notranslate"><span class="pre">parameters</span></code></a> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;spk_path</span> <span class="pre">base&gt;_settings.json</span></code>   — propagator settings dictionary
+(written when <a class="reference internal" href="#scarabaeus.Trajectory.propagator_settings_dict" title="scarabaeus.Trajectory.propagator_settings_dict"><code class="xref py py-attr docutils literal notranslate"><span class="pre">propagator_settings_dict</span></code></a> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;spk_path</span> <span class="pre">base&gt;_mass_profile.json</span></code> — spacecraft mass polynomial
+(written when a <code class="docutils literal notranslate"><span class="pre">mass_profile</span></code> was passed at construction time).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;spk_path</span> <span class="pre">base&gt;_STMs.json</span></code>        — state transition matrices
+(written when STMs are attached; currently disabled pending refactor).</p></li>
+</ul>
+<p>Each sidecar is created only when the corresponding data is present.
+All files share the same directory and path prefix as the <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spk_path</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Destination file path.  Must end with <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">spk_path</span></code> does not end with <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#UserWarning" title="(in Python v3.11)"><strong>UserWarning</strong></a> – If this <code class="docutils literal notranslate"><span class="pre">Trajectory</span></code> already has an associated SPK at a different path.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">write_to_spk</span><span class="p">(</span><span class="s2">&quot;/output/mission.bsp&quot;</span><span class="p">)</span>
+<span class="c1"># Produces: mission.bsp, mission_parameters.json,</span>
+<span class="c1">#           mission_settings.json  (if propagator settings exist)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.STMs">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">STMs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.STMs" title="Link to this definition">#</a></dt>
+<dd><p>The state transition matrices (STMs) associated with the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.STMs_timestamp">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">STMs_timestamp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.STMs_timestamp" title="Link to this definition">#</a></dt>
+<dd><p>The epochs at which each STM was generated. Must correspond
+one-to-one with the <cite>STMs</cite> list.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.body">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">body</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.body" title="Link to this definition">#</a></dt>
+<dd><p>The celestial body or spacecraft associated with the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.end_epoch">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">end_epoch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.end_epoch" title="Link to this definition">#</a></dt>
+<dd><p>The end epoch of the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.epoch">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">epoch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.epoch" title="Link to this definition">#</a></dt>
+<dd><p>The epochs associated with the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.offset">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">offset</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.offset" title="Link to this definition">#</a></dt>
+<dd><p>A fixed position offset for coordinate transformations.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.origin">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.origin" title="Link to this definition">#</a></dt>
+<dd><p>The origin of the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.parameters">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parameters</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.parameters" title="Link to this definition">#</a></dt>
+<dd><p>Additional estimated parameters associated with the trajectory. These parameters
+include mission-specific estimated values, such as:</p>
+<ul class="simple">
+<li><p>Ground station range biases (e.g., clock offsets, tropospheric delays).</p></li>
+<li><p>Additional environmental parameters (e.g., solar radiation pressure coefficients).</p></li>
+<li><p>Model calibration parameters (e.g., empirical accelerations).</p></li>
+</ul>
+<p>If no additional parameters exist, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.poly_deg">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">poly_deg</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.poly_deg" title="Link to this definition">#</a></dt>
+<dd><p>The degree of the polynomial used for interpolation.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.position">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">position</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.position" title="Link to this definition">#</a></dt>
+<dd><p>The position history of the trajectory in the specified reference frame.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.propagator_settings_dict">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">propagator_settings_dict</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.propagator_settings_dict" title="Link to this definition">#</a></dt>
+<dd><p>The dictionary of propagator settings for numerical integration.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.ref_frame">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ref_frame</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.ref_frame" title="Link to this definition">#</a></dt>
+<dd><p>The reference frame of the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.sequence_definition">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">sequence_definition</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.environment.MissionSequence.MissionSequence"><span class="pre">MissionSequence</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.sequence_definition" title="Link to this definition">#</a></dt>
+<dd><p>The mission sequence definition governing the trajectory’s structure. This property is used when
+the trajectory consists of multiple segments (legs), where different state definitions or
+models are required for each segment.
+It is typically used for:</p>
+<ul class="simple">
+<li><p>Handling maneuvers (e.g., impulsive burns).</p></li>
+<li><p>Multi-phase missions with different dynamical regimes.</p></li>
+<li><p>Modeling spacecraft transitions between different reference frames.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.spk_path">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">spk_path</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.spk_path" title="Link to this definition">#</a></dt>
+<dd><p>The filepath for the Trajectory’s associated SPK file.
+Returns <code class="docutils literal notranslate"><span class="pre">None</span></code> if no file exists.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.start_epoch">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">start_epoch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.start_epoch" title="Link to this definition">#</a></dt>
+<dd><p>The start epoch of the trajectory.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.state_definition">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">state_definition</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.state_definition" title="Link to this definition">#</a></dt>
+<dd><p>The definition of the trajectory’s state vector. This describes the structure
+of the estimated state, specifying:</p>
+<ul class="simple">
+<li><p>Which variables are included in the state (e.g., position, velocity, parameters).</p></li>
+<li><p>Whether they are dynamic or static.</p></li>
+<li><p>Their associated reference objects (e.g., spacecraft, ground stations).</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.Trajectory.velocity">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">velocity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.Trajectory.velocity" title="Link to this definition">#</a></dt>
+<dd><p>The velocity history of the trajectory in the specified reference frame.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="statedefinition.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../fb/fb_index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.add_STMs"><code class="docutils literal notranslate"><span class="pre">Trajectory.add_STMs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.get_STM"><code class="docutils literal notranslate"><span class="pre">Trajectory.get_STM()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.get_STM_JSON"><code class="docutils literal notranslate"><span class="pre">Trajectory.get_STM_JSON()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.get_STM_sequence"><code class="docutils literal notranslate"><span class="pre">Trajectory.get_STM_sequence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.get_offset_position"><code class="docutils literal notranslate"><span class="pre">Trajectory.get_offset_position()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.get_state"><code class="docutils literal notranslate"><span class="pre">Trajectory.get_state()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.set_offset"><code class="docutils literal notranslate"><span class="pre">Trajectory.set_offset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.write_to_spk"><code class="docutils literal notranslate"><span class="pre">Trajectory.write_to_spk()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.STMs"><code class="docutils literal notranslate"><span class="pre">Trajectory.STMs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.STMs_timestamp"><code class="docutils literal notranslate"><span class="pre">Trajectory.STMs_timestamp</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.body"><code class="docutils literal notranslate"><span class="pre">Trajectory.body</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.end_epoch"><code class="docutils literal notranslate"><span class="pre">Trajectory.end_epoch</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.epoch"><code class="docutils literal notranslate"><span class="pre">Trajectory.epoch</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.offset"><code class="docutils literal notranslate"><span class="pre">Trajectory.offset</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.origin"><code class="docutils literal notranslate"><span class="pre">Trajectory.origin</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.parameters"><code class="docutils literal notranslate"><span class="pre">Trajectory.parameters</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.poly_deg"><code class="docutils literal notranslate"><span class="pre">Trajectory.poly_deg</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.position"><code class="docutils literal notranslate"><span class="pre">Trajectory.position</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.propagator_settings_dict"><code class="docutils literal notranslate"><span class="pre">Trajectory.propagator_settings_dict</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.ref_frame"><code class="docutils literal notranslate"><span class="pre">Trajectory.ref_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.sequence_definition"><code class="docutils literal notranslate"><span class="pre">Trajectory.sequence_definition</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.spk_path"><code class="docutils literal notranslate"><span class="pre">Trajectory.spk_path</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.start_epoch"><code class="docutils literal notranslate"><span class="pre">Trajectory.start_epoch</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.state_definition"><code class="docutils literal notranslate"><span class="pre">Trajectory.state_definition</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Trajectory.velocity"><code class="docutils literal notranslate"><span class="pre">Trajectory.velocity</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

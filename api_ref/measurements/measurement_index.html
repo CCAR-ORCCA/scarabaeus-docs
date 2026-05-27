@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="<no title>" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/api_ref/measurements/measurement_index.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="AngularIdeal- AngularIdeal- AngularIdeal.compute_partials(), AngularIdeal.computed_measurements(), AngularIdeal.generate_measurement_dataset(), AngularIdeal.observed_measurements(), AngularIdeal.residuals(), AngularIdeal.set_image_epochs(), AngularIdeal.set_image_index(), AngularIdeal.update_reference_state(), AngularIdeal.write_observed_measurements(), AngularIdeal.instrument, AngularIdeal.name, AngularIdeal.sigma.., CentroidingIdeal- CentroidingIdeal- CentroidingIdeal.compute_partials(), Ce..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="AngularIdeal- AngularIdeal- AngularIdeal.compute_partials(), AngularIdeal.computed_measurements(), AngularIdeal.generate_measurement_dataset(), AngularIdeal.observed_measurements(), AngularIdeal.residuals(), AngularIdeal.set_image_epochs(), AngularIdeal.set_image_index(), AngularIdeal.update_reference_state(), AngularIdeal.write_observed_measurements(), AngularIdeal.instrument, AngularIdeal.name, AngularIdeal.sigma.., CentroidingIdeal- CentroidingIdeal- CentroidingIdeal.compute_partials(), Ce..." />
+
+    <title>&lt;no title&gt; &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/measurements/measurement_index';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="AngularIdeal" href="angularideal.html" />
+    <link rel="prev" title="Bplane" href="../guidance/bplane.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Body</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment/missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/trajectory.html"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment/missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/trajectory.html"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Burn</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Orbit Determination</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spacecraft</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time &amp; Frame</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Units</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncertainty Quantification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Matrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span> <span class="pre">Quantification</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Matrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span> <span class="pre">Quantification</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/databasemanager.html"><code class="docutils literal notranslate"><span class="pre">DatabaseManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/databasemanager.html"><code class="docutils literal notranslate"><span class="pre">DatabaseManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_ref_frontpage.html" class="nav-link"><span class="gold">Scarabaeus API</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">&lt;no title&gt;</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.compute_partials"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.residuals"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.set_image_epochs"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.set_image_epochs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.set_image_index"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.set_image_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.instrument"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.name"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="angularideal.html#scarabaeus.AngularIdeal.sigma"><code class="docutils literal notranslate"><span class="pre">AngularIdeal.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.compute_partials"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.residuals"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.set_image_epochs"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.set_image_epochs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.set_image_index"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.set_image_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.camera"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.camera</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.instrument"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.name"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.sequence_definition"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.sequence_definition</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.sigma"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="centroidingideal.html#scarabaeus.CentroidingIdeal.state_definition"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal.state_definition</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.compute_partials"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.residuals"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.instrument"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.meas_bias"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.meas_bias</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.name"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.sequence_definition"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.sequence_definition</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.sigma"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.state_definition"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.state_definition</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffonewayrangeideal.html#scarabaeus.DiffOneWayRangeIdeal.station"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal.station</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.compute_partials"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.residuals"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.antenna_name"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.antenna_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.doppler_transmit_frequency"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.doppler_transmit_frequency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.ground_station_2"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.ground_station_2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.instrument"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.name"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.sequence_definition"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.sequence_definition</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.sigma"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.sigma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerideal.html#scarabaeus.DopplerIdeal.state_definition"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal.state_definition</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.compress_doppler_to_60s"><code class="docutils literal notranslate"><span class="pre">DopplerReal.compress_doppler_to_60s()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.compute_partials"><code class="docutils literal notranslate"><span class="pre">DopplerReal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">DopplerReal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">DopplerReal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">DopplerReal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.residuals"><code class="docutils literal notranslate"><span class="pre">DopplerReal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">DopplerReal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">DopplerReal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.computed_measurements_dict"><code class="docutils literal notranslate"><span class="pre">DopplerReal.computed_measurements_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.epoch_sec"><code class="docutils literal notranslate"><span class="pre">DopplerReal.epoch_sec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.instrument"><code class="docutils literal notranslate"><span class="pre">DopplerReal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.media_corrections"><code class="docutils literal notranslate"><span class="pre">DopplerReal.media_corrections</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.name"><code class="docutils literal notranslate"><span class="pre">DopplerReal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dopplerreal.html#scarabaeus.DopplerReal.sigma"><code class="docutils literal notranslate"><span class="pre">DopplerReal.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="measurement.html#scarabaeus.Measurement"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.compute_partials"><code class="docutils literal notranslate"><span class="pre">Measurement.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">Measurement.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.observed_measurements"><code class="docutils literal notranslate"><span class="pre">Measurement.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.residuals"><code class="docutils literal notranslate"><span class="pre">Measurement.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.update_reference_state"><code class="docutils literal notranslate"><span class="pre">Measurement.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">Measurement.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.instrument"><code class="docutils literal notranslate"><span class="pre">Measurement.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurement.html#scarabaeus.Measurement.name"><code class="docutils literal notranslate"><span class="pre">Measurement.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.add_data"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.add_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.flag_outliers_by_resid"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.flag_outliers_by_resid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.remove_outliers"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.remove_outliers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.data"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.epochs_t3"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.epochs_t3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.instrument"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.measurement_type"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.measurement_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.set_name"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.set_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.station_two"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.station_two</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementdataset.html#scarabaeus.MeasurementDataSet.target"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet.target</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.model"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.observed_meas"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.observed_meas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.epochs"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.epochs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.dataset_name"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.dataset_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.file_label"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.file_label</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec._items"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec._items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.from_dict"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.from_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.from_dicts"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.from_dicts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.many"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.many()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.to_dict"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.to_dict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="measurementspec.html#scarabaeus.MeasurementSpec.to_list"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec.to_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.find_ion_metadata"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.find_ion_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.find_tro_metadata"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.find_tro_metadata()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.chao_mapping"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.chao_mapping()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.compute_partials"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.computed_rtlt_delays"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.computed_rtlt_delays()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.get_media_data_for_et"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.get_media_data_for_et()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.mediafun_nrmpow"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.mediafun_nrmpow()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.mediafun_trig"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.mediafun_trig()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.observed_measurements"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.residuals"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.update_reference_state"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.instrument"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.iono_file_path"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.iono_file_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.name"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.tropo_non_seasonal_file_path"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.tropo_non_seasonal_file_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mediacorrections.html#scarabaeus.MediaCorrections.tropo_seasonal_file_path"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.tropo_seasonal_file_path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ramptablemanager.html#scarabaeus.RampTableManager"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ramptablemanager.html#scarabaeus.RampTableManager.integrate"><code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.compute_partials"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.residuals"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.set_pass_epochs"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.set_pass_epochs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.set_pass_index"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.set_pass_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.instrument"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.name"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangeideal.html#scarabaeus.RangeIdeal.sigma"><code class="docutils literal notranslate"><span class="pre">RangeIdeal.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.compute_partials"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.residuals"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.set_pass_epochs"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.set_pass_epochs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.set_pass_index"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.set_pass_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.instrument"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.name"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="rangerateideal.html#scarabaeus.RangeRateIdeal.sigma"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.compute_partials"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.compute_partials()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.computed_measurements"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.computed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.generate_measurement_dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.observed_measurements"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.residuals"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.residuals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.update_reference_state"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.update_reference_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.write_observed_measurements()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.computed_measurements_dict"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.computed_measurements_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.epoch_sec"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.epoch_sec</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.instrument"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.instrument</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.media_corrections"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.media_corrections</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.name"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sequentialrangingreal.html#scarabaeus.SequentialRangingReal.sigma"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal.sigma</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../guidance/bplane.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="angularideal.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -11,10 +11,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/advanced_SimpleOD.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate how to perform general orbit determination with Scarabaeus using a similar LEO scenario to the Ground Station Visibility intermediate tutorial. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Propagate True Trajectory: As we have done a few times now, we’ll create a spacecraft and..." />
+<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate how to perform general orbit determination with Scarabaeus using a similar LEO scenario to the Ground Station Visibility intermediate tutorial. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Propagate True Trajectory:" />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate how to perform general orbit determination with Scarabaeus using a similar LEO scenario to the Ground Station Visibility intermediate tutorial. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Propagate True Trajectory: As we have done a few times now, we’ll create a spacecraft and..." />
+<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate how to perform general orbit determination with Scarabaeus using a similar LEO scenario to the Ground Station Visibility intermediate tutorial. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Propagate True Trajectory:" />
 
     <title># Simple Orbit Determination &#8212; Scarabaeus  documentation</title>
   
@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a652e0c4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -59,13 +59,15 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_SimpleOD';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="# Batch Orbit Determination — Complete Demo" href="OD_Batch_Demo.html" />
+    <link rel="prev" title="# Ground Station Visibility" href="intermediate_GroundStationVisibility.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -152,35 +154,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -241,10 +250,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -261,35 +268,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -315,6 +329,209 @@
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OSIRIS-REx Example Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamental</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Propagation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_PropagatorsComparison.html"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html"># N-Plate Model Attitude</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_PropagatorsComparison.html"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html"># N-Plate Model Attitude</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements &amp; Filtering</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
@@ -324,9 +541,6 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
-        </li>
-        <li class="toctree-l1">
-          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -356,6 +570,9 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
+    
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Examples</span></a></li>
+    
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Simple Orbit Determination</span></li>
   </ul>
 </nav>
@@ -373,7 +590,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="#-Simple-Orbit-Determination">
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-Simple-Orbit-Determination">
 <h1># Simple Orbit Determination<a class="headerlink" href="##-Simple-Orbit-Determination" title="Link to this heading">#</a></h1>
 <p>Last revised by Z. Ellis on 2026 APR 6</p>
 </section>
@@ -389,14 +606,14 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">tutorial_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># load tutorial data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">tutorial_data</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
 <span class="c1">## units, frames, kernels</span>
 <span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">])</span>
@@ -404,7 +621,7 @@
 
 <span class="c1"># load tutorial meta kernel</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>    <span class="c1"># ensure clean kernel pool</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -419,7 +636,6 @@ SCB tutorial data up to date.
 </section>
 <section id="Propagate-True-Trajectory">
 <h1>Propagate True Trajectory<a class="headerlink" href="#Propagate-True-Trajectory" title="Link to this heading">#</a></h1>
-<p>As we have done a few times now, we’ll create a spacecraft and define</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -467,10 +683,6 @@ SCB tutorial data up to date.
 </div>
 </div>
 </section>
-<section id="Conclusion">
-<h1>Conclusion<a class="headerlink" href="#Conclusion" title="Link to this heading">#</a></h1>
-<p>FILL OUT</p>
-</section>
 
 
                 </article>
@@ -482,6 +694,24 @@ SCB tutorial data up to date.
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intermediate_GroundStationVisibility.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"># Ground Station Visibility</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="OD_Batch_Demo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"># Batch Orbit Determination — Complete Demo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -505,19 +735,9 @@ SCB tutorial data up to date.
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Set-Up">Imports and Set Up</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Propagate-True-Trajectory">Propagate True Trajectory</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Conclusion">Conclusion</a></li>
 </ul>
 
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/_collections/tutorials/advanced_SimpleOD.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
 
 </div></div>
               

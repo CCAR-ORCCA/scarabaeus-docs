@@ -11,10 +11,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/intermediate_GroundStationVisibility.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate See Celestial Bodies Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Configure Bodies and Propagate Trajectory: Now we’ll have to create an orbiter spacecraft as well as the Earth for it to orbit around. First we create the Earth using Scarabaeus’ built in constants and attach DSN..." />
+<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate See Also: Celestial Bodies, Keplerian Orbit Propagation. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Configure Bodies and Propagate Trajectory: Now we’ll have to create an orbiter spacecraft as well as the Earth for it to orbit around. First we create the Earth using Scarabaeu..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate See Celestial Bodies Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Configure Bodies and Propagate Trajectory: Now we’ll have to create an orbiter spacecraft as well as the Earth for it to orbit around. First we create the Earth using Scarabaeus’ built in constants and attach DSN..." />
+<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate See Also: Celestial Bodies, Keplerian Orbit Propagation. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Configure Bodies and Propagate Trajectory: Now we’ll have to create an orbiter spacecraft as well as the Earth for it to orbit around. First we create the Earth using Scarabaeu..." />
 
     <title># Ground Station Visibility &#8212; Scarabaeus  documentation</title>
   
@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a652e0c4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -59,15 +59,15 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_GroundStationVisibility';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Developer Guide" href="../../dev_guide/dev_guide_frontpage.html" />
-    <link rel="prev" title="# N-Plate Model Attitude" href="intermediate_nPlateModel.html" />
+    <link rel="next" title="# Simple Orbit Determination" href="advanced_SimpleOD.html" />
+    <link rel="prev" title="# Trajectory" href="intermediate_Trajectory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -154,35 +154,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -261,35 +268,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -320,16 +334,66 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginner Tutorials</span></p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OSIRIS-REx Example Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamental</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
 
 
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate Tutorials</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Propagation</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intermediate_PropagatorsComparison.html"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
 
 
@@ -342,7 +406,122 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_PropagatorsComparison.html"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html"># N-Plate Model Attitude</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements &amp; Filtering</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_SimpleOD.html"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_SimpleOD.html"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -362,9 +541,6 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
-        </li>
-        <li class="toctree-l1">
-          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -395,7 +571,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../learning_and_tutorial/learn_scb_frontpage.html" class="nav-link"><span class="gold">Examples</span></a></li>
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Examples</span></a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Ground Station Visibility</span></li>
   </ul>
@@ -414,14 +590,20 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="#-Ground-Station-Visibility">
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-Ground-Station-Visibility">
 <h1># Ground Station Visibility<a class="headerlink" href="##-Ground-Station-Visibility" title="Link to this heading">#</a></h1>
 <p>Last revised by Z. Ellis on 2026 APR 6</p>
 </section>
 <section id="Objectives">
 <h1>Objectives<a class="headerlink" href="#Objectives" title="Link to this heading">#</a></h1>
 <p>This tutorial will demonstrate</p>
-<p>See <a class="reference internal" href="basics_CelestialBodies.html"><span class="doc">Celestial Bodies</span></a></p>
+</section>
+<section id="See-Also">
+<h1>See Also<a class="headerlink" href="#See-Also" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="basics_CelestialBodies.html"><span class="doc">Celestial Bodies</span></a></p></li>
+<li><p><a class="reference external" href="basics_PropagatorKeplerian.ipynb">Keplerian Orbit Propagation</a></p></li>
+</ul>
 </section>
 <section id="Imports-and-Set-Up">
 <h1>Imports and Set Up<a class="headerlink" href="#Imports-and-Set-Up" title="Link to this heading">#</a></h1>
@@ -431,14 +613,14 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">tutorial_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># load tutorial data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">tutorial_data</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
 <span class="c1">## units, frames, kernels</span>
 <span class="n">km</span><span class="p">,</span> <span class="n">kg</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">])</span>
@@ -446,7 +628,7 @@
 
 <span class="c1"># load tutorial meta kernel</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>    <span class="c1"># ensure clean kernel pool</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -463,7 +645,7 @@ SCB tutorial data up to date.
 <h1>Configure Bodies and Propagate Trajectory<a class="headerlink" href="#Configure-Bodies-and-Propagate-Trajectory" title="Link to this heading">#</a></h1>
 <p>Now we’ll have to create an orbiter spacecraft as well as the Earth for it to orbit around.</p>
 <p>First we create the Earth using Scarabaeus’ built in constants and attach DSN stations to it using IDs from the <a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html#Ground%20Stations.">NAIF Integer ID Code list</a>:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -483,6 +665,21 @@ SCB tutorial data up to date.
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 13</span>
+<span class="ansi-green-fg">     10</span> DSS_54 = scb.GroundStation(<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">DSS-54</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-green-fg">399054</span>)
+<span class="ansi-green-fg">     12</span> all_gs = [DSS_14, DSS_15, DSS_24, DSS_34, DSS_54]
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> <span class="ansi-yellow-bg">earth</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">add_ground_station</span>(all_gs)
+
+<span class="ansi-red-fg">AttributeError</span>: &#39;CelestialBody&#39; object has no attribute &#39;add_ground_station&#39;
+</pre></div></div>
+</div>
 <p>Now we’ll create a simple point mass spacecraft. Since we’re only using Keplerian dynamics, we won’t need to configure anything else for it:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -496,7 +693,7 @@ SCB tutorial data up to date.
 </pre></div>
 </div>
 </div>
-<p>With both bodies created, we’re ready to set up the propagation. First define the interval we’d like to examine, for this tutorial we’ll look at a week’s worth of passes. Then we’ll create the initial state, placing the Orcca Orbiter in a circular LEO orbit</p>
+<p>With both bodies created, we’re ready to set up the propagation. First define the interval we’d like to examine, for this tutorial we’ll look at a week’s worth of passes and use a time step of 1 hour to keep the propagation quick. Then we’ll create the initial state, placing the Orcca Orbiter in a circular LEO orbit.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -509,86 +706,155 @@ SCB tutorial data up to date.
 <span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 
 <span class="c1"># define initial state</span>
-<span class="n">R</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">8e6</span><span class="p">,</span> <span class="n">km</span><span class="p">)</span>     <span class="c1">#</span>
-<span class="c1"># v_circ = scb.ArrayWUnits.sqrt(earth.mu, R)</span>
-<span class="c1"># print(v_circ)</span>
-<span class="c1"># scb.ArrayWUnits(np.sqrt((earth.grav_param / R).values), km/sec)</span>
-<span class="n">earth</span><span class="o">.</span><span class="n">grav_param</span> <span class="o">/</span> <span class="n">R</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">8e3</span><span class="p">,</span> <span class="n">km</span><span class="p">)</span>
+<span class="n">v_circ</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">earth</span><span class="o">.</span><span class="n">grav_param</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">/</span> <span class="n">R</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">)</span>
 
-<span class="c1"># pos0 = scb.ArrayWFrame(scb.ArrayWUnits([10e6, 0, 0], km    ), J2000)</span>
-<span class="c1"># vel0 = scb.ArrayWFrame(scb.ArrayWUnits([0   , 7, 0], km/sec), J2000)</span>
-<span class="c1"># x0   = scb.StateArray(epoch  = t0,</span>
-<span class="c1">#                       origin = earth,</span>
-<span class="c1">#                       state  = scb.StateDefinition()</span>
-<span class="c1">#                                   .position(orbiter, pos0)</span>
-<span class="c1">#                                   .velocity(orbiter, vel0))</span>
-
-<span class="c1"># ## propagate the orbiter</span>
-<span class="c1"># # define keplerian dynamics, propagator, and propagate</span>
-<span class="c1"># kep_dyn = scb.ForceModelTranslation(orbiter)</span>
-<span class="c1"># prop    = scb.Propagator(primary_body = orbiter,</span>
-<span class="c1">#                          state_vector = x0,</span>
-<span class="c1">#                          tspan        = epochs,</span>
-<span class="c1">#                          force_models = kep_dyn)</span>
-<span class="c1"># prop.propagate()</span>
-
-<span class="c1"># ## write trajectory file</span>
-<span class="c1"># # create directory in tutorial results folder if it doesn&#39;t exist yet</span>
-<span class="c1"># orbit_traj_path = os.path.join(tutorial_data.RESULTS_PATH, &#39;GS_vis_tut/&#39;)</span>
-<span class="c1"># if not os.path.exists(orbit_traj_path): os.mkdir(orbit_traj_path)</span>
-
-<span class="c1"># # write trajectory</span>
-<span class="c1"># orbit_traj = scb.Trajectory(os.path.join(orbit_traj_path, &#39;ORCCA_ORBITER_TRAJ&#39;), state_array = prop.propagated_state_array)</span>
+<span class="n">pos0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mf">10e6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">km</span>    <span class="p">),</span> <span class="n">J2000</span><span class="p">)</span>
+<span class="n">vel0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">0</span>   <span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">),</span> <span class="n">J2000</span><span class="p">)</span>
+<span class="n">x0</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span>  <span class="o">=</span> <span class="n">t0</span><span class="p">,</span>
+                      <span class="n">origin</span> <span class="o">=</span> <span class="n">earth</span><span class="p">,</span>
+                      <span class="n">state</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateDefinition</span><span class="p">()</span>
+                                  <span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">orbiter</span><span class="p">,</span> <span class="n">pos0</span><span class="p">)</span>
+                                  <span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">orbiter</span><span class="p">,</span> <span class="n">vel0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.049825054429511996 km^2/sec^2
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      3</span> tf = scb.EpochArray(scb.SpiceManager.cal2et(<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">2026 JAN 07 00:00:00.000</span><span class="ansi-yellow-fg">&#39;</span>), <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">TDB</span><span class="ansi-yellow-fg">&#39;</span>)
+<span class="ansi-green-fg">      4</span> dt = scb.ArrayWUnits(<span class="ansi-green-fg">1</span>, hr)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> epochs = <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">EpochArray</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">interval</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">t0</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">tf</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dt</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># define initial state</span>
+<span class="ansi-green-fg">      9</span> R = scb.ArrayWUnits(<span class="ansi-green-fg">8e3</span>, km)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:1237</span>, in <span class="ansi-cyan-fg">EpochArray.interval</span><span class="ansi-blue-fg">(start, end, dt, n_epochs, sys, rep)</span>
+<span class="ansi-green-fg">   1234</span> <span style="color: rgb(95,135,135)">## create interval depending on construction type</span>
+<span class="ansi-green-fg">   1235</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> dt:
+<span class="ansi-green-fg">   1236</span>     <span style="color: rgb(95,135,135)"># step definiton</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1237</span>     interval = <span class="ansi-yellow-bg">np</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">arange</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">start</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">times</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">end</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">times</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dt</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">convert_to</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">sec</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1238</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">   1239</span>     <span style="color: rgb(95,135,135)"># count definition</span>
+<span class="ansi-green-fg">   1240</span>     interval = np.linspace(start.times, end.times, n_epochs)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/units/ArrayWUnits.py:743</span>, in <span class="ansi-cyan-fg">ArrayWUnits.__ne__</span><span class="ansi-blue-fg">(self, other)</span>
+<span class="ansi-green-fg">    739</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    740</span> <span class="ansi-yellow-fg">    Overloading the element-wise not equal operator of an ArrayWUnits object.</span>
+<span class="ansi-green-fg">    741</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    742</span> <span style="color: rgb(95,135,135)"># re-use equality logic</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">743</span> equality_result = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-blue-fg ansi-yellow-bg">__eq__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">other</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    745</span> <span style="color: rgb(95,135,135)"># invert</span>
+<span class="ansi-green-fg">    746</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> np.invert(equality_result)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/units/ArrayWUnits.py:704</span>, in <span class="ansi-cyan-fg">ArrayWUnits.__eq__</span><span class="ansi-blue-fg">(self, other)</span>
+<span class="ansi-green-fg">    702</span> <span style="color: rgb(95,135,135)"># ensure that both objects being compared are of type ArrayWUnits</span>
+<span class="ansi-green-fg">    703</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(other, <span style="color: rgb(0,135,0)">self</span>.<span class="ansi-blue-fg">__class__</span>):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">704</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Equality operation requires both instances to be of type ArrayWUnits.</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">    706</span> <span style="color: rgb(95,135,135)"># apply equality check depending on matrix dimension</span>
+<span class="ansi-green-fg">    707</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>._values.size == <span class="ansi-green-fg">1</span>:
+<span class="ansi-green-fg">    708</span>     <span style="color: rgb(95,135,135)"># 1x1 -&gt; check units and values directly</span>
+
+<span class="ansi-red-fg">TypeError</span>: Equality operation requires both instances to be of type ArrayWUnits.
+</pre></div></div>
+</div>
+<p>Finally, we’ll propgate the orbiter with Keplerian dynamics and save its trajectory to an SPK, the file <code class="docutils literal notranslate"><span class="pre">ORCCA_ORBITER_TRAJ.bsp</span></code>, so that we can plot the visibility in the next section.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## propagate the orbiter</span>
+<span class="c1"># define keplerian dynamics, propagator, and propagate</span>
+<span class="n">kep_dyn</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">orbiter</span><span class="p">)</span>
+<span class="n">prop</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Propagator</span><span class="p">(</span><span class="n">primary_body</span> <span class="o">=</span> <span class="n">orbiter</span><span class="p">,</span>
+                         <span class="n">state_vector</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span>
+                         <span class="n">tspan</span>        <span class="o">=</span> <span class="n">epochs</span><span class="p">,</span>
+                         <span class="n">force_models</span> <span class="o">=</span> <span class="n">kep_dyn</span><span class="p">)</span>
+<span class="n">prop</span><span class="o">.</span><span class="n">propagate</span><span class="p">()</span>
+
+<span class="c1">## write trajectory file</span>
+<span class="c1"># create directory in tutorial results folder if it doesn&#39;t exist yet</span>
+<span class="n">gs_vis_tut_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tutorial_data</span><span class="o">.</span><span class="n">RESULTS_PATH</span><span class="p">,</span> <span class="s1">&#39;GS_vis_tut/&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">gs_vis_tut_path</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">gs_vis_tut_path</span><span class="p">)</span>
+
+<span class="c1"># remove file if it exists from previous run</span>
+<span class="c1"># orbit_traj_path = os.path.join(gs_vis_tut_path, &#39;ORCCA_ORBITER_TRAJ.bsp&#39;)</span>
+<span class="c1"># if os.path.exists(orbit_traj_path): os.remove(orbit_traj_path)</span>
+
+<span class="c1"># # write trajectory</span>
+<span class="c1"># orbit_traj = scb.Trajectory(orbit_traj_path, state_array = prop.propagated_state_array)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)">## propagate the orbiter</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># define keplerian dynamics, propagator, and propagate</span>
+<span class="ansi-green-fg">      3</span> kep_dyn = scb.ForceModelTranslation(orbiter)
+<span class="ansi-green-fg">      4</span> prop    = scb.Propagator(primary_body = orbiter,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span>                          state_vector = <span class="ansi-yellow-bg">x0</span>,
+<span class="ansi-green-fg">      6</span>                          tspan        = epochs,
+<span class="ansi-green-fg">      7</span>                          force_models = kep_dyn)
+<span class="ansi-green-fg">      8</span> prop.propagate()
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(95,135,135)">## write trajectory file</span>
+<span class="ansi-green-fg">     11</span> <span style="color: rgb(95,135,135)"># create directory in tutorial results folder if it doesn&#39;t exist yet</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;x0&#39; is not defined
 </pre></div></div>
 </div>
 </section>
 <section id="Examine-Visibility">
 <h1>Examine Visibility<a class="headerlink" href="#Examine-Visibility" title="Link to this heading">#</a></h1>
-<p>blah blah</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute visibility windows for each ground station</span>
-<span class="c1"># vis_windows, vis_window_nums = {}, {}</span>
-<span class="c1"># for gs in earth.gs_list:</span>
-<span class="c1">#     num_windows, windows = scb.SpiceManager.get_observer_target_visibility_windows(</span>
-<span class="c1">#                                             obsvr_bdy   = gs,</span>
-<span class="c1">#                                             trgt_bdy    = orbiter,</span>
-<span class="c1">#                                             epoch_start = epochs[0],</span>
-<span class="c1">#                                             epoch_end   = epochs[-1],</span>
-<span class="c1">#                                             step_size   = 60)</span>
-<span class="c1">#     # save amount of windows and the windows themselves</span>
-<span class="c1">#     vis_window_nums[gs] = num_windows</span>
-<span class="c1">#     vis_windows[gs]     = windows</span>
-</pre></div>
-</div>
-</div>
-<p>more blah blah</p>
-<div class="nbinput nblast docutils container">
+<p>Let’s look at the visibility windows using the propagated SPK we saved in the cell above. First, we need to get a window for each ground station by looping through the Earth’s GS list across the entire time interval. Once that’s done, we just need to pass it to the <code class="docutils literal notranslate"><span class="pre">plot_gs_visibility</span></code> plotting function to see when the Orcca Orbiter is visible for which ground station.</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot GSS visiblity</span>
-<span class="c1"># scb.Plotting.plot_gs_visibility(vis_windows, epochs[0].times.values)</span>
-<span class="c1"># plt.show()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute visibility windows for each ground station</span>
+<span class="n">vis_windows</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">gs</span> <span class="ow">in</span> <span class="n">earth</span><span class="o">.</span><span class="n">gs_list</span><span class="p">:</span>
+    <span class="c1"># don&#39;t need number of windows here -&gt; ignore with _</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">windows</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_observer_target_visibility_windows</span><span class="p">(</span>
+                                            <span class="n">obsvr_bdy</span>   <span class="o">=</span> <span class="n">gs</span><span class="p">,</span>
+                                            <span class="n">trgt_bdy</span>    <span class="o">=</span> <span class="n">orbiter</span><span class="p">,</span>
+                                            <span class="n">epoch_start</span> <span class="o">=</span> <span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                            <span class="n">epoch_end</span>   <span class="o">=</span> <span class="n">epochs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                            <span class="n">step_size</span>   <span class="o">=</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="c1"># save windows</span>
+    <span class="n">vis_windows</span><span class="p">[</span><span class="n">gs</span><span class="p">]</span> <span class="o">=</span> <span class="n">windows</span>
+
+<span class="n">vis_fig</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Plotting</span><span class="o">.</span><span class="n">plot_gs_visibility</span><span class="p">(</span><span class="n">vis_windows</span><span class="p">,</span> <span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</section>
-<section id="Conclusion">
-<h1>Conclusion<a class="headerlink" href="#Conclusion" title="Link to this heading">#</a></h1>
-<p>FILL OUT</p>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 14</span>
+<span class="ansi-green-fg">     11</span>     <span style="color: rgb(95,135,135)"># save windows</span>
+<span class="ansi-green-fg">     12</span>     vis_windows[gs] = windows
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> vis_fig = scb.Plotting.plot_gs_visibility(vis_windows, <span class="ansi-yellow-bg">epochs</span>[<span class="ansi-green-fg">0</span>].times.values)
+<span class="ansi-green-fg">     15</span> plt.show()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;epochs&#39; is not defined
+</pre></div></div>
+</div>
 </section>
 
 
@@ -602,20 +868,20 @@ SCB tutorial data up to date.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intermediate_nPlateModel.html"
+       href="intermediate_Trajectory.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"># N-Plate Model Attitude</p>
+        <p class="prev-next-title"># Trajectory</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../dev_guide/dev_guide_frontpage.html"
+       href="advanced_SimpleOD.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Developer Guide</span></p>
+        <p class="prev-next-title"># Simple Orbit Determination</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -640,22 +906,13 @@ SCB tutorial data up to date.
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># Ground Station Visibility</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Set-Up">Imports and Set Up</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Configure-Bodies-and-Propagate-Trajectory">Configure Bodies and Propagate Trajectory</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Examine-Visibility">Examine Visibility</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Conclusion">Conclusion</a></li>
 </ul>
 
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/_collections/tutorials/intermediate_GroundStationVisibility.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
 
 </div></div>
               

@@ -11,10 +11,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/basics_CelestialBodies.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Two Ways of Creating a Celestial Body: There are two different ways to create a celestial body in SCB. Generally, you’ll only need to use the first of the two, which is quicker to do. Howeverm there are cases where you’ll need more c..." />
+<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate how to create a CelestialBody object in Scarabaeus as well as how to access its ephemeris information from the SPICE kernel pool. See Also: Ground Station Visibility. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Two Ways of Creating a Celestial Body: There are two different way..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Two Ways of Creating a Celestial Body: There are two different ways to create a celestial body in SCB. Generally, you’ll only need to use the first of the two, which is quicker to do. Howeverm there are cases where you’ll need more c..." />
+<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will demonstrate how to create a CelestialBody object in Scarabaeus as well as how to access its ephemeris information from the SPICE kernel pool. See Also: Ground Station Visibility. Imports and Set Up: Here we’ll import the necessary libraries and load in the tutorials data folder. Then we define units and frames and load a metakernel for SPICE functionalities. Two Ways of Creating a Celestial Body: There are two different way..." />
 
     <title># Celestial Bodies in Scarabaeus &#8212; Scarabaeus  documentation</title>
   
@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a652e0c4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -59,15 +59,15 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_CelestialBodies';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="# Propagator Comparisons (IAS15 &amp; DOP853)" href="intermediate_PropagatorsComparison.html" />
-    <link rel="prev" title="Examples" href="../../learning_and_tutorial/learn_scb_frontpage.html" />
+    <link rel="next" title="Scarabaeus Time System (EpochArray)" href="basics_EpochArray.html" />
+    <link rel="prev" title="# OSIRIS-REx Tutorial Series Part 5" href="OREx_pt5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -154,35 +154,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -261,35 +268,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -320,15 +334,65 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginner Tutorials</span></p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OSIRIS-REx Example Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamental</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"># Celestial Bodies in Scarabaeus</a></li>
 
 
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Celestial Bodies in Scarabaeus</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Propagation</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intermediate_PropagatorsComparison.html"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
 
@@ -342,7 +406,122 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_PropagatorsComparison.html"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html"># N-Plate Model Attitude</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements &amp; Filtering</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_SimpleOD.html"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_SimpleOD.html"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -362,9 +541,6 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
-        </li>
-        <li class="toctree-l1">
-          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -395,7 +571,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../learning_and_tutorial/learn_scb_frontpage.html" class="nav-link"><span class="gold">Examples</span></a></li>
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Examples</span></a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Celestial Bodies in Scarabaeus</span></li>
   </ul>
@@ -414,13 +590,19 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="#-Celestial-Bodies-in-Scarabaeus">
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-Celestial-Bodies-in-Scarabaeus">
 <h1># Celestial Bodies in Scarabaeus<a class="headerlink" href="##-Celestial-Bodies-in-Scarabaeus" title="Link to this heading">#</a></h1>
 <p>Last revised by Z. Ellis on 2026 APR 6</p>
 </section>
 <section id="Objectives">
 <h1>Objectives<a class="headerlink" href="#Objectives" title="Link to this heading">#</a></h1>
-<p>This tutorial will demonstrate</p>
+<p>This tutorial will demonstrate how to create a CelestialBody object in Scarabaeus as well as how to access its ephemeris information from the SPICE kernel pool.</p>
+</section>
+<section id="See-Also">
+<h1>See Also<a class="headerlink" href="#See-Also" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Ground Station Visibility</p></li>
+</ul>
 </section>
 <section id="Imports-and-Set-Up">
 <h1>Imports and Set Up<a class="headerlink" href="#Imports-and-Set-Up" title="Link to this heading">#</a></h1>
@@ -430,14 +612,13 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tutorial_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">tutorial_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># load tutorial data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">tutorial_data</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
 <span class="c1">## units, frames and kernels</span>
 <span class="n">km</span><span class="p">,</span> <span class="n">AU</span><span class="p">,</span> <span class="n">kg</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;AU&#39;</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span>
@@ -445,7 +626,7 @@
 <span class="n">J2000</span><span class="p">,</span> <span class="n">IAU_JUPITER</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;IAU_JUPITER&#39;</span><span class="p">)</span>
 
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>    <span class="c1"># ensure clean kernel pool</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -460,9 +641,9 @@ SCB tutorial data up to date.
 </section>
 <section id="Two-Ways-of-Creating-a-Celestial-Body">
 <h1>Two Ways of Creating a Celestial Body<a class="headerlink" href="#Two-Ways-of-Creating-a-Celestial-Body" title="Link to this heading">#</a></h1>
-<p>There are two different ways to create a celestial body in SCB. Generally, you’ll only need to use the first of the two, which is quicker to do. Howeverm there are cases where you’ll need more control over the body, which you should utilize the second method for.</p>
-<section id="Using-SCB-Defined-Values">
-<h2>Using SCB-Defined Values<a class="headerlink" href="#Using-SCB-Defined-Values" title="Link to this heading">#</a></h2>
+<p>There are two different ways to create a celestial body in SCB. Generally, you’ll only need to use the first of the two, which is quicker. However, there are cases where you’ll need more control over the body, which you should utilize the second method for.</p>
+<section id="First-Method:-Using-SCB-Defined-Values">
+<h2>First Method: Using SCB-Defined Values<a class="headerlink" href="#First-Method:-Using-SCB-Defined-Values" title="Link to this heading">#</a></h2>
 <p>The first method creates a body using values defined within SCB’s <a class="reference external" href="https://ccar-orcca.github.io/scarabaeus-docs/scb_library/add_class_rsts/constants.html">Constants</a>. Simply call:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -473,9 +654,9 @@ SCB tutorial data up to date.
 </div>
 </div>
 </section>
-<section id="Using-Your-Own-Values">
-<h2>Using Your Own Values<a class="headerlink" href="#Using-Your-Own-Values" title="Link to this heading">#</a></h2>
-<p>If you want to define a body using values that differ from Scarabaeus’ or that don’t exist within its constants, you’ll need to initialize it by providing more information:</p>
+<section id="Second-Method:-Using-Your-Own-Values">
+<h2>Second Method: Using Your Own Values<a class="headerlink" href="#Second-Method:-Using-Your-Own-Values" title="Link to this heading">#</a></h2>
+<p>If you want to define a body using values that differ from Scarabaeus’ definition or that don’t exist within its constants, you’ll need to initialize it by providing more information:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -485,7 +666,7 @@ SCB tutorial data up to date.
                                    <span class="n">mean_radius</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">71000</span><span class="p">,</span> <span class="n">km</span><span class="p">),</span>
                                    <span class="n">grav_param</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.3e8</span><span class="p">,</span> <span class="n">mu</span><span class="p">),</span>
                                    <span class="n">base_frame</span>  <span class="o">=</span> <span class="n">IAU_JUPITER</span><span class="p">,</span>
-                                   <span class="n">spice_id</span>    <span class="o">=</span> <span class="mi">599</span><span class="p">)</span>
+                                   <span class="n">spice_id</span>    <span class="o">=</span> <span class="mi">599000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -504,11 +685,11 @@ SCB tutorial data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-                           JUPITER
+                           Jupiter
 ==============================================================
-mass                     : &lt;bound method Body.mass of JUPITER&gt;
-mean_radius              : 71492.0 km
-gravitational parameter  : 126686534.92180079 km^3/sec^2
+mass                     : &lt;bound method Body.mass of Jupiter&gt;
+mean_radius              : 69911.0 km
+gravitational parameter  : 126686534.92180079 mu
 reference frame          : IAU_JUPITER
 SPICE ID                 : 599
 attached ground stations : []
@@ -516,14 +697,16 @@ attached ground stations : []
 =====================================================================
 mass                     : &lt;bound method Body.mass of JUPITER_CUSTOM&gt;
 mean_radius              : 71000.0 km
-gravitational parameter  : 130000000.0 km^3/sec^2
+gravitational parameter  : 130000000.0 mu
 reference frame          : IAU_JUPITER (599 - JUPITER)
-SPICE ID                 : 599
+SPICE ID                 : 599000
 attached ground stations : []
 </pre></div></div>
 </div>
+</section>
+</section>
 <section id="Querying-Ephemerides">
-<h3>Querying Ephemerides<a class="headerlink" href="#Querying-Ephemerides" title="Link to this heading">#</a></h3>
+<h1>Querying Ephemerides<a class="headerlink" href="#Querying-Ephemerides" title="Link to this heading">#</a></h1>
 <p>If the body exists within the kernel pool, you can query its ephemeris directly using <code class="docutils literal notranslate"><span class="pre">get_state</span></code>. To illustrate this, we’ll query the orbits of all the planets from the de432s we loaded at the top of this tutorial and plot them over a few years.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -537,18 +720,20 @@ attached ground stations : []
 <span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 
 <span class="c1"># all the planets we want to query ephemerides for (recreating Jupiter for completion)</span>
-<span class="n">planets</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">([</span><span class="s1">&#39;MERCURY&#39;</span><span class="p">,</span> <span class="s1">&#39;VENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;EARTH&#39;</span><span class="p">,</span> <span class="s1">&#39;MARS&#39;</span><span class="p">,</span> <span class="s1">&#39;JUPITER&#39;</span><span class="p">,</span> <span class="s1">&#39;SATURN&#39;</span><span class="p">,</span> <span class="s1">&#39;URANUS&#39;</span><span class="p">,</span> <span class="s1">&#39;NEPTUNE&#39;</span><span class="p">])</span>
+<span class="n">planets</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">([</span><span class="s1">&#39;MERCURY&#39;</span><span class="p">,</span> <span class="s1">&#39;VENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;EARTH&#39;</span><span class="p">,</span> <span class="s1">&#39;MARS&#39;</span><span class="p">,</span> <span class="s1">&#39;JUPITER&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;SATURN&#39;</span><span class="p">,</span> <span class="s1">&#39;URANUS&#39;</span><span class="p">,</span> <span class="s1">&#39;NEPTUNE&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">planet</span> <span class="ow">in</span> <span class="n">planets</span><span class="p">:</span>
-    <span class="c1"># create the body using its barycenter</span>
-    <span class="n">cb</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="n">planet</span> <span class="o">+</span> <span class="s1">&#39;_BARYCENTER&#39;</span><span class="p">)</span>
+    <span class="c1"># create the body</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">planet</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="n">planet</span><span class="p">)</span>
 
     <span class="c1"># get its heliocentric state across time interval</span>
     <span class="n">cb_states</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">epochs</span><span class="p">:</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">epoch_0</span>         <span class="o">=</span> <span class="n">epoch</span><span class="p">,</span>
                              <span class="n">reference_frame</span> <span class="o">=</span> <span class="s1">&#39;J2000&#39;</span><span class="p">,</span>
-                             <span class="n">origin</span>          <span class="o">=</span> <span class="s1">&#39;SUN&#39;</span><span class="p">)</span>
-        <span class="n">cb_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>    <span class="c1"># get 2D position in AU</span>
+                             <span class="n">origin</span>          <span class="o">=</span> <span class="s1">&#39;SUN&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantity</span>
+        <span class="n">cb_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>    <span class="c1"># get 2D pos in AU</span>
 
     <span class="c1"># save trajectory</span>
     <span class="n">planets</span><span class="p">[</span><span class="n">planet</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cb_states</span><span class="p">)</span>
@@ -565,12 +750,13 @@ attached ground stations : []
 <span class="c1"># zoom detail for inner planets</span>
 <span class="n">zoom_box</span><span class="p">,</span> <span class="n">detail_bounds</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.75</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
 <span class="n">det_ax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">inset_axes</span><span class="p">(</span><span class="n">detail_bounds</span><span class="p">,</span> <span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="n">zoom_box</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">zoom_box</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                      <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="n">zoom_box</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zoom_box</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[],</span>
-                      <span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[])</span>
+                       <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="n">zoom_box</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">zoom_box</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span> <span class="n">xticklabels</span> <span class="o">=</span> <span class="p">[],</span>
+                       <span class="n">yticklabels</span> <span class="o">=</span> <span class="p">[])</span>
 
-<span class="c1"># plot planets through Mars</span>
+<span class="c1"># plot planets through Mars on the detail</span>
 <span class="k">for</span> <span class="n">inner_planet</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">planets</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">4</span><span class="p">]:</span>
-    <span class="n">det_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">planets</span><span class="p">[</span><span class="n">inner_planet</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">planets</span><span class="p">[</span><span class="n">inner_planet</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">det_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">planets</span><span class="p">[</span><span class="n">inner_planet</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">planets</span><span class="p">[</span><span class="n">inner_planet</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span>
     <span class="n">det_ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">planets</span><span class="p">[</span><span class="n">inner_planet</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">planets</span><span class="p">[</span><span class="n">inner_planet</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                    <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 
@@ -591,15 +777,46 @@ attached ground stations : []
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_basics_CelestialBodies_10_0.png" src="../../_images/_collections_tutorials_basics_CelestialBodies_10_0.png" />
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      3</span> tf = scb.EpochArray(scb.SpiceManager.cal2et(<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">2011 JAN 01 00:00:00.000</span><span class="ansi-yellow-fg">&#39;</span>), <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">TDB</span><span class="ansi-yellow-fg">&#39;</span>)
+<span class="ansi-green-fg">      4</span> dt = scb.ArrayWUnits(<span class="ansi-green-fg">1</span>, day)    <span style="color: rgb(95,135,135)"># query once a day</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> epochs = <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">EpochArray</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">interval</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">t0</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">tf</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dt</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># all the planets we want to query ephemerides for (recreating Jupiter for completion)</span>
+<span class="ansi-green-fg">      9</span> planets = <span style="color: rgb(0,135,0)">dict</span>.fromkeys([<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">MERCURY</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">VENUS</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">EARTH</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">MARS</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">JUPITER</span><span class="ansi-yellow-fg">&#39;</span>,
+<span class="ansi-green-fg">     10</span>                          <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">SATURN</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">URANUS</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">NEPTUNE</span><span class="ansi-yellow-fg">&#39;</span>])
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:1237</span>, in <span class="ansi-cyan-fg">EpochArray.interval</span><span class="ansi-blue-fg">(start, end, dt, n_epochs, sys, rep)</span>
+<span class="ansi-green-fg">   1234</span> <span style="color: rgb(95,135,135)">## create interval depending on construction type</span>
+<span class="ansi-green-fg">   1235</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> dt:
+<span class="ansi-green-fg">   1236</span>     <span style="color: rgb(95,135,135)"># step definiton</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1237</span>     interval = <span class="ansi-yellow-bg">np</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">arange</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">start</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">times</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">end</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">times</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dt</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">convert_to</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">sec</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1238</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">   1239</span>     <span style="color: rgb(95,135,135)"># count definition</span>
+<span class="ansi-green-fg">   1240</span>     interval = np.linspace(start.times, end.times, n_epochs)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/units/ArrayWUnits.py:743</span>, in <span class="ansi-cyan-fg">ArrayWUnits.__ne__</span><span class="ansi-blue-fg">(self, other)</span>
+<span class="ansi-green-fg">    739</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    740</span> <span class="ansi-yellow-fg">    Overloading the element-wise not equal operator of an ArrayWUnits object.</span>
+<span class="ansi-green-fg">    741</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">    742</span> <span style="color: rgb(95,135,135)"># re-use equality logic</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">743</span> equality_result = <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-blue-fg ansi-yellow-bg">__eq__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">other</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    745</span> <span style="color: rgb(95,135,135)"># invert</span>
+<span class="ansi-green-fg">    746</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> np.invert(equality_result)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/units/ArrayWUnits.py:704</span>, in <span class="ansi-cyan-fg">ArrayWUnits.__eq__</span><span class="ansi-blue-fg">(self, other)</span>
+<span class="ansi-green-fg">    702</span> <span style="color: rgb(95,135,135)"># ensure that both objects being compared are of type ArrayWUnits</span>
+<span class="ansi-green-fg">    703</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(other, <span style="color: rgb(0,135,0)">self</span>.<span class="ansi-blue-fg">__class__</span>):
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">704</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Equality operation requires both instances to be of type ArrayWUnits.</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">    706</span> <span style="color: rgb(95,135,135)"># apply equality check depending on matrix dimension</span>
+<span class="ansi-green-fg">    707</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>._values.size == <span class="ansi-green-fg">1</span>:
+<span class="ansi-green-fg">    708</span>     <span style="color: rgb(95,135,135)"># 1x1 -&gt; check units and values directly</span>
+
+<span class="ansi-red-fg">TypeError</span>: Equality operation requires both instances to be of type ArrayWUnits.
+</pre></div></div>
 </div>
-</div>
-</section>
-</section>
-</section>
-<section id="Conclusion">
-<h1>Conclusion<a class="headerlink" href="#Conclusion" title="Link to this heading">#</a></h1>
-<p>FILL OUT</p>
 </section>
 
 
@@ -613,20 +830,20 @@ attached ground stations : []
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../learning_and_tutorial/learn_scb_frontpage.html"
+       href="OREx_pt5.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="gold">Examples</span></p>
+        <p class="prev-next-title"># OSIRIS-REx Tutorial Series Part 5</p>
       </div>
     </a>
     <a class="right-next"
-       href="intermediate_PropagatorsComparison.html"
+       href="basics_EpochArray.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"># Propagator Comparisons (IAS15 &amp; DOP853)</p>
+        <p class="prev-next-title">Scarabaeus Time System (EpochArray)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -651,28 +868,17 @@ attached ground stations : []
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># Celestial Bodies in Scarabaeus</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Set-Up">Imports and Set Up</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Two-Ways-of-Creating-a-Celestial-Body">Two Ways of Creating a Celestial Body</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Using-SCB-Defined-Values">Using SCB-Defined Values</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Using-Your-Own-Values">Using Your Own Values</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Querying-Ephemerides">Querying Ephemerides</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#First-Method:-Using-SCB-Defined-Values">First Method: Using SCB-Defined Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Second-Method:-Using-Your-Own-Values">Second Method: Using Your Own Values</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Querying-Ephemerides">Querying Ephemerides</a></li>
 </ul>
 
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/_collections/tutorials/basics_CelestialBodies.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
 
 </div></div>
               

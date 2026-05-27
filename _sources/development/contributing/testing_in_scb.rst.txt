@@ -1,0 +1,63 @@
+.. SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder
+.. SPDX-License-Identifier: ISC
+.. meta::
+    :description lang=en:
+        Overview of testing set up in Scarabaeus.
+    :keywords:
+        Scarabaeus, testing
+
+.. _testing-in-scb:
+
+.. create a gold color role
+.. raw:: html
+
+    <style> .gold {color:rgb(207 184 124)} </style>
+
+.. role:: gold
+
+
+=================================
+:gold:`Testing Suite`
+=================================
+
+Scarabaeus uses `pytest <https://docs.pytest.org>`_ for automated testing. The test
+suite lives in ``tests/`` at the repository root and is split into unit and integration
+tiers.
+
+.. code-block:: text
+
+   tests/
+   ├── unit_testing/          # isolated tests per class/module
+   │   ├── body_tests/
+   │   ├── dynamics_tests/
+   │   ├── environment_tests/
+   │   ├── guidance_tests/
+   │   ├── measurements_tests/
+   │   ├── orbitDetermination_tests/
+   │   └── spacecraft_tests/
+   ├── integration_testing/   # end-to-end scenario tests
+   ├── functional_testing/    # functional verification tests
+   └── V&V/                   # validation & verification tests
+
+----------------------------
+:gold:`Running All Tests`
+----------------------------
+
+From the repository root (with your virtual environment active):
+
+.. code-block:: bash
+
+   pytest tests/
+
+To run only a specific tier:
+
+.. code-block:: bash
+
+   pytest tests/unit_testing/
+   pytest tests/integration_testing/
+
+To run a single test file:
+
+.. code-block:: bash
+
+   pytest tests/unit_testing/body_tests/test_CelestialBody.py

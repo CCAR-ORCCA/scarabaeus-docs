@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a652e0c4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -59,15 +59,15 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_PropagatorsComparison';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="https://raw.githubusercontent.com/CCAR-ORCCA/scarabaeus-docs/refs/heads/main/_images/ORCCA_logo.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="# N-Plate Model Attitude" href="intermediate_nPlateModel.html" />
-    <link rel="prev" title="# Celestial Bodies in Scarabaeus" href="basics_CelestialBodies.html" />
+    <link rel="prev" title="# State Array" href="intermediate_StateArray.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -154,35 +154,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -261,35 +268,42 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
-    Scarabaeus User Guide
+    User Guide
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../scb_library/lib_ref.html">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
     API Reference
   </a>
 </li>
 
 
 <li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../learning_and_tutorial/learn_scb_frontpage.html">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../dev_guide/dev_guide_frontpage.html">
-    Developer Guide
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about_scb.html">
-    About Scarabaeus
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
   </a>
 </li>
 
@@ -320,15 +334,65 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginner Tutorials</span></p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OSIRIS-REx Example Series</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt1.html"># OSIRIS-REx Tutorial Series Pt 1: Units &amp; Reference Frames</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt2.html"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt3.html"># OSIRIS-REx Tutorial Series Part 3</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt4.html"># OSIRIS-REx Tutorial Series Part 4</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="OREx_pt5.html"># OSIRIS-REx Tutorial Series Part 5</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamental</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
 
 
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate Tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_CelestialBodies.html"># Celestial Bodies in Scarabaeus</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediate_StateArray.html"># State Array</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Propagation</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
 
@@ -342,7 +406,122 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Propagator Comparisons (IAS15 &amp; DOP853)</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel.html"># N-Plate Model Attitude</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence.html"># Mission Sequence</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Trajectory.html"># Trajectory</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements &amp; Filtering</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_SimpleOD.html"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_GroundStationVisibility.html"># Ground Station Visibility</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_SimpleOD.html"># Simple Orbit Determination</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Batch_Demo.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="OD_Sequential_Demo.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -362,9 +541,6 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
-        </li>
-        <li class="toctree-l1">
-          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -395,7 +571,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../learning_and_tutorial/learn_scb_frontpage.html" class="nav-link"><span class="gold">Examples</span></a></li>
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Examples</span></a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Propagator Comparisons (IAS15 &amp; DOP853)</span></li>
   </ul>
@@ -414,7 +590,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="#-Propagator-Comparisons-(IAS15-&amp;-DOP853)">
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-Propagator-Comparisons-(IAS15-&amp;-DOP853)">
 <h1># Propagator Comparisons (IAS15 &amp; DOP853)<a class="headerlink" href="##-Propagator-Comparisons-(IAS15-&-DOP853)" title="Link to this heading">#</a></h1>
 <p>Last revised by Z. Ellis on 2026 MAR 30</p>
 </section>
@@ -433,7 +609,7 @@
 <section id="Imports-and-Set-Up">
 <h1>Imports and Set Up<a class="headerlink" href="#Imports-and-Set-Up" title="Link to this heading">#</a></h1>
 <p>Here we’ll import the necessary libraries, define units and frames, and load a metakernel for SPICE time conversions.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -451,16 +627,27 @@
 <span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">])</span>
 <span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">)</span>
 
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/data/kernels/locked/locked_generic.tm&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB tutorial data up to date.
+</pre></div></div>
 </div>
 </section>
 <section id="Define-Propagation-Parameters">
 <h1>Define Propagation Parameters<a class="headerlink" href="#Define-Propagation-Parameters" title="Link to this heading">#</a></h1>
 <p>Next, we’ll create an object to represent Earth, the body we’ll be orbiting in this tutorial, and its spherical harmonics information <code class="docutils literal notranslate"><span class="pre">sh_info</span></code>. We also need to create an orbiting spacecraft <code class="docutils literal notranslate"><span class="pre">sc</span></code> and an N-plate model for it.</p>
 <p>We’ll also define the time interval we want to propagate over and a few orbital elements.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -490,6 +677,30 @@
 <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="mi">25000</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">35</span><span class="p">),</span> <span class="n">earth</span><span class="o">.</span><span class="n">grav_param</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)">## earth and spacecraft</span>
+<span class="ansi-green-fg">      2</span> earth   = scb.CelestialBody.from_constants(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">EARTH</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">      3</span> sh_info = {<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">order</span><span class="ansi-yellow-fg">&#39;</span>    : <span class="ansi-green-fg">3</span>,
+<span class="ansi-green-fg">      4</span>            <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">cs_file</span><span class="ansi-yellow-fg">&#39;</span>  : <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">data/dynamic_setup/sph_coefficients/Earth_100.json</span><span class="ansi-yellow-fg">&#39;</span>,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span>            <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">body</span><span class="ansi-yellow-fg">&#39;</span>     : <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">EARTH</span>,
+<span class="ansi-green-fg">      6</span>            <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">norm_flag</span><span class="ansi-yellow-fg">&#39;</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>}
+<span class="ansi-green-fg">      8</span> n_plate = scb.nPlateModel(<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">data/dynamic_setup/nplate_coefficients/VandV_case5a_nPlate_config.json</span><span class="ansi-yellow-fg">&#39;</span>)
+<span class="ansi-green-fg">      9</span> sc      = scb.Spacecraft(name      = <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">ORCCA_SC</span><span class="ansi-yellow-fg">&#39;</span>,
+<span class="ansi-green-fg">     10</span>                          spice_id  = -<span class="ansi-green-fg">1000</span>,
+<span class="ansi-green-fg">     11</span>                          tot_mass  = scb.ArrayWUnits(<span class="ansi-green-fg">2000</span>, kg),
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     15</span>                          attitudeMode      = <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">nadir_pointing_to_sun</span><span class="ansi-yellow-fg">&#39;</span>,
+<span class="ansi-green-fg">     16</span>                          nadirPointingAxis = np.array([-<span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">0</span>]))
+
+<span class="ansi-red-fg">AttributeError</span>: module &#39;scarabaeus&#39; has no attribute &#39;EARTH&#39;
+</pre></div></div>
 </div>
 <p>We want to examine how our integrators differ from one another, and the point that we’ll likely see the largest difference will be at periapsis where the spacecraft is moving fastest. In order to see this better, we want to examine a few different trajectories with initial conditions at different points in the orbit. We’ll create a function <code class="docutils literal notranslate"><span class="pre">state_at_nu</span></code> which will find the state corresponding to a given true anomaly nu so we can test these different initial true anomalies when we start
 propagating.</p>
@@ -695,215 +906,22 @@ propagating.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_79006/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
-  err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_10_18.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_10_18.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)">## create and plot increasingly complex dynamics</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># two body orbit</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> twobp = scb.ForceModelTranslation(primary_body = <span class="ansi-yellow-bg">sc</span>)
+<span class="ansi-green-fg">      4</span> twobp_errs = prop_and_plot_fm(twobp, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">a = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>a<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> km, i = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>np.rad2deg(i)<span class="ansi-bold" style="color: rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.2f</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">$^</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">circ$</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">&#39;</span>
+<span class="ansi-green-fg">      5</span>                                       <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">Earth Orbit</span><span class="ansi-yellow-fg">&#39;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -917,186 +935,22 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_79006/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
-  err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_11_14.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_11_14.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># same as above with third bodies added</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> nBP = scb.ForceModelTranslation(primary_body = <span class="ansi-yellow-bg">sc</span>,
+<span class="ansi-green-fg">      3</span>                                 third_bodies = [<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">MERCURY</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">VENUS</span><span class="ansi-yellow-fg">&#39;</span>])
+<span class="ansi-green-fg">      4</span> nBP_errs = prop_and_plot_fm(nBP, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">a = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>a<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> km, i = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>np.rad2deg(i)<span class="ansi-bold" style="color: rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.2f</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">$^</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">circ$</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">&#39;</span>
+<span class="ansi-green-fg">      5</span>                                 <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">Earth Orbit | 3rd Bodies: Mercury &amp; Venus</span><span class="ansi-yellow-fg">&#39;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -1111,228 +965,23 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_79006/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
-  err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_12_20.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_12_20.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># all above + cannonball SRP</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> cannon = scb.ForceModelTranslation(primary_body   = <span class="ansi-yellow-bg">sc</span>,
+<span class="ansi-green-fg">      3</span>                                     third_bodies   = [<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">MERCURY</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">VENUS</span><span class="ansi-yellow-fg">&#39;</span>],
+<span class="ansi-green-fg">      4</span>                                     cannonball_SRP = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">      5</span> cannon_errs = prop_and_plot_fm(cannon, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">a = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>a<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> km, i = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>np.rad2deg(i)<span class="ansi-bold" style="color: rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.2f</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">$^</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">circ$</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">&#39;</span>
+<span class="ansi-green-fg">      6</span>                                         <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">Earth Orbit | 3rd Bodies: Mercury &amp; Venus | Cannonball SRP</span><span class="ansi-yellow-fg">&#39;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -1347,200 +996,23 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating:   0%|                                                       | 0.00/36000.00 s [00:00&lt;?]/Users/zael5647/scarabaeus/src/scarabaeus/dynamics/ForceModelTranslation.py:568: RuntimeWarning: nadir_pointing_to_sun attitude mode not yet fully implemented for nPlateSRP. It currently produces incorrect partial derivatives.
-  model_acceleration = self.force_models[model].compute_acceleration(
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_79006/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
-  err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_13_16.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_13_16.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># same as above with N-plate SRP instead of cannonball</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> npl = scb.ForceModelTranslation(primary_body = <span class="ansi-yellow-bg">sc</span>,
+<span class="ansi-green-fg">      3</span>                                 third_bodies = [<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">MERCURY</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">VENUS</span><span class="ansi-yellow-fg">&#39;</span>],
+<span class="ansi-green-fg">      4</span>                                 nplate_SRP   = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">      5</span> npl_errs = prop_and_plot_fm(npl, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">a = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>a<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> km, i = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>np.rad2deg(i)<span class="ansi-bold" style="color: rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.2f</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">$^</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">circ$</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">&#39;</span>
+<span class="ansi-green-fg">      6</span>                                 <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">Earth Orbit | 3rd Bodies: Mercury &amp; Venus | N-Plate SRP</span><span class="ansi-yellow-fg">&#39;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -1560,198 +1032,28 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_79006/3087986379.py:98: RuntimeWarning: invalid value encountered in divide
-  err = np.nan_to_num(abs((ys_ias[:] - ys_dop[:, 0:6]) / ys_ias)*100, nan = 0)
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 36000.00/36000.00 s [00:00&lt;00:00]
-/Users/zael5647/scarabaeus/src/scarabaeus/utils/SCBPolynomial.py:80: RankWarning: Polyfit may be poorly conditioned
-  coeffs = np.polyfit(t_array, y_array, deg)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_14_16.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_14_16.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># all above + spherical harmonics</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> sph = scb.ForceModelTranslation(primary_body       = <span class="ansi-yellow-bg">sc</span>,
+<span class="ansi-green-fg">      3</span>                                 third_bodies       = [<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">MERCURY</span><span class="ansi-yellow-fg">&#39;</span>, <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">VENUS</span><span class="ansi-yellow-fg">&#39;</span>],
+<span class="ansi-green-fg">      4</span>                                 nplate_SRP         = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-fg">      5</span>                                 sph_harm           = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-fg">      6</span>                                 sph_harm_order     = sh_info[<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">order</span><span class="ansi-yellow-fg">&#39;</span>],
+<span class="ansi-green-fg">      7</span>                                 sph_harm_cs_file   = sh_info[<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">cs_file</span><span class="ansi-yellow-fg">&#39;</span>],
+<span class="ansi-green-fg">      8</span>                                 sph_harm_body      = sh_info[<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">body</span><span class="ansi-yellow-fg">&#39;</span>],
+<span class="ansi-green-fg">      9</span>                                 sph_harm_norm_flag = sh_info[<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">norm_flag</span><span class="ansi-yellow-fg">&#39;</span>])
+<span class="ansi-green-fg">     10</span> sph_errs = prop_and_plot_fm(sph, <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">a = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>a<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> km, i = </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>np.rad2deg(i)<span class="ansi-bold" style="color: rgb(175,95,135)">:</span><span class="ansi-yellow-fg">.2f</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">$^</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">circ$</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">&#39;</span>
+<span class="ansi-green-fg">     11</span>                                 <span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">Earth Orbit | 3rd Bodies: Mercury &amp; Venus | N-Plate SRP | 3rd Order SPH</span><span class="ansi-yellow-fg">&#39;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sc&#39; is not defined
+</pre></div></div>
 </div>
 <p>Now plot the average difference between DOP853 and IAS15 for position and velocity for all force model configurations.</p>
 <div class="nbinput docutils container">
@@ -1791,26 +1093,27 @@ Propagation complete.
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Text(0.5, 1.0, &#39;Average Velocity Differences Between IAS15 and DOP853&#39;)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_16_1.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_16_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 12</span>
+<span class="ansi-green-fg">     10</span> fig_bar_pos, ax_bar_pos = plt.subplots(figsize = (<span class="ansi-green-fg">15</span>, <span class="ansi-green-fg">8</span>))
+<span class="ansi-green-fg">     11</span> <span style="color: rgb(95,135,135)"># rust vs dop</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span> bars = ax_bar_pos.barh(ind + width/<span class="ansi-green-fg">2</span>, [<span class="ansi-yellow-bg">sph_errs</span>[<span class="ansi-green-fg">0</span>], npl_errs[<span class="ansi-green-fg">0</span>], cannon_errs[<span class="ansi-green-fg">0</span>], nBP_errs[<span class="ansi-green-fg">0</span>], twobp_errs[<span class="ansi-green-fg">0</span>]], width, color = c)
+<span class="ansi-green-fg">     13</span> ax_bar_pos.bar_label(bars, fmt=<span class="ansi-yellow-fg">&#39;</span><span class="ansi-bold" style="color: rgb(175,95,135)">%.2e</span><span class="ansi-yellow-fg">&#39;</span>, padding=<span class="ansi-green-fg">5</span>)
+<span class="ansi-green-fg">     15</span> ax_bar_pos.set(yticks = ind, yticklabels = cases)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sph_errs&#39; is not defined
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_16_2.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_16_2.png" />
+<img alt="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_16_1.png" src="../../_images/_collections_tutorials_intermediate_PropagatorsComparison_16_1.png" />
 </div>
 </div>
 </section>
@@ -1830,12 +1133,12 @@ Text(0.5, 1.0, &#39;Average Velocity Differences Between IAS15 and DOP853&#39;)
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="basics_CelestialBodies.html"
+       href="intermediate_StateArray.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"># Celestial Bodies in Scarabaeus</p>
+        <p class="prev-next-title"># State Array</p>
       </div>
     </a>
     <a class="right-next"
@@ -1876,15 +1179,6 @@ Text(0.5, 1.0, &#39;Average Velocity Differences Between IAS15 and DOP853&#39;)
 </ul>
 
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../../_sources/_collections/tutorials/intermediate_PropagatorsComparison.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div></div>
 
 </div></div>
               

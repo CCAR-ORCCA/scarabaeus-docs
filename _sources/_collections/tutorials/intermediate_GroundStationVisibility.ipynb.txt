@@ -5,6 +5,8 @@
    "id": "0",
    "metadata": {},
    "source": [
+    "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
+    "<!-- SPDX-License-Identifier: ISC -->\n",
     "# Ground Station Visibility\n",
     "---\n",
     "Last revised by Z. Ellis on 2026 APR 6\n",
@@ -12,7 +14,9 @@
     "## Objectives\n",
     "This tutorial will demonstrate \n",
     "\n",
-    "See [Celestial Bodies](basics_CelestialBodies.ipynb)"
+    "## See Also\n",
+    "- [Celestial Bodies](basics_CelestialBodies.ipynb)\n",
+    "- [Keplerian Orbit Propagation](basics_PropagatorKeplerian.ipynb)"
    ]
   },
   {
@@ -32,14 +36,14 @@
    "outputs": [],
    "source": [
     "import scarabaeus as scb\n",
-    "from tutorial_data import tutorial_data\n",
+    "import supplementary as supp\n",
     "\n",
     "import os\n",
     "import numpy as np\n",
     "import matplotlib.pyplot as plt\n",
     "\n",
     "# load tutorial data\n",
-    "data = tutorial_data.load()\n",
+    "data = supp.load_data()\n",
     "\n",
     "## units, frames, kernels\n",
     "km, kg, sec, hr = scb.Units.get_units(['km', 'kg', 'sec', 'hr'])\n",
@@ -47,7 +51,7 @@
     "\n",
     "# load tutorial meta kernel\n",
     "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
-    "scb.SpiceManager.load_kernel_from_mkfile(data.mk)"
+    "scb.SpiceManager.load_kernel_from_mkfile(data.mk.path)"
    ]
   },
   {
@@ -110,7 +114,7 @@
    "id": "7",
    "metadata": {},
    "source": [
-    "With both bodies created, we're ready to set up the propagation. First define the interval we'd like to examine, for this tutorial we'll look at a week's worth of passes. Then we'll create the initial state, placing the Orcca Orbiter in a circular LEO orbit "
+    "With both bodies created, we're ready to set up the propagation. First define the interval we'd like to examine, for this tutorial we'll look at a week's worth of passes and use a time step of 1 hour to keep the propagation quick. Then we'll create the initial state, placing the Orcca Orbiter in a circular LEO orbit."
    ]
   },
   {
@@ -128,36 +132,16 @@
     "epochs = scb.EpochArray.interval(t0, tf, dt)\n",
     "\n",
     "# define initial state\n",
-    "R = scb.ArrayWUnits(8e6, km)     # \n",
-    "# v_circ = scb.ArrayWUnits.sqrt(earth.mu, R)\n",
-    "# print(v_circ)\n",
-    "# scb.ArrayWUnits(np.sqrt((earth.grav_param / R).values), km/sec)\n",
-    "earth.grav_param / R\n",
+    "R = scb.ArrayWUnits(8e3, km)\n",
+    "v_circ = scb.ArrayWUnits(np.sqrt((earth.grav_param.values) / R.values), km/sec)\n",
     "\n",
-    "# pos0 = scb.ArrayWFrame(scb.ArrayWUnits([10e6, 0, 0], km    ), J2000)\n",
-    "# vel0 = scb.ArrayWFrame(scb.ArrayWUnits([0   , 7, 0], km/sec), J2000)\n",
-    "# x0   = scb.StateArray(epoch  = t0,\n",
-    "#                       origin = earth,\n",
-    "#                       state  = scb.StateDefinition()\n",
-    "#                                   .position(orbiter, pos0)\n",
-    "#                                   .velocity(orbiter, vel0))\n",
-    "\n",
-    "# ## propagate the orbiter\n",
-    "# # define keplerian dynamics, propagator, and propagate\n",
-    "# kep_dyn = scb.ForceModelTranslation(orbiter)\n",
-    "# prop    = scb.Propagator(primary_body = orbiter,\n",
-    "#                          state_vector = x0,\n",
-    "#                          tspan        = epochs,\n",
-    "#                          force_models = kep_dyn)\n",
-    "# prop.propagate()\n",
-    "\n",
-    "# ## write trajectory file\n",
-    "# # create directory in tutorial results folder if it doesn't exist yet\n",
-    "# orbit_traj_path = os.path.join(tutorial_data.RESULTS_PATH, 'GS_vis_tut/')\n",
-    "# if not os.path.exists(orbit_traj_path): os.mkdir(orbit_traj_path)\n",
-    "\n",
-    "# # write trajectory\n",
-    "# orbit_traj = scb.Trajectory(os.path.join(orbit_traj_path, 'ORCCA_ORBITER_TRAJ'), state_array = prop.propagated_state_array)"
+    "pos0 = scb.ArrayWFrame(scb.ArrayWUnits([10e6, 0, 0], km    ), J2000)\n",
+    "vel0 = scb.ArrayWFrame(scb.ArrayWUnits([0   , 7, 0], km/sec), J2000)\n",
+    "x0   = scb.StateArray(epoch  = t0,\n",
+    "                      origin = earth,\n",
+    "                      state  = scb.StateDefinition()\n",
+    "                                  .position(orbiter, pos0)\n",
+    "                                  .velocity(orbiter, vel0))"
    ]
   },
   {
@@ -165,8 +149,7 @@
    "id": "9",
    "metadata": {},
    "source": [
-    "## Examine Visibility\n",
-    "blah blah"
+    "Finally, we'll propgate the orbiter with Keplerian dynamics and save its trajectory to an SPK, the file `ORCCA_ORBITER_TRAJ.bsp`, so that we can plot the visibility in the next section."
    ]
   },
   {
@@ -176,18 +159,27 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# compute visibility windows for each ground station\n",
-    "# vis_windows, vis_window_nums = {}, {}\n",
-    "# for gs in earth.gs_list:\n",
-    "#     num_windows, windows = scb.SpiceManager.get_observer_target_visibility_windows(\n",
-    "#                                             obsvr_bdy   = gs,\n",
-    "#                                             trgt_bdy    = orbiter,\n",
-    "#                                             epoch_start = epochs[0],\n",
-    "#                                             epoch_end   = epochs[-1],\n",
-    "#                                             step_size   = 60)\n",
-    "#     # save amount of windows and the windows themselves\n",
-    "#     vis_window_nums[gs] = num_windows\n",
-    "#     vis_windows[gs]     = windows"
+    "## propagate the orbiter\n",
+    "# define keplerian dynamics, propagator, and propagate\n",
+    "kep_dyn = scb.ForceModelTranslation(orbiter)\n",
+    "prop    = scb.Propagator(primary_body = orbiter,\n",
+    "                         state_vector = x0,\n",
+    "                         tspan        = epochs,\n",
+    "                         force_models = kep_dyn)\n",
+    "prop.propagate()\n",
+    "\n",
+    "## write trajectory file\n",
+    "# create directory in tutorial results folder if it doesn't exist yet\n",
+    "gs_vis_tut_path = os.path.join(tutorial_data.RESULTS_PATH, 'GS_vis_tut/')\n",
+    "if not os.path.exists(gs_vis_tut_path): \n",
+    "    os.mkdir(gs_vis_tut_path)\n",
+    "\n",
+    "# remove file if it exists from previous run\n",
+    "# orbit_traj_path = os.path.join(gs_vis_tut_path, 'ORCCA_ORBITER_TRAJ.bsp')\n",
+    "# if os.path.exists(orbit_traj_path): os.remove(orbit_traj_path)\n",
+    "\n",
+    "# # write trajectory\n",
+    "# orbit_traj = scb.Trajectory(orbit_traj_path, state_array = prop.propagated_state_array)"
    ]
   },
   {
@@ -195,7 +187,8 @@
    "id": "11",
    "metadata": {},
    "source": [
-    "more blah blah"
+    "## Examine Visibility\n",
+    "Let's look at the visibility windows using the propagated SPK we saved in the cell above. First, we need to get a window for each ground station by looping through the Earth's GS list across the entire time interval. Once that's done, we just need to pass it to the `plot_gs_visibility` plotting function to see when the Orcca Orbiter is visible for which ground station."
    ]
   },
   {
@@ -205,18 +198,21 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Plot GSS visiblity\n",
-    "# scb.Plotting.plot_gs_visibility(vis_windows, epochs[0].times.values)\n",
-    "# plt.show()"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "13",
-   "metadata": {},
-   "source": [
-    "## Conclusion\n",
-    "FILL OUT"
+    "# compute visibility windows for each ground station\n",
+    "vis_windows = {}\n",
+    "for gs in earth.gs_list:\n",
+    "    # don't need number of windows here -> ignore with _\n",
+    "    _, windows = scb.SpiceManager.get_observer_target_visibility_windows(\n",
+    "                                            obsvr_bdy   = gs,\n",
+    "                                            trgt_bdy    = orbiter,\n",
+    "                                            epoch_start = epochs[0],\n",
+    "                                            epoch_end   = epochs[-1],\n",
+    "                                            step_size   = 60)\n",
+    "    # save windows\n",
+    "    vis_windows[gs] = windows\n",
+    "\n",
+    "vis_fig = scb.Plotting.plot_gs_visibility(vis_windows, epochs[0].times.values)\n",
+    "plt.show()"
    ]
   }
  ],

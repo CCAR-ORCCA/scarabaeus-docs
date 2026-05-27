@@ -5,7 +5,9 @@
    "id": "0",
    "metadata": {},
    "source": [
-    "# Compare Integrators\n",
+    "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
+    "<!-- SPDX-License-Identifier: ISC -->\n",
+    "# State Array\n",
     "---\n",
     "Last revised by Z. Ellis on 2026 APR 6\n",
     "\n",
@@ -32,8 +34,8 @@
    "source": [
     "import scarabaeus as scb\n",
     "\n",
-    "from tutorial_data import tutorial_data\n",
-    "data = tutorial_data.load()\n",
+    "import supplementary as supp\n",
+    "data = supp.load_data()\n",
     "\n",
     "import numpy as np"
    ]
@@ -51,11 +53,11 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "from tutorial_data import tutorial_data\n",
-    "data = tutorial_data.load()\n",
+    "import supplementary as supp\n",
+    "data = supp.load_data()\n",
     "\n",
     "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
-    "scb.SpiceManager.load_kernel_from_mkfile(data.mk)\n",
+    "scb.SpiceManager.load_kernel_from_mkfile(data.mk.path)\n",
     "\n",
     "km, sec = scb.Units.get_units(['km', 'sec'])\n",
     "J2000 = scb.Frame('J2000')\n",
