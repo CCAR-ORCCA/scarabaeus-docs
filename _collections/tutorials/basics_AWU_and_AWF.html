@@ -1,0 +1,1087 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Scarabaeus Tutorial — Units, Frames, and ArrayWFrame" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/basics_AWU_and_AWF.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="This notebook introduces the core Scarabaeus abstractions for: Physical dimensions and units, Arrays with units ( ArrayWUnits), Reference frames ( Frame), Arrays attached to frames ( ArrayWFrame), Frame transformations using SPICE. The examples are designed to be lightweight and educational while following typical astrodynamics workflows. Load SPICE Kernels: Scarabaeus frame transformations rely on SPICE kernels. Units and Dimensions: Scarabaeus internally tracks physical dimensions and units..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="This notebook introduces the core Scarabaeus abstractions for: Physical dimensions and units, Arrays with units ( ArrayWUnits), Reference frames ( Frame), Arrays attached to frames ( ArrayWFrame), Frame transformations using SPICE. The examples are designed to be lightweight and educational while following typical astrodynamics workflows. Load SPICE Kernels: Scarabaeus frame transformations rely on SPICE kernels. Units and Dimensions: Scarabaeus internally tracks physical dimensions and units..." />
+
+    <title>Scarabaeus Tutorial — Units, Frames, and ArrayWFrame &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_AWU_and_AWF';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Scarabaeus Tutorial — Units, Frames, and ArrayWFrame</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Scarabaeus-Tutorial-—-Units,-Frames,-and-ArrayWFrame">
+<h1>Scarabaeus Tutorial — Units, Frames, and ArrayWFrame<a class="headerlink" href="#Scarabaeus-Tutorial-—-Units,-Frames,-and-ArrayWFrame" title="Link to this heading">#</a></h1>
+<p>This notebook introduces the core Scarabaeus abstractions for:</p>
+<ul class="simple">
+<li><p>Physical dimensions and units</p></li>
+<li><p>Arrays with units (<code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code>)</p></li>
+<li><p>Reference frames (<code class="docutils literal notranslate"><span class="pre">Frame</span></code>)</p></li>
+<li><p>Arrays attached to frames (<code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code>)</p></li>
+<li><p>Frame transformations using SPICE</p></li>
+</ul>
+<p>The examples are designed to be lightweight and educational while following typical astrodynamics workflows.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># Helper: find Scarabaeus repository root</span>
+<span class="c1"># ============================================================</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_repo_root</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">start</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="o">*</span><span class="n">start</span><span class="o">.</span><span class="n">parents</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;pyproject.toml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;.git&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">path</span>
+
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Could not locate Scarabaeus repository root.&quot;</span><span class="p">)</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_repo_root</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Repository root:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ROOT</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Repository root:
+/Users/zael5647/scarabaeus
+</pre></div></div>
+</div>
+<section id="Load-SPICE-Kernels">
+<h2>Load SPICE Kernels<a class="headerlink" href="#Load-SPICE-Kernels" title="Link to this heading">#</a></h2>
+<p>Scarabaeus frame transformations rely on SPICE kernels.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load tutorial data</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loaded kernels:&quot;</span><span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">print_kernels</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB tutorial data up to date.
+Loaded kernels:
+================================================================================
+                                 Kernels Loaded:
+================================================================================
+Source:   /Users/zael5647/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/data/kernels/locked/locked_generic.tm   (META)
+Source:   data/kernels/locked/ck/cas00084.tsc   (TEXT)
+Source:   data/kernels/locked/lsk/naif0012.tls   (TEXT)
+Source:   data/kernels/locked/spk/de432s.bsp   (SPK)
+Source:   data/kernels/locked/pck/pck00010.tpc   (TEXT)
+Source:   data/kernels/locked/pck/gm_de431.tpc   (TEXT)
+Source:   data/kernels/locked/spk/earthstns_fx_201023.bsp   (SPK)
+Source:   data/kernels/locked/spk/earth_200101_990628_predict.bpc   (PCK)
+Source:   data/kernels/locked/spk/earth_topo_201023.tf   (TEXT)
+</pre></div></div>
+</div>
+</section>
+<section id="Units-and-Dimensions">
+<h2>Units and Dimensions<a class="headerlink" href="#Units-and-Dimensions" title="Link to this heading">#</a></h2>
+<p>Scarabaeus internally tracks physical dimensions and units explicitly.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate common units</span>
+
+<span class="n">km</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">rad</span><span class="p">,</span> <span class="n">deg</span><span class="p">,</span> <span class="n">kg</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;deg&quot;</span><span class="p">,</span> <span class="s2">&quot;kg&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">km</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deg</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+km
+sec
+deg
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example dimensional operations</span>
+
+<span class="n">velocity_unit</span> <span class="o">=</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span>
+<span class="n">acceleration_unit</span> <span class="o">=</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">frequency_unit</span> <span class="o">=</span> <span class="n">sec</span><span class="o">**-</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity unit:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">velocity_unit</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Acceleration unit:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">acceleration_unit</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Frequency unit:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frequency_unit</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Velocity unit:
+km/sec
+
+Acceleration unit:
+km/sec^2
+
+Frequency unit:
+Hz
+</pre></div></div>
+</div>
+</section>
+<section id="ArrayWUnits">
+<h2>ArrayWUnits<a class="headerlink" href="#ArrayWUnits" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> combines numerical arrays with explicit units.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scalars</span>
+
+<span class="n">distance</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="n">km</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+42.0 km
+3600.0 sec
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector quantities</span>
+
+<span class="n">position</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">7000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">3500</span><span class="p">],</span> <span class="n">km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[ 7000. -1200.  3500.] [km ... km]
+[ 7000. -1200.  3500.]
+km
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unit conversion</span>
+
+<span class="n">distance_m</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">distance_m</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+42000.0 m
+</pre></div></div>
+</div>
+</section>
+<section id="Frames">
+<h2>Frames<a class="headerlink" href="#Frames" title="Link to this heading">#</a></h2>
+<p>Frames define coordinate system orientations and origins.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate common frames</span>
+
+<span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">J2000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ITRF93</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ECLIPJ2000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">IAUEARTH</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+J2000 (0 - SOLAR SYSTEM BARYCENTER)
+ITRF93 (399 - EARTH)
+ECLIPJ2000 (0 - SOLAR SYSTEM BARYCENTER)
+IAU_EARTH (399 - EARTH)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display frame properties</span>
+
+<span class="n">J2000</span><span class="o">.</span><span class="n">disp_properties</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+========================================
+Frame Properties
+========================================
+Frame Name:     J2000
+Frame ID:       1
+Origin Name:    SOLAR SYSTEM BARYCENTER
+Origin ID:      0
+Frame Class:    1
+Class ID:       1
+========================================
+</pre></div></div>
+</div>
+</section>
+<section id="Frame-Transformations">
+<h2>Frame Transformations<a class="headerlink" href="#Frame-Transformations" title="Link to this heading">#</a></h2>
+<p>SPICE can compute frame rotation matrices and transformations.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create epochs</span>
+
+<span class="n">et0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">jd2et</span><span class="p">(</span><span class="mf">2461809.72995654</span><span class="p">)</span>
+
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">et0</span><span class="p">,</span> <span class="n">et0</span> <span class="o">+</span> <span class="mi">3600</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">epochs</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[8.86872737e+08 8.86873637e+08 8.86874537e+08 8.86875437e+08
+ 8.86876337e+08] [sec ... sec] (TDB)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Direction cosine matrix (DCM)</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">get_DCM</span><span class="p">(</span>
+    <span class="n">source_frame</span><span class="o">=</span><span class="n">J2000</span><span class="p">,</span>
+    <span class="n">target_frame</span><span class="o">=</span><span class="n">IAUEARTH</span><span class="p">,</span>
+    <span class="n">epoch</span><span class="o">=</span><span class="n">epochs</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_75296/3884215056.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Direction cosine matrix (DCM)</span>
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> R = scb.Frame.get_DCM(
+<span class="ansi-green-fg">      4</span>     source_frame=J2000,
+<span class="ansi-green-fg">      5</span>     target_frame=IAUEARTH,
+<span class="ansi-green-fg">      6</span>     epoch=epochs
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/Frame.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(source_frame, target_frame, epoch)</span>
+<span class="ansi-green-fg">    236</span>         <span style="color: rgb(95,135,135)"># convert given epoch to ephemeris times for SPICE</span>
+<span class="ansi-green-fg">    237</span>         epoch_et = epoch.times.values
+<span class="ansi-green-fg">    238</span>
+<span class="ansi-green-fg">    239</span>         <span style="color: rgb(95,135,135)"># get DCM from spices</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">240</span>         dcm: np.array = scb.SpiceManager.get_xfrm(
+<span class="ansi-green-fg">    241</span>             source_frame.name, target_frame.name, epoch_et
+<span class="ansi-green-fg">    242</span>         )
+<span class="ansi-green-fg">    243</span>
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(cls, frame_from, frame_to, epoch)</span>
+<span class="ansi-green-fg">   1873</span>         numpy.ndarray
+<span class="ansi-green-fg">   1874</span>             The direction cosine matrix (DCM) representing the transformation <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> `frame_from` to `frame_to` at the specified epoch.
+<span class="ansi-green-fg">   1875</span>         &#34;&#34;&#34;
+<span class="ansi-green-fg">   1876</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1877</span>         DCM = cls._get_xfrm_core(
+<span class="ansi-green-fg">   1878</span>             frame_from,
+<span class="ansi-green-fg">   1879</span>             frame_to,
+<span class="ansi-green-fg">   1880</span>             epoch,
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(frame_from, frame_to, epoch)</span>
+<span class="ansi-green-fg">   1916</span>         :rtype: np.array
+<span class="ansi-green-fg">   1917</span>
+<span class="ansi-green-fg">   1918</span>         .. warning:: both frame_from <span class="ansi-bold" style="color: rgb(0,135,0)">and</span> frame_to needs to be spice-defined reference frames
+<span class="ansi-green-fg">   1919</span>         &#34;&#34;&#34;
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1920</span>         DCM = spice.pxform(frame_from, frame_to, epoch)
+<span class="ansi-green-fg">   1921</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> DCM
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(fromstr, tostr, et)</span>
+<span class="ansi-green-fg">  10923</span>     :param tostr: Name of the frame to transform to.
+<span class="ansi-green-fg">  10924</span>     :param et: Epoch of the rotation matrix.
+<span class="ansi-green-fg">  10925</span>     :<span class="ansi-bold" style="color: rgb(0,135,0)">return</span>: A rotation matrix.
+<span class="ansi-green-fg">  10926</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">&gt; </span><span class="ansi-green-fg">10927</span>     et = ctypes.c_double(et)
+<span class="ansi-green-fg">  10928</span>     tostr = stypes.string_to_char_p(tostr)
+<span class="ansi-green-fg">  10929</span>     fromstr = stypes.string_to_char_p(fromstr)
+<span class="ansi-green-fg">  10930</span>     rotatematrix = stypes.empty_double_matrix()
+
+<span class="ansi-red-fg">TypeError</span>: only 0-dimensional arrays can be converted to Python scalars
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Full transformation</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">get_transformation</span><span class="p">(</span>
+    <span class="n">source_frame</span><span class="o">=</span><span class="n">J2000</span><span class="p">,</span>
+    <span class="n">target_frame</span><span class="o">=</span><span class="n">IAUEARTH</span><span class="p">,</span>
+    <span class="n">epoch</span><span class="o">=</span><span class="n">epochs</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[[-7.63800639e-01 -6.45448876e-01  2.08119818e-03  2.69515025e+07]
+ [ 6.45446450e-01 -7.63803475e-01 -1.76995367e-03 -1.39474218e+08]
+ [ 2.73204101e-03 -8.58976692e-06  9.99996268e-01  3.83428230e+07]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]] [non-homogeneous], [[-7.19826694e-01 -6.94151054e-01  1.96064275e-03  1.77724084e+07]
+ [ 6.94148447e-01 -7.19829364e-01 -1.90263423e-03 -1.40940738e+08]
+ [ 2.73204378e-03 -8.58978435e-06  9.99996268e-01  3.83347425e+07]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]] [non-homogeneous], [[-6.72753446e-01 -7.39864478e-01  1.83164528e-03  8.51689094e+06]
+ [ 7.39861701e-01 -6.72755939e-01 -2.02712302e-03 -1.41803815e+08]
+ [ 2.73204655e-03 -8.58980179e-06  9.99996268e-01  3.83266607e+07]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]] [non-homogeneous], [[-6.22783574e-01 -7.82392324e-01  1.69476116e-03 -7.75421261e+05]
+ [ 7.82389389e-01 -6.22785879e-01 -2.14288402e-03 -1.42059732e+08]
+ [ 2.73204932e-03 -8.58981922e-06  9.99996268e-01  3.83185777e+07]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]] [non-homogeneous], [[-5.70132229e-01 -8.21551482e-01  1.55057975e-03 -1.00647407e+07]
+ [ 8.21548402e-01 -5.70134338e-01 -2.24941879e-03 -1.41707371e+08]
+ [ 2.73205210e-03 -8.58983666e-06  9.99996268e-01  3.83104934e+07]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]] [non-homogeneous]]
+</pre></div></div>
+</div>
+</section>
+<section id="ArrayWFrame">
+<h2>ArrayWFrame<a class="headerlink" href="#ArrayWFrame" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code> associates vectors with both units and frames.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct ArrayWFrame</span>
+
+<span class="n">position_j2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">],</span> <span class="n">km</span><span class="p">),</span>
+    <span class="n">J2000</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">position_j2000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">position_j2000</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[7000. 1000. -500.] [km ... km] (J2000 (0 - SOLAR SYSTEM BARYCENTER))
+J2000 (0 - SOLAR SYSTEM BARYCENTER)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternative constructor</span>
+
+<span class="n">position2</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+    <span class="n">km</span><span class="p">,</span>
+    <span class="n">J2000</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">position2</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1 2 3] [km ... km] (J2000 (0 - SOLAR SYSTEM BARYCENTER))
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Frame conversion</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">km</span><span class="p">,</span>
+    <span class="n">J2000</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original frame:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+
+<span class="n">state</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Converted frame:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Original frame:
+J2000 (0 - SOLAR SYSTEM BARYCENTER)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[15]</span><span class="ansi-green-fg">, line 12</span>
+<span class="ansi-green-fg">      9</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Original frame:</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(0,135,0)">print</span>(state.frame)
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span> <span class="ansi-yellow-bg">state</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">convert_to</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">ECLIPJ2000</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">epochs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     14</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">Converted frame:</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">     15</span> <span style="color: rgb(0,135,0)">print</span>(state.frame)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/ArrayWFrame.py:662</span>, in <span class="ansi-cyan-fg">ArrayWFrame.convert_to</span><span class="ansi-blue-fg">(self, frame_target, epoch)</span>
+<span class="ansi-green-fg">    659</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Epoch array is required for (3, N) transformations.</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">    661</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> epoch.size != n_elements:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">662</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(
+<span class="ansi-green-fg">    663</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Mismatch: AWF has </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>n_elements<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> elements, but </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>epoch.size<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> epochs were given.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    664</span>     )
+<span class="ansi-green-fg">    666</span> <span style="color: rgb(95,135,135)"># Convert each time step</span>
+<span class="ansi-green-fg">    667</span> transformed_quantity = np.zeros_like(<span style="color: rgb(0,135,0)">self</span>.quantity.values)
+
+<span class="ansi-red-fg">ValueError</span>: Mismatch: AWF has 10 elements, but 5 epochs were given.
+</pre></div></div>
+</div>
+</section>
+<section id="Operators-and-Safety-Checks">
+<h2>Operators and Safety Checks<a class="headerlink" href="#Operators-and-Safety-Checks" title="Link to this heading">#</a></h2>
+<p>Scarabaeus prevents invalid operations between incompatible frames.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pos_J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">km</span><span class="p">),</span>
+    <span class="n">J2000</span>
+<span class="p">)</span>
+
+<span class="n">pos_ITRF93</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">km</span><span class="p">),</span>
+    <span class="n">ITRF93</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Same-frame addition:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pos_J2000</span> <span class="o">+</span> <span class="n">pos_J2000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Different-frame addition:&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pos_J2000</span> <span class="o">+</span> <span class="n">pos_ITRF93</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Operation blocked:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Same-frame addition:
+[2. 4. 6.] [km ... km] (J2000 (0 - SOLAR SYSTEM BARYCENTER))
+
+Different-frame addition:
+Operation blocked:
+(&#39;Frame J2000 (0 - SOLAR SYSTEM BARYCENTER) incompatible for mathematical operations with frame &#39;, &#39;ITRF93 (399 - EARTH).&#39;)
+</pre></div></div>
+</div>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>This notebook introduced:</p>
+<ul class="simple">
+<li><p>Dimensions and units</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></p></li>
+<li><p>SPICE frames</p></li>
+<li><p>Frame transformations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></p></li>
+<li><p>Safe frame-aware operations</p></li>
+</ul>
+<p>These abstractions are heavily used throughout Scarabaeus orbit determination, navigation, estimation, and dynamics workflows.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Load-SPICE-Kernels">Load SPICE Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Units-and-Dimensions">Units and Dimensions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ArrayWUnits">ArrayWUnits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Frames">Frames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Frame-Transformations">Frame Transformations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ArrayWFrame">ArrayWFrame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Operators-and-Safety-Checks">Operators and Safety Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

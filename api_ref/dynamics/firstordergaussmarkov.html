@@ -547,6 +547,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
 </div>
 </nav></div>
     </div>
@@ -682,30 +689,6 @@ covariance separately.</p>
 <p class="rubric">References</p>
 <p>Maybeck, P. S. (1979). Stochastic Models, Estimation, and Control.
 Brown, R. G., &amp; Hwang, P. Y. C. (2012). Introduction to Random Signals and Applied Kalman Filtering.</p>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-
-<span class="n">state</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;estimated&quot;</span><span class="p">,</span> <span class="s2">&quot;dynamic&quot;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="p">[</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
-    <span class="p">(</span><span class="s2">&quot;velocity&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;estimated&quot;</span><span class="p">,</span> <span class="s2">&quot;dynamic&quot;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>
-    <span class="p">(</span><span class="s2">&quot;a_fogm&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;estimated&quot;</span><span class="p">,</span> <span class="s2">&quot;dynamic&quot;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="p">[</span><span class="mf">1e-9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>
-    <span class="p">(</span><span class="s2">&quot;beta_fogm&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;estimated&quot;</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3600</span><span class="p">]),</span>
-<span class="p">]</span>
-
-<span class="n">state_vector</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span>
-    <span class="n">epoch</span><span class="o">=</span><span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-    <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
-    <span class="n">origin</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="p">(</span><span class="s2">&quot;Earth&quot;</span><span class="p">),</span>
-    <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">gm_model</span> <span class="o">=</span> <span class="n">FirstOrderGaussMarkov</span><span class="p">(</span>
-    <span class="n">state_array</span><span class="o">=</span><span class="n">state_vector</span><span class="p">,</span>
-    <span class="n">spacecraft</span><span class="o">=</span><span class="n">sc</span><span class="p">,</span>
-    <span class="n">base_frame</span><span class="o">=</span><span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -746,7 +729,7 @@ Brown, R. G., &amp; Hwang, P. Y. C. (2012). Introduction to Random Signals and A
 <dd class="field-even"><p>Current acceleration vector <span class="math notranslate nohighlight">\(\mathbf a_{gm}\)</span> in km/s^2.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>

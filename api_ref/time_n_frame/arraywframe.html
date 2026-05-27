@@ -545,6 +545,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
 </div>
 </nav></div>
     </div>
@@ -616,14 +623,20 @@
 <dt class="sig sig-object py" id="scarabaeus.ArrayWFrame">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ArrayWFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">units_or_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.ArrayWFrame" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Defines an object that contains informations about the reference frames associated with it.</p>
-<p>An ArrayWFrame links an ArrayWUnits (which links a quantity with units) with a Frame on which the ArrayWUnits is specified with respect to.</p>
+<p>Defines a a value or values with associated units and reference frame.</p>
+<p>Accepts two calling conventions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWFrame(awu,</span> <span class="pre">frame)</span></code> — wrap an existing ArrayWUnits in a frame.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWFrame(array,</span> <span class="pre">units,</span> <span class="pre">frame)</span></code> — wrap a raw array with units and frame.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Quantity that needs to be linked with a reference frame.</p></li>
-<li><p><strong>units_or_frame</strong> (<a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-class docutils literal notranslate"><span class="pre">Units</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – Units or Frame objects to be linked with the object</p></li>
-<li><p><strong>frame</strong> (<a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>, <em>optional</em>) – Frame object to be linked with the ArrayWFrame. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>array</strong> (<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Value or values with associated units to be defined in the
+given reference frame.</p></li>
+<li><p><strong>units_or_frame</strong> (<a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-class docutils literal notranslate"><span class="pre">Units</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>) – Units or Frame objects to be linked with the object.</p></li>
+<li><p><strong>frame</strong> (<a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>, <em>optional</em>) – Frame object to be linked with the ArrayWFrame.
+Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -639,30 +652,15 @@
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus.utils.NumpyWrapper</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="c1"># generate units</span>
-<span class="n">km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>
-
-<span class="c1"># load spice kernels</span>
-<span class="n">furnshKernelFilename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/data/Kernels/kernels.tm&quot;</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">furnshKernelFilename</span><span class="p">)</span>
-
-<span class="c1"># generate common frames</span>
-<span class="p">(</span><span class="n">J2000</span><span class="p">,</span><span class="n">ITRF93</span><span class="p">,</span><span class="n">ECLIPJ2000</span><span class="p">,</span><span class="n">IAUEARTH</span><span class="p">)</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
-
-<span class="c1"># Generate nparray and awu quantities (2 different AWF initializations)</span>
-<span class="n">quantity_nparray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">quantity_awu</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">quantity_nparray</span><span class="p">,</span><span class="n">km</span><span class="p">)</span>
-
-<span class="c1"># Create the AWF in 2 different ways:</span>
-
-<span class="c1"># Method (1), AWU and Frame initialization</span>
-<span class="n">arrayWframe</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">quantity_awu</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
-<span class="c1"># Method (2), np.array and Frame initialization</span>
-<span class="n">arrayWframe</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">quantity_nparray</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
+<p>Create an ArrayWFrame by assigning a Frame to an ArrayWUnits:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mk_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;path/to/example_mk.tm&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mk_path</span><span class="p">))</span>  <span class="c1"># furnish metakernel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">km</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">)</span>  <span class="c1"># define units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">)</span>  <span class="c1"># define reference frame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos_vec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">km</span><span class="p">)</span>    <span class="c1"># define position</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos_J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">pos_vec</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span> <span class="c1"># define position in J2000</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -764,12 +762,6 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.ArrayWFrame" title="scarabaeus.ArrayWFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If <em>other</em> is an ArrayWFrame but belongs to a different frame.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – If <em>other</em> is not an ArrayWFrame.</p></li>
-</ul>
 </dd>
 </dl>
 </dd></dl>

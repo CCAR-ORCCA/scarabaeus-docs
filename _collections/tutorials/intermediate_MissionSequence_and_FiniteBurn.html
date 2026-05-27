@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="# Finite-Burn Propagation Demo" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/intermediate_MissionSequence_and_FiniteBurn.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Scarabaeus OD Framework | Last revised 2026 This notebook demonstrates how to propagate a mission sequence that contains finite-burn arcs in Scarabaeus. The goal is to show the complete workflow: define one or more Maneuver objects,, attach a maneuver to ForceModelTranslation using finite_burn=True,, build a MissionSequence with coast and finite-burn arcs,, propagate the sequence,, inspect mass evolution and trajectory continuity.. The examples below are intentionally propagation-focused. Orb..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="Scarabaeus OD Framework | Last revised 2026 This notebook demonstrates how to propagate a mission sequence that contains finite-burn arcs in Scarabaeus. The goal is to show the complete workflow: define one or more Maneuver objects,, attach a maneuver to ForceModelTranslation using finite_burn=True,, build a MissionSequence with coast and finite-burn arcs,, propagate the sequence,, inspect mass evolution and trajectory continuity.. The examples below are intentionally propagation-focused. Orb..." />
+
+    <title># Finite-Burn Propagation Demo &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_MissionSequence_and_FiniteBurn';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Finite-Burn Propagation Demo</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-Finite-Burn-Propagation-Demo">
+<h1># Finite-Burn Propagation Demo<a class="headerlink" href="##-Finite-Burn-Propagation-Demo" title="Link to this heading">#</a></h1>
+<p><em>Scarabaeus OD Framework | Last revised 2026</em></p>
+<p>This notebook demonstrates how to propagate a mission sequence that contains finite-burn arcs in <strong>Scarabaeus</strong>.</p>
+<p>The goal is to show the complete workflow:</p>
+<ol class="arabic simple">
+<li><p>define one or more <code class="docutils literal notranslate"><span class="pre">Maneuver</span></code> objects,</p></li>
+<li><p>attach a maneuver to <code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code> using <code class="docutils literal notranslate"><span class="pre">finite_burn=True</span></code>,</p></li>
+<li><p>build a <code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code> with coast and finite-burn arcs,</p></li>
+<li><p>propagate the sequence,</p></li>
+<li><p>inspect mass evolution and trajectory continuity.</p></li>
+</ol>
+<p>The examples below are intentionally propagation-focused. Orbit-determination and covariance analysis can be added in a separate notebook once the basic finite-burn workflow is clear.</p>
+</section>
+<section id="0.-Imports-and-Setup">
+<h1>0. Imports and Setup<a class="headerlink" href="#0.-Imports-and-Setup" title="Link to this heading">#</a></h1>
+<p>We first import Scarabaeus, the scientific Python stack, load the tutorial data, load SPICE kernels, and define the units and frames used throughout the notebook.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">EpochArray</span><span class="p">,</span>
+    <span class="n">Spacecraft</span><span class="p">,</span>
+    <span class="n">ArrayWUnits</span><span class="p">,</span>
+    <span class="n">StateArray</span><span class="p">,</span>
+    <span class="n">SpiceManager</span><span class="p">,</span>
+    <span class="n">MissionSequence</span><span class="p">,</span>
+    <span class="n">CelestialBody</span><span class="p">,</span>
+    <span class="n">Propagator</span><span class="p">,</span>
+    <span class="n">ManeuverParser</span><span class="p">,</span>
+    <span class="n">ArrayWFrame</span><span class="p">,</span>
+    <span class="n">Maneuver</span><span class="p">,</span>
+    <span class="n">StateDefinition</span><span class="p">,</span>
+    <span class="n">ForceModelTranslation</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ── working directory ─────────────────────────────────────────────</span>
+<span class="c1"># Notebooks are expected to be run from the repository root or from tutorials/.</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span> <span class="o">==</span> <span class="s2">&quot;tutorials&quot;</span><span class="p">:</span>
+    <span class="n">repo_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">repo_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repo_root</span><span class="p">,</span> <span class="s2">&quot;tutorials&quot;</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repo_root</span><span class="p">,</span> <span class="s2">&quot;tutorials&quot;</span><span class="p">))</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1"># Prefer the tutorial metakernel when available.</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span><span class="s2">&quot;data/kernels/locked/lsk/naif0012.tls&quot;</span><span class="p">)</span>
+
+<span class="c1"># ── units and frames ──────────────────────────────────────────────</span>
+<span class="n">kg</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;kg&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">])</span>
+<span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="s2">&quot;axes.grid&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+<span class="p">})</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB tutorial data up to date.
+</pre></div></div>
+</div>
+</section>
+<section id="1.-Helper-Functions">
+<h1>1. Helper Functions<a class="headerlink" href="#1.-Helper-Functions" title="Link to this heading">#</a></h1>
+<p>The helper functions below keep the finite-burn sections compact. The important implementation detail is that each mission arc gets its own <code class="docutils literal notranslate"><span class="pre">EpochArray</span></code>. This avoids using one global time array for coast and burn arcs with different start/end times.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_time_array</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt_sec</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a TDB EpochArray from t0 to tf, including the final epoch.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="n">dt_sec</span><span class="p">,</span> <span class="n">dt_sec</span><span class="p">),</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_arc</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Print an arc window in UTC and hours.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">t0_str</span> <span class="o">=</span> <span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">t_start</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">tf_str</span> <span class="o">=</span> <span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">t0_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t_start</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ET&quot;</span>
+        <span class="n">tf_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t_end</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ET&quot;</span>
+
+    <span class="n">duration_hr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_end</span> <span class="o">-</span> <span class="n">t_start</span><span class="p">)</span> <span class="o">/</span> <span class="mf">3600.0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Start   : </span><span class="si">{</span><span class="n">t0_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  End     : </span><span class="si">{</span><span class="n">tf_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Duration: </span><span class="si">{</span><span class="n">duration_hr</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> hr&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">empty_pv_state</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">spacecraft</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create an empty position/velocity state used by sequence arcs after the first arc.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">StateArray</span><span class="p">(</span>
+        <span class="n">epoch</span><span class="o">=</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">),</span>
+        <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span>
+        <span class="n">state</span><span class="o">=</span><span class="n">StateDefinition</span><span class="o">.</span><span class="n">empty_pv</span><span class="p">(</span><span class="n">spacecraft</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_mass_history</span><span class="p">(</span><span class="n">mission</span><span class="p">,</span> <span class="n">spacecraft</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mass Evolution&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot spacecraft mass along the propagated mission sequence.&quot;&quot;&quot;</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="n">mission</span><span class="o">.</span><span class="n">total_epochsTDB</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">mass_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">spacecraft</span><span class="o">.</span><span class="n">mass</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">epochs</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">mass_vals</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;TDB seconds past J2000 [s]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mass [kg]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial mass: </span><span class="si">{</span><span class="n">mass_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final mass  : </span><span class="si">{</span><span class="n">mass_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mass used   : </span><span class="si">{</span><span class="n">mass_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mass_vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="2.-Define-Finite-Burn-Maneuvers-Manually">
+<h1>2. Define Finite-Burn Maneuvers Manually<a class="headerlink" href="#2.-Define-Finite-Burn-Maneuvers-Manually" title="Link to this heading">#</a></h1>
+<p>A <code class="docutils literal notranslate"><span class="pre">Maneuver</span></code> contains the thrust magnitude, mass-flow rate, start/end times, and thrust direction. In this first example the burns are simple constant-parameter burns.</p>
+<p>The thrust direction should be normalized. Here we use a direction halfway between +x and +z.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Direction halfway between +x and +z.</span>
+<span class="n">u</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># Example electric-propulsion-like mass flow from thrust and Isp.</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="mf">9.80665</span>       <span class="c1"># [m/s^2]</span>
+<span class="n">Isp</span> <span class="o">=</span> <span class="mf">2200.0</span>       <span class="c1"># [s]</span>
+<span class="n">thrust_value</span> <span class="o">=</span> <span class="mf">0.200</span>  <span class="c1"># [N]</span>
+<span class="n">mdot</span> <span class="o">=</span> <span class="n">thrust_value</span> <span class="o">/</span> <span class="p">(</span><span class="n">Isp</span> <span class="o">*</span> <span class="n">g0</span><span class="p">)</span>  <span class="c1"># [kg/s]</span>
+
+<span class="n">M1</span> <span class="o">=</span> <span class="n">Maneuver</span><span class="p">()</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">thrust</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">thrust_value</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">mass_flow</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span> <span class="n">kg</span> <span class="o">/</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">EpochArray</span><span class="p">(</span><span class="mf">923000647.3506516</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="n">EpochArray</span><span class="p">(</span><span class="mf">923004047.3506516</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">ux</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">uy</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">M1</span><span class="o">.</span><span class="n">uz</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="n">M2</span> <span class="o">=</span> <span class="n">Maneuver</span><span class="p">()</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">thrust</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">thrust_value</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">mass_flow</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">mdot</span><span class="p">,</span> <span class="n">kg</span> <span class="o">/</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">EpochArray</span><span class="p">(</span><span class="mf">923004047.3506516</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="n">EpochArray</span><span class="p">(</span><span class="mf">923007447.3506516</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">ux</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">uy</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">M2</span><span class="o">.</span><span class="n">uz</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">man</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;M1&quot;</span><span class="p">,</span> <span class="n">M1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;M2&quot;</span><span class="p">,</span> <span class="n">M2</span><span class="p">)]:</span>
+    <span class="n">print_arc</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">man</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">man</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+M1
+  Start   : 2029 APR 01 09:02:58.165
+  End     : 2029 APR 01 09:59:38.165
+  Duration: 0.944 hr
+M2
+  Start   : 2029 APR 01 09:59:38.165
+  End     : 2029 APR 01 10:56:18.165
+  Duration: 0.944 hr
+</pre></div></div>
+</div>
+</section>
+<section id="3.-Spacecraft,-Central-Body,-and-Initial-State">
+<h1>3. Spacecraft, Central Body, and Initial State<a class="headerlink" href="#3.-Spacecraft,-Central-Body,-and-Initial-State" title="Link to this heading">#</a></h1>
+<p>The finite burn changes the spacecraft translational dynamics through the thrust acceleration and changes the spacecraft mass through <code class="docutils literal notranslate"><span class="pre">mass_flow</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Spacecraft properties</span>
+<span class="n">Orbiter_drymass</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">2300.0</span><span class="p">,</span> <span class="n">kg</span><span class="p">)</span>
+<span class="n">Orbiter_area</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">km</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Orbiter_cr_srp</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="n">Orbiter</span> <span class="o">=</span> <span class="n">Spacecraft</span><span class="p">(</span>
+    <span class="s2">&quot;Orbiter&quot;</span><span class="p">,</span>
+    <span class="o">-</span><span class="mi">60000</span><span class="p">,</span>
+    <span class="n">Orbiter_drymass</span><span class="p">,</span>
+    <span class="n">Orbiter_area</span><span class="p">,</span>
+    <span class="n">Orbiter_cr_srp</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">origin</span> <span class="o">=</span> <span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s2">&quot;SUN&quot;</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="n">J2000</span>
+
+<span class="c1"># Start one hour before the first burn.</span>
+<span class="n">margin_before_M1</span> <span class="o">=</span> <span class="mf">3600.0</span>  <span class="c1"># [s]</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">M1</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">margin_before_M1</span>
+
+<span class="c1"># Example heliocentric initial state.</span>
+<span class="n">r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.6561672815488e08</span><span class="p">,</span> <span class="mf">1.8837080839972e08</span><span class="p">,</span> <span class="mf">1.0199307996915e08</span><span class="p">])</span>  <span class="c1"># [km]</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">9.0779264528807</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.4823165310294</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.4599484708606</span><span class="p">])</span>        <span class="c1"># [km/s]</span>
+
+<span class="n">initial_state</span> <span class="o">=</span> <span class="n">StateArray</span><span class="p">(</span>
+    <span class="n">epoch</span><span class="o">=</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">start_time</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">),</span>
+    <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span>
+    <span class="n">state</span><span class="o">=</span><span class="p">(</span>
+        <span class="n">StateDefinition</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">km</span><span class="p">),</span> <span class="n">J2000</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">),</span> <span class="n">J2000</span><span class="p">))</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="4.-Build-Coast-and-Finite-Burn-Arcs">
+<h1>4. Build Coast and Finite-Burn Arcs<a class="headerlink" href="#4.-Build-Coast-and-Finite-Burn-Arcs" title="Link to this heading">#</a></h1>
+<p>A mission sequence is built arc by arc:</p>
+<ul class="simple">
+<li><p>a coast leg from the initial epoch to the first burn start,</p></li>
+<li><p>finite-burn arc 1,</p></li>
+<li><p>finite-burn arc 2,</p></li>
+<li><p>a final coast leg.</p></li>
+</ul>
+<p>For each burn arc, the force model is created with <code class="docutils literal notranslate"><span class="pre">finite_burn=True</span></code> and the corresponding <code class="docutils literal notranslate"><span class="pre">maneuver</span></code> object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sec</span><span class="p">)</span>
+<span class="n">dt_sec</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># ── Coast before M1 ──────────────────────────────────────────────</span>
+<span class="n">coast_0_start</span> <span class="o">=</span> <span class="n">start_time</span>
+<span class="n">coast_0_end</span> <span class="o">=</span> <span class="n">M1</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+<span class="n">coast_0_duration</span> <span class="o">=</span> <span class="n">coast_0_end</span> <span class="o">-</span> <span class="n">coast_0_start</span>
+
+<span class="n">time_array_coast_0</span> <span class="o">=</span> <span class="n">make_time_array</span><span class="p">(</span><span class="n">coast_0_start</span><span class="p">,</span> <span class="n">coast_0_end</span><span class="p">,</span> <span class="n">dt_sec</span><span class="p">)</span>
+<span class="n">force_model_coast_0</span> <span class="o">=</span> <span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">cannonball_SRP</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">prop_model_coast_0</span> <span class="o">=</span> <span class="n">Propagator</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span>
+    <span class="n">state_vector</span><span class="o">=</span><span class="n">initial_state</span><span class="p">,</span>
+    <span class="n">tspan</span><span class="o">=</span><span class="n">time_array_coast_0</span><span class="p">,</span>
+    <span class="n">force_models</span><span class="o">=</span><span class="n">force_model_coast_0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ── Finite burn M1 ───────────────────────────────────────────────</span>
+<span class="n">M1_start</span> <span class="o">=</span> <span class="n">M1</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+<span class="n">M1_end</span> <span class="o">=</span> <span class="n">M1</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+<span class="n">M1_duration</span> <span class="o">=</span> <span class="n">M1_end</span> <span class="o">-</span> <span class="n">M1_start</span>
+
+<span class="n">time_array_fb_M1</span> <span class="o">=</span> <span class="n">make_time_array</span><span class="p">(</span><span class="n">M1_start</span><span class="p">,</span> <span class="n">M1_end</span><span class="p">,</span> <span class="n">dt_sec</span><span class="p">)</span>
+<span class="n">state_fb_M1</span> <span class="o">=</span> <span class="n">empty_pv_state</span><span class="p">(</span><span class="n">M1_start</span><span class="p">,</span> <span class="n">Orbiter</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
+<span class="n">force_model_fb_M1</span> <span class="o">=</span> <span class="n">ForceModelTranslation</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span>
+    <span class="n">cannonball_SRP</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">finite_burn</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">maneuver</span><span class="o">=</span><span class="n">M1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">prop_model_fb_M1</span> <span class="o">=</span> <span class="n">Propagator</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span>
+    <span class="n">state_vector</span><span class="o">=</span><span class="n">state_fb_M1</span><span class="p">,</span>
+    <span class="n">tspan</span><span class="o">=</span><span class="n">time_array_fb_M1</span><span class="p">,</span>
+    <span class="n">force_models</span><span class="o">=</span><span class="n">force_model_fb_M1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ── Finite burn M2 ───────────────────────────────────────────────</span>
+<span class="n">M2_start</span> <span class="o">=</span> <span class="n">M2</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+<span class="n">M2_end</span> <span class="o">=</span> <span class="n">M2</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+<span class="n">M2_duration</span> <span class="o">=</span> <span class="n">M2_end</span> <span class="o">-</span> <span class="n">M2_start</span>
+
+<span class="n">time_array_fb_M2</span> <span class="o">=</span> <span class="n">make_time_array</span><span class="p">(</span><span class="n">M2_start</span><span class="p">,</span> <span class="n">M2_end</span><span class="p">,</span> <span class="n">dt_sec</span><span class="p">)</span>
+<span class="n">state_fb_M2</span> <span class="o">=</span> <span class="n">empty_pv_state</span><span class="p">(</span><span class="n">M2_start</span><span class="p">,</span> <span class="n">Orbiter</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
+<span class="n">force_model_fb_M2</span> <span class="o">=</span> <span class="n">ForceModelTranslation</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span>
+    <span class="n">cannonball_SRP</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">finite_burn</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">maneuver</span><span class="o">=</span><span class="n">M2</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">prop_model_fb_M2</span> <span class="o">=</span> <span class="n">Propagator</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span>
+    <span class="n">state_vector</span><span class="o">=</span><span class="n">state_fb_M2</span><span class="p">,</span>
+    <span class="n">tspan</span><span class="o">=</span><span class="n">time_array_fb_M2</span><span class="p">,</span>
+    <span class="n">force_models</span><span class="o">=</span><span class="n">force_model_fb_M2</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ── Final coast after M2 ─────────────────────────────────────────</span>
+<span class="n">coast_final_start</span> <span class="o">=</span> <span class="n">M2_end</span>
+<span class="n">coast_final_end</span> <span class="o">=</span> <span class="n">M2_end</span> <span class="o">+</span> <span class="mf">3400.0</span>
+<span class="n">coast_final_duration</span> <span class="o">=</span> <span class="n">coast_final_end</span> <span class="o">-</span> <span class="n">coast_final_start</span>
+
+<span class="n">time_array_coast_final</span> <span class="o">=</span> <span class="n">make_time_array</span><span class="p">(</span><span class="n">coast_final_start</span><span class="p">,</span> <span class="n">coast_final_end</span><span class="p">,</span> <span class="n">dt_sec</span><span class="p">)</span>
+<span class="n">state_coast_final</span> <span class="o">=</span> <span class="n">empty_pv_state</span><span class="p">(</span><span class="n">coast_final_start</span><span class="p">,</span> <span class="n">Orbiter</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
+<span class="n">force_model_coast_final</span> <span class="o">=</span> <span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">cannonball_SRP</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">prop_model_coast_final</span> <span class="o">=</span> <span class="n">Propagator</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span>
+    <span class="n">state_vector</span><span class="o">=</span><span class="n">state_coast_final</span><span class="p">,</span>
+    <span class="n">tspan</span><span class="o">=</span><span class="n">time_array_coast_final</span><span class="p">,</span>
+    <span class="n">force_models</span><span class="o">=</span><span class="n">force_model_coast_final</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Initial coast&quot;</span><span class="p">,</span> <span class="n">coast_0_start</span><span class="p">,</span> <span class="n">coast_0_end</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Finite burn M1&quot;</span><span class="p">,</span> <span class="n">M1_start</span><span class="p">,</span> <span class="n">M1_end</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Finite burn M2&quot;</span><span class="p">,</span> <span class="n">M2_start</span><span class="p">,</span> <span class="n">M2_end</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Final coast&quot;</span><span class="p">,</span> <span class="n">coast_final_start</span><span class="p">,</span> <span class="n">coast_final_end</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">print_arc</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Initial coast
+  Start   : 2029 APR 01 08:02:58.165
+  End     : 2029 APR 01 09:02:58.165
+  Duration: 1.000 hr
+Finite burn M1
+  Start   : 2029 APR 01 09:02:58.165
+  End     : 2029 APR 01 09:59:38.165
+  Duration: 0.944 hr
+Finite burn M2
+  Start   : 2029 APR 01 09:59:38.165
+  End     : 2029 APR 01 10:56:18.165
+  Duration: 0.944 hr
+Final coast
+  Start   : 2029 APR 01 10:56:18.165
+  End     : 2029 APR 01 11:52:58.165
+  Duration: 0.944 hr
+</pre></div></div>
+</div>
+</section>
+<section id="5.-Assemble-and-Propagate-the-Mission-Sequence">
+<h1>5. Assemble and Propagate the Mission Sequence<a class="headerlink" href="#5.-Assemble-and-Propagate-the-Mission-Sequence" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">MissionSequence.addLeg</span></code> is used for ordinary coast arcs. <code class="docutils literal notranslate"><span class="pre">MissionSequence.addFiniteBurn</span></code> is used for burn arcs. The sequence propagator passes the terminal state of one arc into the next arc, so the later arc state definitions can be initialized as empty position/velocity states.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MS</span> <span class="o">=</span> <span class="n">MissionSequence</span><span class="p">(</span><span class="s2">&quot;FiniteBurnDemo&quot;</span><span class="p">)</span>
+
+<span class="n">MS</span><span class="o">.</span><span class="n">addLeg</span><span class="p">(</span>
+    <span class="s2">&quot;Initial coast&quot;</span><span class="p">,</span>
+    <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">coast_0_duration</span><span class="p">,</span> <span class="n">sec</span><span class="p">),</span>
+    <span class="n">initial_state</span><span class="p">,</span>
+    <span class="n">prop_model_coast_0</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">MS</span><span class="o">.</span><span class="n">addFiniteBurn</span><span class="p">(</span>
+    <span class="s2">&quot;Finite burn M1&quot;</span><span class="p">,</span>
+    <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">M1_duration</span><span class="p">,</span> <span class="n">sec</span><span class="p">),</span>
+    <span class="n">state_fb_M1</span><span class="p">,</span>
+    <span class="n">prop_model_fb_M1</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">MS</span><span class="o">.</span><span class="n">addFiniteBurn</span><span class="p">(</span>
+    <span class="s2">&quot;Finite burn M2&quot;</span><span class="p">,</span>
+    <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">M2_duration</span><span class="p">,</span> <span class="n">sec</span><span class="p">),</span>
+    <span class="n">state_fb_M2</span><span class="p">,</span>
+    <span class="n">prop_model_fb_M2</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">MS</span><span class="o">.</span><span class="n">addLeg</span><span class="p">(</span>
+    <span class="s2">&quot;Final coast&quot;</span><span class="p">,</span>
+    <span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">coast_final_duration</span><span class="p">,</span> <span class="n">sec</span><span class="p">),</span>
+    <span class="n">state_coast_final</span><span class="p">,</span>
+    <span class="n">prop_model_coast_final</span><span class="p">,</span>
+    <span class="n">dt</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">mission</span> <span class="o">=</span> <span class="n">MS</span><span class="o">.</span><span class="n">propagate</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Propagation complete.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of propagated epochs: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">mission</span><span class="o">.</span><span class="n">total_epochsTDB</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+--- Propagating Segment 1/7: &#39;Initial coast&#39; [Leg] ---
+
+[IC] segment=&#39;Initial coast&#39; type=&#39;Leg&#39; epoch=922997047.3506516 sec (TDB)
+  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-2.65616728e+08  1.88370808e+08  1.01993080e+08]
+  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -9.07792645 -12.48231653  -4.45994847]
+
+================================================================================
+                            Starting propagation...
+================================================================================
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Integrating: 100%|█████████████████████████████████████████████████| 3600.00/3600.00 s [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ =================== DOP853 integration complete. ==================
+Propagation complete.
+
+[GLOBAL STATE after &#39;Initial coast&#39;]
+  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-2.65649403e+08  1.88325868e+08  1.01977022e+08]
+  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -9.07473227 -12.48458138  -4.46117482]
+
+--- Propagating Segment 2/7: &#39;Finite burn M1 Start Node&#39; [Node] ---
+
+--- Propagating Segment 3/7: &#39;Finite burn M1&#39; [Finite Burn] ---
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+[IC] segment=&#39;Finite burn M1&#39; type=&#39;Finite Burn&#39; epoch=923000647.3506516 sec (TDB)
+  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-2.65649403e+08  1.88325868e+08  1.01977022e+08]
+  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -9.07473227 -12.48458138  -4.46117482]
+
+================================================================================
+                            Starting propagation...
+================================================================================
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Integrating: 100%|█████████████████████████████████████████████████| 3400.00/3400.00 s [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ =================== DOP853 integration complete. ==================
+Propagation complete.
+
+[GLOBAL STATE after &#39;Finite burn M1&#39;]
+  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-2.65680252e+08  1.88283417e+08  1.01961852e+08]
+  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -9.07150602 -12.48671999  -4.46212384]
+
+--- Propagating Segment 4/7: &#39;Finite burn M2 Start Node&#39; [Node] ---
+
+--- Propagating Segment 5/7: &#39;Finite burn M2&#39; [Finite Burn] ---
+
+[IC] segment=&#39;Finite burn M2&#39; type=&#39;Finite Burn&#39; epoch=923004047.3506516 sec (TDB)
+  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-2.65680252e+08  1.88283417e+08  1.01961852e+08]
+  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -9.07150602 -12.48671999  -4.46212384]
+
+================================================================================
+                            Starting propagation...
+================================================================================
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Integrating: 100%|█████████████████████████████████████████████████| 3400.00/3400.00 s [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ =================== DOP853 integration complete. ==================
+Propagation complete.
+
+[GLOBAL STATE after &#39;Finite burn M2&#39;]
+  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-2.65711089e+08  1.88240958e+08  1.01946680e+08]
+  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -9.0682793  -12.48885818  -4.46307273]
+
+--- Propagating Segment 6/7: &#39;Final coast Start Node&#39; [Node] ---
+
+--- Propagating Segment 7/7: &#39;Final coast&#39; [Leg] ---
+
+[IC] segment=&#39;Final coast&#39; type=&#39;Leg&#39; epoch=923007447.3506516 sec (TDB)
+  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-2.65711089e+08  1.88240958e+08  1.01946680e+08]
+  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -9.0682793  -12.48885818  -4.46307273]
+
+================================================================================
+                            Starting propagation...
+================================================================================
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Integrating: 100%|█████████████████████████████████████████████████| 3400.00/3400.00 s [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+ =================== DOP853 integration complete. ==================
+Propagation complete.
+
+[GLOBAL STATE after &#39;Final coast&#39;]
+  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-2.65741916e+08  1.88198493e+08  1.01931503e+08]
+  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -9.0652612  -12.49099597  -4.46423055]
+Propagation complete.
+Number of propagated epochs: 13801
+</pre></div></div>
+</div>
+</section>
+<section id="7.-Plot-Trajectory-Components">
+<h1>7. Plot Trajectory Components<a class="headerlink" href="#7.-Plot-Trajectory-Components" title="Link to this heading">#</a></h1>
+<p>This is a simple sanity check on the propagated trajectory. The objective is not to validate the force model physically, but to verify that the sequence propagated continuously across coast and burn arcs.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The exact trajectory attribute names may differ depending on the current Scarabaeus branch.</span>
+<span class="c1"># This helper tries common patterns and raises a useful error if the branch API changed.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_cartesian_history</span><span class="p">(</span><span class="n">mission</span><span class="p">):</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;total_state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;total_states&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;states&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;trajectory&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mission</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">mission</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">obj</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">arr</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">arr</span><span class="p">[:</span><span class="mi">6</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+        <span class="s2">&quot;Could not infer the Cartesian state history from this mission object. &quot;</span>
+        <span class="s2">&quot;Inspect dir(mission) and update get_cartesian_history for this branch.&quot;</span>
+    <span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">get_cartesian_history</span><span class="p">(</span><span class="n">mission</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">mission</span><span class="o">.</span><span class="n">total_epochsTDB</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">hours</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mf">3600.0</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time since start [hr]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Position [km]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Propagated Position Components&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;vx&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;vy&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;vz&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time since start [hr]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Velocity [km/s]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Propagated Velocity Components&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Could not infer the Cartesian state history from this mission object. Inspect dir(mission) and update get_cartesian_history for this branch.
+</pre></div></div>
+</div>
+</section>
+<section id="8.-Parse-Finite-Burns-from-a-Maneuver-Specification-File">
+<h1>8. Parse Finite Burns from a Maneuver Specification File<a class="headerlink" href="#8.-Parse-Finite-Burns-from-a-Maneuver-Specification-File" title="Link to this heading">#</a></h1>
+<p>Instead of manually creating <code class="docutils literal notranslate"><span class="pre">Maneuver</span></code> objects, a maneuver specification file can be parsed using <code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code>. This is the workflow used when finite burns come from a reference trajectory or an external mission-design tool.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">repo_root</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dynamic_setup&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;thruster_coefficients&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;example.mission_maneuver_spec&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">spec_path</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">spec_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+        <span class="n">parsed_maneuvers</span> <span class="o">=</span> <span class="n">ManeuverParser</span><span class="p">()</span><span class="o">.</span><span class="n">_parse_maneuver_spec</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">parsed_maneuvers</span><span class="p">)</span><span class="si">}</span><span class="s2"> finite burns from:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">spec_path</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">man</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parsed_maneuvers</span><span class="p">[:</span><span class="mi">5</span><span class="p">]):</span>
+        <span class="n">print_arc</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsed burn </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">man</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">man</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">parsed_maneuvers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maneuver specification file not found: </span><span class="si">{</span><span class="n">spec_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Maneuver specification file not found: /Users/zael5647/scarabaeus/docs/online_documentation/sphinx_files/_collections/data/dynamic_setup/thruster_coefficients/example.mission_maneuver_spec
+</pre></div></div>
+</div>
+</section>
+<section id="9.-Optional:-Fit-a-Polynomial-Maneuver-Profile">
+<h1>9. Optional: Fit a Polynomial Maneuver Profile<a class="headerlink" href="#9.-Optional:-Fit-a-Polynomial-Maneuver-Profile" title="Link to this heading">#</a></h1>
+<p>Finite-burn parameters may also be represented by polynomial coefficients. A common workflow is:</p>
+<ol class="arabic simple">
+<li><p>parse a list of short burns,</p></li>
+<li><p>use the midpoint of each burn as the independent variable,</p></li>
+<li><p>fit polynomial coefficients for thrust, mass flow, and thrust direction components,</p></li>
+<li><p>create a new <code class="docutils literal notranslate"><span class="pre">Maneuver</span></code> whose fields contain those polynomial coefficients.</p></li>
+</ol>
+<p>This section only builds and plots the fitted profile. Use it when you want a smoothed finite-burn representation instead of a list of piecewise maneuvers.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">parsed_maneuvers</span><span class="p">:</span>
+    <span class="n">thrust_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">thrust</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+    <span class="n">mass_flow_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">mass_flow</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+    <span class="n">ux_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">ux</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+    <span class="n">uy_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">uy</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+    <span class="n">uz_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">uz</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+
+    <span class="n">start_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">start_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+    <span class="n">end_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">end_time</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">parsed_maneuvers</span><span class="p">])</span>
+    <span class="n">mid_times</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">start_times</span> <span class="o">+</span> <span class="n">end_times</span><span class="p">)</span>
+
+    <span class="n">t0_poly</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">start_times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">tf_poly</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">end_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0_poly</span><span class="p">,</span> <span class="n">tf_poly</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+    <span class="c1"># Use a safe order if fewer than 7 points are available.</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed_maneuvers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">fit_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Thrust [N]&quot;</span><span class="p">:</span> <span class="n">thrust_list</span><span class="p">,</span>
+        <span class="s2">&quot;Mass flow [kg/s]&quot;</span><span class="p">:</span> <span class="n">mass_flow_list</span><span class="p">,</span>
+        <span class="s2">&quot;ux [-]&quot;</span><span class="p">:</span> <span class="n">ux_list</span><span class="p">,</span>
+        <span class="s2">&quot;uy [-]&quot;</span><span class="p">:</span> <span class="n">uy_list</span><span class="p">,</span>
+        <span class="s2">&quot;uz [-]&quot;</span><span class="p">:</span> <span class="n">uz_list</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">fit_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">coeffs</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">mid_times</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span>
+        <span class="n">poly</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mid_times</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Parsed values&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_eval</span><span class="p">,</span> <span class="n">poly</span><span class="p">(</span><span class="n">t_eval</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Order-</span><span class="si">{</span><span class="n">order</span><span class="si">}</span><span class="s2"> fit&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;TDB seconds past J2000 [s]&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polynomial Fit: </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No parsed maneuvers available; skipping polynomial fit.&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+No parsed maneuvers available; skipping polynomial fit.
+</pre></div></div>
+</div>
+</section>
+<section id="10.-Notes-and-Common-Pitfalls">
+<h1>10. Notes and Common Pitfalls<a class="headerlink" href="#10.-Notes-and-Common-Pitfalls" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Use one <code class="docutils literal notranslate"><span class="pre">EpochArray</span></code> per arc. A finite-burn arc should use a time grid that spans that burn, not a coast arc grid.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ForceModelTranslation(...,</span> <span class="pre">finite_burn=True,</span> <span class="pre">maneuver=M)</span></code> for a burn arc.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">MissionSequence.addFiniteBurn(...)</span></code> for burn arcs and <code class="docutils literal notranslate"><span class="pre">MissionSequence.addLeg(...)</span></code> for coast arcs.</p></li>
+<li><p>If the burn arc is not the first arc, initialize its position/velocity with <code class="docutils literal notranslate"><span class="pre">StateDefinition.empty_pv(...)</span></code> or branch-equivalent empty state definitions. The sequence will fill the initial state from the previous arc.</p></li>
+<li><p>Keep thrust units in <code class="docutils literal notranslate"><span class="pre">N</span></code>, mass flow in <code class="docutils literal notranslate"><span class="pre">kg/sec</span></code>, and translational states in <code class="docutils literal notranslate"><span class="pre">km</span></code> and <code class="docutils literal notranslate"><span class="pre">km/sec</span></code> unless the branch explicitly expects otherwise.</p></li>
+<li><p>For direction components, prefer normalized unit vectors. If direction errors are estimated later, keep the nominal direction normalized and estimate small angular corrections separately.</p></li>
+</ul>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># Finite-Burn Propagation Demo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#0.-Imports-and-Setup">0. Imports and Setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Helper-Functions">1. Helper Functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Define-Finite-Burn-Maneuvers-Manually">2. Define Finite-Burn Maneuvers Manually</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Spacecraft,-Central-Body,-and-Initial-State">3. Spacecraft, Central Body, and Initial State</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Build-Coast-and-Finite-Burn-Arcs">4. Build Coast and Finite-Burn Arcs</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Assemble-and-Propagate-the-Mission-Sequence">5. Assemble and Propagate the Mission Sequence</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Plot-Trajectory-Components">7. Plot Trajectory Components</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-Parse-Finite-Burns-from-a-Maneuver-Specification-File">8. Parse Finite Burns from a Maneuver Specification File</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#9.-Optional:-Fit-a-Polynomial-Maneuver-Profile">9. Optional: Fit a Polynomial Maneuver Profile</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#10.-Notes-and-Common-Pitfalls">10. Notes and Common Pitfalls</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

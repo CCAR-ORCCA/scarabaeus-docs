@@ -545,6 +545,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
 </div>
 </nav></div>
     </div>
@@ -619,7 +626,7 @@
 <p>Defines relationships between fundamental physical quantities. Provides
 dimensional information for the main purpose of creating units.</p>
 <p>These quantities are derived from three of the SI unit system’s base
-units <a class="reference internal" href="#rc9e7f42d1536-1" id="id1">[1]</a>: Mass from the kilogram, Length from the meter, and Time from
+units [<a class="reference internal" href="#rc9e7f42d1536-1" id="id1">[1]</a>]: Mass from the kilogram, Length from the meter, and Time from
 the second. Additionaly, a fourth “dimension” — Angle — is included due
 to its relevance to many unitary applications despite the inherent
 non-dimensionality of angles.</p>
@@ -675,31 +682,20 @@ will always be returned.</p>
 <div role="list" class="citation-list">
 <div class="citation" id="rc9e7f42d1536-1" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p><a class="reference external" href="https://www.nist.gov/pml/owm/metric-si/si-units">https://www.nist.gov/pml/owm/metric-si/si-units</a></p>
+<p>NIST,
+<a class="reference external" href="https://www.nist.gov/pml/owm/metric-si/si-units">https://www.nist.gov/pml/owm/metric-si/si-units</a></p>
 </div>
 </div>
 <p class="rubric">Examples</p>
-<p>Dimensions objects can be constructed with <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">np.array</span></code> objects:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus.utils.NumpyWrapper</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="c1"># initialize with a list...</span>
-<span class="n">area_dim</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-
-<span class="c1"># ... or a numpy array</span>
-<span class="n">comp_dim</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
-</pre></div>
-</div>
-<p>The names of Dimensions objects are automatically generated upong construction.
-From the above example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># named dimensions</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">area_dim</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="n">Area</span>
-
-<span class="c1"># compound dimensions</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">comp_dim</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="n">Cubic</span> <span class="n">Mass</span> <span class="n">times</span> <span class="n">Angle</span> <span class="n">per</span> <span class="n">Square</span> <span class="n">Time</span>
+<p>Dimensions objects can be constructed with <code class="docutils literal notranslate"><span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">np.array</span></code> objects.
+The names of Dimensions objects are automatically generated upong construction.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">area_dim</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>             <span class="c1"># initialize with a list...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">area_dim</span><span class="p">)</span> <span class="c1"># known (named) dimension</span>
+<span class="go">Area</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">comp_dim</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>  <span class="c1"># ... or a numpy array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">comp_dim</span><span class="p">)</span> <span class="c1"># unnamed compound dimension</span>
+<span class="go">Cubic Mass times Angle per Square Time</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -719,7 +715,7 @@ From the above example:</p>
 <td><p>Adds a new named dimension to the Dimensions library.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Dimensions.disp_named_dims" title="scarabaeus.Dimensions.disp_named_dims"><code class="xref py py-obj docutils literal notranslate"><span class="pre">disp_named_dims</span></code></a>()</p></td>
-<td><p>Method to display all existing named dimensions and their respective dimensional power vectors.</p></td>
+<td><p>Displays all existing named dimensions and their respective dimensional power vectors.</p></td>
 </tr>
 </tbody>
 </table>
@@ -744,15 +740,14 @@ From the above example:</p>
 adopted by the class’ built-in named dimensions: capitalize the first letter of
 each word in name.</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-
-<span class="c1"># attach a name to a new dimension</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="o">.</span><span class="n">def_new_named_dims</span><span class="p">(</span><span class="s1">&#39;My New Dim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># create a Dimensions object of the new dimension</span>
-<span class="n">new_dim</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">([</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">My</span> <span class="n">New</span> <span class="n">Dim</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unnamed</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">([</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">unnamed</span><span class="p">)</span>  <span class="c1"># unrecognized dimension</span>
+<span class="go">Mass times Length times Time times Angle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="o">.</span><span class="n">def_new_named_dim</span><span class="p">(</span><span class="s1">&#39;My New Dim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>   <span class="c1"># add to dim library</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_dim</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Dimensions</span><span class="p">([</span><span class="mi">1</span> <span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_dim</span><span class="p">)</span>  <span class="c1"># will register as the name we gave it</span>
+<span class="go">My New Dim</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -760,7 +755,7 @@ each word in name.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Dimensions.disp_named_dims">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">disp_named_dims</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.Dimensions.disp_named_dims" title="Link to this definition">#</a></dt>
-<dd><p>Method to display all existing named dimensions and their respective dimensional power vectors.</p>
+<dd><p>Displays all existing named dimensions and their respective dimensional power vectors.</p>
 <p>Includes base dimensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>

@@ -547,6 +547,13 @@
 <li class="toctree-l1"><a class="reference internal" href="utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+</ul>
 </div>
 </nav></div>
     </div>
@@ -618,19 +625,16 @@
 <dt class="sig sig-object py" id="scarabaeus.OrbitalElements">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">OrbitalElements</span></span><a class="headerlink" href="#scarabaeus.OrbitalElements" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Utility class for conversions between Cartesian state vectors and classical orbital elements.</p>
+<p>Performs conversions between Cartesian state vectors and classical orbital elements.</p>
 <p>Provides static methods to convert between position/velocity vectors
 <code class="docutils literal notranslate"><span class="pre">(r,</span> <span class="pre">v)</span></code> and Keplerian orbital elements <code class="docutils literal notranslate"><span class="pre">(p,</span> <span class="pre">e,</span> <span class="pre">i,</span> <span class="pre">Ω,</span> <span class="pre">ω,</span> <span class="pre">ν)</span></code>, as
 well as related quantities such as mean motion, period, and eccentric
 anomaly.</p>
-<p class="rubric">Notes</p>
-<p>All angles are in radians; distances in km; velocities in km/s unless
-otherwise stated in individual method signatures.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.OrbitalElements.rv2coe" title="scarabaeus.OrbitalElements.rv2coe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rv2coe</span></code></a>(grav_param, r, v[, threshHold])</p></td>
-<td><p>Converts from vectors to classical orbital elements.</p></td>
+<td><p>Convert state vector to classical orbital elements.</p></td>
 </tr>
 </tbody>
 </table>
@@ -638,7 +642,7 @@ otherwise stated in individual method signatures.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.OrbitalElements.rv2coe">
 <span class="sig-name descname"><span class="pre">rv2coe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grav_param</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.4)"><span class="pre">dtype</span></a><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarT</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v2.4)"><span class="pre">dtype</span></a><span class="p"><span class="pre">[</span></span><span class="pre">_ScalarT</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshHold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.OrbitalElements.rv2coe" title="Link to this definition">#</a></dt>
-<dd><p>Converts from vectors to classical orbital elements.</p>
+<dd><p>Convert state vector to classical orbital elements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -660,11 +664,8 @@ otherwise stated in individual method signatures.</p>
 </p>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial setup</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-</pre></div>
-</div>
+<p class="rubric">Notes</p>
+<p>All angles are in radians; distances in km; velocities in km/s</p>
 </dd></dl>
 
 </dd></dl>

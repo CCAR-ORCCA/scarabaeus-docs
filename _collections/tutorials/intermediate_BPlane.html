@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/intermediate_BPlane.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="This notebook demonstrates a B-plane targeting workflow using the OSIRIS-REx 2017 Earth gravity assist. The workflow is: Load the required SPICE kernels., Define the closest-approach and TCM epochs., Build a B-plane object for the Earth encounter., Compute the reference B-plane target., Inject a navigation error at the TCM epoch., Compute corrective TCMs using linear and nonlinear targeting., Map state covariance into B-plane uncertainty.. Imports: Import Scarabaeus, NumPy, and set up the hel..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="This notebook demonstrates a B-plane targeting workflow using the OSIRIS-REx 2017 Earth gravity assist. The workflow is: Load the required SPICE kernels., Define the closest-approach and TCM epochs., Build a B-plane object for the Earth encounter., Compute the reference B-plane target., Inject a navigation error at the TCM epoch., Compute corrective TCMs using linear and nonlinear targeting., Map state covariance into B-plane uncertainty.. Imports: Import Scarabaeus, NumPy, and set up the hel..." />
+
+    <title>B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_BPlane';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="B-plane-Targeting-Demo:-OSIRIS-REx-2017-Earth-Gravity-Assist">
+<h1>B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist<a class="headerlink" href="#B-plane-Targeting-Demo:-OSIRIS-REx-2017-Earth-Gravity-Assist" title="Link to this heading">#</a></h1>
+<p>This notebook demonstrates a B-plane targeting workflow using the OSIRIS-REx 2017 Earth gravity assist.</p>
+<p>The workflow is:</p>
+<ol class="arabic simple">
+<li><p>Load the required SPICE kernels.</p></li>
+<li><p>Define the closest-approach and TCM epochs.</p></li>
+<li><p>Build a B-plane object for the Earth encounter.</p></li>
+<li><p>Compute the reference B-plane target.</p></li>
+<li><p>Inject a navigation error at the TCM epoch.</p></li>
+<li><p>Compute corrective TCMs using linear and nonlinear targeting.</p></li>
+<li><p>Map state covariance into B-plane uncertainty.</p></li>
+</ol>
+<section id="Imports">
+<h2>Imports<a class="headerlink" href="#Imports" title="Link to this heading">#</a></h2>
+<p>Import Scarabaeus, NumPy, and set up the helper path used by the tutorial data loader.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="c1"># Make the tutorials helper module importable both from scripts and notebooks.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">NOTEBOOK_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+    <span class="n">NOTEBOOK_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">NOTEBOOK_DIR</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;tutorials&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Setup-and-SPICE-kernels">
+<h2>Setup and SPICE kernels<a class="headerlink" href="#Setup-and-SPICE-kernels" title="Link to this heading">#</a></h2>
+<p>Load the tutorial data and the SPICE kernels required for the OSIRIS-REx Earth flyby example.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">km</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">])</span>
+
+<span class="c1"># Load spice kernels</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_repo_root</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">start</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="o">*</span><span class="n">start</span><span class="o">.</span><span class="n">parents</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;pyproject.toml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;.git&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">path</span>
+
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Could not find repo root from current notebook path.&quot;</span><span class="p">)</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_repo_root</span><span class="p">()</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
+
+<span class="k">assert</span> <span class="n">DATA_DIR</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;Data folder not found at </span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;kernels&quot;</span> <span class="o">/</span> <span class="s2">&quot;locked&quot;</span> <span class="o">/</span> <span class="s2">&quot;locked_generic.tm&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;kernels&quot;</span> <span class="o">/</span> <span class="s2">&quot;scenario&quot;</span> <span class="o">/</span> <span class="s2">&quot;orx_160909_171201_170830_od023_v1.bsp&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">print_kernels</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB tutorial data up to date.
+================================================================================
+                                 Kernels Loaded:
+================================================================================
+Source:   /Users/zael5647/scarabaeus/data/kernels/locked/locked_generic.tm   (META)
+Source:   data/kernels/locked/ck/cas00084.tsc   (TEXT)
+Source:   data/kernels/locked/lsk/naif0012.tls   (TEXT)
+Source:   data/kernels/locked/spk/de432s.bsp   (SPK)
+Source:   data/kernels/locked/pck/pck00010.tpc   (TEXT)
+Source:   data/kernels/locked/pck/gm_de431.tpc   (TEXT)
+Source:   data/kernels/locked/spk/earthstns_fx_201023.bsp   (SPK)
+Source:   data/kernels/locked/spk/earth_200101_990628_predict.bpc   (PCK)
+Source:   data/kernels/locked/spk/earth_topo_201023.tf   (TEXT)
+Source:   /Users/zael5647/scarabaeus/data/kernels/scenario/orx_160909_171201_170830_od023_v1.bsp   (SPK)
+</pre></div></div>
+</div>
+</section>
+<section id="Epoch-definition">
+<h2>Epoch definition<a class="headerlink" href="#Epoch-definition" title="Link to this heading">#</a></h2>
+<p>Define the closest-approach epoch and a TCM epoch roughly 30 days before closest approach.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Closest approach: 2017-SEP-22  ~16:52 UTC</span>
+<span class="c1">#     TCM epoch:        30 days prior</span>
+<span class="c1"># =======================================================</span>
+
+<span class="n">time_ca</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s2">&quot;2017-SEP-22 16:52:00.000 UTC&quot;</span><span class="p">)</span>
+<span class="n">time_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s2">&quot;2017-AUG-23 00:00:00.000 UTC&quot;</span><span class="p">)</span>
+
+<span class="n">epoch_ca</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_ca</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">epoch_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_tcm</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Reference-state-at-the-TCM-epoch">
+<h2>Reference state at the TCM epoch<a class="headerlink" href="#Reference-state-at-the-TCM-epoch" title="Link to this heading">#</a></h2>
+<p>Load the reference OSIRIS-REx state relative to the Earth barycenter in J2000.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =======================================================</span>
+
+<span class="n">state_ref_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span>
+    <span class="n">trgt_bdy</span><span class="o">=</span><span class="s2">&quot;-64&quot;</span><span class="p">,</span>
+    <span class="n">epoch_time</span><span class="o">=</span><span class="n">epoch_tcm</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">reference_frame</span><span class="o">=</span><span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
+    <span class="n">obsvr_bdy</span><span class="o">=</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Construct-the-B-plane-object">
+<h2>Construct the B-plane object<a class="headerlink" href="#Construct-the-B-plane-object" title="Link to this heading">#</a></h2>
+<p>Create the B-plane object associated with the Earth encounter. This object handles the B-plane frame and targeting utilities.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Built from the clean reference state → bpar_ref is</span>
+<span class="c1">#     the desired target the TCM must recover.</span>
+<span class="c1"># =======================================================</span>
+
+<span class="n">bplane_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/data/kernels/OREX_EARTH_bplane.tf&quot;</span>
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">bplane_file</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">bplane_file</span><span class="p">)</span>
+
+<span class="n">BplaneObj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Bplane</span><span class="p">(</span>
+    <span class="n">epoch</span><span class="o">=</span><span class="n">epoch_tcm</span><span class="p">,</span>
+    <span class="n">bplane_name</span><span class="o">=</span><span class="s2">&quot;OREX_EARTH_BPLANE&quot;</span><span class="p">,</span>
+    <span class="n">bplane_spice_id</span><span class="o">=</span><span class="mi">12345678</span><span class="p">,</span>
+    <span class="n">sc_name</span><span class="o">=</span><span class="s2">&quot;OSIRIS-REx&quot;</span><span class="p">,</span>
+    <span class="n">sc_spice_id</span><span class="o">=-</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">target_name</span><span class="o">=</span><span class="s2">&quot;EARTHBARYCENTER&quot;</span><span class="p">,</span>
+    <span class="n">target_spice_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">fk_file</span><span class="o">=</span><span class="n">bplane_file</span><span class="p">,</span>
+    <span class="n">v_hat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">new_bplane</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  B-plane targeting demo  —  OSIRIS-REx Earth gravity assist 2017&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+################################################################################
+  B-plane targeting demo  —  OSIRIS-REx Earth gravity assist 2017
+################################################################################
+</pre></div></div>
+</div>
+</section>
+<section id="Reference-B-plane-target">
+<h2>Reference B-plane target<a class="headerlink" href="#Reference-B-plane-target" title="Link to this heading">#</a></h2>
+<p>Compute the desired B-plane parameters from the clean reference trajectory.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpar_ref</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_ref_tcm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[TARGET]  Desired B-plane parameters (reference trajectory):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·T*  = </span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·R*  = </span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;  |B|   = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km  (miss distance proxy)&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;  ltof* = </span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  s  &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">86400</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> days to closest approach)&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+[TARGET]  Desired B-plane parameters (reference trajectory):
+  B·T*  =      1328001.381  km
+  B·R*  =      -578613.927  km
+  |B|   =      1448579.215  km  (miss distance proxy)
+  ltof* =     -2376484.783  s  (-27.51 days to closest approach)
+</pre></div></div>
+</div>
+</section>
+<section id="Inject-a-navigation-error">
+<h2>Inject a navigation error<a class="headerlink" href="#Inject-a-navigation-error" title="Link to this heading">#</a></h2>
+<p>Perturb the reference state with a representative cruise OD error and inspect the resulting B-plane miss.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Realistic 1-sigma OD uncertainty for deep-space cruise:</span>
+<span class="c1">#       position  ~ 10 km</span>
+<span class="c1">#       velocity  ~ 1 cm/s  (1e-5 km/s)</span>
+<span class="c1"># =======================================================</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">pos_1sigma</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># km</span>
+<span class="n">vel_1sigma</span> <span class="o">=</span> <span class="mf">1e-5</span>  <span class="c1"># km/s</span>
+
+<span class="n">nav_error</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+            <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+            <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+            <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+            <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+            <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">state_pert_tcm</span> <span class="o">=</span> <span class="n">state_ref_tcm</span> <span class="o">+</span> <span class="n">nav_error</span>
+
+<span class="n">bpar_pert</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[PERTURBED]  B-plane parameters after navigation error:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;  B·T   = </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km   &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;(error: </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> km)&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;  B·R   = </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km   &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;(error: </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> km)&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;  ltof  = </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  s    &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;(error: </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> s)&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |B|   = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+[PERTURBED]  B-plane parameters after navigation error:
+  B·T   =      1327978.467  km   (error: -22.914 km)
+  B·R   =      -578614.221  km   (error: -0.294 km)
+  ltof  =     -2376488.408  s    (error: -3.625 s)
+  |B|   =      1448558.326  km
+</pre></div></div>
+</div>
+</section>
+<section id="Linear-targeting">
+<h2>Linear targeting<a class="headerlink" href="#Linear-targeting" title="Link to this heading">#</a></h2>
+<p>Compute a corrective TCM using the local B-plane Jacobian/Newton iteration.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Linear targeting  (Newton iteration on Jacobian)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="n">DV_lin</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">linear_targeting</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
+
+<span class="n">state_corr_lin</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">bpar_corr_lin</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">state_corr_lin</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  TCM ΔV  =  [</span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">]  km/s&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV|   =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  Post-TCM residuals:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·T  = </span><span class="si">{</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·R  = </span><span class="si">{</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Δltof = </span><span class="si">{</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+################################################################################
+  Linear targeting  (Newton iteration on Jacobian)
+################################################################################
+linear_targeting converged in 2 iterations. Residual = 0.000e+00
+
+  TCM ΔV  =  [-0.00000733,  +0.00023558,  +0.00009824]  km/s
+  |ΔV|   =  0.255350  m/s
+
+  Post-TCM residuals:
+  ΔB·T  = +5.37e+02  km
+  ΔB·R  = -2.34e+02  km
+  Δltof = +0.00e+00  s
+</pre></div></div>
+</div>
+</section>
+<section id="Nonlinear-targeting">
+<h2>Nonlinear targeting<a class="headerlink" href="#Nonlinear-targeting" title="Link to this heading">#</a></h2>
+<p>Compute a corrective TCM using nonlinear optimization and compare it to the linear result.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Nonlinear targeting  (Nelder-Mead)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="n">DV_nl</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">nonlinear_targeting</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
+
+<span class="n">state_corr_nl</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">bpar_corr_nl</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">state_corr_nl</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  TCM ΔV  =  [</span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">]  km/s&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV|   =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  Post-TCM residuals:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·T  = </span><span class="si">{</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·R  = </span><span class="si">{</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Δltof = </span><span class="si">{</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+################################################################################
+  Nonlinear targeting  (Nelder-Mead)
+################################################################################
+Optimization terminated successfully.
+         Current function value: 0.000000
+         Iterations: 118
+         Function evaluations: 219
+
+  TCM ΔV  =  [-0.00000733,  +0.00023558,  +0.00009824]  km/s
+  |ΔV|   =  0.255350  m/s
+
+  Post-TCM residuals:
+  ΔB·T  = +5.37e+02  km
+  ΔB·R  = -2.34e+02  km
+  Δltof = +1.10e-06  s
+</pre></div></div>
+</div>
+</section>
+<section id="Compare-TCM-solutions">
+<h2>Compare TCM solutions<a class="headerlink" href="#Compare-TCM-solutions" title="Link to this heading">#</a></h2>
+<p>Compare the magnitude of the linear and nonlinear TCMs.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  TCM comparison&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV| linear     =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV| nonlinear  =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;  |difference|    =  &quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">  m/s&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+################################################################################
+  TCM comparison
+################################################################################
+  |ΔV| linear     =  0.255350  m/s
+  |ΔV| nonlinear  =  0.255350  m/s
+  |difference|    =  4.24e-09  m/s
+</pre></div></div>
+</div>
+</section>
+<section id="Covariance-mapping">
+<h2>Covariance mapping<a class="headerlink" href="#Covariance-mapping" title="Link to this heading">#</a></h2>
+<p>Map a diagonal OD covariance into B-plane uncertainty.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Diagonal OD covariance consistent with the 1-sigma</span>
+<span class="c1">#     values used to generate the navigation error above.</span>
+<span class="c1"># =======================================================</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Covariance analysis&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+
+<span class="n">sv_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">P_bplane</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">target_covariance</span><span class="p">(</span><span class="n">sv_cov</span><span class="p">,</span> <span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
+
+<span class="n">sigma_bt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">sigma_br</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">sigma_ltof</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  1-sigma B-plane uncertainties mapped from OD covariance:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(B·T)  =  </span><span class="si">{</span><span class="n">sigma_bt</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(B·R)  =  </span><span class="si">{</span><span class="n">sigma_br</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(ltof) =  </span><span class="si">{</span><span class="n">sigma_ltof</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+################################################################################
+  Covariance analysis
+################################################################################
+
+  1-sigma B-plane uncertainties mapped from OD covariance:
+  σ(B·T)  =  10.0000  km
+  σ(B·R)  =  10.0000  km
+  σ(ltof) =  3.4594  s
+</pre></div></div>
+</div>
+</section>
+<section id="Plot-B-plane-covariance">
+<h2>Plot B-plane covariance<a class="headerlink" href="#Plot-B-plane-covariance" title="Link to this heading">#</a></h2>
+<p>Plot the mapped B-plane covariance ellipse.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================================</span>
+<span class="c1"># Fancy custom B-plane covariance plot</span>
+<span class="c1"># ============================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ellipse</span>
+
+<span class="c1"># Extract covariance matrix</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">P_bplane</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Target coordinates</span>
+<span class="n">bt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">BplaneObj</span><span class="o">.</span><span class="n">_bt_ref</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">br</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">BplaneObj</span><span class="o">.</span><span class="n">_br_ref</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Eigen decomposition</span>
+<span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+<span class="c1"># Sort largest first</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">eigvals</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">eigvals</span> <span class="o">=</span> <span class="n">eigvals</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">eigvecs</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>
+
+<span class="c1"># Ellipse angle</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">eigvecs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">eigvecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># Plot</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="c1"># Background style</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;#fafafa&quot;</span><span class="p">)</span>
+
+<span class="c1"># Sigma ellipses</span>
+<span class="n">sigmas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#cfe8ff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7fb6ff&quot;</span><span class="p">,</span> <span class="s2">&quot;#2c7be5&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">nsig</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nsig</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nsig</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">ell</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">bt</span><span class="p">,</span> <span class="n">br</span><span class="p">),</span>
+        <span class="n">width</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">,</span>
+        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
+        <span class="n">facecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ell</span><span class="p">)</span>
+
+<span class="c1"># Principal directions</span>
+<span class="n">major</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">minor</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">Lmaj</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">Lmin</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">bt</span> <span class="o">-</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bt</span> <span class="o">+</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="p">[</span><span class="n">br</span> <span class="o">-</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">br</span> <span class="o">+</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="s2">&quot;--&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#d62728&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Major axis&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">bt</span> <span class="o">-</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bt</span> <span class="o">+</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="p">[</span><span class="n">br</span> <span class="o">-</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">br</span> <span class="o">+</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="s2">&quot;--&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2ca02c&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Minor axis&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Target point</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">bt</span><span class="p">,</span>
+    <span class="n">br</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">220</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#ffcc00&quot;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Target aimpoint&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Small Earth marker at origin</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">zorder</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Earth center&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># Labels / style</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="s2">&quot;OSIRIS-REx Earth Gravity Assist B-plane&quot;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span>
+    <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+    <span class="n">pad</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$B_T$ [km]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$B_R$ [km]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="c1"># Equal aspect</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
+
+<span class="c1"># Invert R axis (standard B-plane convention)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+
+<span class="c1"># Grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
+
+<span class="c1"># Dynamic limits</span>
+<span class="n">maxsig</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">eigvals</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">bt</span> <span class="o">-</span> <span class="n">maxsig</span><span class="p">,</span> <span class="n">bt</span> <span class="o">+</span> <span class="n">maxsig</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">br</span> <span class="o">+</span> <span class="n">maxsig</span><span class="p">,</span> <span class="n">br</span> <span class="o">-</span> <span class="n">maxsig</span><span class="p">)</span>
+
+<span class="c1"># Pretty frame</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">spine</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.3</span><span class="p">)</span>
+
+<span class="c1"># Legend</span>
+<span class="n">leg</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span>
+    <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Optional annotation</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+    <span class="n">bt</span><span class="p">,</span>
+    <span class="n">br</span><span class="p">,</span>
+    <span class="s2">&quot;  Target&quot;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+    <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_intermediate_BPlane_24_0.png" src="../../_images/_collections_tutorials_intermediate_BPlane_24_0.png" />
+</div>
+</div>
+</section>
+<section id="Notes">
+<h2>Notes<a class="headerlink" href="#Notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The B-plane target is defined by the reference trajectory. The injected navigation error represents a possible OD error at the TCM epoch.</p></li>
+<li><p>Linear targeting should be accurate when the perturbation is small enough for the B-plane mapping to remain locally linear.</p></li>
+<li><p>The covariance mapping gives the predicted residual B-plane uncertainty from the assumed state covariance.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Setup-and-SPICE-kernels">Setup and SPICE kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Epoch-definition">Epoch definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-state-at-the-TCM-epoch">Reference state at the TCM epoch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Construct-the-B-plane-object">Construct the B-plane object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-B-plane-target">Reference B-plane target</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Inject-a-navigation-error">Inject a navigation error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Linear-targeting">Linear targeting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Nonlinear-targeting">Nonlinear targeting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Compare-TCM-solutions">Compare TCM solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Covariance-mapping">Covariance mapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Plot-B-plane-covariance">Plot B-plane covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Notes">Notes</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
