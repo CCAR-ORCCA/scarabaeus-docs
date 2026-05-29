@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/development/scb_roadmap.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Performance Improvements: Move performance-critical components from Python to Rust, Improve propagation, filtering, and Monte Carlo scalability. Measurement Model V&amp;V: Verification and validation of measurement models, Validation of analytical partial derivatives. Filtering Algorithm V&amp;V: Validation of batch and sequential filters, Covariance consistency and Monte Carlo testing. Finite-Burn Targeting: Use Scarabaeus as a local targeting and optimization framework. Delta-DOR Implementa..." />
+<meta property="og:description" content="Last revised on 2026 MAY 27 by G. Fereoli. Performance Improvements: Move performance-critical components from Python to Rust, Improve propagation, filtering, and Monte Carlo scalability. Measurement and Filtering V&amp;V: Document V&amp;V of measurement models (DSN range, Doppler, range and range-rate) and analytical partial derivatives, Compare covariance analysis results to state-of-the-art OD software, Document data processing and filter results for multiple missions. Finite-Burn Targetin..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
@@ -59,13 +59,14 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/scb_roadmap';</script>
     <script src="../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Writing and Maintaining Scarabaeus Tutorials" href="contributing/tuts_writing_and_maint.html" />
-    <link rel="prev" title="Testing Suite" href="contributing/testing_in_scb.html" />
+    <link rel="next" title="Scarabaeus External Resource Guide" href="add_resources/external_resource_writing.html" />
+    <link rel="prev" title="Scarabaeus Testing Suite" href="contributing/testing_in_scb.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -336,9 +337,9 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="contributing/dev_environ.html"><span class="gold">Setting Up and Using the Development Environment</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/building_from_source.html"><span class="gold">Building From Source</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing/style_guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/style_guide.html">Coding Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/show_tmplt_clss.html">Class Template</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing/testing_in_scb.html"><span class="gold">Testing Suite</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/testing_in_scb.html"><span class="gold">Scarabaeus Testing Suite</span></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Roadmap</span></p>
 <ul class="current nav bd-sidenav">
@@ -346,9 +347,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Additional Resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="contributing/tuts_writing_and_maint.html"><span class="gold">Writing and Maintaining Scarabaeus Tutorials</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="add_resources/external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_resources/tuts_writing_and_maint.html"><span class="gold">Writing and Maintaining Scarabaeus Tutorials</span></a></li>
 </ul>
 </div>
 </nav></div>
@@ -414,6 +414,7 @@
                   
   <span class="target" id="integration-testing"></span><style> .gold {color:rgb(207 184 124)} </style><section id="scarabaeus-roadmap">
 <h1><span class="gold">Scarabaeus Roadmap</span><a class="headerlink" href="#scarabaeus-roadmap" title="Link to this heading">#</a></h1>
+<p>Last revised on 2026 MAY 27 by G. Fereoli.</p>
 <section id="performance-improvements">
 <h2>Performance Improvements<a class="headerlink" href="#performance-improvements" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -421,18 +422,12 @@
 <li><p>Improve propagation, filtering, and Monte Carlo scalability</p></li>
 </ul>
 </section>
-<section id="measurement-model-v-v">
-<h2>Measurement Model V&amp;V<a class="headerlink" href="#measurement-model-v-v" title="Link to this heading">#</a></h2>
+<section id="measurement-and-filtering-v-v">
+<h2>Measurement and Filtering V&amp;V<a class="headerlink" href="#measurement-and-filtering-v-v" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Verification and validation of measurement models</p></li>
-<li><p>Validation of analytical partial derivatives</p></li>
-</ul>
-</section>
-<section id="filtering-algorithm-v-v">
-<h2>Filtering Algorithm V&amp;V<a class="headerlink" href="#filtering-algorithm-v-v" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Validation of batch and sequential filters</p></li>
-<li><p>Covariance consistency and Monte Carlo testing</p></li>
+<li><p>Document V&amp;V of measurement models (DSN range, Doppler, range and range-rate) and analytical partial derivatives</p></li>
+<li><p>Compare covariance analysis results to state-of-the-art OD software</p></li>
+<li><p>Document data processing and filter results for multiple missions</p></li>
 </ul>
 </section>
 <section id="finite-burn-targeting">
@@ -498,15 +493,15 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="gold">Testing Suite</span></p>
+        <p class="prev-next-title"><span class="gold">Scarabaeus Testing Suite</span></p>
       </div>
     </a>
     <a class="right-next"
-       href="contributing/tuts_writing_and_maint.html"
+       href="add_resources/external_resource_writing.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Writing and Maintaining Scarabaeus Tutorials</span></p>
+        <p class="prev-next-title"><span class="gold">Scarabaeus External Resource Guide</span></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -530,8 +525,7 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-improvements">Performance Improvements</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-model-v-v">Measurement Model V&amp;V</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-algorithm-v-v">Filtering Algorithm V&amp;V</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-and-filtering-v-v">Measurement and Filtering V&amp;V</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-burn-targeting">Finite-Burn Targeting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-dor-implementation">Delta-DOR Implementation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terrain-relative-navigation">Terrain Relative Navigation</a><ul class="visible nav section-nav flex-column">

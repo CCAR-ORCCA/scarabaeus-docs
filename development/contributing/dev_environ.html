@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/development/contributing/dev_environ.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Developers on the Scarabaeus team use a few more tools in addition to those included in the distributed package to support running tests, generating documentation, writing tutorials, and compiling source code. This document will guide a developer through setting up the development environment necessary for these tasks. Prerequisites: Most of the development team uses VSCode as their IDE because of its extension ecosystem. Below are the recommended extensions for development: Python: provides ..." />
+<meta property="og:description" content="Last revised on 2026 MAY 28 by Z. Ellis. Developers on the Scarabaeus team use a few more tools in addition to those included in the distributed package to support running tests, generating documentation, writing tutorials, and compiling source code. This document will guide a developer through setting up the development environment necessary for these tasks. Prerequisites: Most of the development team uses VSCode as their IDE because of its extension ecosystem. Below are the recommended exte..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
@@ -338,9 +338,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="gold">Setting Up and Using the Development Environment</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_from_source.html"><span class="gold">Building From Source</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="style_guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style_guide.html">Coding Conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="show_tmplt_clss.html">Class Template</a></li>
-<li class="toctree-l1"><a class="reference internal" href="testing_in_scb.html"><span class="gold">Testing Suite</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_in_scb.html"><span class="gold">Scarabaeus Testing Suite</span></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Roadmap</span></p>
 <ul class="nav bd-sidenav">
@@ -348,9 +348,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Additional Resources</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tuts_writing_and_maint.html"><span class="gold">Writing and Maintaining Scarabaeus Tutorials</span></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../add_resources/external_resource_writing.html"><span class="gold">Scarabaeus External Resource Guide</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../add_resources/tuts_writing_and_maint.html"><span class="gold">Writing and Maintaining Scarabaeus Tutorials</span></a></li>
 </ul>
 </div>
 </nav></div>
@@ -416,6 +415,7 @@
                   
   <span class="target" id="devenviron"></span><style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><section id="setting-up-and-using-the-development-environment">
 <h1><span class="gold">Setting Up and Using the Development Environment</span><a class="headerlink" href="#setting-up-and-using-the-development-environment" title="Link to this heading">#</a></h1>
+<p>Last revised on 2026 MAY 28 by Z. Ellis.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following covers setting up a development environment for Scarabaeus. If you are simply using Scarabaeus, see the <a class="reference internal" href="../../user_guide/user_guide_frontpage.html#user"><span class="std std-ref">User Guide</span></a>.</p>
@@ -480,14 +480,18 @@
 <p>See <a class="reference internal" href="building_from_source.html#buildsource"><span class="std std-ref">Building From Source</span></a>.</p>
 </section>
 <section id="enable-git-commit-hooks">
-<h2><span class="bold">Enable Git Commit Hooks</span><a class="headerlink" href="#enable-git-commit-hooks" title="Link to this heading">#</a></h2>
-<p>Jupyter Notebooks are a powerful tool for <a class="reference internal" href="tuts_writing_and_maint.html#tutorialshowto"><span class="std std-ref">writing tutorials</span></a>, but they also
-produce metadata in their cells when run that we don’t want to track on git. To remove these from your commits, we use nbstripout in the git commit hooks.</p>
+<span id="dev-commit-hooks"></span><h2><span class="bold">Enable Git Commit Hooks</span><a class="headerlink" href="#enable-git-commit-hooks" title="Link to this heading">#</a></h2>
 <p>The first time you clone the repository or create/pull a new branch, in the terminal run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pre-commit install</span>
 </pre></div>
 </div>
 <p>This will add Scarabaeus’ development hooks to your Git configuration, acting as an extra layer of quality assurance when you push a commit. If the <cite>pre-commit</cite> command is not found, ensure that you’ve installed the [Scarabaeus dev environment](#set-up-scarabaeus-dev-environment).</p>
+<p>The hooks we use are:</p>
+<ul class="simple">
+<li><p><span class="bold">nbstripout:</span> Jupyter Notebooks are a powerful tool for <a class="reference internal" href="../add_resources/tuts_writing_and_maint.html#tutorialshowto"><span class="std std-ref">writing tutorials</span></a>, but they also produce metadata
+in their cells when run that we don’t want to track on git. We use nbstripout to automate this removal.</p></li>
+<li><p><span class="bold">reuse:</span> We use reuse to ensure that all files committed to the repository are <a class="reference external" href="https://spdx.dev/about/overview/">SPDX compliant</a>.</p></li>
+</ul>
 </section>
 </section>
 

@@ -627,8 +627,25 @@
 <dd><p>Bases: <a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.dynamics.DynamicModel.DynamicModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></p>
 <p>Models the acceleration due to Solar Radiation Pressure (SRP) using the cannonball model.</p>
 <p>The spacecraft is treated as a perfect sphere that reflects solar radiation
-isotropically and its solar distance is retrieved from the Sun’s position within the
-loaded kernel pool.</p>
+isotropically.  The SRP acceleration is:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{a}_\text{SRP} =
+    -\frac{\nu\,\eta_\text{SRP}\, C_R\, A}{m}
+    \left(\frac{r_0}{r}\right)^2
+    P_0\, \hat{\mathbf{r}}_\odot\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is the shadow factor (0 in eclipse, 1 in full Sun),
+<span class="math notranslate nohighlight">\(\eta_\text{SRP}\)</span> is an estimable scale factor (default 1),
+<span class="math notranslate nohighlight">\(C_R = 1 + \rho_s\)</span> is the reflectivity coefficient,
+<span class="math notranslate nohighlight">\(A\)</span> is the spacecraft cross-sectional area,
+<span class="math notranslate nohighlight">\(m\)</span> is the spacecraft mass,
+<span class="math notranslate nohighlight">\(r_0\)</span> is the reference distance (1 AU),
+<span class="math notranslate nohighlight">\(r\)</span> is the Sun–spacecraft distance,
+<span class="math notranslate nohighlight">\(P_0\)</span> is the solar radiation pressure at 1 AU,
+and <span class="math notranslate nohighlight">\(\hat{\mathbf{r}}_\odot\)</span> is the unit vector from the spacecraft
+to the Sun (direction of incoming radiation; the leading minus sign means the
+acceleration is directed away from the Sun).
+<span class="math notranslate nohighlight">\(\eta_\text{SRP}\)</span> is retrieved from the state vector via a
+<code class="docutils literal notranslate"><span class="pre">(&quot;eta_srp&quot;,</span> <span class="pre">spice_id)</span></code> entry and can be solved for in the OD process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -650,27 +667,54 @@ loaded kernel pool.</p>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>The SRP acceleration is:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{a}_\text{SRP} =
-    -\frac{\nu\,\eta_\text{SRP}\, C_R\, A}{m}
-    \left(\frac{r_0}{r}\right)^2
-    P_0\, \hat{\mathbf{r}}_\odot\]</div>
-<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is the shadow factor (0 in eclipse, 1 in full Sun),
-<span class="math notranslate nohighlight">\(\eta_\text{SRP}\)</span> is an estimable scale factor (default 1),
-<span class="math notranslate nohighlight">\(C_R = 1 + \rho_s\)</span> is the reflectivity coefficient,
-<span class="math notranslate nohighlight">\(A\)</span> is the spacecraft cross-sectional area,
-<span class="math notranslate nohighlight">\(m\)</span> is the spacecraft mass,
-<span class="math notranslate nohighlight">\(r_0\)</span> is the reference distance (1 AU),
-<span class="math notranslate nohighlight">\(r\)</span> is the Sun–spacecraft distance,
-<span class="math notranslate nohighlight">\(P_0\)</span> is the solar radiation pressure at 1 AU,
-and <span class="math notranslate nohighlight">\(\hat{\mathbf{r}}_\odot\)</span> is the unit vector from the spacecraft
-to the Sun (direction of incoming radiation; the leading minus sign means the
-acceleration is directed away from the Sun).
-<span class="math notranslate nohighlight">\(\eta_\text{SRP}\)</span> is retrieved from the state vector via a
-<code class="docutils literal notranslate"><span class="pre">(&quot;eta_srp&quot;,</span> <span class="pre">spice_id)</span></code> entry and can be solved for in the OD process.</p>
+<ul class="simple">
+<li><p>The model assumes uniform reflection across the entire spacecraft surface.</p></li>
+<li><p>The Sun’s position is retrieved dynamically from SPICE data.</p></li>
+<li><p>The acceleration follows an inverse-square law based on Sun-spacecraft distance.</p></li>
+</ul>
 <p class="rubric">References</p>
 <p>Montenbruck, O., &amp; Gill, E. (2000). Satellite Orbits: Models, Methods, and Applications.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># intial setup</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="c1"># Define spacecraft properties</span>
+<span class="n">mass</span>         <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;kg&quot;</span><span class="p">)</span>  <span class="c1"># Spacecraft mass</span>
+<span class="n">area</span>         <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;m^2&quot;</span><span class="p">)</span>  <span class="c1"># Cross-sectional area</span>
+<span class="n">reflectivity</span> <span class="o">=</span> <span class="mf">1.3</span>                         <span class="c1"># Reflectivity coefficient</span>
+
+<span class="c1"># Create spacecraft object</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Spacecraft</span><span class="p">(</span><span class="s2">&quot;Test_Sat&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">reflectivity</span><span class="p">)</span>
+
+<span class="c1"># Define state vector with position, velocity, and SRP coefficient</span>
+<span class="n">state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+        <span class="s2">&quot;position&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;estimated&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dynamic&quot;</span><span class="p">,</span>
+        <span class="n">sc</span><span class="p">,</span>
+        <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;km&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+        <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;estimated&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dynamic&quot;</span><span class="p">,</span>
+        <span class="n">sc</span><span class="p">,</span>
+        <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;km/s&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;eta_srp&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;estimated&quot;</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="c1"># Create state vector</span>
+<span class="n">state_vector</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">frame</span> <span class="o">=</span> <span class="s1">&#39;J2000&#39;</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">),</span> <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="p">)</span>
+
+<span class="c1"># Initialize propagator with Cannonball SRP enabled</span>
+<span class="n">prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Propagator</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">state_vector</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">cannonball_SRP</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">prop</span><span class="o">.</span><span class="n">propagate</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -678,7 +722,7 @@ acceleration is directed away from the Sun).
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.CannonballSRP.eta_srp" title="scarabaeus.CannonballSRP.eta_srp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eta_srp</span></code></a></dt><dd><p>The SRP scale factor.</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.CannonballSRP.mass" title="scarabaeus.CannonballSRP.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the spacecraft.</p>
+<dt><a class="reference internal" href="#scarabaeus.CannonballSRP.mass" title="scarabaeus.CannonballSRP.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the spacecraft, typically expressed in units of kilograms.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.CannonballSRP.origin" title="scarabaeus.CannonballSRP.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></dt><dd><p>The celestial body that serves as the origin for the state vector.</p>
 </dd>
@@ -688,7 +732,7 @@ acceleration is directed away from the Sun).
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_coeff" title="scarabaeus.CannonballSRP.ref_coeff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_coeff</span></code></a></dt><dd><p>The reflectivity coefficient of the spacecraft.</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_frame" title="scarabaeus.CannonballSRP.ref_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_frame</span></code></a></dt><dd><p>The reference frame in which SRP accelerations are computed.</p>
+<dt><a class="reference internal" href="#scarabaeus.CannonballSRP.ref_frame" title="scarabaeus.CannonballSRP.ref_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ref_frame</span></code></a></dt><dd><p>The reference frame in which SRP calculations are performed.</p>
 </dd>
 </dl>
 </dd>
@@ -706,6 +750,8 @@ acceleration is directed away from the Sun).
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.compute_acceleration">
 <span class="sig-name descname"><span class="pre">compute_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.CannonballSRP.compute_acceleration" title="Link to this definition">#</a></dt>
 <dd><p>Computes the acceleration due to solar radiation pressure (SRP).</p>
+<p>This method calculates the SRP acceleration experienced by the spacecraft based on its
+distance from the Sun and its physical properties.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -728,6 +774,14 @@ acceleration is directed away from the Sun).
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.area">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">area</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.area" title="Link to this definition">#</a></dt>
 <dd><p>The cross-sectional area of the spacecraft.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -739,39 +793,88 @@ acceleration is directed away from the Sun).
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.mass">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">mass</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.mass" title="Link to this definition">#</a></dt>
-<dd><p>The mass of the spacecraft.</p>
+<dd><p>The mass of the spacecraft, typically expressed in units of
+kilograms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.origin">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.origin" title="Link to this definition">#</a></dt>
 <dd><p>The celestial body that serves as the origin for the state vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.Body"><em>Body</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.origin_name">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin_name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.origin_name" title="Link to this definition">#</a></dt>
 <dd><p>The name of the origin body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.p_srp">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">p_srp</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.p_srp" title="Link to this definition">#</a></dt>
 <dd><p>Solar radiation pressure constant at 1 AU, in units of kg·km·s⁻².</p>
-<p>Converted at construction time from the <code class="docutils literal notranslate"><span class="pre">srp_constant2</span></code> entry in
-<code class="docutils literal notranslate"><span class="pre">scarabaeus.utils.Constants</span></code>.</p>
+<p>Converted at construction time from the <code class="docutils literal notranslate"><span class="pre">&quot;srpP_constant&quot;</span></code> entry in
+<code class="docutils literal notranslate"><span class="pre">scarabaeus.Constants.CONSTANTS</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.ref_coeff">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ref_coeff</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.ref_coeff" title="Link to this definition">#</a></dt>
 <dd><p>The reflectivity coefficient of the spacecraft.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.CannonballSRP.ref_frame">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ref_frame</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.CannonballSRP.ref_frame" title="Link to this definition">#</a></dt>
-<dd><p>The reference frame in which SRP accelerations are computed.</p>
+<dd><p>The reference frame in which SRP calculations are performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Base<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CannonballSRP</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

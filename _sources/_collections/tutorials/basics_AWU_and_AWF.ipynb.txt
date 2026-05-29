@@ -5,88 +5,81 @@
    "id": "0",
    "metadata": {},
    "source": [
-    "# Scarabaeus Tutorial — Units, Frames, and ArrayWFrame\n",
+    "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
+    "<!-- SPDX-License-Identifier: ISC -->\n",
     "\n",
-    "This notebook introduces the core Scarabaeus abstractions for:\n",
+    "# ArrayWUnits and ArrayWFrame\n",
+    "---\n",
+    "*Last revised 2026*\n",
     "\n",
-    "- Physical dimensions and units\n",
-    "- Arrays with units (`ArrayWUnits`)\n",
-    "- Reference frames (`Frame`)\n",
-    "- Arrays attached to frames (`ArrayWFrame`)\n",
-    "- Frame transformations using SPICE\n",
+    "This tutorial introduces the two core data containers that flow through every\n",
+    "Scarabaeus workflow:\n",
     "\n",
-    "The examples are designed to be lightweight and educational while following typical astrodynamics workflows.\n"
+    "- `ArrayWUnits`: Numerical array **+** physical units (km, km/s, ...)\n",
+    "- `ArrayWFrame`: Numerical array **+** units **+** reference frame (J2000, ITRF93, ...)\n",
+    "\n",
+    "**Contents**\n",
+    "\n",
+    "1. Dimensions and Units — `Units`, `Dimensions`\n",
+    "2. `ArrayWUnits` — construction, arithmetic, conversion, safety checks\n",
+    "3. Frames — `Frame.generate_common_frames`, DCM, full transformation\n",
+    "4. `ArrayWFrame` — construction, frame conversion, frame-aware arithmetic"
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": null,
+   "cell_type": "markdown",
    "id": "1",
    "metadata": {},
-   "outputs": [],
    "source": [
-    "from pathlib import Path\n",
-    "import numpy as np\n",
-    "import scarabaeus as scb\n",
-    "\n",
-    "# ============================================================\n",
-    "# Helper: find Scarabaeus repository root\n",
-    "# ============================================================\n",
-    "\n",
-    "def find_repo_root(start=None):\n",
-    "\n",
-    "    start = Path(start or Path.cwd()).resolve()\n",
-    "\n",
-    "    for path in [start, *start.parents]:\n",
-    "        if (path / \"pyproject.toml\").exists() or (path / \".git\").exists():\n",
-    "            return path\n",
-    "\n",
-    "    raise FileNotFoundError(\"Could not locate Scarabaeus repository root.\")\n",
-    "\n",
-    "ROOT = find_repo_root()\n",
-    "\n",
-    "print(\"Repository root:\")\n",
-    "print(ROOT)\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "2",
-   "metadata": {},
-   "source": [
-    "## Load SPICE Kernels\n",
-    "\n",
-    "Scarabaeus frame transformations rely on SPICE kernels.\n"
+    "## 0. Imports and Setup"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3",
+   "id": "2",
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Load tutorial data\n",
-    "\n",
+    "import scarabaeus as scb\n",
     "import supplementary as supp\n",
     "\n",
+    "import numpy as np\n",
+    "\n",
+    "# load tutorial data\n",
     "data = supp.load_data()\n",
     "\n",
+    "# load kernels\n",
     "scb.SpiceManager.clear_kernels()\n",
-    "scb.SpiceManager.load_kernel_from_mkfile(data.mk.path)\n",
-    "\n",
-    "print(\"Loaded kernels:\")\n",
-    "scb.SpiceManager.print_kernels()\n"
+    "scb.SpiceManager.load_kernel_from_mkfile(data.mk.path)"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "4",
+   "id": "3",
    "metadata": {},
    "source": [
-    "## Units and Dimensions\n",
+    "## 1. Dimensions and Units\n",
     "\n",
-    "Scarabaeus internally tracks physical dimensions and units explicitly.\n"
+    "Scarabaeus tracks physical dimensions through every arithmetic operation.\n",
+    "`Units.get_units()` returns unit objects that carry both scale and dimension."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "km, m, sec, day, rad, deg, kg = scb.Units.get_units(\n",
+    "    ['km', 'm', 'sec', 'day', 'rad', 'deg', 'kg'])\n",
+    "\n",
+    "print(f\"km   : {km}   dimensions → {km.dimensions}\")\n",
+    "print(f\"m    : {m}    dimensions → {m.dimensions}\")\n",
+    "print(f\"sec  : {sec}  dimensions → {sec.dimensions}\")\n",
+    "print(f\"deg  : {deg}  dimensions → {deg.dimensions}\")\n",
+    "print(f\"kg   : {kg}   dimensions → {kg.dimensions}\")"
    ]
   },
   {
@@ -96,48 +89,47 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Generate common units\n",
+    "# Unit arithmetic propagates dimensions automatically\n",
+    "vel_unit   = km / sec\n",
+    "acc_unit   = km / sec**2\n",
+    "area_unit  = km**2\n",
+    "freq_unit  = sec**-1\n",
     "\n",
-    "km, m, sec, day, rad, deg, kg, N = scb.Units.get_units(\n",
-    "    [\"km\", \"m\", \"sec\", \"day\", \"rad\", \"deg\", \"kg\", \"N\"]\n",
-    ")\n",
+    "print(f\"km/sec     : {vel_unit}   → {vel_unit.dimensions}\")\n",
+    "print(f\"km/sec²    : {acc_unit}   → {acc_unit.dimensions}\")\n",
+    "print(f\"km²        : {area_unit}  → {area_unit.dimensions}\")\n",
+    "print(f\"sec⁻¹      : {freq_unit}  → {freq_unit.dimensions}\")\n",
+    "print(f\"km * kg    : {km * kg}    → {(km * kg).dimensions}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6",
+   "metadata": {},
+   "source": [
+    "## 2. `ArrayWUnits`\n",
     "\n",
-    "print(km)\n",
-    "print(sec)\n",
-    "print(deg)\n"
+    "`ArrayWUnits` wraps a NumPy array together with its physical units.\n",
+    "The units travel with the array through every mathematical operation."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6",
+   "id": "7",
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Example dimensional operations\n",
+    "# ── Scalars ──────────────────────────────────────────────────────\n",
+    "altitude   = scb.ArrayWUnits(408.0,   km)     # ISS altitude\n",
+    "period     = scb.ArrayWUnits(5552.0,  sec)    # ISS orbital period\n",
+    "dry_mass   = scb.ArrayWUnits(419725.0, kg)    # ISS mass\n",
     "\n",
-    "velocity_unit = km / sec\n",
-    "acceleration_unit = km / sec**2\n",
-    "frequency_unit = sec**-1\n",
-    "\n",
-    "print(\"Velocity unit:\")\n",
-    "print(velocity_unit)\n",
-    "\n",
-    "print(\"\\nAcceleration unit:\")\n",
-    "print(acceleration_unit)\n",
-    "\n",
-    "print(\"\\nFrequency unit:\")\n",
-    "print(frequency_unit)\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "7",
-   "metadata": {},
-   "source": [
-    "## ArrayWUnits\n",
-    "\n",
-    "`ArrayWUnits` combines numerical arrays with explicit units.\n"
+    "print(f\"Altitude  : {altitude}\")\n",
+    "print(f\"Period    : {period}\")\n",
+    "print(f\"Mass      : {dry_mass}\")\n",
+    "print(f\"altitude.values : {altitude.values}   (raw float)\")\n",
+    "print(f\"altitude.units  : {altitude.units}\")"
    ]
   },
   {
@@ -147,13 +139,24 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Scalars\n",
+    "# ── Homogeneous vector (all elements share one unit) ─────────────\n",
+    "pos = scb.ArrayWUnits(np.array([7000.0, -1200.0, 3500.0]), km)\n",
+    "vel = scb.ArrayWUnits(np.array([-1.2,     6.8,    3.1  ]), km/sec)\n",
     "\n",
-    "distance = scb.ArrayWUnits(42, km)\n",
-    "time = scb.ArrayWUnits(3600, sec)\n",
+    "print(\"Position [km] :\", pos)\n",
+    "print(\"Velocity [km/s]:\", vel)\n",
+    "print(\"pos.values :\", pos.values)\n",
+    "print(\"pos.shape  :\", pos.shape)\n",
+    "print()\n",
     "\n",
-    "print(distance)\n",
-    "print(time)\n"
+    "# ── Heterogeneous state vector (pos + vel, mixed units per element) ─\n",
+    "state = scb.ArrayWUnits(\n",
+    "    np.array([7000.0, -1200.0, 3500.0, -1.2, 6.8, 3.1]),\n",
+    "    [km, km, km, km/sec, km/sec, km/sec],\n",
+    ")\n",
+    "print(\"State vector (mixed units):\")\n",
+    "print(f\"  values : {state.values}\")\n",
+    "print(f\"  units  : {state.units}\")"
    ]
   },
   {
@@ -163,13 +166,24 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Vector quantities\n",
+    "# ── Arithmetic — units propagate automatically ────────────────────\n",
+    "pos1 = scb.ArrayWUnits(np.array([1000.0, 2000.0, 3000.0]), km)\n",
+    "pos2 = scb.ArrayWUnits(np.array([ 500.0,  800.0, 1200.0]), km)\n",
+    "dt   = scb.ArrayWUnits(60.0, sec)\n",
+    "mass = scb.ArrayWUnits(500.0, kg)\n",
     "\n",
-    "position = scb.ArrayWUnits([7000, -1200, 3500], km)\n",
+    "print(f\"pos1 * 2     = {pos1 * 2}\")\n",
+    "print(f\"pos1 \\ dt    = {pos1 / dt}\")     # km/sec\n",
+    "print(f\"(pos1/dt)**2 = {(pos1/dt)**2}\")  # km²/sec²\n",
+    "print(f\"mass * 9.8   = {mass * 9.8}\")\n",
     "\n",
-    "print(position)\n",
-    "print(position.values)\n",
-    "print(position.units)\n"
+    "# ── Safety: same dimensions required for + / - ───────────────────\n",
+    "print()\n",
+    "print(\"Adding km + km/sec (should raise TypeError):\")\n",
+    "try:\n",
+    "    _ = pos1 + vel\n",
+    "except (ValueError, TypeError) as e:\n",
+    "    print(f\"  Blocked: {type(e).__name__}\")"
    ]
   },
   {
@@ -179,11 +193,14 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Unit conversion\n",
+    "# ── Unit conversion ──────────────────────────────────────────────\n",
+    "dist_km  = scb.ArrayWUnits(384400.0, km)       # Moon distance\n",
+    "dist_m   = dist_km.convert_to(m)               # → metres\n",
+    "dist_day_km = scb.ArrayWUnits(86400.0, sec).convert_to(day)  # 1 day in days\n",
     "\n",
-    "distance_m = distance.convert_to(m)\n",
-    "\n",
-    "print(distance_m)\n"
+    "print(f\"\\nUnit conversion:\")\n",
+    "print(f\"{dist_km}  →  {dist_m}\")\n",
+    "print(f\"86400 sec  →  {dist_day_km}\")"
    ]
   },
   {
@@ -191,9 +208,10 @@
    "id": "11",
    "metadata": {},
    "source": [
-    "## Frames\n",
+    "## 3. Frames\n",
     "\n",
-    "Frames define coordinate system orientations and origins.\n"
+    "A `Frame` object holds the SPICE frame name and ID.\n",
+    "`Frame.generate_common_frames()` returns four frames used throughout Scarabaeus."
    ]
   },
   {
@@ -203,14 +221,10 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Generate common frames\n",
-    "\n",
     "J2000, ITRF93, ECLIPJ2000, IAUEARTH = scb.Frame.generate_common_frames()\n",
     "\n",
-    "print(J2000)\n",
-    "print(ITRF93)\n",
-    "print(ECLIPJ2000)\n",
-    "print(IAUEARTH)\n"
+    "for fr in [J2000, ITRF93, ECLIPJ2000, IAUEARTH]:\n",
+    "    print(fr)"
    ]
   },
   {
@@ -220,9 +234,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Display frame properties\n",
-    "\n",
-    "J2000.disp_properties()\n"
+    "J2000.disp_properties()"
    ]
   },
   {
@@ -230,9 +242,10 @@
    "id": "14",
    "metadata": {},
    "source": [
-    "## Frame Transformations\n",
+    "## 4. Frame Transformations\n",
     "\n",
-    "SPICE can compute frame rotation matrices and transformations.\n"
+    "`Frame.get_DCM` returns the 3×3 Direction Cosine Matrix (rotation only).\n",
+    "`Frame.get_transformation` returns the 6×6 state-transformation matrix (rotation + rate)."
    ]
   },
   {
@@ -242,16 +255,20 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Create epochs\n",
+    "# ── Define an epoch ──────────────────────────────────────────────\n",
+    "et0    = scb.SpiceManager.jd2et(2461809.72995654)   # arbitrary JD\n",
+    "epoch  = scb.EpochArray(np.array([et0]), sys='TDB')\n",
     "\n",
-    "et0 = scb.SpiceManager.jd2et(2461809.72995654)\n",
+    "# ── Direction Cosine Matrix: J2000 → IAUEARTH ────────────────────\n",
+    "# get_DCM returns a plain numpy ndarray (shape 3×3)\n",
+    "R = scb.Frame.get_DCM(source_frame=J2000, target_frame=IAUEARTH, epoch=epoch)\n",
     "\n",
-    "epochs = scb.EpochArray(\n",
-    "    np.linspace(et0, et0 + 3600, 5),\n",
-    "    sys=\"TDB\"\n",
-    ")\n",
+    "print(f\"DCM shape  : {R.shape}\")\n",
+    "print(f\"DCM (J2000→IAUEARTH):\\n{np.round(R, 6)}\")\n",
     "\n",
-    "print(epochs)\n"
+    "# ── Verify it is orthogonal: R @ Rᵀ ≈ I ─────────────────────────\n",
+    "RRT = R @ R.T\n",
+    "print(f\"\\n||R @ Rᵀ − I||₂ = {np.linalg.norm(RRT - np.eye(3)):.2e}  (should be ~0)\")"
    ]
   },
   {
@@ -261,43 +278,51 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Direction cosine matrix (DCM)\n",
+    "# ── Full state-transformation matrix (4×4 homogeneous) ───────────\n",
+    "# get_transformation returns a list; each element is an ArrayWUnits\n",
+    "T_list = scb.Frame.get_transformation(\n",
+    "    source_frame=J2000, target_frame=IAUEARTH, epoch=epoch)\n",
     "\n",
-    "R = scb.Frame.get_DCM(\n",
-    "    source_frame=J2000,\n",
-    "    target_frame=IAUEARTH,\n",
-    "    epoch=epochs\n",
-    ")\n",
+    "T_mat = np.array(T_list[0].values)   # (4, 4) numpy array\n",
+    "print(f\"Transformation matrix shape : {T_mat.shape}\")\n",
+    "print(f\"Upper-left 3×3 (rotation):\\n{np.round(T_mat[:3, :3], 6)}\")\n",
+    "print(f\"Translation column (km)  : {np.round(T_mat[:3, 3], 3)}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "17",
+   "metadata": {},
+   "source": [
+    "## 5. `ArrayWFrame`\n",
     "\n",
-    "print(R)\n"
+    "`ArrayWFrame` adds a reference frame to an `ArrayWUnits` so that\n",
+    "frame-incompatible operations are caught at runtime."
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "17",
+   "id": "18",
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Full transformation\n",
+    "# ── Constructor form 1: ArrayWUnits + Frame ──────────────────────\n",
+    "pos_awu  = scb.ArrayWUnits(np.array([7000.0, -1200.0, 3500.0]), km)\n",
+    "pos_j2k  = scb.ArrayWFrame(pos_awu, J2000)\n",
     "\n",
-    "T = scb.Frame.get_transformation(\n",
-    "    source_frame=J2000,\n",
-    "    target_frame=IAUEARTH,\n",
-    "    epoch=epochs\n",
-    ")\n",
+    "print(\"Form 1 (ArrayWUnits + Frame):\")\n",
+    "print(f\"  values : {pos_j2k.quantity.values}\")\n",
+    "print(f\"  units  : {pos_j2k.quantity.units}\")\n",
+    "print(f\"  frame  : {pos_j2k.frame}\")\n",
+    "print()\n",
     "\n",
-    "print(T)\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "18",
-   "metadata": {},
-   "source": [
-    "## ArrayWFrame\n",
+    "# ── Constructor form 2: ndarray + Units + Frame ───────────────────\n",
+    "pos_j2k2 = scb.ArrayWFrame(np.array([7000.0, -1200.0, 3500.0]), km, J2000)\n",
     "\n",
-    "`ArrayWFrame` associates vectors with both units and frames.\n"
+    "print(\"Form 2 (array + units + frame):\")\n",
+    "print(f\"  values : {pos_j2k2.quantity.values}\")\n",
+    "print(f\"  frame  : {pos_j2k2.frame}\")"
    ]
   },
   {
@@ -307,15 +332,19 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Construct ArrayWFrame\n",
+    "# ── Frame conversion: J2000 → IAUEARTH at a single epoch ─────────\n",
+    "# convert_to operates IN-PLACE and returns None — save original first\n",
+    "pos_j2k = scb.ArrayWFrame(np.array([7000.0, -1200.0, 3500.0]), km, J2000)\n",
+    "orig_vals = np.array(pos_j2k.quantity.values)   # snapshot before conversion\n",
     "\n",
-    "position_j2000 = scb.ArrayWFrame(\n",
-    "    scb.ArrayWUnits([7000, 1000, -500], km),\n",
-    "    J2000\n",
-    ")\n",
+    "pos_j2k.convert_to(IAUEARTH, epoch)             # in-place: frame updated\n",
+    "earth_vals = np.array(pos_j2k.quantity.values)\n",
     "\n",
-    "print(position_j2000)\n",
-    "print(position_j2000.frame)\n"
+    "print(\"\\nFrame conversion (J2000 → IAUEARTH):\")\n",
+    "print(f\"J2000    (before) : {np.round(orig_vals, 3)} km\")\n",
+    "print(f\"IAUEARTH (after)  : {np.round(earth_vals, 3)} km\")\n",
+    "print(f\"|r| J2000    = {np.linalg.norm(orig_vals):.4f} km\")\n",
+    "print(f\"|r| IAUEARTH = {np.linalg.norm(earth_vals):.4f} km  (must be equal)\")\n"
    ]
   },
   {
@@ -325,102 +354,90 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Alternative constructor\n",
+    "# ── Same-frame arithmetic ─────────────────────────────────────────\n",
+    "r1 = scb.ArrayWFrame(np.array([1000.0, 200.0, 300.0]), km, J2000)\n",
+    "r2 = scb.ArrayWFrame(np.array([ 500.0, 100.0, 150.0]), km, J2000)\n",
     "\n",
-    "position2 = scb.ArrayWFrame(\n",
-    "    np.array([1, 2, 3]),\n",
-    "    km,\n",
-    "    J2000\n",
-    ")\n",
+    "print(\"Same-frame addition (J2000 + J2000):\")\n",
+    "print(f\"  {r1.quantity.values} + {r2.quantity.values}\")\n",
+    "print(f\"  = {(r1 + r2).quantity.values}  km  ✓\")\n",
+    "print()\n",
     "\n",
-    "print(position2)\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "21",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Frame conversion\n",
+    "# ── Cross-frame arithmetic is blocked ────────────────────────────\n",
+    "r_itrf = scb.ArrayWFrame(np.array([4.0, 5.0, 6.0]), km, ITRF93)\n",
     "\n",
-    "state = scb.ArrayWFrame(\n",
-    "    np.random.rand(3, 10),\n",
-    "    km,\n",
-    "    J2000\n",
-    ")\n",
-    "\n",
-    "print(\"Original frame:\")\n",
-    "print(state.frame)\n",
-    "\n",
-    "state.convert_to(ECLIPJ2000, epochs)\n",
-    "\n",
-    "print(\"\\nConverted frame:\")\n",
-    "print(state.frame)\n"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "id": "22",
-   "metadata": {},
-   "source": [
-    "## Operators and Safety Checks\n",
-    "\n",
-    "Scarabaeus prevents invalid operations between incompatible frames.\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "23",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "pos_J2000 = scb.ArrayWFrame(\n",
-    "    scb.ArrayWUnits([1, 2, 3], km),\n",
-    "    J2000\n",
-    ")\n",
-    "\n",
-    "pos_ITRF93 = scb.ArrayWFrame(\n",
-    "    scb.ArrayWUnits([4, 5, 6], km),\n",
-    "    ITRF93\n",
-    ")\n",
-    "\n",
-    "print(\"Same-frame addition:\")\n",
-    "print(pos_J2000 + pos_J2000)\n",
-    "\n",
-    "print(\"\\nDifferent-frame addition:\")\n",
-    "\n",
+    "print(\"Cross-frame addition (J2000 + ITRF93)  — should be blocked:\")\n",
     "try:\n",
-    "    print(pos_J2000 + pos_ITRF93)\n",
+    "    _ = r1 + r_itrf\n",
+    "    print(\"  FAIL — should have raised an error\")\n",
     "except Exception as e:\n",
-    "    print(\"Operation blocked:\")\n",
-    "    print(e)\n"
+    "    print(f\"  Blocked ✓  ({type(e).__name__})\")\n",
+    "print()\n",
+    "\n",
+    "# ── Cross-unit arithmetic is blocked ─────────────────────────────\n",
+    "vel_j2k = scb.ArrayWFrame(np.array([1.0, 2.0, 3.0]), km/sec, J2000)\n",
+    "\n",
+    "print(\"Cross-unit addition (km + km/s in J2000)  — should be blocked:\")\n",
+    "try:\n",
+    "    _ = r1 + vel_j2k\n",
+    "    print(\"  FAIL — should have raised an error\")\n",
+    "except Exception as e:\n",
+    "    print(f\"  Blocked ✓  ({type(e).__name__})\")"
    ]
   },
   {
    "cell_type": "markdown",
-   "id": "24",
+   "id": "21",
    "metadata": {},
    "source": [
     "## Summary\n",
     "\n",
-    "This notebook introduced:\n",
+    "| Concept | Class | Key methods |\n",
+    "|---------|-------|-------------|\n",
+    "| Physical units | `Units` | `get_units()`, arithmetic (`/`, `*`, `**`) |\n",
+    "| Array + units | `ArrayWUnits` | `.values`, `.units`, `.convert_to()`, `+−×÷` |\n",
+    "| Coordinate frame | `Frame` | `generate_common_frames()`, `get_DCM()`, `get_transformation()` |\n",
+    "| Array + units + frame | `ArrayWFrame` | `.quantity`, `.frame`, `.convert_to(frame, epoch)`, `+−` |\n",
     "\n",
-    "- Dimensions and units\n",
-    "- `ArrayWUnits`\n",
-    "- SPICE frames\n",
-    "- Frame transformations\n",
-    "- `ArrayWFrame`\n",
-    "- Safe frame-aware operations\n",
+    "**Key safety guarantees**\n",
     "\n",
-    "These abstractions are heavily used throughout Scarabaeus orbit determination,\n",
-    "navigation, estimation, and dynamics workflows.\n"
+    "* `ArrayWUnits` blocks addition/subtraction between incompatible dimensions (km + km/s raises `ValueError`)\n",
+    "* `ArrayWFrame` blocks arithmetic between different frames (J2000 + ITRF93 raises an exception)\n",
+    "* Frame conversions require an epoch because the rotation matrix is time-varying\n",
+    "\n",
+    "These guarantees propagate through all Scarabaeus dynamics, filter, and measurement modules."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "22",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "supp.supp_plotting.plot_awu_awf_visuals(R)"
    ]
   }
  ],
- "metadata": {},
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.9"
+  }
+ },
  "nbformat": 4,
  "nbformat_minor": 5
 }

@@ -56,6 +56,8 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/utils/noise';</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
@@ -623,38 +625,45 @@
 <dt class="sig sig-object py" id="scarabaeus.Noise">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Noise</span></span><a class="headerlink" href="#scarabaeus.Noise" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Generates noise for measurements and other data, primarily focusing on
-Additive White Gaussian Noise (AWGN). This class provides methods to generate
-AWGN with and without units, as well as to apply AWGN to existing datasets.</p>
+<p>Generates AWGN noise for measurements and sensor data.</p>
+<p>Provides methods to draw independent samples from a univariate normal
+distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[p(x) = \frac{1}{\sigma\sqrt{2\pi}}
+       \exp\!\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)\]</div>
+<p>returning unitless arrays, unit-carrying
+<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a> objects, or noisy copies of existing
+datasets.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.Units</span></code></a></dt><dd><p>Defines units for data and noise.</p>
+<dt><a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.Units</span></code></a></dt><dd><p>Unit system used to annotate noise samples.</p>
 </dd>
-<dt><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.ArrayWUnits</span></code></a></dt><dd><p>Represents arrays with units.</p>
+<dt><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.ArrayWUnits</span></code></a></dt><dd><p>Array type that carries physical units.</p>
 </dd>
 </dl>
 </div>
 <p class="rubric">Notes</p>
-<p>The generated noise follows a normal distribution with specified mean (mu) and standard deviation (sigma).</p>
-<p>When applying noise to data, the resulting noisy dataset maintains the original data units.</p>
-<p>This implementation relies on numpy for random sampling.</p>
+<p>All samples are drawn via <code class="docutils literal notranslate"><span class="pre">numpy.random.normal</span></code>.  Seed the global
+NumPy random state before calling any method for reproducible results.
+The noisy output of <a class="reference internal" href="#scarabaeus.Noise.apply_AWGN" title="scarabaeus.Noise.apply_AWGN"><code class="xref py py-meth docutils literal notranslate"><span class="pre">apply_AWGN()</span></code></a> preserves the units of the input
+data.</p>
 <p class="rubric">References</p>
-<p>Grimmett, Geoffrey; David Stirzaker (2001).
-Probability and Random Processes.
+<p>Grimmett, G.; Stirzaker, D. (2001).
+<em>Probability and Random Processes</em> (3rd ed.).
 Oxford University Press.
 ISBN 978-0198572220.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Noise.apply_AWGN" title="scarabaeus.Noise.apply_AWGN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_AWGN</span></code></a>(data, mu, sigma)</p></td>
-<td><p>Apply Additive White Gaussian Noise to a set of data.</p></td>
+<td><p>Apply AWGN to an existing dataset, preserving its physical units.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Noise.generate_AWGN" title="scarabaeus.Noise.generate_AWGN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_AWGN</span></code></a>(mu, sigma[, count])</p></td>
-<td><p>Generates an array of Additive White Gaussian Noise of size specified by count.</p></td>
+<td><p>Generate an array of unitless Additive White Gaussian Noise samples.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Noise.generate_AWGN_with_units" title="scarabaeus.Noise.generate_AWGN_with_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_AWGN_with_units</span></code></a>(mu, sigma, units[, ...])</p></td>
-<td><p>Generates an array of Additive White Gaussian Noise with the given units and specified size.</p></td>
+<td><p>Generate an AWGN array annotated with physical units.</p></td>
 </tr>
 </tbody>
 </table>
@@ -662,20 +671,20 @@ ISBN 978-0198572220.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Noise.apply_AWGN">
 <span class="sig-name descname"><span class="pre">apply_AWGN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.Noise.apply_AWGN" title="Link to this definition">#</a></dt>
-<dd><p>Apply Additive White Gaussian Noise to a set of data.</p>
-<p>The noise will be of the same unit type as the data
-sampled from a normal distribution with mean mu and standard
-deviation sigma.</p>
+<dd><p>Apply AWGN to an existing dataset, preserving its physical units.</p>
+<p>Generates <span class="math notranslate nohighlight">\(n = \texttt{data.size}\)</span> noise samples
+<span class="math notranslate nohighlight">\(\epsilon_i \sim \mathcal{N}(\mu,\,\sigma^2)\)</span> in the same
+units as <em>data</em>, then returns <span class="math notranslate nohighlight">\(\tilde{y}_i = y_i + \epsilon_i\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – The data to which noise will be added.</p></li>
-<li><p><strong>mu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The mean of the normal distribution being sampled from.</p></li>
-<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The standard Deviation of the normal distribution being sampled from.</p></li>
+<li><p><strong>data</strong> (<a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a>) – Original dataset to corrupt.</p></li>
+<li><p><strong>mu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Mean of the noise distribution (typically <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Standard deviation of the noise distribution.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>noise</strong> – New, noisy data</p>
+<dd class="field-even"><p><strong>noisy_data</strong> – Corrupted copy of <em>data</em> with units unchanged.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>
@@ -686,20 +695,19 @@ deviation sigma.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Noise.generate_AWGN">
 <span class="sig-name descname"><span class="pre">generate_AWGN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.Noise.generate_AWGN" title="Link to this definition">#</a></dt>
-<dd><p>Generates an array of Additive White Gaussian Noise
-of size specified by count. This function returns an
-array of unitless noise values.</p>
-<p>Count defaults to 1 but can be specified to be of arbitrary length.</p>
+<dd><p>Generate an array of unitless Additive White Gaussian Noise samples.</p>
+<p>Each sample <span class="math notranslate nohighlight">\(x_i \sim \mathcal{N}(\mu,\,\sigma^2)\)</span> is drawn
+independently.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The mean of the normal distribution being sampled from.</p></li>
-<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The standard deviation of the normal distribution being sampled from.</p></li>
-<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The length of noise array. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>mu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Mean of the normal distribution.</p></li>
+<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Standard deviation of the normal distribution.</p></li>
+<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – Number of samples to generate.  Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>noise</strong> – Generated noise values with no units.</p>
+<dd class="field-even"><p><strong>noise</strong> – Array of shape <code class="docutils literal notranslate"><span class="pre">(count,)</span></code> containing the noise samples.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
@@ -710,19 +718,20 @@ array of unitless noise values.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Noise.generate_AWGN_with_units">
 <span class="sig-name descname"><span class="pre">generate_AWGN_with_units</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.units.Units.Units"><span class="pre">Units</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.Noise.generate_AWGN_with_units" title="Link to this definition">#</a></dt>
-<dd><p>Generates an array of Additive White Gaussian Noise with the given
-units and specified size.</p>
+<dd><p>Generate an AWGN array annotated with physical units.</p>
+<p>Delegates sampling to <a class="reference internal" href="#scarabaeus.Noise.generate_AWGN" title="scarabaeus.Noise.generate_AWGN"><code class="xref py py-meth docutils literal notranslate"><span class="pre">generate_AWGN()</span></code></a> and wraps the result in
+an <a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a> object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The mean of the normal distribution being sampled from.</p></li>
-<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – The standard deviation of the normal distribution being sampled from.</p></li>
-<li><p><strong>units</strong> (<a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-class docutils literal notranslate"><span class="pre">Units</span></code></a>) – The units of the noise.</p></li>
-<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – The length of noise array. Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>mu</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Mean of the normal distribution.</p></li>
+<li><p><strong>sigma</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Standard deviation of the normal distribution.</p></li>
+<li><p><strong>units</strong> (<a class="reference internal" href="../units/units.html#scarabaeus.Units" title="scarabaeus.Units"><code class="xref py py-class docutils literal notranslate"><span class="pre">Units</span></code></a>) – Physical units to attach to the noise samples.</p></li>
+<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – Number of samples to generate.  Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>noise</strong> – Generated noise values with given units.</p>
+<dd class="field-even"><p><strong>noise</strong> – Array of shape <code class="docutils literal notranslate"><span class="pre">(count,)</span></code> with the specified <em>units</em>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.ArrayWUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></p>

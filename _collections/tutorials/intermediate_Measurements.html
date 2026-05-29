@@ -7,16 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="<no title>" />
+<meta property="og:title" content="# Measurement Simulation" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/intermediate_Measurements.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="placeholder" />
+<meta property="og:description" content="Scarabaeus | Last revised 2026 What this notebook covers: The complete measurement simulation pipeline: initializing sensors and measurement models, simulating observations on a true trajectory, computing predicted measurements on a reference trajectory, evaluating partials and residuals, and packaging everything into filter-ready datasets. Topics:,,#, Topic,,, 1, True and reference trajectories,, 2, Sensors — ground stations and camera,, 3, Measurement models — Range, Range Rate, Centroiding..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="placeholder" />
+<meta name="description" content="Scarabaeus | Last revised 2026 What this notebook covers: The complete measurement simulation pipeline: initializing sensors and measurement models, simulating observations on a true trajectory, computing predicted measurements on a reference trajectory, evaluating partials and residuals, and packaging everything into filter-ready datasets. Topics:,,#, Topic,,, 1, True and reference trajectories,, 2, Sensors — ground stations and camera,, 3, Measurement models — Range, Range Rate, Centroiding..." />
 
-    <title>&lt;no title&gt; &#8212; Scarabaeus  documentation</title>
+    <title># Measurement Simulation &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -43,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
   
   <!-- So that users can add custom icons -->
@@ -58,6 +59,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_Measurements';</script>
@@ -65,6 +67,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="# Mission Sequence and Finite-Burn Propagation Demo" href="intermediate_MissionSequence_and_FiniteBurn.html" />
+    <link rel="prev" title="# N-Plate Model and Spacecraft Attitude" href="intermediate_nPlateModel_and_Attitude.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -163,7 +167,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
@@ -247,10 +251,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -279,7 +281,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
@@ -328,6 +330,263 @@
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Synthetic Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
@@ -366,7 +625,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">&lt;no title&gt;</span></li>
+    
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Tutorials</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># Measurement Simulation</span></li>
   </ul>
 </nav>
 </div>
@@ -383,7 +645,905 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p>placeholder</p>
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-Measurement-Simulation">
+<h1># Measurement Simulation<a class="headerlink" href="##-Measurement-Simulation" title="Link to this heading">#</a></h1>
+<p><em>Scarabaeus | Last revised 2026</em></p>
+</section>
+<section id="What-this-notebook-covers">
+<h1>What this notebook covers<a class="headerlink" href="#What-this-notebook-covers" title="Link to this heading">#</a></h1>
+<p>The complete measurement simulation pipeline: initializing sensors and measurement models, simulating observations on a true trajectory, computing predicted measurements on a reference trajectory, evaluating partials and residuals, and packaging everything into filter-ready datasets.</p>
+<section id="Topics">
+<h2>Topics<a class="headerlink" href="#Topics" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>True and reference trajectories</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Sensors — ground stations and camera</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Measurement models — Range, Range Rate, Centroiding</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Simulating observed measurements (<code class="docutils literal notranslate"><span class="pre">write_observed_measurements</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Reading back observed measurements (<code class="docutils literal notranslate"><span class="pre">observed_measurements</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Computed measurements on the reference trajectory</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Partials (H matrix) and residuals (O−C)</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Measurement datasets — filter-ready API</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Visualization</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="How-to-run">
+<h1>How to run<a class="headerlink" href="#How-to-run" title="Link to this heading">#</a></h1>
+<p>Run from the <strong>project root</strong> directory (<code class="docutils literal notranslate"><span class="pre">scarabaeus/</span></code>).</p>
+</section>
+<section id="0.-Imports-and-Setup">
+<h1>0. Imports and Setup<a class="headerlink" href="#0.-Imports-and-Setup" title="Link to this heading">#</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.gridspec</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cm</span>
+
+<span class="c1"># define units and frame</span>
+<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;rad&#39;</span><span class="p">])</span>
+<span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">)</span>
+
+<span class="c1"># load tutorial data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1"># tutorial output paths</span>
+<span class="n">tut_result_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;tutorial_results/meas_gen&#39;</span>
+<span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;optical&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># load kernels</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+<span class="n">CMAP</span>   <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">tab10</span>
+<span class="n">COLORS</span> <span class="o">=</span> <span class="p">[</span><span class="n">CMAP</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data up to date.
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="1.-Trajectories-—-True-and-Reference">
+<h1>1. Trajectories — True and Reference<a class="headerlink" href="#1.-Trajectories-—-True-and-Reference" title="Link to this heading">#</a></h1>
+<p>The measurement pipeline requires two trajectories:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Trajectory</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>True</strong></p></td>
+<td><p>Observations are simulated on this trajectory (<code class="docutils literal notranslate"><span class="pre">write_observed_measurements</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Reference</strong></p></td>
+<td><p>Predicted (computed) measurements are evaluated on this trajectory; the residual is <code class="docutils literal notranslate"><span class="pre">observed</span> <span class="pre">−</span> <span class="pre">computed</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Both are Earth-orbiting, with the reference perturbed by +1 m / +1 mm/s to mimic an initial state error.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">earth</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">&#39;EARTH&#39;</span><span class="p">)</span>
+<span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;unitless&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── spacecraft ────────────────────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_sc</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">spice_id</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">scb</span><span class="o">.</span><span class="n">Spacecraft</span><span class="p">(</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">spice_id</span><span class="p">,</span>
+        <span class="n">tot_mass</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1500.0</span><span class="p">,</span> <span class="n">kg</span><span class="p">),</span>
+        <span class="n">area</span>      <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span>   <span class="n">km</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">ref_coeff</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span>    <span class="n">unitless</span><span class="p">),</span>
+    <span class="p">)</span>
+
+<span class="n">Orbiter</span>    <span class="o">=</span> <span class="n">make_sc</span><span class="p">(</span><span class="s1">&#39;Orbiter&#39;</span><span class="p">,</span>           <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">Orbiter_ref</span><span class="o">=</span> <span class="n">make_sc</span><span class="p">(</span><span class="s1">&#39;Orbiter_reference&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1001</span><span class="p">)</span>
+
+<span class="c1"># ── epoch array (1-hour arc, 2030-FEB-18) ─────────────────────────</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s1">&#39;2030-FEB-18 21:48:32.90210 TDB&#39;</span><span class="p">)</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="mf">3600.0</span>
+<span class="n">epoch_prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── initial conditions ─────────────────────────────────────────────</span>
+<span class="n">pos0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>      <span class="n">km</span><span class="p">,</span>      <span class="n">J2000</span><span class="p">)</span>
+<span class="n">vel0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">7.546049</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>    <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span>  <span class="n">J2000</span><span class="p">)</span>
+
+<span class="n">d_pos</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">]),</span>  <span class="n">km</span><span class="p">)</span>
+<span class="n">d_vel</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>   <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">)</span>
+<span class="n">pos_ref</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">pos0</span><span class="o">.</span><span class="n">quantity</span> <span class="o">+</span> <span class="n">d_pos</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
+<span class="n">vel_ref</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">vel0</span><span class="o">.</span><span class="n">quantity</span> <span class="o">+</span> <span class="n">d_vel</span><span class="p">,</span> <span class="n">J2000</span><span class="p">)</span>
+
+<span class="c1"># ── propagate and write SPKs ──────────────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">propagate_and_save</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">vel</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">state_def</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateDefinition</span><span class="o">.</span><span class="n">from_components</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;estimated&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic&#39;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">pos</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;velocity&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;estimated&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic&#39;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">vel</span><span class="p">),</span>
+    <span class="p">])</span>
+    <span class="n">sv</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="n">epoch_prop</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="n">earth</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state_def</span><span class="p">)</span>
+    <span class="n">fm</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">primary_body</span><span class="o">=</span><span class="n">sc</span><span class="p">)</span>
+    <span class="n">prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Propagator</span><span class="p">(</span><span class="n">primary_body</span><span class="o">=</span><span class="n">sc</span><span class="p">,</span> <span class="n">state_vector</span><span class="o">=</span><span class="n">sv</span><span class="p">,</span> <span class="n">tspan</span><span class="o">=</span><span class="n">epoch_prop</span><span class="p">,</span> <span class="n">force_models</span><span class="o">=</span><span class="n">fm</span><span class="p">)</span>
+    <span class="n">prop</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">display_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">spk_path</span> <span class="o">=</span> <span class="n">tut_result_path</span> <span class="o">/</span> <span class="n">name</span>
+    <span class="k">if</span> <span class="n">spk_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span> <span class="n">spk_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+
+    <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">state_array</span><span class="o">=</span><span class="n">prop</span><span class="o">.</span><span class="n">propagated_state_array</span><span class="p">)</span><span class="o">.</span><span class="n">write_to_spk</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">spk_path</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  SPK written : </span><span class="si">{</span><span class="n">spk_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prop</span>
+
+<span class="n">prop_true</span> <span class="o">=</span> <span class="n">propagate_and_save</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span>     <span class="n">pos0</span><span class="p">,</span>    <span class="n">vel0</span><span class="p">,</span>    <span class="s1">&#39;meas_true.bsp&#39;</span><span class="p">)</span>
+<span class="n">prop_ref</span>  <span class="o">=</span> <span class="n">propagate_and_save</span><span class="p">(</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">pos_ref</span><span class="p">,</span> <span class="n">vel_ref</span><span class="p">,</span> <span class="s1">&#39;meas_ref.bsp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  SPK written : meas_true.bsp
+  SPK written : meas_ref.bsp
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="2.-Sensors">
+<h1>2. Sensors<a class="headerlink" href="#2.-Sensors" title="Link to this heading">#</a></h1>
+<p>Scarabaeus separates <strong>sensors</strong> (hardware: ground stations, cameras, antennae) from <strong>measurement models</strong> (physics: range, range-rate, centroiding, …).</p>
+<section id="Ground-Stations">
+<h2>Ground Stations<a class="headerlink" href="#Ground-Stations" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">GroundStation(name)</span></code> looks up the station’s geodetic position from the loaded SPICE kernels by name. Any DSN station name recognised by the earthstns frame kernel is valid.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s1">&#39;DSS-14&#39;</span><span class="p">)</span>   <span class="c1"># Goldstone, CA</span>
+<span class="n">GS2</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s1">&#39;DSS-63&#39;</span><span class="p">)</span>   <span class="c1"># Madrid, Spain</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GS1 : </span><span class="si">{</span><span class="n">GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GS2 : </span><span class="si">{</span><span class="n">GS2</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GS1 : DSS-14
+GS2 : DSS-63
+</pre></div></div>
+</div>
+</section>
+<section id="Camera">
+<h2>Camera<a class="headerlink" href="#Camera" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Camera</span></code> defines the optical instrument used for centroid-based OpNav measurements.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fov_angular</span></code></p></td>
+<td><p>Half-angle field of view [rad] in (x, y)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fov_pixels</span></code></p></td>
+<td><p>Detector resolution (px × px)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ifov_angle</span></code></p></td>
+<td><p>Instantaneous field of view per pixel [rad/px]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">focal_length</span></code></p></td>
+<td><p>Focal length [km]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The camera is attached to the spacecraft via <code class="docutils literal notranslate"><span class="pre">Spacecraft.add_instrument([camera])</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cam_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">camera_frame</span>  <span class="o">=</span> <span class="n">J2000</span><span class="p">,</span>
+    <span class="n">fov_angular</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])),</span> <span class="n">rad</span><span class="p">),</span>
+    <span class="n">fov_pixels</span>    <span class="o">=</span> <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">),</span>
+    <span class="n">ifov_angle</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">25e-6</span><span class="p">,</span> <span class="mf">20e-6</span><span class="p">]),</span> <span class="n">rad</span><span class="p">),</span>   <span class="c1"># rad/pixel</span>
+    <span class="n">focal_length</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">150e-6</span><span class="p">,</span> <span class="n">km</span><span class="p">),</span>                      <span class="c1"># 150 mm</span>
+<span class="p">)</span>
+
+<span class="n">Camera</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ORCCA_cam&#39;</span><span class="p">,</span>      <span class="n">associated_body_spice_id</span><span class="o">=</span><span class="n">Orbiter</span><span class="o">.</span><span class="n">spice_id</span><span class="p">,</span>     <span class="o">**</span><span class="n">cam_kwargs</span><span class="p">)</span>
+<span class="n">Camera_ref</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ORCCA_cam_ref&#39;</span><span class="p">,</span>  <span class="n">associated_body_spice_id</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="o">.</span><span class="n">spice_id</span><span class="p">,</span> <span class="o">**</span><span class="n">cam_kwargs</span><span class="p">)</span>
+
+<span class="n">Orbiter</span><span class="o">.</span><span class="n">add_instrument</span><span class="p">([</span><span class="n">Camera</span><span class="p">])</span>
+<span class="n">Orbiter_ref</span><span class="o">.</span><span class="n">add_instrument</span><span class="p">([</span><span class="n">Camera_ref</span><span class="p">])</span>
+
+<span class="c1"># ── optical navigation target body ───────────────────────────────</span>
+<span class="n">opnav_target</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;VENUS&#39;</span><span class="p">,</span> <span class="n">spice_id</span><span class="o">=</span><span class="mi">299</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav target : </span><span class="si">{</span><span class="n">opnav_target</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+OpNav target : VENUS
+</pre></div></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="3.-Measurement-Models">
+<h1>3. Measurement Models<a class="headerlink" href="#3.-Measurement-Models" title="Link to this heading">#</a></h1>
+<p>Each model pairs a sensor with a physical observation type and a noise standard deviation.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model class</p></th>
+<th class="head"><p>Sensor</p></th>
+<th class="head"><p>Observable</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></p></td>
+<td><p>Two-way range</p></td>
+<td><p>km</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></p></td>
+<td><p>Two-way range rate</p></td>
+<td><p>km/s</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code> + <code class="docutils literal notranslate"><span class="pre">Antenna</span></code></p></td>
+<td><p>Doppler shift (2W or 3W)</p></td>
+<td><p>Hz <em>(not covered here)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></p></td>
+<td><p>Two <code class="docutils literal notranslate"><span class="pre">GroundStation</span></code>s</p></td>
+<td><p>Differential one-way range (DOR)</p></td>
+<td><p>s <em>(not covered here)</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Camera</span></code></p></td>
+<td><p>Pixel centroid of body</p></td>
+<td><p>px</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── measurement sigmas ────────────────────────────────────────────</span>
+<span class="n">range_sigma</span>       <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">,</span>              <span class="n">km</span><span class="p">)</span>
+<span class="n">rangerate_sigma</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span>              <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">)</span>
+<span class="n">centroid_sigma</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]),</span> <span class="kc">None</span><span class="p">)</span>   <span class="c1"># pixels</span>
+
+<span class="c1"># ── radiometric models (DSS-14) ───────────────────────────────────</span>
+<span class="n">Range_GS1</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeIdeal</span><span class="p">(</span>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;GS1 Range&#39;</span><span class="p">,</span>     <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">range_sigma</span><span class="p">)</span>
+<span class="n">RangeRate_GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeRateIdeal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;GS1 RangeRate&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">rangerate_sigma</span><span class="p">)</span>
+
+<span class="c1"># ── optical navigation model ──────────────────────────────────────</span>
+<span class="n">Centroid</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CentroidingIdeal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;OpNav centroid&#39;</span><span class="p">,</span> <span class="n">camera</span><span class="o">=</span><span class="n">Camera</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">centroid_sigma</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Models created:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">Range_GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">Centroid</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Models created:
+  GS1 Range
+  GS1 RangeRate
+  OpNav centroid
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="4.-Simulating-Observed-Measurements">
+<h1>4. Simulating Observed Measurements<a class="headerlink" href="#4.-Simulating-Observed-Measurements" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">write_observed_measurements(target,</span> <span class="pre">epoch_array,</span> <span class="pre">noisy,</span> <span class="pre">file_name)</span></code> evaluates the measurement model on the <strong>true</strong> trajectory, optionally adds Gaussian noise, and writes the result to <code class="docutils literal notranslate"><span class="pre">data/measurements/radiometric/&lt;file_name&gt;.json</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+<td><p>The spacecraft (or body for OpNav) on whose true trajectory to evaluate</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epoch_array</span></code></p></td>
+<td><p>Measurement epochs</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">noisy=True</span></code></p></td>
+<td><p>Add Gaussian noise with the model’s σ</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">file_name</span></code></p></td>
+<td><p>Output file name (no path, no extension)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">check_visibility=True</span></code></p></td>
+<td><p>Skip epochs where the target is below the elevation mask</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">elevation_mask</span></code></p></td>
+<td><p>Minimum elevation angle [deg] for ground-station visibility</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── epoch arrays for each model (different cadences) ─────────────</span>
+<span class="n">ep_range</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span>  <span class="mi">50</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+<span class="n">ep_rangerate</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+<span class="n">ep_opnav</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span>  <span class="mi">10</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── write noisy observations on the true trajectory ───────────────</span>
+<span class="n">Range_GS1</span><span class="o">.</span><span class="n">write_observed_measurements</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_range</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;meas_range&#39;</span><span class="p">,</span>
+    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">write_observed_measurements</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_rangerate</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;meas_rangerate&#39;</span><span class="p">,</span>
+    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">Centroid</span><span class="o">.</span><span class="n">write_observed_measurements</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_opnav</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;meas_opnav&#39;</span><span class="p">,</span>
+    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;optical&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Observed measurements written to </span><span class="si">{</span><span class="n">tut_result_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Observed measurements written to /Users/zael5647/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/tutorial_results/meas_gen
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="5.-Reading-Back-Observed-Measurements">
+<h1>5. Reading Back Observed Measurements<a class="headerlink" href="#5.-Reading-Back-Observed-Measurements" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">observed_measurements(file_name,</span> <span class="pre">meas_name,</span> <span class="pre">units)</span></code> reads the JSON written above and returns a 4-tuple <code class="docutils literal notranslate"><span class="pre">(epoch_et,</span> <span class="pre">epoch_sec,</span> <span class="pre">measurements,</span> <span class="pre">flags)</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[0]</span></code> <code class="docutils literal notranslate"><span class="pre">epoch_et</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code> of measurement epochs (TDB, ET)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[1]</span></code> <code class="docutils literal notranslate"><span class="pre">epoch_sec</span></code></p></td>
+<td><p>Seconds from arc start (ndarray)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[2]</span></code> <code class="docutils literal notranslate"><span class="pre">measurements</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code> of observed values</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[3]</span></code> <code class="docutils literal notranslate"><span class="pre">flags</span></code></p></td>
+<td><p>Gap or quality flags (ndarray, zeros = no gaps)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric/meas_range.json&#39;</span><span class="p">),</span>
+    <span class="n">meas_name</span><span class="o">=</span><span class="s1">&#39;meas_ideal&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">km</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">obs_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric/meas_rangerate.json&#39;</span><span class="p">),</span>
+    <span class="n">meas_name</span><span class="o">=</span><span class="s1">&#39;meas_ideal&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">obs_opnav</span> <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;optical/meas_opnav.json&#39;</span><span class="p">),</span>
+    <span class="n">meas_name</span><span class="o">=</span><span class="s1">&#39;meas_ideal&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># observed_measurements returns (epoch_et, epoch_sec, measurements, flags)</span>
+<span class="n">ep_range_et</span><span class="p">,</span>     <span class="n">_</span><span class="p">,</span> <span class="n">meas_range</span><span class="p">,</span>     <span class="n">_</span> <span class="o">=</span> <span class="n">obs_range</span>
+<span class="n">ep_rangerate_et</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">meas_rangerate</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">obs_rangerate</span>
+<span class="n">ep_opnav_et</span><span class="p">,</span>     <span class="n">_</span><span class="p">,</span> <span class="n">meas_opnav</span><span class="p">,</span>     <span class="n">_</span> <span class="o">=</span> <span class="n">obs_opnav</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_range_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;mean = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">meas_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range rate: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_rangerate_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;mean = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">meas_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> km/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_opnav_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  &quot;</span>
+      <span class="sa">f</span><span class="s2">&quot;shape = </span><span class="si">{</span><span class="n">meas_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">  (n_epochs × 2 px)&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Range     : 50 epochs,  mean = 9524.317 km
+Range rate: 100 epochs,  mean = 2.275299 km/s
+OpNav     : 10 epochs,  shape = (10, 2)  (n_epochs × 2 px)
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="6.-Computed-Measurements-on-the-Reference-Trajectory">
+<h1>6. Computed Measurements on the Reference Trajectory<a class="headerlink" href="#6.-Computed-Measurements-on-the-Reference-Trajectory" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">computed_measurements(target,</span> <span class="pre">epoch_array,</span> <span class="pre">frame)</span></code> evaluates the noiseless model prediction on the <strong>reference</strong> trajectory. The returned 4-tuple is <code class="docutils literal notranslate"><span class="pre">(epoch_et,</span> <span class="pre">epoch_sec,</span> <span class="pre">sigma,</span> <span class="pre">computed_values)</span></code>. The residual <code class="docutils literal notranslate"><span class="pre">observed</span> <span class="pre">−</span> <span class="pre">computed</span></code> represents the linearised observation error to be corrected by the filter.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">comp_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">computed_measurements</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_range_et</span><span class="p">,</span>     <span class="n">frame</span><span class="o">=</span><span class="n">J2000</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">comp_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">computed_measurements</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_rangerate_et</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="n">J2000</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">comp_opnav</span>     <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">computed_measurements</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_opnav_et</span><span class="p">,</span>   <span class="n">frame</span><span class="o">=</span><span class="n">J2000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed range      shape : </span><span class="si">{</span><span class="n">comp_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed range rate shape : </span><span class="si">{</span><span class="n">comp_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed OpNav      shape : </span><span class="si">{</span><span class="n">comp_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Computed range      shape : (50,)
+Computed range rate shape : (100,)
+Computed OpNav      shape : (10, 2)
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="7.-Partials-and-Residuals">
+<h1>7. Partials and Residuals<a class="headerlink" href="#7.-Partials-and-Residuals" title="Link to this heading">#</a></h1>
+<section id="Partials-(H-matrix)">
+<h2>Partials (H matrix)<a class="headerlink" href="#Partials-(H-matrix)" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">compute_partials(target,</span> <span class="pre">epoch_array,</span> <span class="pre">frame)</span></code> returns the measurement partial-derivative matrix <span class="math notranslate nohighlight">\(H_k = \partial h / \partial x\)</span> evaluated at each epoch. This is the same matrix the filter uses to map state corrections to measurement corrections. It is normally computed internally by <code class="docutils literal notranslate"><span class="pre">generate_measurement_dataset</span></code>, but can be accessed directly here.</p>
+</section>
+<section id="Residuals-(O-−-C)">
+<h2>Residuals (O − C)<a class="headerlink" href="#Residuals-(O-−-C)" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">residuals(observed,</span> <span class="pre">computed)</span></code> returns the pre-fit residual vector <span class="math notranslate nohighlight">\(y_k = z_k^\text{obs} - h(x^*(t_k))\)</span> at each epoch.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── partials — compute_partials returns a list of lists → stack to ndarray</span>
+<span class="n">H_range</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Range_GS1</span><span class="o">.</span><span class="n">compute_partials</span><span class="p">(</span>    <span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">ep_range_et</span><span class="p">,</span>     <span class="n">J2000</span><span class="p">))</span>
+<span class="n">H_rangerate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">compute_partials</span><span class="p">(</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">ep_rangerate_et</span><span class="p">,</span> <span class="n">J2000</span><span class="p">))</span>
+<span class="n">H_opnav</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Centroid</span><span class="o">.</span><span class="n">compute_partials</span><span class="p">(</span>     <span class="n">opnav_target</span><span class="p">,</span> <span class="n">ep_opnav_et</span><span class="p">,</span>    <span class="n">J2000</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H range      : </span><span class="si">{</span><span class="n">H_range</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">      (n_meas × n_state)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H range rate : </span><span class="si">{</span><span class="n">H_rangerate</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">      (n_meas × n_state)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H opnav      : </span><span class="si">{</span><span class="n">H_opnav</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">   (2 × n_epochs × n_state)&quot;</span><span class="p">)</span>
+
+<span class="c1"># ── residuals — residuals() returns ArrayWFrame; extract .quantity.values</span>
+<span class="n">res_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">residuals</span><span class="p">(</span>    <span class="n">meas_range</span><span class="p">,</span>     <span class="n">comp_range</span>    <span class="p">)</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">res_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">residuals</span><span class="p">(</span><span class="n">meas_rangerate</span><span class="p">,</span> <span class="n">comp_rangerate</span><span class="p">)</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">res_opnav</span>     <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">residuals</span><span class="p">(</span>     <span class="n">meas_opnav</span><span class="p">,</span>     <span class="n">comp_opnav</span>    <span class="p">)</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">RMS range residual     : </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMS range-rate residual: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_rangerate</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> km/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMS opnav  residual    : </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_opnav</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> px&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Generating _partials computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Partials: 100%|████████████████████████████████████████████████████████████| 50/50 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Generating _partials computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Partials: 100%|██████████████████████████████████████████████████████████| 100/100 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Generating _partials computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Partials: 100%|████████████████████████████████████████████████████████████| 10/10 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+H range      : (50, 6)      (n_meas × n_state)
+H range rate : (100, 6)      (n_meas × n_state)
+H opnav      : (10, 2, 6)   (2 × n_epochs × n_state)
+
+RMS range residual     : 2.8034e+02 km
+RMS range-rate residual: 4.1090e-01 km/s
+RMS opnav  residual    : 1.3378e+00 px
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="8.-Measurement-Datasets">
+<h1>8. Measurement Datasets<a class="headerlink" href="#8.-Measurement-Datasets" title="Link to this heading">#</a></h1>
+<section id="generate_measurement_dataset">
+<h2><code class="docutils literal notranslate"><span class="pre">generate_measurement_dataset</span></code><a class="headerlink" href="#generate_measurement_dataset" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">model.generate_measurement_dataset(name,</span> <span class="pre">target,</span> <span class="pre">observed_meas)</span></code> bundles residuals, partials, sigmas, and epoch bookkeeping into a <code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code> ready for the filter.</p>
+</section>
+<section id="MeasurementSpec-—-filter-facing-API">
+<h2><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> — filter-facing API<a class="headerlink" href="#MeasurementSpec-—-filter-facing-API" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> is the object passed to <code class="docutils literal notranslate"><span class="pre">FilterOD</span></code> (LKF, SRIF, LSB). It wraps the model and observed measurements together and handles dataset construction lazily when the filter initializes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="o">.</span><span class="n">from_dict</span><span class="p">([</span>
+    <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="s1">&#39;observed_meas&#39;</span><span class="p">:</span> <span class="n">obs</span><span class="p">,</span> <span class="s1">&#39;dataset_name&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── generate filter-ready MeasurementDataSets ─────────────────────</span>
+<span class="n">ds_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">generate_measurement_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;GS1 Range&#39;</span><span class="p">,</span>     <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_range</span><span class="p">)</span>
+<span class="n">ds_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">generate_measurement_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;GS1 RangeRate&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_rangerate</span><span class="p">)</span>
+<span class="n">ds_opnav</span>     <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">generate_measurement_dataset</span><span class="p">(</span>
+    <span class="s1">&#39;OpNav&#39;</span><span class="p">,</span>         <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_opnav</span><span class="p">)</span>
+<span class="c1"># CentroidingIdeal returns a list — one dataset per pixel coordinate (RA, DEC)</span>
+<span class="n">ds_opnav_ra</span><span class="p">,</span> <span class="n">ds_opnav_dec</span> <span class="o">=</span> <span class="n">ds_opnav</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ds_opnav</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range     dataset : </span><span class="si">{</span><span class="n">ds_range</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_range</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RangeRate dataset : </span><span class="si">{</span><span class="n">ds_rangerate</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_rangerate</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav RA  dataset : </span><span class="si">{</span><span class="n">ds_opnav_ra</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_opnav_ra</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav DEC dataset : </span><span class="si">{</span><span class="n">ds_opnav_dec</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,   </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_opnav_dec</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
+
+<span class="c1"># ── MeasurementSpec for a filter run ─────────────────────────────</span>
+<span class="n">measurements</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="o">.</span><span class="n">from_dict</span><span class="p">([</span>
+    <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">Range_GS1</span><span class="p">,</span>     <span class="s1">&#39;observed_meas&#39;</span><span class="p">:</span> <span class="n">obs_range</span><span class="p">,</span>     <span class="s1">&#39;dataset_name&#39;</span><span class="p">:</span> <span class="s1">&#39;GS1 Range&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">RangeRate_GS1</span><span class="p">,</span> <span class="s1">&#39;observed_meas&#39;</span><span class="p">:</span> <span class="n">obs_rangerate</span><span class="p">,</span> <span class="s1">&#39;dataset_name&#39;</span><span class="p">:</span> <span class="s1">&#39;GS1 RangeRate&#39;</span><span class="p">},</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">MeasurementSpec : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="si">}</span><span class="s2"> entries  → ready to pass to LKF / SRIF&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+================================================================================
+          Generating computed measurements for the dataset &#34;GS1 Range&#34;
+================================================================================
+
+================================================================================
+                Generating _partials for the dataset &#34;GS1 Range&#34;
+================================================================================
+
+Generating _partials computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Partials: 100%|████████████████████████████████████████████████████████████| 50/50 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+================================================================================
+        Generating computed measurements for the dataset &#34;GS1 RangeRate&#34;
+================================================================================
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+================================================================================
+              Generating _partials for the dataset &#34;GS1 RangeRate&#34;
+================================================================================
+
+Generating _partials computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Partials: 100%|██████████████████████████████████████████████████████████| 100/100 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+================================================================================
+            Generating computed measurements for the dataset &#34;OpNav&#34;
+================================================================================
+
+================================================================================
+                  Generating _partials for the dataset &#34;OpNav&#34;
+================================================================================
+
+Generating _partials computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Partials: 100%|████████████████████████████████████████████████████████████| 10/10 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Range     dataset : GS1 Range,    50 epochs
+RangeRate dataset : GS1 RangeRate, 100 epochs
+OpNav RA  dataset : Opnav_u,    10 epochs
+OpNav DEC dataset : Opnav_v,   10 epochs
+
+MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="9.-Visualization">
+<h1>9. Visualization<a class="headerlink" href="#9.-Visualization" title="Link to this heading">#</a></h1>
+<p>Three panels below: observed range, range-rate, and OpNav centroid history plus image-plane scatter.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── time axes: minutes from arc start ────────────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_min</span><span class="p">(</span><span class="n">ep_et</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ep_et</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">60.0</span>
+
+<span class="n">t_r</span>  <span class="o">=</span> <span class="n">to_min</span><span class="p">(</span><span class="n">ep_range_et</span><span class="p">)</span>
+<span class="n">t_rr</span> <span class="o">=</span> <span class="n">to_min</span><span class="p">(</span><span class="n">ep_rangerate_et</span><span class="p">)</span>
+<span class="n">t_o</span>  <span class="o">=</span> <span class="n">to_min</span><span class="p">(</span><span class="n">ep_opnav_et</span><span class="p">)</span>
+
+<span class="c1"># ── values ────────────────────────────────────────────────────────</span>
+<span class="n">r_vals</span>  <span class="o">=</span> <span class="n">meas_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">rr_vals</span> <span class="o">=</span> <span class="n">meas_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">o_vals</span>  <span class="o">=</span> <span class="n">meas_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span>           <span class="c1"># (n, 2)</span>
+
+<span class="c1"># res_range / res_rangerate are already ndarray ravels from §7</span>
+<span class="n">sigma_r</span>  <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">range_sigma</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>     <span class="o">*</span> <span class="mf">1e3</span>   <span class="c1"># → m</span>
+<span class="n">sigma_rr</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">rangerate_sigma</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e3</span>   <span class="c1"># → mm/s</span>
+<span class="n">sigma_px</span> <span class="o">=</span> <span class="mf">1.0</span>                                    <span class="c1"># pixels</span>
+
+<span class="c1"># ── layout: 4 rows × 3 cols ──────────────────────────────────────</span>
+<span class="c1"># row 0-1: radiometric observed (span 2) | O-C time-series</span>
+<span class="c1"># row 2  : opnav x obs | opnav y obs | image-plane scatter</span>
+<span class="c1"># row 3  : opnav x O-C | opnav y O-C | (hidden)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Measurement Simulation  —  Observed Values and O−C Residuals&#39;</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.60</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span>
+              <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+
+<span class="n">ax_r</span>    <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># range observed</span>
+<span class="n">ax_roc</span>  <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>   <span class="c1"># range O-C</span>
+<span class="n">ax_rr</span>   <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># range-rate observed</span>
+<span class="n">ax_rroc</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>   <span class="c1"># range-rate O-C</span>
+<span class="n">ax_opx</span>  <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>   <span class="c1"># opnav x centroid</span>
+<span class="n">ax_opy</span>  <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>   <span class="c1"># opnav y centroid</span>
+<span class="n">ax_scat</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>   <span class="c1"># image-plane scatter</span>
+<span class="n">ax_oxoc</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>   <span class="c1"># opnav x O-C</span>
+<span class="n">ax_oyoc</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>   <span class="c1"># opnav y O-C</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># helper: draw an O-C residuals panel with ±1σ reference lines</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_oc</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">unit_label</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O−C&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>      <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;±1σ (</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">unit_label</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;O−C [</span><span class="si">{</span><span class="n">unit_label</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># ── range ─────────────────────────────────────────────────────────</span>
+<span class="n">ax_r</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_r</span><span class="p">,</span> <span class="n">r_vals</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">)</span>
+<span class="n">ax_r</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_r</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Range [m]&#39;</span><span class="p">)</span>
+<span class="n">ax_r</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Range  (σ = </span><span class="si">{</span><span class="n">sigma_r</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> m,  DSS-14)&#39;</span><span class="p">);</span> <span class="n">ax_r</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_roc</span><span class="p">,</span> <span class="n">t_r</span><span class="p">,</span> <span class="n">res_range</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">sigma_r</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Range O−C&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── range rate ────────────────────────────────────────────────────</span>
+<span class="n">ax_rr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_rr</span><span class="p">,</span> <span class="n">rr_vals</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">)</span>
+<span class="n">ax_rr</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_rr</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Range Rate [mm/s]&#39;</span><span class="p">)</span>
+<span class="n">ax_rr</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Range Rate  (σ = </span><span class="si">{</span><span class="n">sigma_rr</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> mm/s,  DSS-14)&#39;</span><span class="p">);</span> <span class="n">ax_rr</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_rroc</span><span class="p">,</span> <span class="n">t_rr</span><span class="p">,</span> <span class="n">res_rangerate</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">sigma_rr</span><span class="p">,</span> <span class="s1">&#39;mm/s&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Range-Rate O−C&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── opnav observed centroids ──────────────────────────────────────</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t_o</span><span class="p">)))</span>
+
+<span class="n">ax_opx</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_o</span><span class="p">,</span> <span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax_opx</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_opx</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;x centroid [px]&#39;</span><span class="p">)</span>
+<span class="n">ax_opx</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;OpNav — x centroid&#39;</span><span class="p">)</span>
+
+<span class="n">ax_opy</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_o</span><span class="p">,</span> <span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax_opy</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_opy</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y centroid [px]&#39;</span><span class="p">)</span>
+<span class="n">ax_opy</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;OpNav — y centroid&#39;</span><span class="p">)</span>
+
+<span class="n">sc</span> <span class="o">=</span> <span class="n">ax_scat</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax_scat</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x centroid [px]&#39;</span><span class="p">);</span> <span class="n">ax_scat</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y centroid [px]&#39;</span><span class="p">)</span>
+<span class="n">ax_scat</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Image-plane track  (colour = time)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_scat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;time →&#39;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+
+<span class="c1"># ── opnav O-C residuals ───────────────────────────────────────────</span>
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_oxoc</span><span class="p">,</span> <span class="n">t_o</span><span class="p">,</span> <span class="n">res_opnav</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sigma_px</span><span class="p">,</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;OpNav x O−C&#39;</span><span class="p">)</span>
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_oyoc</span><span class="p">,</span> <span class="n">t_o</span><span class="p">,</span> <span class="n">res_opnav</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">sigma_px</span><span class="p">,</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;OpNav y O−C&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_56142/550012588.py:86: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_intermediate_Measurements_22_1.png" src="../../_images/_collections_tutorials_intermediate_Measurements_22_1.png" />
+</div>
+</div>
+</section>
 
 
                 </article>
@@ -395,6 +1555,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intermediate_nPlateModel_and_Attitude.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"># N-Plate Model and Spacecraft Attitude</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="intermediate_MissionSequence_and_FiniteBurn.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"># Mission Sequence and Finite-Burn Propagation Demo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -413,7 +1591,35 @@
     <i class="fa-solid fa-list"></i> On this page
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># Measurement Simulation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#What-this-notebook-covers">What this notebook covers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Topics">Topics</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#How-to-run">How to run</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#0.-Imports-and-Setup">0. Imports and Setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Trajectories-—-True-and-Reference">1. Trajectories — True and Reference</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Sensors">2. Sensors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Ground-Stations">Ground Stations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Camera">Camera</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Measurement-Models">3. Measurement Models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Simulating-Observed-Measurements">4. Simulating Observed Measurements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Reading-Back-Observed-Measurements">5. Reading Back Observed Measurements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-Computed-Measurements-on-the-Reference-Trajectory">6. Computed Measurements on the Reference Trajectory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Partials-and-Residuals">7. Partials and Residuals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Partials-(H-matrix)">Partials (H matrix)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Residuals-(O-−-C)">Residuals (O − C)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-Measurement-Datasets">8. Measurement Datasets</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">generate_measurement_dataset</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#MeasurementSpec-—-filter-facing-API"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> — filter-facing API</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#9.-Visualization">9. Visualization</a></li>
 </ul>
 
   </nav></div>

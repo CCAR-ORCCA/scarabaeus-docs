@@ -25,6 +25,8 @@
 =======================
 :gold:`Setting Up and Using the Development Environment`
 =======================
+Last revised on 2026 MAY 28 by Z. Ellis.
+
 .. note:: The following covers setting up a development environment for Scarabaeus. If you are simply using Scarabaeus, see the :ref:`User Guide <user>`.
 
 Developers on the Scarabaeus team use a few more tools in addition to those included in the distributed package to support running tests, generating documentation, writing tutorials, and compiling source code. This document will guide a developer through setting up the development environment necessary for these tasks.
@@ -101,12 +103,10 @@ The following sections require the packages installed with the dev environment t
 -------------------------
 See :ref:`Building From Source <buildsource>`.
 
+.. _dev-commit-hooks:
 -------------------------
 :bold:`Enable Git Commit Hooks`
 -------------------------
-Jupyter Notebooks are a powerful tool for :ref:`writing tutorials <tutorialshowto>`, but they also 
-produce metadata in their cells when run that we don't want to track on git. To remove these from your commits, we use nbstripout in the git commit hooks.
-
 The first time you clone the repository or create/pull a new branch, in the terminal run:
 
 .. code-block:: console
@@ -114,3 +114,9 @@ The first time you clone the repository or create/pull a new branch, in the term
     pre-commit install
 
 This will add Scarabaeus' development hooks to your Git configuration, acting as an extra layer of quality assurance when you push a commit. If the `pre-commit` command is not found, ensure that you've installed the [Scarabaeus dev environment](#set-up-scarabaeus-dev-environment).
+
+The hooks we use are:
+
+- :bold:`nbstripout:` Jupyter Notebooks are a powerful tool for :ref:`writing tutorials <tutorialshowto>`, but they also produce metadata 
+  in their cells when run that we don't want to track on git. We use nbstripout to automate this removal.
+- :bold:`reuse:` We use reuse to ensure that all files committed to the repository are `SPDX compliant <https://spdx.dev/about/overview/>`_.

@@ -739,7 +739,7 @@ in the next leg’s <a class="reference internal" href="statearray.html#scarabae
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.addNode" title="scarabaeus.MissionSequence.addNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addNode</span></code></a>(name, prop)</p></td>
 <td><p>Adds a zero-duration node to the mission sequence.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.propagate" title="scarabaeus.MissionSequence.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>([map_STM_to_t0])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MissionSequence.propagate" title="scarabaeus.MissionSequence.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>([map_STM_to_t0, verbose])</p></td>
 <td><p>Propagate the mission sequence and return the resulting scenario.</p></td>
 </tr>
 </tbody>
@@ -906,7 +906,7 @@ getting an opaque <code class="docutils literal notranslate"><span class="pre">N
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.MissionSequence.propagate">
-<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_STM_to_t0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="scenariosetup.html#scarabaeus.ScenarioSetup" title="scarabaeus.ScenarioSetup"><span class="pre">ScenarioSetup</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.propagate" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_STM_to_t0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="scenariosetup.html#scarabaeus.ScenarioSetup" title="scarabaeus.ScenarioSetup"><span class="pre">ScenarioSetup</span></a></span></span><a class="headerlink" href="#scarabaeus.MissionSequence.propagate" title="Link to this definition">#</a></dt>
 <dd><p>Propagate the mission sequence and return the resulting scenario.</p>
 <p>Creates a <a class="reference internal" href="scenariosetup.html#scarabaeus.ScenarioSetup" title="scarabaeus.ScenarioSetup"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a> from this sequence, runs propagation
 through all legs and burns, and returns the populated scenario object.
@@ -914,11 +914,15 @@ This is the recommended entry point for propagation — it avoids the
 need to instantiate <a class="reference internal" href="scenariosetup.html#scarabaeus.ScenarioSetup" title="scarabaeus.ScenarioSetup"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a> directly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>map_STM_to_t0</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the State Transition Matrix is mapped continuously
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map_STM_to_t0</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the State Transition Matrix is mapped continuously
 from the initial epoch <code class="docutils literal notranslate"><span class="pre">t0</span></code> across all legs, so that the STM
 at any epoch represents sensitivity to the global initial state.
 If <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), the STM is reset to identity at each leg
-boundary, representing only within-leg sensitivity.</p>
+boundary, representing only within-leg sensitivity.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), print segment progress and initial-condition
+summaries during propagation. Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to silence all output.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>scenario</strong> – The propagated scenario, with <code class="docutils literal notranslate"><span class="pre">total_position</span></code>, <code class="docutils literal notranslate"><span class="pre">total_velocity</span></code>,
@@ -934,6 +938,7 @@ and <code class="docutils literal notranslate"><span class="pre">STM</span></cod
 <span class="n">traj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="s2">&quot;traj.bsp&quot;</span><span class="p">,</span> <span class="n">leg_array</span><span class="o">=</span><span class="n">scenario</span><span class="p">)</span>
 
 <span class="n">scenario</span> <span class="o">=</span> <span class="n">MS</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">map_STM_to_t0</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">scenario</span> <span class="o">=</span> <span class="n">MS</span><span class="o">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

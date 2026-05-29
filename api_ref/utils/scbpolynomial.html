@@ -56,6 +56,8 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/utils/scbpolynomial';</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
@@ -625,21 +627,38 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Lightweight polynomial wrapper for time-varying scalar profiles.</p>
 <p>Stores coefficients in ascending order (lowest to highest degree) and
-optionally enforces a validity domain <code class="docutils literal notranslate"><span class="pre">[t0,</span> <span class="pre">tf]</span></code>.  Designed as a drop-in
-replacement for <code class="docutils literal notranslate"><span class="pre">numpy.polynomial.Polynomial</span></code> without the autograd
-incompatibilities.</p>
+optionally enforces a validity domain <span class="math notranslate nohighlight">\([t_0, t_f]\)</span>.  Designed as a
+drop-in replacement for <code class="docutils literal notranslate"><span class="pre">numpy.polynomial.Polynomial</span></code> without its
+autograd incompatibilities.</p>
+<p>Given coefficients <span class="math notranslate nohighlight">\([a_0, a_1, \ldots, a_n]\)</span>, the polynomial is</p>
+<div class="math notranslate nohighlight">
+\[p(t) = a_0 + a_1\,t + a_2\,t^2 + \cdots + a_n\,t^n
+     = \sum_{k=0}^{n} a_k\,t^k\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>coefficients</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array-like</span></code>) – Polynomial coefficients <code class="docutils literal notranslate"><span class="pre">[a0,</span> <span class="pre">a1,</span> <span class="pre">…,</span> <span class="pre">an]</span></code> where the polynomial
-evaluates as <code class="docutils literal notranslate"><span class="pre">a0</span> <span class="pre">+</span> <span class="pre">a1*t</span> <span class="pre">+</span> <span class="pre">a2*t²</span> <span class="pre">+</span> <span class="pre">…</span> <span class="pre">+</span> <span class="pre">an*tⁿ</span></code>.</p></li>
-<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">(t0,</span> <span class="pre">tf)</span></code> bounding the valid evaluation range.  Calls outside
-this range raise <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p></li>
+<li><p><strong>coefficients</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array-like</span></code>) – Polynomial coefficients <code class="docutils literal notranslate"><span class="pre">[a0,</span> <span class="pre">a1,</span> <span class="pre">…,</span> <span class="pre">an]</span></code> in ascending degree order.</p></li>
+<li><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">(t0,</span> <span class="pre">tf)</span></code> bounding the valid evaluation range.  Evaluation outside
+this range raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><a class="reference internal" href="#scarabaeus.SCBPolynomial.deg" title="scarabaeus.SCBPolynomial.deg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deg</span></code></a></dt><dd><p>Degree of the polynomial (number of coefficients minus one).</p>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.polynomial.Polynomial</span></code></dt><dd><p>Standard NumPy polynomial (autograd-incompatible).</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<p>Press, W. H.; Teukolsky, S. A.; Vetterling, W. T.; Flannery, B. P. (2007).
+<em>Numerical Recipes: The Art of Scientific Computing</em> (3rd ed.).
+Cambridge University Press.
+ISBN 978-0521880688.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="#scarabaeus.SCBPolynomial.deg" title="scarabaeus.SCBPolynomial.deg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deg</span></code></a></dt><dd><p>Degree <span class="math notranslate nohighlight">\(n\)</span> of the polynomial (number of coefficients minus one).</p>
 </dd>
 </dl>
 </dd>
@@ -648,13 +667,13 @@ this range raise <code class="docutils literal notranslate"><span class="pre">Va
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code>(t)</p></td>
-<td><p>Evaluate the polynomial at the given time t.</p></td>
+<td><p>Evaluate <span class="math notranslate nohighlight">\(p(t) = \sum_{k=0}^{n} a_k\,t^k\)</span>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SCBPolynomial.convert" title="scarabaeus.SCBPolynomial.convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert</span></code></a>(domain)</p></td>
-<td><p>Return a copy of the polynomial with updated domain.</p></td>
+<td><p>Return a copy of this polynomial with a new validity domain.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SCBPolynomial.derivative" title="scarabaeus.SCBPolynomial.derivative"><code class="xref py py-obj docutils literal notranslate"><span class="pre">derivative</span></code></a>()</p></td>
-<td><p>Return the derivative of the polynomial as a new SCBPolynomial.</p></td>
+<td><p>Return the first derivative <span class="math notranslate nohighlight">\(p'(t)\)</span> as a new polynomial.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SCBPolynomial.fit" title="scarabaeus.SCBPolynomial.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(t_array, y_array, deg[, domain])</p></td>
 <td><p>Fit a polynomial of degree <cite>deg</cite> to the given data.</p></td>
@@ -663,7 +682,7 @@ this range raise <code class="docutils literal notranslate"><span class="pre">Va
 <td><p>Alias for <a class="reference internal" href="#scarabaeus.SCBPolynomial.fit" title="scarabaeus.SCBPolynomial.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SCBPolynomial.integrate" title="scarabaeus.SCBPolynomial.integrate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">integrate</span></code></a>(a, b)</p></td>
-<td><p>Compute the definite integral of the polynomial from a to b.</p></td>
+<td><p>Compute the definite integral of <span class="math notranslate nohighlight">\(p(t)\)</span> over <span class="math notranslate nohighlight">\([a, b]\)</span>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -715,19 +734,48 @@ this range raise <code class="docutils literal notranslate"><span class="pre">Va
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SCBPolynomial.convert">
 <span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SCBPolynomial.convert" title="Link to this definition">#</a></dt>
-<dd><p>Return a copy of the polynomial with updated domain.</p>
+<dd><p>Return a copy of this polynomial with a new validity domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>domain</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – New <code class="docutils literal notranslate"><span class="pre">(t0,</span> <span class="pre">tf)</span></code> interval to enforce.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>poly</strong> – A shallow copy sharing the same coefficients but with <em>domain</em>
+replacing the original.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.SCBPolynomial" title="scarabaeus.SCBPolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SCBPolynomial.derivative">
 <span class="sig-name descname"><span class="pre">derivative</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SCBPolynomial.derivative" title="Link to this definition">#</a></dt>
-<dd><p>Return the derivative of the polynomial as a new SCBPolynomial.</p>
+<dd><p>Return the first derivative <span class="math notranslate nohighlight">\(p'(t)\)</span> as a new polynomial.</p>
+<p>Applies the power rule coefficient-wise:</p>
+<div class="math notranslate nohighlight">
+\[p'(t) = a_1 + 2\,a_2\,t + \cdots + n\,a_n\,t^{n-1}
+      = \sum_{k=1}^{n} k\,a_k\,t^{k-1}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dpoly</strong> – Degree-<span class="math notranslate nohighlight">\((n-1)\)</span> polynomial representing <span class="math notranslate nohighlight">\(p'(t)\)</span>,
+inheriting the same <em>domain</em>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#scarabaeus.SCBPolynomial" title="scarabaeus.SCBPolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SCBPolynomial.integrate">
 <span class="sig-name descname"><span class="pre">integrate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#scarabaeus.SCBPolynomial.integrate" title="Link to this definition">#</a></dt>
-<dd><p>Compute the definite integral of the polynomial from a to b.</p>
+<dd><p>Compute the definite integral of <span class="math notranslate nohighlight">\(p(t)\)</span> over <span class="math notranslate nohighlight">\([a, b]\)</span>.</p>
+<p>Constructs the antiderivative</p>
+<div class="math notranslate nohighlight">
+\[P(t) = \sum_{k=0}^{n} \frac{a_k}{k+1}\,t^{k+1}\]</div>
+<p>and returns <span class="math notranslate nohighlight">\(P(b) - P(a)\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -736,7 +784,7 @@ this range raise <code class="docutils literal notranslate"><span class="pre">Va
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Value of the definite integral over [a, b].</p>
+<dd class="field-even"><p><strong>integral</strong> – Value of <span class="math notranslate nohighlight">\(\int_a^b p(t)\,\mathrm{d}t\)</span>.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
@@ -747,7 +795,7 @@ this range raise <code class="docutils literal notranslate"><span class="pre">Va
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.SCBPolynomial.deg">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">deg</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.SCBPolynomial.deg" title="Link to this definition">#</a></dt>
-<dd><p>Degree of the polynomial (number of coefficients minus one).</p>
+<dd><p>Degree <span class="math notranslate nohighlight">\(n\)</span> of the polynomial (number of coefficients minus one).</p>
 </dd></dl>
 
 </dd></dl>

@@ -7,16 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist" />
+<meta property="og:title" content="B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/intermediate_BPlane.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="This notebook demonstrates a B-plane targeting workflow using the OSIRIS-REx 2017 Earth gravity assist. The workflow is: Load the required SPICE kernels., Define the closest-approach and TCM epochs., Build a B-plane object for the Earth encounter., Compute the reference B-plane target., Inject a navigation error at the TCM epoch., Compute corrective TCMs using linear and nonlinear targeting., Map state covariance into B-plane uncertainty.. Imports: Import Scarabaeus, NumPy, and set up the hel..." />
+<meta property="og:description" content="This notebook demonstrates a complete B-plane targeting workflow using the real OSIRIS-REx interplanetary SPICE kernels from the 2017 Earth gravity assist. Workflow,, Step, Section,,, 1, Load SPICE kernels and define epochs (TCM + closest approach),, 2, Retrieve the reference OSIRIS-REx state relative to Earth in J2000,, 3, Build a Bplane object and compute the reference target (B·T, B·R, ltof*),, 4, Inject a representative cruise navigation error,, 5, Recover the target via linear targeting ..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="This notebook demonstrates a B-plane targeting workflow using the OSIRIS-REx 2017 Earth gravity assist. The workflow is: Load the required SPICE kernels., Define the closest-approach and TCM epochs., Build a B-plane object for the Earth encounter., Compute the reference B-plane target., Inject a navigation error at the TCM epoch., Compute corrective TCMs using linear and nonlinear targeting., Map state covariance into B-plane uncertainty.. Imports: Import Scarabaeus, NumPy, and set up the hel..." />
+<meta name="description" content="This notebook demonstrates a complete B-plane targeting workflow using the real OSIRIS-REx interplanetary SPICE kernels from the 2017 Earth gravity assist. Workflow,, Step, Section,,, 1, Load SPICE kernels and define epochs (TCM + closest approach),, 2, Retrieve the reference OSIRIS-REx state relative to Earth in J2000,, 3, Build a Bplane object and compute the reference target (B·T, B·R, ltof*),, 4, Inject a representative cruise navigation error,, 5, Recover the target via linear targeting ..." />
 
-    <title>B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist &#8212; Scarabaeus  documentation</title>
+    <title>B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -66,6 +66,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="# Batch Orbit Determination — Complete Demo" href="advanced_IdealMSR_BatchOD.html" />
+    <link rel="prev" title="# Mission Sequence and Finite-Burn Propagation Demo" href="intermediate_MissionSequence_and_FiniteBurn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -164,7 +166,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
@@ -248,10 +250,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -280,7 +280,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
@@ -329,6 +329,263 @@
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Synthetic Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
@@ -367,7 +624,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist</span></li>
+    
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Tutorials</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</span></li>
   </ul>
 </nav>
 </div>
@@ -384,85 +644,98 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="B-plane-Targeting-Demo:-OSIRIS-REx-2017-Earth-Gravity-Assist">
-<h1>B-plane Targeting Demo: OSIRIS-REx 2017 Earth Gravity Assist<a class="headerlink" href="#B-plane-Targeting-Demo:-OSIRIS-REx-2017-Earth-Gravity-Assist" title="Link to this heading">#</a></h1>
-<p>This notebook demonstrates a B-plane targeting workflow using the OSIRIS-REx 2017 Earth gravity assist.</p>
-<p>The workflow is:</p>
-<ol class="arabic simple">
-<li><p>Load the required SPICE kernels.</p></li>
-<li><p>Define the closest-approach and TCM epochs.</p></li>
-<li><p>Build a B-plane object for the Earth encounter.</p></li>
-<li><p>Compute the reference B-plane target.</p></li>
-<li><p>Inject a navigation error at the TCM epoch.</p></li>
-<li><p>Compute corrective TCMs using linear and nonlinear targeting.</p></li>
-<li><p>Map state covariance into B-plane uncertainty.</p></li>
-</ol>
-<section id="Imports">
-<h2>Imports<a class="headerlink" href="#Imports" title="Link to this heading">#</a></h2>
-<p>Import Scarabaeus, NumPy, and set up the helper path used by the tutorial data loader.</p>
-<div class="nbinput nblast docutils container">
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="B-Plane-Targeting:-OSIRIS-REx-2017-Earth-Gravity-Assist">
+<h1>B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist<a class="headerlink" href="#B-Plane-Targeting:-OSIRIS-REx-2017-Earth-Gravity-Assist" title="Link to this heading">#</a></h1>
+<p>This notebook demonstrates a complete B-plane targeting workflow using the real OSIRIS-REx interplanetary SPICE kernels from the 2017 Earth gravity assist.</p>
+<p><strong>Workflow</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>Section</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Load SPICE kernels and define epochs (TCM + closest approach)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Retrieve the reference OSIRIS-REx state relative to Earth in J2000</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Build a <code class="docutils literal notranslate"><span class="pre">Bplane</span></code> object and compute the reference target (B·T<em>, B·R</em>, ltof*)</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Inject a representative cruise navigation error</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Recover the target via <strong>linear</strong> targeting (Newton / Jacobian iteration)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Recover the target via <strong>nonlinear</strong> targeting (Nelder-Mead optimiser)</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Compare the two TCM solutions</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Map the state covariance into B-plane uncertainty and plot the ellipse</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="0.-Imports-and-Setup">
+<h2>0. Imports and Setup<a class="headerlink" href="#0.-Imports-and-Setup" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
 
-<span class="c1"># Make the tutorials helper module importable both from scripts and notebooks.</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">NOTEBOOK_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-    <span class="n">NOTEBOOK_DIR</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="c1"># load tutorial data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">NOTEBOOK_DIR</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;..&quot;</span> <span class="o">/</span> <span class="s2">&quot;tutorials&quot;</span><span class="p">))</span>
+<span class="c1"># define units and frame</span>
+<span class="n">km</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">])</span>
+<span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">)</span>
+
+<span class="c1"># load kernels</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">OREx_real_data_mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data up to date.
+</pre></div></div>
+</div>
 </section>
-<section id="Setup-and-SPICE-kernels">
-<h2>Setup and SPICE kernels<a class="headerlink" href="#Setup-and-SPICE-kernels" title="Link to this heading">#</a></h2>
-<p>Load the tutorial data and the SPICE kernels required for the OSIRIS-REx Earth flyby example.</p>
+<section id="1.-Mission-Epochs">
+<h2>1. Mission Epochs<a class="headerlink" href="#1.-Mission-Epochs" title="Link to this heading">#</a></h2>
+<p>OSIRIS-REx performed its Earth gravity assist on <strong>2017-Sep-22 ~16:52 UTC</strong>. The trajectory correction manoeuvre (TCM) epoch is set 30 days before closest approach.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">km</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Closest approach: 2017-SEP-22  ~16:52 UTC</span>
+<span class="c1"># TCM epoch       : 30 days prior</span>
+<span class="n">time_ca</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s2">&quot;2017-SEP-22 16:52:00.000 UTC&quot;</span><span class="p">)</span>
+<span class="n">time_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s2">&quot;2017-AUG-23 00:00:00.000 UTC&quot;</span><span class="p">)</span>
 
-<span class="c1"># Load spice kernels</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+<span class="n">epoch_ca</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_ca</span><span class="p">,</span>  <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">epoch_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_tcm</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">find_repo_root</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">start</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
-
-    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="o">*</span><span class="n">start</span><span class="o">.</span><span class="n">parents</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;pyproject.toml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="s2">&quot;.git&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">path</span>
-
-    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Could not find repo root from current notebook path.&quot;</span><span class="p">)</span>
-
-<span class="n">ROOT</span> <span class="o">=</span> <span class="n">find_repo_root</span><span class="p">()</span>
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">&quot;data&quot;</span>
-
-<span class="k">assert</span> <span class="n">DATA_DIR</span><span class="o">.</span><span class="n">exists</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">&quot;Data folder not found at </span><span class="si">{</span><span class="n">DATA_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
-
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
-
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;kernels&quot;</span> <span class="o">/</span> <span class="s2">&quot;locked&quot;</span> <span class="o">/</span> <span class="s2">&quot;locked_generic.tm&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">/</span> <span class="s2">&quot;kernels&quot;</span> <span class="o">/</span> <span class="s2">&quot;scenario&quot;</span> <span class="o">/</span> <span class="s2">&quot;orx_160909_171201_170830_od023_v1.bsp&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">print_kernels</span><span class="p">()</span>
+<span class="n">dt_days</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_ca</span> <span class="o">-</span> <span class="n">time_tcm</span><span class="p">)</span> <span class="o">/</span> <span class="mi">86400</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Closest-approach epoch : </span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">time_ca</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TCM epoch              : </span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">time_tcm</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time from TCM to C/A   : </span><span class="si">{</span><span class="n">dt_days</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> days&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -471,94 +744,108 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB tutorial data up to date.
-================================================================================
-                                 Kernels Loaded:
-================================================================================
-Source:   /Users/zael5647/scarabaeus/data/kernels/locked/locked_generic.tm   (META)
-Source:   data/kernels/locked/ck/cas00084.tsc   (TEXT)
-Source:   data/kernels/locked/lsk/naif0012.tls   (TEXT)
-Source:   data/kernels/locked/spk/de432s.bsp   (SPK)
-Source:   data/kernels/locked/pck/pck00010.tpc   (TEXT)
-Source:   data/kernels/locked/pck/gm_de431.tpc   (TEXT)
-Source:   data/kernels/locked/spk/earthstns_fx_201023.bsp   (SPK)
-Source:   data/kernels/locked/spk/earth_200101_990628_predict.bpc   (PCK)
-Source:   data/kernels/locked/spk/earth_topo_201023.tf   (TEXT)
-Source:   /Users/zael5647/scarabaeus/data/kernels/scenario/orx_160909_171201_170830_od023_v1.bsp   (SPK)
+Closest-approach epoch : 2017-09-22T16:52:00.000000
+TCM epoch              : 2017-08-23T00:00:00.000000
+Time from TCM to C/A   : 30.70 days
 </pre></div></div>
 </div>
 </section>
-<section id="Epoch-definition">
-<h2>Epoch definition<a class="headerlink" href="#Epoch-definition" title="Link to this heading">#</a></h2>
-<p>Define the closest-approach epoch and a TCM epoch roughly 30 days before closest approach.</p>
-<div class="nbinput nblast docutils container">
+<section id="2.-Reference-State-at-the-TCM-Epoch">
+<h2>2. Reference State at the TCM Epoch<a class="headerlink" href="#2.-Reference-State-at-the-TCM-Epoch" title="Link to this heading">#</a></h2>
+<p>Query the OSIRIS-REx state (SPICE ID <strong>-64</strong>) relative to the Earth barycentre (<strong>ID 3</strong>) in J2000 at the TCM epoch. This is the “clean” nominal trajectory from which the B-plane target is defined.</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Closest approach: 2017-SEP-22  ~16:52 UTC</span>
-<span class="c1">#     TCM epoch:        30 days prior</span>
-<span class="c1"># =======================================================</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_ref_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span>
+    <span class="n">trgt_bdy</span>       <span class="o">=</span> <span class="s2">&quot;-64&quot;</span><span class="p">,</span>
+    <span class="n">epoch_time</span>     <span class="o">=</span> <span class="n">epoch_tcm</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">reference_frame</span><span class="o">=</span> <span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
+    <span class="n">obsvr_bdy</span>      <span class="o">=</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="n">time_ca</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s2">&quot;2017-SEP-22 16:52:00.000 UTC&quot;</span><span class="p">)</span>
-<span class="n">time_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s2">&quot;2017-AUG-23 00:00:00.000 UTC&quot;</span><span class="p">)</span>
-
-<span class="n">epoch_ca</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_ca</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
-<span class="n">epoch_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_tcm</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">pos_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">state_ref_tcm</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">vel_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">state_ref_tcm</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference position  [km]   : </span><span class="si">{</span><span class="n">pos_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference velocity  [km/s] : </span><span class="si">{</span><span class="n">vel_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;|r| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">pos_ref</span><span class="p">)</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2"> km   |v| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vel_ref</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> km/s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reference position  [km]   : [17731688.93064772  1001193.75749685   632957.29574122]
+Reference velocity  [km/s] : [-7.45175201  0.13743609 -0.02286813]
+|r| = 1.777e+07 km   |v| = 7.4531 km/s
+</pre></div></div>
+</div>
 </section>
-<section id="Reference-state-at-the-TCM-epoch">
-<h2>Reference state at the TCM epoch<a class="headerlink" href="#Reference-state-at-the-TCM-epoch" title="Link to this heading">#</a></h2>
-<p>Load the reference OSIRIS-REx state relative to the Earth barycenter in J2000.</p>
-<div class="nbinput nblast docutils container">
+<section id="3.-B-Plane-Object">
+<h2>3. B-Plane Object<a class="headerlink" href="#3.-B-Plane-Object" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Bplane.__init__</span></code> does three things automatically:</p>
+<ol class="arabic simple">
+<li><p><strong>Writes a SPICE frame-kernel (``.tf``) file</strong> — <code class="docutils literal notranslate"><span class="pre">fk_file</span></code> is a plain-text file that registers a new named SPICE frame (<code class="docutils literal notranslate"><span class="pre">OREX_EARTH_BPLANE</span></code>) in the kernel pool. This lets SPICE rotate any vector into the B-plane coordinate system on demand. The file is written (or overwritten) every time a <code class="docutils literal notranslate"><span class="pre">Bplane</span></code> object is created with <code class="docutils literal notranslate"><span class="pre">new_bplane=True</span></code>.</p></li>
+<li><p><strong>Computes and stores the reference aimpoint at construction time</strong> — immediately after loading the frame, it calls <code class="docutils literal notranslate"><span class="pre">SpiceManager.get_state</span></code> to retrieve the SPICE trajectory of OSIRIS-REx relative to Earth at the TCM epoch, then runs <code class="docutils literal notranslate"><span class="pre">compute_hyperbolic_parameters</span></code> on that state. The resulting (B·T*, B·R*, ltof*) triple is stored internally as <code class="docutils literal notranslate"><span class="pre">_bt_ref</span></code>, <code class="docutils literal notranslate"><span class="pre">_br_ref</span></code>, <code class="docutils literal notranslate"><span class="pre">_ltof_ref</span></code>. <strong>No separate “set target” step is needed</strong> — every call to <code class="docutils literal notranslate"><span class="pre">linear_targeting</span></code> or
+<code class="docutils literal notranslate"><span class="pre">nonlinear_targeting</span></code> will automatically aim for these values.</p></li>
+</ol>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =======================================================</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tut_result_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;tutorial_results/bplane&#39;</span>
+<span class="n">tut_result_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">bplane_path</span> <span class="o">=</span> <span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;OREX_EARTH_bplane.tf&#39;</span>
+<span class="k">if</span> <span class="n">bplane_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span> <span class="n">bplane_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 
-<span class="n">state_ref_tcm</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span>
-    <span class="n">trgt_bdy</span><span class="o">=</span><span class="s2">&quot;-64&quot;</span><span class="p">,</span>
-    <span class="n">epoch_time</span><span class="o">=</span><span class="n">epoch_tcm</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-    <span class="n">reference_frame</span><span class="o">=</span><span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
-    <span class="n">obsvr_bdy</span><span class="o">=</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
+<span class="n">BplaneObj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Bplane</span><span class="p">(</span>
+    <span class="n">epoch</span>          <span class="o">=</span> <span class="n">epoch_tcm</span><span class="p">,</span>
+    <span class="n">bplane_name</span>    <span class="o">=</span> <span class="s2">&quot;OREX_EARTH_BPLANE&quot;</span><span class="p">,</span>
+    <span class="n">bplane_spice_id</span><span class="o">=</span> <span class="mi">12345678</span><span class="p">,</span>
+    <span class="n">sc_name</span>        <span class="o">=</span> <span class="s2">&quot;OSIRIS-REx&quot;</span><span class="p">,</span>
+    <span class="n">sc_spice_id</span>    <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">target_name</span>    <span class="o">=</span> <span class="s2">&quot;EARTHBARYCENTER&quot;</span><span class="p">,</span>
+    <span class="n">target_spice_id</span><span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">fk_file</span>        <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bplane_path</span><span class="p">),</span>
+    <span class="n">v_hat</span>          <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">new_bplane</span>     <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">scenario_kernel_dir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span><span class="p">)</span>
 <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;B-plane object created.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+B-plane object created.
+</pre></div></div>
+</div>
 </section>
-<section id="Construct-the-B-plane-object">
-<h2>Construct the B-plane object<a class="headerlink" href="#Construct-the-B-plane-object" title="Link to this heading">#</a></h2>
-<p>Create the B-plane object associated with the Earth encounter. This object handles the B-plane frame and targeting utilities.</p>
+<section id="4.-Reference-B-plane-Target">
+<h2>4. Reference B-plane Target<a class="headerlink" href="#4.-Reference-B-plane-Target" title="Link to this heading">#</a></h2>
+<p>Compute (B·T<em>, B·R</em>, ltof*) from the clean reference state. These are the desired values that any corrective TCM must recover.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Built from the clean reference state → bpar_ref is</span>
-<span class="c1">#     the desired target the TCM must recover.</span>
-<span class="c1"># =======================================================</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpar_ref</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_ref_tcm</span><span class="p">)</span>
 
-<span class="n">bplane_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/data/kernels/OREX_EARTH_bplane.tf&quot;</span>
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">bplane_file</span><span class="p">):</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">bplane_file</span><span class="p">)</span>
+<span class="n">BT_ref</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">BR_ref</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ltof_ref</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 
-<span class="n">BplaneObj</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Bplane</span><span class="p">(</span>
-    <span class="n">epoch</span><span class="o">=</span><span class="n">epoch_tcm</span><span class="p">,</span>
-    <span class="n">bplane_name</span><span class="o">=</span><span class="s2">&quot;OREX_EARTH_BPLANE&quot;</span><span class="p">,</span>
-    <span class="n">bplane_spice_id</span><span class="o">=</span><span class="mi">12345678</span><span class="p">,</span>
-    <span class="n">sc_name</span><span class="o">=</span><span class="s2">&quot;OSIRIS-REx&quot;</span><span class="p">,</span>
-    <span class="n">sc_spice_id</span><span class="o">=-</span><span class="mi">64</span><span class="p">,</span>
-    <span class="n">target_name</span><span class="o">=</span><span class="s2">&quot;EARTHBARYCENTER&quot;</span><span class="p">,</span>
-    <span class="n">target_spice_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">fk_file</span><span class="o">=</span><span class="n">bplane_file</span><span class="p">,</span>
-    <span class="n">v_hat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">new_bplane</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  B-plane targeting demo  —  OSIRIS-REx Earth gravity assist 2017&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [TARGET]  Reference B-plane parameters&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·T*  = </span><span class="si">{</span><span class="n">BT_ref</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·R*  = </span><span class="si">{</span><span class="n">BR_ref</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |B|   = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">BT_ref</span><span class="p">,</span><span class="w"> </span><span class="n">BR_ref</span><span class="p">])</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  km  (miss-distance proxy)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ltof* = </span><span class="si">{</span><span class="n">ltof_ref</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  s  (</span><span class="si">{</span><span class="n">ltof_ref</span><span class="o">/</span><span class="mi">86400</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> days to C/A)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -567,32 +854,71 @@ Source:   /Users/zael5647/scarabaeus/data/kernels/scenario/orx_160909_171201_170
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-################################################################################
-  B-plane targeting demo  —  OSIRIS-REx Earth gravity assist 2017
-################################################################################
+───────────────────────────────────────────────────────
+  [TARGET]  Reference B-plane parameters
+───────────────────────────────────────────────────────
+  B·T*  =    1328001.604  km
+  B·R*  =    -578614.263  km
+  |B|   =    1448579.555  km  (miss-distance proxy)
+  ltof* =   -2376484.777  s  (-27.51 days to C/A)
 </pre></div></div>
 </div>
 </section>
-<section id="Reference-B-plane-target">
-<h2>Reference B-plane target<a class="headerlink" href="#Reference-B-plane-target" title="Link to this heading">#</a></h2>
-<p>Compute the desired B-plane parameters from the clean reference trajectory.</p>
+<section id="5.-Navigation-Error-Injection">
+<h2>5. Navigation Error Injection<a class="headerlink" href="#5.-Navigation-Error-Injection" title="Link to this heading">#</a></h2>
+<p>Perturb the reference state with a representative cruise-phase OD error:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>1-σ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Position</p></td>
+<td><p>10 km</p></td>
+</tr>
+<tr class="row-odd"><td><p>Velocity</p></td>
+<td><p>1 cm/s (10⁻⁵ km/s)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A single random draw from these distributions is added to the reference state to simulate a “wrong” trajectory at the TCM epoch.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpar_ref</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_ref_tcm</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">pos_1sigma</span> <span class="o">=</span> <span class="mf">10.0</span>    <span class="c1"># km</span>
+<span class="n">vel_1sigma</span> <span class="o">=</span> <span class="mf">1e-5</span>    <span class="c1"># km/s</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[TARGET]  Desired B-plane parameters (reference trajectory):&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·T*  = </span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·R*  = </span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;  |B|   = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km  (miss distance proxy)&quot;</span>
+<span class="n">nav_error</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+        <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+        <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+        <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+        <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+        <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
+    <span class="p">]),</span>
+    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">],</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;  ltof* = </span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  s  &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">86400</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> days to closest approach)&quot;</span>
-<span class="p">)</span>
+
+<span class="n">state_pert_tcm</span> <span class="o">=</span> <span class="n">state_ref_tcm</span> <span class="o">+</span> <span class="n">nav_error</span>
+<span class="n">bpar_pert</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
+
+<span class="n">BT_pert</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">BR_pert</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ltof_pert</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [PERTURBED]  B-plane parameters after navigation error&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·T  = </span><span class="si">{</span><span class="n">BT_pert</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  km   (error: </span><span class="si">{</span><span class="n">BT_pert</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">BT_ref</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> km)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B·R  = </span><span class="si">{</span><span class="n">BR_pert</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  km   (error: </span><span class="si">{</span><span class="n">BR_pert</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">BR_ref</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> km)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ltof = </span><span class="si">{</span><span class="n">ltof_pert</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  s    (error: </span><span class="si">{</span><span class="n">ltof_pert</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ltof_ref</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> s)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |B|  = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">BT_pert</span><span class="p">,</span><span class="w"> </span><span class="n">BR_pert</span><span class="p">])</span><span class="si">:</span><span class="s2">&gt;14.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  B-plane miss from target: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">BT_pert</span><span class="o">-</span><span class="n">BT_ref</span><span class="p">,</span><span class="w"> </span><span class="n">BR_pert</span><span class="o">-</span><span class="n">BR_ref</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -601,63 +927,48 @@ Source:   /Users/zael5647/scarabaeus/data/kernels/scenario/orx_160909_171201_170
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-[TARGET]  Desired B-plane parameters (reference trajectory):
-  B·T*  =      1328001.381  km
-  B·R*  =      -578613.927  km
-  |B|   =      1448579.215  km  (miss distance proxy)
-  ltof* =     -2376484.783  s  (-27.51 days to closest approach)
+─────────────────────────────────────────────────────────────────
+  [PERTURBED]  B-plane parameters after navigation error
+─────────────────────────────────────────────────────────────────
+  B·T  =    1327978.691  km   (error: -22.914 km)
+  B·R  =    -578614.557  km   (error: -0.294 km)
+  ltof =   -2376488.402  s    (error: -3.625 s)
+  |B|  =    1448558.666  km
+  B-plane miss from target: 22.916 km
 </pre></div></div>
 </div>
 </section>
-<section id="Inject-a-navigation-error">
-<h2>Inject a navigation error<a class="headerlink" href="#Inject-a-navigation-error" title="Link to this heading">#</a></h2>
-<p>Perturb the reference state with a representative cruise OD error and inspect the resulting B-plane miss.</p>
+<section id="6.-Linear-Targeting">
+<h2>6. Linear Targeting<a class="headerlink" href="#6.-Linear-Targeting" title="Link to this heading">#</a></h2>
+<p>Compute a corrective TCM using the local B-plane Jacobian (Newton iteration). The method linearises the B-plane mapping around the perturbed state and solves for the minimum-ΔV velocity correction.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Realistic 1-sigma OD uncertainty for deep-space cruise:</span>
-<span class="c1">#       position  ~ 10 km</span>
-<span class="c1">#       velocity  ~ 1 cm/s  (1e-5 km/s)</span>
-<span class="c1"># =======================================================</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DV_lin</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">linear_targeting</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">pos_1sigma</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># km</span>
-<span class="n">vel_1sigma</span> <span class="o">=</span> <span class="mf">1e-5</span>  <span class="c1"># km/s</span>
-
-<span class="n">nav_error</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
-            <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
-            <span class="n">pos_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
-            <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
-            <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
-            <span class="n">vel_1sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span>
-        <span class="p">]</span>
-    <span class="p">),</span>
-    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">],</span>
+<span class="n">state_corr_lin</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+        <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="p">]),</span>
+    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">],</span>
 <span class="p">)</span>
+<span class="n">bpar_corr_lin</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_hyperbolic_parameters</span><span class="p">(</span><span class="n">state_corr_lin</span><span class="p">)</span>
 
-<span class="n">state_pert_tcm</span> <span class="o">=</span> <span class="n">state_ref_tcm</span> <span class="o">+</span> <span class="n">nav_error</span>
+<span class="n">BT_lin</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">BR_lin</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">dv_lin_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e3</span>   <span class="c1"># m/s</span>
 
-<span class="n">bpar_pert</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[PERTURBED]  B-plane parameters after navigation error:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;  B·T   = </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km   &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;(error: </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> km)&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;  B·R   = </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km   &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;(error: </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> km)&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;  ltof  = </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  s    &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;(error: </span><span class="si">{</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2"> s)&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |B|   = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">bpar_pert</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s2">&gt;16.3f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [LINEAR TCM]  Newton iteration on Jacobian&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  TCM ΔV  = [</span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">]  km/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV|   =  </span><span class="si">{</span><span class="n">dv_lin_m</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Post-TCM residuals:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    ΔB·T  = </span><span class="si">{</span><span class="n">BT_lin</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">BT_ref</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    ΔB·R  = </span><span class="si">{</span><span class="n">BR_lin</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">BR_ref</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Δltof = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ltof_ref</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -666,48 +977,50 @@ Source:   /Users/zael5647/scarabaeus/data/kernels/scenario/orx_160909_171201_170
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-[PERTURBED]  B-plane parameters after navigation error:
-  B·T   =      1327978.467  km   (error: -22.914 km)
-  B·R   =      -578614.221  km   (error: -0.294 km)
-  ltof  =     -2376488.408  s    (error: -3.625 s)
-  |B|   =      1448558.326  km
+linear_targeting converged in 2 iterations. Residual = 4.657e-10
+─────────────────────────────────────────────────────────────────
+  [LINEAR TCM]  Newton iteration on Jacobian
+─────────────────────────────────────────────────────────────────
+  TCM ΔV  = [-0.00001119,  +0.00000985,  -0.00000016]  km/s
+  |ΔV|   =  0.014908  m/s
+  Post-TCM residuals:
+    ΔB·T  = +5.37e+02  km
+    ΔB·R  = -2.34e+02  km
+    Δltof = +0.00e+00  s
 </pre></div></div>
 </div>
 </section>
-<section id="Linear-targeting">
-<h2>Linear targeting<a class="headerlink" href="#Linear-targeting" title="Link to this heading">#</a></h2>
-<p>Compute a corrective TCM using the local B-plane Jacobian/Newton iteration.</p>
+<section id="7.-Nonlinear-Targeting">
+<h2>7. Nonlinear Targeting<a class="headerlink" href="#7.-Nonlinear-Targeting" title="Link to this heading">#</a></h2>
+<p>Compute a corrective TCM using Nelder-Mead nonlinear optimisation. For large perturbations the nonlinear solver can outperform the linearised approach.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Linear targeting  (Newton iteration on Jacobian)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DV_nl</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">nonlinear_targeting</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
 
-<span class="n">DV_lin</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">linear_targeting</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
-
-<span class="n">state_corr_lin</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-        <span class="p">]</span>
-    <span class="p">),</span>
-    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">],</span>
+<span class="n">state_corr_nl</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+        <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="p">]),</span>
+    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span> <span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">],</span>
 <span class="p">)</span>
-<span class="n">bpar_corr_lin</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">state_corr_lin</span><span class="p">)</span>
+<span class="n">bpar_corr_nl</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_hyperbolic_parameters</span><span class="p">(</span><span class="n">state_corr_nl</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  TCM ΔV  =  [</span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">]  km/s&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV|   =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  Post-TCM residuals:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·T  = </span><span class="si">{</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·R  = </span><span class="si">{</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Δltof = </span><span class="si">{</span><span class="n">bpar_corr_lin</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+<span class="n">BT_nl</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">BR_nl</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">dv_nl_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  [NONLINEAR TCM]  Nelder-Mead optimiser&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">65</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  TCM ΔV  = [</span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">]  km/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV|   =  </span><span class="si">{</span><span class="n">dv_nl_m</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Post-TCM residuals:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    ΔB·T  = </span><span class="si">{</span><span class="n">BT_nl</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">BT_ref</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    ΔB·R  = </span><span class="si">{</span><span class="n">BR_nl</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">BR_ref</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    Δltof = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ltof_ref</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -716,55 +1029,41 @@ Source:   /Users/zael5647/scarabaeus/data/kernels/scenario/orx_160909_171201_170
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-################################################################################
-  Linear targeting  (Newton iteration on Jacobian)
-################################################################################
-linear_targeting converged in 2 iterations. Residual = 0.000e+00
-
-  TCM ΔV  =  [-0.00000733,  +0.00023558,  +0.00009824]  km/s
-  |ΔV|   =  0.255350  m/s
-
+Optimization terminated successfully.
+         Current function value: 0.000000
+         Iterations: 115
+         Function evaluations: 211
+─────────────────────────────────────────────────────────────────
+  [NONLINEAR TCM]  Nelder-Mead optimiser
+─────────────────────────────────────────────────────────────────
+  TCM ΔV  = [-0.00001119,  +0.00000985,  -0.00000016]  km/s
+  |ΔV|   =  0.014908  m/s
   Post-TCM residuals:
-  ΔB·T  = +5.37e+02  km
-  ΔB·R  = -2.34e+02  km
-  Δltof = +0.00e+00  s
+    ΔB·T  = +5.37e+02  km
+    ΔB·R  = -2.34e+02  km
+    Δltof = +2.97e-06  s
 </pre></div></div>
 </div>
 </section>
-<section id="Nonlinear-targeting">
-<h2>Nonlinear targeting<a class="headerlink" href="#Nonlinear-targeting" title="Link to this heading">#</a></h2>
-<p>Compute a corrective TCM using nonlinear optimization and compare it to the linear result.</p>
+<section id="8.-TCM-Comparison">
+<h2>8. TCM Comparison<a class="headerlink" href="#8.-TCM-Comparison" title="Link to this heading">#</a></h2>
+<p>Compare ΔV magnitudes and residuals from both methods.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Nonlinear targeting  (Nelder-Mead)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">miss_pre</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">BT_pert</span> <span class="o">-</span> <span class="n">BT_ref</span><span class="p">,</span> <span class="n">BR_pert</span> <span class="o">-</span> <span class="n">BR_ref</span><span class="p">])</span>
+<span class="n">miss_lin</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">BT_lin</span>  <span class="o">-</span> <span class="n">BT_ref</span><span class="p">,</span> <span class="n">BR_lin</span>  <span class="o">-</span> <span class="n">BR_ref</span><span class="p">])</span>
+<span class="n">miss_nl</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">([</span><span class="n">BT_nl</span>   <span class="o">-</span> <span class="n">BT_ref</span><span class="p">,</span> <span class="n">BR_nl</span>   <span class="o">-</span> <span class="n">BR_ref</span><span class="p">])</span>
 
-<span class="n">DV_nl</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">nonlinear_targeting</span><span class="p">(</span><span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
-
-<span class="n">state_corr_nl</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-            <span class="n">state_pert_tcm</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-        <span class="p">]</span>
-    <span class="p">),</span>
-    <span class="p">[</span><span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">bpar_corr_nl</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">compute_parameters</span><span class="p">(</span><span class="n">state_corr_nl</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  TCM ΔV  =  [</span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">,  </span><span class="si">{</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.8f</span><span class="si">}</span><span class="s2">]  km/s&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV|   =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  Post-TCM residuals:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·T  = </span><span class="si">{</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ΔB·R  = </span><span class="si">{</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Δltof = </span><span class="si">{</span><span class="n">bpar_corr_nl</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bpar_ref</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">+.2e</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Method&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;|ΔV| [m/s]&#39;</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;B-plane miss [km]&#39;</span><span class="si">:</span><span class="s2">&gt;18</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Linear&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dv_lin_m</span><span class="si">:</span><span class="s2">&gt;14.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">miss_lin</span><span class="si">:</span><span class="s2">&gt;18.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Nonlinear&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">dv_nl_m</span><span class="si">:</span><span class="s2">&gt;14.6f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">miss_nl</span><span class="si">:</span><span class="s2">&gt;18.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pre-TCM B-plane miss   : </span><span class="si">{</span><span class="n">miss_pre</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;|ΔV| difference        : </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">dv_lin_m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dv_nl_m</span><span class="p">)</span><span class="o">*</span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> mm/s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -773,41 +1072,50 @@ linear_targeting converged in 2 iterations. Residual = 0.000e+00
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-################################################################################
-  Nonlinear targeting  (Nelder-Mead)
-################################################################################
-Optimization terminated successfully.
-         Current function value: 0.000000
-         Iterations: 118
-         Function evaluations: 219
-
-  TCM ΔV  =  [-0.00000733,  +0.00023558,  +0.00009824]  km/s
-  |ΔV|   =  0.255350  m/s
-
-  Post-TCM residuals:
-  ΔB·T  = +5.37e+02  km
-  ΔB·R  = -2.34e+02  km
-  Δltof = +1.10e-06  s
+───────────────────────────────────────────────────────
+Method                   |ΔV| [m/s]  B-plane miss [km]
+───────────────────────────────────────────────────────
+Linear                     0.014908           5.85e+02
+Nonlinear                  0.014908           5.85e+02
+───────────────────────────────────────────────────────
+Pre-TCM B-plane miss   : 22.916 km
+|ΔV| difference        : 4.83e-06 mm/s
 </pre></div></div>
 </div>
 </section>
-<section id="Compare-TCM-solutions">
-<h2>Compare TCM solutions<a class="headerlink" href="#Compare-TCM-solutions" title="Link to this heading">#</a></h2>
-<p>Compare the magnitude of the linear and nonlinear TCMs.</p>
+<section id="9.-Covariance-Mapping">
+<h2>9. Covariance Mapping<a class="headerlink" href="#9.-Covariance-Mapping" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">target_covariance</span></code> maps the 6×6 state covariance <strong>P</strong>_sv into the 3×3 B-plane covariance <strong>P</strong>_B via the B-plane Jacobian <strong>M</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{P}_B = \mathbf{M}\,\mathbf{P}_{sv}\,\mathbf{M}^\top,
+\qquad
+\mathbf{M} = \frac{\partial[B{\cdot}T,\;B{\cdot}R,\;\ell_{\rm tof}]}{\partial[\mathbf{r},\mathbf{v}]}
+\in \mathbb{R}^{3\times 6}\]</div>
+<p><strong>This is a static, linear projection</strong> — it maps the OD covariance from the TCM epoch (30 days before closest approach) directly onto the B-plane <em>without</em> numerically propagating uncertainties forward in time. No STM integration, no Monte Carlo. The Jacobian <strong>M</strong> is evaluated once at the current (perturbed) state via finite differences of <code class="docutils literal notranslate"><span class="pre">compute_hyperbolic_parameters</span></code>.</p>
+<p>The approximation is accurate whenever the B-plane mapping is locally linear over the uncertainty cloud, which holds for well-converged OD solutions with position uncertainty well below the B-plane gradient scale (~hundreds of km for a typical Earth flyby).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  TCM comparison&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV| linear     =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  |ΔV| nonlinear  =  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">  m/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;  |difference|    =  &quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">DV_lin</span><span class="o">.</span><span class="n">values</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DV_nl</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">  m/s&quot;</span>
-<span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sv_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span>
+    <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">])</span>
+
+<span class="n">P_bplane</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">target_covariance</span><span class="p">(</span><span class="n">sv_cov</span><span class="p">,</span> <span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
+
+<span class="n">sigma_bt</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="n">sigma_br</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+<span class="n">sigma_ltof</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="n">rho_btbr</span>   <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma_bt</span> <span class="o">*</span> <span class="n">sigma_br</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  1-σ B-plane uncertainties (mapped from OD covariance)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;─&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(B·T)  =  </span><span class="si">{</span><span class="n">sigma_bt</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(B·R)  =  </span><span class="si">{</span><span class="n">sigma_br</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(ltof) =  </span><span class="si">{</span><span class="n">sigma_ltof</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  ρ(B·T, B·R) = </span><span class="si">{</span><span class="n">rho_btbr</span><span class="si">:</span><span class="s2">+.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -816,52 +1124,40 @@ Optimization terminated successfully.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-
-################################################################################
-  TCM comparison
-################################################################################
-  |ΔV| linear     =  0.255350  m/s
-  |ΔV| nonlinear  =  0.255350  m/s
-  |difference|    =  4.24e-09  m/s
+───────────────────────────────────────────────────────
+  1-σ B-plane uncertainties (mapped from OD covariance)
+───────────────────────────────────────────────────────
+  σ(B·T)  =  10.0000  km
+  σ(B·R)  =  10.0000  km
+  σ(ltof) =  3.4594  s
+  ρ(B·T, B·R) = +0.0000
 </pre></div></div>
 </div>
 </section>
-<section id="Covariance-mapping">
-<h2>Covariance mapping<a class="headerlink" href="#Covariance-mapping" title="Link to this heading">#</a></h2>
-<p>Map a diagonal OD covariance into B-plane uncertainty.</p>
+<section id="10.-B-Plane-Covariance-Plot">
+<h2>10. B-Plane Covariance Plot<a class="headerlink" href="#10.-B-Plane-Covariance-Plot" title="Link to this heading">#</a></h2>
+<p>The B-plane view shows:</p>
+<ul class="simple">
+<li><p><strong>Covariance ellipses</strong> at 1-σ / 2-σ / 3-σ around the target aimpoint</p></li>
+<li><p><strong>Reference aimpoint</strong> (the nominal target)</p></li>
+<li><p><strong>Perturbed point</strong> (navigation error — what the spacecraft would hit without a TCM)</p></li>
+<li><p><strong>Linear TCM correction</strong> — post-correction point</p></li>
+<li><p><strong>Nonlinear TCM correction</strong> — post-correction point</p></li>
+</ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#     Diagonal OD covariance consistent with the 1-sigma</span>
-<span class="c1">#     values used to generate the navigation error above.</span>
-<span class="c1"># =======================================================</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2×2 B-plane covariance (B·T, B·R)</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># fix: .values first, then slice</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Covariance analysis&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">ev</span><span class="p">,</span> <span class="n">evec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">P2</span><span class="p">)</span>
+<span class="n">ev</span>       <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">ev</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">order</span>    <span class="o">=</span> <span class="n">ev</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ev</span><span class="p">,</span> <span class="n">evec</span> <span class="o">=</span> <span class="n">ev</span><span class="p">[</span><span class="n">order</span><span class="p">],</span> <span class="n">evec</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>
 
-<span class="n">sv_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">pos_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">vel_1sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-
-<span class="n">P_bplane</span> <span class="o">=</span> <span class="n">BplaneObj</span><span class="o">.</span><span class="n">target_covariance</span><span class="p">(</span><span class="n">sv_cov</span><span class="p">,</span> <span class="n">sc_rel_state_j2000</span><span class="o">=</span><span class="n">state_pert_tcm</span><span class="p">)</span>
-
-<span class="n">sigma_bt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">sigma_br</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">sigma_ltof</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">P_bplane</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  1-sigma B-plane uncertainties mapped from OD covariance:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(B·T)  =  </span><span class="si">{</span><span class="n">sigma_bt</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(B·R)  =  </span><span class="si">{</span><span class="n">sigma_br</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  σ(ltof) =  </span><span class="si">{</span><span class="n">sigma_ltof</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  s&quot;</span><span class="p">)</span>
+<span class="n">maxsig</span>   <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ev</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">σ(B·T) = </span><span class="si">{</span><span class="n">sigma_bt</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km   σ(B·R) = </span><span class="si">{</span><span class="n">sigma_br</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km   ρ = </span><span class="si">{</span><span class="n">rho_btbr</span><span class="si">:</span><span class="s2">+.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -871,183 +1167,14 @@ Optimization terminated successfully.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-################################################################################
-  Covariance analysis
-################################################################################
-
-  1-sigma B-plane uncertainties mapped from OD covariance:
-  σ(B·T)  =  10.0000  km
-  σ(B·R)  =  10.0000  km
-  σ(ltof) =  3.4594  s
+σ(B·T) = 10.000 km   σ(B·R) = 10.000 km   ρ = +0.000
 </pre></div></div>
 </div>
-</section>
-<section id="Plot-B-plane-covariance">
-<h2>Plot B-plane covariance<a class="headerlink" href="#Plot-B-plane-covariance" title="Link to this heading">#</a></h2>
-<p>Plot the mapped B-plane covariance ellipse.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ============================================================</span>
-<span class="c1"># Fancy custom B-plane covariance plot</span>
-<span class="c1"># ============================================================</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ellipse</span>
-
-<span class="c1"># Extract covariance matrix</span>
-<span class="n">P</span> <span class="o">=</span> <span class="n">P_bplane</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># Target coordinates</span>
-<span class="n">bt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">BplaneObj</span><span class="o">.</span><span class="n">_bt_ref</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">br</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">BplaneObj</span><span class="o">.</span><span class="n">_br_ref</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-
-<span class="c1"># Eigen decomposition</span>
-<span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
-
-<span class="c1"># Sort largest first</span>
-<span class="n">order</span> <span class="o">=</span> <span class="n">eigvals</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">eigvals</span> <span class="o">=</span> <span class="n">eigvals</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
-<span class="n">eigvecs</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>
-
-<span class="c1"># Ellipse angle</span>
-<span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">eigvecs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">eigvecs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
-
-<span class="c1"># ============================================================</span>
-<span class="c1"># Plot</span>
-<span class="c1"># ============================================================</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
-
-<span class="c1"># Background style</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;#fafafa&quot;</span><span class="p">)</span>
-
-<span class="c1"># Sigma ellipses</span>
-<span class="n">sigmas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#cfe8ff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7fb6ff&quot;</span><span class="p">,</span> <span class="s2">&quot;#2c7be5&quot;</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">nsig</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sigmas</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
-
-    <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nsig</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">height</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nsig</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="n">ell</span> <span class="o">=</span> <span class="n">Ellipse</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">bt</span><span class="p">,</span> <span class="n">br</span><span class="p">),</span>
-        <span class="n">width</span><span class="p">,</span>
-        <span class="n">height</span><span class="p">,</span>
-        <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
-        <span class="n">facecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-        <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
-        <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
-        <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">ell</span><span class="p">)</span>
-
-<span class="c1"># Principal directions</span>
-<span class="n">major</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">minor</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="n">Lmaj</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">Lmin</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">bt</span> <span class="o">-</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bt</span> <span class="o">+</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
-    <span class="p">[</span><span class="n">br</span> <span class="o">-</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">br</span> <span class="o">+</span> <span class="n">Lmaj</span> <span class="o">*</span> <span class="n">major</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
-    <span class="s2">&quot;--&quot;</span><span class="p">,</span>
-    <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#d62728&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Major axis&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">bt</span> <span class="o">-</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bt</span> <span class="o">+</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
-    <span class="p">[</span><span class="n">br</span> <span class="o">-</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">br</span> <span class="o">+</span> <span class="n">Lmin</span> <span class="o">*</span> <span class="n">minor</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
-    <span class="s2">&quot;--&quot;</span><span class="p">,</span>
-    <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#2ca02c&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Minor axis&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Target point</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-    <span class="n">bt</span><span class="p">,</span>
-    <span class="n">br</span><span class="p">,</span>
-    <span class="n">s</span><span class="o">=</span><span class="mi">220</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#ffcc00&quot;</span><span class="p">,</span>
-    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
-    <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Target aimpoint&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Small Earth marker at origin</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-    <span class="mi">0</span><span class="p">,</span>
-    <span class="mi">0</span><span class="p">,</span>
-    <span class="n">s</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">zorder</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Earth center&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># ============================================================</span>
-<span class="c1"># Labels / style</span>
-<span class="c1"># ============================================================</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
-    <span class="s2">&quot;OSIRIS-REx Earth Gravity Assist B-plane&quot;</span><span class="p">,</span>
-    <span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span>
-    <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
-    <span class="n">pad</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$B_T$ [km]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$B_R$ [km]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-
-<span class="c1"># Equal aspect</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">adjustable</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
-
-<span class="c1"># Invert R axis (standard B-plane convention)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
-
-<span class="c1"># Grid</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
-
-<span class="c1"># Dynamic limits</span>
-<span class="n">maxsig</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">eigvals</span><span class="p">))</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">bt</span> <span class="o">-</span> <span class="n">maxsig</span><span class="p">,</span> <span class="n">bt</span> <span class="o">+</span> <span class="n">maxsig</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">br</span> <span class="o">+</span> <span class="n">maxsig</span><span class="p">,</span> <span class="n">br</span> <span class="o">-</span> <span class="n">maxsig</span><span class="p">)</span>
-
-<span class="c1"># Pretty frame</span>
-<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-    <span class="n">spine</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.3</span><span class="p">)</span>
-
-<span class="c1"># Legend</span>
-<span class="n">leg</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
-    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span>
-    <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Optional annotation</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-    <span class="n">bt</span><span class="p">,</span>
-    <span class="n">br</span><span class="p">,</span>
-    <span class="s2">&quot;  Target&quot;</span><span class="p">,</span>
-    <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
-    <span class="n">verticalalignment</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">supp</span><span class="o">.</span><span class="n">supp_plotting</span><span class="o">.</span><span class="n">plot_bplane_covariance</span><span class="p">(</span><span class="n">BT_ref</span><span class="p">,</span> <span class="n">BR_ref</span><span class="p">,</span> <span class="n">BT_pert</span><span class="p">,</span> <span class="n">BR_pert</span><span class="p">,</span> <span class="n">BT_lin</span><span class="p">,</span> <span class="n">BR_lin</span><span class="p">,</span> <span class="n">BT_nl</span><span class="p">,</span> <span class="n">BR_nl</span><span class="p">,</span> <span class="n">rho_btbr</span><span class="p">,</span> <span class="n">evec</span><span class="p">,</span> <span class="n">ev</span><span class="p">,</span> <span class="n">P2</span><span class="p">,</span> <span class="n">maxsig</span><span class="p">,</span> <span class="n">sigma_bt</span><span class="p">,</span> <span class="n">sigma_br</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1055,16 +1182,39 @@ Optimization terminated successfully.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_BPlane_24_0.png" src="../../_images/_collections_tutorials_intermediate_BPlane_24_0.png" />
+<img alt="../../_images/_collections_tutorials_intermediate_BPlane_23_0.png" src="../../_images/_collections_tutorials_intermediate_BPlane_23_0.png" />
 </div>
 </div>
 </section>
-<section id="Notes">
-<h2>Notes<a class="headerlink" href="#Notes" title="Link to this heading">#</a></h2>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Target |B| (reference)</p></td>
+<td><p>computed from reference SPICE state</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pre-TCM B-plane miss</p></td>
+<td><p>navigation-error dependent (seed=7)</p></td>
+</tr>
+<tr class="row-even"><td><p>Post-TCM miss (linear)</p></td>
+<td><p>~machine precision for small errors</p></td>
+</tr>
+<tr class="row-odd"><td><p>Post-TCM miss (nonlinear)</p></td>
+<td><p>comparable to linear for this perturbation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Key observations</strong></p>
 <ul class="simple">
-<li><p>The B-plane target is defined by the reference trajectory. The injected navigation error represents a possible OD error at the TCM epoch.</p></li>
-<li><p>Linear targeting should be accurate when the perturbation is small enough for the B-plane mapping to remain locally linear.</p></li>
-<li><p>The covariance mapping gives the predicted residual B-plane uncertainty from the assumed state covariance.</p></li>
+<li><p>The B-plane mapping is highly linear for this perturbation size (~10 km / 1 cm/s), so linear and nonlinear TCMs give nearly identical results.</p></li>
+<li><p>The covariance ellipse quantifies the <em>expected</em> B-plane scatter given the assumed OD uncertainty, regardless of the specific draw used in the navigation-error cell.</p></li>
+<li><p>A real TCM design would iterate: compute covariance → assess risk → execute TCM if the 3-σ ellipse encroaches on exclusion zones (e.g. atmosphere / entry corridor).</p></li>
 </ul>
 </section>
 </section>
@@ -1079,6 +1229,24 @@ Optimization terminated successfully.
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intermediate_MissionSequence_and_FiniteBurn.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"># Mission Sequence and Finite-Burn Propagation Demo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="advanced_IdealMSR_BatchOD.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"># Batch Orbit Determination — Complete Demo</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1098,19 +1266,18 @@ Optimization terminated successfully.
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports">Imports</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Setup-and-SPICE-kernels">Setup and SPICE kernels</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Epoch-definition">Epoch definition</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-state-at-the-TCM-epoch">Reference state at the TCM epoch</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Construct-the-B-plane-object">Construct the B-plane object</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-B-plane-target">Reference B-plane target</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Inject-a-navigation-error">Inject a navigation error</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Linear-targeting">Linear targeting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Nonlinear-targeting">Nonlinear targeting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Compare-TCM-solutions">Compare TCM solutions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Covariance-mapping">Covariance mapping</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Plot-B-plane-covariance">Plot B-plane covariance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Notes">Notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#0.-Imports-and-Setup">0. Imports and Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Mission-Epochs">1. Mission Epochs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Reference-State-at-the-TCM-Epoch">2. Reference State at the TCM Epoch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-B-Plane-Object">3. B-Plane Object</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Reference-B-plane-Target">4. Reference B-plane Target</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Navigation-Error-Injection">5. Navigation Error Injection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-Linear-Targeting">6. Linear Targeting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Nonlinear-Targeting">7. Nonlinear Targeting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-TCM-Comparison">8. TCM Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#9.-Covariance-Mapping">9. Covariance Mapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#10.-B-Plane-Covariance-Plot">10. B-Plane Covariance Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
 </ul>
   </nav></div>
 

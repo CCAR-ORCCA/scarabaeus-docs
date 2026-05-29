@@ -11,10 +11,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/basics_EpochArray.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Last revised by Z. Ellis on 2026 MAY 8 Objectives: All time information in Scarabaeus (SCB) is managed by the EpochArray class. This tutorial will cover the basics of utilizing EpochArray, demonstrating common errors that may arise, performing operations with it, and converting between the many different time systems and their representations. See Also: SPICE Time Subsystem Required Reading. Imports and Set Up: First we’ll import the necessary libraries, get units, and load in supplementary d..." />
+<meta property="og:description" content="Last revised 2026 MAY 8 Objectives: All time information in Scarabaeus (SCB) is managed by the EpochArray class. This tutorial will cover the basics of utilizing EpochArray, demonstrating common errors that may arise, performing operations with it, and converting between the many different time systems and their representations. See Also: SPICE Time Subsystem Required Reading. Imports and Set Up: First we’ll import the necessary libraries, define units, and load in supplementary data, which f..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Last revised by Z. Ellis on 2026 MAY 8 Objectives: All time information in Scarabaeus (SCB) is managed by the EpochArray class. This tutorial will cover the basics of utilizing EpochArray, demonstrating common errors that may arise, performing operations with it, and converting between the many different time systems and their representations. See Also: SPICE Time Subsystem Required Reading. Imports and Set Up: First we’ll import the necessary libraries, get units, and load in supplementary d..." />
+<meta name="description" content="Last revised 2026 MAY 8 Objectives: All time information in Scarabaeus (SCB) is managed by the EpochArray class. This tutorial will cover the basics of utilizing EpochArray, demonstrating common errors that may arise, performing operations with it, and converting between the many different time systems and their representations. See Also: SPICE Time Subsystem Required Reading. Imports and Set Up: First we’ll import the necessary libraries, define units, and load in supplementary data, which f..." />
 
     <title>Scarabaeus Time System (EpochArray) &#8212; Scarabaeus  documentation</title>
   
@@ -66,8 +66,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Developer Documentation" href="../../development/development_frontpage.html" />
-    <link rel="prev" title="Scarabaeus Tutorials Primer" href="../../examples/tuts_setup.html" />
+    <link rel="next" title="# SpiceManager, Celestial Bodies, and SCB Constants" href="basics_SpiceManager_CelestialBody_Constants.html" />
+    <link rel="prev" title="# ArrayWUnits and ArrayWFrame" href="basics_AWU_and_AWF.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -334,16 +334,253 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials Setup</span></p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamental</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
 </ul>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Synthetic Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
 </ul>
 </div>
 </nav></div>
@@ -388,7 +625,7 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Examples</span></a></li>
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Tutorials</span></a></li>
     
     <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Scarabaeus Time System (EpochArray)</span></li>
   </ul>
@@ -410,7 +647,7 @@
   <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="Scarabaeus-Time-System-(EpochArray)">
 <h1>Scarabaeus Time System (EpochArray)<a class="headerlink" href="#Scarabaeus-Time-System-(EpochArray)" title="Link to this heading">#</a></h1>
 <hr class="docutils" />
-<p>Last revised by Z. Ellis on 2026 MAY 8</p>
+<p>Last revised 2026 MAY 8</p>
 <section id="Objectives">
 <h2>Objectives<a class="headerlink" href="#Objectives" title="Link to this heading">#</a></h2>
 <p>All time information in Scarabaeus (SCB) is managed by the EpochArray class. This tutorial will cover the basics of utilizing EpochArray, demonstrating common errors that may arise, performing operations with it, and converting between the many different time systems and their representations.</p>
@@ -423,7 +660,7 @@
 </section>
 <section id="Imports-and-Set-Up">
 <h2>Imports and Set Up<a class="headerlink" href="#Imports-and-Set-Up" title="Link to this heading">#</a></h2>
-<p>First we’ll import the necessary libraries, get units, and load in supplementary data, which for this tutorial are a leapsecond kernel (LSK) and a spacecraft clock kernel (SCLK). Note that we do not furnish either yet so we can illustrate what happens if you don’t have them loaded.</p>
+<p>First we’ll import the necessary libraries, define units, and load in supplementary data, which for this tutorial are a leapsecond kernel (LSK) and a spacecraft clock kernel (SCLK). Note that we do not furnish either yet so we can illustrate what happens if you don’t have them loaded.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -433,7 +670,7 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># get units</span>
+<span class="c1"># define units</span>
 <span class="n">sec</span><span class="p">,</span> <span class="n">hr</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">])</span>
 
 <span class="c1"># load tutorial data</span>
@@ -451,7 +688,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB tutorial data up to date.
+SCB supplementary data up to date.
 </pre></div></div>
 </div>
 </section>
@@ -664,12 +901,6 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 
 <span class="c1"># redo previously failed definitions and see that they work</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;SCLK&#39;</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">))</span>
-
-<span class="c1"># t = scb.EpochArrayV2(&#39;2000 JAN 01 12:00:00.00&#39;, sys = &#39;TDB&#39;, rep = &#39;CAL&#39;)</span>
-<span class="c1"># print(t._times)</span>
-<span class="c1"># print(t)</span>
-<span class="c1"># t = t.to(rep = &#39;NUM&#39;)</span>
-<span class="c1"># print(t)</span>
 </pre></div>
 </div>
 </div>
@@ -754,34 +985,86 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </section>
 <section id="EpochArray-Operations">
 <h2>EpochArray Operations<a class="headerlink" href="#EpochArray-Operations" title="Link to this heading">#</a></h2>
-<p>stuff about math</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<p>Can only add time to an Epocharray. Can only subtract time or another EpochArray from an EpochArray:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;JDTDB&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 08&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;JDTDB&#39;</span><span class="p">)</span>
+
+<span class="c1"># add time to an epoch</span>
+<span class="n">a_plus_1_day</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a + 1 day = </span><span class="si">{</span><span class="n">a_plus_1_day</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># subtract time from an epoch</span>
+<span class="n">a_minus_1_day</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a - 1 day = </span><span class="si">{</span><span class="n">a_minus_1_day</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># subtract an epoch from an epoch to get a time</span>
+<span class="n">b_minus_a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;b - a = </span><span class="si">{</span><span class="n">b_minus_a</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+a = 2461192.5 (TDB)
+a + 1 day = 2461193.5 (TDB)
+
+a = 2461192.5 (TDB)
+a - 1 day = 2461191.5 (TDB)
+
+a = 2461192.5 (TDB), b = 2461199.5 (TDB)
+b - a = 7.0 day
+</pre></div></div>
 </div>
 </section>
 <section id="Converting-Between-EpochArrays">
 <h2>Converting Between EpochArrays<a class="headerlink" href="#Converting-Between-EpochArrays" title="Link to this heading">#</a></h2>
-<p>info about converting between them</p>
-<p>using .to</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_tdb_cal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>Finally, as an easy reference, we’ll create a table of all the possible time systems and representations. We’ll pass the June 1st, 2026 EpochArray we’ve been using to a supplementary plotting function that will loop through each time system and display all of its representations along a row of the table.</p>
+<p>Can perform conersions between systems and representaitons using <code class="docutils literal notranslate"><span class="pre">.to()</span></code>:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_w_sc_id</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TDB&#39;</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_tdb_cal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2000 JAN 01 12:00:00.000&#39;</span><span class="p">)</span>
+
+<span class="c1"># convert to new system</span>
+<span class="n">eparr_gps_cal</span> <span class="o">=</span> <span class="n">eparr_tdb_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;GPS&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eparr_tdb_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">eparr_gps_cal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># change representation</span>
+<span class="n">eparr_gps_num</span> <span class="o">=</span> <span class="n">eparr_gps_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;NUM&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eparr_gps_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">eparr_gps_num</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># can do both at the same time as well</span>
+<span class="n">epa_tai_jdutc</span> <span class="o">=</span> <span class="n">eparr_tdb_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TAI&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;JDUTC&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eparr_tdb_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">epa_tai_jdutc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0 sec (TDB) = -51.18392726322383 sec (GPS)
+-51.18392726322383 sec (GPS) = -51.18392726322383 (GPS)
+0.0 sec (TDB) = JD 2451544.9992571 (TAI)
+</pre></div></div>
+</div>
+<p>Finally, as an easy reference, we’ll create a table of all the possible time systems and representations. We’ll pass the June 1st, 2026 EpochArray we’ve been using to a supplementary plotting function that will loop through each time system and display all of its representations along a row of the table.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_w_sc_id</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">31622464.183948725</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TDB&#39;</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">)</span>
 <span class="n">supp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_epocharray_table</span><span class="p">(</span><span class="n">eparr_w_sc_id</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">OREx_sclk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -794,10 +1077,6 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </div>
 </div>
 <p>We can see that we’ve checked the synonym systems like TDB and ET, as well as the sibling representations like NUM and AWU, so there will be a few identical rows and columns, but this is a good visual for all of the different combinations possible within EpochArray. Notice that plotting function has omitted representations that are are undefined for different systems, for example a JTDB representation of a TAI epoch.</p>
-</section>
-<section id="Conclusion">
-<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Link to this heading">#</a></h2>
-<p>fill out</p>
 </section>
 </section>
 
@@ -812,20 +1091,20 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../examples/tuts_setup.html"
+       href="basics_AWU_and_AWF.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="gold">Scarabaeus Tutorials Primer</span></p>
+        <p class="prev-next-title"># ArrayWUnits and ArrayWFrame</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../development/development_frontpage.html"
+       href="basics_SpiceManager_CelestialBody_Constants.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="gold">Developer Documentation</span></p>
+        <p class="prev-next-title"># SpiceManager, Celestial Bodies, and SCB Constants</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -863,7 +1142,6 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#EpochArray-Operations">EpochArray Operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Converting-Between-EpochArrays">Converting Between EpochArrays</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 

@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="# SpiceManager, Celestial Bodies, and SCB Constants" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/basics_SpiceManager_CelestialBody_Constants.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised 2026 MAY Introduction: This tutorial will explore the core infrastructure within Scarabaeus (SCB) for SPICE kernel interaction and planetary body representations. In addition, it will show how to interface with its constants library, which contains physical parameters and planetary constants. Imports and Setup: First we’ll import the necessary libraries, define units, and load in supplementary data, which for this tutorial is the general metakernel which contains kernels for plan..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="Last revised 2026 MAY Introduction: This tutorial will explore the core infrastructure within Scarabaeus (SCB) for SPICE kernel interaction and planetary body representations. In addition, it will show how to interface with its constants library, which contains physical parameters and planetary constants. Imports and Setup: First we’ll import the necessary libraries, define units, and load in supplementary data, which for this tutorial is the general metakernel which contains kernels for plan..." />
+
+    <title># SpiceManager, Celestial Bodies, and SCB Constants &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_SpiceManager_CelestialBody_Constants';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="# Propagation and Trajectory" href="intermediate_Propagator_and_Trajectory.html" />
+    <link rel="prev" title="Scarabaeus Time System (EpochArray)" href="basics_EpochArray.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Synthetic Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_MediaCorrections.html"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Tutorials</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># SpiceManager, Celestial Bodies, and SCB Constants</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-SpiceManager,-Celestial-Bodies,-and-SCB-Constants">
+<h1># SpiceManager, Celestial Bodies, and SCB Constants<a class="headerlink" href="##-SpiceManager,-Celestial-Bodies,-and-SCB-Constants" title="Link to this heading">#</a></h1>
+<p><em>Last revised 2026 MAY</em></p>
+</section>
+<section id="Introduction">
+<h1>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h1>
+<p>This tutorial will explore the core infrastructure within Scarabaeus (SCB) for SPICE kernel interaction and planetary body representations. In addition, it will show how to interface with its constants library, which contains physical parameters and planetary constants.</p>
+</section>
+<section id="Imports-and-Setup">
+<h1>Imports and Setup<a class="headerlink" href="#Imports-and-Setup" title="Link to this heading">#</a></h1>
+<p>First we’ll import the necessary libraries, define units, and load in supplementary data, which for this tutorial is the general metakernel which contains kernels for planetary epehemerides and leapseconds for time conversions.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">fields</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># load tutorial data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1">## define the units and frames we&#39;ll be using across the tutorial</span>
+<span class="n">km</span><span class="p">,</span> <span class="n">AU</span><span class="p">,</span> <span class="n">kg</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;AU&#39;</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">])</span>
+
+<span class="n">J2000</span><span class="p">,</span> <span class="n">ECLIPJ2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;ECLIPJ2000&#39;</span><span class="p">)</span>
+<span class="n">IAU_EARTH</span><span class="p">,</span> <span class="n">IAU_JUPITER</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;IAU_EARTH&#39;</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;IAU_JUPITER&#39;</span><span class="p">)</span>
+
+<span class="c1"># load kernels</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>    <span class="c1"># make sure kernel pool is empty</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data up to date.
+</pre></div></div>
+</div>
+</section>
+<section id="SpiceManager">
+<h1>SpiceManager<a class="headerlink" href="#SpiceManager" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code> is Scarabaeus’ interface with the SPICE toolkit. It handles kernel management, reference frame rotations, and state vectors. We saw above how to use it to clear, load, and examine kernels in the kernel pool.</p>
+<section id="Reference-Frame-Transformations">
+<h2>Reference Frame Transformations<a class="headerlink" href="#Reference-Frame-Transformations" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">get_xfrm(from_frame,</span> <span class="pre">to_frame,</span> <span class="pre">et)</span></code> returns the 3×3 rotation matrix that maps vectors expressed in <code class="docutils literal notranslate"><span class="pre">from_frame</span></code> into <code class="docutils literal notranslate"><span class="pre">to_frame</span></code> at epoch <code class="docutils literal notranslate"><span class="pre">et</span></code>. Frame names follow the SPICE convention (<code class="docutils literal notranslate"><span class="pre">&quot;J2000&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;ECLIPJ2000&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;IAU_EARTH&quot;</span></code>, …).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">et</span> <span class="o">=</span> <span class="mf">140254384.184625</span>   <span class="c1"># seconds past J2000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ECLIPJ2000 to J2000 :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_xfrm</span><span class="p">(</span><span class="n">ECLIPJ2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">et</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ECLIPJ2000 to IAU_EARTH :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_xfrm</span><span class="p">(</span><span class="n">ECLIPJ2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">IAU_EARTH</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">et</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ECLIPJ2000 to J2000 :
+[[ 1.          0.          0.        ]
+ [ 0.          0.91748206 -0.39777716]
+ [ 0.          0.39777716  0.91748206]]
+
+ECLIPJ2000 to IAU_EARTH :
+[[-9.72925256e-01 -2.11880898e-01  9.23197279e-02]
+ [ 2.31119580e-01 -8.92681357e-01  3.86915668e-01]
+ [ 4.32060908e-04  3.97776922e-01  9.17482062e-01]]
+</pre></div></div>
+</div>
+</section>
+<section id="Body-State-Queries">
+<h2>Body State Queries<a class="headerlink" href="#Body-State-Queries" title="Link to this heading">#</a></h2>
+<p>For any body in the kernel pool, <code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code> returns its position, velocity, or full state relative to an observer in a chosen reference frame.</p>
+<p>It contains a few different methods that return different information depending on what you need:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_pos(target,</span> <span class="pre">et,</span> <span class="pre">frame,</span> <span class="pre">observer)</span></code> : 3-vector position (km)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_vel(target,</span> <span class="pre">et,</span> <span class="pre">frame,</span> <span class="pre">observer)</span></code> : 3-vector velocity (km/s)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_state(target,</span> <span class="pre">et,</span> <span class="pre">frame,</span> <span class="pre">observer)</span></code> : 6-vector [pos; vel]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_lighttime(target,</span> <span class="pre">et,</span> <span class="pre">frame,</span> <span class="pre">observer)</span></code>: one-way light-time (s)</p></li>
+</ul>
+<p>We can see all of these values by getting the state of the Earth with respect to the Sun in J2000:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Earth w.r.t. the Sun at the reference epoch</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position only:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_pos</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Velocity only:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_vel</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Full state vector:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Light time:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_lighttime</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Position only:
+[-2.34128283e+07 -1.37716948e+08 -5.97056600e+07] [km ... km]
+
+Velocity only:
+[28.94979026 -4.32365438 -1.87551229] [km/sec ... km/sec]
+
+Full state vector:
+[-2.34128283e+07 -1.37716948e+08 -5.97056600e+07  2.89497903e+01
+ -4.32365438e+00 -1.87551229e+00] [non-homogeneous]
+
+Light time:
+506.7417668236853 sec
+
+</pre></div></div>
+</div>
+</section>
+</section>
+<section id="CelestialBody">
+<h1>CelestialBody<a class="headerlink" href="#CelestialBody" title="Link to this heading">#</a></h1>
+<p>A <code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code> contains physical constants of a planet or natural satellite (mass, mean radius, gravitational parameter) with a SPICE identifier for ephemeris queries. There are two ways to create one.</p>
+<section id="From-Constants">
+<h2>From Constants<a class="headerlink" href="#From-Constants" title="Link to this heading">#</a></h2>
+<p>This is the faster of the two. It pulls the necessary values from Scarabaeus’ constants library. We can also view all the properties of the body using <code class="docutils literal notranslate"><span class="pre">disp_properties()</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create from constants and display</span>
+<span class="n">jupiter_from_constants</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">&#39;JUPITER&#39;</span><span class="p">)</span>
+<span class="n">jupiter_from_constants</span><span class="o">.</span><span class="n">disp_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                           Jupiter
+==============================================================
+mass                     : &lt;bound method Body.mass of Jupiter&gt;
+mean_radius              : 69911.0 km
+gravitational parameter  : 126686534.92180079 mu
+reference frame          : IAU_JUPITER
+SPICE ID                 : 599
+attached ground stations : []
+</pre></div></div>
+</div>
+</section>
+<section id="Direct-Construction">
+<h2>Direct Construction<a class="headerlink" href="#Direct-Construction" title="Link to this heading">#</a></h2>
+<p>We can also give values directly to the initialization of <code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code>. As an example, we’ll create a planet with values half that of Jupiter. We can access the same constants library the <code class="docutils literal notranslate"><span class="pre">from_constants()</span></code> pulled from directly and divide those by two to pass to the constructor:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get planetary constants for Jupiter</span>
+<span class="n">jov_pc</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">JUPITER</span>
+
+<span class="c1"># create a half sized Jupiter</span>
+<span class="n">half_jupiter</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="p">(</span><span class="n">name</span>        <span class="o">=</span> <span class="s1">&#39;HALF_JUPITER&#39;</span><span class="p">,</span>
+                                 <span class="n">mass</span>        <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                                 <span class="n">mean_radius</span> <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">mean_radius</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                                 <span class="n">grav_param</span>  <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">GM</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                                 <span class="n">base_frame</span>  <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">ref_name</span><span class="p">,</span>
+                                 <span class="n">spice_id</span>    <span class="o">=</span> <span class="mi">599000</span><span class="p">)</span>  <span class="c1"># give it a different ID than the actual Jupiter</span>
+<span class="n">half_jupiter</span><span class="o">.</span><span class="n">disp_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            HALF_JUPITER
+===================================================================
+mass                     : &lt;bound method Body.mass of HALF_JUPITER&gt;
+mean_radius              : 34955.5 km
+gravitational parameter  : 63343267.460900396 mu
+reference frame          : IAU_JUPITER
+SPICE ID                 : 599000
+attached ground stations : []
+</pre></div></div>
+</div>
+<p>All major and minor bodies contained within the constants library hold their information as a <code class="docutils literal notranslate"><span class="pre">PCInfo</span></code> object, which we then pulled values from directly. Depending on the kind of body, some of these parameters may or may not exist. For example, the Moon’s primary is Earth, but the Earth is defined without a primary (even though the Sun is technically its primary). Below are all of the parameters contained within a <code class="docutils literal notranslate"><span class="pre">PCInfo</span></code> data class:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phobos</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">PHOBOS</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All PCInfo fields for Phobos:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">phobos</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; - </span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="n">phobos</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+All PCInfo fields for Phobos:
+ - name: Phobos
+ - spice_name: PHOBOS
+ - ref_name: IAU_PHOBOS
+ - body_center_id: 401
+ - barycenter_id: None
+ - mass: 1.0619160161956238e+16 kg
+ - GM: 0.0007087546066894452 mu
+ - mean_radius: 11.4 km
+ - equatorial_radius: None
+ - GM_barycenter: None
+ - primary_body: Mars
+</pre></div></div>
+</div>
+</section>
+<section id="Querying-Ephemerides">
+<h2>Querying Ephemerides<a class="headerlink" href="#Querying-Ephemerides" title="Link to this heading">#</a></h2>
+<p>If the body exists in the kernel pool, <code class="docutils literal notranslate"><span class="pre">get_state</span></code> returns its position and velocity at any epoch. Below we query all eight planets’ heliocentric orbits over two years and plot them.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 year time interval with weekly sample rate</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;2001 JAN 01 12:00:00.000&#39;</span><span class="p">,</span>
+                                 <span class="n">end</span>   <span class="o">=</span> <span class="s1">&#39;2003 JAN 01 12:00:00.000&#39;</span><span class="p">,</span>
+                                 <span class="n">dt</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">day</span><span class="p">),</span>
+                                 <span class="n">sys</span>   <span class="o">=</span> <span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+
+<span class="c1"># query heliocentric state for each planet</span>
+<span class="n">planets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MERCURY&#39;</span><span class="p">,</span> <span class="s1">&#39;VENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;EARTH&#39;</span><span class="p">,</span> <span class="s1">&#39;MARS&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;JUPITER&#39;</span><span class="p">,</span> <span class="s1">&#39;SATURN&#39;</span><span class="p">,</span> <span class="s1">&#39;URANUS&#39;</span><span class="p">,</span> <span class="s1">&#39;NEPTUNE&#39;</span><span class="p">]</span>
+<span class="n">planet_traj</span>  <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">planet</span> <span class="ow">in</span> <span class="n">planets</span><span class="p">:</span>
+    <span class="n">cb</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="n">planet</span><span class="p">)</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Querying </span><span class="si">{</span><span class="n">planet</span><span class="si">}</span><span class="s1">...&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">epochs</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">epoch_0</span> <span class="o">=</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">reference_frame</span> <span class="o">=</span> <span class="s1">&#39;J2000&#39;</span><span class="p">,</span>
+                             <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;SUN&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantity</span>
+        <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">planet_traj</span><span class="p">[</span><span class="n">planet</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieved all states across </span><span class="si">{</span><span class="n">epochs</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="si">}</span><span class="s1"> interval&#39;</span><span class="p">)</span>
+
+<span class="n">supp</span><span class="o">.</span><span class="n">supp_plotting</span><span class="o">.</span><span class="n">plot_planets</span><span class="p">(</span><span class="n">planets</span><span class="p">,</span> <span class="n">planet_traj</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Querying MERCURY...
+Retrieved all states across 728.0 day interval
+Querying VENUS...
+Retrieved all states across 728.0 day interval
+Querying EARTH...
+Retrieved all states across 728.0 day interval
+Querying MARS...
+Retrieved all states across 728.0 day interval
+Querying JUPITER...
+Retrieved all states across 728.0 day interval
+Querying SATURN...
+Retrieved all states across 728.0 day interval
+Querying URANUS...
+Retrieved all states across 728.0 day interval
+Querying NEPTUNE...
+Retrieved all states across 728.0 day interval
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_basics_SpiceManager_CelestialBody_Constants_15_1.png" src="../../_images/_collections_tutorials_basics_SpiceManager_CelestialBody_Constants_15_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="basics_EpochArray.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Scarabaeus Time System (EpochArray)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="intermediate_Propagator_and_Trajectory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"># Propagation and Trajectory</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Setup">Imports and Setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#SpiceManager">SpiceManager</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-Frame-Transformations">Reference Frame Transformations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Body-State-Queries">Body State Queries</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#CelestialBody">CelestialBody</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#From-Constants">From Constants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Direct-Construction">Direct Construction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Querying-Ephemerides">Querying Ephemerides</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

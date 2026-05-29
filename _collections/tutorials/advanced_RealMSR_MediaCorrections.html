@@ -7,16 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="# OSIRIS-REx Tutorial Series Pt 2: Time and SPICE" />
+<meta property="og:title" content="# OSIRIS-REx Tutorial Series Pt 2: Media Corrections & Ramp Tables" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/advanced_RealMSR_MediaCorrections.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will I’D LIKE TO SEE CONTENT FROM intermediate_MediaCorrectionDeltaTime AND advanced_RampTableManager AND advanced_MediaCorrectionDeltaMeas" />
+<meta property="og:description" content="Scarabaeus | Last revised 2026 Objectives: This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will: Understand how SCB models tropospheric signal delay using seasonal and non-seasonal components stored in JSON correction files, Query tropospheric delays for individual ground stations and arbitrary time spans using MediaCorrections, Evaluate the C..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Last revised by Z. Ellis on 2026 APR 6 Objectives: This tutorial will I’D LIKE TO SEE CONTENT FROM intermediate_MediaCorrectionDeltaTime AND advanced_RampTableManager AND advanced_MediaCorrectionDeltaMeas" />
+<meta name="description" content="Scarabaeus | Last revised 2026 Objectives: This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will: Understand how SCB models tropospheric signal delay using seasonal and non-seasonal components stored in JSON correction files, Query tropospheric delays for individual ground stations and arbitrary time spans using MediaCorrections, Evaluate the C..." />
 
-    <title># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE &#8212; Scarabaeus  documentation</title>
+    <title># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -59,6 +59,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_RealMSR_MediaCorrections';</script>
@@ -66,6 +67,8 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="# OSIRIS-REx Tutorial Series" href="advanced_RealMSR_OSIRIS_REx_OD.html" />
+    <link rel="prev" title="# Sequential Orbit Determination — Complete Demo" href="advanced_IdealMSR_SequentialOD.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -164,7 +167,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
@@ -248,10 +251,8 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -280,7 +281,7 @@
 </li>
 
 
-<li class="nav-item ">
+<li class="nav-item current active">
   <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
     Examples
   </a>
@@ -329,6 +330,265 @@
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/tuts_setup.html"><span class="gold">Scarabaeus Tutorials Primer</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="basics_AWU_and_AWF.html"># ArrayWUnits and ArrayWFrame</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Propagator_and_Trajectory.html"># Propagation and Trajectory</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_nPlateModel_and_Attitude.html"># N-Plate Model and Spacecraft Attitude</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_Measurements.html"># Measurement Simulation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Synthetic Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_BatchOD.html"># Batch Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_IdealMSR_SequentialOD.html"># Sequential Orbit Determination — Complete Demo</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
       <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
@@ -367,7 +627,10 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</span></li>
+    
+    <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Tutorials</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</span></li>
   </ul>
 </nav>
 </div>
@@ -384,23 +647,445 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-OSIRIS-REx-Tutorial-Series-Pt-2:-Time-and-SPICE">
-<h1># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE<a class="headerlink" href="##-OSIRIS-REx-Tutorial-Series-Pt-2:-Time-and-SPICE" title="Link to this heading">#</a></h1>
-<p>Last revised by Z. Ellis on 2026 APR 6</p>
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-OSIRIS-REx-Tutorial-Series-Pt-2:-Media-Corrections-&amp;-Ramp-Tables">
+<h1># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables<a class="headerlink" href="##-OSIRIS-REx-Tutorial-Series-Pt-2:-Media-Corrections-&-Ramp-Tables" title="Link to this heading">#</a></h1>
+<p><em>Scarabaeus | Last revised 2026</em></p>
 </section>
 <section id="Objectives">
 <h1>Objectives<a class="headerlink" href="#Objectives" title="Link to this heading">#</a></h1>
-<p>This tutorial will</p>
-<p>I’D LIKE TO SEE CONTENT FROM intermediate_MediaCorrectionDeltaTime AND advanced_RampTableManager AND advanced_MediaCorrectionDeltaMeas</p>
-<div class="nbinput docutils container">
+<p>This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will:</p>
+<ul class="simple">
+<li><p>Understand how SCB models tropospheric signal delay using <strong>seasonal</strong> and <strong>non-seasonal</strong> components stored in JSON correction files</p></li>
+<li><p>Query tropospheric delays for individual ground stations and arbitrary time spans using <code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></p></li>
+<li><p>Evaluate the <strong>Chao elevation mapping function</strong>, which projects the zenith delay to a slant path at a given elevation angle</p></li>
+<li><p>Load and inspect DSN <strong>ramp table</strong> records using <code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code>, and compute integrated uplink frequency sensitivity as a function of count interval</p></li>
+<li><p>Apply full <strong>round-trip light-time (RTLT) media corrections</strong> to real sequential ranging measurements, converting the path-length error to seconds and Range Units (RU)</p></li>
+</ul>
+</section>
+<section id="See-Also">
+<h1>See Also<a class="headerlink" href="#See-Also" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"><span class="doc">Part 1: Units &amp; Reference Frames</span></a></p></li>
+</ul>
+</section>
+<section id="1.0-—-Load-SCB-and-the-relevant-Python-packages">
+<h1>1.0 — Load SCB and the relevant Python packages<a class="headerlink" href="#1.0-—-Load-SCB-and-the-relevant-Python-packages" title="Link to this heading">#</a></h1>
+<p>Before doing anything else, import the libraries the tutorial depends on:</p>
+<ul class="simple">
+<li><p><strong>``scarabaeus``</strong> — the main OD library, aliased to <code class="docutils literal notranslate"><span class="pre">scb</span></code> throughout for brevity.</p></li>
+<li><p><strong>``numpy``</strong> — array mathematics.</p></li>
+<li><p><strong>``pandas``</strong> — tabular data handling, used in Section 4 to parse uplink frequency records.</p></li>
+<li><p><strong>``matplotlib``</strong> — plotting library.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+<br/></pre></div>
+</div>
+</div>
+</section>
+<section id="1.1-—-Initialize-units,-frames,-and-SPICE-kernels">
+<h1>1.1 — Initialize units, frames, and SPICE kernels<a class="headerlink" href="#1.1-—-Initialize-units,-frames,-and-SPICE-kernels" title="Link to this heading">#</a></h1>
+<section id="Units-and-Frames">
+<h2>Units and Frames<a class="headerlink" href="#Units-and-Frames" title="Link to this heading">#</a></h2>
+<p>As in Part 1, physical units are retrieved by name with <code class="docutils literal notranslate"><span class="pre">scb.Units.get_units()</span></code> and reference frames with <code class="docutils literal notranslate"><span class="pre">scb.Frame.generate_common_frames()</span></code>. All three tutorial sections in this notebook use the same unit and frame objects, so they are created once here and reused throughout.</p>
+</section>
+<section id="SPICE-Kernels">
+<h2>SPICE Kernels<a class="headerlink" href="#SPICE-Kernels" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">scb.SpiceManager.load_kernel_from_mkfile()</span></code> furnishes the full set of SPICE kernels for the OSIRIS-REx scenario (SPK trajectories, PCK body constants, LSK leap-second, and frame kernels). A single metakernel file lists them all.</p>
+</section>
+<section id="Ground-Stations">
+<h2>Ground Stations<a class="headerlink" href="#Ground-Stations" title="Link to this heading">#</a></h2>
+<p>Three DSN complexes are used to illustrate how media corrections vary by site:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>DSN ID</p></th>
+<th class="head"><p>Complex</p></th>
+<th class="head"><p>Location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GS_C10</span></code></p></td>
+<td><p>DSS-24</p></td>
+<td><p>Goldstone</p></td>
+<td><p>California, USA</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">GS_C40</span></code></p></td>
+<td><p>DSS-35</p></td>
+<td><p>Canberra</p></td>
+<td><p>Australia</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GS_C60</span></code></p></td>
+<td><p>DSS-65</p></td>
+<td><p>Madrid</p></td>
+<td><p>Spain</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each <code class="docutils literal notranslate"><span class="pre">scb.GroundStation</span></code> object looks up the station’s ECEF coordinates and SPICE ID from the loaded kernels.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Units and frames</span>
+<span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">])</span>
+<span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
+
+<span class="c1"># SPICE kernels</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/data/kernels/scenario/real_meas_orx_metakernel_v2.tm&quot;</span>
+<span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">print_kernels</span><span class="p">()</span>
+
+<span class="c1"># Ground stations (one per DSN complex)</span>
+<span class="n">GS_C10</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-24&quot;</span><span class="p">)</span>  <span class="c1"># Goldstone, California</span>
+<span class="n">GS_C40</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-35&quot;</span><span class="p">)</span>  <span class="c1"># Canberra, Australia</span>
+<span class="n">GS_C60</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-65&quot;</span><span class="p">)</span>  <span class="c1"># Madrid, Spain</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOSUCHFILE</span>                           Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_45280/66021749.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">      3</span> J2000, ITRF93, ECLIPJ2000, IAUEARTH = scb.Frame.generate_common_frames()
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># SPICE kernels</span>
+<span class="ansi-green-fg">      6</span> scb.SpiceManager.clear_kernels()
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> scb.SpiceManager.load_kernel_from_mkfile(
+<span class="ansi-green-fg">      8</span>     os.getcwd() + <span class="ansi-yellow-fg">&#34;/data/kernels/scenario/real_meas_orx_metakernel_v2.tm&#34;</span>
+<span class="ansi-green-fg">      9</span> )
+<span class="ansi-green-fg">     10</span> scb.SpiceManager.print_kernels()
+
+<span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(furnshKernelFilename)</span>
+<span class="ansi-green-fg">   2383</span>         Returns
+<span class="ansi-green-fg">   2384</span>         -------
+<span class="ansi-green-fg">   2385</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">   2386</span>         &#34;&#34;&#34;
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2387</span>         spice.furnsh(furnshKernelFilename)
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    128</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    129</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    130</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    131</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">132</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    133</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    134</span>         )
+
+<span class="ansi-red-fg">SpiceNOSUCHFILE</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOSUCHFILE) --
+
+The attempt to load &#34;/Users/zael5647/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/data/kernels/scenario/real_meas_orx_metakernel_v2.tm&#34; by the routine FURNSH failed. It could not be located.
+
+furnsh_c --&gt; FURNSH --&gt; ZZLDKER
+
+================================================================================
+</pre></div></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="2.0-—-Tropospheric-Delay-Models">
+<h1>2.0 — Tropospheric Delay Models<a class="headerlink" href="#2.0-—-Tropospheric-Delay-Models" title="Link to this heading">#</a></h1>
+<p>Radio signals traveling between a DSN ground station and a deep-space spacecraft must pass through Earth’s troposphere. The neutral atmosphere introduces a <strong>non-dispersive path-length delay</strong> that is independent of signal frequency and must be modeled and subtracted from the raw observations before they can be used for orbit determination.</p>
+<p>SCB decomposes the zenith tropospheric delay into two additive components stored in separate JSON correction files:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>File</p></th>
+<th class="head"><p>Model function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Seasonal</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1972_001_2048_001_tro_modified.json</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MediaCorrections.mediafun_trig</span></code> — trigonometric annual + semi-annual fit</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Non-seasonal</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2010_001_2010_032_tro.json</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MediaCorrections.mediafun_nrmpow</span></code> — normalized power-law fit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Both files contain a nested dictionary keyed by site (<code class="docutils literal notranslate"><span class="pre">C10</span></code>, <code class="docutils literal notranslate"><span class="pre">C40</span></code>, <code class="docutils literal notranslate"><span class="pre">C60</span></code>) and wet/dry component (<code class="docutils literal notranslate"><span class="pre">WET</span></code>, <code class="docutils literal notranslate"><span class="pre">DRY</span></code>). The static method <code class="docutils literal notranslate"><span class="pre">MediaCorrections.get_media_data_for_et()</span></code> retrieves the coefficient sub-dictionary that brackets a given epoch.</p>
+</section>
+<section id="2.1-—-Single-station,-single-component-query">
+<h1>2.1 — Single-station, single-component query<a class="headerlink" href="#2.1-—-Single-station,-single-component-query" title="Link to this heading">#</a></h1>
+<p>The simplest usage pattern is a single query: one station, one epoch, one component (wet or dry).</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_media_data_for_et()</span></code> returns the coefficient dictionary valid at the query epoch. That dictionary is then passed to the appropriate functional model:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mediafun_trig(aux_data,</span> <span class="pre">et)</span></code> — evaluates the seasonal trigonometric model at <code class="docutils literal notranslate"><span class="pre">et</span></code>, returning a delay in <strong>meters</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mediafun_nrmpow(aux_data,</span> <span class="pre">et)</span></code> — evaluates the non-seasonal normalized power-law model, also in <strong>meters</strong></p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load tropospheric correction files</span>
+<span class="n">tropo_seasonal_path</span>    <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
+<span class="n">tropo_nonseasonal_path</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/2010_001_2010_032_tro.json&quot;</span>
+
+<span class="n">tropo_seasonal_dict</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">tropo_seasonal_path</span><span class="p">)</span>
+<span class="n">tropo_dict</span>          <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">tropo_nonseasonal_path</span><span class="p">)</span>
+
+<span class="c1"># Query parameters</span>
+<span class="n">query_utc</span>      <span class="o">=</span> <span class="s2">&quot;2010-01-15 00:07:00 UTC&quot;</span>
+<span class="n">query_site</span>     <span class="o">=</span> <span class="s2">&quot;C60&quot;</span>   <span class="c1"># &quot;C10&quot; | &quot;C40&quot; | &quot;C60&quot;</span>
+<span class="n">query_wetordry</span> <span class="o">=</span> <span class="s2">&quot;DRY&quot;</span>   <span class="c1"># &quot;DRY&quot; | &quot;WET&quot;</span>
+
+<span class="c1"># Convert UTC to SPICE ephemeris time</span>
+<span class="n">query_et</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="n">query_utc</span><span class="p">)</span>
+
+<span class="c1"># Retrieve coefficient sub-dictionaries for the query epoch</span>
+<span class="n">aux_seasonal</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
+    <span class="n">tropo_seasonal_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">query_site</span><span class="p">,</span> <span class="n">query_wetordry</span><span class="p">,</span> <span class="n">query_et</span>
+<span class="p">)</span>
+<span class="n">aux_non_seasonal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
+    <span class="n">tropo_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">query_site</span><span class="p">,</span> <span class="n">query_wetordry</span><span class="p">,</span> <span class="n">query_et</span>
+<span class="p">)</span>
+
+<span class="c1"># Evaluate delay models (result in meters)</span>
+<span class="n">delta_m_seasonal</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_trig</span><span class="p">(</span><span class="n">aux_seasonal</span><span class="p">,</span> <span class="n">query_et</span><span class="p">)</span>
+<span class="n">delta_m_non_seasonal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_nrmpow</span><span class="p">(</span><span class="n">aux_non_seasonal</span><span class="p">,</span> <span class="n">query_et</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query:              </span><span class="si">{</span><span class="n">query_utc</span><span class="si">}</span><span class="s2">  |  Site: </span><span class="si">{</span><span class="n">query_site</span><span class="si">}</span><span class="s2">  |  Component: </span><span class="si">{</span><span class="n">query_wetordry</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seasonal delay:     </span><span class="si">{</span><span class="n">delta_m_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-seasonal delay: </span><span class="si">{</span><span class="n">delta_m_non_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total zenith delay: </span><span class="si">{</span><span class="n">delta_m_seasonal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_m_non_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Error: [Errno 2] No such file or directory: &#39;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&#39;
+Error: [Errno 2] No such file or directory: &#39;data/measurements/media_correction/2010_001_2010_032_tro.json&#39;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_45280/2757283270.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">     10</span> query_site     = <span class="ansi-yellow-fg">&#34;C60&#34;</span>   <span style="color: rgb(95,135,135)"># &#34;C10&#34; | &#34;C40&#34; | &#34;C60&#34;</span>
+<span class="ansi-green-fg">     11</span> query_wetordry = <span class="ansi-yellow-fg">&#34;DRY&#34;</span>   <span style="color: rgb(95,135,135)"># &#34;DRY&#34; | &#34;WET&#34;</span>
+<span class="ansi-green-fg">     12</span>
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Convert UTC to SPICE ephemeris time</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> query_et = scb.SpiceManager.utc2et(query_utc)
+<span class="ansi-green-fg">     15</span>
+<span class="ansi-green-fg">     16</span> <span style="color: rgb(95,135,135)"># Retrieve coefficient sub-dictionaries for the query epoch</span>
+<span class="ansi-green-fg">     17</span> aux_seasonal     = scb.MediaCorrections.get_media_data_for_et(
+
+<span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(utc)</span>
+<span class="ansi-green-fg">   1506</span>     @staticmethod
+<span class="ansi-green-fg">   1507</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> utc2et(utc: str):
+<span class="ansi-green-fg">   1508</span>         <span style="color: rgb(95,135,135)"># NOTE: output is the equivalent of utc string expressed</span>
+<span class="ansi-green-fg">   1509</span>         <span style="color: rgb(95,135,135)"># in ephemeris seconds past J2000.</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1510</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> spice.utc2et(utc)
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    128</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    129</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    130</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    131</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">132</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    133</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    134</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+utc2et_c --&gt; UTC2ET --&gt; TTRANS
+
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="2.2-—-Multi-station-time-series">
+<h1>2.2 — Multi-station time-series<a class="headerlink" href="#2.2-—-Multi-station-time-series" title="Link to this heading">#</a></h1>
+<p>In practice, media corrections must be evaluated at every measurement epoch across all active ground stations. The nested loop below sweeps over:</p>
+<ul class="simple">
+<li><p><strong>Sites</strong> — the three DSN complexes (<code class="docutils literal notranslate"><span class="pre">C10</span></code>, <code class="docutils literal notranslate"><span class="pre">C40</span></code>, <code class="docutils literal notranslate"><span class="pre">C60</span></code>)</p></li>
+<li><p><strong>Wet/dry components</strong> — both the dry (hydrostatic) and wet (water-vapor) parts of the zenith delay</p></li>
+<li><p><strong>Time</strong> — 1 000 evenly spaced epochs spanning January–February 2010</p></li>
+</ul>
+<p>The result arrays <code class="docutils literal notranslate"><span class="pre">delta_m_seasonal[site,</span> <span class="pre">component,</span> <span class="pre">time]</span></code> and <code class="docutils literal notranslate"><span class="pre">delta_m_non_seasonal[site,</span> <span class="pre">component,</span> <span class="pre">time]</span></code> hold the zenith delay in meters. A guard (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">aux_data</span> <span class="pre">else</span> <span class="pre">0.0</span></code>) is included for epochs that fall outside the file’s coverage window.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time span: Jan 1 – Feb 28, 2010</span>
+<span class="n">t_start_et</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">&quot;2010-01-01 00:00:00 UTC&quot;</span><span class="p">)</span>
+<span class="n">t_end_et</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">&quot;2010-02-28 23:59:00 UTC&quot;</span><span class="p">)</span>
+<span class="n">timespan_et</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t_start_et</span><span class="p">,</span> <span class="n">t_end_et</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">timespan_days</span> <span class="o">=</span> <span class="p">(</span><span class="n">timespan_et</span> <span class="o">-</span> <span class="n">timespan_et</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mf">86400.0</span>
+
+<span class="n">queries_site</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C10&quot;</span><span class="p">,</span> <span class="s2">&quot;C40&quot;</span><span class="p">,</span> <span class="s2">&quot;C60&quot;</span><span class="p">]</span>
+<span class="n">queries_wetdry</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DRY&quot;</span><span class="p">,</span> <span class="s2">&quot;WET&quot;</span><span class="p">]</span>
+<span class="n">S</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries_site</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">timespan_et</span><span class="p">)</span>
+
+<span class="n">delta_m_seasonal</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">S</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+<span class="n">delta_m_non_seasonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">S</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">si</span><span class="p">,</span> <span class="n">site</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_site</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">wi</span><span class="p">,</span> <span class="n">wd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ti</span><span class="p">,</span> <span class="n">et</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">timespan_et</span><span class="p">):</span>
+            <span class="n">aux_s</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
+                <span class="n">tropo_seasonal_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">site</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">et</span>
+            <span class="p">)</span>
+            <span class="n">aux_n</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
+                <span class="n">tropo_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">site</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">et</span>
+            <span class="p">)</span>
+            <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ti</span><span class="p">]</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_trig</span><span class="p">(</span><span class="n">aux_s</span><span class="p">,</span> <span class="n">et</span><span class="p">)</span>     <span class="k">if</span> <span class="n">aux_s</span> <span class="k">else</span> <span class="mf">0.0</span>
+            <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ti</span><span class="p">]</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_nrmpow</span><span class="p">(</span><span class="n">aux_n</span><span class="p">,</span> <span class="n">et</span><span class="p">)</span>   <span class="k">if</span> <span class="n">aux_n</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+<span class="c1"># Plot one panel per site × component</span>
+<span class="n">site_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C10&quot;</span><span class="p">:</span> <span class="s2">&quot;Goldstone (C10)&quot;</span><span class="p">,</span> <span class="s2">&quot;C40&quot;</span><span class="p">:</span> <span class="s2">&quot;Canberra (C40)&quot;</span><span class="p">,</span> <span class="s2">&quot;C60&quot;</span><span class="p">:</span> <span class="s2">&quot;Madrid (C60)&quot;</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">si</span><span class="p">,</span> <span class="n">site</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_site</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">wi</span><span class="p">,</span> <span class="n">wd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_days</span><span class="p">,</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:],</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal only&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_days</span><span class="p">,</span> <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:],</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal + non-seasonal&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time since 2010-01-01 [days]&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Zenith delay [m]&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tropospheric delay — </span><span class="si">{</span><span class="n">site_labels</span><span class="p">[</span><span class="n">site</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">wd</span><span class="si">}</span><span class="s2"> component&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_45280/3147186595.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Time span: Jan 1 – Feb 28, 2010</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> t_start_et  = scb.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;2010-01-01 00:00:00 UTC&#34;</span>)
+<span class="ansi-green-fg">      3</span> t_end_et    = scb.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;2010-02-28 23:59:00 UTC&#34;</span>)
+<span class="ansi-green-fg">      4</span> timespan_et = np.linspace(t_start_et, t_end_et, <span class="ansi-green-fg">1000</span>)
+<span class="ansi-green-fg">      5</span> timespan_days = (timespan_et - timespan_et[<span class="ansi-green-fg">0</span>]) / <span class="ansi-green-fg">86400.0</span>
+
+<span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(utc)</span>
+<span class="ansi-green-fg">   1506</span>     @staticmethod
+<span class="ansi-green-fg">   1507</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> utc2et(utc: str):
+<span class="ansi-green-fg">   1508</span>         <span style="color: rgb(95,135,135)"># NOTE: output is the equivalent of utc string expressed</span>
+<span class="ansi-green-fg">   1509</span>         <span style="color: rgb(95,135,135)"># in ephemeris seconds past J2000.</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1510</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> spice.utc2et(utc)
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    128</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    129</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    130</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    131</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">132</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    133</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    134</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+utc2et_c --&gt; UTC2ET --&gt; TTRANS
+
+================================================================================
+</pre></div></div>
+</div>
+</section>
+<section id="2.3-—-Elevation-mapping-functions">
+<h1>2.3 — Elevation mapping functions<a class="headerlink" href="#2.3-—-Elevation-mapping-functions" title="Link to this heading">#</a></h1>
+<p>The zenith delays computed above apply only when the signal travels straight up. For any real ground-station-to-spacecraft link, the signal travels at a slant angle, increasing the path length through the atmosphere. The <strong>mapping function</strong> <code class="docutils literal notranslate"><span class="pre">m(E)</span></code> converts the zenith delay <code class="docutils literal notranslate"><span class="pre">δ_z</span></code> to a slant delay <code class="docutils literal notranslate"><span class="pre">δ_s</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>δ_s = m(E) × δ_z
+</pre></div>
+</div>
+<p>SCB implements the <strong>Chao (1972) mapping function</strong> via <code class="docutils literal notranslate"><span class="pre">MediaCorrections.chao_mapping(elevation_rad)</span></code>, which returns separate dry and wet mapping factors. Both approach 1.0 at zenith (90°) and grow rapidly toward the horizon where the signal path through the atmosphere is longest.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Measurements at very low elevation angles (below ~10°) are typically excluded in OD processing because the mapping function uncertainty becomes large and multipath effects increase.</p>
+</div></blockquote>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate Chao mapping functions over full elevation range</span>
+<span class="n">E_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">dry_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">E_rad</span><span class="p">)</span>
+<span class="n">wet_mapping</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">E_rad</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">E_rad</span><span class="p">):</span>
+    <span class="n">dry_mapping</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">wet_mapping</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">chao_mapping</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">dry_mapping</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dry mapping&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">wet_mapping</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wet mapping&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mapping function [-]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Chao (1972) Tropospheric Mapping Functions&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -409,7 +1094,524 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_1_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_1_0.png" />
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_11_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_11_0.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="3.0-—-Ramp-Table-Manager">
+<h1>3.0 — Ramp Table Manager<a class="headerlink" href="#3.0-—-Ramp-Table-Manager" title="Link to this heading">#</a></h1>
+<p>DSN uplink signals are not always transmitted at a constant frequency. When a ramp is in effect, the exciter steps through a pre-programmed frequency-vs-time schedule stored in the tracking data as a <strong>ramp table</strong> (SFDU record type 9). Each ramp table entry records:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sec</span></code></p></td>
+<td><p>Second-of-day at which the ramp interval begins</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">doy</span></code></p></td>
+<td><p>Day-of-year of the ramp interval</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ramp_freq</span></code></p></td>
+<td><p>Exciter frequency at the start of the interval [Hz]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ramp_rate</span></code></p></td>
+<td><p>Linear frequency rate during the interval [Hz/s]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ramp_type</span></code></p></td>
+<td><p>Integer flag identifying the ramp mode</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">scb.RampTableManager.integrate()</span></code> method integrates the piecewise-linear frequency profile between two epochs <code class="docutils literal notranslate"><span class="pre">(t1,</span> <span class="pre">t3)</span></code> and returns the total accumulated phase, which is needed to correctly compute Doppler and sequential ranging observables when the uplink is ramped.</p>
+</section>
+<section id="3.1-—-Loading-and-inspecting-ramp-table-data">
+<h1>3.1 — Loading and inspecting ramp table data<a class="headerlink" href="#3.1-—-Loading-and-inspecting-ramp-table-data" title="Link to this heading">#</a></h1>
+<p>The ramp table is extracted from the <code class="docutils literal notranslate"><span class="pre">aux_SFDU_9</span></code> block of a standard SCB tracking JSON file. The five fields above are assembled into the <code class="docutils literal notranslate"><span class="pre">ramp_data</span></code> list expected by <code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_name</span> <span class="o">=</span> <span class="s2">&quot;orex_beno_2016_282_122040_2016_282_211501_24&quot;</span>
+<span class="n">trk_data</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;data/measurements/radiometric/&quot;</span> <span class="o">+</span> <span class="n">json_name</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span><span class="p">)</span>
+
+<span class="c1"># Assemble ramp table list in the format expected by RampTableManager</span>
+<span class="n">ramp_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;doy&quot;</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_rate&quot;</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="c1"># Visualize the ramp table contents</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;doy&quot;</span><span class="p">],</span>        <span class="s2">&quot;co-&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp day of year&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">],</span>  <span class="s2">&quot;bo-&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp frequency [Hz]&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_rate&quot;</span><span class="p">],</span>  <span class="s2">&quot;ro-&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp rate [Hz/s]&quot;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span>  <span class="s2">&quot;go-&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp type (int)&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time as seconds of day [s]&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ramp Table Contents — </span><span class="si">{</span><span class="n">json_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/orex_beno_2016_282_122040_2016_282_211501_24.json&#39;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      2</span> trk_data  = scb.Utils.load_json(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">data/measurements/radiometric/</span><span class="ansi-yellow-fg">&#34;</span> + json_name + <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">.json</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Assemble ramp table list in the format expected by RampTableManager</span>
+<span class="ansi-green-fg">      5</span> ramp_data = [
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span>     <span class="ansi-yellow-bg">trk_data</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-fg ansi-yellow-bg">aux_SFDU_9</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-bg">]</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec</span><span class="ansi-yellow-fg">&#34;</span>],
+<span class="ansi-green-fg">      7</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">doy</span><span class="ansi-yellow-fg">&#34;</span>],
+<span class="ansi-green-fg">      8</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_freq</span><span class="ansi-yellow-fg">&#34;</span>],
+<span class="ansi-green-fg">      9</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_rate</span><span class="ansi-yellow-fg">&#34;</span>],
+<span class="ansi-green-fg">     10</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>],
+<span class="ansi-green-fg">     11</span> ]
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Visualize the ramp table contents</span>
+<span class="ansi-green-fg">     14</span> fig, axes = plt.subplots(<span class="ansi-green-fg">4</span>, <span class="ansi-green-fg">1</span>, figsize=(<span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">10</span>), sharex=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+
+<span class="ansi-red-fg">TypeError</span>: &#39;NoneType&#39; object is not subscriptable
+</pre></div></div>
+</div>
+</section>
+<section id="3.2-—-Integrated-frequency-sensitivity">
+<h1>3.2 — Integrated frequency sensitivity<a class="headerlink" href="#3.2-—-Integrated-frequency-sensitivity" title="Link to this heading">#</a></h1>
+<p>The integrated uplink frequency between times <code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t3</span></code> is needed to convert a sequential ranging observable (in Range Units) to a time-of-flight. To understand the sensitivity of that integral to the choice of count interval <code class="docutils literal notranslate"><span class="pre">Δt</span> <span class="pre">=</span> <span class="pre">t3</span> <span class="pre">−</span> <span class="pre">t1</span></code>, we evaluate <code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code> at 13 logarithmically spaced offsets from t1 — spanning nanoseconds to thousands of seconds.</p>
+<p>The result is scaled by <code class="docutils literal notranslate"><span class="pre">RU</span> <span class="pre">=</span> <span class="pre">0.147530040053405</span></code> (the Range Unit conversion factor for this pass), giving the accumulated phase in Range Units as a function of integration length.</p>
+<blockquote>
+<div><p><strong>Key insight:</strong> The log-log plot reveals how quickly the integrated frequency accumulates. A slope of 1 indicates that the frequency is approximately constant over the interval — i.e., the ramp rate is negligible at that timescale.</p>
+</div></blockquote>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hard-coded constants for the orex_beno_2016_282_122040_2016_282_211501_24 pass</span>
+<span class="n">RU</span>               <span class="o">=</span> <span class="mf">0.147530040053405</span>   <span class="c1"># Range Unit conversion factor</span>
+<span class="n">t1_sec</span>           <span class="o">=</span> <span class="mi">48660</span>              <span class="c1"># Reference epoch (sec of day)</span>
+<span class="n">t1_doy</span>           <span class="o">=</span> <span class="mi">282</span>
+<span class="n">t3_doy</span>           <span class="o">=</span> <span class="n">t1_doy</span>
+<span class="n">delta_t</span>          <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># 13 log-spaced offsets [s]</span>
+<span class="n">t3_sec_array</span>     <span class="o">=</span> <span class="n">t1_sec</span> <span class="o">+</span> <span class="n">delta_t</span>
+
+<span class="n">f_int_RU</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t3_sec</span> <span class="ow">in</span> <span class="n">t3_sec_array</span><span class="p">:</span>
+    <span class="n">f_int</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RampTableManager</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
+        <span class="n">ramp_data</span><span class="p">,</span> <span class="n">t1_sec</span><span class="p">,</span> <span class="n">t3_sec</span><span class="p">,</span> <span class="n">t1_doy</span><span class="p">,</span> <span class="n">t3_doy</span>
+    <span class="p">)</span>
+    <span class="n">f_int_RU</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RU</span> <span class="o">*</span> <span class="n">f_int</span><span class="p">)</span>
+
+<span class="n">f_int_RU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_int_RU</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta_t</span><span class="p">,</span> <span class="n">f_int_RU</span><span class="p">,</span> <span class="s2">&quot;ko-&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Δt from t1 [s]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Integrated frequency [RU]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Integrated Frequency Sensitivity vs. Count Interval&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 12</span>
+<span class="ansi-green-fg">      9</span> f_int_RU = []
+<span class="ansi-green-fg">     10</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> t3_sec <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> t3_sec_array:
+<span class="ansi-green-fg">     11</span>     f_int, _ = scb.RampTableManager.integrate(
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span>         <span class="ansi-yellow-bg">ramp_data</span>, t1_sec, t3_sec, t1_doy, t3_doy
+<span class="ansi-green-fg">     13</span>     )
+<span class="ansi-green-fg">     14</span>     f_int_RU.append(RU * f_int)
+<span class="ansi-green-fg">     16</span> f_int_RU = np.array(f_int_RU)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;ramp_data&#39; is not defined
+</pre></div></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="4.0-—-RTLT-Media-Corrections-for-Sequential-Ranging">
+<h1>4.0 — RTLT Media Corrections for Sequential Ranging<a class="headerlink" href="#4.0-—-RTLT-Media-Corrections-for-Sequential-Ranging" title="Link to this heading">#</a></h1>
+<p>In the previous section, we computed the <strong>zenith</strong> tropospheric delay — the path-length error for a signal traveling straight up through the atmosphere. When applying corrections to real measurements, we need the <strong>round-trip light-time (RTLT)</strong> delay, which accounts for both the uplink leg (ground → spacecraft, at transmit time <code class="docutils literal notranslate"><span class="pre">t1</span></code>) and the downlink leg (spacecraft → ground, at receive time <code class="docutils literal notranslate"><span class="pre">t3</span></code>).</p>
+<p>The workflow is:</p>
+<ol class="arabic simple">
+<li><p>Load a tracking data file and identify the ground station</p></li>
+<li><p>Extract the receive epochs <code class="docutils literal notranslate"><span class="pre">t3</span></code> from the sequential ranging observable</p></li>
+<li><p>Compute the transmit epochs <code class="docutils literal notranslate"><span class="pre">t1</span></code> using a quick RTLT estimate from SPICE</p></li>
+<li><p>Evaluate <code class="docutils literal notranslate"><span class="pre">media_correction.computed_rtlt_delays()</span></code> at both <code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t3</span></code></p></li>
+<li><p>Add the two one-way delays to get the total RTLT media correction</p></li>
+<li><p>Convert from meters → seconds (via the speed of light) → Range Units (via the uplink carrier frequency)</p></li>
+</ol>
+<p>This corrected delay is subtracted from the raw sequential ranging observable before it is used in the OD filter.</p>
+</section>
+<section id="4.1-—-Load-tracking-data-and-set-up-the-ground-station">
+<h1>4.1 — Load tracking data and set up the ground station<a class="headerlink" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station" title="Link to this heading">#</a></h1>
+<p>The tracking file used here is a two-way pass from DSS-24 (Goldstone) acquired on 2017 day-of-year 346. The file contains both the sequential ranging (<code class="docutils literal notranslate"><span class="pre">2W_sranging</span></code>) and Doppler (<code class="docutils literal notranslate"><span class="pre">2W_doppler</span></code>) observables, though only the ranging measurements are processed in this section.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code> is initialized with a reference to the ground station and the path to the seasonal tropospheric correction file. The non-seasonal file path is resolved later (in Section 4.3) once the exact pass date is known.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trk_file_path</span>          <span class="o">=</span> <span class="s2">&quot;data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json&quot;</span>
+<span class="n">tropo_seasonal_path</span>    <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
+<span class="n">tropo_file_bucket</span>      <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
+
+
+<span class="c1"># Read tracking data and identify the ground station</span>
+<span class="n">trk_data</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">trk_file_path</span><span class="p">)</span>
+<span class="n">DSS_name</span> <span class="o">=</span> <span class="s2">&quot;DSS-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;2W_doppler&quot;</span><span class="p">][</span><span class="s2">&quot;spice_id&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="n">DSS_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ground station:&quot;</span><span class="p">,</span> <span class="n">DSS_name</span><span class="p">)</span>
+
+<span class="c1"># Build the uplink frequency array from the ramp table (used for RU conversion)</span>
+<span class="n">uplink_carrier_df</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_0&quot;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">frequency_values</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">uplink_carrier_df</span><span class="p">[</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">frequency_array</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency_values</span><span class="p">),</span> <span class="n">sec</span><span class="o">**-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create MediaCorrections object (seasonal file loaded now; non-seasonal set in 4.3)</span>
+<span class="n">media_correction</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GS1 SRA Media Corrections&quot;</span><span class="p">,</span>
+    <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span>
+    <span class="n">tropo_seasonal_file_path</span><span class="o">=</span><span class="n">tropo_seasonal_path</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create the sequential ranging model and extract observed t3 epochs</span>
+<span class="n">SRA_model</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SequentialRangingReal</span><span class="p">(</span><span class="s2">&quot;GS1 SRA Model&quot;</span><span class="p">,</span> <span class="n">GS1</span><span class="p">)</span>
+<span class="n">SRA_t3</span><span class="p">,</span> <span class="n">meas_sec</span><span class="p">,</span> <span class="n">meas_obs</span><span class="p">,</span> <span class="n">meas_outliers</span> <span class="o">=</span> <span class="n">SRA_model</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
+    <span class="n">trk_file_path</span><span class="p">,</span> <span class="n">meas_name</span><span class="o">=</span><span class="s2">&quot;2W_sranging&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sequential ranging observations: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json&#39;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      6</span> <span style="color: rgb(95,135,135)"># Read tracking data and identify the ground station</span>
+<span class="ansi-green-fg">      7</span> trk_data = scb.Utils.load_json(trk_file_path)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> DSS_name = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">DSS-</span><span class="ansi-yellow-fg">&#34;</span> + <span style="color: rgb(0,135,0)">str</span>(<span class="ansi-yellow-bg">trk_data</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-fg ansi-yellow-bg">2W_doppler</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-bg">]</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">spice_id</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">      9</span> GS1 = scb.GroundStation(DSS_name)
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Ground station:</span><span class="ansi-yellow-fg">&#34;</span>, DSS_name)
+
+<span class="ansi-red-fg">TypeError</span>: &#39;NoneType&#39; object is not subscriptable
+</pre></div></div>
+</div>
+</section>
+<section id="4.2-—-Compute-transmit-epochs-t1">
+<h1>4.2 — Compute transmit epochs t1<a class="headerlink" href="#4.2-—-Compute-transmit-epochs-t1" title="Link to this heading">#</a></h1>
+<p>The sequential ranging observable is tagged at the <strong>receive</strong> time <code class="docutils literal notranslate"><span class="pre">t3</span></code>. The transmit time <code class="docutils literal notranslate"><span class="pre">t1</span></code> (when the uplink tone left the ground station) must be estimated for the uplink media correction. A two-step SPICE light-time computation gives a good approximation:</p>
+<ol class="arabic simple">
+<li><p>Compute the <strong>downlink</strong> one-way light time at <code class="docutils literal notranslate"><span class="pre">t3</span></code> — the time for the signal to travel from the spacecraft to the ground station.</p></li>
+<li><p>Subtract the downlink light time from <code class="docutils literal notranslate"><span class="pre">t3</span></code> to get the approximate spacecraft time, then compute the <strong>uplink</strong> one-way light time back to the station.</p></li>
+<li><p>The RTLT is the sum of the two, and <code class="docutils literal notranslate"><span class="pre">t1</span> <span class="pre">=</span> <span class="pre">t3</span> <span class="pre">−</span> <span class="pre">RTLT</span></code>.</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;-64&quot;</span>   <span class="c1"># OSIRIS-REx NAIF ID</span>
+<span class="n">frame</span>  <span class="o">=</span> <span class="n">ITRF93</span>
+
+<span class="c1"># Downlink one-way light time: spacecraft → ground at t3</span>
+<span class="n">dl_rtlt</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_lighttime</span><span class="p">(</span>
+    <span class="n">trgt_bdy</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+    <span class="n">epoch_time</span><span class="o">=</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">reference_frame</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">obsvr_bdy</span><span class="o">=</span><span class="n">GS1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">aberration_correction</span><span class="o">=</span><span class="s2">&quot;CN+S&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Uplink one-way light time: ground → spacecraft (at the epoch when signal arrived)</span>
+<span class="n">ul_rtlt</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_lighttime</span><span class="p">(</span>
+    <span class="n">trgt_bdy</span><span class="o">=</span><span class="n">GS1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">epoch_time</span><span class="o">=</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">dl_rtlt</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">reference_frame</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">obsvr_bdy</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+    <span class="n">aberration_correction</span><span class="o">=</span><span class="s2">&quot;CN+S&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rtlt</span>              <span class="o">=</span> <span class="n">ul_rtlt</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">dl_rtlt</span><span class="o">.</span><span class="n">values</span>
+<span class="n">SRA_t1_array</span>      <span class="o">=</span> <span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">rtlt</span>
+<span class="n">SRA_t1_epoch</span>      <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">SRA_t1_array</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean RTLT: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> min  |  Range: [</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">] min&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      2</span> frame  = ITRF93
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Downlink one-way light time: spacecraft → ground at t3</span>
+<span class="ansi-green-fg">      5</span> dl_rtlt = scb.SpiceManager.get_lighttime(
+<span class="ansi-green-fg">      6</span>     trgt_bdy=target,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     epoch_time=<span class="ansi-yellow-bg">SRA_t3</span>.times.values,
+<span class="ansi-green-fg">      8</span>     reference_frame=frame.name,
+<span class="ansi-green-fg">      9</span>     obsvr_bdy=GS1.name,
+<span class="ansi-green-fg">     10</span>     aberration_correction=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">CN+S</span><span class="ansi-yellow-fg">&#34;</span>,
+<span class="ansi-green-fg">     11</span> )
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Uplink one-way light time: ground → spacecraft (at the epoch when signal arrived)</span>
+<span class="ansi-green-fg">     14</span> ul_rtlt = scb.SpiceManager.get_lighttime(
+<span class="ansi-green-fg">     15</span>     trgt_bdy=GS1.name,
+<span class="ansi-green-fg">     16</span>     epoch_time=SRA_t3.times.values - dl_rtlt.values,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     19</span>     aberration_correction=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">CN+S</span><span class="ansi-yellow-fg">&#34;</span>,
+<span class="ansi-green-fg">     20</span> )
+
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+</pre></div></div>
+</div>
+</section>
+<section id="4.3-—-Resolve-the-non-seasonal-correction-file-and-compute-elevation-angles">
+<h1>4.3 — Resolve the non-seasonal correction file and compute elevation angles<a class="headerlink" href="#4.3-—-Resolve-the-non-seasonal-correction-file-and-compute-elevation-angles" title="Link to this heading">#</a></h1>
+<p>The non-seasonal tropospheric correction file is specific to each year and day-of-year. <code class="docutils literal notranslate"><span class="pre">MediaCorrections.find_tro_metadata()</span></code> scans the correction file bucket and returns the file whose coverage window contains the pass date, which is extracted from the first t3 epoch.</p>
+<p>Elevation angles at each t3 epoch are computed with <code class="docutils literal notranslate"><span class="pre">SpiceManager.get_elevation_angle()</span></code>. The elevation angle is needed in Section 4.4 to apply the Chao mapping function, and it is also a useful diagnostic — passes near the horizon (low elevation) have much larger and more uncertain media corrections.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the non-seasonal correction file for this pass</span>
+<span class="n">year_q</span><span class="p">,</span> <span class="n">day_q</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2YDS</span><span class="p">([</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">metadata_tropo</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">find_tro_metadata</span><span class="p">(</span><span class="n">tropo_file_bucket</span><span class="p">,</span> <span class="n">year_q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">day_q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">media_correction</span><span class="o">.</span><span class="n">tropo_non_seasonal_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">tropo_file_bucket</span><span class="p">,</span> <span class="n">metadata_tropo</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Non-seasonal file:&quot;</span><span class="p">,</span> <span class="n">metadata_tropo</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">])</span>
+
+<span class="c1"># Elevation angles at each t3 epoch</span>
+<span class="n">rad_unit</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;rad&quot;</span><span class="p">])</span>
+<span class="n">SRA_elevation_angles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">el_awu</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_elevation_angle</span><span class="p">(</span>
+        <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+        <span class="n">et</span><span class="o">=</span><span class="n">et</span><span class="p">,</span>
+        <span class="n">station</span><span class="o">=</span><span class="n">DSS_name</span><span class="p">,</span>
+        <span class="n">abcorr</span><span class="o">=</span><span class="s2">&quot;LT+S&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">el_rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">get_value_in_target_units</span><span class="p">(</span><span class="n">el_awu</span><span class="p">,</span> <span class="n">rad_unit</span><span class="p">)</span>
+    <span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">el_rad</span><span class="p">))</span>
+
+<span class="n">SRA_elevation_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elevation angle range: </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="se">\u00b0</span><span class="s2"> </span><span class="se">\u2013</span><span class="s2"> </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="se">\u00b0</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Find the non-seasonal correction file for this pass</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> year_q, day_q, _ = scb.SpiceManager.et2YDS([<span class="ansi-yellow-bg">SRA_t3</span>.times.values[<span class="ansi-green-fg">0</span>]])
+<span class="ansi-green-fg">      3</span> metadata_tropo = scb.MediaCorrections.find_tro_metadata(tropo_file_bucket, year_q[<span class="ansi-green-fg">0</span>], day_q[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">      4</span> media_correction.tropo_non_seasonal_file_path = os.path.join(
+<span class="ansi-green-fg">      5</span>     tropo_file_bucket, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>]
+<span class="ansi-green-fg">      6</span> )
+
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+</pre></div></div>
+</div>
+</section>
+<section id="4.4-—-Compute-RTLT-tropospheric-delays">
+<h1>4.4 — Compute RTLT tropospheric delays<a class="headerlink" href="#4.4-—-Compute-RTLT-tropospheric-delays" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">media_correction.computed_rtlt_delays()</span></code> evaluates the full tropospheric model (seasonal + non-seasonal, dry + wet, with Chao mapping applied) at a given ephemeris time and returns the one-way path-length correction in <strong>meters</strong>.</p>
+<p>The RTLT correction is the sum of the corrections at <code class="docutils literal notranslate"><span class="pre">t3</span></code> (downlink) and <code class="docutils literal notranslate"><span class="pre">t1</span></code> (uplink):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Δp [m]   = Δp(t3) + Δp(t1)
+Δτ [s]   = Δp [m] × 10⁻³ / c          (Moyer eq. 10-27, converting km → m → s)
+ΔΦ [RU]  = Δτ [s] × f_uplink [Hz]
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">c</span></code> is the speed of light in km/s from <code class="docutils literal notranslate"><span class="pre">scb.constants.c</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SRA_tropo_t3</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">SRA_tropo_t1</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)):</span>
+    <span class="n">t3</span> <span class="o">=</span> <span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">SRA_t1_epoch</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+
+    <span class="n">p_t3</span> <span class="o">=</span> <span class="n">media_correction</span><span class="o">.</span><span class="n">computed_rtlt_delays</span><span class="p">(</span><span class="n">query_time_et</span><span class="o">=</span><span class="n">t3</span><span class="p">,</span> <span class="n">target_spice_id</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">p_t1</span> <span class="o">=</span> <span class="n">media_correction</span><span class="o">.</span><span class="n">computed_rtlt_delays</span><span class="p">(</span><span class="n">query_time_et</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">target_spice_id</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+
+    <span class="n">SRA_tropo_t3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_t3</span><span class="p">)</span>
+    <span class="n">SRA_tropo_t1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_t1</span><span class="p">)</span>
+
+<span class="n">SRA_tropo_t3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_tropo_t3</span><span class="p">)</span>
+<span class="n">SRA_tropo_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_tropo_t1</span><span class="p">)</span>
+
+<span class="c1"># RTLT path-length correction [m]</span>
+<span class="n">SRA_delta_m</span>    <span class="o">=</span> <span class="n">SRA_tropo_t3</span> <span class="o">+</span> <span class="n">SRA_tropo_t1</span>
+
+<span class="c1"># Convert to RTLT time correction [s]  (Moyer 10-27: 1e-3 converts m → km)</span>
+<span class="n">SRA_delta_rtlt</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">SRA_delta_m</span> <span class="o">*</span> <span class="mf">1e-3</span><span class="p">)</span>
+
+<span class="c1"># Convert to Range Units</span>
+<span class="n">SRA_delta_RU</span>   <span class="o">=</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="n">frequency_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean RTLT tropo correction: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SRA_delta_rtlt</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> μs  /  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SRA_delta_RU</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> RU&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> SRA_tropo_t3 = []
+<span class="ansi-green-fg">      2</span> SRA_tropo_t1 = []
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> ii <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(0,135,0)">len</span>(<span class="ansi-yellow-bg">SRA_t3</span>.times.values)):
+<span class="ansi-green-fg">      5</span>     t3 = SRA_t3.times.values[ii]
+<span class="ansi-green-fg">      6</span>     t1 = SRA_t1_epoch.times.values[ii]
+
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+</pre></div></div>
+</div>
+</section>
+<section id="4.5-—-Results-and-plots">
+<h1>4.5 — Results and plots<a class="headerlink" href="#4.5-—-Results-and-plots" title="Link to this heading">#</a></h1>
+<p>Five plots summarize the media correction output for this pass:</p>
+<ol class="arabic simple">
+<li><p><strong>RTLT correction vs time (t3)</strong> — how the total delay evolves over the pass</p></li>
+<li><p><strong>Path-length correction vs time</strong> — same information in meters</p></li>
+<li><p><strong>Range Unit correction vs time</strong> — the operationally relevant quantity subtracted from the raw observable</p></li>
+<li><p><strong>RTLT correction vs elevation angle</strong> — shows the expected increase toward the horizon</p></li>
+<li><p><strong>Elevation angle vs time</strong> — pass geometry reference</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric RTLT Correction vs Time (t3)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_delta_m</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Path-length correction [m]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric Path-Length Correction vs Time (t3)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_delta_RU</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Correction [RU]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric Correction in Range Units vs Time (t3)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric RTLT Correction vs Elevation Angle (at t3)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ground Station Elevation Angle vs Time (t3)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> fig, ax = plt.subplots(figsize=(<span class="ansi-green-fg">9</span>, <span class="ansi-green-fg">4</span>))
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> ax.plot(<span class="ansi-yellow-bg">SRA_t3</span>.times.values, SRA_delta_rtlt * <span class="ansi-green-fg">1e6</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">      3</span> ax.set_xlabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ET t3 [s]</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">      4</span> ax.set_ylabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">RTLT correction [μs]</span><span class="ansi-yellow-fg">&#34;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" />
 </div>
 </div>
 </section>
@@ -424,6 +1626,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="advanced_IdealMSR_SequentialOD.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"># Sequential Orbit Determination — Complete Demo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="advanced_RealMSR_OSIRIS_REx_OD.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"># OSIRIS-REx Tutorial Series</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -443,8 +1663,29 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># OSIRIS-REx Tutorial Series Pt 2: Time and SPICE</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.0-—-Load-SCB-and-the-relevant-Python-packages">1.0 — Load SCB and the relevant Python packages</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.1-—-Initialize-units,-frames,-and-SPICE-kernels">1.1 — Initialize units, frames, and SPICE kernels</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Units-and-Frames">Units and Frames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#SPICE-Kernels">SPICE Kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Ground-Stations">Ground Stations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.0-—-Tropospheric-Delay-Models">2.0 — Tropospheric Delay Models</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.1-—-Single-station,-single-component-query">2.1 — Single-station, single-component query</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.2-—-Multi-station-time-series">2.2 — Multi-station time-series</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.3-—-Elevation-mapping-functions">2.3 — Elevation mapping functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.0-—-Ramp-Table-Manager">3.0 — Ramp Table Manager</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.1-—-Loading-and-inspecting-ramp-table-data">3.1 — Loading and inspecting ramp table data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.2-—-Integrated-frequency-sensitivity">3.2 — Integrated frequency sensitivity</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.0-—-RTLT-Media-Corrections-for-Sequential-Ranging">4.0 — RTLT Media Corrections for Sequential Ranging</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station">4.1 — Load tracking data and set up the ground station</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.2-—-Compute-transmit-epochs-t1">4.2 — Compute transmit epochs t1</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.3-—-Resolve-the-non-seasonal-correction-file-and-compute-elevation-angles">4.3 — Resolve the non-seasonal correction file and compute elevation angles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.4-—-Compute-RTLT-tropospheric-delays">4.4 — Compute RTLT tropospheric delays</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.5-—-Results-and-plots">4.5 — Results and plots</a></li>
 </ul>
 
   </nav></div>

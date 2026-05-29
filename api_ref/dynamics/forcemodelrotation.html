@@ -56,8 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/dynamics/forcemodelrotation';</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
@@ -625,23 +623,21 @@
 <dt class="sig sig-object py" id="scarabaeus.ForceModelRotation">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ForceModelRotation</span></span><a class="headerlink" href="#scarabaeus.ForceModelRotation" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="forcemodel.html#scarabaeus.ForceModel" title="scarabaeus.dynamics.ForceModel.ForceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForceModel</span></code></a></p>
-<p>Placeholder rotational force model.</p>
-<p>This stub implements the <a class="reference internal" href="forcemodel.html#scarabaeus.ForceModel" title="scarabaeus.ForceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForceModel</span></code></a> interface but contributes
-no translational acceleration — all calls to <code class="xref py py-meth docutils literal notranslate"><span class="pre">_compute_total_acceleration()</span></code>
-return exactly:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{a}_\text{rot} = \mathbf{0}\]</div>
-<p>Useful as a placeholder for future attitude dynamics without breaking
-callers that expect a <a class="reference internal" href="forcemodel.html#scarabaeus.ForceModel" title="scarabaeus.ForceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForceModel</span></code></a> object.</p>
+<p>Rotational-dynamics force model — not yet implemented.</p>
+<p>This class is a placeholder for the rotational (attitude) channel of
+Scarabaeus. <strong>Instantiating it always raises</strong> <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+<p>Planned sub-models include (non-exhaustive):</p>
+<ul class="simple">
+<li><p>Gravity-gradient torque</p></li>
+<li><p>Solar-radiation-pressure torque</p></li>
+<li><p>Thruster torque (from finite-burn offset)</p></li>
+<li><p>Attitude-state kinematics (quaternion / Euler-angle ODEs)</p></li>
+</ul>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>None</strong></p>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Always — rotational dynamics are not yet implemented or verified.</p>
 </dd>
 </dl>
-<p class="rubric">Notes</p>
-<p>The model is always considered initialized after binding via
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">initialize_force_models()</span></code>; <code class="xref py py-meth docutils literal notranslate"><span class="pre">_compute_total_acceleration()</span></code> always
-returns a zero vector.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">

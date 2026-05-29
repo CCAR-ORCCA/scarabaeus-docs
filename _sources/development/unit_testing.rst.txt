@@ -15,38 +15,3 @@
 
 .. role:: gold
 
-==================
-:gold:`Unit Tests`
-==================
-
-Unit tests verify the behaviour of individual Scarabaeus classes and methods in isolation.
-Each test file maps to one class (e.g. ``test_CelestialBody.py`` tests :class:`scarabaeus.CelestialBody`)
-and lives under the matching module subdirectory of ``tests/unit_testing/``.
-
-**Running unit tests:**
-
-.. code-block:: bash
-
-   pytest tests/unit_testing/
-
-**Running a single module's tests:**
-
-.. code-block:: bash
-
-   pytest tests/unit_testing/body_tests/
-
-------------------------------------
-:gold:`Writing a New Unit Test`
-------------------------------------
-
-1. Create ``tests/unit_testing/<module>_tests/test_ClassName.py``.
-2. Inherit from ``TestWide.TestBase`` (provides shared fixtures and assertion helpers).
-3. Use ``TruthData`` to store expected values separately from test logic.
-4. To generate a test skeleton automatically:
-
-.. code-block:: bash
-
-   cd tests
-   python -c "import TestWide; TestWide.TestTools.generate_test(TestWide.TestTools)"
-
-Follow the prompts to select the target class and output directory.

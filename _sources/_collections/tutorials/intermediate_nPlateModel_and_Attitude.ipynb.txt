@@ -7,14 +7,27 @@
    "source": [
     "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
     "<!-- SPDX-License-Identifier: ISC -->\n",
-    "# N-Plate Model Attitude\n",
+    "# N-Plate Model and Spacecraft Attitude\n",
     "---\n",
-    "Last revised by Z. Ellis on 2026 APR 6\n",
+    "*Scarabaeus | Last revised 2026*\n",
     "\n",
-    "## Objectives\n",
-    "This tutorial will demonstrate \n",
+    "## What this notebook covers\n",
+    "Two tightly related topics: the **N-Plate SRP model** which requires attitude data from\n",
+    "SPICE C-kernels to orient solar array panels, and the **spacecraft attitude** interface\n",
+    "used to extract orientation quaternions directly from C-kernels.\n",
+    "Both are demonstrated using the OSIRIS-REx mission.\n",
     "\n",
-    "TALK ABOUT ATTITUDE TOO"
+    "### Topics\n",
+    "| # | Topic |\n",
+    "|---|-------|\n",
+    "| 1 | N-Plate Model — construction from a configuration file |\n",
+    "| 2 | N-Plate Model — examining CK panel intervals |\n",
+    "| 3 | N-Plate Model — querying time-varying normal vectors |\n",
+    "| 4 | N-Plate Model — static normals and spacecraft integration |\n",
+    "| 5 | Spacecraft Attitude — quaternion history from a C-kernel |\n",
+    "\n",
+    "## How to run\n",
+    "Run from the **project root** directory (`scarabaeus/`)."
    ]
   },
   {
@@ -22,9 +35,7 @@
    "id": "1",
    "metadata": {},
    "source": [
-    "## Imports and Set Up\n",
-    "\n",
-    "First we'll import the necessary libraries and load in the supplementary data. Then we define units and frames and load a metakernel to use for time conversions and provide attitude information."
+    "## 0. Imports and Setup"
    ]
   },
   {
@@ -37,21 +48,19 @@
     "import scarabaeus as scb\n",
     "import supplementary as supp\n",
     "\n",
+    "from pathlib import Path\n",
     "import numpy as np\n",
-    "import matplotlib.pyplot as plt\n",
     "\n",
     "# load tutorial data\n",
     "data = supp.load_data()\n",
     "\n",
-    "## units, frames, kernels\n",
-    "km, hr = scb.Units.get_units(['km', 'hr'])\n",
+    "# define units and fraes\n",
+    "km, hr, sec, kg = scb.Units.get_units(['km', 'hr', 'sec', 'kg'])\n",
     "J2000 = scb.Frame('J2000')\n",
     "\n",
-    "scb.SpiceManager.clear_kernels()    # ensure clean kernel pool\n",
-    "scb.SpiceManager.load_kernel_from_mkfile(data.OREx_mk.path)\n",
-    "\n",
-    "# verify C-Kernels for the S/C (sc) and solar arrays (sa)\n",
-    "scb.SpiceManager.print_kernels()"
+    "# ── kernel pool (SC body CK + solar array CK + ephemeris) ─────────\n",
+    "scb.SpiceManager.clear_kernels()\n",
+    "scb.SpiceManager.load_kernel_from_mkfile(data.OREx_mk.path)"
    ]
   },
   {
@@ -59,7 +68,23 @@
    "id": "3",
    "metadata": {},
    "source": [
-    "# SAY SOMETHING ABOUT THE DIFFERENT KERNELS LOADED"
+    "---\n",
+    "## 1. N-Plate Model\n",
+    "\n",
+    "The **N-Plate SRP model** represents a spacecraft's solar-radiation-pressure geometry\n",
+    "as a finite set of flat plates, each with its own area, reflectivity coefficients, and\n",
+    "surface normal.  Panels can be **fixed** in the spacecraft body frame or **attitude-driven**\n",
+    "by a SPICE C-kernel (CK), as is the case for articulated solar arrays.\n",
+    "\n",
+    "The model is constructed from a JSON configuration file that specifies each panel's\n",
+    "physical properties and SPICE frame ID.  The two meta-kernel types loaded above are:\n",
+    "\n",
+    "| Kernel type | Purpose |\n",
+    "|---|---|\n",
+    "| CK (spacecraft body) | Main-bus attitude → body-frame orientation in J2000 |\n",
+    "| CK (solar arrays) | Solar-panel articulation → time-varying panel normals |\n",
+    "\n",
+    "### Constructing the Model"
    ]
   },
   {
@@ -67,8 +92,12 @@
    "id": "4",
    "metadata": {},
    "source": [
-    "## Define N-Plate Model & Examine CK Panels\n",
-    "Now that we've loaded in the necessary kernels, we'll need to define an N-Plate model to utilize them. Scarabaeus uses a configuration file, which we loaded in with the rest of the tutorial data:"
+    "### Examining CK Panel Intervals\n",
+    "\n",
+    "`SpiceManager.ckbrief` inspects a binary C-kernel and returns the SPICE frame IDs and\n",
+    "their valid time intervals.  The N-plate configuration defines panels `-64017` and `-64027`\n",
+    "(OSIRIS-REx solar arrays), which are plates 3 and 4 in the CK.  Both share the same interval,\n",
+    "so we take the first entry to get the query bounds."
    ]
   },
   {
@@ -78,7 +107,9 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "n_model = scb.nPlateModel(data.OREx_nplate.path)"
+    "# ── build N-plate model from configuration JSON ───────────────────\n",
+    "n_model = scb.nPlateModel(data.OREx_nplate.path)\n",
+    "print(n_model)"
    ]
   },
   {
@@ -86,7 +117,11 @@
    "id": "6",
    "metadata": {},
    "source": [
-    "We'll use `SpiceManager.ckbrief` to look at the SPICE IDs and their matching intervals loaded in with the solar array's attide C-kernel `tutorial_data/kernels/scenario/orx_sa_rel_210816_210822_v02.bc`. Note that we've defined two CK plates in the N-plate configuration JSON, IDs -64017 and -64027 , which are the first and third plate defined in the C-kernel respectively, but the third and fourth plate in the configuration JSON. Since both plates have the same interval, we can just grab the first plate from the brief, corresponding to ID -64207 or Plate 4:"
+    "### Querying Time-Varying Normal Vectors\n",
+    "\n",
+    "`nPlateModel._get_ck_normals(epoch, sc_id)` returns the inertially-expressed unit normals\n",
+    "for all CK-driven panels at a given epoch.  `sc_id` is the spacecraft NAIF ID needed to\n",
+    "convert the epoch to spacecraft-clock ticks (SCLK) internally."
    ]
   },
   {
@@ -96,12 +131,13 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# examine the ID's and intervals within the loaded C-kernel\n",
-    "brief = scb.SpiceManager.ckbrief(data.OREx_ck_sa.path, disp = True)\n",
+    "# ── inspect C-kernel for solar array panel intervals ─────────────\n",
+    "brief  = scb.SpiceManager.ckbrief(data.OREx_ck_sa.path, disp=True)\n",
     "\n",
-    "# N-plate model defines panels -64017 and -64027 -> use their intervals from C-kernel\n",
-    "plate4 = brief[0]    # coresponds to 4th plate in the configuration file\n",
-    "start, end = plate4['TDB_INTERVAL'][0][0], plate4['TDB_INTERVAL'][0][1]     # both plates have same interval"
+    "# panels -64017 and -64027 share the same valid interval → take first entry\n",
+    "plate4 = brief[0]\n",
+    "start, end = plate4['TDB_INTERVAL'][0][0], plate4['TDB_INTERVAL'][0][1]\n",
+    "print(f\"\\nQuery interval:  {start}  →  {end}\")"
    ]
   },
   {
@@ -109,7 +145,9 @@
    "id": "8",
    "metadata": {},
    "source": [
-    "Now we can query the normal vectors for both plates across the entire interval that they've been defined using `nPlateModel.get_ck_normals`:"
+    "The plot below shows how the two solar-array normals (`ORX_SA_PY_IG` and `ORX_SA_NY_IG`)\n",
+    "rotate over the queried interval.  The interactive version lets you scrub through time;\n",
+    "the inline version renders statically for documentation."
    ]
   },
   {
@@ -119,12 +157,13 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# get normals information across time interval\n",
-    "orex_id = -64                                         # need s/c ID for SCLK time\n",
-    "dt = scb.ArrayWUnits(0.5, hr)                         # query every half hour\n",
-    "times = scb.EpochArray.interval(start, end, dt)       # the interval to examine\n",
+    "# ── query CK normals every half-hour across the full interval ─────\n",
+    "orex_id = -64                                          # NAIF SC ID for SCLK\n",
+    "dt      = scb.ArrayWUnits(0.5, hr)\n",
+    "times   = scb.EpochArray.interval(start.to(rep = 'NUM'), end.to(rep ='NUM'), dt)\n",
     "\n",
-    "normals = [n_model.get_ck_normals(t, orex_id) for t in times]"
+    "normals = [n_model._get_ck_normals(t, orex_id) for t in times]\n",
+    "print(f\"{len(normals)} epochs queried,  {len(normals[0])} CK panels per epoch\")"
    ]
   },
   {
@@ -132,10 +171,9 @@
    "id": "10",
    "metadata": {},
    "source": [
-    "## Plot C-Kernel Normal Vectors\n",
-    "With the normal vectors queried from the C-kernel, we can plot their time history. This figure will let us scroll through each queried epoch and see how the normal vector changes in the body frame of OSIRIS-REx.\n",
+    "### Plotting Normal Vectors\n",
     "\n",
-    "> **NOTE:** the magic command `%matplotlib widget` is only placed in this notebook to allow for the figure to be interactive."
+    "> **Note:** `%matplotlib widget` makes the figure interactive (time slider)."
    ]
   },
   {
@@ -168,8 +206,95 @@
    "id": "13",
    "metadata": {},
    "source": [
-    "# Conclusion\n",
-    "DESC"
+    "### Static Normals at a Single Epoch\n",
+    "\n",
+    "`nPlateModel.get_all_normals(epoch, sc_id)` returns normals for **all** panels —\n",
+    "both fixed body-frame plates and CK-driven plates — resolved into the inertial frame\n",
+    "at a single epoch.  This is the call the propagator uses internally at each integration step."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "14",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# ── all normals (fixed + CK) at the start of the interval ────────\n",
+    "all_norms = n_model.get_all_normals(start, orex_id)\n",
+    "print(\"Panel normals at epoch start:\")\n",
+    "for i, n in enumerate(all_norms):\n",
+    "    print(f\"  Plate {i+1}: {np.array(n).round(4)}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "15",
+   "metadata": {},
+   "source": [
+    "### Attaching to a Spacecraft\n",
+    "\n",
+    "Pass `n_plate_model` to `Spacecraft` to activate N-plate SRP in the force model.\n",
+    "`get_dependent_spice_ids()` lists every SPICE frame ID that the model depends on —\n",
+    "useful for verifying all required CK/FK kernels are loaded before propagation."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "16",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# ── attach N-plate model to spacecraft ────────────────────────────\n",
+    "orex = scb.Spacecraft(\n",
+    "    'OSIRIS-REx', -64,\n",
+    "    scb.ArrayWUnits(0, kg),\n",
+    "    n_plate_model=n_model,\n",
+    ")\n",
+    "\n",
+    "print(\"Spacecraft SPICE IDs required by the N-plate model:\")\n",
+    "print(orex.get_dependent_spice_ids())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "17",
+   "metadata": {},
+   "source": [
+    "---\n",
+    "## 2. Spacecraft Attitude\n",
+    "\n",
+    "`Spacecraft.get_attitude(frame, et)` queries the C-kernel and returns the orientation\n",
+    "of the spacecraft body frame as a unit quaternion $[q_0,\\, q_1,\\, q_2,\\, q_3]$ at the\n",
+    "given epoch.  This wraps the underlying SPICE `ckgpav` / `m2q` calls and expresses\n",
+    "the result in the requested inertial frame.\n",
+    "\n",
+    "The example below extracts the quaternion history for OSIRIS-REx over a five-day window\n",
+    "and plots all four components."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "18",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# ── attitude query over a 5-day window ───────────────────────────\n",
+    "et_start = scb.SpiceManager.str2et(\"2021 AUG 17 12:00:00 UTC\")\n",
+    "et_end   = scb.SpiceManager.str2et(\"2021 AUG 22 08:00:00 UTC\")\n",
+    "step_sec = 20                                          # sample every 20 s\n",
+    "\n",
+    "et_arr = np.arange(et_start, et_end, step_sec)\n",
+    "\n",
+    "# reuse the spacecraft defined in §1 (orex already has the N-plate model)\n",
+    "attitudes = [orex.get_attitude(J2000, et) for et in et_arr]\n",
+    "attitudes = np.array(attitudes)                        # shape: (N, 4)\n",
+    "\n",
+    "print(f\"Queried {len(attitudes)} attitude epochs\")\n",
+    "print(f\"First quaternion  [q0 q1 q2 q3] : {attitudes[0].round(6)}\")\n",
+    "print(f\"Norm check (should be 1.0)       : {np.linalg.norm(attitudes[0]):.8f}\")"
    ]
   }
  ],
