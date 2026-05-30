@@ -59,7 +59,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_RealMSR_MediaCorrections';</script>
@@ -412,7 +411,6 @@
 
 
 
-
 <li class="toctree-l1"><a class="reference internal" href="intermediate_BPlane.html">B-Plane Targeting: OSIRIS-REx 2017 Earth Gravity Assist</a></li>
 </ul>
 <ul class="nav bd-sidenav">
@@ -444,7 +442,6 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="intermediate_MissionSequence_and_FiniteBurn.html"># Mission Sequence and Finite-Burn Propagation Demo</a></li>
-
 
 
 
@@ -685,9 +682,12 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
+<span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<br/></pre></div>
+
+<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;kg&quot;</span><span class="p">,</span> <span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;unitless&quot;</span><span class="p">])</span>
+<span class="p">(</span><span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span><span class="p">)</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </section>
@@ -736,16 +736,12 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Units and frames</span>
-<span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">])</span>
-<span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load tutorial data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<span class="c1"># SPICE kernels</span>
+<span class="c1"># load kernels</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;/data/kernels/scenario/real_meas_orx_metakernel_v2.tm&quot;</span>
-<span class="p">)</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">print_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">OREx_real_data_mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># Ground stations (one per DSN complex)</span>
 <span class="n">GS_C10</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-24&quot;</span><span class="p">)</span>  <span class="c1"># Goldstone, California</span>
@@ -759,53 +755,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">SpiceNOSUCHFILE</span>                           Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_45280/66021749.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">      3</span> J2000, ITRF93, ECLIPJ2000, IAUEARTH = scb.Frame.generate_common_frames()
-<span class="ansi-green-fg">      4</span>
-<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># SPICE kernels</span>
-<span class="ansi-green-fg">      6</span> scb.SpiceManager.clear_kernels()
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> scb.SpiceManager.load_kernel_from_mkfile(
-<span class="ansi-green-fg">      8</span>     os.getcwd() + <span class="ansi-yellow-fg">&#34;/data/kernels/scenario/real_meas_orx_metakernel_v2.tm&#34;</span>
-<span class="ansi-green-fg">      9</span> )
-<span class="ansi-green-fg">     10</span> scb.SpiceManager.print_kernels()
-
-<span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(furnshKernelFilename)</span>
-<span class="ansi-green-fg">   2383</span>         Returns
-<span class="ansi-green-fg">   2384</span>         -------
-<span class="ansi-green-fg">   2385</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
-<span class="ansi-green-fg">   2386</span>         &#34;&#34;&#34;
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2387</span>         spice.furnsh(furnshKernelFilename)
-
-<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
-<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
-<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
-<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
-
-<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(f)</span>
-<span class="ansi-green-fg">    128</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
-<span class="ansi-green-fg">    129</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
-<span class="ansi-green-fg">    130</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
-<span class="ansi-green-fg">    131</span>         reset()
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">132</span>         raise dynamically_instantiate_spiceyerror(
-<span class="ansi-green-fg">    133</span>             short=short, explain=explain, long=long, traceback=traceback
-<span class="ansi-green-fg">    134</span>         )
-
-<span class="ansi-red-fg">SpiceNOSUCHFILE</span>:
-================================================================================
-
-Toolkit version: CSPICE_N0067
-
-SPICE(NOSUCHFILE) --
-
-The attempt to load &#34;/Users/zael5647/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/data/kernels/scenario/real_meas_orx_metakernel_v2.tm&#34; by the routine FURNSH failed. It could not be located.
-
-furnsh_c --&gt; FURNSH --&gt; ZZLDKER
-
-================================================================================
+SCB supplementary data up to date.
 </pre></div></div>
 </div>
 </section>
@@ -848,9 +798,20 @@ furnsh_c --&gt; FURNSH --&gt; ZZLDKER
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load tropospheric correction files</span>
-<span class="n">tropo_seasonal_path</span>    <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
-<span class="n">tropo_nonseasonal_path</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/2010_001_2010_032_tro.json&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load tutorial data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+
+<span class="c1"># load kernels</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">OREx_real_data_mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+<span class="c1"># Load tropospheric correction files</span>
+
+<span class="n">tropo_seasonal_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_seasonal_new</span><span class="o">.</span><span class="n">path</span>
+<span class="n">tropo_nonseasonal_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_nonseasonal</span><span class="o">.</span><span class="n">path</span>
+
+<span class="c1">#tropo_seasonal_path    = &quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
+<span class="c1">#tropo_nonseasonal_path = &quot;data/measurements/media_correction/2010_001_2010_032_tro.json&quot;</span>
 
 <span class="n">tropo_seasonal_dict</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">tropo_seasonal_path</span><span class="p">)</span>
 <span class="n">tropo_dict</span>          <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">tropo_nonseasonal_path</span><span class="p">)</span>
@@ -882,67 +843,16 @@ furnsh_c --&gt; FURNSH --&gt; ZZLDKER
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Error: [Errno 2] No such file or directory: &#39;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&#39;
-Error: [Errno 2] No such file or directory: &#39;data/measurements/media_correction/2010_001_2010_032_tro.json&#39;
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_45280/2757283270.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">     10</span> query_site     = <span class="ansi-yellow-fg">&#34;C60&#34;</span>   <span style="color: rgb(95,135,135)"># &#34;C10&#34; | &#34;C40&#34; | &#34;C60&#34;</span>
-<span class="ansi-green-fg">     11</span> query_wetordry = <span class="ansi-yellow-fg">&#34;DRY&#34;</span>   <span style="color: rgb(95,135,135)"># &#34;DRY&#34; | &#34;WET&#34;</span>
-<span class="ansi-green-fg">     12</span>
-<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Convert UTC to SPICE ephemeris time</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> query_et = scb.SpiceManager.utc2et(query_utc)
-<span class="ansi-green-fg">     15</span>
-<span class="ansi-green-fg">     16</span> <span style="color: rgb(95,135,135)"># Retrieve coefficient sub-dictionaries for the query epoch</span>
-<span class="ansi-green-fg">     17</span> aux_seasonal     = scb.MediaCorrections.get_media_data_for_et(
-
-<span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(utc)</span>
-<span class="ansi-green-fg">   1506</span>     @staticmethod
-<span class="ansi-green-fg">   1507</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> utc2et(utc: str):
-<span class="ansi-green-fg">   1508</span>         <span style="color: rgb(95,135,135)"># NOTE: output is the equivalent of utc string expressed</span>
-<span class="ansi-green-fg">   1509</span>         <span style="color: rgb(95,135,135)"># in ephemeris seconds past J2000.</span>
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1510</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> spice.utc2et(utc)
-
-<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
-<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
-<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
-<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
-
-<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(f)</span>
-<span class="ansi-green-fg">    128</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
-<span class="ansi-green-fg">    129</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
-<span class="ansi-green-fg">    130</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
-<span class="ansi-green-fg">    131</span>         reset()
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">132</span>         raise dynamically_instantiate_spiceyerror(
-<span class="ansi-green-fg">    133</span>             short=short, explain=explain, long=long, traceback=traceback
-<span class="ansi-green-fg">    134</span>         )
-
-<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
-================================================================================
-
-Toolkit version: CSPICE_N0067
-
-SPICE(NOLEAPSECONDS) --
-
-The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
-
-utc2et_c --&gt; UTC2ET --&gt; TTRANS
-
-================================================================================
+SCB supplementary data up to date.
+Query:              2010-01-15 00:07:00 UTC  |  Site: C60  |  Component: DRY
+Seasonal delay:     2.118438 m
+Non-seasonal delay: -0.012684 m
+Total zenith delay: 2.105753 m
 </pre></div></div>
 </div>
 </section>
@@ -1003,56 +913,47 @@ utc2et_c --&gt; UTC2ET --&gt; TTRANS
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_2.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_3.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_4.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_4.png" />
+</div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_45280/3147186595.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Time span: Jan 1 – Feb 28, 2010</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> t_start_et  = scb.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;2010-01-01 00:00:00 UTC&#34;</span>)
-<span class="ansi-green-fg">      3</span> t_end_et    = scb.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;2010-02-28 23:59:00 UTC&#34;</span>)
-<span class="ansi-green-fg">      4</span> timespan_et = np.linspace(t_start_et, t_end_et, <span class="ansi-green-fg">1000</span>)
-<span class="ansi-green-fg">      5</span> timespan_days = (timespan_et - timespan_et[<span class="ansi-green-fg">0</span>]) / <span class="ansi-green-fg">86400.0</span>
-
-<span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(utc)</span>
-<span class="ansi-green-fg">   1506</span>     @staticmethod
-<span class="ansi-green-fg">   1507</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> utc2et(utc: str):
-<span class="ansi-green-fg">   1508</span>         <span style="color: rgb(95,135,135)"># NOTE: output is the equivalent of utc string expressed</span>
-<span class="ansi-green-fg">   1509</span>         <span style="color: rgb(95,135,135)"># in ephemeris seconds past J2000.</span>
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1510</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> spice.utc2et(utc)
-
-<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-fg">    148</span>             res = f(*args, **kwargs)
-<span class="ansi-green-fg">    149</span>             check_for_spice_error(f)
-<span class="ansi-green-fg">    150</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
-<span class="ansi-green-fg">    151</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">152</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
-
-<span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(f)</span>
-<span class="ansi-green-fg">    128</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
-<span class="ansi-green-fg">    129</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
-<span class="ansi-green-fg">    130</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
-<span class="ansi-green-fg">    131</span>         reset()
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">132</span>         raise dynamically_instantiate_spiceyerror(
-<span class="ansi-green-fg">    133</span>             short=short, explain=explain, long=long, traceback=traceback
-<span class="ansi-green-fg">    134</span>         )
-
-<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
-================================================================================
-
-Toolkit version: CSPICE_N0067
-
-SPICE(NOLEAPSECONDS) --
-
-The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
-
-utc2et_c --&gt; UTC2ET --&gt; TTRANS
-
-================================================================================
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_5.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_5.png" />
+</div>
 </div>
 </section>
 <section id="2.3-—-Elevation-mapping-functions">
@@ -1136,8 +1037,9 @@ utc2et_c --&gt; UTC2ET --&gt; TTRANS
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_name</span> <span class="o">=</span> <span class="s2">&quot;orex_beno_2016_282_122040_2016_282_211501_24&quot;</span>
-<span class="n">trk_data</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;data/measurements/radiometric/&quot;</span> <span class="o">+</span> <span class="n">json_name</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#json_name = &quot;orex_beno_2016_282_122040_2016_282_211501_24&quot;</span>
+<span class="n">trk_file_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>
+<span class="n">trk_data</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">trk_file_path</span><span class="p">)</span>
 
 <span class="c1"># Assemble ramp table list in the format expected by RampTableManager</span>
 <span class="n">ramp_data</span> <span class="o">=</span> <span class="p">[</span>
@@ -1168,42 +1070,18 @@ utc2et_c --&gt; UTC2ET --&gt; TTRANS
     <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ramp Table Contents — </span><span class="si">{</span><span class="n">json_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ramp Table Contents&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/orex_beno_2016_282_122040_2016_282_211501_24.json&#39;
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 6</span>
-<span class="ansi-green-fg">      2</span> trk_data  = scb.Utils.load_json(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">data/measurements/radiometric/</span><span class="ansi-yellow-fg">&#34;</span> + json_name + <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">.json</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Assemble ramp table list in the format expected by RampTableManager</span>
-<span class="ansi-green-fg">      5</span> ramp_data = [
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span>     <span class="ansi-yellow-bg">trk_data</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-fg ansi-yellow-bg">aux_SFDU_9</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-bg">]</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">      7</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">doy</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">      8</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_freq</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">      9</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_rate</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     10</span>     trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     11</span> ]
-<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Visualize the ramp table contents</span>
-<span class="ansi-green-fg">     14</span> fig, axes = plt.subplots(<span class="ansi-green-fg">4</span>, <span class="ansi-green-fg">1</span>, figsize=(<span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">10</span>), sharex=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
-
-<span class="ansi-red-fg">TypeError</span>: &#39;NoneType&#39; object is not subscriptable
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_14_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_14_0.png" />
+</div>
 </div>
 </section>
 <section id="3.2-—-Integrated-frequency-sensitivity">
@@ -1250,20 +1128,8 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 12</span>
-<span class="ansi-green-fg">      9</span> f_int_RU = []
-<span class="ansi-green-fg">     10</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> t3_sec <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> t3_sec_array:
-<span class="ansi-green-fg">     11</span>     f_int, _ = scb.RampTableManager.integrate(
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span>         <span class="ansi-yellow-bg">ramp_data</span>, t1_sec, t3_sec, t1_doy, t3_doy
-<span class="ansi-green-fg">     13</span>     )
-<span class="ansi-green-fg">     14</span>     f_int_RU.append(RU * f_int)
-<span class="ansi-green-fg">     16</span> f_int_RU = np.array(f_int_RU)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;ramp_data&#39; is not defined
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_16_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_16_0.png" />
+</div>
 </div>
 </section>
 <hr class="docutils" />
@@ -1289,8 +1155,8 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trk_file_path</span>          <span class="o">=</span> <span class="s2">&quot;data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json&quot;</span>
-<span class="n">tropo_seasonal_path</span>    <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trk_file_path</span>          <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>                  <span class="c1">#&quot;data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json&quot;</span>
+<span class="n">tropo_seasonal_path</span>    <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_seasonal_new</span><span class="o">.</span><span class="n">path</span>        <span class="c1">#&quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
 <span class="n">tropo_file_bucket</span>      <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
 
 
@@ -1321,29 +1187,13 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json&#39;
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 8</span>
-<span class="ansi-green-fg">      6</span> <span style="color: rgb(95,135,135)"># Read tracking data and identify the ground station</span>
-<span class="ansi-green-fg">      7</span> trk_data = scb.Utils.load_json(trk_file_path)
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> DSS_name = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">DSS-</span><span class="ansi-yellow-fg">&#34;</span> + <span style="color: rgb(0,135,0)">str</span>(<span class="ansi-yellow-bg">trk_data</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-fg ansi-yellow-bg">2W_doppler</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-bg">]</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">spice_id</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-green-fg">0</span>])
-<span class="ansi-green-fg">      9</span> GS1 = scb.GroundStation(DSS_name)
-<span class="ansi-green-fg">     10</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Ground station:</span><span class="ansi-yellow-fg">&#34;</span>, DSS_name)
-
-<span class="ansi-red-fg">TypeError</span>: &#39;NoneType&#39; object is not subscriptable
+Ground station: DSS-35
+Sequential ranging observations: 99
 </pre></div></div>
 </div>
 </section>
@@ -1393,26 +1243,7 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 7</span>
-<span class="ansi-green-fg">      2</span> frame  = ITRF93
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Downlink one-way light time: spacecraft → ground at t3</span>
-<span class="ansi-green-fg">      5</span> dl_rtlt = scb.SpiceManager.get_lighttime(
-<span class="ansi-green-fg">      6</span>     trgt_bdy=target,
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     epoch_time=<span class="ansi-yellow-bg">SRA_t3</span>.times.values,
-<span class="ansi-green-fg">      8</span>     reference_frame=frame.name,
-<span class="ansi-green-fg">      9</span>     obsvr_bdy=GS1.name,
-<span class="ansi-green-fg">     10</span>     aberration_correction=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">CN+S</span><span class="ansi-yellow-fg">&#34;</span>,
-<span class="ansi-green-fg">     11</span> )
-<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Uplink one-way light time: ground → spacecraft (at the epoch when signal arrived)</span>
-<span class="ansi-green-fg">     14</span> ul_rtlt = scb.SpiceManager.get_lighttime(
-<span class="ansi-green-fg">     15</span>     trgt_bdy=GS1.name,
-<span class="ansi-green-fg">     16</span>     epoch_time=SRA_t3.times.values - dl_rtlt.values,
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     19</span>     aberration_correction=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">CN+S</span><span class="ansi-yellow-fg">&#34;</span>,
-<span class="ansi-green-fg">     20</span> )
-
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
 </pre></div></div>
 </div>
 </section>
@@ -1456,16 +1287,26 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 3</span>
 <span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Find the non-seasonal correction file for this pass</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> year_q, day_q, _ = scb.SpiceManager.et2YDS([<span class="ansi-yellow-bg">SRA_t3</span>.times.values[<span class="ansi-green-fg">0</span>]])
-<span class="ansi-green-fg">      3</span> metadata_tropo = scb.MediaCorrections.find_tro_metadata(tropo_file_bucket, year_q[<span class="ansi-green-fg">0</span>], day_q[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">      2</span> year_q, day_q, _ = scb.SpiceManager.et2YDS([SRA_t3.times.values[<span class="ansi-green-fg">0</span>]])
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> metadata_tropo = <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">MediaCorrections</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">find_tro_metadata</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">tropo_file_bucket</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">year_q</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">day_q</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">      4</span> media_correction.tropo_non_seasonal_file_path = os.path.join(
 <span class="ansi-green-fg">      5</span>     tropo_file_bucket, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>]
 <span class="ansi-green-fg">      6</span> )
+<span class="ansi-green-fg">      7</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Non-seasonal file:</span><span class="ansi-yellow-fg">&#34;</span>, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>])
 
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/measurements/MediaCorrections.py:373</span>, in <span class="ansi-cyan-fg">MediaCorrections.find_tro_metadata</span><span class="ansi-blue-fg">(folder, query_year, query_doy)</span>
+<span class="ansi-green-fg">    369</span> pat = re.compile(
+<span class="ansi-green-fg">    370</span>     <span class="ansi-yellow-fg">r</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">(?P&lt;y1&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{4}</span><span class="ansi-yellow-fg">)_(?P&lt;d1&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{3}</span><span class="ansi-yellow-fg">)_(?P&lt;y2&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{4}</span><span class="ansi-yellow-fg">)_(?P&lt;d2&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{3}</span><span class="ansi-yellow-fg">)_tro</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">.json$</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    371</span> )
+<span class="ansi-green-fg">    372</span> metadata: List[Dict] = []
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">373</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> fname <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span class="ansi-yellow-bg">os</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">listdir</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">folder</span><span class="ansi-yellow-bg">)</span>:
+<span class="ansi-green-fg">    374</span>     m = pat.match(fname)
+<span class="ansi-green-fg">    375</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> m:
+
+<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/measurements/media_correction&#39;
 </pre></div></div>
 </div>
 </section>
@@ -1517,16 +1358,7 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 4</span>
-<span class="ansi-green-fg">      1</span> SRA_tropo_t3 = []
-<span class="ansi-green-fg">      2</span> SRA_tropo_t1 = []
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> ii <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(0,135,0)">len</span>(<span class="ansi-yellow-bg">SRA_t3</span>.times.values)):
-<span class="ansi-green-fg">      5</span>     t3 = SRA_t3.times.values[ii]
-<span class="ansi-green-fg">      6</span>     t1 = SRA_t1_epoch.times.values[ii]
-
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+Mean RTLT tropo correction: 0.000 μs  /  0.0000 RU
 </pre></div></div>
 </div>
 </section>
@@ -1595,23 +1427,45 @@ Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/o
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_2.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> fig, ax = plt.subplots(figsize=(<span class="ansi-green-fg">9</span>, <span class="ansi-green-fg">4</span>))
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> ax.plot(<span class="ansi-yellow-bg">SRA_t3</span>.times.values, SRA_delta_rtlt * <span class="ansi-green-fg">1e6</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">      3</span> ax.set_xlabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ET t3 [s]</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">      4</span> ax.set_ylabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">RTLT correction [μs]</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 29</span>
+<span class="ansi-green-fg">     26</span> plt.show()
+<span class="ansi-green-fg">     28</span> fig, ax = plt.subplots(figsize=(<span class="ansi-green-fg">9</span>, <span class="ansi-green-fg">4</span>))
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">29</span> ax.plot(<span class="ansi-yellow-bg">SRA_elevation_angles</span>, SRA_delta_rtlt * <span class="ansi-green-fg">1e6</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">     30</span> ax.set_xlabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Elevation angle [deg]</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">     31</span> ax.set_ylabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">RTLT correction [μs]</span><span class="ansi-yellow-fg">&#34;</span>)
 
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_elevation_angles&#39; is not defined
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" />
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_4.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_4.png" />
 </div>
 </div>
 </section>

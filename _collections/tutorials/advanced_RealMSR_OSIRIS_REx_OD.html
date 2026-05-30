@@ -730,7 +730,7 @@
 
 <span class="c1"># load kernels</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">OREx_real_data_mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
 
 <span class="c1"># Generate common frames and units</span>
@@ -740,18 +740,6 @@
 <span class="c1"># Initialize the kernels</span>
 <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span>
 <span class="n">scft_transpd_delay</span> <span class="o">=</span> <span class="mf">16529.719234434557</span>
-
-<span class="c1">#metakernel_path, sc_id,  = &quot;/data/kernels/orex_real_data.tm&quot;, -64,</span>
-
-<span class="c1"># Initialize kernels</span>
-<span class="c1">#scb.SpiceManager.clear_kernels()</span>
-<span class="c1">#scb.SpiceManager.load_kernel_from_mkfile(os.getcwd() + metakernel_path)</span>
-<span class="c1">#scb.SpiceManager.print_kernels()</span>
-
-<span class="c1"># Setup tropo correction filepaths</span>
-<span class="n">tropo_seasonal_file_path</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction/2018_152_2018_182_tro.json&quot;</span> <span class="c1"># check this</span>
-<span class="n">tropo_file_bucket</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
-<span class="n">iono_file_bucket</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
 
 <span class="c1"># Initialize the body object for the orbiter</span>
 <span class="n">Orbiter_mass</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1200.0</span><span class="p">,</span> <span class="n">kg</span><span class="p">)</span>
@@ -903,13 +891,20 @@ SCB supplementary data up to date.
     <span class="n">meas_model</span><span class="o">.</span><span class="n">media_corrections</span> <span class="o">=</span> <span class="n">media_correction_object</span>
     <span class="c1">#</span>
     <span class="k">return</span> <span class="n">meas_model</span>
+<span class="c1">#</span>
+
+<span class="c1"># Setup tropo correction filepaths</span>
+<span class="n">tropo_seasonal_file_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_seasonal</span><span class="o">.</span><span class="n">path</span>
+<span class="n">trk_file_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>
+<span class="c1">#</span>
+<span class="n">tropo_file_bucket</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
+<span class="n">iono_file_bucket</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
 
 <span class="c1"># Load the radiometric data</span>
 <span class="n">meas_dict_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="c1">#</span>
-<span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;data/measurements/radiometric/&quot;</span>
-<span class="n">pass_file</span> <span class="o">=</span> <span class="s2">&quot;orex_beno_2018_159_054533_2018_159_104001_35.json&quot;</span>
-<span class="n">trk_data</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;data/measurements/radiometric/&quot;</span> <span class="o">+</span> <span class="n">pass_file</span><span class="p">)</span>
+
+<span class="n">trk_data</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">trk_file_path</span><span class="p">)</span>
 <span class="n">aux_data_sr</span><span class="p">,</span> <span class="n">aux_data_dop</span> <span class="o">=</span> <span class="n">aux_fun</span><span class="p">(</span><span class="n">trk_data</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="n">meas_dict_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aux_data_sr</span><span class="p">)</span>
@@ -937,8 +932,8 @@ SCB supplementary data up to date.
                                    <span class="n">tropo_seasonal_file_path</span> <span class="o">=</span> <span class="n">tropo_seasonal_file_path</span><span class="p">)</span>
 <span class="c1">#</span>
 <span class="c1"># Generate observed quantities</span>
-<span class="n">sr_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data/measurements/radiometric&quot;</span><span class="p">,</span> <span class="n">pass_file</span><span class="p">)</span>
-<span class="n">dop_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;data/measurements/radiometric&quot;</span><span class="p">,</span> <span class="n">pass_file</span><span class="p">)</span>
+<span class="n">sr_filename</span> <span class="o">=</span> <span class="n">trk_file_path</span>
+<span class="n">dop_filename</span> <span class="o">=</span> <span class="n">trk_file_path</span>
 <span class="c1">#</span>
 <span class="n">sr_obs</span> <span class="o">=</span> <span class="n">sranging_model</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span><span class="n">sr_filename</span><span class="p">,</span> <span class="n">meas_name</span><span class="o">=</span><span class="s2">&quot;2W_sranging&quot;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span> <span class="n">km</span> <span class="o">/</span> <span class="n">km</span><span class="p">)</span>
 <span class="n">doppler_obs</span> <span class="o">=</span> <span class="n">doppler_model</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span><span class="n">dop_filename</span><span class="p">,</span> <span class="n">meas_name</span><span class="o">=</span><span class="s2">&quot;2W_doppler&quot;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sec</span><span class="p">)</span>
@@ -957,76 +952,40 @@ SCB supplementary data up to date.
 <br/></pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Error: [Errno 2] No such file or directory: &#39;data/measurements/radiometric/orex_beno_2018_159_054533_2018_159_104001_35.json&#39;
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 104</span>
-<span class="ansi-green-fg">    102</span> pass_file = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">orex_beno_2018_159_054533_2018_159_104001_35.json</span><span class="ansi-yellow-fg">&#34;</span>
-<span class="ansi-green-fg">    103</span> trk_data = scb.Utils.load_json(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">data/measurements/radiometric/</span><span class="ansi-yellow-fg">&#34;</span> + pass_file)
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">104</span> aux_data_sr, aux_data_dop = <span class="ansi-yellow-bg">aux_fun</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">trk_data</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">    105</span> <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">    106</span> meas_dict_list.append(aux_data_sr)
+<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 146</span>
+<span class="ansi-green-fg">    142</span> doppler_obs = doppler_model.observed_measurements(dop_filename, meas_name=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2W_doppler</span><span class="ansi-yellow-fg">&#34;</span>, units= <span class="ansi-green-fg">1</span> / sec)
+<span class="ansi-green-fg">    144</span> <span style="color: rgb(95,135,135)">#</span>
+<span class="ansi-green-fg">    145</span> <span style="color: rgb(95,135,135)"># Add media correction to the measurement models </span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">146</span> sranging_model = <span class="ansi-yellow-bg">add_media_to_meas_model</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">sr_obs</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sranging_model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">mc_sranging</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    147</span> doppler_model = add_media_to_meas_model(doppler_obs, doppler_model, mc_doppler)
+<span class="ansi-green-fg">    149</span> <span style="color: rgb(95,135,135)">#</span>
+<span class="ansi-green-fg">    150</span> <span style="color: rgb(95,135,135)"># Organize products for processing </span>
 
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 7</span>, in <span class="ansi-cyan-fg">aux_fun</span><span class="ansi-blue-fg">(trk_data)</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">aux_fun</span>(trk_data):
-<span class="ansi-green-fg">      2</span>     <span style="color: rgb(95,135,135)"># Generate the sranging auxiliary data dictionary</span>
-<span class="ansi-green-fg">      3</span>     sranging_aux_data = {
-<span class="ansi-green-fg">      4</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">      5</span>         <span style="color: rgb(95,135,135)"># Sranging auxiliary data (from 2W_sranging, SFDU_7)</span>
-<span class="ansi-green-fg">      6</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">RU</span><span class="ansi-yellow-fg">&#34;</span>: (((np.array(<span class="ansi-yellow-bg">trk_data</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-fg ansi-yellow-bg">aux_SFDU_7</span><span class="ansi-yellow-fg ansi-yellow-bg">&#34;</span><span class="ansi-yellow-bg">]</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">exc_scalar_den</span><span class="ansi-yellow-fg">&#34;</span>]) / np.array(trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">exc_scalar_num</span><span class="ansi-yellow-fg">&#34;</span>])) / <span class="ansi-green-fg">16</span> ) ** -<span class="ansi-green-fg">1</span>).tolist(),
-<span class="ansi-green-fg">      8</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">M</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">rng_modulo</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">      9</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">M2_num</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_16</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">M2_num</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     10</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">M2_den</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_16</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">M2_den</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     11</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">rng_type</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">rng_type</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     12</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">outlier_flag_sranging</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">outlier_flag</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     13</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">year_SFDU7</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">year</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     14</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">doy_SFDU7</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">doy</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     15</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec_SFDU7</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     16</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">     17</span>         <span style="color: rgb(95,135,135)"># Delays auxiliary data (from 2W_sranging, SFDU_7)</span>
-<span class="ansi-green-fg">     18</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">     19</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ul_freq</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ul_freq</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     20</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ul_zheight_corr</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_2</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ul_zheight_corr</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     21</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">dl_zheight_corr</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_3</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">dl_zheight_corr</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     22</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">scft_transpd_delay</span><span class="ansi-yellow-fg">&#34;</span>: scft_transpd_delay, <span style="color: rgb(95,135,135)"># [RU]  </span>
-<span class="ansi-green-fg">     23</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">scft_transpd_delay_s</span><span class="ansi-yellow-fg">&#34;</span>: scft_transpd_delay / ((<span class="ansi-green-fg">221.0</span> / (<span class="ansi-green-fg">749.0</span> * <span class="ansi-green-fg">2.0</span>)) * <span class="ansi-green-fg">8445.767679</span> * <span class="ansi-green-fg">1e6</span>), <span style="color: rgb(95,135,135)"># [s] </span>
-<span class="ansi-green-fg">     24</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">transmit_time_tag_delay</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2W_doppler</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">transmit_time_tag_delay</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     25</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">rcv_time_tag_delay</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2W_doppler</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">rcv_time_tag_delay</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     26</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">array_delay</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2W_doppler</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">array_delay</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     27</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ul_stn_cal</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ul_stn_cal</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     28</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">dl_stn_cal</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">dl_stn_cal</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     29</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">exc_scalar_num</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">exc_scalar_num</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     30</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">exc_scalar_den</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_7</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">exc_scalar_den</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     31</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">     32</span>         <span style="color: rgb(95,135,135)"># Ramp table auxiliary data (from SFDU_9)</span>
-<span class="ansi-green-fg">     33</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">     34</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_sec</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     35</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_day</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">doy</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     36</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_freq</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_freq</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     37</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_rate</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_rate</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     38</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     39</span>     }
-<span class="ansi-green-fg">     40</span>     Doppler_aux_data = {
-<span class="ansi-green-fg">     41</span>         <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">     42</span>         <span style="color: rgb(95,135,135)"># Doppler auxiliary data (from 2W_doppler, SFDU_16)</span>
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     77</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>: trk_data[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>][<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>],
-<span class="ansi-green-fg">     78</span>     }
-<span class="ansi-green-fg">     79</span>     <span style="color: rgb(95,135,135)">#</span>
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 85</span>, in <span class="ansi-cyan-fg">add_media_to_meas_model</span><span class="ansi-blue-fg">(obs_quantities, meas_model, media_correction_object)</span>
+<span class="ansi-green-fg">     82</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">add_media_to_meas_model</span>(obs_quantities, meas_model, media_correction_object):
+<span class="ansi-green-fg">     83</span>     <span style="color: rgb(95,135,135)">#</span>
+<span class="ansi-green-fg">     84</span>     year_pass_media, day_pass_media, _ = scb.SpiceManager.et2YDS([obs_quantities[<span class="ansi-green-fg">0</span>].times.values[<span class="ansi-green-fg">0</span>]])
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">85</span>     metadata_tropo = <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">MediaCorrections</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">find_tro_metadata</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">tropo_file_bucket</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">year_pass_media</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">day_pass_media</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     86</span>     metadata_iono = scb.MediaCorrections.find_ion_metadata(iono_file_bucket, year_pass_media[<span class="ansi-green-fg">0</span>], day_pass_media[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">     87</span>     <span style="color: rgb(95,135,135)">#</span>
 
-<span class="ansi-red-fg">TypeError</span>: &#39;NoneType&#39; object is not subscriptable
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/measurements/MediaCorrections.py:373</span>, in <span class="ansi-cyan-fg">MediaCorrections.find_tro_metadata</span><span class="ansi-blue-fg">(folder, query_year, query_doy)</span>
+<span class="ansi-green-fg">    369</span> pat = re.compile(
+<span class="ansi-green-fg">    370</span>     <span class="ansi-yellow-fg">r</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">(?P&lt;y1&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{4}</span><span class="ansi-yellow-fg">)_(?P&lt;d1&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{3}</span><span class="ansi-yellow-fg">)_(?P&lt;y2&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{4}</span><span class="ansi-yellow-fg">)_(?P&lt;d2&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{3}</span><span class="ansi-yellow-fg">)_tro</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">.json$</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    371</span> )
+<span class="ansi-green-fg">    372</span> metadata: List[Dict] = []
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">373</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> fname <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span class="ansi-yellow-bg">os</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">listdir</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">folder</span><span class="ansi-yellow-bg">)</span>:
+<span class="ansi-green-fg">    374</span>     m = pat.match(fname)
+<span class="ansi-green-fg">    375</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> m:
+
+<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/measurements/media_correction&#39;
 </pre></div></div>
 </div>
 </section>
@@ -1408,21 +1367,98 @@ flag.</p>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Generating computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2W Sequential Ranging: 100%|███████████████████████████████████████████████| 99/99 obs [00:01&lt;00:00]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Generating 2W Doppler computed measurements...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2W Doppler: 100%|████████████████████████████████████████████████████████| 217/217 obs [00:00&lt;00:00]
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 189</span>
-<span class="ansi-green-fg">    187</span> thresh_dop = <span class="ansi-green-fg">30.0</span>
+<span class="ansi-red-fg">Exception</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 190</span>
 <span class="ansi-green-fg">    188</span> <span style="color: rgb(95,135,135)">#</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">189</span> sr_obs_1, aux_data_sr_1 = clean_obs_sr(<span class="ansi-yellow-bg">sr_obs</span>, sranging_model, Orbiter, frame, meas_dict_list[<span class="ansi-green-fg">0</span>], thresh_sr)
-<span class="ansi-green-fg">    190</span> doppler_obs_1, aux_data_doppler_1 = clean_obs_dop(doppler_obs, doppler_model, Orbiter, frame, meas_dict_list[<span class="ansi-green-fg">1</span>], thresh_dop)
+<span class="ansi-green-fg">    189</span> sr_obs_1, aux_data_sr_1 = clean_obs_sr(sr_obs, sranging_model, Orbiter, frame, meas_dict_list[<span class="ansi-green-fg">0</span>], thresh_sr)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">190</span> doppler_obs_1, aux_data_doppler_1 = <span class="ansi-yellow-bg">clean_obs_dop</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">doppler_obs</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">doppler_model</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">Orbiter</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">frame</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">meas_dict_list</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">thresh_dop</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    192</span> meas_dict_list[<span class="ansi-green-fg">0</span>] = aux_data_sr_1
+<span class="ansi-green-fg">    193</span> meas_dict_list[<span class="ansi-green-fg">1</span>] = aux_data_doppler_1
 
-<span class="ansi-red-fg">NameError</span>: name &#39;sr_obs&#39; is not defined
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 162</span>, in <span class="ansi-cyan-fg">clean_obs_dop</span><span class="ansi-blue-fg">(obs, model, target, frame, aux_data, mad_threshold)</span>
+<span class="ansi-green-fg">    155</span> obs_values_clean = obs[<span class="ansi-green-fg">2</span>].quantity.values[mask]
+<span class="ansi-green-fg">    157</span> obs_times_clean = scb.EpochArray(
+<span class="ansi-green-fg">    158</span>     time_vals_clean,
+<span class="ansi-green-fg">    159</span>     sys=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">TDB</span><span class="ansi-yellow-fg">&#34;</span>,
+<span class="ansi-green-fg">    160</span> )
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">162</span> obs_vals_clean = <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">ArrayWFrame</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">    163</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">obs_values_clean</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    164</span> <span class="ansi-yellow-bg">    </span><span class="ansi-green-fg ansi-yellow-bg">1</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">/</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sec</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    165</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">frame</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    166</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    168</span> obs_clean = (
+<span class="ansi-green-fg">    169</span>     obs_times_clean,
+<span class="ansi-green-fg">    170</span>     obs[<span class="ansi-green-fg">1</span>][mask],
+<span class="ansi-green-fg">    171</span>     obs_vals_clean,
+<span class="ansi-green-fg">    172</span>     obs[<span class="ansi-green-fg">3</span>][mask],
+<span class="ansi-green-fg">    173</span> )
+<span class="ansi-green-fg">    175</span> aux_data_clean = aux_data.copy()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/ArrayWFrame.py:96</span>, in <span class="ansi-cyan-fg">ArrayWFrame.__init__</span><span class="ansi-blue-fg">(self, array, units_or_frame, frame)</span>
+<span class="ansi-green-fg">     91</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> frame.name <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> common_frames:
+<span class="ansi-green-fg">     92</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(
+<span class="ansi-green-fg">     93</span>             <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>frame.name<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg"> is not in the list of recognized frames. </span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">     94</span>             <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Please create a new frame.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">     95</span>         )
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">96</span>     <span style="color: rgb(0,135,0)">self</span>._quantity = <span class="ansi-yellow-bg">ArrayWUnits</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">array</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">units_or_frame</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">     97</span>     <span style="color: rgb(0,135,0)">self</span>._frame = frame
+<span class="ansi-green-fg">     99</span> <span style="color: rgb(95,135,135)"># Get the shape of the quantity</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/units/ArrayWUnits.py:107</span>, in <span class="ansi-cyan-fg">ArrayWUnits.__init__</span><span class="ansi-blue-fg">(self, values, units)</span>
+<span class="ansi-green-fg">    104</span> size  = values.size
+<span class="ansi-green-fg">    106</span> <span style="color: rgb(95,135,135)"># assign class properties</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">107</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">values</span> = values    <span style="color: rgb(95,135,135)"># input validation in setter</span>
+<span class="ansi-green-fg">    109</span> <span style="color: rgb(95,135,135)"># NOTE: self._homogeneous_units flag is set in the units setter as well</span>
+<span class="ansi-green-fg">    110</span> <span style="color: rgb(0,135,0)">self</span>.units  = units     <span style="color: rgb(95,135,135)"># input validation in setter</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/units/ArrayWUnits.py:142</span>, in <span class="ansi-cyan-fg">ArrayWUnits.values</span><span class="ansi-blue-fg">(self, input_val)</span>
+<span class="ansi-green-fg">    140</span> <span style="color: rgb(95,135,135)"># can&#39;t be an empty array</span>
+<span class="ansi-green-fg">    141</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> input_val.size == <span class="ansi-green-fg">0</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">142</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">Exception</span>(<span class="ansi-yellow-fg">&#39;</span><span class="ansi-yellow-fg">Argument [values] must be a non-empty numpy.ndarray instance.</span><span class="ansi-yellow-fg">&#39;</span>)
+<span class="ansi-green-fg">    144</span> <span style="color: rgb(95,135,135)"># valid input</span>
+<span class="ansi-green-fg">    145</span> <span style="color: rgb(0,135,0)">self</span>._values = input_val
+
+<span class="ansi-red-fg">Exception</span>: Argument [values] must be a non-empty numpy.ndarray instance.
 </pre></div></div>
 </div>
 </section>
