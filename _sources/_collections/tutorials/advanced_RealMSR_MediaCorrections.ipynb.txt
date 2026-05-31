@@ -7,21 +7,23 @@
    "source": [
     "<!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder -->\n",
     "<!-- SPDX-License-Identifier: ISC -->\n",
-    "# OSIRIS-REx Tutorial Series Pt 2: Media Corrections & Ramp Tables\n",
+    "# OSIRIS-REx Real Data — Media Corrections & Ramp Tables\n",
     "---\n",
-    "*Scarabaeus | Last revised 2026*\n",
+    "*Scarabaeus OD Framework | Last revised 2026*\n",
     "\n",
-    "## Objectives\n",
-    "This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will:\n",
+    "## What this notebook covers\n",
     "\n",
-    "- Understand how SCB models tropospheric signal delay using **seasonal** and **non-seasonal** components stored in JSON correction files\n",
-    "- Query tropospheric delays for individual ground stations and arbitrary time spans using `MediaCorrections`\n",
-    "- Evaluate the **Chao elevation mapping function**, which projects the zenith delay to a slant path at a given elevation angle\n",
-    "- Load and inspect DSN **ramp table** records using `RampTableManager`, and compute integrated uplink frequency sensitivity as a function of count interval\n",
-    "- Apply full **round-trip light-time (RTLT) media corrections** to real sequential ranging measurements, converting the path-length error to seconds and Range Units (RU)\n",
+    "This is a **standalone notebook on atmospheric media corrections and DSN ramp tables** using real OSIRIS-REx tracking data.  These auxiliary data products must be applied to raw radiometric observables before they enter any orbit determination filter.\n",
+    "\n",
+    "| # | Topic |\n",
+    "|---|-------|\n",
+    "| 1 | Setup — units, frames, SPICE kernels, ground stations |\n",
+    "| 2 | Tropospheric delay models — seasonal and non-seasonal components |\n",
+    "| 3 | DSN ramp table inspection and integrated frequency sensitivity |\n",
+    "| 4 | Full RTLT media correction pipeline applied to real sequential ranging data |\n",
     "\n",
     "## See Also\n",
-    "- [Part 1: Units & Reference Frames](advanced_RealMSR_OSIRIS_REx_OD.ipynb)\n"
+    "- [OSIRIS-REx OD Notebook](advanced_RealMSR_OSIRIS_REx_OD.ipynb) — applies these corrections inside a full SRIF filter run"
    ]
   },
   {
@@ -29,14 +31,9 @@
    "id": "1",
    "metadata": {},
    "source": [
-    "## 1.0 — Load SCB and the relevant Python packages\n",
+    "## 1. Setup\n",
     "\n",
-    "Before doing anything else, import the libraries the tutorial depends on:\n",
-    "\n",
-    "- **`scarabaeus`** — the main OD library, aliased to `scb` throughout for brevity.\n",
-    "- **`numpy`** — array mathematics.\n",
-    "- **`pandas`** — tabular data handling, used in Section 4 to parse uplink frequency records.\n",
-    "- **`matplotlib`** — plotting library.\n"
+    "Standard scientific imports plus `scarabaeus` and the tutorial `supplementary` helper.  Units and frames are created once here and reused throughout all sections."
    ]
   },
   {
@@ -54,7 +51,13 @@
     "import scarabaeus as scb\n",
     "\n",
     "kg, km, sec, unitless = scb.Units.get_units([\"kg\", \"km\", \"sec\", \"unitless\"])\n",
-    "(J2000, ITRF93, ECLIPJ2000, IAUEARTH) = scb.Frame.generate_common_frames()"
+    "(J2000, ITRF93, ECLIPJ2000, IAUEARTH) = scb.Frame.generate_common_frames()\n",
+    "\n",
+    "plt.rcParams.update({\n",
+    "    'font.size': 10, 'axes.titlesize': 11, 'axes.labelsize': 10,\n",
+    "    'xtick.labelsize': 9, 'ytick.labelsize': 9, 'legend.fontsize': 8,\n",
+    "    'figure.dpi': 110, 'axes.grid': True, 'grid.alpha': 0.35, 'grid.linestyle': '--',\n",
+    "})"
    ]
   },
   {
@@ -62,24 +65,17 @@
    "id": "3",
    "metadata": {},
    "source": [
-    "## 1.1 — Initialize units, frames, and SPICE kernels\n",
+    "## 1.1 — SPICE Kernels and Ground Stations\n",
     "\n",
-    "### Units and Frames\n",
-    "As in Part 1, physical units are retrieved by name with `scb.Units.get_units()` and reference frames with `scb.Frame.generate_common_frames()`. All three tutorial sections in this notebook use the same unit and frame objects, so they are created once here and reused throughout.\n",
+    "`supp.load_data()` ensures all tutorial data files are present, downloading or generating anything missing.  `load_kernel_from_mkfile()` furnishes the complete OSIRIS-REx kernel set (SPK trajectories, PCK body constants, LSK leap-second, and frame kernels).\n",
     "\n",
-    "### SPICE Kernels\n",
-    "`scb.SpiceManager.load_kernel_from_mkfile()` furnishes the full set of SPICE kernels for the OSIRIS-REx scenario (SPK trajectories, PCK body constants, LSK leap-second, and frame kernels). A single metakernel file lists them all.\n",
-    "\n",
-    "### Ground Stations\n",
-    "Three DSN complexes are used to illustrate how media corrections vary by site:\n",
+    "Three DSN complexes are used throughout this notebook:\n",
     "\n",
     "| Variable | DSN ID | Complex | Location |\n",
     "|---|---|---|---|\n",
     "| `GS_C10` | DSS-24 | Goldstone | California, USA |\n",
     "| `GS_C40` | DSS-35 | Canberra | Australia |\n",
-    "| `GS_C60` | DSS-65 | Madrid | Spain |\n",
-    "\n",
-    "Each `scb.GroundStation` object looks up the station's ECEF coordinates and SPICE ID from the loaded kernels."
+    "| `GS_C60` | DSS-65 | Madrid | Spain |"
    ]
   },
   {
@@ -108,18 +104,18 @@
    "metadata": {},
    "source": [
     "---\n",
-    "## 2.0 — Tropospheric Delay Models\n",
+    "## 2. Tropospheric Delay Models\n",
     "\n",
-    "Radio signals traveling between a DSN ground station and a deep-space spacecraft must pass through Earth's troposphere. The neutral atmosphere introduces a **non-dispersive path-length delay** that is independent of signal frequency and must be modeled and subtracted from the raw observations before they can be used for orbit determination.\n",
+    "Radio signals passing through Earth's troposphere acquire a **non-dispersive path-length delay**.\n",
     "\n",
-    "SCB decomposes the zenith tropospheric delay into two additive components stored in separate JSON correction files:\n",
+    "SCB decomposes the zenith tropospheric delay into two additive components, each stored in a separate JSON file:\n",
     "\n",
-    "| Component | File | Model function |\n",
+    "| Component | File pattern | Model |\n",
     "|---|---|---|\n",
-    "| **Seasonal** | `1972_001_2048_001_tro_modified.json` | `MediaCorrections.mediafun_trig` — trigonometric annual + semi-annual fit |\n",
-    "| **Non-seasonal** | `2010_001_2010_032_tro.json` | `MediaCorrections.mediafun_nrmpow` — normalized power-law fit |\n",
+    "| **Seasonal** | `1972_001_2048_001_tro_modified.json` | `mediafun_trig` — trigonometric annual + semi-annual fit |\n",
+    "| **Non-seasonal** | `YYYY_DDD_YYYY_DDD_tro.json` | `mediafun_nrmpow` — normalized power-law fit |\n",
     "\n",
-    "Both files contain a nested dictionary keyed by site (`C10`, `C40`, `C60`) and wet/dry component (`WET`, `DRY`). The static method `MediaCorrections.get_media_data_for_et()` retrieves the coefficient sub-dictionary that brackets a given epoch."
+    "Both files are nested by site (`C10`, `C40`, `C60`) and wet/dry component.  `MediaCorrections.get_media_data_for_et()` retrieves the coefficient block that brackets any query epoch."
    ]
   },
   {
@@ -127,14 +123,13 @@
    "id": "6",
    "metadata": {},
    "source": [
-    "## 2.1 — Single-station, single-component query\n",
+    "### 2.1 — Single-station, single-component query\n",
     "\n",
-    "The simplest usage pattern is a single query: one station, one epoch, one component (wet or dry).\n",
+    "The simplest usage: one station, one epoch, one component (wet or dry).\n",
     "\n",
-    "`get_media_data_for_et()` returns the coefficient dictionary valid at the query epoch. That dictionary is then passed to the appropriate functional model:\n",
-    "\n",
-    "- `mediafun_trig(aux_data, et)` — evaluates the seasonal trigonometric model at `et`, returning a delay in **meters**\n",
-    "- `mediafun_nrmpow(aux_data, et)` — evaluates the non-seasonal normalized power-law model, also in **meters**"
+    "1. Load the correction JSON and convert the UTC query time to SPICE ET.\n",
+    "2. Call `get_media_data_for_et()` to retrieve the bracketing coefficient dictionary.\n",
+    "3. Pass it to the appropriate model — `mediafun_trig` (seasonal) or `mediafun_nrmpow` (non-seasonal) — which returns the zenith delay in **meters**."
    ]
   },
   {
@@ -193,15 +188,11 @@
    "id": "8",
    "metadata": {},
    "source": [
-    "## 2.2 — Multi-station time-series\n",
+    "### 2.2 — Multi-station time-series\n",
     "\n",
-    "In practice, media corrections must be evaluated at every measurement epoch across all active ground stations. The nested loop below sweeps over:\n",
+    "A nested loop evaluates the delay at 1 000 evenly spaced epochs over January–February 2010 for all three sites and both wet/dry components.  A guard (`if aux_data else 0.0`) handles epochs outside the file's coverage window.\n",
     "\n",
-    "- **Sites** — the three DSN complexes (`C10`, `C40`, `C60`)\n",
-    "- **Wet/dry components** — both the dry (hydrostatic) and wet (water-vapor) parts of the zenith delay\n",
-    "- **Time** — 1 000 evenly spaced epochs spanning January–February 2010\n",
-    "\n",
-    "The result arrays `delta_m_seasonal[site, component, time]` and `delta_m_non_seasonal[site, component, time]` hold the zenith delay in meters. A guard (`if aux_data else 0.0`) is included for epochs that fall outside the file's coverage window."
+    "The plots overlay the **seasonal-only** curve against the **seasonal + non-seasonal** total, making the non-seasonal residual visually apparent."
    ]
   },
   {
@@ -211,11 +202,23 @@
    "metadata": {},
    "outputs": [],
    "source": [
+    "import datetime\n",
+    "import matplotlib.dates as mdates\n",
+    "\n",
+    "def et_to_utc(et_arr):\n",
+    "    \"\"\"Convert array of SPICE ET values to list of UTC datetime objects.\"\"\"\n",
+    "    return [datetime.datetime.fromisoformat(str(scb.SpiceManager.et2utc(et))[:19])\n",
+    "            for et in et_arr]\n",
+    "\n",
+    "def fmt_cal(ax, fmt=\"%b %d\"):\n",
+    "    ax.xaxis.set_major_locator(mdates.AutoDateLocator(minticks=4, maxticks=8))\n",
+    "    ax.xaxis.set_major_formatter(mdates.DateFormatter(fmt))\n",
+    "\n",
     "# Time span: Jan 1 – Feb 28, 2010\n",
     "t_start_et  = scb.SpiceManager.utc2et(\"2010-01-01 00:00:00 UTC\")\n",
     "t_end_et    = scb.SpiceManager.utc2et(\"2010-02-28 23:59:00 UTC\")\n",
     "timespan_et = np.linspace(t_start_et, t_end_et, 1000)\n",
-    "timespan_days = (timespan_et - timespan_et[0]) / 86400.0\n",
+    "timespan_utc = et_to_utc(timespan_et)\n",
     "\n",
     "queries_site    = [\"C10\", \"C40\", \"C60\"]\n",
     "queries_wetdry  = [\"DRY\", \"WET\"]\n",
@@ -236,22 +239,31 @@
     "            delta_m_seasonal[si, wi, ti]     = scb.MediaCorrections.mediafun_trig(aux_s, et)     if aux_s else 0.0\n",
     "            delta_m_non_seasonal[si, wi, ti] = scb.MediaCorrections.mediafun_nrmpow(aux_n, et)   if aux_n else 0.0\n",
     "\n",
-    "# Plot one panel per site × component\n",
     "site_labels = {\"C10\": \"Goldstone (C10)\", \"C40\": \"Canberra (C40)\", \"C60\": \"Madrid (C60)\"}\n",
+    "wd_labels   = {\"DRY\": \"Dry\", \"WET\": \"Wet\"}\n",
+    "colors      = [\"C0\", \"C1\"]\n",
+    "\n",
+    "fig, axes = plt.subplots(3, 2, figsize=(13, 9), sharex=True, sharey=\"row\")\n",
+    "fig.suptitle(\"Zenith Tropospheric Delay — Jan–Feb 2010\", fontweight=\"bold\", fontsize=11)\n",
+    "\n",
     "for si, site in enumerate(queries_site):\n",
     "    for wi, wd in enumerate(queries_wetdry):\n",
-    "        fig, ax = plt.subplots(figsize=(10, 4))\n",
-    "        ax.plot(timespan_days, delta_m_seasonal[si, wi, :],\n",
-    "                label=\"Seasonal only\", linestyle=\"--\")\n",
-    "        ax.plot(timespan_days, delta_m_non_seasonal[si, wi, :] + delta_m_seasonal[si, wi, :],\n",
-    "                label=\"Seasonal + non-seasonal\", linestyle=\":\")\n",
-    "        ax.set_xlabel(\"Time since 2010-01-01 [days]\")\n",
-    "        ax.set_ylabel(\"Zenith delay [m]\")\n",
-    "        ax.set_title(f\"Tropospheric delay — {site_labels[site]}, {wd} component\")\n",
-    "        ax.grid(True, linestyle=\":\")\n",
-    "        ax.legend()\n",
-    "        plt.tight_layout()\n",
-    "        plt.show()"
+    "        ax = axes[si, wi]\n",
+    "        total = delta_m_non_seasonal[si, wi, :] + delta_m_seasonal[si, wi, :]\n",
+    "        ax.plot(timespan_utc, delta_m_seasonal[si, wi, :],\n",
+    "                lw=1.5, ls=\"--\", color=colors[wi], label=\"Seasonal\")\n",
+    "        ax.plot(timespan_utc, total,\n",
+    "                lw=1.5, ls=\"-\",  color=colors[wi], alpha=0.7, label=\"Seasonal + non-seasonal\")\n",
+    "        ax.set_title(f\"{site_labels[site]} — {wd_labels[wd]}\")\n",
+    "        ax.set_ylabel(\"Delay [m]\")\n",
+    "        fmt_cal(ax)\n",
+    "        if si == 2:\n",
+    "            ax.set_xlabel(\"UTC\")\n",
+    "        if si == 0:\n",
+    "            ax.legend()\n",
+    "\n",
+    "plt.tight_layout()\n",
+    "plt.show()"
    ]
   },
   {
@@ -259,17 +271,15 @@
    "id": "10",
    "metadata": {},
    "source": [
-    "## 2.3 — Elevation mapping functions\n",
+    "### 2.3 — Elevation mapping function\n",
     "\n",
-    "The zenith delays computed above apply only when the signal travels straight up. For any real ground-station-to-spacecraft link, the signal travels at a slant angle, increasing the path length through the atmosphere. The **mapping function** `m(E)` converts the zenith delay `δ_z` to a slant delay `δ_s`:\n",
+    "The zenith delay applies only when the signal travels straight up.  For a real link at elevation angle $E$, the slant delay is:\n",
     "\n",
-    "```\n",
-    "δ_s = m(E) × δ_z\n",
-    "```\n",
+    "$$\\delta_s = m(E) \\cdot \\delta_z$$\n",
     "\n",
-    "SCB implements the **Chao (1972) mapping function** via `MediaCorrections.chao_mapping(elevation_rad)`, which returns separate dry and wet mapping factors. Both approach 1.0 at zenith (90°) and grow rapidly toward the horizon where the signal path through the atmosphere is longest.\n",
+    "SCB implements the **Chao (1972)** mapping function via `MediaCorrections.chao_mapping(elevation_rad)`, which returns separate dry and wet factors.  Both approach 1 at zenith (90°) and grow steeply near the horizon.\n",
     "\n",
-    "> **Note:** Measurements at very low elevation angles (below ~10°) are typically excluded in OD processing because the mapping function uncertainty becomes large and multipath effects increase."
+    "> **Note:** Measurements below ~15° elevation are typically rejected in OD processing — the mapping function uncertainty and multipath contamination become unacceptably large."
    ]
   },
   {
@@ -288,12 +298,12 @@
     "    dry_mapping[i], wet_mapping[i] = scb.MediaCorrections.chao_mapping(el)\n",
     "\n",
     "fig, ax = plt.subplots(figsize=(8, 4))\n",
-    "ax.plot(np.degrees(E_rad), dry_mapping, label=\"Dry mapping\", linestyle=\"--\")\n",
-    "ax.plot(np.degrees(E_rad), wet_mapping, label=\"Wet mapping\", linestyle=\":\")\n",
+    "ax.plot(np.degrees(E_rad), dry_mapping, lw=1.5, ls=\"--\", color=\"C0\", label=\"Dry\")\n",
+    "ax.plot(np.degrees(E_rad), wet_mapping, lw=1.5, ls=\":\",  color=\"C1\", label=\"Wet\")\n",
+    "ax.axvline(10, color=\"k\", lw=0.8, ls=\"--\", alpha=0.5, label=\"10° cut-off\")\n",
     "ax.set_xlabel(\"Elevation angle [deg]\")\n",
-    "ax.set_ylabel(\"Mapping function [-]\")\n",
-    "ax.set_title(\"Chao (1972) Tropospheric Mapping Functions\")\n",
-    "ax.grid(True, linestyle=\":\")\n",
+    "ax.set_ylabel(\"Mapping factor  m(E)  [—]\")\n",
+    "ax.set_title(\"Chao (1972) Tropospheric Mapping Functions\", fontweight=\"bold\")\n",
     "ax.legend()\n",
     "plt.tight_layout()\n",
     "plt.show()"
@@ -305,19 +315,19 @@
    "metadata": {},
    "source": [
     "---\n",
-    "## 3.0 — Ramp Table Manager\n",
+    "## 3. DSN Ramp Tables\n",
     "\n",
-    "DSN uplink signals are not always transmitted at a constant frequency. When a ramp is in effect, the exciter steps through a pre-programmed frequency-vs-time schedule stored in the tracking data as a **ramp table** (SFDU record type 9). Each ramp table entry records:\n",
+    "DSN uplink signals are not always transmitted at a constant frequency.  When a **frequency ramp** is in effect, the exciter follows a pre-programmed schedule stored in the tracking data as SFDU record type 9.\n",
     "\n",
     "| Field | Description |\n",
     "|---|---|\n",
     "| `sec` | Second-of-day at which the ramp interval begins |\n",
     "| `doy` | Day-of-year of the ramp interval |\n",
-    "| `ramp_freq` | Exciter frequency at the start of the interval [Hz] |\n",
+    "| `ramp_freq` | Exciter frequency at interval start [Hz] |\n",
     "| `ramp_rate` | Linear frequency rate during the interval [Hz/s] |\n",
     "| `ramp_type` | Integer flag identifying the ramp mode |\n",
     "\n",
-    "The `scb.RampTableManager.integrate()` method integrates the piecewise-linear frequency profile between two epochs `(t1, t3)` and returns the total accumulated phase, which is needed to correctly compute Doppler and sequential ranging observables when the uplink is ramped."
+    "`scb.RampTableManager.integrate(ramp_data, t1_sec, t3_sec, t1_doy, t3_doy)` integrates the piecewise-linear frequency profile between two epochs and returns the total accumulated phase — required to convert a sequential ranging observable to a time-of-flight when the uplink is ramped."
    ]
   },
   {
@@ -325,9 +335,9 @@
    "id": "13",
    "metadata": {},
    "source": [
-    "## 3.1 — Loading and inspecting ramp table data\n",
+    "### 3.1 — Loading and inspecting ramp table data\n",
     "\n",
-    "The ramp table is extracted from the `aux_SFDU_9` block of a standard SCB tracking JSON file. The five fields above are assembled into the `ramp_data` list expected by `RampTableManager.integrate()`."
+    "The ramp table lives in the `aux_SFDU_9` block of the tracking JSON file.  Its five fields are assembled into the list format expected by `RampTableManager.integrate()`."
    ]
   },
   {
@@ -337,7 +347,6 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "#json_name = \"orex_beno_2016_282_122040_2016_282_211501_24\"\n",
     "trk_file_path = data.trk_file.path\n",
     "trk_data  = scb.Utils.load_json(trk_file_path)\n",
     "\n",
@@ -350,27 +359,25 @@
     "    trk_data[\"aux_SFDU_9\"][\"ramp_type\"],\n",
     "]\n",
     "\n",
-    "# Visualize the ramp table contents\n",
-    "fig, axes = plt.subplots(4, 1, figsize=(10, 10), sharex=True)\n",
+    "s9       = trk_data[\"aux_SFDU_9\"]\n",
+    "# Convert seconds-of-day to UTC datetimes (pass date: 2018 DoY 159 = Jun 8)\n",
+    "_day0    = datetime.datetime(int(s9[\"year\"][0]), 1, 1) + datetime.timedelta(days=int(s9[\"doy\"][0]) - 1)\n",
+    "ramp_utc = [_day0 + datetime.timedelta(seconds=float(s)) for s in s9[\"sec\"]]\n",
     "\n",
-    "axes[0].plot(trk_data[\"aux_SFDU_9\"][\"sec\"], trk_data[\"aux_SFDU_9\"][\"doy\"],        \"co-\")\n",
-    "axes[0].set_ylabel(\"Ramp day of year\")\n",
+    "fig, axes = plt.subplots(4, 1, figsize=(10, 9), sharex=True)\n",
+    "fig.suptitle(\"Ramp Table Contents — SFDU_9\", fontweight=\"bold\", fontsize=11)\n",
     "\n",
-    "axes[1].plot(trk_data[\"aux_SFDU_9\"][\"sec\"], trk_data[\"aux_SFDU_9\"][\"ramp_freq\"],  \"bo-\")\n",
-    "axes[1].set_ylabel(\"Ramp frequency [Hz]\")\n",
-    "\n",
-    "axes[2].plot(trk_data[\"aux_SFDU_9\"][\"sec\"], trk_data[\"aux_SFDU_9\"][\"ramp_rate\"],  \"ro-\")\n",
-    "axes[2].set_ylabel(\"Ramp rate [Hz/s]\")\n",
-    "\n",
-    "axes[3].plot(trk_data[\"aux_SFDU_9\"][\"sec\"], trk_data[\"aux_SFDU_9\"][\"ramp_type\"],  \"go-\")\n",
-    "axes[3].set_ylabel(\"Ramp type (int)\")\n",
-    "axes[3].set_xlabel(\"Time as seconds of day [s]\")\n",
+    "axes[0].plot(ramp_utc, s9[\"doy\"],       \"C0o-\", ms=4, lw=1.2); axes[0].set_ylabel(\"Day of year\")\n",
+    "axes[1].plot(ramp_utc, s9[\"ramp_freq\"], \"C1o-\", ms=4, lw=1.2); axes[1].set_ylabel(\"Freq [Hz]\")\n",
+    "axes[2].plot(ramp_utc, s9[\"ramp_rate\"], \"C3o-\", ms=4, lw=1.2); axes[2].set_ylabel(\"Rate [Hz/s]\")\n",
+    "axes[3].plot(ramp_utc, s9[\"ramp_type\"], \"C2o-\", ms=4, lw=1.2); axes[3].set_ylabel(\"Type\")\n",
+    "axes[3].set_xlabel(\"UTC\")\n",
     "\n",
     "for ax in axes:\n",
-    "    ax.grid(True, which=\"both\", linestyle=\"--\", linewidth=0.5)\n",
     "    ax.minorticks_on()\n",
+    "    ax.grid(True, which=\"both\", alpha=0.35, linestyle=\"--\")\n",
+    "    fmt_cal(ax, fmt=\"%H:%M\\n%b %d\")\n",
     "\n",
-    "fig.suptitle(f\"Ramp Table Contents\", fontsize=11)\n",
     "plt.tight_layout()\n",
     "plt.show()"
    ]
@@ -380,13 +387,11 @@
    "id": "15",
    "metadata": {},
    "source": [
-    "## 3.2 — Integrated frequency sensitivity\n",
+    "### 3.2 — Integrated frequency sensitivity\n",
     "\n",
-    "The integrated uplink frequency between times `t1` and `t3` is needed to convert a sequential ranging observable (in Range Units) to a time-of-flight. To understand the sensitivity of that integral to the choice of count interval `Δt = t3 − t1`, we evaluate `RampTableManager.integrate()` at 13 logarithmically spaced offsets from t1 — spanning nanoseconds to thousands of seconds.\n",
+    "`RampTableManager.integrate()` is evaluated at 13 logarithmically spaced offsets from `t1`, spanning nanoseconds to thousands of seconds.  The result is scaled by the Range Unit (RU) conversion factor, giving accumulated phase in RU as a function of count interval.\n",
     "\n",
-    "The result is scaled by `RU = 0.147530040053405` (the Range Unit conversion factor for this pass), giving the accumulated phase in Range Units as a function of integration length.\n",
-    "\n",
-    "> **Key insight:** The log-log plot reveals how quickly the integrated frequency accumulates. A slope of 1 indicates that the frequency is approximately constant over the interval — i.e., the ramp rate is negligible at that timescale."
+    "> **Key insight:** On a log-log scale, a slope of 1 means the uplink frequency is approximately constant over that interval — the ramp rate is negligible at that timescale."
    ]
   },
   {
@@ -396,29 +401,29 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Hard-coded constants for the orex_beno_2016_282_122040_2016_282_211501_24 pass\n",
-    "RU               = 0.147530040053405   # Range Unit conversion factor\n",
-    "t1_sec           = 48660              # Reference epoch (sec of day)\n",
-    "t1_doy           = 282\n",
-    "t3_doy           = t1_doy\n",
-    "delta_t          = 10 ** np.arange(-9, 4, dtype=float)   # 13 log-spaced offsets [s]\n",
-    "t3_sec_array     = t1_sec + delta_t\n",
+    "# Constants derived from the loaded ramp table\n",
+    "# Skip ramp_type=0 entries — the integrator treats them as inactive intervals\n",
+    "s9         = trk_data[\"aux_SFDU_9\"]\n",
+    "valid_idx  = next(i for i, rt in enumerate(s9[\"ramp_type\"]) if rt != 0)\n",
+    "RU         = 0.147530040053405          # Range Unit conversion factor (OREX X-band)\n",
+    "t1_sec     = s9[\"sec\"][valid_idx]       # First active ramp epoch (sec of day)\n",
+    "t1_doy     = int(s9[\"doy\"][valid_idx])\n",
+    "t3_doy     = t1_doy\n",
+    "delta_t    = 10 ** np.arange(-9, 4, dtype=float)   # 13 log-spaced offsets [s]\n",
     "\n",
     "f_int_RU = []\n",
-    "for t3_sec in t3_sec_array:\n",
-    "    f_int, _ = scb.RampTableManager.integrate(\n",
-    "        ramp_data, t1_sec, t3_sec, t1_doy, t3_doy\n",
-    "    )\n",
+    "for dt in delta_t:\n",
+    "    f_int, _ = scb.RampTableManager.integrate(ramp_data, t1_sec, t1_sec + dt, t1_doy, t3_doy)\n",
     "    f_int_RU.append(RU * f_int)\n",
     "\n",
     "f_int_RU = np.array(f_int_RU)\n",
     "\n",
     "fig, ax = plt.subplots(figsize=(8, 5))\n",
-    "ax.loglog(delta_t, f_int_RU, \"ko-\")\n",
+    "ax.loglog(delta_t, f_int_RU, \"ko-\", ms=5, lw=1.5)\n",
     "ax.set_xlabel(\"Δt from t1 [s]\")\n",
     "ax.set_ylabel(\"Integrated frequency [RU]\")\n",
-    "ax.set_title(\"Integrated Frequency Sensitivity vs. Count Interval\")\n",
-    "ax.grid(True, which=\"both\", linestyle=\"--\", linewidth=0.5)\n",
+    "ax.set_title(\"Integrated Frequency Sensitivity vs. Count Interval\", fontweight=\"bold\")\n",
+    "ax.grid(True, which=\"both\", alpha=0.35, linestyle=\"--\")\n",
     "ax.minorticks_on()\n",
     "plt.tight_layout()\n",
     "plt.show()"
@@ -430,20 +435,20 @@
    "metadata": {},
    "source": [
     "---\n",
-    "## 4.0 — RTLT Media Corrections for Sequential Ranging\n",
+    "## 4. RTLT Media Corrections for Sequential Ranging\n",
     "\n",
-    "In the previous section, we computed the **zenith** tropospheric delay — the path-length error for a signal traveling straight up through the atmosphere. When applying corrections to real measurements, we need the **round-trip light-time (RTLT)** delay, which accounts for both the uplink leg (ground → spacecraft, at transmit time `t1`) and the downlink leg (spacecraft → ground, at receive time `t3`).\n",
+    "The zenith delay from Section 2 must be projected into the actual **round-trip light-time (RTLT)** geometry of a two-way pass.  The full pipeline is:\n",
     "\n",
-    "The workflow is:\n",
+    "| Step | Action |\n",
+    "|---|---|\n",
+    "| 1 | Load a tracking data file; identify the ground station |\n",
+    "| 2 | Extract receive epochs `t3` from the sequential ranging observable |\n",
+    "| 3 | Estimate transmit epochs `t1` via a two-step SPICE light-time computation |\n",
+    "| 4 | Evaluate `computed_rtlt_delays()` at both `t1` (uplink) and `t3` (downlink) |\n",
+    "| 5 | Sum the two one-way delays to get the total RTLT path-length correction |\n",
+    "| 6 | Convert: meters → seconds → Range Units |\n",
     "\n",
-    "1. Load a tracking data file and identify the ground station\n",
-    "2. Extract the receive epochs `t3` from the sequential ranging observable\n",
-    "3. Compute the transmit epochs `t1` using a quick RTLT estimate from SPICE\n",
-    "4. Evaluate `media_correction.computed_rtlt_delays()` at both `t1` and `t3`\n",
-    "5. Add the two one-way delays to get the total RTLT media correction\n",
-    "6. Convert from meters → seconds (via the speed of light) → Range Units (via the uplink carrier frequency)\n",
-    "\n",
-    "This corrected delay is subtracted from the raw sequential ranging observable before it is used in the OD filter."
+    "The corrected delay is subtracted from the raw observable before it enters the OD filter."
    ]
   },
   {
@@ -451,11 +456,11 @@
    "id": "18",
    "metadata": {},
    "source": [
-    "## 4.1 — Load tracking data and set up the ground station\n",
+    "### 4.1 — Load tracking data and set up the ground station\n",
     "\n",
-    "The tracking file used here is a two-way pass from DSS-24 (Goldstone) acquired on 2017 day-of-year 346. The file contains both the sequential ranging (`2W_sranging`) and Doppler (`2W_doppler`) observables, though only the ranging measurements are processed in this section.\n",
+    "The tracking file is a two-way pass from **DSS-35 (Canberra)** acquired on 2018 day-of-year 159.  It contains both sequential ranging (`2W_sranging`) and Doppler (`2W_doppler`) observables; only the ranging measurements are processed here.\n",
     "\n",
-    "`MediaCorrections` is initialized with a reference to the ground station and the path to the seasonal tropospheric correction file. The non-seasonal file path is resolved later (in Section 4.3) once the exact pass date is known."
+    "`MediaCorrections` is constructed with the ground station and the seasonal correction file.  The non-seasonal file is resolved automatically in Section 4.3 once the pass date is known."
    ]
   },
   {
@@ -465,10 +470,9 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "trk_file_path          = data.trk_file.path                  #\"data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json\"\n",
-    "tropo_seasonal_path    = data.tropo_seasonal_new.path        #\"data/measurements/media_correction/1972_001_2048_001_tro_modified.json\"\n",
-    "tropo_file_bucket      = \"data/measurements/media_correction\"\n",
-    "\n",
+    "trk_file_path       = data.trk_file.path\n",
+    "tropo_seasonal_path = data.tropo_seasonal_new.path\n",
+    "tropo_file_bucket   = os.path.dirname(data.tropo_nonseasonal.path)\n",
     "\n",
     "# Read tracking data and identify the ground station\n",
     "trk_data = scb.Utils.load_json(trk_file_path)\n",
@@ -501,13 +505,13 @@
    "id": "20",
    "metadata": {},
    "source": [
-    "## 4.2 — Compute transmit epochs t1\n",
+    "### 4.2 — Compute transmit epochs t1\n",
     "\n",
-    "The sequential ranging observable is tagged at the **receive** time `t3`. The transmit time `t1` (when the uplink tone left the ground station) must be estimated for the uplink media correction. A two-step SPICE light-time computation gives a good approximation:\n",
+    "Sequential ranging observables are tagged at the **receive time** `t3`.  The transmit time `t1` is estimated in two SPICE steps:\n",
     "\n",
-    "1. Compute the **downlink** one-way light time at `t3` — the time for the signal to travel from the spacecraft to the ground station.\n",
-    "2. Subtract the downlink light time from `t3` to get the approximate spacecraft time, then compute the **uplink** one-way light time back to the station.\n",
-    "3. The RTLT is the sum of the two, and `t1 = t3 − RTLT`."
+    "1. Compute the **downlink** one-way light time at `t3` (spacecraft → ground).\n",
+    "2. Subtract from `t3` to approximate the spacecraft reception time; compute the **uplink** one-way light time (ground → spacecraft) at that epoch.\n",
+    "3. `RTLT = t_uplink + t_downlink`,  `t1 = t3 − RTLT`."
    ]
   },
   {
@@ -550,11 +554,11 @@
    "id": "22",
    "metadata": {},
    "source": [
-    "## 4.3 — Resolve the non-seasonal correction file and compute elevation angles\n",
+    "### 4.3 — Resolve the non-seasonal file and compute elevation angles\n",
     "\n",
-    "The non-seasonal tropospheric correction file is specific to each year and day-of-year. `MediaCorrections.find_tro_metadata()` scans the correction file bucket and returns the file whose coverage window contains the pass date, which is extracted from the first t3 epoch.\n",
+    "`MediaCorrections.find_tro_metadata()` scans the correction file directory and returns the file whose coverage window brackets the pass date (extracted from the first `t3` epoch).\n",
     "\n",
-    "Elevation angles at each t3 epoch are computed with `SpiceManager.get_elevation_angle()`. The elevation angle is needed in Section 4.4 to apply the Chao mapping function, and it is also a useful diagnostic — passes near the horizon (low elevation) have much larger and more uncertain media corrections."
+    "Elevation angles at each `t3` are computed with `SpiceManager.get_elevation_angle()`.  They drive the Chao mapping function and serve as a diagnostic — passes near the horizon carry larger and more uncertain corrections."
    ]
   },
   {
@@ -586,7 +590,7 @@
     "    SRA_elevation_angles.append(np.degrees(el_rad))\n",
     "\n",
     "SRA_elevation_angles = np.array(SRA_elevation_angles)\n",
-    "print(f\"Elevation angle range: {SRA_elevation_angles.min():.1f}\\u00b0 \\u2013 {SRA_elevation_angles.max():.1f}\\u00b0\")\n"
+    "print(f\"Elevation angle range: {SRA_elevation_angles.min():.1f}° – {SRA_elevation_angles.max():.1f}°\")"
    ]
   },
   {
@@ -594,19 +598,19 @@
    "id": "24",
    "metadata": {},
    "source": [
-    "## 4.4 — Compute RTLT tropospheric delays\n",
+    "### 4.4 — Compute RTLT tropospheric delays\n",
     "\n",
-    "`media_correction.computed_rtlt_delays()` evaluates the full tropospheric model (seasonal + non-seasonal, dry + wet, with Chao mapping applied) at a given ephemeris time and returns the one-way path-length correction in **meters**.\n",
+    "`computed_rtlt_delays()` evaluates the full model (seasonal + non-seasonal, dry + wet, Chao-mapped) at a given ET and returns the one-way path-length correction in **meters**.  The RTLT correction and unit chain are:\n",
     "\n",
-    "The RTLT correction is the sum of the corrections at `t3` (downlink) and `t1` (uplink):\n",
+    "$$\n",
+    "\\Delta p\\,[\\mathrm{m}] = \\Delta p(t_3) + \\Delta p(t_1)\n",
+    "\\qquad\n",
+    "\\Delta\\tau\\,[\\mathrm{s}] = \\frac{\\Delta p \\times 10^{-3}}{c}\n",
+    "\\qquad\n",
+    "\\Delta\\Phi\\,[\\mathrm{RU}] = \\Delta\\tau \\cdot f_\\mathrm{uplink}\n",
+    "$$\n",
     "\n",
-    "```\n",
-    "Δp [m]   = Δp(t3) + Δp(t1)\n",
-    "Δτ [s]   = Δp [m] × 10⁻³ / c          (Moyer eq. 10-27, converting km → m → s)\n",
-    "ΔΦ [RU]  = Δτ [s] × f_uplink [Hz]\n",
-    "```\n",
-    "\n",
-    "where `c` is the speed of light in km/s from `scb.constants.c`."
+    "where $c$ is the speed of light in km/s (`scb.constants.c`) and the factor $10^{-3}$ converts meters to kilometres."
    ]
   },
   {
@@ -649,15 +653,17 @@
    "id": "26",
    "metadata": {},
    "source": [
-    "## 4.5 — Results and plots\n",
+    "### 4.5 — Results\n",
     "\n",
-    "Five plots summarize the media correction output for this pass:\n",
+    "Five plots summarise the media correction output for this pass.  The expected signature in each is described below:\n",
     "\n",
-    "1. **RTLT correction vs time (t3)** — how the total delay evolves over the pass\n",
-    "2. **Path-length correction vs time** — same information in meters\n",
-    "3. **Range Unit correction vs time** — the operationally relevant quantity subtracted from the raw observable\n",
-    "4. **RTLT correction vs elevation angle** — shows the expected increase toward the horizon\n",
-    "5. **Elevation angle vs time** — pass geometry reference"
+    "| Plot | Expected behaviour |\n",
+    "|---|---|\n",
+    "| RTLT correction vs time | Smooth evolution tracking elevation angle changes over the pass |\n",
+    "| Path-length correction vs time | Same trend in meters; typically 4–8 m for X-band |\n",
+    "| Range Unit correction vs time | Operationally relevant quantity subtracted from the raw observable |\n",
+    "| RTLT correction vs elevation | Monotonically increasing as elevation decreases toward horizon |\n",
+    "| Elevation angle vs time | Rises then falls — bell-shaped arc geometry |"
    ]
   },
   {
@@ -667,48 +673,43 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "fig, ax = plt.subplots(figsize=(9, 4))\n",
-    "ax.plot(SRA_t3.times.values, SRA_delta_rtlt * 1e6, \".\")\n",
-    "ax.set_xlabel(\"ET t3 [s]\")\n",
-    "ax.set_ylabel(\"RTLT correction [μs]\")\n",
-    "ax.set_title(\"Tropospheric RTLT Correction vs Time (t3)\")\n",
-    "ax.grid(True, linestyle=\":\")\n",
+    "# Convert ET receive epochs to UTC datetimes\n",
+    "t_utc = et_to_utc(SRA_t3.times.values)\n",
+    "\n",
+    "# ── Figure 1: corrections vs time (3 panels) ─────────────────────────────────\n",
+    "fig, axes = plt.subplots(3, 1, figsize=(10, 9), sharex=True)\n",
+    "fig.suptitle(\"Tropospheric RTLT Corrections vs Time — DSS-35 Pass (2018 DoY 159)\",\n",
+    "             fontweight=\"bold\", fontsize=11)\n",
+    "\n",
+    "axes[0].plot(t_utc, SRA_delta_rtlt * 1e6, \"C0.\", ms=6); axes[0].set_ylabel(\"RTLT correction [μs]\")\n",
+    "axes[1].plot(t_utc, SRA_delta_m,           \"C1.\", ms=6); axes[1].set_ylabel(\"Path-length [m]\")\n",
+    "axes[2].plot(t_utc, SRA_delta_RU,          \"C2.\", ms=6); axes[2].set_ylabel(\"Correction [RU]\")\n",
+    "axes[2].set_xlabel(\"UTC\")\n",
+    "\n",
+    "for ax in axes:\n",
+    "    ax.grid(True, alpha=0.35, linestyle=\"--\")\n",
+    "    fmt_cal(ax, fmt=\"%H:%M\\n%b %d\")\n",
+    "\n",
     "plt.tight_layout()\n",
     "plt.show()\n",
     "\n",
-    "fig, ax = plt.subplots(figsize=(9, 4))\n",
-    "ax.plot(SRA_t3.times.values, SRA_delta_m, \".\")\n",
-    "ax.set_xlabel(\"ET t3 [s]\")\n",
-    "ax.set_ylabel(\"Path-length correction [m]\")\n",
-    "ax.set_title(\"Tropospheric Path-Length Correction vs Time (t3)\")\n",
-    "ax.grid(True, linestyle=\":\")\n",
-    "plt.tight_layout()\n",
-    "plt.show()\n",
+    "# ── Figure 2: geometry — elevation vs time, correction vs elevation ───────────\n",
+    "fig, axes = plt.subplots(1, 2, figsize=(12, 4))\n",
+    "fig.suptitle(\"Pass Geometry and Elevation Dependence\", fontweight=\"bold\", fontsize=11)\n",
     "\n",
-    "fig, ax = plt.subplots(figsize=(9, 4))\n",
-    "ax.plot(SRA_t3.times.values, SRA_delta_RU, \".\")\n",
-    "ax.set_xlabel(\"ET t3 [s]\")\n",
-    "ax.set_ylabel(\"Correction [RU]\")\n",
-    "ax.set_title(\"Tropospheric Correction in Range Units vs Time (t3)\")\n",
-    "ax.grid(True, linestyle=\":\")\n",
-    "plt.tight_layout()\n",
-    "plt.show()\n",
+    "axes[0].plot(t_utc, SRA_elevation_angles, \"C3.\", ms=6)\n",
+    "axes[0].set_xlabel(\"UTC\")\n",
+    "axes[0].set_ylabel(\"Elevation angle [deg]\")\n",
+    "axes[0].set_title(\"Elevation vs Time\")\n",
+    "axes[0].grid(True, alpha=0.35, linestyle=\"--\")\n",
+    "fmt_cal(axes[0], fmt=\"%H:%M\\n%b %d\")\n",
     "\n",
-    "fig, ax = plt.subplots(figsize=(9, 4))\n",
-    "ax.plot(SRA_elevation_angles, SRA_delta_rtlt * 1e6, \".\")\n",
-    "ax.set_xlabel(\"Elevation angle [deg]\")\n",
-    "ax.set_ylabel(\"RTLT correction [μs]\")\n",
-    "ax.set_title(\"Tropospheric RTLT Correction vs Elevation Angle (at t3)\")\n",
-    "ax.grid(True, linestyle=\":\")\n",
-    "plt.tight_layout()\n",
-    "plt.show()\n",
+    "axes[1].plot(SRA_elevation_angles, SRA_delta_rtlt * 1e6, \"C0.\", ms=6)\n",
+    "axes[1].set_xlabel(\"Elevation angle [deg]\")\n",
+    "axes[1].set_ylabel(\"RTLT correction [μs]\")\n",
+    "axes[1].set_title(\"Correction vs Elevation\")\n",
+    "axes[1].grid(True, alpha=0.35, linestyle=\"--\")\n",
     "\n",
-    "fig, ax = plt.subplots(figsize=(9, 4))\n",
-    "ax.plot(SRA_t3.times.values, SRA_elevation_angles, \".\")\n",
-    "ax.set_xlabel(\"ET t3 [s]\")\n",
-    "ax.set_ylabel(\"Elevation angle [deg]\")\n",
-    "ax.set_title(\"Ground Station Elevation Angle vs Time (t3)\")\n",
-    "ax.grid(True, linestyle=\":\")\n",
     "plt.tight_layout()\n",
     "plt.show()"
    ]
@@ -716,7 +717,7 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": ".venv",
+   "display_name": ".venv (3.14.2)",
    "language": "python",
    "name": "python3"
   },
@@ -730,7 +731,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.13"
+   "version": "3.14.2"
   }
  },
  "nbformat": 4,

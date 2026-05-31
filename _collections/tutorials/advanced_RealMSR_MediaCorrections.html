@@ -7,16 +7,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="og:title" content="# OSIRIS-REx Tutorial Series Pt 2: Media Corrections & Ramp Tables" />
+<meta property="og:title" content="# OSIRIS-REx Real Data — Media Corrections & Ramp Tables" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/_collections/tutorials/advanced_RealMSR_MediaCorrections.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Scarabaeus | Last revised 2026 Objectives: This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will: Understand how SCB models tropospheric signal delay using seasonal and non-seasonal components stored in JSON correction files, Query tropospheric delays for individual ground stations and arbitrary time spans using MediaCorrections, Evaluate the C..." />
+<meta property="og:description" content="Scarabaeus OD Framework | Last revised 2026 What this notebook covers: This is a standalone notebook on atmospheric media corrections and DSN ramp tables using real OSIRIS-REx tracking data. These auxiliary data products must be applied to raw radiometric observables before they enter any orbit determination filter.,,#, Topic,,, 1, Setup — units, frames, SPICE kernels, ground stations,, 2, Tropospheric delay models — seasonal and non-seasonal components,, 3, DSN ramp table inspection and inte..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Scarabaeus | Last revised 2026 Objectives: This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will: Understand how SCB models tropospheric signal delay using seasonal and non-seasonal components stored in JSON correction files, Query tropospheric delays for individual ground stations and arbitrary time spans using MediaCorrections, Evaluate the C..." />
+<meta name="description" content="Scarabaeus OD Framework | Last revised 2026 What this notebook covers: This is a standalone notebook on atmospheric media corrections and DSN ramp tables using real OSIRIS-REx tracking data. These auxiliary data products must be applied to raw radiometric observables before they enter any orbit determination filter.,,#, Topic,,, 1, Setup — units, frames, SPICE kernels, ground stations,, 2, Tropospheric delay models — seasonal and non-seasonal components,, 3, DSN ramp table inspection and inte..." />
 
-    <title># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables &#8212; Scarabaeus  documentation</title>
+    <title># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables &#8212; Scarabaeus  documentation</title>
   
   
   
@@ -66,7 +66,7 @@
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="# OSIRIS-REx Tutorial Series" href="advanced_RealMSR_OSIRIS_REx_OD.html" />
+    <link rel="next" title="# OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination" href="advanced_RealMSR_OSIRIS_REx_OD.html" />
     <link rel="prev" title="# Sequential Orbit Determination — Complete Demo" href="advanced_IdealMSR_SequentialOD.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -525,7 +525,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
 
 
 
@@ -533,17 +533,8 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
 
-
-
-
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
 
 
 
@@ -554,7 +545,7 @@
 
 </ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
 
 
 
@@ -562,17 +553,8 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
 
-
-
-
-
-
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Tutorial Series</a></li>
 
 
 
@@ -627,7 +609,7 @@
     
     <li class="breadcrumb-item"><a href="../../examples/examples_frontpage.html" class="nav-link"><span class="gold">Scarabaeus Tutorials</span></a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</span></li>
   </ul>
 </nav>
 </div>
@@ -644,36 +626,45 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-OSIRIS-REx-Tutorial-Series-Pt-2:-Media-Corrections-&amp;-Ramp-Tables">
-<h1># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables<a class="headerlink" href="##-OSIRIS-REx-Tutorial-Series-Pt-2:-Media-Corrections-&-Ramp-Tables" title="Link to this heading">#</a></h1>
-<p><em>Scarabaeus | Last revised 2026</em></p>
+  <!-- SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder --><!-- SPDX-License-Identifier: ISC --><section id="#-OSIRIS-REx-Real-Data-—-Media-Corrections-&amp;-Ramp-Tables">
+<h1># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables<a class="headerlink" href="##-OSIRIS-REx-Real-Data-—-Media-Corrections-&-Ramp-Tables" title="Link to this heading">#</a></h1>
+<p><em>Scarabaeus OD Framework | Last revised 2026</em></p>
 </section>
-<section id="Objectives">
-<h1>Objectives<a class="headerlink" href="#Objectives" title="Link to this heading">#</a></h1>
-<p>This is the second of a five-part tutorial series that walks through a complete orbit determination (OD) scenario within Scarabaeus (SCB) using real data from the OSIRIS-REx mission. In part two, you will:</p>
-<ul class="simple">
-<li><p>Understand how SCB models tropospheric signal delay using <strong>seasonal</strong> and <strong>non-seasonal</strong> components stored in JSON correction files</p></li>
-<li><p>Query tropospheric delays for individual ground stations and arbitrary time spans using <code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></p></li>
-<li><p>Evaluate the <strong>Chao elevation mapping function</strong>, which projects the zenith delay to a slant path at a given elevation angle</p></li>
-<li><p>Load and inspect DSN <strong>ramp table</strong> records using <code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code>, and compute integrated uplink frequency sensitivity as a function of count interval</p></li>
-<li><p>Apply full <strong>round-trip light-time (RTLT) media corrections</strong> to real sequential ranging measurements, converting the path-length error to seconds and Range Units (RU)</p></li>
-</ul>
+<section id="What-this-notebook-covers">
+<h1>What this notebook covers<a class="headerlink" href="#What-this-notebook-covers" title="Link to this heading">#</a></h1>
+<p>This is a <strong>standalone notebook on atmospheric media corrections and DSN ramp tables</strong> using real OSIRIS-REx tracking data. These auxiliary data products must be applied to raw radiometric observables before they enter any orbit determination filter.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Setup — units, frames, SPICE kernels, ground stations</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Tropospheric delay models — seasonal and non-seasonal components</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>DSN ramp table inspection and integrated frequency sensitivity</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Full RTLT media correction pipeline applied to real sequential ranging data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="See-Also">
 <h1>See Also<a class="headerlink" href="#See-Also" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"><span class="doc">Part 1: Units &amp; Reference Frames</span></a></p></li>
+<li><p><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"><span class="doc">OSIRIS-REx OD Notebook</span></a> — applies these corrections inside a full SRIF filter run</p></li>
 </ul>
 </section>
-<section id="1.0-—-Load-SCB-and-the-relevant-Python-packages">
-<h1>1.0 — Load SCB and the relevant Python packages<a class="headerlink" href="#1.0-—-Load-SCB-and-the-relevant-Python-packages" title="Link to this heading">#</a></h1>
-<p>Before doing anything else, import the libraries the tutorial depends on:</p>
-<ul class="simple">
-<li><p><strong>``scarabaeus``</strong> — the main OD library, aliased to <code class="docutils literal notranslate"><span class="pre">scb</span></code> throughout for brevity.</p></li>
-<li><p><strong>``numpy``</strong> — array mathematics.</p></li>
-<li><p><strong>``pandas``</strong> — tabular data handling, used in Section 4 to parse uplink frequency records.</p></li>
-<li><p><strong>``matplotlib``</strong> — plotting library.</p></li>
-</ul>
+<section id="1.-Setup">
+<h1>1. Setup<a class="headerlink" href="#1.-Setup" title="Link to this heading">#</a></h1>
+<p>Standard scientific imports plus <code class="docutils literal notranslate"><span class="pre">scarabaeus</span></code> and the tutorial <code class="docutils literal notranslate"><span class="pre">supplementary</span></code> helper. Units and frames are created once here and reused throughout all sections.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -687,23 +678,20 @@
 
 <span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;kg&quot;</span><span class="p">,</span> <span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;unitless&quot;</span><span class="p">])</span>
 <span class="p">(</span><span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span><span class="p">)</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s1">&#39;figure.dpi&#39;</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="s1">&#39;axes.grid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;grid.alpha&#39;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span> <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </section>
-<section id="1.1-—-Initialize-units,-frames,-and-SPICE-kernels">
-<h1>1.1 — Initialize units, frames, and SPICE kernels<a class="headerlink" href="#1.1-—-Initialize-units,-frames,-and-SPICE-kernels" title="Link to this heading">#</a></h1>
-<section id="Units-and-Frames">
-<h2>Units and Frames<a class="headerlink" href="#Units-and-Frames" title="Link to this heading">#</a></h2>
-<p>As in Part 1, physical units are retrieved by name with <code class="docutils literal notranslate"><span class="pre">scb.Units.get_units()</span></code> and reference frames with <code class="docutils literal notranslate"><span class="pre">scb.Frame.generate_common_frames()</span></code>. All three tutorial sections in this notebook use the same unit and frame objects, so they are created once here and reused throughout.</p>
-</section>
-<section id="SPICE-Kernels">
-<h2>SPICE Kernels<a class="headerlink" href="#SPICE-Kernels" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">scb.SpiceManager.load_kernel_from_mkfile()</span></code> furnishes the full set of SPICE kernels for the OSIRIS-REx scenario (SPK trajectories, PCK body constants, LSK leap-second, and frame kernels). A single metakernel file lists them all.</p>
-</section>
-<section id="Ground-Stations">
-<h2>Ground Stations<a class="headerlink" href="#Ground-Stations" title="Link to this heading">#</a></h2>
-<p>Three DSN complexes are used to illustrate how media corrections vary by site:</p>
+<section id="1.1-—-SPICE-Kernels-and-Ground-Stations">
+<h1>1.1 — SPICE Kernels and Ground Stations<a class="headerlink" href="#1.1-—-SPICE-Kernels-and-Ground-Stations" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">supp.load_data()</span></code> ensures all tutorial data files are present, downloading or generating anything missing. <code class="docutils literal notranslate"><span class="pre">load_kernel_from_mkfile()</span></code> furnishes the complete OSIRIS-REx kernel set (SPK trajectories, PCK body constants, LSK leap-second, and frame kernels).</p>
+<p>Three DSN complexes are used throughout this notebook:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Variable</p></th>
@@ -731,7 +719,6 @@
 </tbody>
 </table>
 </div>
-<p>Each <code class="docutils literal notranslate"><span class="pre">scb.GroundStation</span></code> object looks up the station’s ECEF coordinates and SPICE ID from the loaded kernels.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -759,41 +746,39 @@ SCB supplementary data up to date.
 </pre></div></div>
 </div>
 </section>
-</section>
 <hr class="docutils" />
-<section id="2.0-—-Tropospheric-Delay-Models">
-<h1>2.0 — Tropospheric Delay Models<a class="headerlink" href="#2.0-—-Tropospheric-Delay-Models" title="Link to this heading">#</a></h1>
-<p>Radio signals traveling between a DSN ground station and a deep-space spacecraft must pass through Earth’s troposphere. The neutral atmosphere introduces a <strong>non-dispersive path-length delay</strong> that is independent of signal frequency and must be modeled and subtracted from the raw observations before they can be used for orbit determination.</p>
-<p>SCB decomposes the zenith tropospheric delay into two additive components stored in separate JSON correction files:</p>
+<section id="2.-Tropospheric-Delay-Models">
+<h1>2. Tropospheric Delay Models<a class="headerlink" href="#2.-Tropospheric-Delay-Models" title="Link to this heading">#</a></h1>
+<p>Radio signals passing through Earth’s troposphere acquire a <strong>non-dispersive path-length delay</strong>.</p>
+<p>SCB decomposes the zenith tropospheric delay into two additive components, each stored in a separate JSON file:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Component</p></th>
-<th class="head"><p>File</p></th>
-<th class="head"><p>Model function</p></th>
+<th class="head"><p>File pattern</p></th>
+<th class="head"><p>Model</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>Seasonal</strong></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">1972_001_2048_001_tro_modified.json</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MediaCorrections.mediafun_trig</span></code> — trigonometric annual + semi-annual fit</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mediafun_trig</span></code> — trigonometric annual + semi-annual fit</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Non-seasonal</strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">2010_001_2010_032_tro.json</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MediaCorrections.mediafun_nrmpow</span></code> — normalized power-law fit</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY_DDD_YYYY_DDD_tro.json</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mediafun_nrmpow</span></code> — normalized power-law fit</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Both files contain a nested dictionary keyed by site (<code class="docutils literal notranslate"><span class="pre">C10</span></code>, <code class="docutils literal notranslate"><span class="pre">C40</span></code>, <code class="docutils literal notranslate"><span class="pre">C60</span></code>) and wet/dry component (<code class="docutils literal notranslate"><span class="pre">WET</span></code>, <code class="docutils literal notranslate"><span class="pre">DRY</span></code>). The static method <code class="docutils literal notranslate"><span class="pre">MediaCorrections.get_media_data_for_et()</span></code> retrieves the coefficient sub-dictionary that brackets a given epoch.</p>
-</section>
+<p>Both files are nested by site (<code class="docutils literal notranslate"><span class="pre">C10</span></code>, <code class="docutils literal notranslate"><span class="pre">C40</span></code>, <code class="docutils literal notranslate"><span class="pre">C60</span></code>) and wet/dry component. <code class="docutils literal notranslate"><span class="pre">MediaCorrections.get_media_data_for_et()</span></code> retrieves the coefficient block that brackets any query epoch.</p>
 <section id="2.1-—-Single-station,-single-component-query">
-<h1>2.1 — Single-station, single-component query<a class="headerlink" href="#2.1-—-Single-station,-single-component-query" title="Link to this heading">#</a></h1>
-<p>The simplest usage pattern is a single query: one station, one epoch, one component (wet or dry).</p>
-<p><code class="docutils literal notranslate"><span class="pre">get_media_data_for_et()</span></code> returns the coefficient dictionary valid at the query epoch. That dictionary is then passed to the appropriate functional model:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mediafun_trig(aux_data,</span> <span class="pre">et)</span></code> — evaluates the seasonal trigonometric model at <code class="docutils literal notranslate"><span class="pre">et</span></code>, returning a delay in <strong>meters</strong></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mediafun_nrmpow(aux_data,</span> <span class="pre">et)</span></code> — evaluates the non-seasonal normalized power-law model, also in <strong>meters</strong></p></li>
-</ul>
+<h2>2.1 — Single-station, single-component query<a class="headerlink" href="#2.1-—-Single-station,-single-component-query" title="Link to this heading">#</a></h2>
+<p>The simplest usage: one station, one epoch, one component (wet or dry).</p>
+<ol class="arabic simple">
+<li><p>Load the correction JSON and convert the UTC query time to SPICE ET.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">get_media_data_for_et()</span></code> to retrieve the bracketing coefficient dictionary.</p></li>
+<li><p>Pass it to the appropriate model — <code class="docutils literal notranslate"><span class="pre">mediafun_trig</span></code> (seasonal) or <code class="docutils literal notranslate"><span class="pre">mediafun_nrmpow</span></code> (non-seasonal) — which returns the zenith delay in <strong>meters</strong>.</p></li>
+</ol>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -857,23 +842,30 @@ Total zenith delay: 2.105753 m
 </div>
 </section>
 <section id="2.2-—-Multi-station-time-series">
-<h1>2.2 — Multi-station time-series<a class="headerlink" href="#2.2-—-Multi-station-time-series" title="Link to this heading">#</a></h1>
-<p>In practice, media corrections must be evaluated at every measurement epoch across all active ground stations. The nested loop below sweeps over:</p>
-<ul class="simple">
-<li><p><strong>Sites</strong> — the three DSN complexes (<code class="docutils literal notranslate"><span class="pre">C10</span></code>, <code class="docutils literal notranslate"><span class="pre">C40</span></code>, <code class="docutils literal notranslate"><span class="pre">C60</span></code>)</p></li>
-<li><p><strong>Wet/dry components</strong> — both the dry (hydrostatic) and wet (water-vapor) parts of the zenith delay</p></li>
-<li><p><strong>Time</strong> — 1 000 evenly spaced epochs spanning January–February 2010</p></li>
-</ul>
-<p>The result arrays <code class="docutils literal notranslate"><span class="pre">delta_m_seasonal[site,</span> <span class="pre">component,</span> <span class="pre">time]</span></code> and <code class="docutils literal notranslate"><span class="pre">delta_m_non_seasonal[site,</span> <span class="pre">component,</span> <span class="pre">time]</span></code> hold the zenith delay in meters. A guard (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">aux_data</span> <span class="pre">else</span> <span class="pre">0.0</span></code>) is included for epochs that fall outside the file’s coverage window.</p>
+<h2>2.2 — Multi-station time-series<a class="headerlink" href="#2.2-—-Multi-station-time-series" title="Link to this heading">#</a></h2>
+<p>A nested loop evaluates the delay at 1 000 evenly spaced epochs over January–February 2010 for all three sites and both wet/dry components. A guard (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">aux_data</span> <span class="pre">else</span> <span class="pre">0.0</span></code>) handles epochs outside the file’s coverage window.</p>
+<p>The plots overlay the <strong>seasonal-only</strong> curve against the <strong>seasonal + non-seasonal</strong> total, making the non-seasonal residual visually apparent.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Time span: Jan 1 – Feb 28, 2010</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">et_to_utc</span><span class="p">(</span><span class="n">et_arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert array of SPICE ET values to list of UTC datetime objects.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">et</span><span class="p">))[:</span><span class="mi">19</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">et_arr</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">AutoDateLocator</span><span class="p">(</span><span class="n">minticks</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">maxticks</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">))</span>
+
+<span class="c1"># Time span: Jan 1 – Feb 28, 2010</span>
 <span class="n">t_start_et</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">&quot;2010-01-01 00:00:00 UTC&quot;</span><span class="p">)</span>
 <span class="n">t_end_et</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">&quot;2010-02-28 23:59:00 UTC&quot;</span><span class="p">)</span>
 <span class="n">timespan_et</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t_start_et</span><span class="p">,</span> <span class="n">t_end_et</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">timespan_days</span> <span class="o">=</span> <span class="p">(</span><span class="n">timespan_et</span> <span class="o">-</span> <span class="n">timespan_et</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mf">86400.0</span>
+<span class="n">timespan_utc</span> <span class="o">=</span> <span class="n">et_to_utc</span><span class="p">(</span><span class="n">timespan_et</span><span class="p">)</span>
 
 <span class="n">queries_site</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C10&quot;</span><span class="p">,</span> <span class="s2">&quot;C40&quot;</span><span class="p">,</span> <span class="s2">&quot;C60&quot;</span><span class="p">]</span>
 <span class="n">queries_wetdry</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DRY&quot;</span><span class="p">,</span> <span class="s2">&quot;WET&quot;</span><span class="p">]</span>
@@ -894,77 +886,50 @@ Total zenith delay: 2.105753 m
             <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ti</span><span class="p">]</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_trig</span><span class="p">(</span><span class="n">aux_s</span><span class="p">,</span> <span class="n">et</span><span class="p">)</span>     <span class="k">if</span> <span class="n">aux_s</span> <span class="k">else</span> <span class="mf">0.0</span>
             <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ti</span><span class="p">]</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_nrmpow</span><span class="p">(</span><span class="n">aux_n</span><span class="p">,</span> <span class="n">et</span><span class="p">)</span>   <span class="k">if</span> <span class="n">aux_n</span> <span class="k">else</span> <span class="mf">0.0</span>
 
-<span class="c1"># Plot one panel per site × component</span>
 <span class="n">site_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C10&quot;</span><span class="p">:</span> <span class="s2">&quot;Goldstone (C10)&quot;</span><span class="p">,</span> <span class="s2">&quot;C40&quot;</span><span class="p">:</span> <span class="s2">&quot;Canberra (C40)&quot;</span><span class="p">,</span> <span class="s2">&quot;C60&quot;</span><span class="p">:</span> <span class="s2">&quot;Madrid (C60)&quot;</span><span class="p">}</span>
+<span class="n">wd_labels</span>   <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;DRY&quot;</span><span class="p">:</span> <span class="s2">&quot;Dry&quot;</span><span class="p">,</span> <span class="s2">&quot;WET&quot;</span><span class="p">:</span> <span class="s2">&quot;Wet&quot;</span><span class="p">}</span>
+<span class="n">colors</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Zenith Tropospheric Delay — Jan–Feb 2010&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">si</span><span class="p">,</span> <span class="n">site</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_site</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">wi</span><span class="p">,</span> <span class="n">wd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">):</span>
-        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_days</span><span class="p">,</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:],</span>
-                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal only&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_days</span><span class="p">,</span> <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:],</span>
-                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal + non-seasonal&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time since 2010-01-01 [days]&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Zenith delay [m]&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tropospheric delay — </span><span class="si">{</span><span class="n">site_labels</span><span class="p">[</span><span class="n">site</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">wd</span><span class="si">}</span><span class="s2"> component&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">]</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_utc</span><span class="p">,</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:],</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">wi</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_utc</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">wi</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal + non-seasonal&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">site_labels</span><span class="p">[</span><span class="n">site</span><span class="p">]</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">wd_labels</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Delay [m]&quot;</span><span class="p">)</span>
+        <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">si</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">si</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_1.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_2.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_2.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_3.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_3.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_4.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_4.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_5.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_5.png" />
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" />
 </div>
 </div>
 </section>
-<section id="2.3-—-Elevation-mapping-functions">
-<h1>2.3 — Elevation mapping functions<a class="headerlink" href="#2.3-—-Elevation-mapping-functions" title="Link to this heading">#</a></h1>
-<p>The zenith delays computed above apply only when the signal travels straight up. For any real ground-station-to-spacecraft link, the signal travels at a slant angle, increasing the path length through the atmosphere. The <strong>mapping function</strong> <code class="docutils literal notranslate"><span class="pre">m(E)</span></code> converts the zenith delay <code class="docutils literal notranslate"><span class="pre">δ_z</span></code> to a slant delay <code class="docutils literal notranslate"><span class="pre">δ_s</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>δ_s = m(E) × δ_z
-</pre></div>
-</div>
-<p>SCB implements the <strong>Chao (1972) mapping function</strong> via <code class="docutils literal notranslate"><span class="pre">MediaCorrections.chao_mapping(elevation_rad)</span></code>, which returns separate dry and wet mapping factors. Both approach 1.0 at zenith (90°) and grow rapidly toward the horizon where the signal path through the atmosphere is longest.</p>
+<section id="2.3-—-Elevation-mapping-function">
+<h2>2.3 — Elevation mapping function<a class="headerlink" href="#2.3-—-Elevation-mapping-function" title="Link to this heading">#</a></h2>
+<p>The zenith delay applies only when the signal travels straight up. For a real link at elevation angle <span class="math notranslate nohighlight">\(E\)</span>, the slant delay is:</p>
+<div class="math notranslate nohighlight">
+\[\delta_s = m(E) \cdot \delta_z\]</div>
+<p>SCB implements the <strong>Chao (1972)</strong> mapping function via <code class="docutils literal notranslate"><span class="pre">MediaCorrections.chao_mapping(elevation_rad)</span></code>, which returns separate dry and wet factors. Both approach 1 at zenith (90°) and grow steeply near the horizon.</p>
 <blockquote>
-<div><p><strong>Note:</strong> Measurements at very low elevation angles (below ~10°) are typically excluded in OD processing because the mapping function uncertainty becomes large and multipath effects increase.</p>
+<div><p><strong>Note:</strong> Measurements below ~15° elevation are typically rejected in OD processing — the mapping function uncertainty and multipath contamination become unacceptably large.</p>
 </div></blockquote>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -979,12 +944,12 @@ Total zenith delay: 2.105753 m
     <span class="n">dry_mapping</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">wet_mapping</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">chao_mapping</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">dry_mapping</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dry mapping&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">wet_mapping</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wet mapping&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">dry_mapping</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dry&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">wet_mapping</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wet&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;10° cut-off&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mapping function [-]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Chao (1972) Tropospheric Mapping Functions&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mapping factor  m(E)  [—]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Chao (1972) Tropospheric Mapping Functions&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -999,10 +964,11 @@ Total zenith delay: 2.105753 m
 </div>
 </div>
 </section>
+</section>
 <hr class="docutils" />
-<section id="3.0-—-Ramp-Table-Manager">
-<h1>3.0 — Ramp Table Manager<a class="headerlink" href="#3.0-—-Ramp-Table-Manager" title="Link to this heading">#</a></h1>
-<p>DSN uplink signals are not always transmitted at a constant frequency. When a ramp is in effect, the exciter steps through a pre-programmed frequency-vs-time schedule stored in the tracking data as a <strong>ramp table</strong> (SFDU record type 9). Each ramp table entry records:</p>
+<section id="3.-DSN-Ramp-Tables">
+<h1>3. DSN Ramp Tables<a class="headerlink" href="#3.-DSN-Ramp-Tables" title="Link to this heading">#</a></h1>
+<p>DSN uplink signals are not always transmitted at a constant frequency. When a <strong>frequency ramp</strong> is in effect, the exciter follows a pre-programmed schedule stored in the tracking data as SFDU record type 9.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Field</p></th>
@@ -1017,7 +983,7 @@ Total zenith delay: 2.105753 m
 <td><p>Day-of-year of the ramp interval</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ramp_freq</span></code></p></td>
-<td><p>Exciter frequency at the start of the interval [Hz]</p></td>
+<td><p>Exciter frequency at interval start [Hz]</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ramp_rate</span></code></p></td>
 <td><p>Linear frequency rate during the interval [Hz/s]</p></td>
@@ -1028,17 +994,15 @@ Total zenith delay: 2.105753 m
 </tbody>
 </table>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">scb.RampTableManager.integrate()</span></code> method integrates the piecewise-linear frequency profile between two epochs <code class="docutils literal notranslate"><span class="pre">(t1,</span> <span class="pre">t3)</span></code> and returns the total accumulated phase, which is needed to correctly compute Doppler and sequential ranging observables when the uplink is ramped.</p>
-</section>
+<p><code class="docutils literal notranslate"><span class="pre">scb.RampTableManager.integrate(ramp_data,</span> <span class="pre">t1_sec,</span> <span class="pre">t3_sec,</span> <span class="pre">t1_doy,</span> <span class="pre">t3_doy)</span></code> integrates the piecewise-linear frequency profile between two epochs and returns the total accumulated phase — required to convert a sequential ranging observable to a time-of-flight when the uplink is ramped.</p>
 <section id="3.1-—-Loading-and-inspecting-ramp-table-data">
-<h1>3.1 — Loading and inspecting ramp table data<a class="headerlink" href="#3.1-—-Loading-and-inspecting-ramp-table-data" title="Link to this heading">#</a></h1>
-<p>The ramp table is extracted from the <code class="docutils literal notranslate"><span class="pre">aux_SFDU_9</span></code> block of a standard SCB tracking JSON file. The five fields above are assembled into the <code class="docutils literal notranslate"><span class="pre">ramp_data</span></code> list expected by <code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code>.</p>
+<h2>3.1 — Loading and inspecting ramp table data<a class="headerlink" href="#3.1-—-Loading-and-inspecting-ramp-table-data" title="Link to this heading">#</a></h2>
+<p>The ramp table lives in the <code class="docutils literal notranslate"><span class="pre">aux_SFDU_9</span></code> block of the tracking JSON file. Its five fields are assembled into the list format expected by <code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#json_name = &quot;orex_beno_2016_282_122040_2016_282_211501_24&quot;</span>
-<span class="n">trk_file_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trk_file_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>
 <span class="n">trk_data</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">trk_file_path</span><span class="p">)</span>
 
 <span class="c1"># Assemble ramp table list in the format expected by RampTableManager</span>
@@ -1050,27 +1014,25 @@ Total zenith delay: 2.105753 m
     <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span>
 <span class="p">]</span>
 
-<span class="c1"># Visualize the ramp table contents</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">s9</span>       <span class="o">=</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">]</span>
+<span class="c1"># Convert seconds-of-day to UTC datetimes (pass date: 2018 DoY 159 = Jun 8)</span>
+<span class="n">_day0</span>    <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;doy&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ramp_utc</span> <span class="o">=</span> <span class="p">[</span><span class="n">_day0</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;sec&quot;</span><span class="p">]]</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;doy&quot;</span><span class="p">],</span>        <span class="s2">&quot;co-&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp day of year&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Ramp Table Contents — SFDU_9&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">],</span>  <span class="s2">&quot;bo-&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp frequency [Hz]&quot;</span><span class="p">)</span>
-
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_rate&quot;</span><span class="p">],</span>  <span class="s2">&quot;ro-&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp rate [Hz/s]&quot;</span><span class="p">)</span>
-
-<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span>  <span class="s2">&quot;go-&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ramp type (int)&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time as seconds of day [s]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;doy&quot;</span><span class="p">],</span>       <span class="s2">&quot;C0o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Day of year&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">],</span> <span class="s2">&quot;C1o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Freq [Hz]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_rate&quot;</span><span class="p">],</span> <span class="s2">&quot;C3o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Rate [Hz/s]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span> <span class="s2">&quot;C2o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ramp Table Contents&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1085,39 +1047,38 @@ Total zenith delay: 2.105753 m
 </div>
 </section>
 <section id="3.2-—-Integrated-frequency-sensitivity">
-<h1>3.2 — Integrated frequency sensitivity<a class="headerlink" href="#3.2-—-Integrated-frequency-sensitivity" title="Link to this heading">#</a></h1>
-<p>The integrated uplink frequency between times <code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t3</span></code> is needed to convert a sequential ranging observable (in Range Units) to a time-of-flight. To understand the sensitivity of that integral to the choice of count interval <code class="docutils literal notranslate"><span class="pre">Δt</span> <span class="pre">=</span> <span class="pre">t3</span> <span class="pre">−</span> <span class="pre">t1</span></code>, we evaluate <code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code> at 13 logarithmically spaced offsets from t1 — spanning nanoseconds to thousands of seconds.</p>
-<p>The result is scaled by <code class="docutils literal notranslate"><span class="pre">RU</span> <span class="pre">=</span> <span class="pre">0.147530040053405</span></code> (the Range Unit conversion factor for this pass), giving the accumulated phase in Range Units as a function of integration length.</p>
+<h2>3.2 — Integrated frequency sensitivity<a class="headerlink" href="#3.2-—-Integrated-frequency-sensitivity" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">RampTableManager.integrate()</span></code> is evaluated at 13 logarithmically spaced offsets from <code class="docutils literal notranslate"><span class="pre">t1</span></code>, spanning nanoseconds to thousands of seconds. The result is scaled by the Range Unit (RU) conversion factor, giving accumulated phase in RU as a function of count interval.</p>
 <blockquote>
-<div><p><strong>Key insight:</strong> The log-log plot reveals how quickly the integrated frequency accumulates. A slope of 1 indicates that the frequency is approximately constant over the interval — i.e., the ramp rate is negligible at that timescale.</p>
+<div><p><strong>Key insight:</strong> On a log-log scale, a slope of 1 means the uplink frequency is approximately constant over that interval — the ramp rate is negligible at that timescale.</p>
 </div></blockquote>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hard-coded constants for the orex_beno_2016_282_122040_2016_282_211501_24 pass</span>
-<span class="n">RU</span>               <span class="o">=</span> <span class="mf">0.147530040053405</span>   <span class="c1"># Range Unit conversion factor</span>
-<span class="n">t1_sec</span>           <span class="o">=</span> <span class="mi">48660</span>              <span class="c1"># Reference epoch (sec of day)</span>
-<span class="n">t1_doy</span>           <span class="o">=</span> <span class="mi">282</span>
-<span class="n">t3_doy</span>           <span class="o">=</span> <span class="n">t1_doy</span>
-<span class="n">delta_t</span>          <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># 13 log-spaced offsets [s]</span>
-<span class="n">t3_sec_array</span>     <span class="o">=</span> <span class="n">t1_sec</span> <span class="o">+</span> <span class="n">delta_t</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constants derived from the loaded ramp table</span>
+<span class="c1"># Skip ramp_type=0 entries — the integrator treats them as inactive intervals</span>
+<span class="n">s9</span>         <span class="o">=</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">]</span>
+<span class="n">valid_idx</span>  <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">rt</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">RU</span>         <span class="o">=</span> <span class="mf">0.147530040053405</span>          <span class="c1"># Range Unit conversion factor (OREX X-band)</span>
+<span class="n">t1_sec</span>     <span class="o">=</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;sec&quot;</span><span class="p">][</span><span class="n">valid_idx</span><span class="p">]</span>       <span class="c1"># First active ramp epoch (sec of day)</span>
+<span class="n">t1_doy</span>     <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;doy&quot;</span><span class="p">][</span><span class="n">valid_idx</span><span class="p">])</span>
+<span class="n">t3_doy</span>     <span class="o">=</span> <span class="n">t1_doy</span>
+<span class="n">delta_t</span>    <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># 13 log-spaced offsets [s]</span>
 
 <span class="n">f_int_RU</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">t3_sec</span> <span class="ow">in</span> <span class="n">t3_sec_array</span><span class="p">:</span>
-    <span class="n">f_int</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RampTableManager</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
-        <span class="n">ramp_data</span><span class="p">,</span> <span class="n">t1_sec</span><span class="p">,</span> <span class="n">t3_sec</span><span class="p">,</span> <span class="n">t1_doy</span><span class="p">,</span> <span class="n">t3_doy</span>
-    <span class="p">)</span>
+<span class="k">for</span> <span class="n">dt</span> <span class="ow">in</span> <span class="n">delta_t</span><span class="p">:</span>
+    <span class="n">f_int</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RampTableManager</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">ramp_data</span><span class="p">,</span> <span class="n">t1_sec</span><span class="p">,</span> <span class="n">t1_sec</span> <span class="o">+</span> <span class="n">dt</span><span class="p">,</span> <span class="n">t1_doy</span><span class="p">,</span> <span class="n">t3_doy</span><span class="p">)</span>
     <span class="n">f_int_RU</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RU</span> <span class="o">*</span> <span class="n">f_int</span><span class="p">)</span>
 
 <span class="n">f_int_RU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_int_RU</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta_t</span><span class="p">,</span> <span class="n">f_int_RU</span><span class="p">,</span> <span class="s2">&quot;ko-&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta_t</span><span class="p">,</span> <span class="n">f_int_RU</span><span class="p">,</span> <span class="s2">&quot;ko-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Δt from t1 [s]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Integrated frequency [RU]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Integrated Frequency Sensitivity vs. Count Interval&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Integrated Frequency Sensitivity vs. Count Interval&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1132,33 +1093,51 @@ Total zenith delay: 2.105753 m
 </div>
 </div>
 </section>
-<hr class="docutils" />
-<section id="4.0-—-RTLT-Media-Corrections-for-Sequential-Ranging">
-<h1>4.0 — RTLT Media Corrections for Sequential Ranging<a class="headerlink" href="#4.0-—-RTLT-Media-Corrections-for-Sequential-Ranging" title="Link to this heading">#</a></h1>
-<p>In the previous section, we computed the <strong>zenith</strong> tropospheric delay — the path-length error for a signal traveling straight up through the atmosphere. When applying corrections to real measurements, we need the <strong>round-trip light-time (RTLT)</strong> delay, which accounts for both the uplink leg (ground → spacecraft, at transmit time <code class="docutils literal notranslate"><span class="pre">t1</span></code>) and the downlink leg (spacecraft → ground, at receive time <code class="docutils literal notranslate"><span class="pre">t3</span></code>).</p>
-<p>The workflow is:</p>
-<ol class="arabic simple">
-<li><p>Load a tracking data file and identify the ground station</p></li>
-<li><p>Extract the receive epochs <code class="docutils literal notranslate"><span class="pre">t3</span></code> from the sequential ranging observable</p></li>
-<li><p>Compute the transmit epochs <code class="docutils literal notranslate"><span class="pre">t1</span></code> using a quick RTLT estimate from SPICE</p></li>
-<li><p>Evaluate <code class="docutils literal notranslate"><span class="pre">media_correction.computed_rtlt_delays()</span></code> at both <code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t3</span></code></p></li>
-<li><p>Add the two one-way delays to get the total RTLT media correction</p></li>
-<li><p>Convert from meters → seconds (via the speed of light) → Range Units (via the uplink carrier frequency)</p></li>
-</ol>
-<p>This corrected delay is subtracted from the raw sequential ranging observable before it is used in the OD filter.</p>
 </section>
+<hr class="docutils" />
+<section id="4.-RTLT-Media-Corrections-for-Sequential-Ranging">
+<h1>4. RTLT Media Corrections for Sequential Ranging<a class="headerlink" href="#4.-RTLT-Media-Corrections-for-Sequential-Ranging" title="Link to this heading">#</a></h1>
+<p>The zenith delay from Section 2 must be projected into the actual <strong>round-trip light-time (RTLT)</strong> geometry of a two-way pass. The full pipeline is:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Step</p></th>
+<th class="head"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Load a tracking data file; identify the ground station</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Extract receive epochs <code class="docutils literal notranslate"><span class="pre">t3</span></code> from the sequential ranging observable</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Estimate transmit epochs <code class="docutils literal notranslate"><span class="pre">t1</span></code> via a two-step SPICE light-time computation</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Evaluate <code class="docutils literal notranslate"><span class="pre">computed_rtlt_delays()</span></code> at both <code class="docutils literal notranslate"><span class="pre">t1</span></code> (uplink) and <code class="docutils literal notranslate"><span class="pre">t3</span></code> (downlink)</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Sum the two one-way delays to get the total RTLT path-length correction</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Convert: meters → seconds → Range Units</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The corrected delay is subtracted from the raw observable before it enters the OD filter.</p>
 <section id="4.1-—-Load-tracking-data-and-set-up-the-ground-station">
-<h1>4.1 — Load tracking data and set up the ground station<a class="headerlink" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station" title="Link to this heading">#</a></h1>
-<p>The tracking file used here is a two-way pass from DSS-24 (Goldstone) acquired on 2017 day-of-year 346. The file contains both the sequential ranging (<code class="docutils literal notranslate"><span class="pre">2W_sranging</span></code>) and Doppler (<code class="docutils literal notranslate"><span class="pre">2W_doppler</span></code>) observables, though only the ranging measurements are processed in this section.</p>
-<p><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code> is initialized with a reference to the ground station and the path to the seasonal tropospheric correction file. The non-seasonal file path is resolved later (in Section 4.3) once the exact pass date is known.</p>
+<h2>4.1 — Load tracking data and set up the ground station<a class="headerlink" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station" title="Link to this heading">#</a></h2>
+<p>The tracking file is a two-way pass from <strong>DSS-35 (Canberra)</strong> acquired on 2018 day-of-year 159. It contains both sequential ranging (<code class="docutils literal notranslate"><span class="pre">2W_sranging</span></code>) and Doppler (<code class="docutils literal notranslate"><span class="pre">2W_doppler</span></code>) observables; only the ranging measurements are processed here.</p>
+<p><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code> is constructed with the ground station and the seasonal correction file. The non-seasonal file is resolved automatically in Section 4.3 once the pass date is known.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trk_file_path</span>          <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>                  <span class="c1">#&quot;data/measurements/radiometric/orex_beno_2017_346_093131_2017_346_144501_24.json&quot;</span>
-<span class="n">tropo_seasonal_path</span>    <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_seasonal_new</span><span class="o">.</span><span class="n">path</span>        <span class="c1">#&quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
-<span class="n">tropo_file_bucket</span>      <span class="o">=</span> <span class="s2">&quot;data/measurements/media_correction&quot;</span>
-
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trk_file_path</span>       <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">trk_file</span><span class="o">.</span><span class="n">path</span>
+<span class="n">tropo_seasonal_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_seasonal_new</span><span class="o">.</span><span class="n">path</span>
+<span class="n">tropo_file_bucket</span>   <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tropo_nonseasonal</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># Read tracking data and identify the ground station</span>
 <span class="n">trk_data</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">trk_file_path</span><span class="p">)</span>
@@ -1198,12 +1177,12 @@ Sequential ranging observations: 99
 </div>
 </section>
 <section id="4.2-—-Compute-transmit-epochs-t1">
-<h1>4.2 — Compute transmit epochs t1<a class="headerlink" href="#4.2-—-Compute-transmit-epochs-t1" title="Link to this heading">#</a></h1>
-<p>The sequential ranging observable is tagged at the <strong>receive</strong> time <code class="docutils literal notranslate"><span class="pre">t3</span></code>. The transmit time <code class="docutils literal notranslate"><span class="pre">t1</span></code> (when the uplink tone left the ground station) must be estimated for the uplink media correction. A two-step SPICE light-time computation gives a good approximation:</p>
+<h2>4.2 — Compute transmit epochs t1<a class="headerlink" href="#4.2-—-Compute-transmit-epochs-t1" title="Link to this heading">#</a></h2>
+<p>Sequential ranging observables are tagged at the <strong>receive time</strong> <code class="docutils literal notranslate"><span class="pre">t3</span></code>. The transmit time <code class="docutils literal notranslate"><span class="pre">t1</span></code> is estimated in two SPICE steps:</p>
 <ol class="arabic simple">
-<li><p>Compute the <strong>downlink</strong> one-way light time at <code class="docutils literal notranslate"><span class="pre">t3</span></code> — the time for the signal to travel from the spacecraft to the ground station.</p></li>
-<li><p>Subtract the downlink light time from <code class="docutils literal notranslate"><span class="pre">t3</span></code> to get the approximate spacecraft time, then compute the <strong>uplink</strong> one-way light time back to the station.</p></li>
-<li><p>The RTLT is the sum of the two, and <code class="docutils literal notranslate"><span class="pre">t1</span> <span class="pre">=</span> <span class="pre">t3</span> <span class="pre">−</span> <span class="pre">RTLT</span></code>.</p></li>
+<li><p>Compute the <strong>downlink</strong> one-way light time at <code class="docutils literal notranslate"><span class="pre">t3</span></code> (spacecraft → ground).</p></li>
+<li><p>Subtract from <code class="docutils literal notranslate"><span class="pre">t3</span></code> to approximate the spacecraft reception time; compute the <strong>uplink</strong> one-way light time (ground → spacecraft) at that epoch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RTLT</span> <span class="pre">=</span> <span class="pre">t_uplink</span> <span class="pre">+</span> <span class="pre">t_downlink</span></code>, <code class="docutils literal notranslate"><span class="pre">t1</span> <span class="pre">=</span> <span class="pre">t3</span> <span class="pre">−</span> <span class="pre">RTLT</span></code>.</p></li>
 </ol>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -1247,10 +1226,10 @@ Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
 </pre></div></div>
 </div>
 </section>
-<section id="4.3-—-Resolve-the-non-seasonal-correction-file-and-compute-elevation-angles">
-<h1>4.3 — Resolve the non-seasonal correction file and compute elevation angles<a class="headerlink" href="#4.3-—-Resolve-the-non-seasonal-correction-file-and-compute-elevation-angles" title="Link to this heading">#</a></h1>
-<p>The non-seasonal tropospheric correction file is specific to each year and day-of-year. <code class="docutils literal notranslate"><span class="pre">MediaCorrections.find_tro_metadata()</span></code> scans the correction file bucket and returns the file whose coverage window contains the pass date, which is extracted from the first t3 epoch.</p>
-<p>Elevation angles at each t3 epoch are computed with <code class="docutils literal notranslate"><span class="pre">SpiceManager.get_elevation_angle()</span></code>. The elevation angle is needed in Section 4.4 to apply the Chao mapping function, and it is also a useful diagnostic — passes near the horizon (low elevation) have much larger and more uncertain media corrections.</p>
+<section id="4.3-—-Resolve-the-non-seasonal-file-and-compute-elevation-angles">
+<h2>4.3 — Resolve the non-seasonal file and compute elevation angles<a class="headerlink" href="#4.3-—-Resolve-the-non-seasonal-file-and-compute-elevation-angles" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">MediaCorrections.find_tro_metadata()</span></code> scans the correction file directory and returns the file whose coverage window brackets the pass date (extracted from the first <code class="docutils literal notranslate"><span class="pre">t3</span></code> epoch).</p>
+<p>Elevation angles at each <code class="docutils literal notranslate"><span class="pre">t3</span></code> are computed with <code class="docutils literal notranslate"><span class="pre">SpiceManager.get_elevation_angle()</span></code>. They drive the Chao mapping function and serve as a diagnostic — passes near the horizon carry larger and more uncertain corrections.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
@@ -1277,8 +1256,8 @@ Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
     <span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">el_rad</span><span class="p">))</span>
 
 <span class="n">SRA_elevation_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elevation angle range: </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="se">\u00b0</span><span class="s2"> </span><span class="se">\u2013</span><span class="s2"> </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="se">\u00b0</span><span class="s2">&quot;</span><span class="p">)</span>
-<br/></pre></div>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elevation angle range: </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">° – </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1286,40 +1265,21 @@ Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Find the non-seasonal correction file for this pass</span>
-<span class="ansi-green-fg">      2</span> year_q, day_q, _ = scb.SpiceManager.et2YDS([SRA_t3.times.values[<span class="ansi-green-fg">0</span>]])
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> metadata_tropo = <span class="ansi-yellow-bg">scb</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">MediaCorrections</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">find_tro_metadata</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">tropo_file_bucket</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">year_q</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">day_q</span><span class="ansi-yellow-bg">[</span><span class="ansi-green-fg ansi-yellow-bg">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">      4</span> media_correction.tropo_non_seasonal_file_path = os.path.join(
-<span class="ansi-green-fg">      5</span>     tropo_file_bucket, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>]
-<span class="ansi-green-fg">      6</span> )
-<span class="ansi-green-fg">      7</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Non-seasonal file:</span><span class="ansi-yellow-fg">&#34;</span>, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>])
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/measurements/MediaCorrections.py:373</span>, in <span class="ansi-cyan-fg">MediaCorrections.find_tro_metadata</span><span class="ansi-blue-fg">(folder, query_year, query_doy)</span>
-<span class="ansi-green-fg">    369</span> pat = re.compile(
-<span class="ansi-green-fg">    370</span>     <span class="ansi-yellow-fg">r</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">(?P&lt;y1&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{4}</span><span class="ansi-yellow-fg">)_(?P&lt;d1&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{3}</span><span class="ansi-yellow-fg">)_(?P&lt;y2&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{4}</span><span class="ansi-yellow-fg">)_(?P&lt;d2&gt;</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">d</span><span class="ansi-bold" style="color: rgb(175,95,135)">{3}</span><span class="ansi-yellow-fg">)_tro</span><span class="ansi-yellow-fg">\</span><span class="ansi-yellow-fg">.json$</span><span class="ansi-yellow-fg">&#34;</span>
-<span class="ansi-green-fg">    371</span> )
-<span class="ansi-green-fg">    372</span> metadata: List[Dict] = []
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">373</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> fname <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span class="ansi-yellow-bg">os</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">listdir</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">folder</span><span class="ansi-yellow-bg">)</span>:
-<span class="ansi-green-fg">    374</span>     m = pat.match(fname)
-<span class="ansi-green-fg">    375</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> m:
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/measurements/media_correction&#39;
+Non-seasonal file: 2018_152_2018_182_tro.json
+Elevation angle range: 30.1° – 82.2°
 </pre></div></div>
 </div>
 </section>
 <section id="4.4-—-Compute-RTLT-tropospheric-delays">
-<h1>4.4 — Compute RTLT tropospheric delays<a class="headerlink" href="#4.4-—-Compute-RTLT-tropospheric-delays" title="Link to this heading">#</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">media_correction.computed_rtlt_delays()</span></code> evaluates the full tropospheric model (seasonal + non-seasonal, dry + wet, with Chao mapping applied) at a given ephemeris time and returns the one-way path-length correction in <strong>meters</strong>.</p>
-<p>The RTLT correction is the sum of the corrections at <code class="docutils literal notranslate"><span class="pre">t3</span></code> (downlink) and <code class="docutils literal notranslate"><span class="pre">t1</span></code> (uplink):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Δp [m]   = Δp(t3) + Δp(t1)
-Δτ [s]   = Δp [m] × 10⁻³ / c          (Moyer eq. 10-27, converting km → m → s)
-ΔΦ [RU]  = Δτ [s] × f_uplink [Hz]
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">c</span></code> is the speed of light in km/s from <code class="docutils literal notranslate"><span class="pre">scb.constants.c</span></code>.</p>
+<h2>4.4 — Compute RTLT tropospheric delays<a class="headerlink" href="#4.4-—-Compute-RTLT-tropospheric-delays" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">computed_rtlt_delays()</span></code> evaluates the full model (seasonal + non-seasonal, dry + wet, Chao-mapped) at a given ET and returns the one-way path-length correction in <strong>meters</strong>. The RTLT correction and unit chain are:</p>
+<div class="math notranslate nohighlight">
+\[\Delta p\,[\mathrm{m}] = \Delta p(t_3) + \Delta p(t_1)
+\qquad
+\Delta\tau\,[\mathrm{s}] = \frac{\Delta p \times 10^{-3}}{c}
+\qquad
+\Delta\Phi\,[\mathrm{RU}] = \Delta\tau \cdot f_\mathrm{uplink}\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is the speed of light in km/s (<code class="docutils literal notranslate"><span class="pre">scb.constants.c</span></code>) and the factor <span class="math notranslate nohighlight">\(10^{-3}\)</span> converts meters to kilometres.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -1358,66 +1318,79 @@ Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Mean RTLT tropo correction: 0.000 μs  /  0.0000 RU
+Mean RTLT tropo correction: 0.009 μs  /  65.6395 RU
 </pre></div></div>
 </div>
 </section>
-<section id="4.5-—-Results-and-plots">
-<h1>4.5 — Results and plots<a class="headerlink" href="#4.5-—-Results-and-plots" title="Link to this heading">#</a></h1>
-<p>Five plots summarize the media correction output for this pass:</p>
-<ol class="arabic simple">
-<li><p><strong>RTLT correction vs time (t3)</strong> — how the total delay evolves over the pass</p></li>
-<li><p><strong>Path-length correction vs time</strong> — same information in meters</p></li>
-<li><p><strong>Range Unit correction vs time</strong> — the operationally relevant quantity subtracted from the raw observable</p></li>
-<li><p><strong>RTLT correction vs elevation angle</strong> — shows the expected increase toward the horizon</p></li>
-<li><p><strong>Elevation angle vs time</strong> — pass geometry reference</p></li>
-</ol>
+<section id="4.5-—-Results">
+<h2>4.5 — Results<a class="headerlink" href="#4.5-—-Results" title="Link to this heading">#</a></h2>
+<p>Five plots summarise the media correction output for this pass. The expected signature in each is described below:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Plot</p></th>
+<th class="head"><p>Expected behaviour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>RTLT correction vs time</p></td>
+<td><p>Smooth evolution tracking elevation angle changes over the pass</p></td>
+</tr>
+<tr class="row-odd"><td><p>Path-length correction vs time</p></td>
+<td><p>Same trend in meters; typically 4–8 m for X-band</p></td>
+</tr>
+<tr class="row-even"><td><p>Range Unit correction vs time</p></td>
+<td><p>Operationally relevant quantity subtracted from the raw observable</p></td>
+</tr>
+<tr class="row-odd"><td><p>RTLT correction vs elevation</p></td>
+<td><p>Monotonically increasing as elevation decreases toward horizon</p></td>
+</tr>
+<tr class="row-even"><td><p>Elevation angle vs time</p></td>
+<td><p>Rises then falls — bell-shaped arc geometry</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric RTLT Correction vs Time (t3)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert ET receive epochs to UTC datetimes</span>
+<span class="n">t_utc</span> <span class="o">=</span> <span class="n">et_to_utc</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># ── Figure 1: corrections vs time (3 panels) ─────────────────────────────────</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Tropospheric RTLT Corrections vs Time — DSS-35 Pass (2018 DoY 159)&quot;</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;C0.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_m</span><span class="p">,</span>           <span class="s2">&quot;C1.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Path-length [m]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_RU</span><span class="p">,</span>          <span class="s2">&quot;C2.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Correction [RU]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+    <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_delta_m</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Path-length correction [m]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric Path-Length Correction vs Time (t3)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># ── Figure 2: geometry — elevation vs time, correction vs elevation ───────────</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Pass Geometry and Elevation Dependence&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_delta_RU</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Correction [RU]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric Correction in Range Units vs Time (t3)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="s2">&quot;C3.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Elevation vs Time&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">fmt_cal</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Tropospheric RTLT Correction vs Elevation Angle (at t3)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;C0.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Correction vs Elevation&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ET t3 [s]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ground Station Elevation Angle vs Time (t3)&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1430,44 +1403,14 @@ Mean RTLT tropo correction: 0.000 μs  /  0.0000 RU
 <img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" />
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" />
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_2.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_2.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 29</span>
-<span class="ansi-green-fg">     26</span> plt.show()
-<span class="ansi-green-fg">     28</span> fig, ax = plt.subplots(figsize=(<span class="ansi-green-fg">9</span>, <span class="ansi-green-fg">4</span>))
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">29</span> ax.plot(<span class="ansi-yellow-bg">SRA_elevation_angles</span>, SRA_delta_rtlt * <span class="ansi-green-fg">1e6</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">     30</span> ax.set_xlabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Elevation angle [deg]</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">     31</span> ax.set_ylabel(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">RTLT correction [μs]</span><span class="ansi-yellow-fg">&#34;</span>)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_elevation_angles&#39; is not defined
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_4.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_4.png" />
-</div>
-</div>
+</section>
 </section>
 
 
@@ -1494,7 +1437,7 @@ Mean RTLT tropo correction: 0.000 μs  /  0.0000 RU
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"># OSIRIS-REx Tutorial Series</p>
+        <p class="prev-next-title"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1517,29 +1460,30 @@ Mean RTLT tropo correction: 0.000 μs  /  0.0000 RU
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># OSIRIS-REx Tutorial Series Pt 2: Media Corrections &amp; Ramp Tables</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#What-this-notebook-covers">What this notebook covers</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.0-—-Load-SCB-and-the-relevant-Python-packages">1.0 — Load SCB and the relevant Python packages</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.1-—-Initialize-units,-frames,-and-SPICE-kernels">1.1 — Initialize units, frames, and SPICE kernels</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Units-and-Frames">Units and Frames</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#SPICE-Kernels">SPICE Kernels</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Ground-Stations">Ground Stations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Setup">1. Setup</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.1-—-SPICE-Kernels-and-Ground-Stations">1.1 — SPICE Kernels and Ground Stations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Tropospheric-Delay-Models">2. Tropospheric Delay Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.1-—-Single-station,-single-component-query">2.1 — Single-station, single-component query</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.2-—-Multi-station-time-series">2.2 — Multi-station time-series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.3-—-Elevation-mapping-function">2.3 — Elevation mapping function</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.0-—-Tropospheric-Delay-Models">2.0 — Tropospheric Delay Models</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.1-—-Single-station,-single-component-query">2.1 — Single-station, single-component query</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.2-—-Multi-station-time-series">2.2 — Multi-station time-series</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.3-—-Elevation-mapping-functions">2.3 — Elevation mapping functions</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.0-—-Ramp-Table-Manager">3.0 — Ramp Table Manager</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.1-—-Loading-and-inspecting-ramp-table-data">3.1 — Loading and inspecting ramp table data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.2-—-Integrated-frequency-sensitivity">3.2 — Integrated frequency sensitivity</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.0-—-RTLT-Media-Corrections-for-Sequential-Ranging">4.0 — RTLT Media Corrections for Sequential Ranging</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station">4.1 — Load tracking data and set up the ground station</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.2-—-Compute-transmit-epochs-t1">4.2 — Compute transmit epochs t1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.3-—-Resolve-the-non-seasonal-correction-file-and-compute-elevation-angles">4.3 — Resolve the non-seasonal correction file and compute elevation angles</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.4-—-Compute-RTLT-tropospheric-delays">4.4 — Compute RTLT tropospheric delays</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.5-—-Results-and-plots">4.5 — Results and plots</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-DSN-Ramp-Tables">3. DSN Ramp Tables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.1-—-Loading-and-inspecting-ramp-table-data">3.1 — Loading and inspecting ramp table data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.2-—-Integrated-frequency-sensitivity">3.2 — Integrated frequency sensitivity</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-RTLT-Media-Corrections-for-Sequential-Ranging">4. RTLT Media Corrections for Sequential Ranging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station">4.1 — Load tracking data and set up the ground station</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.2-—-Compute-transmit-epochs-t1">4.2 — Compute transmit epochs t1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.3-—-Resolve-the-non-seasonal-file-and-compute-elevation-angles">4.3 — Resolve the non-seasonal file and compute elevation angles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.4-—-Compute-RTLT-tropospheric-delays">4.4 — Compute RTLT tropospheric delays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.5-—-Results">4.5 — Results</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
