@@ -58,6 +58,7 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/quickstart';</script>
     <script src="../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../_static/favicon.ico"/>
@@ -437,8 +438,8 @@ spacecraft definition, force model, and propagation.</p>
 <span class="n">state</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">earth</span><span class="p">,</span> <span class="n">J2000</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
 
 <span class="c1"># Define epochs</span>
-<span class="n">t0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s2">&quot;2024-JAN-01 00:00:00.000 TDB&quot;</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
-<span class="n">tf</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s2">&quot;2024-JAN-01 01:30:00.000 TDB&quot;</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s2">&quot;2024-JAN-01 00:00:00.000&quot;</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s2">&quot;2024-JAN-01 01:30:00.000&quot;</span><span class="p">,</span> <span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
 
 <span class="c1"># Build force model and propagate</span>
 <span class="n">gravity</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">PointMassGravity</span><span class="p">(</span><span class="n">earth</span><span class="p">)</span>

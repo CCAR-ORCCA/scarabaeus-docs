@@ -56,6 +56,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/environment/trajectory';</script>
@@ -814,7 +815,7 @@ that loading the kernel and its associated metadata is unambiguous.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.set_offset" title="scarabaeus.Trajectory.set_offset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_offset</span></code></a>(offset)</p></td>
 <td><p>Sets the constant position offset for the trajectory.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.write_to_spk" title="scarabaeus.Trajectory.write_to_spk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_to_spk</span></code></a>(spk_path)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Trajectory.write_to_spk" title="scarabaeus.Trajectory.write_to_spk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_to_spk</span></code></a>(spk_path[, append_if_exists])</p></td>
 <td><p>Write the trajectory to disk as a SPICE SPK file plus JSON sidecars.</p></td>
 </tr>
 </tbody>
@@ -989,10 +990,35 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Trajectory.write_to_spk">
-<span class="sig-name descname"><span class="pre">write_to_spk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spk_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.write_to_spk" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">write_to_spk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spk_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">append_if_exists</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.Trajectory.write_to_spk" title="Link to this definition">#</a></dt>
 <dd><p>Write the trajectory to disk as a SPICE SPK file plus JSON sidecars.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">.bsp</span></code> file contains the position/velocity time-series (SPICE type-9
-Lagrange segments).  Additional data that cannot be embedded in an SPK
+Lagrange segments). See Notes section for information on additional data
+that cannot be embedded in an SPK.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spk_path</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Destination file path.  Must end with <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p></li>
+<li><p><strong>append_if_exists</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – <dl class="simple">
+<dt>If the given spk_path already exists:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: append the trajectory segment to that file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: delete the existing file and write a new one in its place.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">spk_path</span></code> does not end with <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#UserWarning" title="(in Python v3.11)"><strong>UserWarning</strong></a> – If this <code class="docutils literal notranslate"><span class="pre">Trajectory</span></code> already has an associated SPK at a different path.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Additional data that cannot be embedded in an SPK
 segment is written as plain-text JSON files with the same base path:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;spk_path</span> <span class="pre">base&gt;_parameters.json</span></code> — estimated parameters and state
@@ -1006,17 +1032,6 @@ definition (written when <a class="reference internal" href="#scarabaeus.Traject
 </ul>
 <p>Each sidecar is created only when the corresponding data is present.
 All files share the same directory and path prefix as the <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>spk_path</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Destination file path.  Must end with <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">spk_path</span></code> does not end with <code class="docutils literal notranslate"><span class="pre">.bsp</span></code>.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#UserWarning" title="(in Python v3.11)"><strong>UserWarning</strong></a> – If this <code class="docutils literal notranslate"><span class="pre">Trajectory</span></code> already has an associated SPK at a different path.</p></li>
-</ul>
-</dd>
-</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">traj</span><span class="o">.</span><span class="n">write_to_spk</span><span class="p">(</span><span class="s2">&quot;/output/mission.bsp&quot;</span><span class="p">)</span>
 <span class="c1"># Produces: mission.bsp, mission_parameters.json,</span>

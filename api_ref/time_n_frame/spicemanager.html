@@ -56,6 +56,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/time_n_frame/spicemanager';</script>
@@ -719,8 +720,8 @@ DOI 10.1016/j.pss.2017.02.013</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_STMs" title="scarabaeus.SpiceManager.get_STMs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_STMs</span></code></a>(trgt_bdy, epoch_time, ...[, ...])</p></td>
 <td><p>Retrieve or interpolate the State Transition Matrix (STM) at a given epoch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_attitude" title="scarabaeus.SpiceManager.get_attitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attitude</span></code></a>(trgt_bdy, epoch_time, ...)</p></td>
-<td><p>Get the attitude of a target body at a specified epoch time.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_attitude" title="scarabaeus.SpiceManager.get_attitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attitude</span></code></a>(trgt_bdy, epoch_time, ...[, ...])</p></td>
+<td><p>Get the attitude of a target body at a specified epoch time. :param trgt_bdy: The target body for which the attitude is to be determined. Can be an instance of Body or a string representing the body's name. :type trgt_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a> :param epoch_time: The epoch time at which the attitude is to be determined. Can be an instance of EpochArray or a float representing the time. :type epoch_time: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> :param reference_frame: The reference frame in which the attitude is to be determined. Can be a string or an instance of Frame. :type reference_frame: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a> :param tol: The tolerance value for the attitude determination. :type tol: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> :param frame_id: The frame of the target body. If not given, frame ID is assumed to be the body's ID multiplied by 1000. Defaults                  to <code class="docutils literal notranslate"><span class="pre">None</span></code>. :type frame_id: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.get_elevation_angle" title="scarabaeus.SpiceManager.get_elevation_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_elevation_angle</span></code></a>(target, et[, station, ...])</p></td>
 <td><p>Compute the elevation angle of a target body as seen from a DSN ground station using SPICE.</p></td>
@@ -779,61 +780,56 @@ DOI 10.1016/j.pss.2017.02.013</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.jd2et" title="scarabaeus.SpiceManager.jd2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jd2et</span></code></a>(jd)</p></td>
 <td><p>Convert a Julian Date (JDTDB) to ephemeris time.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.list_all_ck_ids" title="scarabaeus.SpiceManager.list_all_ck_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_all_ck_ids</span></code></a>(ck_file)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.list_all_bodies" title="scarabaeus.SpiceManager.list_all_bodies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_all_bodies</span></code></a>()</p></td>
+<td><p>DESC</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.list_all_ck_ids" title="scarabaeus.SpiceManager.list_all_ck_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_all_ck_ids</span></code></a>(ck_file)</p></td>
 <td><p>Return all NAIF IDs present in a C-kernel file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.list_all_frames" title="scarabaeus.SpiceManager.list_all_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_all_frames</span></code></a>([max_id])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.list_all_frames" title="scarabaeus.SpiceManager.list_all_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list_all_frames</span></code></a>()</p></td>
 <td><p>List all SPICE reference frames currently detectable in the pool.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.load_kernel" title="scarabaeus.SpiceManager.load_kernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_kernel</span></code></a>(kernel_filenames)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.load_kernel" title="scarabaeus.SpiceManager.load_kernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_kernel</span></code></a>(kernel_filenames)</p></td>
 <td><p>Load SPICE kernels into the SPICE system.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.load_kernel_from_mkfile" title="scarabaeus.SpiceManager.load_kernel_from_mkfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_kernel_from_mkfile</span></code></a>(furnshKernelFilename)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.load_kernel_from_mkfile" title="scarabaeus.SpiceManager.load_kernel_from_mkfile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_kernel_from_mkfile</span></code></a>(furnshKernelFilename)</p></td>
 <td><p>Load a SPICE kernel from a given MK file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.matrix_times_vector" title="scarabaeus.SpiceManager.matrix_times_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_times_vector</span></code></a>(matrix, vector)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.matrix_times_vector" title="scarabaeus.SpiceManager.matrix_times_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_times_vector</span></code></a>(matrix, vector)</p></td>
 <td><p>Multiply a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix by a 3-vector via SPICE.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.name_to_ID" title="scarabaeus.SpiceManager.name_to_ID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name_to_ID</span></code></a>(name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.name_to_ID" title="scarabaeus.SpiceManager.name_to_ID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name_to_ID</span></code></a>(name)</p></td>
 <td><p>Converts a given name to its corresponding ID in the kernel pool.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.print_kernels" title="scarabaeus.SpiceManager.print_kernels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_kernels</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.print_kernels" title="scarabaeus.SpiceManager.print_kernels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_kernels</span></code></a>()</p></td>
 <td><p>Print the source and type of every currently loaded SPICE kernel.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.sce2c" title="scarabaeus.SpiceManager.sce2c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sce2c</span></code></a>(sc, et)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.sce2c" title="scarabaeus.SpiceManager.sce2c"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sce2c</span></code></a>(sc, et)</p></td>
 <td><p>Convert ephemeris time to encoded spacecraft clock ticks.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.sclk2et" title="scarabaeus.SpiceManager.sclk2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sclk2et</span></code></a>(scId, sclk)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.sclk2et" title="scarabaeus.SpiceManager.sclk2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sclk2et</span></code></a>(scId, sclk)</p></td>
 <td><p>Convert a spacecraft clock string to ephemeris time.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.str2et" title="scarabaeus.SpiceManager.str2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str2et</span></code></a>(s)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.str2et" title="scarabaeus.SpiceManager.str2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str2et</span></code></a>(s)</p></td>
 <td><p>Convert a time string to ephemeris time (TDB seconds past J2000).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.unload_kernel_from_pool" title="scarabaeus.SpiceManager.unload_kernel_from_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_kernel_from_pool</span></code></a>(kernel_filename)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.unload_kernel_from_pool" title="scarabaeus.SpiceManager.unload_kernel_from_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unload_kernel_from_pool</span></code></a>(kernel_filename)</p></td>
 <td><p>Unload a kernel from the pool.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.utc2et" title="scarabaeus.SpiceManager.utc2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utc2et</span></code></a>(utc)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.utc2et" title="scarabaeus.SpiceManager.utc2et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utc2et</span></code></a>(utc)</p></td>
 <td><p>Convert a UTC time string to ephemeris time (TDB seconds past J2000).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.utc2tdb" title="scarabaeus.SpiceManager.utc2tdb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utc2tdb</span></code></a>(utc)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.utc2tdb" title="scarabaeus.SpiceManager.utc2tdb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utc2tdb</span></code></a>(utc)</p></td>
 <td><p>Convert a UTC time string to TDB seconds past J2000.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_ck_type3" title="scarabaeus.SpiceManager.write_ck_type3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_ck_type3</span></code></a>(ck_path, inst_id, ref_frame, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_ck_type3" title="scarabaeus.SpiceManager.write_ck_type3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_ck_type3</span></code></a>(ck_path, inst_id, ref_frame, ...)</p></td>
 <td><p>Write a CK type 3 segment (discrete pointing) to a new CK file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_spk_metadata_json" title="scarabaeus.SpiceManager.write_spk_metadata_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_spk_metadata_json</span></code></a>(SPK_name, body, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_spk_metadata_json" title="scarabaeus.SpiceManager.write_spk_metadata_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_spk_metadata_json</span></code></a>(SPK_name, body, ...)</p></td>
 <td><p>Write ONLY the JSON sidecars associated with an SPK (parameters/STMs/settings/mass profile).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_spk_segment_type9" title="scarabaeus.SpiceManager.write_spk_segment_type9"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_spk_segment_type9</span></code></a>(SPK_name, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SpiceManager.write_spk_segment_type9" title="scarabaeus.SpiceManager.write_spk_segment_type9"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_spk_segment_type9</span></code></a>(SPK_name, ...[, ...])</p></td>
 <td><p>Write a segment of type 9 to an SPK file.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="pst-scrollable-table-container"><table class="table">
-<tbody>
-<tr class="row-odd"><td><p><strong>test</strong></p></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -916,7 +912,7 @@ outside the stored time span.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SpiceManager.get_attitude">
-<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_attitude" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trgt_bdy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.body.Body.Body"><span class="pre">Body</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.get_attitude" title="Link to this definition">#</a></dt>
 <dd><p>Get the attitude of a target body at a specified epoch time.
 :param trgt_bdy: The target body for which the attitude is to be determined. Can be an instance of Body or a string representing the body’s name.
 :type trgt_bdy: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="../body/body.html#scarabaeus.Body" title="scarabaeus.Body"><code class="xref py py-class docutils literal notranslate"><span class="pre">Body</span></code></a>
@@ -925,7 +921,11 @@ outside the stored time span.</p>
 :param reference_frame: The reference frame in which the attitude is to be determined. Can be a string or an instance of Frame.
 :type reference_frame: <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference internal" href="frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a>
 :param tol: The tolerance value for the attitude determination.
-:type tol: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+:type tol: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>
+:param frame_id: The frame of the target body. If not given, frame ID is assumed to be the body’s ID multiplied by 1000. Defaults</p>
+<blockquote>
+<div><p>to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A tuple containing:
@@ -1769,6 +1769,12 @@ the drift between JD and ET.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.list_all_bodies">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_all_bodies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.list_all_bodies" title="Link to this definition">#</a></dt>
+<dd><p>DESC</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SpiceManager.list_all_ck_ids">
 <span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_all_ck_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ck_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.list_all_ck_ids" title="Link to this definition">#</a></dt>
 <dd><p>Return all NAIF IDs present in a C-kernel file.</p>
@@ -1783,27 +1789,6 @@ the drift between JD and ET.</p>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="scarabaeus.SpiceManager.list_all_frames">
-<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">list_all_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.list_all_frames" title="Link to this definition">#</a></dt>
-<dd><p>List all SPICE reference frames currently detectable in the pool.</p>
-<p>Scans integer frame IDs in <span class="math notranslate nohighlight">\([-\texttt{max\_id},\,+\texttt{max\_id})\)</span> and
-collects every ID for which SPICE returns a non-empty name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>max_id</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – Half-range of the frame-ID scan window.  Defaults to <code class="docutils literal notranslate"><span class="pre">100000</span></code>.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>frames_list</strong> – Names of all reference frames found.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>Frame IDs are distinct from body NAIF IDs used in SPK/PCK kernels.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1936,11 +1921,6 @@ Julian-Date strings are treated as JDUTC.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="scarabaeus.SpiceManager.test">
-<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.test" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SpiceManager.unload_kernel_from_pool">
 <span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">unload_kernel_from_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.SpiceManager.unload_kernel_from_pool" title="Link to this definition">#</a></dt>
 <dd><p>Unload a kernel from the pool. If the kernel is not in the
@@ -1985,6 +1965,24 @@ pool then no action is taken.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.SpiceManager.list_all_frames">
+<span class="sig-name descname"><span class="pre">list_all_frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span></span><a class="headerlink" href="#scarabaeus.SpiceManager.list_all_frames" title="Link to this definition">#</a></dt>
+<dd><p>List all SPICE reference frames currently detectable in the pool.</p>
+<p>This includes all built in SPICE frames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>frames_list</strong> – Names of all reference frames found.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2100,8 +2098,8 @@ pool then no action is taken.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.id2name"><code class="docutils literal notranslate"><span class="pre">SpiceManager.id2name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.increase_kernel_priority"><code class="docutils literal notranslate"><span class="pre">SpiceManager.increase_kernel_priority()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.jd2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.jd2et()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.list_all_bodies"><code class="docutils literal notranslate"><span class="pre">SpiceManager.list_all_bodies()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.list_all_ck_ids"><code class="docutils literal notranslate"><span class="pre">SpiceManager.list_all_ck_ids()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.list_all_frames"><code class="docutils literal notranslate"><span class="pre">SpiceManager.list_all_frames()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.load_kernel"><code class="docutils literal notranslate"><span class="pre">SpiceManager.load_kernel()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.load_kernel_from_mkfile"><code class="docutils literal notranslate"><span class="pre">SpiceManager.load_kernel_from_mkfile()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.matrix_times_vector"><code class="docutils literal notranslate"><span class="pre">SpiceManager.matrix_times_vector()</span></code></a></li>
@@ -2109,10 +2107,10 @@ pool then no action is taken.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.sce2c"><code class="docutils literal notranslate"><span class="pre">SpiceManager.sce2c()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.sclk2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.sclk2et()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.str2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.str2et()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.test"><code class="docutils literal notranslate"><span class="pre">SpiceManager.test()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.unload_kernel_from_pool"><code class="docutils literal notranslate"><span class="pre">SpiceManager.unload_kernel_from_pool()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.utc2et"><code class="docutils literal notranslate"><span class="pre">SpiceManager.utc2et()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.utc2tdb"><code class="docutils literal notranslate"><span class="pre">SpiceManager.utc2tdb()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.list_all_frames"><code class="docutils literal notranslate"><span class="pre">SpiceManager.list_all_frames()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.kernel_folder"><code class="docutils literal notranslate"><span class="pre">SpiceManager.kernel_folder</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.kernel_list"><code class="docutils literal notranslate"><span class="pre">SpiceManager.kernel_list</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SpiceManager.poly_interp_deg"><code class="docutils literal notranslate"><span class="pre">SpiceManager.poly_interp_deg</span></code></a></li>
