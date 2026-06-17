@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Scarabaeus Quickstart" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/quickstart/quickstart.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="The example below propagates a spacecraft in a low-Earth orbit for 90 minutes using a two-body gravity model. It covers the core Scarabaeus workflow: units, frames, SPICE kernels, spacecraft definition, force model, and propagation.( Source code) View quickstart_mk.tm Next Steps: The tutorial suite in Examples walks through progressively more complex workflows: Basics — units, epochs, frames, spacecraft definition, Keplerian propagation, Intermediate — perturbation models, mission sequences, ..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+<meta name="description" content="The example below propagates a spacecraft in a low-Earth orbit for 90 minutes using a two-body gravity model. It covers the core Scarabaeus workflow: units, frames, SPICE kernels, spacecraft definition, force model, and propagation.( Source code) View quickstart_mk.tm Next Steps: The tutorial suite in Examples walks through progressively more complex workflows: Basics — units, epochs, frames, spacecraft definition, Keplerian propagation, Intermediate — perturbation models, mission sequences, ..." />
+
+    <title>Scarabaeus Quickstart &#8212; Scarabaeus  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/quickstart/quickstart';</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Orbit Determination Process" href="../the_od_process.html" />
+    <link rel="prev" title="Installation" href="../install.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../what_is_scb.html"><span class="gold">What is Scarabaeus?</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html"><span class="gold">Installation</span></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><span class="gold">Scarabaeus Quickstart</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals and Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../user_guide_frontpage.html" class="nav-link"><span class="gold">Scarabaeus User Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Scarabaeus Quickstart</span></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style> .gold {color:rgb(207 184 124)} </style><style> .bold {font-weight: bold; color:rgb(2 119 189)} </style><section id="scarabaeus-quickstart">
+<h1><span class="gold">Scarabaeus Quickstart</span><a class="headerlink" href="#scarabaeus-quickstart" title="Link to this heading">#</a></h1>
+<p>The example below propagates a spacecraft in a low-Earth orbit for 90 minutes using a
+two-body gravity model. It covers the core Scarabaeus workflow: units, frames, SPICE kernels,
+spacecraft definition, force model, and propagation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1">## setup</span>
+<span class="c1"># define units and frame</span>
+<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">])</span>
+<span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">)</span>
+
+<span class="c1"># load SPICE kernels</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="s1">&#39;quickstart_mk.tm&#39;</span><span class="p">)</span>
+
+<span class="c1"># define spacecraft</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Spacecraft</span><span class="p">(</span><span class="n">name</span>      <span class="o">=</span> <span class="s1">&#39;ORCCA Orbiter&#39;</span><span class="p">,</span>
+                    <span class="n">spice_id</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">123</span><span class="p">,</span>
+                    <span class="n">tot_mass</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">2000.0</span><span class="p">,</span> <span class="n">kg</span><span class="p">),</span>
+                    <span class="n">area</span>      <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">km</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+                    <span class="n">ref_coeff</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1">## define initial state</span>
+<span class="c1"># central body</span>
+<span class="n">earth</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">&#39;EARTH&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute components</span>
+<span class="n">a</span>  <span class="o">=</span> <span class="n">earth</span><span class="o">.</span><span class="n">mean_radius</span> <span class="o">+</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">20e3</span><span class="p">,</span> <span class="n">km</span><span class="p">)</span>  <span class="c1"># 20,000 km altitude</span>
+<span class="n">GM</span> <span class="o">=</span> <span class="n">earth</span><span class="o">.</span><span class="n">grav_param</span><span class="o">.</span><span class="n">values</span>
+<span class="n">e</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">RAAN</span> <span class="o">=</span> <span class="mf">0.46</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="n">v_circ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">GM</span> <span class="o">/</span> <span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">e</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">e</span><span class="p">)))</span>
+
+<span class="c1"># position</span>
+<span class="n">r0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">array</span>          <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">RAAN</span><span class="p">),</span>
+                                       <span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">e</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">RAAN</span><span class="p">),</span>
+                                       <span class="mi">0</span><span class="p">],</span>
+                     <span class="n">units_or_frame</span> <span class="o">=</span> <span class="n">km</span><span class="p">,</span>
+                     <span class="n">frame</span>          <span class="o">=</span> <span class="n">J2000</span><span class="p">)</span>
+
+<span class="c1"># velocity</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">array</span>          <span class="o">=</span> <span class="p">[</span><span class="n">v_circ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">RAAN</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                                       <span class="o">-</span><span class="n">v_circ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">RAAN</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                                       <span class="o">-</span><span class="n">v_circ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="p">)],</span>
+                     <span class="n">units_or_frame</span> <span class="o">=</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">,</span>
+                     <span class="n">frame</span>          <span class="o">=</span> <span class="n">J2000</span><span class="p">)</span>
+
+<span class="c1"># define state at start epoch</span>
+<span class="n">start_epoch</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2024-JAN-01 00:00:00.000&#39;</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span>  <span class="o">=</span> <span class="n">start_epoch</span><span class="p">,</span>
+                    <span class="n">origin</span> <span class="o">=</span> <span class="n">earth</span><span class="p">,</span>
+                    <span class="n">state</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateDefinition</span><span class="p">()</span>
+                                <span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">r0</span><span class="p">)</span>
+                                <span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span>
+
+<span class="c1">## propagate</span>
+<span class="c1"># propagate for a day with 15 minute timestep</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="n">start_epoch</span><span class="p">,</span>
+                                 <span class="n">end</span>   <span class="o">=</span> <span class="n">start_epoch</span> <span class="o">+</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">hr</span><span class="p">),</span>
+                                 <span class="n">dt</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">hr</span><span class="p">))</span>
+
+<span class="c1"># use only point mass for dynamics</span>
+<span class="n">prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Propagator</span><span class="p">(</span><span class="n">primary_body</span> <span class="o">=</span> <span class="n">sc</span><span class="p">,</span>
+                      <span class="n">state_vector</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span>
+                      <span class="n">tspan</span>        <span class="o">=</span> <span class="n">epochs</span><span class="p">,</span>
+                      <span class="n">force_models</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">sc</span><span class="p">))</span>
+<span class="n">prop</span><span class="o">.</span><span class="n">propagate</span><span class="p">()</span>
+
+<span class="c1">## examine propagation</span>
+<span class="c1"># create figure and labels</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">constrained_layout</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">comp_lbls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span>
+             <span class="sa">r</span><span class="s1">&#39;$\mathrm{\dot</span><span class="si">{X}</span><span class="s1">}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\mathrm{\dot</span><span class="si">{Y}</span><span class="s1">}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\mathrm{\dot</span><span class="si">{Z}</span><span class="s1">}$&#39;</span><span class="p">]</span>
+<span class="n">prop_times</span> <span class="o">=</span> <span class="p">(</span><span class="n">epochs</span> <span class="o">-</span> <span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>    <span class="c1"># want as hours past t0</span>
+
+<span class="c1"># plot each state component</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">lbl</span><span class="p">,</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">prop</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">comp_lbls</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">prop_times</span><span class="p">,</span> <span class="n">comp</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mf">1.6</span><span class="p">)</span>
+
+    <span class="c1"># formatting</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Time Past $t_0$ [hr]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(),</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">lbl</span> <span class="o">+</span> <span class="s1">&#39; (J2000)&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sc</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> Propagated Earth Orbit</span><span class="se">\n</span><span class="s1">&#39;</span>
+              <span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> | e = </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1"> | i = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="si">}</span><span class="s1"> deg</span><span class="se">\n</span><span class="s1">&#39;</span>
+              <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">rep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CAL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">epochs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">rep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;CAL&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference download internal" download="" href="../../_downloads/e8f0078c5c7f10a2fd16e711c811b4e5/quickstart-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../../_images/quickstart-1.png" class="plot-directive" src="../../_images/quickstart-1.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The metakernel used in the above code, <code class="docutils literal notranslate"><span class="pre">quickstart_mk.tm</span></code>, is provided in the
+dropdown below. It only contains a leapsecond kernel, as that is all that is required for
+the quickstart. If you require more kernels, add them to this one or provide the path
+to a new metakernel.</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 note-style-dropdown">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-file-code" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path></svg></span><span class="sd-summary-text">View <code class="docutils literal notranslate"><span class="pre">quickstart_mk.tm</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>KPL/MK
+\begindata
+    KERNELS_TO_LOAD = ( 
+        &#39;naif0012.tls&#39; 
+    )
+\begintext
+</pre></div>
+</div>
+</div>
+</details><section id="next-steps">
+<h2><span class="gold">Next Steps</span><a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>The tutorial suite in <a class="reference internal" href="../../examples/examples_frontpage.html#examples"><span class="std std-ref">Examples</span></a> walks through progressively
+more complex workflows:</p>
+<ul class="simple">
+<li><p><strong>Basics</strong> — units, epochs, frames, spacecraft definition, Keplerian propagation</p></li>
+<li><p><strong>Intermediate</strong> — perturbation models, mission sequences, measurement simulation</p></li>
+<li><p><strong>Advanced</strong> — orbit determination with simulated and real DSN measurements,
+multi-arc OD, finite burn modelling, parameter estimation</p></li>
+</ul>
+<p>See the <a class="reference internal" href="../../api_ref/api_ref_frontpage.html#api"><span class="std std-ref">API Reference</span></a> for full documentation of every class and method.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../install.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="gold">Installation</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../the_od_process.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="gold">The Orbit Determination Process</span></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps"><span class="gold">Next Steps</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

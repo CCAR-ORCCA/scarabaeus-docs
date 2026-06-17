@@ -974,29 +974,29 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 <span class="ansi-green-fg">     11</span> dur = epochs.duration(units = day)
 <span class="ansi-green-fg">     12</span> <span style="color: rgb(0,135,0)">print</span>(<span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#39;</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">** Count-defined epoch interval with duration </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>dur<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">:</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>epochs<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">&#39;</span>)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/EpochArray.py:1215</span>, in <span class="ansi-cyan-fg">EpochArray.interval</span><span class="ansi-blue-fg">(start, end, dt, n_epochs, sys, rep, sc_id)</span>
-<span class="ansi-green-fg">   1213</span> <span style="color: rgb(95,135,135)">## convert start and end if neccessary and get in TDB floats</span>
-<span class="ansi-green-fg">   1214</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(start, EpochArray):
-<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1215</span>     start = <span class="ansi-yellow-bg">EpochArray</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">start</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sys</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sys</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg">   1217</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(end, EpochArray):
-<span class="ansi-green-fg">   1218</span>     end = EpochArray(end, sys = sys)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:1210</span>, in <span class="ansi-cyan-fg">EpochArray.interval</span><span class="ansi-blue-fg">(start, end, dt, n_epochs, sys, rep, sc_id)</span>
+<span class="ansi-green-fg">   1208</span> <span style="color: rgb(95,135,135)">## convert start and end if neccessary and get in TDB floats</span>
+<span class="ansi-green-fg">   1209</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(start, EpochArray):
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1210</span>     start = <span class="ansi-yellow-bg">EpochArray</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">start</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sys</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sys</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1212</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(end, EpochArray):
+<span class="ansi-green-fg">   1213</span>     end = EpochArray(end, sys = sys)
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/EpochArray.py:165</span>, in <span class="ansi-cyan-fg">EpochArray.__init__</span><span class="ansi-blue-fg">(self, times, sys, rep, prec, disp_len, sc_id)</span>
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:165</span>, in <span class="ansi-cyan-fg">EpochArray.__init__</span><span class="ansi-blue-fg">(self, times, sys, rep, prec, disp_len, sc_id)</span>
 <span class="ansi-green-fg">    163</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_system(sys)
 <span class="ansi-green-fg">    164</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_rep(rep)
 <span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">165</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_validate_and_set_to_et</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">times</span><span class="ansi-yellow-bg">)</span>
 <span class="ansi-green-fg">    167</span> <span style="color: rgb(95,135,135)"># precision and display</span>
 <span class="ansi-green-fg">    168</span> <span style="color: rgb(0,135,0)">self</span>._prec = prec
 
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/timeAndFrame/EpochArray.py:349</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_to_et</span><span class="ansi-blue-fg">(self, times)</span>
-<span class="ansi-green-fg">    346</span>             et_vals.append(spice.str2et(t))
-<span class="ansi-green-fg">    347</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">_</span>:
-<span class="ansi-green-fg">    348</span>             <span style="color: rgb(95,135,135)"># can only parse TDB strings</span>
-<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">349</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(
-<span class="ansi-green-fg">    350</span>                 <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">String input not supported for </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">self</span>._system<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">&#34;</span>
-<span class="ansi-green-fg">    351</span>             )
-<span class="ansi-green-fg">    352</span> <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span style="color: rgb(0,135,0)">float</span>() | <span style="color: rgb(0,135,0)">int</span>():
-<span class="ansi-green-fg">    353</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> <span style="color: rgb(0,135,0)">self</span>._system:
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:344</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_to_et</span><span class="ansi-blue-fg">(self, times)</span>
+<span class="ansi-green-fg">    341</span>             et_vals.append(spice.str2et(t))
+<span class="ansi-green-fg">    342</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">_</span>:
+<span class="ansi-green-fg">    343</span>             <span style="color: rgb(95,135,135)"># can only parse TDB strings</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">344</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">TypeError</span>(
+<span class="ansi-green-fg">    345</span>                 <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">String input not supported for </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">self</span>._system<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    346</span>             )
+<span class="ansi-green-fg">    347</span> <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span style="color: rgb(0,135,0)">float</span>() | <span style="color: rgb(0,135,0)">int</span>():
+<span class="ansi-green-fg">    348</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> <span style="color: rgb(0,135,0)">self</span>._system:
 
 <span class="ansi-red-fg">TypeError</span>: String input not supported for TT.
 </pre></div></div>

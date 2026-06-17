@@ -43,7 +43,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/add_resources/external_resource_writing';</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
@@ -437,10 +436,15 @@ deploy it online.</p>
 <section id="full-build">
 <h3>Full Build<a class="headerlink" href="#full-build" title="Link to this heading">#</a></h3>
 <p>For a completely clean build, run in your terminal:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -m sphinx -b html docs/online_documentation/sphinx_files docs/online_documentation/_build</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sphinx-build -j auto -W --keep-going -E -a -b html docs/online_documentation/sphinx_files docs/online_documentation/_build</span>
 </pre></div>
 </div>
 <p>This will perform a build of the documentation from the ground up, which is important for major updates to the docs. Sometimes live build can mask errors, so if you’re planning to push an update to the online docs, make sure that this builds.</p>
+<p>If you want to do a single build but want to hold on to anything cached by Sphinx (this will run much faster), run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sphinx-build -j auto -W --keep-going -b html docs/online_documentation/sphinx_files docs/online_documentation/_build</span>
+</pre></div>
+</div>
+<p>This <strong>WILL NOT</strong> re-run all code snippets and tutorials like the previous command does, only whatever you’ve changed. This is good for trouble shooting any tutorials or code snippets you’ve added, but is not sufficient for a full docs build before pushing it to public.</p>
 </section>
 <section id="live-editing">
 <h3>Live Editing<a class="headerlink" href="#live-editing" title="Link to this heading">#</a></h3>
@@ -448,7 +452,7 @@ deploy it online.</p>
 <p>Additionally, you’ll need to:
 - make sure Esbonio and Live Preview extensions are both installed</p>
 <p>Once you’ve done that, run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sphinx-autobuild docs/online_documentation/sphinx_files docs/online_documentation/_build</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sphinx-autobuild docs/online_documentation/sphinx_files docs/online_documentation/_build -o &quot;-j auto -W --keep-going&quot;</span>
 </pre></div>
 </div>
 <p>This will start a process that continually rebuilds sphinx when it sees changes made to its code. In order to actually view these changes, right click <code class="docutils literal notranslate"><span class="pre">docs/online_documentation/_build/index.html</span></code> and select “Show Preview” (this will only appear if you have Live Preview installed). This will open a preview that automatically updates with whatever is produced by autobuild. When done editing, stop the autobuild process by pressing <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">C</span></code> in the terminal.</p>
@@ -462,7 +466,11 @@ deploy it online.</p>
 </div>
 <p>This will perform a clean build of the documentations and push it to the repository with a time tag as the commit message. This resource is hosted
 using <a class="reference external" href="https://docs.github.com/en/pages">GitHub Pages</a> which updates fairly quickly. Within a few minutes of pushing to the repo, the website should
-update as well. Note that the <cite>deploy_docs.sh</cite> script is not hosted on the public Git repo for security purposes. Contact a developer for further information if you need access to external documentation updating privileges.</p>
+update as well.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">deploy_docs.sh</span></code> script is not hosted on the public Git repo for security purposes. Contact a developer for further information if you need access to external documentation updating privileges.</p>
+</div>
 </section>
 </section>
 

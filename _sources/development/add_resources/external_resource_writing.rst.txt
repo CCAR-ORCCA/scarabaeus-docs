@@ -52,9 +52,18 @@ For a completely clean build, run in your terminal:
 
 .. code-block:: console
 
-    python3 -m sphinx -b html docs/online_documentation/sphinx_files docs/online_documentation/_build
+    sphinx-build -j auto -W --keep-going -E -a -b html docs/online_documentation/sphinx_files docs/online_documentation/_build
 
 This will perform a build of the documentation from the ground up, which is important for major updates to the docs. Sometimes live build can mask errors, so if you're planning to push an update to the online docs, make sure that this builds.
+
+If you want to do a single build but want to hold on to anything cached by Sphinx (this will run much faster), run:
+
+.. code-block:: console
+
+    sphinx-build -j auto -W --keep-going -b html docs/online_documentation/sphinx_files docs/online_documentation/_build
+
+
+This **WILL NOT** re-run all code snippets and tutorials like the previous command does, only whatever you've changed. This is good for trouble shooting any tutorials or code snippets you've added, but is not sufficient for a full docs build before pushing it to public.
 
 Live Editing
 ^^^^^
@@ -67,7 +76,7 @@ Once you've done that, run:
 
 .. code-block:: console
     
-    sphinx-autobuild docs/online_documentation/sphinx_files docs/online_documentation/_build
+    sphinx-autobuild docs/online_documentation/sphinx_files docs/online_documentation/_build -o "-j auto -W --keep-going"
 
 This will start a process that continually rebuilds sphinx when it sees changes made to its code. In order to actually view these changes, right click ``docs/online_documentation/_build/index.html`` and select "Show Preview" (this will only appear if you have Live Preview installed). This will open a preview that automatically updates with whatever is produced by autobuild. When done editing, stop the autobuild process by pressing ``Ctrl`` + ``C`` in the terminal.
 
@@ -82,4 +91,8 @@ The above section only showed how to build a local copy of the docs. In order to
 
 This will perform a clean build of the documentations and push it to the repository with a time tag as the commit message. This resource is hosted 
 using `GitHub Pages <https://docs.github.com/en/pages>`_ which updates fairly quickly. Within a few minutes of pushing to the repo, the website should 
-update as well. Note that the `deploy_docs.sh` script is not hosted on the public Git repo for security purposes. Contact a developer for further information if you need access to external documentation updating privileges.
+update as well.
+
+.. note::
+
+    The ``deploy_docs.sh`` script is not hosted on the public Git repo for security purposes. Contact a developer for further information if you need access to external documentation updating privileges.
