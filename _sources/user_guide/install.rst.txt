@@ -81,38 +81,22 @@ The full dependency list is managed in ``pyproject.toml`` and is installed autom
 
 Currently, Scarabaeus can only be installed in developer mode, see :ref:`the Dev Environment Guide <devenviron>` for more on how to do this.
 
-Once the package is published on PyPI, users will also be able to install with:
+.. Once the package is published on PyPI, users will also be able to install with:
 
-.. code-block:: bash
+.. .. code-block:: bash
 
-   pip install scarabaeus
+..    pip install scarabaeus
 
-.. note::
+.. .. note::
 
-   **SPICE kernels** — Scarabaeus uses SPICE kernels for ephemeris, reference frames, and
-   spacecraft clock data. These are not distributed with the package. Load them in your
-   script with:
+..    **SPICE kernels** — Scarabaeus uses SPICE kernels for ephemeris, reference frames, and
+..    spacecraft clock data. These are not distributed with the package. Load them in your
+..    script with:
 
-   .. code-block:: python
+..    .. code-block:: python
 
-      import scarabaeus as scb
-      scb.SpiceManager.load_kernel_from_mkfile("path/to/metakernel.tm")
+..       import scarabaeus as scb
+..       scb.SpiceManager.load_kernel_from_mkfile("path/to/metakernel.tm")
 
-   See `NAIF's kernel guide <https://naif.jpl.nasa.gov/naif/toolkit.html>`_ for details on
-   obtaining and configuring kernels.
-
--------------------------------------
-:gold:`Developer Installation`
--------------------------------------
-
-Developer installation additionally requires Rust/Cargo to compile the high-performance
-integrator back-end.
-
-.. code-block:: bash
-
-   # After the user installation steps above:
-   pip install -e . --group dev   # editable install with dev extras
-   maturin develop                # compile and bind the Rust back-end
-   pre-commit install             # install commit hooks
-
-See :ref:`the developer guide <devenviron>` for the full developer setup guide.
+..    See `NAIF's kernel guide <https://naif.jpl.nasa.gov/naif/toolkit.html>`_ for details on
+..    obtaining and configuring kernels.

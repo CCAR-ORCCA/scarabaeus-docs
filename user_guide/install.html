@@ -527,34 +527,6 @@
 </div>
 <p><strong>3. Install Scarabaeus</strong></p>
 <p>Currently, Scarabaeus can only be installed in developer mode, see <a class="reference internal" href="../development/contributing/dev_environ.html#devenviron"><span class="std std-ref">the Dev Environment Guide</span></a> for more on how to do this.</p>
-<p>Once the package is published on PyPI, users will also be able to install with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>scarabaeus
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>SPICE kernels</strong> — Scarabaeus uses SPICE kernels for ephemeris, reference frames, and
-spacecraft clock data. These are not distributed with the package. Load them in your
-script with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
-<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="s2">&quot;path/to/metakernel.tm&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>See <a class="reference external" href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF’s kernel guide</a> for details on
-obtaining and configuring kernels.</p>
-</div>
-</section>
-<section id="developer-installation">
-<h2><span class="gold">Developer Installation</span><a class="headerlink" href="#developer-installation" title="Link to this heading">#</a></h2>
-<p>Developer installation additionally requires Rust/Cargo to compile the high-performance
-integrator back-end.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># After the user installation steps above:</span>
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--group<span class="w"> </span>dev<span class="w">   </span><span class="c1"># editable install with dev extras</span>
-maturin<span class="w"> </span>develop<span class="w">                </span><span class="c1"># compile and bind the Rust back-end</span>
-pre-commit<span class="w"> </span>install<span class="w">             </span><span class="c1"># install commit hooks</span>
-</pre></div>
-</div>
-<p>See <a class="reference internal" href="../development/contributing/dev_environ.html#devenviron"><span class="std std-ref">the developer guide</span></a> for the full developer setup guide.</p>
 </section>
 </section>
 
@@ -607,7 +579,6 @@ pre-commit<span class="w"> </span>install<span class="w">             </span><sp
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><span class="gold">Requirements</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-installation"><span class="gold">User Installation</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developer-installation"><span class="gold">Developer Installation</span></a></li>
 </ul>
   </nav></div>
 
