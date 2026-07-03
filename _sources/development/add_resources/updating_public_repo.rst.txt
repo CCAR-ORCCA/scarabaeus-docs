@@ -26,8 +26,10 @@ Last revised on 2026 JUL 3 by Z. Ellis.
 The Scarabaeus `Github repository <https://github.com/CCAR-ORCCA/scarabaeus>`_ differs from the internal development repository. In order to maintain a degree of separation between them, we use a bash script to merge changes from the internal to the public. To push these changes, run:
 
 ```
-
+bash internal_dev/update_public.sh "<branch_name>" "<commit message>"
 ```
+
+For example, a weekly merge would look like ``bash internal_dev/update_public.sh "weekly_07_03_26" "Weekly commit 07/03/26"``. This will create a new branch with your changes and create a pull request for it to be merged to main. You will still need to complete the pull request in the repo.
 
 Note that, for safety reasons, this script will only update existing files on the public repository. Any new files will not be migrated. For more substantial migrations from the internal to public repositories, you will need to create a full merge.
 
@@ -35,3 +37,5 @@ Note that, for safety reasons, this script will only update existing files on th
 :bold:`Release Notes`
 --------------------
 Release notes follow the `keep a changelog <https://keepachangelog.com/en/1.1.0/>`_ format and are maintained in the the ``CHANGELOG.md`` file. See keep a changelog for more info.
+
+They're also automatically generated in Sphinx and added to the online resource from the ``CHANGELOG.md`` file when running ``deploy_docs.sh``. In order to update this yourself without running the docs shell script, run ``docs/online_documentation/sphinx_files/release_notes/release_gen.py`` before building.
