@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/development/add_resources/updating_public_repo.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Last revised on 2026 JUL 3 by Z. Ellis. Introduction: The Scarabaeus Github repository differs from the internal development repository. In order to maintain a degree of separation between them, we use a bash script to merge changes from the internal to the public. To push these changes, run:` bash internal_dev/update_public.sh &quot;&lt;branch_name&gt;&quot; &quot;&lt;commit message&gt;&quot; ` For example, a weekly merge would look like bash internal_dev/update_public.sh &quot;weekly_07_03_..." />
+<meta property="og:description" content="Last revised on 2026 JUL 3 by Z. Ellis. Introduction: The Scarabaeus Github repository differs from the internal development repository. In order to maintain a degree of separation between them, we use a bash script to merge changes from the internal to the public. To push these changes, run: For example, a weekly merge would look like: This will create a new branch with your changes and create a pull request for it to be merged to main. You will still need to complete the pull request in the..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
@@ -418,16 +418,23 @@
 <section id="introduction">
 <h2><span class="bold">Introduction</span><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The Scarabaeus <a class="reference external" href="https://github.com/CCAR-ORCCA/scarabaeus">Github repository</a> differs from the internal development repository. In order to maintain a degree of separation between them, we use a bash script to merge changes from the internal to the public. To push these changes, run:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">bash</span> <span class="pre">internal_dev/update_public.sh</span> <span class="pre">&quot;&lt;branch_name&gt;&quot;</span> <span class="pre">&quot;&lt;commit</span> <span class="pre">message&gt;&quot;</span>
-<span class="pre">`</span></code></p>
-<p>For example, a weekly merge would look like <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">internal_dev/update_public.sh</span> <span class="pre">&quot;weekly_07_03_26&quot;</span> <span class="pre">&quot;Weekly</span> <span class="pre">commit</span> <span class="pre">07/03/26&quot;</span></code>. This will create a new branch with your changes and create a pull request for it to be merged to main. You will still need to complete the pull request in the repo.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bash internal_dev/update_public.sh &quot;&lt;branch_name&gt;&quot; &quot;&lt;commit message&gt;&quot;</span>
+</pre></div>
+</div>
+<p>For example, a weekly merge would look like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">bash internal_dev/update_public.sh &quot;weekly_07_03_26&quot; &quot;Weekly commit 07/03/26&quot;</span>
+</pre></div>
+</div>
+<p>This will create a new branch with your changes and create a pull request for it to be merged to main. You will still need to complete the pull request in the repo.</p>
 <p>Note that, for safety reasons, this script will only update existing files on the public repository. Any new files will not be migrated. For more substantial migrations from the internal to public repositories, you will need to create a full merge.</p>
 </section>
 <section id="release-notes">
 <h2><span class="bold">Release Notes</span><a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h2>
 <p>Release notes follow the <a class="reference external" href="https://keepachangelog.com/en/1.1.0/">keep a changelog</a> format and are maintained in the the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file. See keep a changelog for more info.</p>
-<p>They’re also automatically generated in Sphinx and added to the online resource from the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file when running <code class="docutils literal notranslate"><span class="pre">deploy_docs.sh</span></code>. In order to update this yourself without running the docs shell script, run <code class="docutils literal notranslate"><span class="pre">docs/online_documentation/sphinx_files/release_notes/release_gen.py</span></code> before building.</p>
+<p>They’re also automatically generated in Sphinx and added to the online resource from the <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file when running <code class="docutils literal notranslate"><span class="pre">deploy_docs.sh</span></code>. In order to update this yourself without running the docs shell script, run before building:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docs/online_documentation/sphinx_files/release_notes/release_gen.py</span>
+</pre></div>
+</div>
 </section>
 </section>
 
