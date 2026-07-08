@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/environment/propagator';</script>
@@ -782,16 +781,22 @@ or multi-model configurations.</p></li>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.from_dict" title="scarabaeus.Propagator.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a>(data)</p></td>
-<td><p>Reconstruct a Propagator instance from a dictionary produced by <code class="docutils literal notranslate"><span class="pre">to_dict</span></code>.</p></td>
+<td><p>Reconstruct a Propagator from a dict produced by <a class="reference internal" href="#scarabaeus.Propagator.to_dict" title="scarabaeus.Propagator.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict()</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.ode" title="scarabaeus.Propagator.ode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ode</span></code></a>(epoch, Y)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.load" title="scarabaeus.Propagator.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(filepath[, fmt])</p></td>
+<td><p>Reconstruct a Propagator from a file written by <a class="reference internal" href="#scarabaeus.Propagator.save" title="scarabaeus.Propagator.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save()</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.ode" title="scarabaeus.Propagator.ode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ode</span></code></a>(epoch, Y)</p></td>
 <td><p>Compute the time derivative of the state and STM for numerical integration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.propagate" title="scarabaeus.Propagator.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>([display_progress])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.propagate" title="scarabaeus.Propagator.propagate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate</span></code></a>([display_progress])</p></td>
 <td><p>Propagates the state of the system using numerical integration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.reinitialize" title="scarabaeus.Propagator.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>([primary_body, state_vector, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.reinitialize" title="scarabaeus.Propagator.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>([primary_body, state_vector, ...])</p></td>
 <td><p>Reconfigure the propagator with updated inputs and rebuild its internal state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.Propagator.save" title="scarabaeus.Propagator.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(filepath[, fmt])</p></td>
+<td><p>Save this Propagator's reproducible configuration to a JSON or pickle file.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.Propagator.to_dict" title="scarabaeus.Propagator.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>()</p></td>
 <td><p>Serialize the Propagator configuration to a dictionary.</p></td>
@@ -802,22 +807,24 @@ or multi-model configurations.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.Propagator.from_dict">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></span><a class="headerlink" href="#scarabaeus.Propagator.from_dict" title="Link to this definition">#</a></dt>
-<dd><p>Reconstruct a Propagator instance from a dictionary produced by <code class="docutils literal notranslate"><span class="pre">to_dict</span></code>.</p>
-<p>This expects that each serialized force model entry provides enough
-information (via <cite>“class”</cite> and <cite>“config”</cite>) to reconstruct the
-corresponding <a class="reference internal" href="../dynamics/forcemodel.html#scarabaeus.ForceModel" title="scarabaeus.ForceModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForceModel</span></code></a> subclass.</p>
+<dd><p>Reconstruct a Propagator from a dict produced by <a class="reference internal" href="#scarabaeus.Propagator.to_dict" title="scarabaeus.Propagator.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict()</span></code></a>.</p>
+<p>The reconstructed Propagator reproduces the original setup: rebuilding
+it and calling <a class="reference internal" href="#scarabaeus.Propagator.propagate" title="scarabaeus.Propagator.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a> yields the same propagated states. The
+single <code class="docutils literal notranslate"><span class="pre">primary_body</span></code> instance is reused as the owner of the matching
+state components so the spacecraft is not duplicated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Serialized propagator configuration.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A new Propagator instance with reconstructed state, time span,
-and force models.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a></p>
-</dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a></span></span><a class="headerlink" href="#scarabaeus.Propagator.load" title="Link to this definition">#</a></dt>
+<dd><p>Reconstruct a Propagator from a file written by <a class="reference internal" href="#scarabaeus.Propagator.save" title="scarabaeus.Propagator.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">save()</span></code></a>.</p>
+<p>Reads JSON or pickle; the format follows <code class="docutils literal notranslate"><span class="pre">fmt</span></code> or is inferred from the
+file extension.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -873,6 +880,17 @@ Each will be re-initialized against the (possibly updated) state.</p></li>
 <dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.Propagator.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#scarabaeus.Propagator.save" title="Link to this definition">#</a></dt>
+<dd><p>Save this Propagator’s reproducible configuration to a JSON or pickle file.</p>
+<p>The file can be reloaded with <a class="reference internal" href="#scarabaeus.Propagator.load" title="scarabaeus.Propagator.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load()</span></code></a> to reconstruct an equivalent
+Propagator. The on-disk format follows <code class="docutils literal notranslate"><span class="pre">fmt</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;json&quot;</span></code> or
+<code class="docutils literal notranslate"><span class="pre">&quot;pickle&quot;</span></code>); when <code class="docutils literal notranslate"><span class="pre">fmt</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> it is inferred from the file
+extension (<code class="docutils literal notranslate"><span class="pre">.pkl</span></code> / <code class="docutils literal notranslate"><span class="pre">.pickle</span></code> → pickle, otherwise JSON). Returns the
+resolved path.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1361,9 +1379,11 @@ the original frames.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.from_dict"><code class="docutils literal notranslate"><span class="pre">Propagator.from_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.load"><code class="docutils literal notranslate"><span class="pre">Propagator.load()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.ode"><code class="docutils literal notranslate"><span class="pre">Propagator.ode()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.propagate"><code class="docutils literal notranslate"><span class="pre">Propagator.propagate()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.reinitialize"><code class="docutils literal notranslate"><span class="pre">Propagator.reinitialize()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.save"><code class="docutils literal notranslate"><span class="pre">Propagator.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.to_dict"><code class="docutils literal notranslate"><span class="pre">Propagator.to_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.As"><code class="docutils literal notranslate"><span class="pre">Propagator.As</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.Propagator.STM"><code class="docutils literal notranslate"><span class="pre">Propagator.STM</span></code></a></li>

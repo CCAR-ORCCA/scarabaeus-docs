@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/dynamics/forcemodeltranslation';</script>
@@ -748,12 +747,43 @@ Microcosm Press, 2013.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize_force_models</span></code>(state_vector[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ForceModelTranslation.from_dict" title="scarabaeus.ForceModelTranslation.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a>(data, primary_body[, t0])</p></td>
+<td><p>Reconstruct a ForceModelTranslation from <a class="reference internal" href="#scarabaeus.ForceModelTranslation.to_dict" title="scarabaeus.ForceModelTranslation.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict()</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize_force_models</span></code>(state_vector[, ...])</p></td>
 <td><p>Bind this ForceModel to a concrete state and frame, then build internal models.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.ForceModelTranslation.to_dict" title="scarabaeus.ForceModelTranslation.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>()</p></td>
+<td><p>Serialize the force-model configuration to a JSON-friendly dict.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ForceModelTranslation.from_dict">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.ForceModelTranslation" title="scarabaeus.dynamics.ForceModelTranslation.ForceModelTranslation"><span class="pre">ForceModelTranslation</span></a></span></span><a class="headerlink" href="#scarabaeus.ForceModelTranslation.from_dict" title="Link to this definition">#</a></dt>
+<dd><p>Reconstruct a ForceModelTranslation from <a class="reference internal" href="#scarabaeus.ForceModelTranslation.to_dict" title="scarabaeus.ForceModelTranslation.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Serialized force-model config.</p></li>
+<li><p><strong>primary_body</strong> (<a class="reference internal" href="../spacecraft/spacecraft.html#scarabaeus.Spacecraft" title="scarabaeus.Spacecraft"><code class="xref py py-class docutils literal notranslate"><span class="pre">Spacecraft</span></code></a>) – The body this model acts on (owned by the Propagator).</p></li>
+<li><p><strong>t0</strong> (<a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.EpochArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">EpochArray</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – Initial epoch, re-supplied by the Propagator.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.ForceModelTranslation.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.ForceModelTranslation.to_dict" title="Link to this definition">#</a></dt>
+<dd><p>Serialize the force-model configuration to a JSON-friendly dict.</p>
+<p>Captures the constructor options needed to rebuild this model.
+<code class="docutils literal notranslate"><span class="pre">primary_body</span></code> and <code class="docutils literal notranslate"><span class="pre">t0</span></code> are intentionally omitted — they are owned
+by the Propagator and re-supplied to <a class="reference internal" href="#scarabaeus.ForceModelTranslation.from_dict" title="scarabaeus.ForceModelTranslation.from_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_dict()</span></code></a>. Maneuver objects
+cannot be serialized; only their presence is recorded.</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.ForceModelTranslation.dynamics_mode_list">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dynamics_mode_list</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scarabaeus.ForceModelTranslation.dynamics_mode_list" title="Link to this definition">#</a></dt>
@@ -884,6 +914,8 @@ Microcosm Press, 2013.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ForceModelTranslation"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ForceModelTranslation.from_dict"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation.from_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ForceModelTranslation.to_dict"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation.to_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ForceModelTranslation.dynamics_mode_list"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation.dynamics_mode_list</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ForceModelTranslation.fogm_beta"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation.fogm_beta</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.ForceModelTranslation.maneuver"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation.maneuver</span></code></a></li>

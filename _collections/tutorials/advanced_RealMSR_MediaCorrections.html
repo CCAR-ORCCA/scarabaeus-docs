@@ -59,7 +59,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_RealMSR_MediaCorrections';</script>
@@ -666,7 +665,7 @@
 <section id="1.-Setup">
 <h1>1. Setup<a class="headerlink" href="#1.-Setup" title="Link to this heading">#</a></h1>
 <p>Standard scientific imports plus <code class="docutils literal notranslate"><span class="pre">scarabaeus</span></code> and the tutorial <code class="docutils literal notranslate"><span class="pre">supplementary</span></code> helper. Units and frames are created once here and reused throughout all sections.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -687,6 +686,47 @@
 <span class="p">})</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pandas</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pd</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">matplotlib</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">pyplot</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">plt</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supp</span>
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scb</span>
+<span class="ansi-green-fg">      8</span> kg, km, sec, unitless = scb.Units.get_units([<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">kg</span><span class="ansi-yellow-fg">&#34;</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">km</span><span class="ansi-yellow-fg">&#34;</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec</span><span class="ansi-yellow-fg">&#34;</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">unitless</span><span class="ansi-yellow-fg">&#34;</span>])
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/__init__.py:10</span>
+<span class="ansi-green-fg">      8</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> file_gen
+<span class="ansi-green-fg">      9</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">supp_data</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> load_data
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">10</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> supp_plotting <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> plotting
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_plotting.py:13</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># SPDX-License-Identifier: ISC</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-yellow-fg">Supplementary Plotting</span>
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     11</span> <span class="ansi-yellow-fg">plotting code here instead.</span>
+<span class="ansi-green-fg">     12</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scb</span>
+<span class="ansi-green-fg">     15</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pathlib</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Path
+<span class="ansi-green-fg">     16</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">dataclasses</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> dataclass
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/__init__.py:21</span>
+<span class="ansi-green-fg">     18</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">body</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Body</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Body
+<span class="ansi-green-fg">     19</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">timeAndFrame</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">SpiceManager</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> SpiceManager
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">21</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">scb_rust</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> *
+<span class="ansi-green-fg">     23</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">utils</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Constants</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Constants <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> constants
+<span class="ansi-green-fg">     24</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">utils</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Constants</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> PCInfo
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;scarabaeus.scb_rust&#39;
+</pre></div></div>
 </div>
 </section>
 <section id="1.1-—-SPICE-Kernels-and-Ground-Stations">
@@ -743,7 +783,15 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> data = <span class="ansi-yellow-bg">supp</span>.load_data()
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># load kernels</span>
+<span class="ansi-green-fg">      5</span> scb.SpiceManager.clear_kernels()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;supp&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -834,11 +882,15 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
-Query:              2010-01-15 00:07:00 UTC  |  Site: C60  |  Component: DRY
-Seasonal delay:     2.118438 m
-Non-seasonal delay: -0.012684 m
-Total zenith delay: 2.105753 m
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> data = <span class="ansi-yellow-bg">supp</span>.load_data()
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># load kernels</span>
+<span class="ansi-green-fg">      5</span> scb.SpiceManager.clear_kernels()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;supp&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -919,8 +971,18 @@ Total zenith delay: 2.105753 m
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 14</span>
+<span class="ansi-green-fg">     11</span>     ax.xaxis.set_major_formatter(mdates.DateFormatter(fmt))
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Time span: Jan 1 – Feb 28, 2010</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> t_start_et  = <span class="ansi-yellow-bg">scb</span>.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2010-01-01 00:00:00 UTC</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">     15</span> t_end_et    = scb.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2010-02-28 23:59:00 UTC</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">     16</span> timespan_et = np.linspace(t_start_et, t_end_et, <span class="ansi-green-fg">1000</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="2.3-—-Elevation-mapping-function">
@@ -961,8 +1023,18 @@ Total zenith delay: 2.105753 m
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_11_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_11_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      4</span> wet_mapping = np.empty_like(E_rad)
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i, el <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">enumerate</span>(E_rad):
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     dry_mapping[i], wet_mapping[i] = <span class="ansi-yellow-bg">scb</span>.MediaCorrections.chao_mapping(el)
+<span class="ansi-green-fg">      9</span> fig, ax = plt.subplots(figsize=(<span class="ansi-green-fg">8</span>, <span class="ansi-green-fg">4</span>))
+<span class="ansi-green-fg">     10</span> ax.plot(np.degrees(E_rad), dry_mapping, lw=<span class="ansi-green-fg">1.5</span>, ls=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">--</span><span class="ansi-yellow-fg">&#34;</span>, color=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">C0</span><span class="ansi-yellow-fg">&#34;</span>, label=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Dry</span><span class="ansi-yellow-fg">&#34;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>
@@ -1043,8 +1115,16 @@ Total zenith delay: 2.105753 m
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_14_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_14_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> trk_file_path = <span class="ansi-yellow-bg">data</span>.trk_file.path
+<span class="ansi-green-fg">      2</span> trk_data  = scb.Utils.load_json(trk_file_path)
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Assemble ramp table list in the format expected by RampTableManager</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="3.2-—-Integrated-frequency-sensitivity">
@@ -1090,8 +1170,18 @@ Total zenith delay: 2.105753 m
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_16_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_16_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Constants derived from the loaded ramp table</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># Skip ramp_type=0 entries — the integrator treats them as inactive intervals</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> s9         = <span class="ansi-yellow-bg">trk_data</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>]
+<span class="ansi-green-fg">      4</span> valid_idx  = <span style="color: rgb(0,135,0)">next</span>(i <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i, rt <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">enumerate</span>(s9[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>]) <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> rt != <span class="ansi-green-fg">0</span>)
+<span class="ansi-green-fg">      5</span> RU         = <span class="ansi-green-fg">0.147530040053405</span>          <span style="color: rgb(95,135,135)"># Range Unit conversion factor (OREX X-band)</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;trk_data&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>
@@ -1172,8 +1262,14 @@ Total zenith delay: 2.105753 m
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Ground station: DSS-35
-Sequential ranging observations: 99
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> trk_file_path       = <span class="ansi-yellow-bg">data</span>.trk_file.path
+<span class="ansi-green-fg">      2</span> tropo_seasonal_path = data.tropo_seasonal_new.path
+<span class="ansi-green-fg">      3</span> tropo_file_bucket   = os.path.dirname(data.tropo_nonseasonal.path)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1223,7 +1319,19 @@ Sequential ranging observations: 99
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> target = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">-64</span><span class="ansi-yellow-fg">&#34;</span>   <span style="color: rgb(95,135,135)"># OSIRIS-REx NAIF ID</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> frame  = <span class="ansi-yellow-bg">ITRF93</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Downlink one-way light time: spacecraft → ground at t3</span>
+<span class="ansi-green-fg">      5</span> dl_rtlt = scb.SpiceManager.get_lighttime(
+<span class="ansi-green-fg">      6</span>     trgt_bdy=target,
+<span class="ansi-green-fg">      7</span>     epoch_time=SRA_t3.times.values,
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     10</span>     aberration_correction=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">CN+S</span><span class="ansi-yellow-fg">&#34;</span>,
+<span class="ansi-green-fg">     11</span> )
+
+<span class="ansi-red-fg">NameError</span>: name &#39;ITRF93&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1266,8 +1374,17 @@ Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Non-seasonal file: 2018_152_2018_182_tro.json
-Elevation angle range: 30.1° – 82.2°
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Find the non-seasonal correction file for this pass</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> year_q, day_q, _ = <span class="ansi-yellow-bg">scb</span>.SpiceManager.et2YDS([SRA_t3.times.values[<span class="ansi-green-fg">0</span>]])
+<span class="ansi-green-fg">      3</span> metadata_tropo = scb.MediaCorrections.find_tro_metadata(tropo_file_bucket, year_q[<span class="ansi-green-fg">0</span>], day_q[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">      4</span> media_correction.tropo_non_seasonal_file_path = os.path.join(
+<span class="ansi-green-fg">      5</span>     tropo_file_bucket, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>]
+<span class="ansi-green-fg">      6</span> )
+
+<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1319,7 +1436,16 @@ Elevation angle range: 30.1° – 82.2°
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Mean RTLT tropo correction: 0.009 μs  /  65.6395 RU
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> SRA_tropo_t3 = []
+<span class="ansi-green-fg">      2</span> SRA_tropo_t1 = []
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> ii <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(0,135,0)">len</span>(<span class="ansi-yellow-bg">SRA_t3</span>.times.values)):
+<span class="ansi-green-fg">      5</span>     t3 = SRA_t3.times.values[ii]
+<span class="ansi-green-fg">      6</span>     t1 = SRA_t1_epoch.times.values[ii]
+
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1397,19 +1523,21 @@ Mean RTLT tropo correction: 0.009 μs  /  65.6395 RU
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Convert ET receive epochs to UTC datetimes</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> t_utc = et_to_utc(<span class="ansi-yellow-bg">SRA_t3</span>.times.values)
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># ── Figure 1: corrections vs time (3 panels) ─────────────────────────────────</span>
+<span class="ansi-green-fg">      5</span> fig, axes = plt.subplots(<span class="ansi-green-fg">3</span>, <span class="ansi-green-fg">1</span>, figsize=(<span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">9</span>), sharex=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>

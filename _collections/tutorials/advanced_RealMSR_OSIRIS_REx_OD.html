@@ -59,7 +59,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_RealMSR_OSIRIS_REx_OD';</script>
@@ -673,7 +672,7 @@
 <section id="1.-Setup">
 <h1>1. Setup<a class="headerlink" href="#1.-Setup" title="Link to this heading">#</a></h1>
 <p>Standard scientific stack plus <code class="docutils literal notranslate"><span class="pre">scarabaeus</span></code>, <code class="docutils literal notranslate"><span class="pre">supplementary</span></code> data helper, and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> for the outlier-rejection step.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -693,6 +692,30 @@
 <span class="p">})</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">os</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pathlib</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Path
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scb</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">numpy</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">np</span>
+<span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">matplotlib</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">pyplot</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">plt</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/__init__.py:21</span>
+<span class="ansi-green-fg">     18</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">body</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Body</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Body
+<span class="ansi-green-fg">     19</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">timeAndFrame</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">SpiceManager</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> SpiceManager
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">21</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">scb_rust</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> *
+<span class="ansi-green-fg">     23</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">utils</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Constants</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Constants <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> constants
+<span class="ansi-green-fg">     24</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">utils</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Constants</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> PCInfo
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;scarabaeus.scb_rust&#39;
+</pre></div></div>
 </div>
 </section>
 <section id="1.1-—-SPICE-Kernels,-Units,-Frames,-and-Spacecraft">
@@ -779,7 +802,15 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> data = <span class="ansi-yellow-bg">supp</span>.load_data()
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># load kernels</span>
+<span class="ansi-green-fg">      5</span> scb.SpiceManager.clear_kernels()
+
+<span class="ansi-red-fg">NameError</span>: name &#39;supp&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -859,7 +890,7 @@ SCB supplementary data up to date.
 <section id="Media-corrections">
 <h2>Media corrections<a class="headerlink" href="#Media-corrections" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">scb.MediaCorrections</span></code> attaches atmospheric corrections directly to each measurement model. The seasonal tropospheric file is loaded at construction; the non-seasonal file (year/day specific) is resolved by <code class="docutils literal notranslate"><span class="pre">find_tro_metadata()</span></code> against the pass date.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -1003,6 +1034,23 @@ SCB supplementary data up to date.
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 93</span>
+<span class="ansi-green-fg">     90</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> meas_model
+<span class="ansi-green-fg">     92</span> <span style="color: rgb(95,135,135)"># Setup tropo correction filepaths</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">93</span> tropo_seasonal_file_path = <span class="ansi-yellow-bg">data</span>.tropo_seasonal_new.path
+<span class="ansi-green-fg">     94</span> trk_file_path = data.trk_file.path
+<span class="ansi-green-fg">     95</span> tropo_file_bucket = os.path.dirname(data.tropo_nonseasonal.path)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
+</pre></div></div>
+</div>
 </section>
 </section>
 <section id="3.-Trajectory-Propagation">
@@ -1083,35 +1131,21 @@ SCB supplementary data up to date.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Start time (UTC):  2018-06-08T04:55:02.999998
-End time   (UTC):  2018-06-08T11:28:53.000001
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 23630.00/23630.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      2</span> et_min = <span class="ansi-green-fg">1e34</span>
+<span class="ansi-green-fg">      3</span> et_max = <span class="ansi-green-fg">0.0</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> obs <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span class="ansi-yellow-bg">obs_quantities_list</span>:
+<span class="ansi-green-fg">      5</span>     et = obs[<span class="ansi-green-fg">0</span>]
+<span class="ansi-green-fg">      6</span>     et_min = np.min([np.min(et.times.values), et_min])
 
- =================== DOP853 integration complete. ==================
-Propagation complete.
+<span class="ansi-red-fg">NameError</span>: name &#39;obs_quantities_list&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1222,47 +1256,21 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-Generating computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2W Sequential Ranging: 100%|███████████████████████████████████████████████| 99/99 obs [00:01&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Applying media corrections: tropo (99/99 measurements)
-
-Generating 2W Doppler computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2W Doppler: 100%|████████████████████████████████████████████████████████| 217/217 obs [00:01&lt;00:00]
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Applying media corrections: tropo (217/217 measurements)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 61</span>
+<span class="ansi-green-fg">     58</span> thresh_sr = <span class="ansi-green-fg">5.0</span>
+<span class="ansi-green-fg">     59</span> thresh_dop = <span class="ansi-green-fg">30.0</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">61</span> sr_obs_1, aux_data_sr_1 = clean_obs_sr(<span class="ansi-yellow-bg">sr_obs</span>, sranging_model, Orbiter, frame, meas_dict_list[<span class="ansi-green-fg">0</span>], thresh_sr)
+<span class="ansi-green-fg">     62</span> doppler_obs_1, aux_data_doppler_1 = clean_obs_dop(doppler_obs, doppler_model, Orbiter, frame, meas_dict_list[<span class="ansi-green-fg">1</span>], thresh_dop)
+<span class="ansi-green-fg">     64</span> meas_dict_list[<span class="ansi-green-fg">0</span>] = aux_data_sr_1
+
+<span class="ansi-red-fg">NameError</span>: name &#39;sr_obs&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1384,392 +1392,21 @@ Applying media corrections: tropo (217/217 measurements)
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 23630.00/23630.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/zael5647/scarabaeus/src/scarabaeus/environment/Trajectory.py:1580: UserWarning: No STM timestamps provided: falling back to trajectory epochs. Ensure STMs are aligned 1:1 with `self.epoch`.
-  warnings.warn(
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-       Generating computed measurements for the dataset &#34;GS1 Real Range&#34;
-================================================================================
-
-Generating computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2W Sequential Ranging: 100%|███████████████████████████████████████████████| 94/94 obs [00:01&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Applying media corrections: tropo (94/94 measurements)
-
-================================================================================
-             Generating _partials for the dataset &#34;GS1 Real Range&#34;
-================================================================================
-Warning: computing idealized partial derivatives of measurement function
-
-================================================================================
-     Generating computed measurements for the dataset &#34;GS1 Real Range Rate&#34;
-================================================================================
-
-Generating 2W Doppler computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2W Doppler: 100%|████████████████████████████████████████████████████████| 171/171 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Applying media corrections: tropo (171/171 measurements)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      5</span> filter_convergence_thr = <span class="ansi-green-fg">100</span>
+<span class="ansi-green-fg">      7</span> <span style="color: rgb(95,135,135)"># Reference spacecraft (distinct SPICE ID)</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> Orbiter_ref = <span class="ansi-yellow-bg">scb</span>.Spacecraft(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">orbiter_ref_it1</span><span class="ansi-yellow-fg">&#34;</span>, -<span class="ansi-green-fg">1001</span>, Orbiter_mass, Orbiter_area, Orbiter_cr_srp)
+<span class="ansi-green-fg">      9</span> Orbiter_ref.add_instrument([scb.Antenna(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Antenna_for_radiometric</span><span class="ansi-yellow-fg">&#34;</span>, spice_id=-<span class="ansi-green-fg">1000</span>)])
+<span class="ansi-green-fg">     11</span> pos_ref = scb.ArrayWFrame(pos_0.quantity, frame)
 
-================================================================================
-           Generating _partials for the dataset &#34;GS1 Real Range Rate&#34;
-================================================================================
-Warning: computing idealized partial derivatives of measurement function
-
-================================================================================
-Initializing Sequence Square Root Information Filter (SRIF)
-================================================================================
-Process Noise Model: SNC
-================================================================================
-
-================================================================================
-STARTING ITERATIVE ORBIT DETERMINATION
-================================================================================
-Max iterations: 1
-Convergence threshold: 1.00e+02
-================================================================================
-
-
-============================================================
-ITERATION 1
-============================================================
-[581713312.91 TDB |   0.0%] ‖prefit‖=1.9236e-03   ‖postfit‖=3.3454e-12   tr(P)=3.0001e+06   ⟨σ⟩=1.00e-03
-[581713372.90 TDB |   0.5%] ‖prefit‖=1.9655e-03   ‖postfit‖=2.2502e-08   tr(P)=3.0001e+06   ⟨σ⟩=1.00e-03
-[581713432.90 TDB |   1.0%] ‖prefit‖=1.8978e-04   ‖postfit‖=9.5224e-07   tr(P)=3.0001e+06   ⟨σ⟩=1.00e-03
-[581713467.90 TDB |   1.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=6.3665e-11   tr(P)=2.0001e+06   ⟨σ⟩=5.00e-01
-[581713492.90 TDB |   1.5%] ‖prefit‖=2.8067e-03   ‖postfit‖=9.5530e-06   tr(P)=2.0001e+06   ⟨σ⟩=1.00e-03
-[581713591.90 TDB |   2.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=3.1373e-05   tr(P)=1.0014e+06   ⟨σ⟩=5.00e-01
-[581713612.90 TDB |   2.4%] ‖prefit‖=3.2740e-03   ‖postfit‖=3.6237e-08   tr(P)=1.0003e+06   ⟨σ⟩=1.00e-03
-[581713672.90 TDB |   2.9%] ‖prefit‖=1.8892e-03   ‖postfit‖=7.4263e-07   tr(P)=1.0003e+06   ⟨σ⟩=1.00e-03
-[581713715.90 TDB |   3.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=8.0256e-02   tr(P)=9.9986e+05   ⟨σ⟩=5.00e-01
-[581713732.90 TDB |   3.4%] ‖prefit‖=1.3142e-03   ‖postfit‖=3.0856e-06   tr(P)=9.9985e+05   ⟨σ⟩=1.00e-03
-[581713792.89 TDB |   3.9%] ‖prefit‖=3.3989e-03   ‖postfit‖=1.1163e-06   tr(P)=9.9985e+05   ⟨σ⟩=1.00e-03
-[581713839.89 TDB |   4.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=2.2297e-02   tr(P)=9.9862e+05   ⟨σ⟩=5.00e-01
-[581713852.89 TDB |   4.4%] ‖prefit‖=1.4353e-03   ‖postfit‖=2.2645e-06   tr(P)=9.9856e+05   ⟨σ⟩=1.00e-03
-[581713912.89 TDB |   4.9%] ‖prefit‖=3.3455e-03   ‖postfit‖=1.0231e-06   tr(P)=9.9856e+05   ⟨σ⟩=1.00e-03
-[581713963.89 TDB |   5.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=5.8067e-02   tr(P)=9.9518e+05   ⟨σ⟩=5.00e-01
-[581714032.89 TDB |   5.9%] ‖prefit‖=3.4704e-03   ‖postfit‖=4.2289e-07   tr(P)=9.9510e+05   ⟨σ⟩=1.00e-03
-[581714087.89 TDB |   6.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.6524e-02   tr(P)=9.8967e+05   ⟨σ⟩=5.00e-01
-[581714092.89 TDB |   6.4%] ‖prefit‖=1.1902e-03   ‖postfit‖=2.5339e-06   tr(P)=9.8893e+05   ⟨σ⟩=1.00e-03
-[581714152.89 TDB |   6.9%] ‖prefit‖=2.9135e-03   ‖postfit‖=9.2276e-07   tr(P)=9.8893e+05   ⟨σ⟩=1.00e-03
-[581714211.89 TDB |   7.3%] ‖prefit‖=1.2315e+04   ‖postfit‖=8.1342e-03   tr(P)=9.7722e+05   ⟨σ⟩=5.00e-01
-[581714212.89 TDB |   7.3%] ‖prefit‖=3.7737e-03   ‖postfit‖=9.5885e-07   tr(P)=9.7418e+05   ⟨σ⟩=1.00e-03
-[581714272.88 TDB |   7.8%] ‖prefit‖=1.2579e-03   ‖postfit‖=1.3486e-06   tr(P)=9.7418e+05   ⟨σ⟩=1.00e-03
-[581714332.88 TDB |   8.3%] ‖prefit‖=2.2240e-03   ‖postfit‖=5.1733e-07   tr(P)=9.7418e+05   ⟨σ⟩=1.00e-03
-[581714335.88 TDB |   8.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=4.4014e-02   tr(P)=9.4649e+05   ⟨σ⟩=5.00e-01
-[581714452.88 TDB |   9.3%] ‖prefit‖=8.6689e-04   ‖postfit‖=5.0425e-08   tr(P)=9.4649e+05   ⟨σ⟩=1.00e-03
-[581714459.88 TDB |   9.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=4.3348e-02   tr(P)=9.0537e+05   ⟨σ⟩=5.00e-01
-[581714512.88 TDB |   9.8%] ‖prefit‖=2.5406e-03   ‖postfit‖=1.4755e-06   tr(P)=9.0537e+05   ⟨σ⟩=1.00e-03
-[581714572.88 TDB |  10.3%] ‖prefit‖=4.0150e-03   ‖postfit‖=7.9142e-07   tr(P)=9.0537e+05   ⟨σ⟩=1.00e-03
-[581714583.88 TDB |  10.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=4.9076e-02   tr(P)=8.5328e+05   ⟨σ⟩=5.00e-01
-[581714632.88 TDB |  10.8%] ‖prefit‖=1.4439e-03   ‖postfit‖=3.0903e-06   tr(P)=8.5328e+05   ⟨σ⟩=1.00e-03
-[581714692.87 TDB |  11.3%] ‖prefit‖=2.6464e-03   ‖postfit‖=6.4322e-07   tr(P)=8.5328e+05   ⟨σ⟩=1.00e-03
-[581714707.87 TDB |  11.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=4.7949e-02   tr(P)=7.9374e+05   ⟨σ⟩=5.00e-01
-[581714812.87 TDB |  12.2%] ‖prefit‖=3.6993e-03   ‖postfit‖=5.9953e-08   tr(P)=7.9374e+05   ⟨σ⟩=1.00e-03
-[581714831.87 TDB |  12.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=2.0276e-01   tr(P)=7.3057e+05   ⟨σ⟩=5.00e-01
-[581714872.87 TDB |  12.7%] ‖prefit‖=2.7666e-03   ‖postfit‖=2.3194e-06   tr(P)=7.3056e+05   ⟨σ⟩=1.00e-03
-[581714932.87 TDB |  13.2%] ‖prefit‖=2.8248e-03   ‖postfit‖=2.9818e-08   tr(P)=7.3056e+05   ⟨σ⟩=1.00e-03
-[581714955.87 TDB |  13.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.1800e-01   tr(P)=6.6642e+05   ⟨σ⟩=5.00e-01
-[581714992.87 TDB |  13.7%] ‖prefit‖=2.3127e-03   ‖postfit‖=1.4232e-06   tr(P)=6.6640e+05   ⟨σ⟩=1.00e-03
-[581715052.87 TDB |  14.2%] ‖prefit‖=2.5606e-03   ‖postfit‖=1.3216e-07   tr(P)=6.6640e+05   ⟨σ⟩=1.00e-03
-[581715079.87 TDB |  14.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.7500e-01   tr(P)=6.0360e+05   ⟨σ⟩=5.00e-01
-[581715112.86 TDB |  14.7%] ‖prefit‖=1.3428e-03   ‖postfit‖=5.7657e-06   tr(P)=6.0351e+05   ⟨σ⟩=1.00e-03
-[581715203.86 TDB |  15.4%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.0917e-02   tr(P)=5.9176e+05   ⟨σ⟩=5.00e-01
-[581715232.86 TDB |  15.7%] ‖prefit‖=2.7637e-03   ‖postfit‖=2.0090e-06   tr(P)=5.4597e+05   ⟨σ⟩=1.00e-03
-[581715292.86 TDB |  16.2%] ‖prefit‖=1.8530e-03   ‖postfit‖=4.8972e-07   tr(P)=5.4597e+05   ⟨σ⟩=1.00e-03
-[581715327.86 TDB |  16.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.2846e-01   tr(P)=4.9597e+05   ⟨σ⟩=5.00e-01
-[581715352.86 TDB |  16.7%] ‖prefit‖=2.2583e-03   ‖postfit‖=5.6689e-07   tr(P)=4.9537e+05   ⟨σ⟩=1.00e-03
-[581715412.86 TDB |  17.1%] ‖prefit‖=2.9039e-03   ‖postfit‖=3.4551e-07   tr(P)=4.9537e+05   ⟨σ⟩=1.00e-03
-[581715451.86 TDB |  17.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.4546e-01   tr(P)=4.4902e+05   ⟨σ⟩=5.00e-01
-[581715472.86 TDB |  17.6%] ‖prefit‖=2.0018e-03   ‖postfit‖=4.9602e-07   tr(P)=4.4780e+05   ⟨σ⟩=1.00e-03
-[581715532.86 TDB |  18.1%] ‖prefit‖=1.7586e-03   ‖postfit‖=1.3033e-07   tr(P)=4.4780e+05   ⟨σ⟩=1.00e-03
-[581715575.85 TDB |  18.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=2.2601e-02   tr(P)=4.0510e+05   ⟨σ⟩=5.00e-01
-[581715652.85 TDB |  19.1%] ‖prefit‖=1.4629e-03   ‖postfit‖=1.0291e-07   tr(P)=4.0491e+05   ⟨σ⟩=1.00e-03
-[581715699.85 TDB |  19.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=5.5139e-02   tr(P)=3.7978e+05   ⟨σ⟩=5.00e-01
-[581715712.85 TDB |  19.6%] ‖prefit‖=4.5195e-03   ‖postfit‖=6.1601e-06   tr(P)=3.7804e+05   ⟨σ⟩=1.00e-03
-[581715772.85 TDB |  20.1%] ‖prefit‖=2.0971e-03   ‖postfit‖=1.2958e-06   tr(P)=3.7804e+05   ⟨σ⟩=1.00e-03
-[581715823.85 TDB |  20.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=8.4109e-03   tr(P)=3.5647e+05   ⟨σ⟩=5.00e-01
-[581715832.85 TDB |  20.6%] ‖prefit‖=2.0390e-03   ‖postfit‖=2.0435e-07   tr(P)=3.5364e+05   ⟨σ⟩=1.00e-03
-[581715892.85 TDB |  21.1%] ‖prefit‖=3.5830e-03   ‖postfit‖=8.2802e-07   tr(P)=3.5364e+05   ⟨σ⟩=1.00e-03
-[581715947.85 TDB |  21.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=9.6095e-02   tr(P)=3.3239e+05   ⟨σ⟩=5.00e-01
-[581715952.85 TDB |  21.6%] ‖prefit‖=4.7140e-03   ‖postfit‖=4.6570e-06   tr(P)=3.2781e+05   ⟨σ⟩=1.00e-03
-[581716071.84 TDB |  22.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=5.9376e-03   tr(P)=3.2667e+05   ⟨σ⟩=5.00e-01
-[581716072.84 TDB |  22.5%] ‖prefit‖=3.1099e-03   ‖postfit‖=7.8401e-06   tr(P)=3.0124e+05   ⟨σ⟩=1.00e-03
-[581716132.84 TDB |  23.0%] ‖prefit‖=4.0169e-03   ‖postfit‖=4.9121e-07   tr(P)=3.0124e+05   ⟨σ⟩=1.00e-03
-[581716192.84 TDB |  23.5%] ‖prefit‖=1.7586e-03   ‖postfit‖=1.2101e-06   tr(P)=3.0124e+05   ⟨σ⟩=1.00e-03
-[581716195.84 TDB |  23.5%] ‖prefit‖=1.2315e+04   ‖postfit‖=9.8018e-02   tr(P)=2.7586e+05   ⟨σ⟩=5.00e-01
-[581716252.84 TDB |  24.0%] ‖prefit‖=3.4437e-03   ‖postfit‖=1.1121e-06   tr(P)=2.7586e+05   ⟨σ⟩=1.00e-03
-[581716312.84 TDB |  24.5%] ‖prefit‖=3.6345e-03   ‖postfit‖=1.0390e-07   tr(P)=2.7586e+05   ⟨σ⟩=1.00e-03
-[581716319.84 TDB |  24.6%] ‖prefit‖=1.2315e+04   ‖postfit‖=1.2272e-01   tr(P)=2.5342e+05   ⟨σ⟩=5.00e-01
-[581716372.84 TDB |  25.0%] ‖prefit‖=3.4847e-03   ‖postfit‖=1.2447e-07   tr(P)=2.5342e+05   ⟨σ⟩=1.00e-03
-[581716443.83 TDB |  25.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=2.6247e-02   tr(P)=2.4417e+05   ⟨σ⟩=5.00e-01
-[581716492.83 TDB |  26.0%] ‖prefit‖=4.6053e-03   ‖postfit‖=1.8688e-06   tr(P)=2.3765e+05   ⟨σ⟩=1.00e-03
-[581716552.83 TDB |  26.5%] ‖prefit‖=7.2193e-04   ‖postfit‖=2.0797e-06   tr(P)=2.3765e+05   ⟨σ⟩=1.00e-03
-[581716567.83 TDB |  26.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=2.4653e-02   tr(P)=2.3069e+05   ⟨σ⟩=5.00e-01
-[581716612.83 TDB |  26.9%] ‖prefit‖=3.5944e-03   ‖postfit‖=4.8050e-06   tr(P)=2.3069e+05   ⟨σ⟩=1.00e-03
-[581716672.83 TDB |  27.4%] ‖prefit‖=3.5448e-03   ‖postfit‖=2.2178e-08   tr(P)=2.3069e+05   ⟨σ⟩=1.00e-03
-[581716691.83 TDB |  27.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=1.0370e-01   tr(P)=2.2488e+05   ⟨σ⟩=5.00e-01
-[581716732.83 TDB |  27.9%] ‖prefit‖=1.6146e-03   ‖postfit‖=4.5780e-06   tr(P)=2.2488e+05   ⟨σ⟩=1.00e-03
-[581716815.83 TDB |  28.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=3.7988e-03   tr(P)=2.2328e+05   ⟨σ⟩=5.00e-01
-[581716852.82 TDB |  28.9%] ‖prefit‖=1.9140e-03   ‖postfit‖=4.1994e-07   tr(P)=2.1950e+05   ⟨σ⟩=1.00e-03
-[581716912.82 TDB |  29.4%] ‖prefit‖=3.2415e-03   ‖postfit‖=7.1304e-07   tr(P)=2.1950e+05   ⟨σ⟩=1.00e-03
-[581716939.82 TDB |  29.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=2.0516e-02   tr(P)=2.1514e+05   ⟨σ⟩=5.00e-01
-[581716972.82 TDB |  29.9%] ‖prefit‖=3.4494e-03   ‖postfit‖=9.5182e-07   tr(P)=2.1512e+05   ⟨σ⟩=1.00e-03
-[581717032.82 TDB |  30.4%] ‖prefit‖=5.2996e-03   ‖postfit‖=9.9414e-07   tr(P)=2.1512e+05   ⟨σ⟩=1.00e-03
-[581717063.82 TDB |  30.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=2.6169e-02   tr(P)=2.1099e+05   ⟨σ⟩=5.00e-01
-[581717092.82 TDB |  30.9%] ‖prefit‖=1.8625e-03   ‖postfit‖=1.4316e-05   tr(P)=2.1095e+05   ⟨σ⟩=1.00e-03
-[581717152.82 TDB |  31.4%] ‖prefit‖=6.0492e-03   ‖postfit‖=2.2391e-06   tr(P)=2.1095e+05   ⟨σ⟩=1.00e-03
-[581717187.82 TDB |  31.6%] ‖prefit‖=1.2314e+04   ‖postfit‖=9.2783e-02   tr(P)=2.0702e+05   ⟨σ⟩=5.00e-01
-[581717272.82 TDB |  32.3%] ‖prefit‖=4.1704e-03   ‖postfit‖=2.9486e-07   tr(P)=2.0702e+05   ⟨σ⟩=1.00e-03
-[581717311.81 TDB |  32.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=7.7965e-02   tr(P)=2.0420e+05   ⟨σ⟩=5.00e-01
-[581717332.81 TDB |  32.8%] ‖prefit‖=2.9135e-03   ‖postfit‖=1.9072e-06   tr(P)=2.0410e+05   ⟨σ⟩=1.00e-03
-[581717392.81 TDB |  33.3%] ‖prefit‖=4.8723e-03   ‖postfit‖=1.0510e-06   tr(P)=2.0410e+05   ⟨σ⟩=1.00e-03
-[581717435.81 TDB |  33.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=1.1907e-01   tr(P)=2.0190e+05   ⟨σ⟩=5.00e-01
-[581717452.81 TDB |  33.8%] ‖prefit‖=4.5233e-03   ‖postfit‖=3.6903e-06   tr(P)=2.0176e+05   ⟨σ⟩=1.00e-03
-[581717512.81 TDB |  34.3%] ‖prefit‖=3.8328e-03   ‖postfit‖=3.7165e-07   tr(P)=2.0176e+05   ⟨σ⟩=1.00e-03
-[581717559.81 TDB |  34.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=3.0758e-02   tr(P)=1.9998e+05   ⟨σ⟩=5.00e-01
-[581717572.81 TDB |  34.8%] ‖prefit‖=3.9692e-03   ‖postfit‖=1.0962e-06   tr(P)=1.9979e+05   ⟨σ⟩=1.00e-03
-[581717683.81 TDB |  35.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=1.6546e-03   tr(P)=1.9970e+05   ⟨σ⟩=5.00e-01
-[581717692.81 TDB |  35.8%] ‖prefit‖=4.0579e-03   ‖postfit‖=1.6223e-06   tr(P)=1.9821e+05   ⟨σ⟩=1.00e-03
-[581717752.80 TDB |  36.3%] ‖prefit‖=3.5849e-03   ‖postfit‖=2.5389e-07   tr(P)=1.9821e+05   ⟨σ⟩=1.00e-03
-[581717807.80 TDB |  36.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=3.6408e-02   tr(P)=1.9729e+05   ⟨σ⟩=5.00e-01
-[581717812.80 TDB |  36.7%] ‖prefit‖=5.9490e-03   ‖postfit‖=3.6000e-06   tr(P)=1.9705e+05   ⟨σ⟩=1.00e-03
-[581717872.80 TDB |  37.2%] ‖prefit‖=3.5172e-03   ‖postfit‖=1.3009e-06   tr(P)=1.9705e+05   ⟨σ⟩=1.00e-03
-[581717931.80 TDB |  37.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=8.8230e-02   tr(P)=1.9652e+05   ⟨σ⟩=5.00e-01
-[581717932.80 TDB |  37.7%] ‖prefit‖=4.6625e-03   ‖postfit‖=4.8667e-06   tr(P)=1.9631e+05   ⟨σ⟩=1.00e-03
-[581717992.80 TDB |  38.2%] ‖prefit‖=3.9310e-03   ‖postfit‖=3.8697e-07   tr(P)=1.9631e+05   ⟨σ⟩=1.00e-03
-[581718055.80 TDB |  38.7%] ‖prefit‖=1.2314e+04   ‖postfit‖=1.2658e-01   tr(P)=1.9607e+05   ⟨σ⟩=5.00e-01
-[581718112.80 TDB |  39.2%] ‖prefit‖=3.2597e-03   ‖postfit‖=3.1821e-06   tr(P)=1.9598e+05   ⟨σ⟩=1.00e-03
-[581718172.79 TDB |  39.7%] ‖prefit‖=3.8404e-03   ‖postfit‖=3.1773e-07   tr(P)=1.9598e+05   ⟨σ⟩=1.00e-03
-[581718179.79 TDB |  39.7%] ‖prefit‖=1.2313e+04   ‖postfit‖=4.9265e-02   tr(P)=1.9595e+05   ⟨σ⟩=5.00e-01
-[581718232.79 TDB |  40.2%] ‖prefit‖=4.6253e-03   ‖postfit‖=6.9579e-07   tr(P)=1.9595e+05   ⟨σ⟩=1.00e-03
-[581718292.79 TDB |  40.7%] ‖prefit‖=3.3283e-03   ‖postfit‖=6.9104e-07   tr(P)=1.9595e+05   ⟨σ⟩=1.00e-03
-[581718303.79 TDB |  40.8%] ‖prefit‖=1.2313e+04   ‖postfit‖=1.5120e-02   tr(P)=1.9595e+05   ⟨σ⟩=5.00e-01
-[581718352.79 TDB |  41.2%] ‖prefit‖=4.4222e-03   ‖postfit‖=1.3234e-06   tr(P)=1.9595e+05   ⟨σ⟩=1.00e-03
-[581718412.79 TDB |  41.6%] ‖prefit‖=5.8851e-03   ‖postfit‖=7.8948e-07   tr(P)=1.9595e+05   ⟨σ⟩=1.00e-03
-[581718427.79 TDB |  41.8%] ‖prefit‖=1.2314e+04   ‖postfit‖=1.4148e-01   tr(P)=1.9590e+05   ⟨σ⟩=5.00e-01
-[581718532.79 TDB |  42.6%] ‖prefit‖=2.6779e-03   ‖postfit‖=1.8129e-07   tr(P)=1.9591e+05   ⟨σ⟩=1.00e-03
-[581718551.79 TDB |  42.8%] ‖prefit‖=1.2314e+04   ‖postfit‖=1.6677e-01   tr(P)=1.9573e+05   ⟨σ⟩=5.00e-01
-[581718592.78 TDB |  43.1%] ‖prefit‖=4.9953e-03   ‖postfit‖=5.5733e-06   tr(P)=1.9573e+05   ⟨σ⟩=1.00e-03
-[581718652.78 TDB |  43.6%] ‖prefit‖=3.3207e-03   ‖postfit‖=8.8713e-07   tr(P)=1.9573e+05   ⟨σ⟩=1.00e-03
-[581718675.78 TDB |  43.8%] ‖prefit‖=1.2313e+04   ‖postfit‖=7.6901e-02   tr(P)=1.9533e+05   ⟨σ⟩=5.00e-01
-[581718712.78 TDB |  44.1%] ‖prefit‖=3.5877e-03   ‖postfit‖=7.5096e-07   tr(P)=1.9532e+05   ⟨σ⟩=1.00e-03
-[581718772.78 TDB |  44.6%] ‖prefit‖=5.1432e-03   ‖postfit‖=8.4130e-07   tr(P)=1.9532e+05   ⟨σ⟩=1.00e-03
-[581718799.78 TDB |  44.8%] ‖prefit‖=1.2313e+04   ‖postfit‖=8.3297e-02   tr(P)=1.9461e+05   ⟨σ⟩=5.00e-01
-[581718832.78 TDB |  45.1%] ‖prefit‖=3.5276e-03   ‖postfit‖=6.0226e-06   tr(P)=1.9461e+05   ⟨σ⟩=1.00e-03
-[581718923.78 TDB |  45.8%] ‖prefit‖=1.2313e+04   ‖postfit‖=1.1731e-02   tr(P)=1.9440e+05   ⟨σ⟩=5.00e-01
-[581718952.78 TDB |  46.1%] ‖prefit‖=5.2395e-03   ‖postfit‖=2.3502e-06   tr(P)=1.9358e+05   ⟨σ⟩=1.00e-03
-[581719012.78 TDB |  46.5%] ‖prefit‖=5.4913e-03   ‖postfit‖=1.4104e-07   tr(P)=1.9358e+05   ⟨σ⟩=1.00e-03
-[581719047.77 TDB |  46.8%] ‖prefit‖=1.2313e+04   ‖postfit‖=4.1131e-02   tr(P)=1.9226e+05   ⟨σ⟩=5.00e-01
-[581719072.77 TDB |  47.0%] ‖prefit‖=3.3388e-03   ‖postfit‖=8.5717e-06   tr(P)=1.9226e+05   ⟨σ⟩=1.00e-03
-[581719132.77 TDB |  47.5%] ‖prefit‖=4.4899e-03   ‖postfit‖=6.1912e-07   tr(P)=1.9226e+05   ⟨σ⟩=1.00e-03
-[581719171.77 TDB |  47.8%] ‖prefit‖=1.2313e+04   ‖postfit‖=4.6648e-02   tr(P)=1.9053e+05   ⟨σ⟩=5.00e-01
-[581719192.77 TDB |  48.0%] ‖prefit‖=5.7545e-03   ‖postfit‖=4.6052e-06   tr(P)=1.9051e+05   ⟨σ⟩=1.00e-03
-[581719295.77 TDB |  48.9%] ‖prefit‖=1.2313e+04   ‖postfit‖=4.3708e-03   tr(P)=1.9029e+05   ⟨σ⟩=5.00e-01
-[581719312.77 TDB |  49.0%] ‖prefit‖=4.8513e-03   ‖postfit‖=2.2000e-06   tr(P)=1.8827e+05   ⟨σ⟩=1.00e-03
-[581719372.77 TDB |  49.5%] ‖prefit‖=6.6490e-03   ‖postfit‖=9.7339e-07   tr(P)=1.8827e+05   ⟨σ⟩=1.00e-03
-[581719419.77 TDB |  49.9%] ‖prefit‖=1.2313e+04   ‖postfit‖=3.7033e-04   tr(P)=1.8565e+05   ⟨σ⟩=5.00e-01
-[581719432.77 TDB |  50.0%] ‖prefit‖=2.8124e-03   ‖postfit‖=5.8832e-06   tr(P)=1.8545e+05   ⟨σ⟩=1.00e-03
-[581719492.76 TDB |  50.5%] ‖prefit‖=4.8399e-03   ‖postfit‖=1.0920e-06   tr(P)=1.8545e+05   ⟨σ⟩=1.00e-03
-[581719543.76 TDB |  50.9%] ‖prefit‖=1.2313e+04   ‖postfit‖=1.0144e-01   tr(P)=1.8241e+05   ⟨σ⟩=5.00e-01
-[581719552.76 TDB |  51.0%] ‖prefit‖=5.9986e-03   ‖postfit‖=1.9855e-06   tr(P)=1.8199e+05   ⟨σ⟩=1.00e-03
-[581719612.76 TDB |  51.4%] ‖prefit‖=3.3665e-03   ‖postfit‖=1.4070e-06   tr(P)=1.8199e+05   ⟨σ⟩=1.00e-03
-[581719667.76 TDB |  51.9%] ‖prefit‖=1.2313e+04   ‖postfit‖=2.9774e-02   tr(P)=1.7862e+05   ⟨σ⟩=5.00e-01
-[581719732.76 TDB |  52.4%] ‖prefit‖=4.9896e-03   ‖postfit‖=7.8944e-07   tr(P)=1.7842e+05   ⟨σ⟩=1.00e-03
-[581719791.76 TDB |  52.9%] ‖prefit‖=1.2313e+04   ‖postfit‖=1.2477e-02   tr(P)=1.7689e+05   ⟨σ⟩=5.00e-01
-[581719792.76 TDB |  52.9%] ‖prefit‖=5.5695e-03   ‖postfit‖=9.5904e-08   tr(P)=1.7655e+05   ⟨σ⟩=1.00e-03
-[581719852.76 TDB |  53.4%] ‖prefit‖=4.5185e-03   ‖postfit‖=5.5757e-07   tr(P)=1.7655e+05   ⟨σ⟩=1.00e-03
-[581719912.75 TDB |  53.9%] ‖prefit‖=4.8313e-03   ‖postfit‖=1.7351e-07   tr(P)=1.7655e+05   ⟨σ⟩=1.00e-03
-[581719915.75 TDB |  53.9%] ‖prefit‖=1.2312e+04   ‖postfit‖=8.2009e-02   tr(P)=1.7438e+05   ⟨σ⟩=5.00e-01
-[581719972.75 TDB |  54.4%] ‖prefit‖=4.9019e-03   ‖postfit‖=5.0529e-08   tr(P)=1.7438e+05   ⟨σ⟩=1.00e-03
-[581720032.75 TDB |  54.9%] ‖prefit‖=4.9362e-03   ‖postfit‖=2.3311e-08   tr(P)=1.7438e+05   ⟨σ⟩=1.00e-03
-[581720039.75 TDB |  54.9%] ‖prefit‖=1.2312e+04   ‖postfit‖=9.1625e-03   tr(P)=1.7118e+05   ⟨σ⟩=5.00e-01
-[581720152.75 TDB |  55.9%] ‖prefit‖=5.2900e-03   ‖postfit‖=1.5913e-08   tr(P)=1.7118e+05   ⟨σ⟩=1.00e-03
-[581720163.75 TDB |  55.9%] ‖prefit‖=1.2312e+04   ‖postfit‖=9.2352e-02   tr(P)=1.6653e+05   ⟨σ⟩=5.00e-01
-[581720212.75 TDB |  56.3%] ‖prefit‖=5.1908e-03   ‖postfit‖=9.4077e-08   tr(P)=1.6653e+05   ⟨σ⟩=1.00e-03
-[581720272.75 TDB |  56.8%] ‖prefit‖=8.7242e-03   ‖postfit‖=1.9015e-06   tr(P)=1.6654e+05   ⟨σ⟩=1.00e-03
-[581720287.75 TDB |  57.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=5.7173e-02   tr(P)=1.6027e+05   ⟨σ⟩=5.00e-01
-[581720332.74 TDB |  57.3%] ‖prefit‖=3.4552e-03   ‖postfit‖=8.7627e-06   tr(P)=1.6027e+05   ⟨σ⟩=1.00e-03
-[581720392.74 TDB |  57.8%] ‖prefit‖=3.7289e-03   ‖postfit‖=1.5003e-07   tr(P)=1.6027e+05   ⟨σ⟩=1.00e-03
-[581720411.74 TDB |  58.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=1.0605e-01   tr(P)=1.5251e+05   ⟨σ⟩=5.00e-01
-[581720452.74 TDB |  58.3%] ‖prefit‖=5.5552e-03   ‖postfit‖=4.3878e-06   tr(P)=1.5251e+05   ⟨σ⟩=1.00e-03
-[581720535.74 TDB |  59.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=2.9818e-02   tr(P)=1.5015e+05   ⟨σ⟩=5.00e-01
-[581720572.74 TDB |  59.3%] ‖prefit‖=3.1834e-03   ‖postfit‖=3.4820e-06   tr(P)=1.4457e+05   ⟨σ⟩=1.00e-03
-[581720632.74 TDB |  59.8%] ‖prefit‖=9.1419e-03   ‖postfit‖=3.2096e-06   tr(P)=1.4457e+05   ⟨σ⟩=1.00e-03
-[581720659.74 TDB |  60.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=9.6502e-02   tr(P)=1.3795e+05   ⟨σ⟩=5.00e-01
-[581720692.74 TDB |  60.3%] ‖prefit‖=3.7909e-03   ‖postfit‖=2.1914e-05   tr(P)=1.3795e+05   ⟨σ⟩=1.00e-03
-[581720752.73 TDB |  60.7%] ‖prefit‖=3.9101e-03   ‖postfit‖=6.2434e-08   tr(P)=1.3795e+05   ⟨σ⟩=1.00e-03
-[581720783.73 TDB |  61.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=1.0867e-01   tr(P)=1.3131e+05   ⟨σ⟩=5.00e-01
-[581720812.73 TDB |  61.2%] ‖prefit‖=4.4518e-03   ‖postfit‖=1.2591e-06   tr(P)=1.3129e+05   ⟨σ⟩=1.00e-03
-[581720872.73 TDB |  61.7%] ‖prefit‖=3.2682e-03   ‖postfit‖=6.2598e-07   tr(P)=1.3129e+05   ⟨σ⟩=1.00e-03
-[581720907.73 TDB |  62.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=3.1214e-03   tr(P)=1.2427e+05   ⟨σ⟩=5.00e-01
-[581720992.73 TDB |  62.7%] ‖prefit‖=5.4779e-03   ‖postfit‖=2.9191e-07   tr(P)=1.2427e+05   ⟨σ⟩=1.00e-03
-[581721031.73 TDB |  63.0%] ‖prefit‖=1.2312e+04   ‖postfit‖=8.1035e-02   tr(P)=1.1823e+05   ⟨σ⟩=5.00e-01
-[581721052.73 TDB |  63.2%] ‖prefit‖=3.7670e-03   ‖postfit‖=6.5003e-06   tr(P)=1.1811e+05   ⟨σ⟩=1.00e-03
-[581721112.73 TDB |  63.7%] ‖prefit‖=5.3816e-03   ‖postfit‖=8.6867e-07   tr(P)=1.1811e+05   ⟨σ⟩=1.00e-03
-[581721155.73 TDB |  64.0%] ‖prefit‖=1.2311e+04   ‖postfit‖=1.5488e-01   tr(P)=1.1230e+05   ⟨σ⟩=5.00e-01
-[581721172.73 TDB |  64.2%] ‖prefit‖=4.4041e-03   ‖postfit‖=5.8832e-06   tr(P)=1.1204e+05   ⟨σ⟩=1.00e-03
-[581721232.72 TDB |  64.7%] ‖prefit‖=4.8256e-03   ‖postfit‖=2.2609e-07   tr(P)=1.1204e+05   ⟨σ⟩=1.00e-03
-[581721279.72 TDB |  65.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=1.4263e-02   tr(P)=1.0600e+05   ⟨σ⟩=5.00e-01
-[581721352.72 TDB |  65.6%] ‖prefit‖=6.0825e-03   ‖postfit‖=2.1176e-07   tr(P)=1.0594e+05   ⟨σ⟩=1.00e-03
-[581721403.72 TDB |  66.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=9.0302e-03   tr(P)=1.0250e+05   ⟨σ⟩=5.00e-01
-[581721412.72 TDB |  66.1%] ‖prefit‖=3.9873e-03   ‖postfit‖=2.6649e-06   tr(P)=1.0215e+05   ⟨σ⟩=1.00e-03
-[581721472.72 TDB |  66.6%] ‖prefit‖=5.7392e-03   ‖postfit‖=9.4070e-07   tr(P)=1.0215e+05   ⟨σ⟩=1.00e-03
-[581721527.72 TDB |  67.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=3.1464e-02   tr(P)=9.8967e+04   ⟨σ⟩=5.00e-01
-[581721532.72 TDB |  67.1%] ‖prefit‖=3.9454e-03   ‖postfit‖=2.8235e-06   tr(P)=9.8326e+04   ⟨σ⟩=1.00e-03
-[581721592.72 TDB |  67.6%] ‖prefit‖=6.1035e-03   ‖postfit‖=1.1578e-06   tr(P)=9.8328e+04   ⟨σ⟩=1.00e-03
-[581721651.71 TDB |  68.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=2.7192e-02   tr(P)=9.4784e+04   ⟨σ⟩=5.00e-01
-[581721652.71 TDB |  68.1%] ‖prefit‖=4.1590e-03   ‖postfit‖=2.7426e-07   tr(P)=9.3601e+04   ⟨σ⟩=1.00e-03
-[581721772.71 TDB |  69.1%] ‖prefit‖=4.3201e-03   ‖postfit‖=5.6933e-09   tr(P)=9.3603e+04   ⟨σ⟩=1.00e-03
-[581721775.71 TDB |  69.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=5.3668e-02   tr(P)=8.7799e+04   ⟨σ⟩=5.00e-01
-[581721832.71 TDB |  69.6%] ‖prefit‖=6.5241e-03   ‖postfit‖=1.4572e-06   tr(P)=8.7800e+04   ⟨σ⟩=1.00e-03
-[581721892.71 TDB |  70.1%] ‖prefit‖=4.9953e-03   ‖postfit‖=8.1577e-07   tr(P)=8.7801e+04   ⟨σ⟩=1.00e-03
-[581721899.71 TDB |  70.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=1.5255e-01   tr(P)=8.1116e+04   ⟨σ⟩=5.00e-01
-[581721952.71 TDB |  70.5%] ‖prefit‖=5.7831e-03   ‖postfit‖=7.0794e-07   tr(P)=8.1117e+04   ⟨σ⟩=1.00e-03
-[581722012.71 TDB |  71.0%] ‖prefit‖=4.8761e-03   ‖postfit‖=4.8006e-07   tr(P)=8.1118e+04   ⟨σ⟩=1.00e-03
-[581722023.71 TDB |  71.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=1.8036e-01   tr(P)=7.3972e+04   ⟨σ⟩=5.00e-01
-[581722072.70 TDB |  71.5%] ‖prefit‖=7.0162e-03   ‖postfit‖=2.6028e-06   tr(P)=7.3973e+04   ⟨σ⟩=1.00e-03
-[581722147.70 TDB |  72.1%] ‖prefit‖=1.2311e+04   ‖postfit‖=6.0020e-02   tr(P)=7.1086e+04   ⟨σ⟩=5.00e-01
-[581722192.70 TDB |  72.5%] ‖prefit‖=5.5809e-03   ‖postfit‖=4.1980e-06   tr(P)=6.7901e+04   ⟨σ⟩=1.00e-03
-[581722252.70 TDB |  73.0%] ‖prefit‖=5.9566e-03   ‖postfit‖=2.1500e-07   tr(P)=6.7902e+04   ⟨σ⟩=1.00e-03
-[581722271.70 TDB |  73.2%] ‖prefit‖=1.2311e+04   ‖postfit‖=1.5374e-02   tr(P)=6.4358e+04   ⟨σ⟩=5.00e-01
-[581722312.70 TDB |  73.5%] ‖prefit‖=5.3434e-03   ‖postfit‖=1.3767e-06   tr(P)=6.4358e+04   ⟨σ⟩=1.00e-03
-[581722372.70 TDB |  74.0%] ‖prefit‖=7.7286e-03   ‖postfit‖=1.2898e-06   tr(P)=6.4360e+04   ⟨σ⟩=1.00e-03
-[581722395.70 TDB |  74.2%] ‖prefit‖=1.2311e+04   ‖postfit‖=7.4357e-02   tr(P)=6.1050e+04   ⟨σ⟩=5.00e-01
-[581722432.70 TDB |  74.5%] ‖prefit‖=6.1903e-03   ‖postfit‖=4.7203e-06   tr(P)=6.1051e+04   ⟨σ⟩=1.00e-03
-[581722492.69 TDB |  75.0%] ‖prefit‖=5.1107e-03   ‖postfit‖=5.6908e-07   tr(P)=6.1052e+04   ⟨σ⟩=1.00e-03
-[581722519.69 TDB |  75.2%] ‖prefit‖=1.2311e+04   ‖postfit‖=9.3877e-02   tr(P)=5.7464e+04   ⟨σ⟩=5.00e-01
-[581722612.69 TDB |  75.9%] ‖prefit‖=4.3325e-03   ‖postfit‖=7.8705e-08   tr(P)=5.7465e+04   ⟨σ⟩=1.00e-03
-[581722643.69 TDB |  76.2%] ‖prefit‖=1.2311e+04   ‖postfit‖=5.2858e-02   tr(P)=5.3802e+04   ⟨σ⟩=5.00e-01
-[581722672.69 TDB |  76.4%] ‖prefit‖=5.9080e-03   ‖postfit‖=6.2343e-06   tr(P)=5.3790e+04   ⟨σ⟩=1.00e-03
-[581722732.69 TDB |  76.9%] ‖prefit‖=6.7043e-03   ‖postfit‖=4.4100e-07   tr(P)=5.3791e+04   ⟨σ⟩=1.00e-03
-[581722767.69 TDB |  77.2%] ‖prefit‖=1.2311e+04   ‖postfit‖=4.5561e-02   tr(P)=5.0088e+04   ⟨σ⟩=5.00e-01
-[581722792.69 TDB |  77.4%] ‖prefit‖=6.9923e-03   ‖postfit‖=4.0451e-07   tr(P)=5.0048e+04   ⟨σ⟩=1.00e-03
-[581722852.69 TDB |  77.9%] ‖prefit‖=6.2685e-03   ‖postfit‖=3.7788e-07   tr(P)=5.0049e+04   ⟨σ⟩=1.00e-03
-[581722891.69 TDB |  78.2%] ‖prefit‖=1.2310e+04   ‖postfit‖=1.0200e-01   tr(P)=4.6325e+04   ⟨σ⟩=5.00e-01
-[581722912.68 TDB |  78.4%] ‖prefit‖=6.5413e-03   ‖postfit‖=1.3231e-06   tr(P)=4.6230e+04   ⟨σ⟩=1.00e-03
-[581723015.68 TDB |  79.2%] ‖prefit‖=1.2310e+04   ‖postfit‖=5.7968e-03   tr(P)=4.5879e+04   ⟨σ⟩=5.00e-01
-[581723032.68 TDB |  79.4%] ‖prefit‖=5.9690e-03   ‖postfit‖=4.0061e-06   tr(P)=4.2444e+04   ⟨σ⟩=1.00e-03
-[581723092.68 TDB |  79.9%] ‖prefit‖=5.9929e-03   ‖postfit‖=1.8677e-08   tr(P)=4.2445e+04   ⟨σ⟩=1.00e-03
-[581723139.68 TDB |  80.2%] ‖prefit‖=1.2310e+04   ‖postfit‖=9.0076e-02   tr(P)=3.9093e+04   ⟨σ⟩=5.00e-01
-[581723152.68 TDB |  80.3%] ‖prefit‖=5.6705e-03   ‖postfit‖=3.0735e-06   tr(P)=3.8800e+04   ⟨σ⟩=1.00e-03
-[581723212.68 TDB |  80.8%] ‖prefit‖=5.8012e-03   ‖postfit‖=7.5331e-08   tr(P)=3.8801e+04   ⟨σ⟩=1.00e-03
-[581723263.68 TDB |  81.3%] ‖prefit‖=1.2310e+04   ‖postfit‖=1.2204e-01   tr(P)=3.5799e+04   ⟨σ⟩=5.00e-01
-[581723272.68 TDB |  81.3%] ‖prefit‖=4.8542e-03   ‖postfit‖=5.1397e-06   tr(P)=3.5362e+04   ⟨σ⟩=1.00e-03
-[581723387.67 TDB |  82.3%] ‖prefit‖=1.2310e+04   ‖postfit‖=1.0906e-02   tr(P)=3.5208e+04   ⟨σ⟩=5.00e-01
-[581723392.67 TDB |  82.3%] ‖prefit‖=8.1081e-03   ‖postfit‖=1.1783e-05   tr(P)=3.2199e+04   ⟨σ⟩=1.00e-03
-[581723452.67 TDB |  82.8%] ‖prefit‖=5.4293e-03   ‖postfit‖=1.4394e-06   tr(P)=3.2200e+04   ⟨σ⟩=1.00e-03
-[581723511.67 TDB |  83.3%] ‖prefit‖=1.2310e+04   ‖postfit‖=6.1261e-02   tr(P)=3.0094e+04   ⟨σ⟩=5.00e-01
-[581723512.67 TDB |  83.3%] ‖prefit‖=5.7755e-03   ‖postfit‖=2.4988e-06   tr(P)=2.9350e+04   ⟨σ⟩=1.00e-03
-[581723572.67 TDB |  83.8%] ‖prefit‖=7.8039e-03   ‖postfit‖=1.0892e-06   tr(P)=2.9351e+04   ⟨σ⟩=1.00e-03
-[581723632.67 TDB |  84.3%] ‖prefit‖=5.1889e-03   ‖postfit‖=1.3990e-06   tr(P)=2.9352e+04   ⟨σ⟩=1.00e-03
-[581723635.67 TDB |  84.3%] ‖prefit‖=1.2309e+04   ‖postfit‖=1.7756e-01   tr(P)=2.6821e+04   ⟨σ⟩=5.00e-01
-[581723692.67 TDB |  84.8%] ‖prefit‖=7.7848e-03   ‖postfit‖=1.7048e-06   tr(P)=2.6822e+04   ⟨σ⟩=1.00e-03
-[581723759.66 TDB |  85.3%] ‖prefit‖=1.2309e+04   ‖postfit‖=1.7569e-02   tr(P)=2.5563e+04   ⟨σ⟩=5.00e-01
-[581723812.66 TDB |  85.7%] ‖prefit‖=6.8102e-03   ‖postfit‖=3.4674e-07   tr(P)=2.4995e+04   ⟨σ⟩=1.00e-03
-[581723872.66 TDB |  86.2%] ‖prefit‖=9.0981e-03   ‖postfit‖=1.2284e-06   tr(P)=2.4996e+04   ⟨σ⟩=1.00e-03
-[581723883.66 TDB |  86.3%] ‖prefit‖=1.2309e+04   ‖postfit‖=4.7929e-03   tr(P)=2.4285e+04   ⟨σ⟩=5.00e-01
-[581723932.66 TDB |  86.7%] ‖prefit‖=6.8264e-03   ‖postfit‖=2.7240e-06   tr(P)=2.4286e+04   ⟨σ⟩=1.00e-03
-[581723992.66 TDB |  87.2%] ‖prefit‖=6.0844e-03   ‖postfit‖=3.9803e-07   tr(P)=2.4286e+04   ⟨σ⟩=1.00e-03
-[581724007.66 TDB |  87.3%] ‖prefit‖=1.2309e+04   ‖postfit‖=6.5564e-02   tr(P)=2.3668e+04   ⟨σ⟩=5.00e-01
-[581724052.66 TDB |  87.7%] ‖prefit‖=8.8959e-03   ‖postfit‖=4.7128e-06   tr(P)=2.3669e+04   ⟨σ⟩=1.00e-03
-[581724112.66 TDB |  88.2%] ‖prefit‖=5.8289e-03   ‖postfit‖=1.6406e-06   tr(P)=2.3670e+04   ⟨σ⟩=1.00e-03
-[581724131.66 TDB |  88.3%] ‖prefit‖=1.2309e+04   ‖postfit‖=1.2173e-01   tr(P)=2.2951e+04   ⟨σ⟩=5.00e-01
-[581724232.65 TDB |  89.2%] ‖prefit‖=7.4415e-03   ‖postfit‖=1.1017e-07   tr(P)=2.2953e+04   ⟨σ⟩=1.00e-03
-[581724255.65 TDB |  89.4%] ‖prefit‖=1.2309e+04   ‖postfit‖=2.4526e-01   tr(P)=2.2087e+04   ⟨σ⟩=5.00e-01
-[581724292.65 TDB |  89.7%] ‖prefit‖=7.0553e-03   ‖postfit‖=7.4309e-07   tr(P)=2.2087e+04   ⟨σ⟩=1.00e-03
-[581724352.65 TDB |  90.1%] ‖prefit‖=6.6729e-03   ‖postfit‖=2.0228e-07   tr(P)=2.2088e+04   ⟨σ⟩=1.00e-03
-[581724379.65 TDB |  90.4%] ‖prefit‖=1.2309e+04   ‖postfit‖=3.8201e-01   tr(P)=2.1073e+04   ⟨σ⟩=5.00e-01
-[581724412.65 TDB |  90.6%] ‖prefit‖=7.8831e-03   ‖postfit‖=6.7968e-06   tr(P)=2.1072e+04   ⟨σ⟩=1.00e-03
-[581724472.65 TDB |  91.1%] ‖prefit‖=8.3742e-03   ‖postfit‖=2.7202e-07   tr(P)=2.1073e+04   ⟨σ⟩=1.00e-03
-[581724503.65 TDB |  91.4%] ‖prefit‖=1.2309e+04   ‖postfit‖=2.1244e-01   tr(P)=1.9937e+04   ⟨σ⟩=5.00e-01
-[581724532.65 TDB |  91.6%] ‖prefit‖=7.0181e-03   ‖postfit‖=3.5517e-06   tr(P)=1.9932e+04   ⟨σ⟩=1.00e-03
-[581724627.64 TDB |  92.4%] ‖prefit‖=1.2309e+04   ‖postfit‖=2.2335e-02   tr(P)=1.9767e+04   ⟨σ⟩=5.00e-01
-[581724652.64 TDB |  92.6%] ‖prefit‖=7.6790e-03   ‖postfit‖=8.9523e-06   tr(P)=1.8748e+04   ⟨σ⟩=1.00e-03
-[581724712.64 TDB |  93.1%] ‖prefit‖=6.9332e-03   ‖postfit‖=3.8828e-07   tr(P)=1.8749e+04   ⟨σ⟩=1.00e-03
-[581724751.64 TDB |  93.4%] ‖prefit‖=1.2309e+04   ‖postfit‖=5.4811e-02   tr(P)=1.7617e+04   ⟨σ⟩=5.00e-01
-[581724772.64 TDB |  93.6%] ‖prefit‖=7.2927e-03   ‖postfit‖=2.2078e-06   tr(P)=1.7587e+04   ⟨σ⟩=1.00e-03
-[581724832.64 TDB |  94.1%] ‖prefit‖=7.3090e-03   ‖postfit‖=1.7003e-08   tr(P)=1.7588e+04   ⟨σ⟩=1.00e-03
-[581724875.64 TDB |  94.4%] ‖prefit‖=1.2309e+04   ‖postfit‖=2.0418e-01   tr(P)=1.6492e+04   ⟨σ⟩=5.00e-01
-[581724892.64 TDB |  94.6%] ‖prefit‖=8.6803e-03   ‖postfit‖=8.0094e-06   tr(P)=1.6434e+04   ⟨σ⟩=1.00e-03
-[581724952.64 TDB |  95.0%] ‖prefit‖=7.6962e-03   ‖postfit‖=5.1533e-07   tr(P)=1.6435e+04   ⟨σ⟩=1.00e-03
-[581724999.64 TDB |  95.4%] ‖prefit‖=1.2308e+04   ‖postfit‖=4.3917e-02   tr(P)=1.5391e+04   ⟨σ⟩=5.00e-01
-[581725072.63 TDB |  96.0%] ‖prefit‖=8.4209e-03   ‖postfit‖=1.4456e-08   tr(P)=1.5379e+04   ⟨σ⟩=1.00e-03
-[581725439.63 TDB |  99.0%] ‖prefit‖=9.2669e-03   ‖postfit‖=3.5926e-10   tr(P)=1.5385e+04   ⟨σ⟩=1.00e-03
-[581725499.62 TDB |  99.5%] ‖prefit‖=5.4712e-03   ‖postfit‖=7.8955e-06   tr(P)=1.5385e+04   ⟨σ⟩=1.00e-03
-[581725559.62 TDB | 100.0%] ‖prefit‖=1.6341e-02   ‖postfit‖=5.8254e-06   tr(P)=1.5386e+04   ⟨σ⟩=1.00e-03
-RMS State Deviation: 2.507988e+01
-
-============================================================
-✓ CONVERGED after 1 iteration(s)!
-============================================================
-
+<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1888,55 +1525,22 @@ RMS State Deviation: 2.507988e+01
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_88820/3333770580.py:41: UserWarning: AutoDateLocator was unable to pick an appropriate interval for this date range. It may be necessary to add an interval value to the AutoDateLocator&#39;s intervald dictionary. Defaulting to 30.
-  plt.tight_layout(); plt.show()
-/Users/zael5647/scarabaeus/.venv/lib/python3.11/site-packages/IPython/core/pylabtools.py:170: UserWarning: AutoDateLocator was unable to pick an appropriate interval for this date range. It may be necessary to add an interval value to the AutoDateLocator&#39;s intervald dictionary. Defaulting to 30.
-  fig.canvas.print_figure(bytes_io, **kw)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_14_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_14_1.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_88820/3333770580.py:48: UserWarning: AutoDateLocator was unable to pick an appropriate interval for this date range. It may be necessary to add an interval value to the AutoDateLocator&#39;s intervald dictionary. Defaulting to 30.
-  plt.tight_layout(); plt.show()
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_14_3.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_14_3.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_88820/3333770580.py:97: UserWarning: AutoDateLocator was unable to pick an appropriate interval for this date range. It may be necessary to add an interval value to the AutoDateLocator&#39;s intervald dictionary. Defaulting to 30.
-  plt.tight_layout()
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_14_5.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_14_5.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 12</span>
+<span class="ansi-green-fg">      9</span>     ax.xaxis.set_major_formatter(mdates.DateFormatter(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">%</span><span class="ansi-yellow-fg">H:</span><span class="ansi-yellow-fg">%</span><span class="ansi-yellow-fg">M</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span class="ansi-yellow-fg">%</span><span class="ansi-yellow-fg">b </span><span class="ansi-bold" style="color: rgb(175,95,135)">%d</span><span class="ansi-yellow-fg">&#34;</span>))
+<span class="ansi-green-fg">     11</span> <span style="color: rgb(95,135,135)"># ── residual arrays ───────────────────────────────────────────────────────────</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span> dataset_sr  = <span style="color: rgb(0,135,0)">list</span>(<span class="ansi-yellow-bg">solution</span>.prefits.keys())[<span class="ansi-green-fg">0</span>]
+<span class="ansi-green-fg">     13</span> dataset_dop = <span style="color: rgb(0,135,0)">list</span>(solution.prefits.keys())[<span class="ansi-green-fg">1</span>]
+<span class="ansi-green-fg">     15</span> pre_sr   = np.array(solution.prefits[dataset_sr])[:, <span class="ansi-green-fg">0</span>]
+
+<span class="ansi-red-fg">NameError</span>: name &#39;solution&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>

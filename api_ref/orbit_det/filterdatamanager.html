@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/orbit_det/filterdatamanager';</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
@@ -622,7 +621,7 @@
 <h1><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code><a class="headerlink" href="#filterdatamanager" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.FilterDataManager">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">FilterDataManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editing_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editing_datasets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editing_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterDataManager" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">FilterDataManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editing_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editing_datasets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">editing_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Literal" title="(in Python v3.11)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'json'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pickle'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'json'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterDataManager" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Manages, edits, and organizes measurement datasets for orbit determination filters.</p>
 <p>The class provides utilities to combine multiple
@@ -646,7 +645,7 @@ multi-spacecraft, or mixed observable estimation problems.</p>
 <li><p><strong>editing_datasets</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Which datasets to edit. <code class="docutils literal notranslate"><span class="pre">None</span></code> = all, a string = one by name,
 a list of strings = a specific subset.</p></li>
 <li><p><strong>editing_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>) – Extra keyword arguments forwarded to the editing method.</p></li>
-<li><p><strong>save_path</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>) – Directory path to save combined data <code class="docutils literal notranslate"><span class="pre">.npz</span></code> files.</p></li>
+<li><p><strong>save_path</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>) – Directory path to save combined per-dataset JSON files.</p></li>
 <li><p><strong>save_name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>) – Optional name prefix included in saved file names.</p></li>
 </ul>
 </dd>
@@ -694,9 +693,56 @@ automatically.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.FilterDataManager.get_spacecraft_times" title="scarabaeus.FilterDataManager.get_spacecraft_times"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_spacecraft_times</span></code></a>()</p></td>
 <td><p>Return sorted unique spacecraft receive times with at least one valid measurement.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.FilterDataManager.load" title="scarabaeus.FilterDataManager.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a>(file_paths)</p></td>
+<td><p>Reconstruct a <a class="reference internal" href="#scarabaeus.FilterDataManager" title="scarabaeus.FilterDataManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a> from saved dataset file(s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.FilterDataManager.load_dataset" title="scarabaeus.FilterDataManager.load_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_dataset</span></code></a>(file_path)</p></td>
+<td><p>Load a dataset previously written by <code class="xref py py-meth docutils literal notranslate"><span class="pre">_save_datasets()</span></code>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.FilterDataManager.load">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_paths</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterDataManager.load" title="Link to this definition">#</a></dt>
+<dd><p>Reconstruct a <a class="reference internal" href="#scarabaeus.FilterDataManager" title="scarabaeus.FilterDataManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a> from saved dataset file(s).</p>
+<p>Loads one or more files written by <code class="xref py py-meth docutils literal notranslate"><span class="pre">_save_datasets()</span></code> (via
+<a class="reference internal" href="#scarabaeus.FilterDataManager.load_dataset" title="scarabaeus.FilterDataManager.load_dataset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_dataset()</span></code></a>) and returns a manager populated with them, so
+callers get an object directly instead of rebuilding one from the raw
+dicts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_paths</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">path-like</span></code>, or <code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">those</span></code>) – A single saved dataset file, or several. JSON and pickle are both
+auto-detected per file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A manager holding the loaded datasets. It is <strong>inspection-only</strong>: the
+saved files are result snapshots (no instrument / target), so the
+datasets cannot regenerate predicted measurements or re-run the
+filter.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#scarabaeus.FilterDataManager" title="scarabaeus.FilterDataManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#scarabaeus.FilterDataManager.load_dataset" title="scarabaeus.FilterDataManager.load_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_dataset</span></code></a></dt><dd><p>Low-level reader returning one dataset as a plain dict.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.FilterDataManager.load_dataset">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterDataManager.load_dataset" title="Link to this definition">#</a></dt>
+<dd><p>Load a dataset previously written by <code class="xref py py-meth docutils literal notranslate"><span class="pre">_save_datasets()</span></code>.</p>
+<p>Returns a plain dict with the same fields (arrays restored as numpy
+arrays). The format (JSON or pickle) is auto-detected from the file
+extension. Symmetric counterpart to the save path.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.FilterDataManager.get_combined">
 <span class="sig-name descname"><span class="pre">get_combined</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.FilterDataManager.get_combined" title="Link to this definition">#</a></dt>
@@ -835,6 +881,8 @@ field structure as described in <a class="reference internal" href="#scarabaeus.
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterDataManager"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterDataManager.load"><code class="docutils literal notranslate"><span class="pre">FilterDataManager.load()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterDataManager.load_dataset"><code class="docutils literal notranslate"><span class="pre">FilterDataManager.load_dataset()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterDataManager.get_combined"><code class="docutils literal notranslate"><span class="pre">FilterDataManager.get_combined()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterDataManager.get_combined_for_t2"><code class="docutils literal notranslate"><span class="pre">FilterDataManager.get_combined_for_t2()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterDataManager.get_spacecraft_times"><code class="docutils literal notranslate"><span class="pre">FilterDataManager.get_spacecraft_times()</span></code></a></li>

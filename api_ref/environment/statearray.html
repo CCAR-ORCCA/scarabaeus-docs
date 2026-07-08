@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/environment/statearray';</script>
@@ -773,14 +772,20 @@ or if a vector <code class="docutils literal notranslate"><span class="pre">valu
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.find_indices" title="scarabaeus.StateArray.find_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_indices</span></code></a>(parameter_name, body[, flag_dot])</p></td>
 <td><p>Finds the indices of a parameter (e.g., position, velocity) in the state vector for a specific body.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.get_state_at_epoch" title="scarabaeus.StateArray.get_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state_at_epoch</span></code></a>(epoch)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.from_dict" title="scarabaeus.StateArray.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a>(data[, owner_overrides])</p></td>
+<td><p>Reconstruct a StateArray from a dict produced by <a class="reference internal" href="#scarabaeus.StateArray.to_dict" title="scarabaeus.StateArray.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict()</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.get_state_at_epoch" title="scarabaeus.StateArray.get_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_state_at_epoch</span></code></a>(epoch)</p></td>
 <td><p>Retrieves the state vector for a given epoch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.reinitialize" title="scarabaeus.StateArray.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>(**kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.reinitialize" title="scarabaeus.StateArray.reinitialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reinitialize</span></code></a>(**kwargs)</p></td>
 <td><p>Reinitializes the StateArray object with new attribute values in place.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.remove_state_at_epoch" title="scarabaeus.StateArray.remove_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_state_at_epoch</span></code></a>(epoch)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.remove_state_at_epoch" title="scarabaeus.StateArray.remove_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_state_at_epoch</span></code></a>(epoch)</p></td>
 <td><p>Removes a state at a specific epoch, ensuring consistency across parameters and reinitializing the StateArray.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.StateArray.to_dict" title="scarabaeus.StateArray.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>()</p></td>
+<td><p>Serialize the StateArray to a JSON-friendly dict.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.StateArray.update_state_at_epoch" title="scarabaeus.StateArray.update_state_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_state_at_epoch</span></code></a>(epoch, updated_values)</p></td>
 <td><p>Updates the state at a given epoch while maintaining structure and reinitializing the StateArray.</p></td>
@@ -788,6 +793,23 @@ or if a vector <code class="docutils literal notranslate"><span class="pre">valu
 </tbody>
 </table>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.StateArray.from_dict">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner_overrides</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.StateArray" title="scarabaeus.environment.StateArray.StateArray"><span class="pre">StateArray</span></a></span></span><a class="headerlink" href="#scarabaeus.StateArray.from_dict" title="Link to this definition">#</a></dt>
+<dd><p>Reconstruct a StateArray from a dict produced by <a class="reference internal" href="#scarabaeus.StateArray.to_dict" title="scarabaeus.StateArray.to_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dict()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Serialized state.</p></li>
+<li><p><strong>owner_overrides</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, <em>optional</em>) – Mapping <code class="docutils literal notranslate"><span class="pre">spice_id</span> <span class="pre">-&gt;</span> <span class="pre">Body</span></code> used to substitute pre-built owners
+(e.g. so a Propagator reuses its <code class="docutils literal notranslate"><span class="pre">primary_body</span></code> instance instead
+of constructing a duplicate). Components whose owner <code class="docutils literal notranslate"><span class="pre">spice_id</span></code> is
+present here use the supplied object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.add_state_at_epoch">
 <span class="sig-name descname"><span class="pre">add_state_at_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray.add_state_at_epoch" title="Link to this definition">#</a></dt>
@@ -932,6 +954,17 @@ and reinitializing the StateArray.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.StateArray.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#scarabaeus.StateArray.to_dict" title="Link to this definition">#</a></dt>
+<dd><p>Serialize the StateArray to a JSON-friendly dict.</p>
+<p>Captures the epoch, origin, and every state component (name, dimension,
+estimation/dynamics modes, owner, values, units, and frame) so the state
+can be reconstructed by <a class="reference internal" href="#scarabaeus.StateArray.from_dict" title="scarabaeus.StateArray.from_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_dict()</span></code></a>. Supports the position /
+velocity / dynamic+static parameter components used by the propagator;
+each component’s values must be an <code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.StateArray.update_state_at_epoch">
 <span class="sig-name descname"><span class="pre">update_state_at_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.StateArray.update_state_at_epoch" title="Link to this definition">#</a></dt>
 <dd><p>Updates the state at a given epoch while maintaining structure and
@@ -1071,12 +1104,14 @@ vector. Does not include values.</p>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.from_dict"><code class="docutils literal notranslate"><span class="pre">StateArray.from_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.add_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.add_state_at_epoch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.add_to_state_vector"><code class="docutils literal notranslate"><span class="pre">StateArray.add_to_state_vector()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.find_indices"><code class="docutils literal notranslate"><span class="pre">StateArray.find_indices()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.get_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.get_state_at_epoch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.reinitialize"><code class="docutils literal notranslate"><span class="pre">StateArray.reinitialize()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.remove_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.remove_state_at_epoch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.to_dict"><code class="docutils literal notranslate"><span class="pre">StateArray.to_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.update_state_at_epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.update_state_at_epoch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.epoch"><code class="docutils literal notranslate"><span class="pre">StateArray.epoch</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.StateArray.index_rep"><code class="docutils literal notranslate"><span class="pre">StateArray.index_rep</span></code></a></li>

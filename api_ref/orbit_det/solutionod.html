@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/orbit_det/solutionod';</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
@@ -842,8 +841,8 @@ left as <code class="docutils literal notranslate"><span class="pre">None</span>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.UQ_compute" title="scarabaeus.SolutionOD.UQ_compute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UQ_compute</span></code></a>([particle_states, confidence_levels])</p></td>
 <td><p>Compute UQ metrics for particle-based filters.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.create_JSON" title="scarabaeus.SolutionOD.create_JSON"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_JSON</span></code></a>(filepath)</p></td>
-<td><p>Export solution results to JSON file.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.create_JSON" title="scarabaeus.SolutionOD.create_JSON"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_JSON</span></code></a>(filepath[, fmt])</p></td>
+<td><p>Export solution results to a JSON or pickle file.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.deserialize" title="scarabaeus.SolutionOD.deserialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deserialize</span></code></a>(filepath[, filter_obj])</p></td>
 <td><p>Deserialize SolutionOD object from binary file.</p></td>
@@ -869,8 +868,8 @@ left as <code class="docutils literal notranslate"><span class="pre">None</span>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.propagate_state_covariance" title="scarabaeus.SolutionOD.propagate_state_covariance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagate_state_covariance</span></code></a>(epochs[, ...])</p></td>
 <td><p>Propagate both the estimated state and covariance to arbitrary epochs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.save" title="scarabaeus.SolutionOD.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([filepath])</p></td>
-<td><p>Save all filter iterations to a single JSON file.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.save" title="scarabaeus.SolutionOD.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>([filepath, fmt])</p></td>
+<td><p>Save all filter iterations to a single JSON or pickle file.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.SolutionOD.serialize" title="scarabaeus.SolutionOD.serialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">serialize</span></code></a>(filepath[, protocol])</p></td>
 <td><p>Serialize SolutionOD object to binary format using pickle.</p></td>
@@ -930,11 +929,16 @@ percentiles, and effective sample size.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SolutionOD.create_JSON">
-<span class="sig-name descname"><span class="pre">create_JSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.SolutionOD.create_JSON" title="Link to this definition">#</a></dt>
-<dd><p>Export solution results to JSON file.</p>
+<span class="sig-name descname"><span class="pre">create_JSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.SolutionOD.create_JSON" title="Link to this definition">#</a></dt>
+<dd><p>Export solution results to a JSON or pickle file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code>) – Path to output JSON file.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code>) – Path to the output file.</p></li>
+<li><p><strong>fmt</strong> (<code class="docutils literal notranslate"><span class="pre">{&quot;json&quot;,</span> <span class="pre">&quot;pickle&quot;}</span></code>, <em>optional</em>) – On-disk format. When <code class="docutils literal notranslate"><span class="pre">None</span></code> (default) it is inferred from the file
+extension (<code class="docutils literal notranslate"><span class="pre">.pkl</span></code> → pickle, otherwise JSON); when given explicitly,
+the file extension is normalised to match.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1084,12 +1088,22 @@ Defaults to True.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.SolutionOD.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.SolutionOD.save" title="Link to this definition">#</a></dt>
-<dd><p>Save all filter iterations to a single JSON file.</p>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.SolutionOD.save" title="Link to this definition">#</a></dt>
+<dd><p>Save all filter iterations to a single JSON or pickle file.</p>
 <p>If filepath is None, uses output_settings.output_dir /
-output_settings.solution_json_filename + ‘.json’.</p>
+output_settings.solution_json_filename + the format extension.</p>
 <p>Each iteration is a key ‘iter_1’, ‘iter_2’, etc.
 The current (final) solution is also stored under ‘final’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code>, <em>optional</em>) – Destination file. When None, derived from the output settings.</p></li>
+<li><p><strong>fmt</strong> (<code class="docutils literal notranslate"><span class="pre">{&quot;json&quot;,</span> <span class="pre">&quot;pickle&quot;}</span></code>, <em>optional</em>) – On-disk format. When <code class="docutils literal notranslate"><span class="pre">None</span></code> (default) it is inferred from the file
+extension (<code class="docutils literal notranslate"><span class="pre">.pkl</span></code> → pickle, otherwise JSON); when given explicitly,
+the file extension is normalised to match.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

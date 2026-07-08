@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/orbit_det/srifb';</script>
@@ -761,9 +760,9 @@ ISBN 978-0-12-097650-8.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_analysis</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when running in covariance-analysis mode (no measurement updates).</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.SRIFB.covariance_consider_history" title="scarabaeus.SRIFB.covariance_consider_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_consider_history</span></code></a></dt><dd><p>Consider-parameter covariance block at each epoch.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_consider_history</span></code></dt><dd><p>Consider-augmented covariance at each measurement epoch (when consider parameters are active).</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.SRIFB.covariance_history" title="scarabaeus.SRIFB.covariance_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_history</span></code></a></dt><dd><p>Posterior covariance <span class="math notranslate nohighlight">\(\hat{P}_0\)</span> propagated to each measurement epoch via the trajectory STMs.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_history</span></code></dt><dd><p>Posterior covariance at each measurement epoch.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_sequence</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> for multi-leg (mission-sequence) trajectories.</p>
 </dd>
@@ -775,15 +774,15 @@ ISBN 978-0-12-097650-8.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code></dt><dd><p>Dimension of the estimated state vector.</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.SRIFB.postfit_residuals" title="scarabaeus.SRIFB.postfit_residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">postfit_residuals</span></code></a></dt><dd><p>Post-fit residuals from the batch solution, keyed by dataset name.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">postfit_residuals</span></code></dt><dd><p>Post-update measurement residuals, keyed by epoch.</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.SRIFB.prefit_residuals" title="scarabaeus.SRIFB.prefit_residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prefit_residuals</span></code></a></dt><dd><p>Pre-fit residuals <span class="math notranslate nohighlight">\(y_k\)</span>, keyed by dataset name.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">prefit_residuals</span></code></dt><dd><p>Pre-update measurement residuals, keyed by epoch.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagator</span></code></dt><dd><p>Propagator or ScenarioSetup used to build the reference trajectory.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">settings</span></code></dt><dd><p>Filter configuration (covariance, process noise, output options).</p>
 </dd>
-<dt><a class="reference internal" href="#scarabaeus.SRIFB.state_deviation_history" title="scarabaeus.SRIFB.state_deviation_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_deviation_history</span></code></a></dt><dd><p>State deviation <span class="math notranslate nohighlight">\(\hat{x}_k\)</span> propagated to each measurement epoch.</p>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_deviation_history</span></code></dt><dd><p>State deviation at each measurement epoch.</p>
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></dt><dd><p>Propagated reference trajectory stored in a SPICE BSP kernel with a companion JSON file for STMs and estimated parameters.</p>
 </dd>
@@ -802,41 +801,6 @@ ISBN 978-0-12-097650-8.</p>
 </tbody>
 </table>
 </div>
-<dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.SRIFB.covariance_consider_history">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">covariance_consider_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.SRIFB.covariance_consider_history" title="Link to this definition">#</a></dt>
-<dd><p>Consider-parameter covariance block at each epoch.
-Empty list when no consider parameters are active.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.SRIFB.covariance_history">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">covariance_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.SRIFB.covariance_history" title="Link to this definition">#</a></dt>
-<dd><p>Posterior covariance <span class="math notranslate nohighlight">\(\hat{P}_0\)</span> propagated to each measurement
-epoch via the trajectory STMs. Populated after calling <a class="reference internal" href="filterod.html#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.SRIFB.postfit_residuals">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">postfit_residuals</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.SRIFB.postfit_residuals" title="Link to this definition">#</a></dt>
-<dd><p>Post-fit residuals from the batch solution, keyed by dataset name.
-Populated after calling <a class="reference internal" href="filterod.html#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.SRIFB.prefit_residuals">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">prefit_residuals</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.SRIFB.prefit_residuals" title="Link to this definition">#</a></dt>
-<dd><p>Pre-fit residuals <span class="math notranslate nohighlight">\(y_k\)</span>, keyed by dataset name.
-Populated after calling <a class="reference internal" href="filterod.html#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="scarabaeus.SRIFB.state_deviation_history">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">state_deviation_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.SRIFB.state_deviation_history" title="Link to this definition">#</a></dt>
-<dd><p>State deviation <span class="math notranslate nohighlight">\(\hat{x}_k\)</span> propagated to each measurement epoch.
-Populated after calling <a class="reference internal" href="filterod.html#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -888,14 +852,7 @@ Populated after calling <a class="reference internal" href="filterod.html#scarab
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB.covariance_consider_history"><code class="docutils literal notranslate"><span class="pre">SRIFB.covariance_consider_history</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB.covariance_history"><code class="docutils literal notranslate"><span class="pre">SRIFB.covariance_history</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB.postfit_residuals"><code class="docutils literal notranslate"><span class="pre">SRIFB.postfit_residuals</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB.prefit_residuals"><code class="docutils literal notranslate"><span class="pre">SRIFB.prefit_residuals</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB.state_deviation_history"><code class="docutils literal notranslate"><span class="pre">SRIFB.state_deviation_history</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.SRIFB"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
 </ul>
   </nav></div>
 

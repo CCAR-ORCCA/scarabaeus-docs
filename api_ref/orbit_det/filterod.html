@@ -56,7 +56,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/orbit_det/filterod';</script>
@@ -712,6 +711,10 @@ Call <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarab
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.covariance_analysis" title="scarabaeus.FilterOD.covariance_analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_analysis</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when running in covariance-analysis mode (no measurement updates).</p>
 </dd>
+<dt><a class="reference internal" href="#scarabaeus.FilterOD.covariance_consider_history" title="scarabaeus.FilterOD.covariance_consider_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_consider_history</span></code></a></dt><dd><p>Consider-augmented covariance at each measurement epoch (when consider parameters are active).</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.FilterOD.covariance_history" title="scarabaeus.FilterOD.covariance_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_history</span></code></a></dt><dd><p>Posterior covariance at each measurement epoch.</p>
+</dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.flag_sequence" title="scarabaeus.FilterOD.flag_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flag_sequence</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> for multi-leg (mission-sequence) trajectories.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.has_consider" title="scarabaeus.FilterOD.has_consider"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_consider</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if consider parameters are present in the state vector.</p>
@@ -722,9 +725,15 @@ Call <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarab
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.n" title="scarabaeus.FilterOD.n"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n</span></code></a></dt><dd><p>Dimension of the estimated state vector.</p>
 </dd>
+<dt><a class="reference internal" href="#scarabaeus.FilterOD.postfit_residuals" title="scarabaeus.FilterOD.postfit_residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">postfit_residuals</span></code></a></dt><dd><p>Post-update measurement residuals, keyed by epoch.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.FilterOD.prefit_residuals" title="scarabaeus.FilterOD.prefit_residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prefit_residuals</span></code></a></dt><dd><p>Pre-update measurement residuals, keyed by epoch.</p>
+</dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.propagator" title="scarabaeus.FilterOD.propagator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propagator</span></code></a></dt><dd><p>Propagator or ScenarioSetup used to build the reference trajectory.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.settings" title="scarabaeus.FilterOD.settings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">settings</span></code></a></dt><dd><p>Filter configuration (covariance, process noise, output options).</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.FilterOD.state_deviation_history" title="scarabaeus.FilterOD.state_deviation_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_deviation_history</span></code></a></dt><dd><p>State deviation at each measurement epoch.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.trajectory" title="scarabaeus.FilterOD.trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trajectory</span></code></a></dt><dd><p>Propagated reference trajectory stored in a SPICE BSP kernel with a companion JSON file for STMs and estimated parameters.</p>
 </dd>
@@ -884,6 +893,20 @@ When no consider parameters are present the full matrix is returned.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.covariance_consider_history">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">covariance_consider_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.covariance_consider_history" title="Link to this definition">#</a></dt>
+<dd><p>Consider-augmented covariance at each measurement epoch (when consider
+parameters are active). Populated after calling <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.covariance_history">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">covariance_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.covariance_history" title="Link to this definition">#</a></dt>
+<dd><p>Posterior covariance at each measurement epoch. Populated after
+calling <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.FilterOD.flag_sequence">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">flag_sequence</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.flag_sequence" title="Link to this definition">#</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> for multi-leg (mission-sequence) trajectories.</p>
@@ -914,6 +937,20 @@ When no consider parameters are present the full matrix is returned.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.postfit_residuals">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">postfit_residuals</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.postfit_residuals" title="Link to this definition">#</a></dt>
+<dd><p>Post-update measurement residuals, keyed by epoch. Populated after
+calling <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.prefit_residuals">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">prefit_residuals</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.prefit_residuals" title="Link to this definition">#</a></dt>
+<dd><p>Pre-update measurement residuals, keyed by epoch. Populated after
+calling <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.FilterOD.propagator">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">propagator</span></span><a class="headerlink" href="#scarabaeus.FilterOD.propagator" title="Link to this definition">#</a></dt>
 <dd><p>Propagator or ScenarioSetup used to build the reference trajectory.
@@ -924,6 +961,13 @@ Replaced by a <a class="reference internal" href="../environment/scenariosetup.h
 <dt class="sig sig-object py" id="scarabaeus.FilterOD.settings">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">settings</span></span><a class="headerlink" href="#scarabaeus.FilterOD.settings" title="Link to this definition">#</a></dt>
 <dd><p>Filter configuration (covariance, process noise, output options).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.state_deviation_history">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">state_deviation_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.state_deviation_history" title="Link to this definition">#</a></dt>
+<dd><p>State deviation at each measurement epoch. Populated after calling
+<a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -991,13 +1035,18 @@ companion JSON file for STMs and estimated parameters.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.SNC_flag"><code class="docutils literal notranslate"><span class="pre">FilterOD.SNC_flag</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.apriori_covariance_est"><code class="docutils literal notranslate"><span class="pre">FilterOD.apriori_covariance_est</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.covariance_analysis"><code class="docutils literal notranslate"><span class="pre">FilterOD.covariance_analysis</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.covariance_consider_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.covariance_consider_history</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.covariance_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.covariance_history</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.flag_sequence"><code class="docutils literal notranslate"><span class="pre">FilterOD.flag_sequence</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.has_consider"><code class="docutils literal notranslate"><span class="pre">FilterOD.has_consider</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.measurement_data"><code class="docutils literal notranslate"><span class="pre">FilterOD.measurement_data</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.measurements"><code class="docutils literal notranslate"><span class="pre">FilterOD.measurements</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.n"><code class="docutils literal notranslate"><span class="pre">FilterOD.n</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.postfit_residuals"><code class="docutils literal notranslate"><span class="pre">FilterOD.postfit_residuals</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.prefit_residuals"><code class="docutils literal notranslate"><span class="pre">FilterOD.prefit_residuals</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.propagator"><code class="docutils literal notranslate"><span class="pre">FilterOD.propagator</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.settings"><code class="docutils literal notranslate"><span class="pre">FilterOD.settings</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.state_deviation_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.state_deviation_history</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.trajectory"><code class="docutils literal notranslate"><span class="pre">FilterOD.trajectory</span></code></a></li>
 </ul>
 </li>
