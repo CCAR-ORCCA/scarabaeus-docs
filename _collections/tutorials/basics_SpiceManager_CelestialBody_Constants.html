@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -16,7 +15,7 @@
 <meta property="og:image:alt" content="Scarabaeus" />
 <meta name="description" content="Last revised 2026 MAY Introduction: This tutorial will explore the core infrastructure within Scarabaeus (SCB) for SPICE kernel interaction and planetary body representations. In addition, it will show how to interface with its constants library, which contains physical parameters and planetary constants. Imports and Setup: First we’ll import the necessary libraries, define units, and load in supplementary data, which for this tutorial is the general metakernel which contains kernels for plan..." />
 
-    <title># SpiceManager, Celestial Bodies, and SCB Constants &#8212; Scarabaeus  documentation</title>
+    <title># SpiceManager, Celestial Bodies, and SCB Constants &#8212; Scarabaeus 2.0.0 documentation</title>
   
   
   
@@ -35,24 +34,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +62,7 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_SpiceManager_CelestialBody_Constants';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -70,22 +70,29 @@
     <link rel="next" title="# Propagation and Trajectory" href="intermediate_Propagator_and_Trajectory.html" />
     <link rel="prev" title="Scarabaeus Time System (EpochArray)" href="basics_EpochArray.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
-
+  <body data-default-mode="dark">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -111,9 +118,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -194,6 +201,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -205,7 +219,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -215,11 +229,33 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -228,7 +264,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -237,7 +273,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -308,6 +344,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -320,18 +363,48 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
         
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
         <div class="sidebar-primary-item">
+
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
@@ -350,7 +423,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
 
 
 
@@ -366,7 +439,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="basics_EpochArray.html">Scarabaeus Time System (EpochArray)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
 
 
 
@@ -534,7 +607,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -554,7 +632,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -578,6 +661,9 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -651,11 +737,11 @@
 <span class="c1"># load tutorial data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<span class="c1">## define the units and frames we&#39;ll be using across the tutorial</span>
-<span class="n">km</span><span class="p">,</span> <span class="n">AU</span><span class="p">,</span> <span class="n">kg</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;AU&#39;</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">])</span>
+<span class="c1">## define the units and frames we'll be using across the tutorial</span>
+<span class="n">km</span><span class="p">,</span> <span class="n">AU</span><span class="p">,</span> <span class="n">kg</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">'km'</span><span class="p">,</span> <span class="s1">'AU'</span><span class="p">,</span> <span class="s1">'kg'</span><span class="p">,</span> <span class="s1">'sec'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">])</span>
 
-<span class="n">J2000</span><span class="p">,</span> <span class="n">ECLIPJ2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;ECLIPJ2000&#39;</span><span class="p">)</span>
-<span class="n">IAU_EARTH</span><span class="p">,</span> <span class="n">IAU_JUPITER</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;IAU_EARTH&#39;</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;IAU_JUPITER&#39;</span><span class="p">)</span>
+<span class="n">J2000</span><span class="p">,</span> <span class="n">ECLIPJ2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">'J2000'</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">'ECLIPJ2000'</span><span class="p">)</span>
+<span class="n">IAU_EARTH</span><span class="p">,</span> <span class="n">IAU_JUPITER</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">'IAU_EARTH'</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">'IAU_JUPITER'</span><span class="p">)</span>
 
 <span class="c1"># load kernels</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>    <span class="c1"># make sure kernel pool is empty</span>
@@ -683,10 +769,10 @@ SCB supplementary data up to date.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">et</span> <span class="o">=</span> <span class="mf">140254384.184625</span>   <span class="c1"># seconds past J2000</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ECLIPJ2000 to J2000 :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ECLIPJ2000 to J2000 :"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_xfrm</span><span class="p">(</span><span class="n">ECLIPJ2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">et</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ECLIPJ2000 to IAU_EARTH :&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ECLIPJ2000 to IAU_EARTH :"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_xfrm</span><span class="p">(</span><span class="n">ECLIPJ2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">IAU_EARTH</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">et</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -724,10 +810,10 @@ ECLIPJ2000 to IAU_EARTH :
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Earth w.r.t. the Sun at the reference epoch</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position only:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_pos</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Velocity only:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_vel</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Full state vector:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Light time:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_lighttime</span><span class="p">(</span><span class="s1">&#39;Earth&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sun&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Position only:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_pos</span><span class="p">(</span><span class="s1">'Earth'</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">'Sun'</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Velocity only:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_vel</span><span class="p">(</span><span class="s1">'Earth'</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">'Sun'</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Full state vector:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">'Earth'</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">'Sun'</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Light time:</span><span class="se">\n</span><span class="si">{</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_lighttime</span><span class="p">(</span><span class="s1">'Earth'</span><span class="p">,</span><span class="w"> </span><span class="n">et</span><span class="p">,</span><span class="w"> </span><span class="n">J2000</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">'Sun'</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -764,7 +850,7 @@ Light time:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create from constants and display</span>
-<span class="n">jupiter_from_constants</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">&#39;JUPITER&#39;</span><span class="p">)</span>
+<span class="n">jupiter_from_constants</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">'JUPITER'</span><span class="p">)</span>
 <span class="n">jupiter_from_constants</span><span class="o">.</span><span class="n">disp_properties</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -776,7 +862,7 @@ Light time:
 <div class="highlight"><pre>
                            Jupiter
 ==============================================================
-mass                     : &lt;bound method Body.mass of Jupiter&gt;
+mass                     : 1.898124671078627e+27 kg
 mean_radius              : 69911.0 km
 gravitational parameter  : 126686534.92180079 mu
 reference frame          : IAU_JUPITER
@@ -796,7 +882,7 @@ attached ground stations : []
 <span class="n">jov_pc</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">JUPITER</span>
 
 <span class="c1"># create a half sized Jupiter</span>
-<span class="n">half_jupiter</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="p">(</span><span class="n">name</span>        <span class="o">=</span> <span class="s1">&#39;HALF_JUPITER&#39;</span><span class="p">,</span>
+<span class="n">half_jupiter</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="p">(</span><span class="n">name</span>        <span class="o">=</span> <span class="s1">'HALF_JUPITER'</span><span class="p">,</span>
                                  <span class="n">mass</span>        <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
                                  <span class="n">mean_radius</span> <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">mean_radius</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
                                  <span class="n">grav_param</span>  <span class="o">=</span> <span class="n">jov_pc</span><span class="o">.</span><span class="n">GM</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
@@ -813,7 +899,7 @@ attached ground stations : []
 <div class="highlight"><pre>
                             HALF_JUPITER
 ===================================================================
-mass                     : &lt;bound method Body.mass of HALF_JUPITER&gt;
+mass                     : 9.490623355393134e+26 kg
 mean_radius              : 34955.5 km
 gravitational parameter  : 63343267.460900396 mu
 reference frame          : IAU_JUPITER
@@ -828,9 +914,9 @@ attached ground stations : []
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">phobos</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">PHOBOS</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All PCInfo fields for Phobos:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'All PCInfo fields for Phobos:'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">(</span><span class="n">phobos</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; - </span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="n">phobos</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">' - </span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="n">phobos</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -862,25 +948,25 @@ All PCInfo fields for Phobos:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2 year time interval with weekly sample rate</span>
-<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;2001 JAN 01 12:00:00.000&#39;</span><span class="p">,</span>
-                                 <span class="n">end</span>   <span class="o">=</span> <span class="s1">&#39;2003 JAN 01 12:00:00.000&#39;</span><span class="p">,</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">'2001 JAN 01 12:00:00.000'</span><span class="p">,</span>
+                                 <span class="n">end</span>   <span class="o">=</span> <span class="s1">'2003 JAN 01 12:00:00.000'</span><span class="p">,</span>
                                  <span class="n">dt</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">day</span><span class="p">),</span>
-                                 <span class="n">sys</span>   <span class="o">=</span> <span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+                                 <span class="n">sys</span>   <span class="o">=</span> <span class="s1">'TDB'</span><span class="p">)</span>
 
 <span class="c1"># query heliocentric state for each planet</span>
-<span class="n">planets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MERCURY&#39;</span><span class="p">,</span> <span class="s1">&#39;VENUS&#39;</span><span class="p">,</span> <span class="s1">&#39;EARTH&#39;</span><span class="p">,</span> <span class="s1">&#39;MARS&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;JUPITER&#39;</span><span class="p">,</span> <span class="s1">&#39;SATURN&#39;</span><span class="p">,</span> <span class="s1">&#39;URANUS&#39;</span><span class="p">,</span> <span class="s1">&#39;NEPTUNE&#39;</span><span class="p">]</span>
+<span class="n">planets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'MERCURY'</span><span class="p">,</span> <span class="s1">'VENUS'</span><span class="p">,</span> <span class="s1">'EARTH'</span><span class="p">,</span> <span class="s1">'MARS'</span><span class="p">,</span>
+           <span class="s1">'JUPITER'</span><span class="p">,</span> <span class="s1">'SATURN'</span><span class="p">,</span> <span class="s1">'URANUS'</span><span class="p">,</span> <span class="s1">'NEPTUNE'</span><span class="p">]</span>
 <span class="n">planet_traj</span>  <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">planet</span> <span class="ow">in</span> <span class="n">planets</span><span class="p">:</span>
     <span class="n">cb</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="n">planet</span><span class="p">)</span>
     <span class="n">states</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Querying </span><span class="si">{</span><span class="n">planet</span><span class="si">}</span><span class="s1">...&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Querying </span><span class="si">{</span><span class="n">planet</span><span class="si">}</span><span class="s1">...'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">epochs</span><span class="p">:</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">epoch_0</span> <span class="o">=</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">reference_frame</span> <span class="o">=</span> <span class="s1">&#39;J2000&#39;</span><span class="p">,</span>
-                             <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;SUN&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">quantity</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">cb</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">epoch_0</span> <span class="o">=</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">reference_frame</span> <span class="o">=</span> <span class="s1">'J2000'</span><span class="p">,</span>
+                             <span class="n">origin</span> <span class="o">=</span> <span class="s1">'SUN'</span><span class="p">)</span><span class="o">.</span><span class="n">quantity</span>
         <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">AU</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
     <span class="n">planet_traj</span><span class="p">[</span><span class="n">planet</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieved all states across </span><span class="si">{</span><span class="n">epochs</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="si">}</span><span class="s1"> interval&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Retrieved all states across </span><span class="si">{</span><span class="n">epochs</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="si">}</span><span class="s1"> interval'</span><span class="p">)</span>
 
 <span class="n">supp</span><span class="o">.</span><span class="n">supp_plotting</span><span class="o">.</span><span class="n">plot_planets</span><span class="p">(</span><span class="n">planets</span><span class="p">,</span> <span class="n">planet_traj</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
 </pre></div>
@@ -964,17 +1050,17 @@ Retrieved all states across 728.0 day interval
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Introduction">Introduction</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Setup">Imports and Setup</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#SpiceManager">SpiceManager</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#SpiceManager">SpiceManager</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-Frame-Transformations">Reference Frame Transformations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Body-State-Queries">Body State Queries</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#CelestialBody">CelestialBody</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#CelestialBody">CelestialBody</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#From-Constants">From Constants</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Direct-Construction">Direct Construction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Querying-Ephemerides">Querying Ephemerides</a></li>
@@ -997,8 +1083,8 @@ Retrieved all states across 728.0 day interval
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1018,8 +1104,7 @@ Retrieved all states across 728.0 day interval
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -1032,7 +1117,7 @@ Retrieved all states across 728.0 day interval
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

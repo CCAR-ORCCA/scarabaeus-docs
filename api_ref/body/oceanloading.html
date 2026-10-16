@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="OceanLoading" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/api_ref/body/oceanloading.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+
+    <title>OceanLoading &#8212; Scarabaeus 2.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/body/oceanloading';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PoleTide" href="poletide.html" />
+    <link rel="prev" title="GroundStation" href="groundstation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="dark">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Body</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="poletide.html"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidtide.html"><code class="docutils literal notranslate"><span class="pre">SolidTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidtideinfo.html"><code class="docutils literal notranslate"><span class="pre">SolidTideInfo</span></code></a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="poletide.html"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidtide.html"><code class="docutils literal notranslate"><span class="pre">SolidTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="solidtideinfo.html"><code class="docutils literal notranslate"><span class="pre">SolidTideInfo</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/antennaradiationpressure.html"><code class="docutils literal notranslate"><span class="pre">AntennaRadiationPressure</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customdynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customparameter.html"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicalutils.html"><code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/fourieracceleration.html"><code class="docutils literal notranslate"><span class="pre">FourierAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisepolynomialacceleration.html"><code class="docutils literal notranslate"><span class="pre">PiecewisePolynomialAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/polyhedralgravity.html"><code class="docutils literal notranslate"><span class="pre">PolyhedralGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/smoothedimpulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">SmoothedImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/thermalradiation.html"><code class="docutils literal notranslate"><span class="pre">ThermalRadiation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/antennaradiationpressure.html"><code class="docutils literal notranslate"><span class="pre">AntennaRadiationPressure</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customdynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customparameter.html"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicalutils.html"><code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/fourieracceleration.html"><code class="docutils literal notranslate"><span class="pre">FourierAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisepolynomialacceleration.html"><code class="docutils literal notranslate"><span class="pre">PiecewisePolynomialAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/polyhedralgravity.html"><code class="docutils literal notranslate"><span class="pre">PolyhedralGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/smoothedimpulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">SmoothedImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/thermalradiation.html"><code class="docutils literal notranslate"><span class="pre">ThermalRadiation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment/missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/trajectory.html"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment/missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/trajectory.html"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Burn</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/custommeasurement.html"><code class="docutils literal notranslate"><span class="pre">CustomMeasurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementconfig.html"><code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementscheduler.html"><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/obsdata.html"><code class="docutils literal notranslate"><span class="pre">ObsData</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/opnavmanager.html"><code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/custommeasurement.html"><code class="docutils literal notranslate"><span class="pre">CustomMeasurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementconfig.html"><code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementscheduler.html"><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/obsdata.html"><code class="docutils literal notranslate"><span class="pre">ObsData</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/opnavmanager.html"><code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Orbit Determination</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/customfilter.html"><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/mcmc.html"><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/customfilter.html"><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/mcmc.html"><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spacecraft</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time &amp; Frame</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/bodyorientation.html"><code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/bodyorientation.html"><code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Units</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncertainty Quantification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/montecarlosamples.html"><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/montecarlosamples.html"><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/customcallable.html"><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/serialization.html"><code class="docutils literal notranslate"><span class="pre">Serialization</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/shapeharmonics.html"><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/solutioncloseness.html"><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/customcallable.html"><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/serialization.html"><code class="docutils literal notranslate"><span class="pre">Serialization</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/shapeharmonics.html"><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/solutioncloseness.html"><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rust/ephemeriscache.html"><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/integrationevent.html"><code class="docutils literal notranslate"><span class="pre">IntegrationEvent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/nplatesrpcore.html"><code class="docutils literal notranslate"><span class="pre">NPlateSRPCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedrongravitycore.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronGravityCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedronharmonics.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/sphericalharmonicscore.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsCore</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rust/ephemeriscache.html"><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/integrationevent.html"><code class="docutils literal notranslate"><span class="pre">IntegrationEvent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/nplatesrpcore.html"><code class="docutils literal notranslate"><span class="pre">NPlateSRPCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedrongravitycore.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronGravityCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedronharmonics.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/sphericalharmonicscore.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsCore</span></code></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_ref_frontpage.html" class="nav-link"><span class="gold">Scarabaeus API</span></a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="body_index.html" class="nav-link">&lt;no title&gt;</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="oceanloading">
+<h1><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code><a class="headerlink" href="#oceanloading" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">OceanLoading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amplitudes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">phases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.OceanLoading" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Ocean-loading displacement of a station, from BLQ coefficients.</p>
+<p>Ocean loading is the crust’s response to the weight of the ocean tide.
+The tide moves a large mass of water over the crust twice a day, and the
+crust sags under it. A coastal station moves by up to a few centimetres,
+and an inland one by a few millimetres. The response depends on the
+station and the ocean model, so it is given per station as the amplitudes
+and phases of a BLQ table, such as those from the Onsala loading service
+(<a class="reference external" href="http://holt.oso.chalmers.se/loading/">http://holt.oso.chalmers.se/loading/</a>).</p>
+<p>For each constituent <span class="math notranslate nohighlight">\(i\)</span> with astronomical argument
+<span class="math notranslate nohighlight">\(\theta_i + \chi_i\)</span> (see <code class="xref py py-class docutils literal notranslate"><span class="pre">OceanLoadingInfo</span></code>)
+and nodal corrections <span class="math notranslate nohighlight">\(f_i, u_i\)</span>, the displacement in m is (Moyer,
+with the nodal corrections of IERS Conventions (2010), eq. 7.16):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Delta z &amp;= \sum_i f_i A^r_i \cos(\theta_i + \chi_i + u_i - \phi^r_i) \\
+\Delta n &amp;= -\sum_i f_i A^S_i \cos(\theta_i + \chi_i + u_i - \phi^S_i) \\
+\Delta e &amp;= -\sum_i f_i A^W_i \cos(\theta_i + \chi_i + u_i - \phi^W_i)\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> are the BLQ amplitudes and Greenwich phase
+lags of the radial, south and west components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>amplitudes</strong><span class="classifier">array_like, shape (3, 11)</span></dt><dd><p>Amplitudes, m. The rows are radial, west and south, and the columns
+are the constituents of <code class="xref py py-attr docutils literal notranslate"><span class="pre">Constants.EARTH_OCEAN_LOADING</span></code>, in the
+order of a BLQ table.</p>
+</dd>
+<dt><strong>phases</strong><span class="classifier">array_like, shape (3, 11)</span></dt><dd><p>Greenwich phase lags, degrees, in the same layout.</p>
+</dd>
+<dt><strong>rate_step</strong><span class="classifier">float, optional</span></dt><dd><p>Half-interval in seconds for the central difference that supplies the
+body-fixed rate, default 60.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.OceanLoading.arguments" title="scarabaeus.OceanLoading.arguments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arguments</span></code></a>(epoch[, frame])</p></td>
+<td><p>Astronomical arguments <span class="math notranslate nohighlight">\(\theta_i + \chi_i\)</span> of the constituents, degrees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.OceanLoading.displacement" title="scarabaeus.OceanLoading.displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">displacement</span></code></a>(position_body_fixed, epoch[, frame])</p></td>
+<td><p>Ocean-loading displacement of the station.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.OceanLoading.earth_rotation_angle" title="scarabaeus.OceanLoading.earth_rotation_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">earth_rotation_angle</span></code></a>(epoch, frame)</p></td>
+<td><p>Earth rotation angle of an Earth-fixed frame, radians.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.OceanLoading.from_blq" title="scarabaeus.OceanLoading.from_blq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_blq</span></code></a>(path, station[, rate_step])</p></td>
+<td><p>Read one station's coefficients from a BLQ file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.OceanLoading.nodal_corrections" title="scarabaeus.OceanLoading.nodal_corrections"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nodal_corrections</span></code></a>(epoch)</p></td>
+<td><p>Nodal factors <span class="math notranslate nohighlight">\(f_i\)</span> and angles <span class="math notranslate nohighlight">\(u_i\)</span> of the constituents.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.OceanLoading.state_displacement" title="scarabaeus.OceanLoading.state_displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">state_displacement</span></code></a>(position_body_fixed, epoch)</p></td>
+<td><p>Ocean-loading displacement and its body-fixed rate.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Notes</p>
+<p>The nodal corrections <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(u\)</span> follow the 18.6-year
+regression of the lunar node (<a class="reference internal" href="#scarabaeus.OceanLoading.nodal_corrections" title="scarabaeus.OceanLoading.nodal_corrections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nodal_corrections()</span></code></a>). Moyer leaves
+them out; they scale the lunar terms by up to 4% for M2 and 40% for Mf.</p>
+<p>The Doodson variable <span class="math notranslate nohighlight">\(\tau\)</span> needs UT1. When the station’s
+Earth-fixed frame is given it is read from that frame’s rotation, so the
+phase follows the same Earth rotation that places the station (see
+<a class="reference internal" href="#scarabaeus.OceanLoading.arguments" title="scarabaeus.OceanLoading.arguments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">arguments()</span></code></a>); without a frame UTC stands in for UT1, which moves
+the phase by at most a few millidegrees.</p>
+<p class="rubric">References</p>
+<p>Moyer, T. D., <em>Formulation for Observed and Computed Values of Deep Space
+Network Data Types for Navigation</em>, JPL Publication 00-7, 2000.</p>
+<p>IERS Conventions (2010), IERS Technical Note 36, Section 7.1.2,
+eq. 7.16.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.from_blq">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_blq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">station</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#scarabaeus.OceanLoading" title="scarabaeus.body.OceanLoading.OceanLoading"><span class="pre">OceanLoading</span></a></span></span><a class="headerlink" href="#scarabaeus.OceanLoading.from_blq" title="Link to this definition">#</a></dt>
+<dd><p>Read one station’s coefficients from a BLQ file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>path</strong><span class="classifier">str or path-like</span></dt><dd><p>BLQ file. Lines starting with <code class="docutils literal notranslate"><span class="pre">$$</span></code> are comments. Each station
+is a name line followed by six rows of numbers: the radial, west
+and south amplitudes in m, then their phases in degrees.</p>
+</dd>
+<dt><strong>station</strong><span class="classifier">str</span></dt><dd><p>Station name as written in the file. Case and repeated spaces are
+ignored.</p>
+</dd>
+<dt><strong>rate_step</strong><span class="classifier">float, optional</span></dt><dd><p>Half-interval in seconds for the central difference that supplies
+the body-fixed rate, default 60.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>OceanLoading</dt><dd><p>Model holding that station’s amplitudes and phases.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>StationNotFoundError</dt><dd><p>If the station is not in the file, or its name is not followed by
+six rows of numbers.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.arguments">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.OceanLoading.arguments" title="Link to this definition">#</a></dt>
+<dd><p>Astronomical arguments <span class="math notranslate nohighlight">\(\theta_i + \chi_i\)</span> of the
+constituents, degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epoch</strong><span class="classifier">float</span></dt><dd><p>TDB seconds past J2000.</p>
+</dd>
+<dt><strong>frame</strong><span class="classifier">str, optional</span></dt><dd><p>Earth-fixed frame whose rotation supplies UT1 for <span class="math notranslate nohighlight">\(\tau\)</span>,
+through <a class="reference internal" href="#scarabaeus.OceanLoading.earth_rotation_angle" title="scarabaeus.OceanLoading.earth_rotation_angle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">earth_rotation_angle()</span></code></a> and GMST from IERS 2010
+eq. 5.32. When None, the default, UTC stands in for UT1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>One argument per constituent of <code class="xref py py-attr docutils literal notranslate"><span class="pre">Constants.EARTH_OCEAN_LOADING</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>IERS Conventions (2010), IERS Technical Note 36, Section 5.5.7,
+eq. 5.32.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.earth_rotation_angle">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">earth_rotation_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#scarabaeus.OceanLoading.earth_rotation_angle" title="Link to this definition">#</a></dt>
+<dd><p>Earth rotation angle of an Earth-fixed frame, radians.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epoch</strong><span class="classifier">float</span></dt><dd><p>TDB seconds past J2000.</p>
+</dd>
+<dt><strong>frame</strong><span class="classifier">str</span></dt><dd><p>Earth-fixed frame, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;ITRF93&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Angle from the celestial to the terrestrial intermediate origin,
+in <span class="math notranslate nohighlight">\((-\pi, \pi]\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>With <span class="math notranslate nohighlight">\(M\)</span> the J2000-to-<code class="docutils literal notranslate"><span class="pre">frame</span></code> rotation, the third row of
+<span class="math notranslate nohighlight">\(M\)</span> is the pole <span class="math notranslate nohighlight">\((X, Y, Z)\)</span> in J2000. The CIO-based
+matrix <span class="math notranslate nohighlight">\(Q = R_3(-E) R_2(-d) R_3(E) R_3(s)\)</span> (IERS 2010 eq. 5.6)
+with <span class="math notranslate nohighlight">\(E = \mathrm{atan2}(Y, X)\)</span>, <span class="math notranslate nohighlight">\(d = \arccos Z\)</span>
+(eq. 5.7) and <span class="math notranslate nohighlight">\(s \approx -XY/2\)</span>, the leading term of eq. 5.9,
+leaves <span class="math notranslate nohighlight">\(M Q = R_3(\theta)\)</span> up to the polar motion, whose effect
+on <span class="math notranslate nohighlight">\(\theta\)</span> is second order. Through the IERS definition
+<span class="math notranslate nohighlight">\(\theta = 2\pi(0.7790572732640 + 1.00273781191135448\,D_U)\)</span>
+(eq. 5.14), with <span class="math notranslate nohighlight">\(D_U\)</span> the UT1 Julian date minus 2451545.0,
+this angle is UT1: for ITRF93 it recovers the tabulated UT1 - UTC
+to tens of microseconds.</p>
+<p class="rubric">References</p>
+<p>IERS Conventions (2010), IERS Technical Note 36, Section 5.4.4,
+eqs. 5.6, 5.7 and 5.9, and Section 5.5.3, eq. 5.14.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.nodal_corrections">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">nodal_corrections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a></span></span><a class="headerlink" href="#scarabaeus.OceanLoading.nodal_corrections" title="Link to this definition">#</a></dt>
+<dd><p>Nodal factors <span class="math notranslate nohighlight">\(f_i\)</span> and angles <span class="math notranslate nohighlight">\(u_i\)</span> of the constituents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epoch</strong><span class="classifier">float</span></dt><dd><p>TDB seconds past J2000.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>tuple of numpy.ndarray</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(f,</span> <span class="pre">u)</span></code>: the amplitude factors, and the phase corrections in
+degrees, one per constituent of
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">Constants.EARTH_OCEAN_LOADING</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><span class="math notranslate nohighlight">\(f = \sum_k a_k \cos kN\)</span> and <span class="math notranslate nohighlight">\(u = \sum_k b_k \sin kN\)</span>,
+with <span class="math notranslate nohighlight">\(N\)</span> the longitude of the Moon’s ascending node, the
+Delaunay <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p class="rubric">References</p>
+<p>Pugh, D. T., <em>Tides, Surges and Mean Sea-Level</em>, Wiley, 1987,
+Table 4.3, after Schureman, P., <em>Manual of Harmonic Analysis and
+Prediction of Tides</em>, US Coast and Geodetic Survey Special
+Publication 98, 1958.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.displacement">
+<span class="sig-name descname"><span class="pre">displacement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_body_fixed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.OceanLoading.displacement" title="Link to this definition">#</a></dt>
+<dd><p>Ocean-loading displacement of the station.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>position_body_fixed</strong><span class="classifier">ArrayWUnits, ArrayWFrame or array_like, shape (3,)</span></dt><dd><p>Undisplaced position, Earth-fixed. It only sets the local
+vertical, east and north directions. Bare numbers are km.</p>
+</dd>
+<dt><strong>epoch</strong><span class="classifier">float or EpochArray</span></dt><dd><p>TDB seconds past J2000.</p>
+</dd>
+<dt><strong>frame</strong><span class="classifier">str or Frame, optional</span></dt><dd><p>Earth-fixed frame of the position. Its rotation supplies UT1 for
+the arguments (<a class="reference internal" href="#scarabaeus.OceanLoading.arguments" title="scarabaeus.OceanLoading.arguments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">arguments()</span></code></a>); the displacement is returned in
+the axes of the position. When None, the default, UTC stands in
+for UT1.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ArrayWUnits</dt><dd><p>Displacement in km, shape (3,).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>UndefinedVerticalError</dt><dd><p>If the position is at the body centre or on the rotation axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.state_displacement">
+<span class="sig-name descname"><span class="pre">state_displacement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_body_fixed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span></span><a class="headerlink" href="#scarabaeus.OceanLoading.state_displacement" title="Link to this definition">#</a></dt>
+<dd><p>Ocean-loading displacement and its body-fixed rate.</p>
+<p>The rate is a central difference over <a class="reference internal" href="#scarabaeus.OceanLoading.rate_step" title="scarabaeus.OceanLoading.rate_step"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rate_step</span></code></a>. This is the
+method a <a class="reference internal" href="groundstation.html#scarabaeus.GroundStation" title="scarabaeus.GroundStation"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroundStation</span></code></a> calls through its
+<a class="reference internal" href="groundstation.html#scarabaeus.GroundStation.surface_displacement" title="scarabaeus.GroundStation.surface_displacement"><code class="xref py py-attr docutils literal notranslate"><span class="pre">surface_displacement</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>position_body_fixed</strong><span class="classifier">ArrayWUnits, ArrayWFrame or array_like, shape (3,)</span></dt><dd><p>Undisplaced position, Earth-fixed. It only sets the local
+vertical, east and north directions. Bare numbers are km.</p>
+</dd>
+<dt><strong>epoch</strong><span class="classifier">float or EpochArray</span></dt><dd><p>TDB seconds past J2000.</p>
+</dd>
+<dt><strong>frame</strong><span class="classifier">str or Frame, optional</span></dt><dd><p>Earth-fixed frame of the position, passed to
+<a class="reference internal" href="#scarabaeus.OceanLoading.displacement" title="scarabaeus.OceanLoading.displacement"><code class="xref py py-meth docutils literal notranslate"><span class="pre">displacement()</span></code></a>. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ArrayWUnits</dt><dd><p>Displacement and rate, km and km/s, shape (6,).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>UndefinedVerticalError</dt><dd><p>If the position is at the body centre or on the rotation axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.STATE_UNITS">
+<span class="sig-name descname"><span class="pre">STATE_UNITS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(km,</span> <span class="pre">km,</span> <span class="pre">km,</span> <span class="pre">km/sec,</span> <span class="pre">km/sec,</span> <span class="pre">km/sec)</span></span><a class="headerlink" href="#scarabaeus.OceanLoading.STATE_UNITS" title="Link to this definition">#</a></dt>
+<dd><p>Row units of <a class="reference internal" href="#scarabaeus.OceanLoading.state_displacement" title="scarabaeus.OceanLoading.state_displacement"><code class="xref py py-meth docutils literal notranslate"><span class="pre">state_displacement()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.amplitudes">
+<span class="sig-name descname"><span class="pre">amplitudes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a></span><a class="headerlink" href="#scarabaeus.OceanLoading.amplitudes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.phases">
+<span class="sig-name descname"><span class="pre">phases</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a></span><a class="headerlink" href="#scarabaeus.OceanLoading.phases" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.rate_step">
+<span class="sig-name descname"><span class="pre">rate_step</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60.0</span></span><a class="headerlink" href="#scarabaeus.OceanLoading.rate_step" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.CoefficientShapeError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CoefficientShapeError</span></span><a class="headerlink" href="#scarabaeus.OceanLoading.CoefficientShapeError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised by the constructor when the amplitudes or phases are not
+3 x (number of constituents) finite values.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.StationNotFoundError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">StationNotFoundError</span></span><a class="headerlink" href="#scarabaeus.OceanLoading.StationNotFoundError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#KeyError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">KeyError</span></code></a></p>
+<p>Raised by <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_blq()</span></code> when the station is not in the file,
+or its block has fewer than six rows of coefficients.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.OceanLoading.UndefinedVerticalError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">UndefinedVerticalError</span></span><a class="headerlink" href="#scarabaeus.OceanLoading.UndefinedVerticalError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when the position is at the body centre or on the rotation
+axis. The east direction is undefined there.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="groundstation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="poletide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.from_blq"><code class="docutils literal notranslate"><span class="pre">OceanLoading.from_blq()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.arguments"><code class="docutils literal notranslate"><span class="pre">OceanLoading.arguments()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.earth_rotation_angle"><code class="docutils literal notranslate"><span class="pre">OceanLoading.earth_rotation_angle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.nodal_corrections"><code class="docutils literal notranslate"><span class="pre">OceanLoading.nodal_corrections()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.displacement"><code class="docutils literal notranslate"><span class="pre">OceanLoading.displacement()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.state_displacement"><code class="docutils literal notranslate"><span class="pre">OceanLoading.state_displacement()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.STATE_UNITS"><code class="docutils literal notranslate"><span class="pre">OceanLoading.STATE_UNITS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.amplitudes"><code class="docutils literal notranslate"><span class="pre">OceanLoading.amplitudes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.phases"><code class="docutils literal notranslate"><span class="pre">OceanLoading.phases</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.rate_step"><code class="docutils literal notranslate"><span class="pre">OceanLoading.rate_step</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.CoefficientShapeError"><code class="docutils literal notranslate"><span class="pre">OceanLoading.CoefficientShapeError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.StationNotFoundError"><code class="docutils literal notranslate"><span class="pre">OceanLoading.StationNotFoundError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.OceanLoading.UndefinedVerticalError"><code class="docutils literal notranslate"><span class="pre">OceanLoading.UndefinedVerticalError</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

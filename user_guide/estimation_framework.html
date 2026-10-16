@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="The Scarabaeus estimation framework: filters, iteration and convergence, process noise, consider parameters, editing and multi-arc OD." lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus, orbit determination, Kalman filter, SRIF, batch least squares, process noise, multi-arc" name="keywords" />
+<meta property="og:title" content="Estimation Framework" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/estimation_framework.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised by G. Fereoli on 2026 OCT 11 Every Scarabaeus filter solves the same linearised problem. The reference trajectory X^*(t) is propagated with its STM, and the filter estimates the deviation x = X - X^* from the residuals y = O - C: y_k = \tilde{H}_k\,\Phi(t_k, t_0)\,x_0 + \epsilon_k , \qquad J = \sum_k \epsilon_k^T R_k^{-1} \epsilon_k + (x_0 - \bar{x}_0)^T \bar{P}_0^{-1} (x_0 - \bar{x}_0) . fit adds the estimated deviation to the reference, propagates the new reference, and repeats..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+
+    <title>Estimation Framework &#8212; Scarabaeus 2.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=73c15959" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/estimation_framework';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Solution Mapping and Analysis" href="solution_mapping_and_analysis.html" />
+    <link rel="prev" title="Measurement Framework" href="measurements.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="dark">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="what_is_scb.html"><span class="gold">What is Scarabaeus?</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html"><span class="gold">Installation</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/quickstart.html"><span class="gold">Scarabaeus Quickstart</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals and Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamics.html"><span class="gold">Dynamics</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurements.html"><span class="gold">Measurement Framework</span></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><span class="gold">Estimation Framework</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="solution_mapping_and_analysis.html"><span class="gold">Solution Mapping and Analysis</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="orientation_and_station_estimation.html"><span class="gold">Stations and Body Orientation</span></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="user_guide_frontpage.html" class="nav-link"><span class="gold">Scarabaeus User Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Estimation Framework</span></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <span class="target" id="estimation-framework"></span><style> .gold {color:rgb(207 184 124)} </style><section id="id1">
+<h1><span class="gold">Estimation Framework</span><a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Last revised by G. Fereoli on 2026 OCT 11</p>
+<p>Every Scarabaeus filter solves the same linearised problem. The reference trajectory
+<span class="math notranslate nohighlight">\(X^*(t)\)</span> is propagated with its STM, and the filter estimates the deviation
+<span class="math notranslate nohighlight">\(x = X - X^*\)</span> from the residuals <span class="math notranslate nohighlight">\(y = O - C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[y_k = \tilde{H}_k\,\Phi(t_k, t_0)\,x_0 + \epsilon_k ,
+\qquad
+J = \sum_k \epsilon_k^T R_k^{-1} \epsilon_k
+    + (x_0 - \bar{x}_0)^T \bar{P}_0^{-1} (x_0 - \bar{x}_0) .\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">fit</span></code> adds the estimated deviation to the reference, propagates the new reference,
+and repeats until the deviation or the cost stops changing. The
+<a class="reference internal" href="dynamics.html#dynamics-concepts"><span class="std std-ref">Dynamics</span></a> page covers the reference and its STM, and the
+<a class="reference internal" href="measurements.html#measurements-framework"><span class="std std-ref">Measurement Framework</span></a> page covers <span class="math notranslate nohighlight">\(O - C\)</span> and
+<span class="math notranslate nohighlight">\(\tilde{H}\)</span>.</p>
+<section id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Link to this heading">#</a></h2>
+<p>All filters derive from <a class="reference internal" href="../api_ref/orbit_det/filterod.html#scarabaeus.FilterOD" title="scarabaeus.FilterOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterOD</span></code></a> and share the same constructor,
+<code class="docutils literal notranslate"><span class="pre">fit</span></code> method and <a class="reference internal" href="../api_ref/orbit_det/solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolutionOD</span></code></a> output.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 14.0%" />
+<col style="width: 30.0%" />
+<col style="width: 56.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Filter</p></th>
+<th class="head"><p>Form</p></th>
+<th class="head"><p>Use it for</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api_ref/orbit_det/lkf.html#scarabaeus.LKF" title="scarabaeus.LKF"><code class="xref py py-class docutils literal notranslate"><span class="pre">LKF</span></code></a></p></td>
+<td><p>Sequential, covariance</p></td>
+<td><p>Process noise; RTS smoothing. A consider analysis uses the Schmidt gain
+with a Joseph update.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api_ref/orbit_det/srif.html#scarabaeus.SRIF" title="scarabaeus.SRIF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SRIF</span></code></a></p></td>
+<td><p>Sequential, square-root information</p></td>
+<td><p>Same capabilities as the LKF, with better numerical conditioning. Prefer it
+for long arcs or poorly conditioned problems.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api_ref/orbit_det/lsb.html#scarabaeus.LSB" title="scarabaeus.LSB"><code class="xref py py-class docutils literal notranslate"><span class="pre">LSB</span></code></a></p></td>
+<td><p>Batch, normal equations</p></td>
+<td><p>Short arcs with deterministic dynamics. No process noise and no smoother.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api_ref/orbit_det/srifb.html#scarabaeus.SRIFB" title="scarabaeus.SRIFB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SRIFB</span></code></a></p></td>
+<td><p>Batch, square-root information</p></td>
+<td><p>The batch problem solved through QR factorisation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api_ref/orbit_det/customfilter.html#scarabaeus.CustomFilter" title="scarabaeus.CustomFilter"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></p></td>
+<td><p>User-supplied</p></td>
+<td><p>Your own estimator (UKF, particle, mixture, …) running on the Scarabaeus
+reference, residuals, partials and STMs.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="setting-up-a-run">
+<h2>Setting up a run<a class="headerlink" href="#setting-up-a-run" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CovarianceMatrix</span><span class="p">([</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">km</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span>
+                          <span class="o">+</span> <span class="p">[</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">3e-3</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
+                          <span class="n">t0</span><span class="p">,</span> <span class="n">from_list</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                 <span class="c1"># sigmas</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CovarianceMatrix</span><span class="p">([</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">km</span> <span class="o">/</span> <span class="n">sec</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span>
+                         <span class="n">t0</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">"RTN"</span><span class="p">,</span> <span class="n">from_list</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">FilterSettings</span><span class="p">(</span>
+    <span class="n">initial_covariance</span><span class="o">=</span><span class="n">P0</span><span class="p">,</span>
+    <span class="n">process_noise</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">ProcessNoiseSettings</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">"SNC"</span><span class="p">,</span> <span class="n">Q_cont</span><span class="o">=</span><span class="n">Q</span><span class="p">),</span>
+    <span class="n">output</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">OutputSettings</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"filter"</span><span class="p">:</span> <span class="s2">"SRIF-SNC"</span><span class="p">}),</span>
+<span class="p">)</span>
+<span class="n">meas</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="o">.</span><span class="n">many</span><span class="p">(</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">range_gs1</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_range</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="s2">"GS1 Range"</span><span class="p">),</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">doppler_gs1</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_dop</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="s2">"GS1 Doppler"</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">srif</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SRIF</span><span class="p">(</span><span class="n">propagator</span><span class="o">=</span><span class="n">prop</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">,</span> <span class="n">measurements</span><span class="o">=</span><span class="n">meas</span><span class="p">,</span>
+                <span class="n">traj_name</span><span class="o">=</span><span class="s2">"ref.bsp"</span><span class="p">,</span> <span class="n">traj_dir</span><span class="o">=</span><span class="s2">"kernels"</span><span class="p">)</span>
+<span class="n">solution</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">srif</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">max_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">if_sequential_smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">propagator</span></code> can also be a <a class="reference internal" href="../api_ref/environment/missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.MissionSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">MissionSequence</span></code></a>. In that case the
+filter estimates every leg and carries the covariance across burns and nodes.</p>
+</section>
+<section id="convergence-and-iteration-control">
+<h2>Convergence and iteration control<a class="headerlink" href="#convergence-and-iteration-control" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">fit</span></code> applies two tests: the RMS of the state deviation against
+<code class="docutils literal notranslate"><span class="pre">convergence_threshold</span></code>, and the relative change of the normalised cost <span class="math notranslate nohighlight">\(J/n\)</span>
+against <code class="docutils literal notranslate"><span class="pre">convergence_threshold_cost</span></code>. <code class="docutils literal notranslate"><span class="pre">convergence_criterion</span></code> combines them:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;any&quot;</span></code> (default): either test passes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;deviation&quot;</span></code>: the deviation test only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;cost&quot;</span></code>: the cost test only. Use it for weakly observable problems, where the
+deviation keeps wandering along unobservable directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;both&quot;</span></code>: both tests pass.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">callback(filter,</span> <span class="pre">iteration,</span> <span class="pre">solution)</span></code> runs after each iteration. Use it to
+reweight or edit the data, for example with
+<code class="docutils literal notranslate"><span class="pre">filt.set_measurement_sigmas({&quot;GS1</span> <span class="pre">Range&quot;:</span> <span class="pre">scb.ArrayWUnits(5.0,</span> <span class="pre">m)})</span></code>.</p>
+</section>
+<section id="process-noise">
+<h2>Process noise<a class="headerlink" href="#process-noise" title="Link to this heading">#</a></h2>
+<p>Process noise is accepted by the sequential filters only. Pass one
+<a class="reference internal" href="../api_ref/orbit_det/processnoisesettings.html#scarabaeus.ProcessNoiseSettings" title="scarabaeus.ProcessNoiseSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a>, or a list with one entry per propagated body
+(<code class="docutils literal notranslate"><span class="pre">body=</span></code>).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;SNC&quot;</span></code>: white unmodelled acceleration, <span class="math notranslate nohighlight">\(Q_c\)</span> in km²/s⁴.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;DMC&quot;</span></code>: a first-order Gauss–Markov acceleration <code class="docutils literal notranslate"><span class="pre">a_fogm</span></code> in the state, driven by
+noise in km²/s⁶. Its decay rates <span class="math notranslate nohighlight">\(\beta\)</span> come from the dynamics.</p></li>
+</ul>
+<p>A covariance given in <code class="docutils literal notranslate"><span class="pre">frame=&quot;RTN&quot;</span></code> is rotated along the reference trajectory.
+<code class="docutils literal notranslate"><span class="pre">max_interval</span></code> caps how much noise accumulates across a data gap.</p>
+</section>
+<section id="consider-parameters-and-covariance-analysis">
+<h2>Consider parameters and covariance analysis<a class="headerlink" href="#consider-parameters-and-covariance-analysis" title="Link to this heading">#</a></h2>
+<p>A component declared with <code class="docutils literal notranslate"><span class="pre">estimation=&quot;considered&quot;</span></code> is not corrected. Its a-priori
+uncertainty is still mapped into the estimated states through the sensitivity matrix,
+in every filter. With <code class="docutils literal notranslate"><span class="pre">covariance_analysis=True</span></code> in <a class="reference internal" href="../api_ref/orbit_det/filtersettings.html#scarabaeus.FilterSettings" title="scarabaeus.FilterSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterSettings</span></code></a>,
+the filter makes one pass with no state update. It returns the formal covariance
+that a given tracking schedule would deliver, so the observations only need to supply
+epochs.</p>
+</section>
+<section id="data-handling">
+<h2>Data handling<a class="headerlink" href="#data-handling" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Editing</strong> (<code class="docutils literal notranslate"><span class="pre">editing_method</span></code>): <code class="docutils literal notranslate"><span class="pre">&quot;chi2&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;lasso&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;kurtosis&quot;</span></code> act per
+dataset, and their <code class="docutils literal notranslate"><span class="pre">*_all</span></code> variants act on all data together. <code class="docutils literal notranslate"><span class="pre">&quot;date_range&quot;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">&quot;interactive_date_range&quot;</span></code> remove time windows. <code class="docutils literal notranslate"><span class="pre">editing_datasets</span></code> and
+<code class="docutils literal notranslate"><span class="pre">editing_kwargs</span></code> restrict and tune the editing.</p></li>
+<li><p><strong>Weights</strong>: <code class="docutils literal notranslate"><span class="pre">measurement_sigmas</span></code> in the settings, or <code class="docutils literal notranslate"><span class="pre">set_measurement_sigmas</span></code>
+between iterations.</p></li>
+<li><p><strong>Outputs</strong>: <a class="reference internal" href="../api_ref/orbit_det/outputsettings.html#scarabaeus.OutputSettings" title="scarabaeus.OutputSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">OutputSettings</span></code></a> selects which histories are kept
+(pre- and post-fit residuals, covariance, consider covariance, gains, NIS) and where
+the solution and data files are written.</p></li>
+<li><p><strong>Observability</strong>: <code class="docutils literal notranslate"><span class="pre">filter.observability_test()</span></code> returns the information matrix
+<span class="math notranslate nohighlight">\(\Lambda = \sum_k (H_k\Phi_{k,0})^T R_k^{-1} (H_k\Phi_{k,0})\)</span> and the stacked
+observability matrix, before any data is fitted.</p></li>
+</ul>
+</section>
+<section id="multi-arc-estimation">
+<h2>Multi-arc estimation<a class="headerlink" href="#multi-arc-estimation" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="../api_ref/orbit_det/multifilterod.html#scarabaeus.MultiFilterOD" title="scarabaeus.MultiFilterOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a> runs several independent arc filters, each with its
+own filter type, and then fuses the parameters they share:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">multi</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MultiFilterOD</span><span class="p">([</span><span class="n">srif_arc1</span><span class="p">,</span> <span class="n">srif_arc2</span><span class="p">,</span> <span class="n">lsb_arc3</span><span class="p">],</span>
+                          <span class="n">global_param_names</span><span class="o">=</span><span class="p">[</span><span class="s2">"eta_srp"</span><span class="p">],</span>
+                          <span class="n">global_apriori_cov</span><span class="o">=</span><span class="n">P_global</span><span class="p">)</span>
+<span class="n">solutions</span> <span class="o">=</span> <span class="n">multi</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">max_outer_iters</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_inner_iters</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each arc’s normal equations are reduced to the global block with a Schur complement,
+following NAPEOS. The reduced blocks are summed, and the combined global estimate is
+fed back to the arcs until it settles. With <code class="docutils literal notranslate"><span class="pre">subtract_arc_priors=True</span></code>, each arc’s
+own prior on a global parameter is removed, so <code class="docutils literal notranslate"><span class="pre">global_apriori_cov</span></code> is counted only
+once.</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="solution_mapping_and_analysis.html#solution-mapping-analysis"><span class="std std-ref">Solution Mapping and Analysis</span></a>: what to do with the
+returned <a class="reference internal" href="../api_ref/orbit_det/solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolutionOD</span></code></a>.</p></li>
+<li><p>The <em>Ideal MSR Sequential OD</em>, <em>Ideal MSR Batch OD</em> and <em>Real MSR</em> tutorials in
+<a class="reference internal" href="../examples/examples_frontpage.html#examples"><span class="std std-ref">Examples</span></a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="measurements.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="gold">Measurement Framework</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="solution_mapping_and_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="gold">Solution Mapping and Analysis</span></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filters">Filters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-a-run">Setting up a run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence-and-iteration-control">Convergence and iteration control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-noise">Process noise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consider-parameters-and-covariance-analysis">Consider parameters and covariance analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-handling">Data handling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-arc-estimation">Multi-arc estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

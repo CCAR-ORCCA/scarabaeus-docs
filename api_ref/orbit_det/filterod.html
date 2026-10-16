@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -14,7 +13,7 @@
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
 
-    <title>FilterOD &#8212; Scarabaeus  documentation</title>
+    <title>FilterOD &#8212; Scarabaeus 2.0.0 documentation</title>
   
   
   
@@ -33,32 +32,34 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/orbit_det/filterod';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -66,22 +67,29 @@
     <link rel="next" title="FilterSettings" href="filtersettings.html" />
     <link rel="prev" title="FilterDataManager" href="filterdatamanager.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
-
+  <body data-default-mode="dark">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -107,9 +115,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -190,6 +198,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -201,7 +216,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -211,11 +226,33 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -224,7 +261,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -233,7 +270,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -304,6 +341,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -316,18 +360,48 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
         
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
         <div class="sidebar-primary-item">
+
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
@@ -336,42 +410,68 @@
 <li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/oceanloading.html"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/poletide.html"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtide.html"><code class="docutils literal notranslate"><span class="pre">SolidTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtideinfo.html"><code class="docutils literal notranslate"><span class="pre">SolidTideInfo</span></code></a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/oceanloading.html"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/poletide.html"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtide.html"><code class="docutils literal notranslate"><span class="pre">SolidTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtideinfo.html"><code class="docutils literal notranslate"><span class="pre">SolidTideInfo</span></code></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamics</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/antennaradiationpressure.html"><code class="docutils literal notranslate"><span class="pre">AntennaRadiationPressure</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customdynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customparameter.html"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicalutils.html"><code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/fourieracceleration.html"><code class="docutils literal notranslate"><span class="pre">FourierAcceleration</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisepolynomialacceleration.html"><code class="docutils literal notranslate"><span class="pre">PiecewisePolynomialAcceleration</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/polyhedralgravity.html"><code class="docutils literal notranslate"><span class="pre">PolyhedralGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/smoothedimpulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">SmoothedImpulsiveBurn</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/thermalradiation.html"><code class="docutils literal notranslate"><span class="pre">ThermalRadiation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
 </ul>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/antennaradiationpressure.html"><code class="docutils literal notranslate"><span class="pre">AntennaRadiationPressure</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customdynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/customparameter.html"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicalutils.html"><code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/fourieracceleration.html"><code class="docutils literal notranslate"><span class="pre">FourierAcceleration</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/piecewisepolynomialacceleration.html"><code class="docutils literal notranslate"><span class="pre">PiecewisePolynomialAcceleration</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/polyhedralgravity.html"><code class="docutils literal notranslate"><span class="pre">PolyhedralGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/smoothedimpulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">SmoothedImpulsiveBurn</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/thermalradiation.html"><code class="docutils literal notranslate"><span class="pre">ThermalRadiation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dynamics/yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
 </ul>
@@ -412,13 +512,18 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/custommeasurement.html"><code class="docutils literal notranslate"><span class="pre">CustomMeasurement</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementconfig.html"><code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementscheduler.html"><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/obsdata.html"><code class="docutils literal notranslate"><span class="pre">ObsData</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/opnavmanager.html"><code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
@@ -427,13 +532,18 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/custommeasurement.html"><code class="docutils literal notranslate"><span class="pre">CustomMeasurement</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementconfig.html"><code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementscheduler.html"><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/obsdata.html"><code class="docutils literal notranslate"><span class="pre">ObsData</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/opnavmanager.html"><code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
@@ -441,12 +551,14 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Orbit Determination</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="customfilter.html"><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcmc.html"><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
@@ -459,12 +571,14 @@
 <li class="toctree-l1"><a class="reference internal" href="utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
 </ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="customfilter.html"><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcmc.html"><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
@@ -496,12 +610,14 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Time &amp; Frame</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/bodyorientation.html"><code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/bodyorientation.html"><code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
@@ -519,40 +635,60 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncertainty Quantification</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Matrix</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span> <span class="pre">Quantification</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/montecarlosamples.html"><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code></a></li>
 </ul>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">Covariance</span> <span class="pre">Matrix</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span> <span class="pre">Quantification</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/montecarlosamples.html"><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Utilities</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../utils/databasemanager.html"><code class="docutils literal notranslate"><span class="pre">DatabaseManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/customcallable.html"><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/serialization.html"><code class="docutils literal notranslate"><span class="pre">Serialization</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/shapeharmonics.html"><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/solutioncloseness.html"><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../utils/databasemanager.html"><code class="docutils literal notranslate"><span class="pre">DatabaseManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/customcallable.html"><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/serialization.html"><code class="docutils literal notranslate"><span class="pre">Serialization</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/shapeharmonics.html"><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/solutioncloseness.html"><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ephemeriscache.html"><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/integrationevent.html"><code class="docutils literal notranslate"><span class="pre">IntegrationEvent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/nplatesrpcore.html"><code class="docutils literal notranslate"><span class="pre">NPlateSRPCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedrongravitycore.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronGravityCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedronharmonics.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/sphericalharmonicscore.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsCore</span></code></a></li>
 </ul>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../scb_rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ephemeriscache.html"><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/integrationevent.html"><code class="docutils literal notranslate"><span class="pre">IntegrationEvent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/nplatesrpcore.html"><code class="docutils literal notranslate"><span class="pre">NPlateSRPCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedrongravitycore.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronGravityCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedronharmonics.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/sphericalharmonicscore.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsCore</span></code></a></li>
 </ul>
 </div>
 </nav></div>
@@ -567,6 +703,9 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -623,7 +762,7 @@
 <h1><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code><a class="headerlink" href="#filterod" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="scarabaeus.FilterOD">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">FilterOD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../environment/propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../environment/missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.environment.MissionSequence.MissionSequence"><span class="pre">MissionSequence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../measurements/measurementspec.html#scarabaeus.MeasurementSpec" title="scarabaeus.measurements.MeasurementSpec.MeasurementSpec"><span class="pre">MeasurementSpec</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="filtersettings.html#scarabaeus.FilterSettings" title="scarabaeus.orbitDetermination.FilterSettings.FilterSettings"><span class="pre">FilterSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterOD" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">FilterOD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">propagator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../environment/propagator.html#scarabaeus.Propagator" title="scarabaeus.environment.Propagator.Propagator"><span class="pre">Propagator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../environment/missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.environment.MissionSequence.MissionSequence"><span class="pre">MissionSequence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../measurements/measurementspec.html#scarabaeus.MeasurementSpec" title="scarabaeus.measurements.MeasurementSpec.MeasurementSpec"><span class="pre">MeasurementSpec</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="filtersettings.html#scarabaeus.FilterSettings" title="scarabaeus.orbitDetermination.FilterSettings.FilterSettings"><span class="pre">FilterSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterOD" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Parent class for orbit determination filters used for spacecraft state and
 parameter estimation from tracking measurements.</p>
@@ -666,48 +805,46 @@ but their values are never updated by measurements.  This prevents
 over-confidence when unmodelled force parameters are present.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>propagator</strong> (<a class="reference internal" href="../environment/propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a> or <a class="reference internal" href="../environment/missionsequence.html#scarabaeus.MissionSequence" title="scarabaeus.MissionSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">MissionSequence</span></code></a>) – Propagator or mission sequence object that defines the reference trajectory
-and state transition matrices (STMs) for orbit determination.</p></li>
-<li><p><strong>measurements</strong> (<a class="reference internal" href="../measurements/measurementspec.html#scarabaeus.MeasurementSpec" title="scarabaeus.MeasurementSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a>) – Measurement specification object.</p></li>
-<li><p><strong>settings</strong> (<a class="reference internal" href="filtersettings.html#scarabaeus.FilterSettings" title="scarabaeus.FilterSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">FilterSettings</span></code></a>) – Filter configuration settings.</p></li>
-<li><p><strong>traj_name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Name for the trajectory BSP file.</p></li>
-<li><p><strong>traj_dir</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Directory to write trajectory.</p></li>
-<li><p><strong>overwrite_traj</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – If True, overwrite existing trajectory file.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This class is not instantiated directly; use a concrete subclass
-(<a class="reference internal" href="lkf.html#scarabaeus.LKF" title="scarabaeus.LKF"><code class="xref py py-class docutils literal notranslate"><span class="pre">LKF</span></code></a>, <a class="reference internal" href="srif.html#scarabaeus.SRIF" title="scarabaeus.SRIF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SRIF</span></code></a>,
-<a class="reference internal" href="lsb.html#scarabaeus.LSB" title="scarabaeus.LSB"><code class="xref py py-class docutils literal notranslate"><span class="pre">LSB</span></code></a>, or <a class="reference internal" href="srifb.html#scarabaeus.SRIFB" title="scarabaeus.SRIFB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SRIFB</span></code></a>).
-Call <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> to run the filter and retrieve results via
-<a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolutionOD</span></code></a>.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<dl class="simple">
-<dt><a class="reference internal" href="lkf.html#scarabaeus.LKF" title="scarabaeus.LKF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.LKF</span></code></a></dt><dd><p>Linearized Kalman Filter (sequential, covariance form).</p>
-</dd>
-<dt><a class="reference internal" href="srif.html#scarabaeus.SRIF" title="scarabaeus.SRIF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SRIF</span></code></a></dt><dd><p>Square Root Information Filter (sequential, square-root form).</p>
-</dd>
-<dt><a class="reference internal" href="lsb.html#scarabaeus.LSB" title="scarabaeus.LSB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.LSB</span></code></a></dt><dd><p>Batch Least-Squares estimator.</p>
-</dd>
-<dt><a class="reference internal" href="srifb.html#scarabaeus.SRIFB" title="scarabaeus.SRIFB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SRIFB</span></code></a></dt><dd><p>Batch Square Root Information Filter.</p>
-</dd>
-<dt><a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SolutionOD</span></code></a></dt><dd><p>Container for the estimated state history and covariance.</p>
-</dd>
-</dl>
-</div>
-<p class="rubric">References</p>
-<p>Tapley, B. D., Schutz, B. E., &amp; Born, G. H. (2004). Statistical Orbit Determination. Elsevier Academic Press. ISBN 978-0-12-683630-1.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
+<dt><strong>propagator</strong><span class="classifier">Propagator or MissionSequence</span></dt><dd><p>Propagator or mission sequence object that defines the reference trajectory
+and state transition matrices (STMs) for orbit determination.</p>
+</dd>
+<dt><strong>measurements</strong><span class="classifier">MeasurementSpec</span></dt><dd><p>Measurement specification object.</p>
+</dd>
+<dt><strong>settings</strong><span class="classifier">FilterSettings</span></dt><dd><p>Filter configuration settings. Its <code class="docutils literal notranslate"><span class="pre">measurement_sigmas</span></code>, keyed by
+dataset name, are set once, at construction and before the first
+editing pass, on the model behind each dataset they name (see
+<a class="reference internal" href="#scarabaeus.FilterOD.set_measurement_sigmas" title="scarabaeus.FilterOD.set_measurement_sigmas"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_measurement_sigmas()</span></code></a>). They therefore win over the sigma the
+model was built with, <code class="docutils literal notranslate"><span class="pre">model.sigma</span></code> reports them, and the datasets of
+every later iteration are built with them. The model is the only
+source: a sigma set on it afterwards (through
+<a class="reference internal" href="#scarabaeus.FilterOD.set_measurement_sigmas" title="scarabaeus.FilterOD.set_measurement_sigmas"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_measurement_sigmas()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">MeasurementSpec.edit</span></code> or
+<code class="docutils literal notranslate"><span class="pre">model.sigma</span> <span class="pre">=</span> <span class="pre">...</span></code>, e.g. from a <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> callback) takes over
+from the next iteration on. An <code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> value is converted to
+the dataset’s units; a bare float is taken to be in them already.</p>
+</dd>
+<dt><strong>traj_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the trajectory BSP file. <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> names the trajectories of
+later iterations after it.</p>
+</dd>
+<dt><strong>traj_dir</strong><span class="classifier">str, optional</span></dt><dd><p>Directory to write trajectory, for this and every later iteration.
+Defaults to <code class="docutils literal notranslate"><span class="pre">./data/kernels/scenario/</span></code> under the current directory.</p>
+</dd>
+<dt><strong>overwrite_traj</strong><span class="classifier">bool</span></dt><dd><p>If True, overwrite existing trajectory file.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>If False, silence the printout of the propagation run at construction.
+Defaults to True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.DMC_flag" title="scarabaeus.FilterOD.DMC_flag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DMC_flag</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when Dynamic Model Compensation (DMC) process noise is active.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.SNC_flag" title="scarabaeus.FilterOD.SNC_flag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SNC_flag</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when State Noise Compensation (SNC) process noise is active.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.apriori_covariance_est" title="scarabaeus.FilterOD.apriori_covariance_est"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apriori_covariance_est</span></code></a></dt><dd><p>Apriori covariance restricted to the estimated parameter subspace.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.FilterOD.cost_history" title="scarabaeus.FilterOD.cost_history"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cost_history</span></code></a></dt><dd><p>Weighted least-squares cost <span class="math notranslate nohighlight">\(J = \sum_i (r_i/\sigma_i)^2\)</span> of the post-fit residuals of every iteration performed by <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>, as <code class="docutils literal notranslate"><span class="pre">[(J,</span> <span class="pre">n_residuals),</span> <span class="pre">...]</span></code>.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.FilterOD.covariance_analysis" title="scarabaeus.FilterOD.covariance_analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">covariance_analysis</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when running in covariance-analysis mode (no measurement updates).</p>
 </dd>
@@ -749,45 +886,165 @@ Call <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarab
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.FilterOD.observability_test" title="scarabaeus.FilterOD.observability_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observability_test</span></code></a>([print_obs, threshold, ...])</p></td>
 <td><p>Compute the observability and information matrices for the current filter setup.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.FilterOD.set_measurement_sigmas" title="scarabaeus.FilterOD.set_measurement_sigmas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_measurement_sigmas</span></code></a>(sigmas)</p></td>
+<td><p>Set the measurement sigma of datasets by name, through their models.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="lkf.html#scarabaeus.LKF" title="scarabaeus.LKF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.LKF</span></code></a></dt><dd><p>Linearized Kalman Filter (sequential, covariance form).</p>
+</dd>
+<dt><a class="reference internal" href="srif.html#scarabaeus.SRIF" title="scarabaeus.SRIF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SRIF</span></code></a></dt><dd><p>Square Root Information Filter (sequential, square-root form).</p>
+</dd>
+<dt><a class="reference internal" href="lsb.html#scarabaeus.LSB" title="scarabaeus.LSB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.LSB</span></code></a></dt><dd><p>Batch Least-Squares estimator.</p>
+</dd>
+<dt><a class="reference internal" href="srifb.html#scarabaeus.SRIFB" title="scarabaeus.SRIFB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SRIFB</span></code></a></dt><dd><p>Batch Square Root Information Filter.</p>
+</dd>
+<dt><a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.SolutionOD</span></code></a></dt><dd><p>Container for the estimated state history and covariance.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This class is not instantiated directly; use a concrete subclass
+(<a class="reference internal" href="lkf.html#scarabaeus.LKF" title="scarabaeus.LKF"><code class="xref py py-class docutils literal notranslate"><span class="pre">LKF</span></code></a>, <a class="reference internal" href="srif.html#scarabaeus.SRIF" title="scarabaeus.SRIF"><code class="xref py py-class docutils literal notranslate"><span class="pre">SRIF</span></code></a>,
+<a class="reference internal" href="lsb.html#scarabaeus.LSB" title="scarabaeus.LSB"><code class="xref py py-class docutils literal notranslate"><span class="pre">LSB</span></code></a>, or <a class="reference internal" href="srifb.html#scarabaeus.SRIFB" title="scarabaeus.SRIFB"><code class="xref py py-class docutils literal notranslate"><span class="pre">SRIFB</span></code></a>).
+Call <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> to run the filter and retrieve results via
+<a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolutionOD</span></code></a>.</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r1298d44d9c8e-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Tapley, B. D., Schutz, B. E., &amp; Born, G. H. (2004). <em>Statistical Orbit
+Determination</em>. Elsevier Academic Press. ISBN 978-0-12-683630-1.</p>
+</div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.FilterOD.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_sequential_smooth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterOD.fit" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traj_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_threshold_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_criterion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'any'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_sequential_smooth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Callable" title="(in Python v3.11)"><span class="pre">Callable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.FilterOD.fit" title="Link to this definition">#</a></dt>
 <dd><p>Perform iterative orbit determination with automatic convergence checking.</p>
 <p>Runs the filter iteratively, applying state corrections from each solution
 to the next iteration until convergence or maximum iterations is reached.</p>
+<p>Two convergence tests are evaluated at every iteration:</p>
+<ul class="simple">
+<li><p><strong>State deviation</strong> — RMS of the estimated deviation mapped back to the
+epoch, compared against <code class="docutils literal notranslate"><span class="pre">convergence_threshold</span></code>.  This is the strict
+test: it declares convergence only when the reference trajectory stops
+moving.</p></li>
+<li><p><strong>Cost function</strong> — relative change of the normalised weighted
+least-squares cost <span class="math notranslate nohighlight">\(J/n = \sum_i (r_i/\sigma_i)^2 / n\)</span> between
+consecutive iterations, compared against <code class="docutils literal notranslate"><span class="pre">convergence_threshold_cost</span></code>.
+When the problem is weakly observable the deviation keeps wandering
+along the unobservable directions while the measurement fit no longer
+improves; the run has converged as far as the data can tell, and only
+this test detects it.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">convergence_criterion</span></code> selects how the two are combined.  The cost is
+normalised by the number of residuals so that measurement editing (which
+changes that number between iterations) is not mistaken for a cost change.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>traj_name</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Base name for trajectory files. Iteration number will be appended.
-If None, auto-generates names. Defaults to None.</p></li>
-<li><p><strong>traj_dir</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <em>optional</em>) – Directory for trajectory files. Defaults to None (current directory).</p></li>
-<li><p><strong>overwrite_traj</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – Whether to overwrite existing trajectories. Defaults to True.</p></li>
-<li><p><strong>max_iterations</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <em>optional</em>) – Maximum number of iterations. Defaults to 10.</p></li>
-<li><p><strong>convergence_threshold</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – RMS deviation threshold for convergence. Defaults to 1e-6.</p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – If True, prints iteration progress. Defaults to True.</p></li>
-<li><p><strong>if_sequential_smooth</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – If True, applies sequential smoothing after filtering. Defaults to False.</p></li>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>traj_name</strong><span class="classifier">str, optional</span></dt><dd><p>Base name for trajectory files. Iteration number will be appended.
+If None, the name the filter was built with is the base.
+Defaults to None.</p>
+</dd>
+<dt><strong>traj_dir</strong><span class="classifier">str, optional</span></dt><dd><p>Directory for trajectory files. If None, the directory the filter
+was built with. Defaults to None.</p>
+</dd>
+<dt><strong>overwrite_traj</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to overwrite existing trajectories. Defaults to True.</p>
+</dd>
+<dt><strong>max_iterations</strong><span class="classifier">int, optional</span></dt><dd><p>Maximum number of iterations. Defaults to 10.</p>
+</dd>
+<dt><strong>convergence_threshold</strong><span class="classifier">float, optional</span></dt><dd><p>RMS deviation threshold for convergence. Defaults to 1e-6.</p>
+</dd>
+<dt><strong>convergence_threshold_cost</strong><span class="classifier">float, optional</span></dt><dd><p>Threshold on the <em>relative</em> change of the normalised weighted cost
+<span class="math notranslate nohighlight">\(|\Delta (J/n)| / (J/n)\)</span> between consecutive iterations.
+Defaults to 1e-3.</p>
+</dd>
+<dt><strong>convergence_criterion</strong><span class="classifier">str, optional</span></dt><dd><p>How the two tests are combined:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'any'</span></code> — converged as soon as either test passes (default).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'deviation'</span></code> — RMS deviation only (pre-cost-test behaviour).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'cost'</span></code> — cost-function stagnation only; the criterion of
+choice for weakly observable problems.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'both'</span></code> — both tests must pass.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>solution</strong> (<a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD" title="scarabaeus.SolutionOD"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolutionOD</span></code></a>) – Final filter solution from the last iteration.</p></li>
-<li><p><strong>iteration_count</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of iterations performed.</p></li>
-<li><p><strong>converged</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether convergence was achieved.</p></li>
-</ul>
-</p>
+<dt><strong>verbose</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, prints iteration progress. Defaults to True.</p>
+</dd>
+<dt><strong>if_sequential_smooth</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, applies sequential smoothing after filtering. Defaults to False.</p>
+</dd>
+<dt><strong>callback</strong><span class="classifier">callable, optional</span></dt><dd><p>Called as <code class="docutils literal notranslate"><span class="pre">callback(filter,</span> <span class="pre">iteration,</span> <span class="pre">solution)</span></code> after every
+iteration, once its convergence test is done (its outcome is the
+last entry of <code class="docutils literal notranslate"><span class="pre">_convergence_hist</span></code>) and before the filter is
+reinitialized for the next one. Its return value is ignored. It is
+the place to reweight or edit the data between iterations: a sigma
+set on a model (<a class="reference internal" href="#scarabaeus.FilterOD.set_measurement_sigmas" title="scarabaeus.FilterOD.set_measurement_sigmas"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_measurement_sigmas()</span></code></a>, or
+<code class="docutils literal notranslate"><span class="pre">model.sigma</span> <span class="pre">=</span> <span class="pre">...</span></code>) or an outlier flagged through
+<code class="docutils literal notranslate"><span class="pre">MeasurementSpec.flag</span></code> takes effect when the datasets are rebuilt
+for the next iteration, so one made after the last iteration does
+nothing within this call. Other settings are not guaranteed to be
+picked up mid-run. Defaults to None.</p>
 </dd>
 </dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>solution</strong><span class="classifier">SolutionOD</span></dt><dd><p>Final filter solution from the last iteration.</p>
+</dd>
+<dt><strong>iteration_count</strong><span class="classifier">int</span></dt><dd><p>Number of iterations performed.</p>
+</dd>
+<dt><strong>converged</strong><span class="classifier">bool</span></dt><dd><p>Whether convergence was achieved.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ConvergenceCriterionError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">convergence_criterion</span></code> is not one of the accepted values.</p>
+</dd>
+<dt>NotImplementedError</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">if_sequential_smooth=True</span></code> on a batch filter (LSB, SRIFB).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The cost is always evaluated on the <em>filter</em> post-fit residuals, also
+when <code class="docutils literal notranslate"><span class="pre">if_sequential_smooth=True</span></code>, so the iterations are compared on a
+like-for-like basis.  Its per-iteration history is available as
+<a class="reference internal" href="#scarabaeus.FilterOD.cost_history" title="scarabaeus.FilterOD.cost_history"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cost_history</span></code></a>, and the outcome of the last convergence test as
+<code class="docutils literal notranslate"><span class="pre">convergence_info</span></code>. Every iteration’s test is kept in
+<code class="docutils literal notranslate"><span class="pre">_convergence_hist</span></code>, which <a class="reference internal" href="solutionod.html#scarabaeus.SolutionOD.save" title="scarabaeus.SolutionOD.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SolutionOD.save()</span></code></a> writes to each
+<code class="docutils literal notranslate"><span class="pre">iter_&lt;k&gt;</span></code> block.</p>
+<p>Reweighting the data from <code class="docutils literal notranslate"><span class="pre">callback</span></code> changes the scale of the cost, so
+the cost test of the next iteration compares two differently weighted
+costs; prefer <code class="docutils literal notranslate"><span class="pre">convergence_criterion='deviation'</span></code> across a change of
+sigmas.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Automatic iteration with convergence checking</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lkf</span> <span class="o">=</span> <span class="n">LKF</span><span class="p">(</span><span class="n">propagator</span><span class="p">,</span> <span class="n">covariance</span><span class="p">,</span> <span class="n">measurements</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">lkf</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">lkf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">max_iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">convergence_threshold</span><span class="o">=</span><span class="mf">1e-6</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Converged in </span><span class="si">{</span><span class="n">n_iters</span><span class="si">}</span><span class="s2"> iterations: </span><span class="si">{</span><span class="n">converged</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Converged in </span><span class="si">{</span><span class="n">n_iters</span><span class="si">}</span><span class="s2"> iterations: </span><span class="si">{</span><span class="n">converged</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Weakly observable problem: stop when the fit stops improving</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">lkf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">max_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">convergence_threshold_cost</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">convergence_criterion</span><span class="o">=</span><span class="s2">"cost"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Loosen the range sigma after the first iteration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">reweight</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">iteration</span><span class="p">,</span> <span class="n">solution</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">iteration</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">filt</span><span class="o">.</span><span class="n">set_measurement_sigmas</span><span class="p">({</span><span class="s2">"GS1 Range"</span><span class="p">:</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">m</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">lkf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">reweight</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -818,23 +1075,27 @@ is <strong>observable</strong> if and only if <span class="math notranslate nohi
 noise covariance at epoch <span class="math notranslate nohighlight">\(k\)</span>.  The system is observable if and only if
 <span class="math notranslate nohighlight">\(\Lambda\)</span> is positive definite, i.e. all its eigenvalues exceed
 <code class="docutils literal notranslate"><span class="pre">threshold</span></code>.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>print_obs</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <em>optional</em>) – If True, prints the state dimension, rank of <span class="math notranslate nohighlight">\(\Lambda\)</span>, and
-whether it is strictly positive definite.</p></li>
-<li><p><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <em>optional</em>) – Minimum eigenvalue threshold used to assess positive definiteness of
-<span class="math notranslate nohighlight">\(\Lambda\)</span>. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-1</span></code>.</p></li>
-<li><p><strong>meas_corr</strong> (<a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <em>optional</em>) – Off-diagonal correlation coefficients for the per-epoch measurement
+<dd class="field-odd"><dl class="simple">
+<dt><strong>print_obs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, prints the state dimension, rank of <span class="math notranslate nohighlight">\(\Lambda\)</span>, and
+whether it is strictly positive definite.</p>
+</dd>
+<dt><strong>threshold</strong><span class="classifier">float, optional</span></dt><dd><p>Minimum eigenvalue threshold used to assess positive definiteness of
+<span class="math notranslate nohighlight">\(\Lambda\)</span>. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-1</span></code>.</p>
+</dd>
+<dt><strong>meas_corr</strong><span class="classifier">list, optional</span></dt><dd><p>Off-diagonal correlation coefficients for the per-epoch measurement
 noise covariance <span class="math notranslate nohighlight">\(R_k\)</span>.  Must be a flat list of
 <span class="math notranslate nohighlight">\(n_m (n_m - 1) / 2\)</span> values covering the upper triangular part
 of the correlation matrix in row-major order, where <span class="math notranslate nohighlight">\(n_m\)</span> is
 the number of simultaneous measurements at each epoch.  When <code class="docutils literal notranslate"><span class="pre">None</span></code>,
-<span class="math notranslate nohighlight">\(R_k\)</span> is diagonal (measurements assumed uncorrelated).</p></li>
-</ul>
+<span class="math notranslate nohighlight">\(R_k\)</span> is diagonal (measurements assumed uncorrelated).</p>
+</dd>
+</dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p><strong>info_matrix, obs_matrix</strong> – A tuple with the following values corresponding to
+<dd class="field-even"><dl>
+<dt><strong>info_matrix, obs_matrix</strong><span class="classifier">tuple[numpy.ndarray, numpy.ndarray]</span></dt><dd><p>A tuple with the following values corresponding to
 their respective indices:</p>
 <ul>
 <li><dl>
@@ -849,12 +1110,53 @@ total number of measurements across all epochs.</p>
 </dl>
 </li>
 </ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple[numpy.ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray]</span></code></p>
 </dd>
 </dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.set_measurement_sigmas">
+<span class="sig-name descname"><span class="pre">set_measurement_sigmas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigmas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#scarabaeus.FilterOD.set_measurement_sigmas" title="Link to this definition">#</a></dt>
+<dd><p>Set the measurement sigma of datasets by name, through their models.</p>
+<p>Each sigma is set on the model that built the dataset, so
+<code class="docutils literal notranslate"><span class="pre">model.sigma</span></code> reports it and the datasets of every later iteration
+are built with it, and is written to the dataset’s current <code class="docutils literal notranslate"><span class="pre">sigma</span></code>
+column as well. The construction applies <code class="docutils literal notranslate"><span class="pre">settings.measurement_sigmas</span></code>
+this way; call it between iterations, from a <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a> callback, to
+reweight the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sigmas</strong><span class="classifier">dict</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{dataset_name:</span> <span class="pre">sigma}</span></code>. An <code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> sigma is converted to
+the dataset’s units; a bare float is taken to be in them already.
+One model has one sigma, so the datasets it builds – the
+components of a two-component measurement, or the entries of a
+spec that reuse it – share it. A component left out keeps its
+current sigma; any other dataset of that model must be given the
+same sigma.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>UnknownSigmaDatasetError</dt><dd><p>If a name is not one of the filter’s datasets.</p>
+</dd>
+<dt>MeasurementSigmaUnitsError</dt><dd><p>If a sigma cannot be converted to its dataset’s units.</p>
+</dd>
+<dt>SharedSigmaModelError</dt><dd><p>If the datasets of one model would be given different sigmas.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">reweight</span><span class="p">(</span><span class="n">filt</span><span class="p">,</span> <span class="n">iteration</span><span class="p">,</span> <span class="n">solution</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">iteration</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">filt</span><span class="o">.</span><span class="n">set_measurement_sigmas</span><span class="p">({</span><span class="s2">"GS1 Range"</span><span class="p">:</span> <span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">m</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">solution</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">,</span> <span class="n">converged</span> <span class="o">=</span> <span class="n">lkf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">reweight</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py property">
@@ -878,12 +1180,20 @@ matrix corresponding to estimated (non-considered) state variables.
 When no consider parameters are present the full matrix is returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Square apriori covariance of shape <code class="docutils literal notranslate"><span class="pre">(n_est,</span> <span class="pre">n_est)</span></code>.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code></p>
+<dd class="field-odd"><dl class="simple">
+<dt>np.ndarray</dt><dd><p>Square apriori covariance of shape <code class="docutils literal notranslate"><span class="pre">(n_est,</span> <span class="pre">n_est)</span></code>.</p>
 </dd>
 </dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.cost_history">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">cost_history</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.FilterOD.cost_history" title="Link to this definition">#</a></dt>
+<dd><p>Weighted least-squares cost <span class="math notranslate nohighlight">\(J = \sum_i (r_i/\sigma_i)^2\)</span> of the
+post-fit residuals of every iteration performed by <a class="reference internal" href="#scarabaeus.FilterOD.fit" title="scarabaeus.FilterOD.fit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fit()</span></code></a>, as
+<code class="docutils literal notranslate"><span class="pre">[(J,</span> <span class="pre">n_residuals),</span> <span class="pre">...]</span></code>.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -977,6 +1287,123 @@ Replaced by a <a class="reference internal" href="../environment/scenariosetup.h
 companion JSON file for STMs and estimated parameters.</p>
 </dd></dl>
 
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.AprioriSigmaUnitsError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AprioriSigmaUnitsError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.AprioriSigmaUnitsError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when an <code class="docutils literal notranslate"><span class="pre">extra_apriori_sigmas</span></code> entry cannot be expressed in the
+units of the state element it initialises.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.ConvergenceCriterionError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ConvergenceCriterionError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.ConvergenceCriterionError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when an unknown convergence criterion is requested.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.CovarianceNotPSDWarning">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CovarianceNotPSDWarning</span></span><a class="headerlink" href="#scarabaeus.FilterOD.CovarianceNotPSDWarning" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#RuntimeWarning" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeWarning</span></code></a></p>
+<p>Issued when a covariance mapped back across a sequence is not
+positive semi-definite beyond round-off.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.DuplicateProcessNoiseBodyError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DuplicateProcessNoiseBodyError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.DuplicateProcessNoiseBodyError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when two process noise settings drive the same body.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.InitialCovarianceSizeError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">InitialCovarianceSizeError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.InitialCovarianceSizeError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when the initial covariance does not match the size of the
+initial state (the first leg’s on a sequence).</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.MeasurementSigmaUnitsError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MeasurementSigmaUnitsError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.MeasurementSigmaUnitsError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when a measurement sigma cannot be expressed in the units of
+the dataset it is given for.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.MissingAprioriSigmaError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MissingAprioriSigmaError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.MissingAprioriSigmaError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when a newly augmented state has no <code class="docutils literal notranslate"><span class="pre">extra_apriori_sigmas</span></code> entry.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.MissingGaussMarkovModelError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MissingGaussMarkovModelError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.MissingGaussMarkovModelError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when DMC process noise is used on a leg whose dynamics do not
+integrate the first-order Gauss-Markov acceleration it drives.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.NoiseReferenceUnavailableError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NoiseReferenceUnavailableError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.NoiseReferenceUnavailableError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when an RTN process noise drives a body whose reference
+trajectory is not in the trajectory SPK: on a sequence, any body other
+than the primary body of each leg.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.ProcessNoiseBetaMismatchError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ProcessNoiseBetaMismatchError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.ProcessNoiseBetaMismatchError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when the DMC <code class="docutils literal notranslate"><span class="pre">beta</span></code> given in the settings differs from the
+decay rates of the Gauss-Markov acceleration in the dynamics.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.SequenceStateDroppedWarning">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SequenceStateDroppedWarning</span></span><a class="headerlink" href="#scarabaeus.FilterOD.SequenceStateDroppedWarning" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#UserWarning" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserWarning</span></code></a></p>
+<p>Issued when a sequence leg drops a state the previous leg carried.</p>
+<p>Dropping is supported (the state is marginalised at the node and
+recovered when mapping back), so this is informational; silence it with
+<code class="docutils literal notranslate"><span class="pre">warnings.filterwarnings(&quot;ignore&quot;,</span> <span class="pre">category=FilterOD.SequenceStateDroppedWarning)</span></code>.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.SharedSigmaModelError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SharedSigmaModelError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.SharedSigmaModelError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when measurement sigmas would give one model two sigmas: the
+datasets one model builds (its components, or the entries that reuse
+it) share its sigma, so a sigma given for one of them must hold for
+all of them.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.UnknownSigmaDatasetError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">UnknownSigmaDatasetError</span></span><a class="headerlink" href="#scarabaeus.FilterOD.UnknownSigmaDatasetError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when a measurement sigma names a dataset the filter does not
+have.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.FilterOD.UnnoisedBodyWarning">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">UnnoisedBodyWarning</span></span><a class="headerlink" href="#scarabaeus.FilterOD.UnnoisedBodyWarning" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#UserWarning" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserWarning</span></code></a></p>
+<p>Issued when process noise is configured but an estimated, propagated
+body has none.</p>
+<p>Leaving a body noise-free is legitimate, so this is informational;
+silence it with
+<code class="docutils literal notranslate"><span class="pre">warnings.filterwarnings(&quot;ignore&quot;,</span> <span class="pre">category=FilterOD.UnnoisedBodyWarning)</span></code>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -1026,14 +1453,16 @@ companion JSON file for STMs and estimated parameters.</p>
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a><ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.fit"><code class="docutils literal notranslate"><span class="pre">FilterOD.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.observability_test"><code class="docutils literal notranslate"><span class="pre">FilterOD.observability_test()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.set_measurement_sigmas"><code class="docutils literal notranslate"><span class="pre">FilterOD.set_measurement_sigmas()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.DMC_flag"><code class="docutils literal notranslate"><span class="pre">FilterOD.DMC_flag</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.SNC_flag"><code class="docutils literal notranslate"><span class="pre">FilterOD.SNC_flag</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.apriori_covariance_est"><code class="docutils literal notranslate"><span class="pre">FilterOD.apriori_covariance_est</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.cost_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.cost_history</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.covariance_analysis"><code class="docutils literal notranslate"><span class="pre">FilterOD.covariance_analysis</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.covariance_consider_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.covariance_consider_history</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.covariance_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.covariance_history</span></code></a></li>
@@ -1048,6 +1477,20 @@ companion JSON file for STMs and estimated parameters.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.settings"><code class="docutils literal notranslate"><span class="pre">FilterOD.settings</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.state_deviation_history"><code class="docutils literal notranslate"><span class="pre">FilterOD.state_deviation_history</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.trajectory"><code class="docutils literal notranslate"><span class="pre">FilterOD.trajectory</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.AprioriSigmaUnitsError"><code class="docutils literal notranslate"><span class="pre">FilterOD.AprioriSigmaUnitsError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.ConvergenceCriterionError"><code class="docutils literal notranslate"><span class="pre">FilterOD.ConvergenceCriterionError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.CovarianceNotPSDWarning"><code class="docutils literal notranslate"><span class="pre">FilterOD.CovarianceNotPSDWarning</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.DuplicateProcessNoiseBodyError"><code class="docutils literal notranslate"><span class="pre">FilterOD.DuplicateProcessNoiseBodyError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.InitialCovarianceSizeError"><code class="docutils literal notranslate"><span class="pre">FilterOD.InitialCovarianceSizeError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.MeasurementSigmaUnitsError"><code class="docutils literal notranslate"><span class="pre">FilterOD.MeasurementSigmaUnitsError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.MissingAprioriSigmaError"><code class="docutils literal notranslate"><span class="pre">FilterOD.MissingAprioriSigmaError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.MissingGaussMarkovModelError"><code class="docutils literal notranslate"><span class="pre">FilterOD.MissingGaussMarkovModelError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.NoiseReferenceUnavailableError"><code class="docutils literal notranslate"><span class="pre">FilterOD.NoiseReferenceUnavailableError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.ProcessNoiseBetaMismatchError"><code class="docutils literal notranslate"><span class="pre">FilterOD.ProcessNoiseBetaMismatchError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.SequenceStateDroppedWarning"><code class="docutils literal notranslate"><span class="pre">FilterOD.SequenceStateDroppedWarning</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.SharedSigmaModelError"><code class="docutils literal notranslate"><span class="pre">FilterOD.SharedSigmaModelError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.UnknownSigmaDatasetError"><code class="docutils literal notranslate"><span class="pre">FilterOD.UnknownSigmaDatasetError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.FilterOD.UnnoisedBodyWarning"><code class="docutils literal notranslate"><span class="pre">FilterOD.UnnoisedBodyWarning</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1066,8 +1509,8 @@ companion JSON file for STMs and estimated parameters.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1087,8 +1530,7 @@ companion JSON file for STMs and estimated parameters.</p>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -1101,7 +1543,7 @@ companion JSON file for STMs and estimated parameters.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

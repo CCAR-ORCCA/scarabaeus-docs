@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Scarabaeus version 2.0.0 release notes" lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus, release, version 2.0.0" name="keywords" />
+<meta property="og:title" content="Scarabaeus 2.0.0 Release Notes" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/release_notes/versions/2-0/2-0-0.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Release Notes- Highlights, Added, Changed, Deprecated, Removed, Fixed.. Release Notes: Highlights: User-extensible framework: force models (CustomDynamicModel), solve-for parameters (CustomParameter), measurement models (CustomMeasurement) and whole estimators (CustomFilter) can be defined from a script, without changing the library source., New dynamics: polyhedral shape-model gravity, several spherical-harmonic fields per spacecraft, thermal and antenna radiation recoil, Fourier and piecewi..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+
+    <title>Scarabaeus 2.0.0 Release Notes &#8212; Scarabaeus 2.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=73c15959" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'release_notes/versions/2-0/2-0-0';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1.0.x Releases" href="../1-0.html" />
+    <link rel="prev" title="2.0.x Releases" href="../2-0.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="dark">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../2-0.html">2.0.x Releases</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a aria-current="page" class="current reference internal" href="#"><span class="gold">Scarabaeus 2.0.0 Release Notes</span></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1-0.html">1.0.x Releases</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1-0/1-0-0.html"><span class="gold">Scarabaeus 1.0.0 Release Notes</span></a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><span class="gold">Scarabaeus 2.0.0 Release Notes</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1-0/1-0-0.html"><span class="gold">Scarabaeus 1.0.0 Release Notes</span></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../release_frontpage.html" class="nav-link">Release Notes</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../2-0.html" class="nav-link">2.0.x Releases</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Scarabaeus 2.0.0 Release Notes</span></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <style> .gold {color:rgb(207 184 124)} </style><section id="scarabaeus-2-0-0-release-notes">
+<h1><span class="gold">Scarabaeus 2.0.0 Release Notes</span><a class="headerlink" href="#scarabaeus-2-0-0-release-notes" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#release-notes" id="id1">Release Notes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#highlights" id="id2">Highlights</a></p></li>
+<li><p><a class="reference internal" href="#added" id="id3">Added</a></p></li>
+<li><p><a class="reference internal" href="#changed" id="id4">Changed</a></p></li>
+<li><p><a class="reference internal" href="#deprecated" id="id5">Deprecated</a></p></li>
+<li><p><a class="reference internal" href="#removed" id="id6">Removed</a></p></li>
+<li><p><a class="reference internal" href="#fixed" id="id7">Fixed</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<hr class="docutils" />
+<section id="release-notes">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Release Notes</a><a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h2>
+<section id="highlights">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Highlights</a><a class="headerlink" href="#highlights" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>User-extensible framework: force models (CustomDynamicModel), solve-for parameters (CustomParameter), measurement models (CustomMeasurement) and whole estimators (CustomFilter) can be defined from a script, without changing the library source.</p></li>
+<li><p>New dynamics: polyhedral shape-model gravity, several spherical-harmonic fields per spacecraft, thermal and antenna radiation recoil, Fourier and piecewise polynomial empirical accelerations, smoothed impulsive burns, and empirical accelerations given in RTN or body-fixed frames.</p></li>
+<li><p>Station and planet orientation modelling: solid, pole and ocean-loading tides, Earth orientation parameters, body orientation corrections and IAU pole parameters, all estimable with analytical partials.</p></li>
+<li><p>Measurements: MeasurementScheduler builds synthetic tracking from requests; MeasurementRegistry, MeasurementStream and MeasurementConfig describe real data streams; the real DSN radiometric models gain analytical (Moyer) partials and many precision fixes.</p></li>
+<li><p>Performance: the Rust extension, now imported as <code class="docutils literal notranslate"><span class="pre">scarabaeus.rust</span></code>, carries the spherical-harmonics, n-plate SRP and polyhedron gravity kernels and a Chebyshev ephemeris cache for third bodies, and the package imports its classes lazily.</p></li>
+<li><p>Process noise per body, with interval caps, and OD solutions saved with full metadata, convertible to Keplerian elements and comparable through SolutionCloseness.</p></li>
+</ul>
+</section>
+<section id="added">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Added</a><a class="headerlink" href="#added" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>EphemerisCache:</p>
+<ul>
+<li><p>Rust module that saves the Chebyshev polynomials representing the trajectory of a body or bodies.</p></li>
+<li><p>Computes third body accelerations using its cached ephemerides.</p></li>
+</ul>
+</li>
+<li><p>User-defined models, all built from a script:</p>
+<ul>
+<li><p>CustomDynamicModel: a force model given as a Python acceleration function, summed into the equations of motion and passed to ForceModelTranslation through <code class="docutils literal notranslate"><span class="pre">custom_models</span></code>. Partials it does not supply are filled by central finite differences.</p></li>
+<li><p>CustomParameter: a user-defined solve-for parameter, static or with its own dynamics, registered with StateDefinition.register_custom_parameter() so it passes state-vector validation and can be estimated like <code class="docutils literal notranslate"><span class="pre">eta_srp</span></code>.</p></li>
+<li><p>CustomMeasurement: a measurement given as a Python observable function and its Jacobian, with its own biases and calibration terms.</p></li>
+<li><p>CustomFilter: an estimator whose whole algorithm (sequential, batch or sigma-point) is supplied by the user; the library provides the reference trajectory, residuals, partials, STMs and process noise, and packages the result as a SolutionOD.</p></li>
+<li><p>CustomCallable: binds a user function to a fixed keyword vocabulary at construction, so a misspelt argument is reported immediately, and carries the shared central finite-difference helpers.</p></li>
+</ul>
+</li>
+<li><p>PolyhedralGravity: the gravity of a constant-density polyhedral shape model (Werner &amp; Scheeres), valid down to the surface, with its Rust kernel PolyhedronGravityCore. Enabled in ForceModelTranslation by <code class="docutils literal notranslate"><span class="pre">polyhedral_gravity=True</span></code>.</p></li>
+<li><p>ShapeHarmonics: converts a polyhedral shape model into spherical-harmonic coefficients by Werner’s exact recursion (Rust class <code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code>), written in the JSON layout <code class="docutils literal notranslate"><span class="pre">sph_harm_cs_file</span></code> reads.</p></li>
+<li><p>ForceModelTranslation <code class="docutils literal notranslate"><span class="pre">sph_harm_bodies</span></code>: several spherical-harmonic fields for one spacecraft, one per body (Jupiter and its moons, for instance), each with its own degree, order and coefficient file, and each field’s coefficient, GM and pole partials keyed by its own body.</p></li>
+<li><p>SmoothedImpulsiveBurn: an impulsive maneuver modelled as a narrow sech² (tanh-product) acceleration pulse, so one uninterrupted propagation and its variational equations can carry the burn without splitting the trajectory into legs.</p></li>
+<li><p>PiecewisePolynomialAcceleration: an empirical acceleration held constant (order 0) or interpolated linearly (order 1) over a fixed batch grid, as in PiecewiseFirstOrderGaussMarkov.</p></li>
+<li><p>Station displacement models, attached to GroundStation.surface_displacement (a model or a list of them, summed):</p>
+<ul>
+<li><p>SolidTide: solid Earth tide displacement, the degree-2 in-phase IERS 2010 term by default or the complete IERS routine with <code class="docutils literal notranslate"><span class="pre">model=&quot;IERS2010&quot;</span></code>. The same model serves SphericalHarmonicsGravity.</p></li>
+<li><p>PoleTide: pole-tide displacement (Moyer; IERS 2010 eq. 7.26).</p></li>
+<li><p>OceanLoading: ocean-loading displacement from BLQ coefficients with nodal corrections.</p></li>
+</ul>
+</li>
+<li><p>BodyOrientation: a small rotation correction to a loaded body-fixed frame, Earth orientation deltas (polar motion, UT1, celestial pole offsets), absolute Earth orientation inputs, or another body’s orientation law. A station carries one through GroundStation.body_orientation and every radiometric model applies it to the station position and velocity.</p></li>
+<li><p>StateDefinition: new estimable parameters, all with analytical partials in the radiometric models:</p>
+<ul>
+<li><p>gs_delta_location_CYL: a station location offset in cylindrical coordinates.</p></li>
+<li><p>eop_delta_pole_x, eop_delta_pole_y, eop_delta_ut1, eop_delta_celestial_pole_x, eop_delta_celestial_pole_y: Earth orientation parameter corrections.</p></li>
+<li><p>body_orientation_delta: a small rotation of a body-fixed frame.</p></li>
+<li><p>love_h2, shida_l2 and love_k_n_m: tidal Love and Shida numbers.</p></li>
+<li><p>tropo_zenith_delay_[tag] and iono_zenith_delay_[tag]: zenith media delays per station.</p></li>
+<li><p>pole_ra, pole_dec, pole_pm and pole_w0: IAU pole orientation of a spherical-harmonics body.</p></li>
+</ul>
+</li>
+<li><p>Measurement setup:</p>
+<ul>
+<li><p>MeasurementScheduler: builds measurement models and their synthetic observations from tracking requests, each with its own observer, measurement type and window, including recurring passes and elevation masks, and hands them to a filter as one MeasurementSpec.</p></li>
+<li><p>MeasurementRegistry and MeasurementType: the table of measurement types a scenario is built from, mapping a short name such as “SeqRange” to its model class, data block and units.</p></li>
+<li><p>MeasurementStream: one tracking-data stream, normally written as a <code class="docutils literal notranslate"><span class="pre">(file,</span> <span class="pre">meas_type,</span> <span class="pre">station)</span></code> tuple.</p></li>
+<li><p>MeasurementConfig: the settings shared by every stream in a scenario, each overridable per stream.</p></li>
+<li><p>ObsData: the observations read from one tracking file (epochs, values, outlier flags and auxiliary data), returned by Measurement.observed_measurements().</p></li>
+</ul>
+</li>
+<li><p>SolutionCloseness: the statistical distance between two OD solutions (Bhaskaran &amp; Rush), the number of sigma at which their uncertainty ellipsoids first touch.</p></li>
+<li><p>MCMC: samples the linearized posterior of a converged filter (LKF, SRIF, LSB or SRIFB) with the emcee affine-invariant ensemble, through the filter’s STMs and measurement partials; considered states keep the linear Schmidt spread, and an optional <code class="docutils literal notranslate"><span class="pre">log_prior</span></code> replaces the Gaussian a-priori. <code class="docutils literal notranslate"><span class="pre">sample()</span></code> returns a SolutionOD whose particles, mapped to every epoch, feed its uncertainty-quantification metrics. Adds the <code class="docutils literal notranslate"><span class="pre">emcee</span></code> dependency.</p></li>
+<li><p>Plotting.plot_corner(): corner plot of samples (MonteCarloSamples, an MCMC run or an array), optionally overlaid with the n-sigma ellipses and Gaussian marginals of a covariance. Adds the <code class="docutils literal notranslate"><span class="pre">corner</span></code> dependency.</p></li>
+<li><p>SolutionOD.state_covariance_to_elements(): the estimate and its covariance in Keplerian elements.</p></li>
+<li><p>SolutionOD.save(fmt=…): JSON or pickle output, with metadata describing the state (frame, units, labels), the a-priori state and covariance, the convergence test and the provenance, and either full or diagonal final covariances (<code class="docutils literal notranslate"><span class="pre">output_settings.save_full_covariance</span></code>).</p></li>
+<li><p>Serialization: shared helpers for writing and reading library objects as JSON or pickle (format inferred from the extension or given as <code class="docutils literal notranslate"><span class="pre">fmt=</span></code>), used by the save() / load() methods.</p></li>
+<li><p>Trajectory / SpiceManager: a state vector with several propagated bodies can be written to, and read back from, one SPK per body.</p></li>
+<li><p>ProcessNoise (StateNoiseCompensation, DynamicalModelCompensation):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">body</span></code>: the body whose position and velocity the noise drives, so several bodies can each carry their own process noise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_interval</span></code>: caps the interval the noise is accumulated over, so a data gap does not receive an unbounded noise.</p></li>
+</ul>
+</li>
+<li><p>nPlateSRP: optional <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">sided</span></code> plates, lit from either face, and a per-plate <code class="docutils literal notranslate"><span class="pre">frames</span></code> entry naming the SPICE frame a fixed plate’s normal is given in.</p></li>
+<li><p>CelestialBody: mass and grav_param are each optional and derived from the other; CelestialBody.from_constants() accepts a list of names and returns one body per name.</p></li>
+<li><p>ForceModel.list_forces() / ForceModelTranslation.list_forces(): readable labels of the forces a model applies, e.g. <code class="docutils literal notranslate"><span class="pre">['ThreeBodyGravity(SUN,</span> <span class="pre">MOON)',</span> <span class="pre">'CannonballSRP',</span> <span class="pre">...]</span></code>.</p></li>
+<li><p>Rust extension (<code class="docutils literal notranslate"><span class="pre">scarabaeus.rust</span></code>): SphericalHarmonicsCore, NPlateSRPCore and PolyhedronGravityCore kernels, with their partials checked by dual-number automatic differentiation.</p></li>
+<li><p>Update Propagator to return a Trajectory object as solution.</p></li>
+<li><p>OpNavManager: stateless pinhole calibration matrix, projection and projection Jacobian, shared by the optical measurement models.</p></li>
+<li><p>Measurement.set_trajectory(): attaches the reference trajectory whose STMs the analytical light-time partials use to map a deviation between the endpoints of an observable. FilterOD attaches it automatically, and models that do not read it ignore it.</p></li>
+<li><p>Camera.camera_frame_object: the camera frame as a Frame object, built lazily from the frame name and cached.</p></li>
+<li><p>ForceModelTranslation: third_bodies accepts plain body names alongside CelestialBody objects. Names resolve through CelestialBody.from_constants(), and a BARYCENTER suffix (“MARS BARYCENTER”, “MARS_BARYCENTER”, “MARSBARYCENTER”) resolves to the system barycentre.</p></li>
+<li><p>Cost-function convergence test in FilterOD.fit() and MultiFilterOD.fit(): alongside the RMS of the estimated deviation, the iterations now also track the weighted least-squares cost J = Σ(r/σ)² of the post-fit residuals and test the relative change of J/n (normalised by the residual count, so measurement editing does not look like a cost change). Controlled by convergence_threshold_cost and convergence_criterion (“any” | “deviation” | “cost” | “both”); “deviation” reproduces the previous behaviour, and “cost” is the criterion for weakly observable problems, where the deviation keeps moving along the unobservable directions while the fit no longer improves. Per-iteration history in FilterOD.cost_history, last test in FilterOD.convergence_info, outer-loop values in MultiFilterOD’s multi_arc_global.</p></li>
+<li><p>MissionSequence legs given only a (t0, tf) tuple tspan: the leg is integrated between its bounds and adopts the grid the integrator’s own steps produced, through the new MissionSequence.adopt_propagated_grid(), so SPK segments, measurements, process noise and filter leg boundaries all see the epochs the states actually sit on. MissionSequence.deferred_grids flags which segments work this way, and MissionSequence.grid_bound_tol (constructor argument and settable attribute, default 1e-6 s) sets how far such a grid may sit from the bounds its segment declared. Both integrators place their own output times, so either can carry such a segment; how fine the grid is, is the error control’s call, so declare <code class="docutils literal notranslate"><span class="pre">epochs</span></code> or <code class="docutils literal notranslate"><span class="pre">period</span></code> + <code class="docutils literal notranslate"><span class="pre">dt</span></code> when the output density matters.</p></li>
+<li><p>SpiceManager.sidecar_files(location, kind): resolves where a sidecar lookup reads from, so sidecars are found by where they are rather than by a folder layout the library imposes. <code class="docutils literal notranslate"><span class="pre">location</span></code> accepts an SPK (its own sidecars first, then its folder), a file of any name, a folder (this library’s suffix for that payload first, then any other .json/.pkl), an iterable of those for payloads split across locations, or None for the previous default (<code class="docutils literal notranslate"><span class="pre">kernel_folder</span></code>, else <code class="docutils literal notranslate"><span class="pre">&lt;cwd&gt;/data/kernels/scenario</span></code>). get_parameters(), get_STMs() and get_propagator_settings() take it as <code class="docutils literal notranslate"><span class="pre">sidecar_path</span></code>; <code class="docutils literal notranslate"><span class="pre">folder_path_override</span></code> keeps working.</p></li>
+<li><p>Propagator.tspan is settable: <code class="docutils literal notranslate"><span class="pre">prop.tspan</span> <span class="pre">=</span> <span class="pre">(t0,</span> <span class="pre">tf)</span></code> (a two-element list works too, as does an EpochArray grid) is shorthand for <code class="docutils literal notranslate"><span class="pre">prop.reinitialize(tspan=...)</span></code>, e.g. to run a propagator reloaded with Propagator.load() over a longer span. The first epoch stays the state epoch; pass state_vector to reinitialize() to start from another state.</p></li>
+<li><p>Every Propagator setting is now settable, so a propagator reloaded with Propagator.load() / from_dict() can be changed in place. New Propagator.state_vector property (the initial state in its original frames, which MissionSequence already looked for). Settings that shape the integration route through reinitialize(): state_vector / full_state_vector, primary_body, base_frame, force_models, STM0 (None restores the identity), propagate_STM, integrator, n_densifier, backward. Changing base_frame re-converts from the original-frame state, so switching frames back and forth never compounds. Settings only read by propagate() are stored directly: atol, rtol, look_event (None turns it off), convert_to_original_frame, display_progress, and mass_is_variable (which still refuses a non-Spacecraft primary_body).</p></li>
+<li><p>ForceModelTranslation.save() / load(): write a force model configuration to JSON or pickle (inferred from the extension, or <code class="docutils literal notranslate"><span class="pre">fmt=</span></code>) and rebuild it without a Propagator. The file carries the primary body; pass <code class="docutils literal notranslate"><span class="pre">primary_body=</span></code> to load() to share the spacecraft your state is built on instead.</p></li>
+<li><p>DopplerReal / SequentialRangingReal:</p>
+<ul>
+<li><p>rlt_bodies: the (spice_id, GM) pairs of the bodies other than the Sun in the relativistic light-time delay. Defaults to the new Constants.RLT_BODIES; an empty tuple leaves only the Sun.</p></li>
+<li><p>solar_corona and electronic_delays (both default True) turn off the solar-corona delay, and the time-tag, z-height, transponder and arraying delays, one at a time. media_corrections=None already turns off the troposphere and ionosphere.</p></li>
+<li><p>default_doppler_aux() / default_seqranging_aux() now return every key computed_measurements() reads (exciter scalars for the chosen band, and a linear ramp table that extends ramp_margin, one hour by default, beyond each end of the span), so synthetic measurements no longer need fields that only a real tracking file has.</p></li>
+<li><p>computed_measurements_dict accepts ‘ramp_year’ (the SFDU 9 year of each ramp record), which lets a ramp table or a round trip cross a new year. observed_measurements() fills it from the tracking file.</p></li>
+<li><p>light_time_frame: “barycentric” (the default, Moyer 2000 Sec. 8.3.6) solves the round-trip light time in the Solar-System barycentric frame and is valid for any spacecraft; “geocentric” (Sec. 8.3.1) solves it in the local geocentric frame, with the Earth as the only relativistic body, for spacecraft near the Earth. Another name raises Measurement.LightTimeFrameError.</p></li>
+<li><p>light_time_settings: the convergence tolerance of each light-time leg (1e-12 s by default), its iteration cap and the number of ET − TAI evaluations, with the defaults in Measurement.LIGHT_TIME_SETTINGS. Raise the tolerance for a spacecraft beyond about 8 AU, where 1e-12 s is below the float spacing of the light time and every leg runs to the cap. An unknown key or an invalid value raises Measurement.LightTimeSettingsError.</p></li>
+</ul>
+</li>
+<li><p>Measurement.align_aux_to_epochs(): samples one TRK-2-34 record at the time tags of another (zero-order hold), since each SFDU record has its own cadence and its rows do not line up with the measurement rows.</p></li>
+<li><p>Measurement.transponder_delay_seconds(): converts a spacecraft transponder delay from range units to seconds.</p></li>
+<li><p>Constants.km_to_m, the single km-to-m factor the measurement models now share, and Constants.RLT_BODIES, the default relativistic light-time bodies: Earth and the Moon at their centres, and the Mars, Jupiter and Saturn barycentres.</p></li>
+<li><p>SpiceManager.spk_files_for_body(spice_id, epochs=None): with <code class="docutils literal notranslate"><span class="pre">epochs</span></code>, lists only the files that resolve the body at those epochs. MeasurementSpec provenance passes the epochs of each measurement, so <code class="docutils literal notranslate"><span class="pre">trajectory</span></code> names every SPK a computation read (joined with “ + “) rather than only the last one loaded.</p></li>
+<li><p>RampTableManager.integrate(): optional years for the window ends (t1_q_year, t2_q_year) and the ramp records (a sixth ramp-table entry), and low parts for window ends given as (high, low) pairs (t1_q_sec_l, t2_q_sec_l).</p></li>
+<li><p>FilterOD.set_measurement_sigmas(sigmas): sets the sigma of datasets by name on the models that build them, so <code class="docutils literal notranslate"><span class="pre">model.sigma</span></code> reports it and every later iteration is built with it. An ArrayWUnits sigma is converted to the dataset’s units; a bare float is taken to be in them.</p></li>
+<li><p>FilterOD.fit(callback=…): called as <code class="docutils literal notranslate"><span class="pre">callback(filter,</span> <span class="pre">iteration,</span> <span class="pre">solution)</span></code> after each iteration’s convergence test and before the filter is reinitialized, the place to reweight (set_measurement_sigmas) or edit the data between iterations.</p></li>
+<li><p>MeasurementScheduler.Window.pass_gap: the window’s pass gap as an ArrayWUnits, next to Window.cadence.</p></li>
+<li><p>ArrayWUnits.values_in(quantity, units): strips an ArrayWUnits or ArrayWFrame to a float array in the given units (one for every element, one per element, or one per row), converting other units of the same dimension without a warning. Bare numbers are taken to be in those units already and None is returned as None; elements already in their units keep their numbers to the last bit. Public methods strip their inputs with it, compute on plain arrays and attach units to the result.</p></li>
+<li><p>ArrayWUnits.from_row_units(values, row_units): attaches one unit to each row of a numeric array without validation, for states and Jacobians whose rows are km and km/s.</p></li>
+<li><p>MultiFilterOD.fit(callback=…): called as <code class="docutils literal notranslate"><span class="pre">callback(multi_filter,</span> <span class="pre">outer,</span> <span class="pre">arc_solutions)</span></code> after each outer iteration’s convergence test and before the arcs are reinitialized. With a callback every arc is rebuilt, even one with a zero correction, so a sigma or flag change takes effect on the next outer iteration. The arcs’ own fits run without it.</p></li>
+<li><p>MeasurementSpec: two-component streams (AngularIdeal, CentroidingIdeal, …) are reported per component dataset (<code class="docutils literal notranslate"><span class="pre">&quot;&lt;dataset_name&gt;_&lt;label&gt;&quot;</span></code>) by residuals() and summary(); edit() and flag() accept the stream’s name or a component’s, a flag lands on both components, and a refit becomes a sigma vector over them.</p></li>
+<li><p>MeasurementEditing.chi_squared_filter(), kurtosis_filter(), date_range_filter() and interactive_date_range() take a list of dataset names, like the other filters.</p></li>
+<li><p>ThermalRadiation: the recoil of the heat the spacecraft radiates, after the OSIRIS-REx small-force models (Geeraert et al., 2019). Each surface radiates as a Lambertian emitter with its own area, emissivity and spacecraft-fixed normal. Its temperature is read from a table of temperature against off-Sun angle at a few Sun distances: a cubic spline in the angle, linear in the distance, and held at the nearest edge outside the table. A surface can carry a second table for when it faces away from the Sun. The acceleration is scaled by the estimable state entry <code class="docutils literal notranslate"><span class="pre">eta_thermal</span></code>, with analytical position, velocity and scale-factor partials. Enabled in ForceModelTranslation by <code class="docutils literal notranslate"><span class="pre">thermal_radiation=True</span></code> with <code class="docutils literal notranslate"><span class="pre">thermal_model</span></code> (a dict, or the path of a JSON file holding one), and carried through save() / load().</p></li>
+<li><p>AntennaRadiationPressure: the recoil of the power the spacecraft transmits, from radio antennas or an active instrument such as a LIDAR. Each emitter has a radiated power, a half-power beamwidth (the boresight carries cos²(hpbw/4) of the beam’s momentum), a spacecraft-fixed boresight and optional <code class="docutils literal notranslate"><span class="pre">on_intervals</span></code> when it transmits. The acceleration is scaled by the estimable state entry <code class="docutils literal notranslate"><span class="pre">eta_antenna</span></code>, with analytical partials. Enabled in ForceModelTranslation by <code class="docutils literal notranslate"><span class="pre">antenna_radiation_pressure=True</span></code> with <code class="docutils literal notranslate"><span class="pre">antenna_emitters</span></code>, and carried through save() / load().</p></li>
+<li><p>ThermalRadiation and AntennaRadiationPressure orient their surfaces and boresights by <code class="docutils literal notranslate"><span class="pre">Spacecraft.attitudeMode</span></code>, as nPlateSRP does, and read the Sun position from a Chebyshev ephemeris cache when the propagation frame is J2000.</p></li>
+<li><p>FourierAcceleration: an empirical acceleration given as a truncated Fourier series on each axis, in a phase angle that is the time (with <code class="docutils literal notranslate"><span class="pre">period</span></code>), the argument of latitude, or the solar longitude (McMahon and Scheeres, 2010). Degree 0 is a constant acceleration, so <code class="docutils literal notranslate"><span class="pre">degree=0</span></code> in an RTN frame is the usual constant along-track push. The coefficients are the static state entry <code class="docutils literal notranslate"><span class="pre">a_fourier</span></code>, 3(2N+1) long and ordered axis by axis; the acceleration is linear in them, so their partial is exact, and a state-dependent frame or phase adds analytical position and velocity partials. Without that state entry, <code class="docutils literal notranslate"><span class="pre">coefficients</span></code> applies a known acceleration. Enabled in ForceModelTranslation by <code class="docutils literal notranslate"><span class="pre">fourier_acceleration=True</span></code> with <code class="docutils literal notranslate"><span class="pre">fourier_degree</span></code>, <code class="docutils literal notranslate"><span class="pre">fourier_angle</span></code>, <code class="docutils literal notranslate"><span class="pre">fourier_period</span></code> and <code class="docutils literal notranslate"><span class="pre">fourier_coefficients</span></code>; the phase origin is the <code class="docutils literal notranslate"><span class="pre">t0</span></code> given to ForceModelTranslation, which every leg of a MissionSequence then shares; without one it is the start of each propagation.</p></li>
+<li><p>DynamicalUtils: the geometry the dynamics models share, as static and class methods. It turns <code class="docutils literal notranslate"><span class="pre">Spacecraft.attitudeMode</span></code> (one of DynamicalUtils.ATTITUDE_MODES: “CK”, “nadirPointingSun”, “inertialFixedAttitude”) into the spacecraft-fixed to inertial rotation, with its position and velocity Jacobians, for nPlateSRP, ThermalRadiation and AntennaRadiationPressure, and rotates the empirical accelerations out of the frame their components are given in.</p></li>
+<li><p>FirstOrderGaussMarkov, PiecewiseFirstOrderGaussMarkov, PiecewisePolynomialAcceleration and FourierAcceleration: <code class="docutils literal notranslate"><span class="pre">frame</span></code> = “inertial” (the default, as before), “RTN” (radial / along-track / cross-track) or “body_fixed”, with <code class="docutils literal notranslate"><span class="pre">body_fixed_frame</span></code> naming the body-fixed frame and an optional <code class="docutils literal notranslate"><span class="pre">relative_body</span></code> for an RTN triad about a body other than the propagation origin. The components are rotated into the propagation frame at every step, and an RTN frame adds the position and velocity partials of the triad. ForceModelTranslation takes the same settings as <code class="docutils literal notranslate"><span class="pre">fogm_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">pfogm_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">ppoly_frame</span></code> and <code class="docutils literal notranslate"><span class="pre">fourier_frame</span></code>, each with its <code class="docutils literal notranslate"><span class="pre">_body_fixed_frame</span></code> and <code class="docutils literal notranslate"><span class="pre">_relative_body</span></code>, and the coefficient labels follow the frame’s axes (DynamicalUtils.ACCELERATION_FRAME_AXES). With DMC process noise, the noise of an RTN or body-fixed FirstOrderGaussMarkov acceleration is rotated into the propagation frame along the reference trajectory.</p></li>
+<li><p>Licensing: the repository follows the REUSE specification. Every source file states its license in an SPDX header, REUSE.toml covers the files that cannot carry one (images, JSON data, kernels), and LICENSES/ holds the texts: ISC for Scarabaeus, BSD-2-Clause for the vendored numpydoc Sphinx extension, and LicenseRef-ThirdParty for the third-party data and logos shipped so the tutorials, tests and documentation work out of the box. Check with <code class="docutils literal notranslate"><span class="pre">reuse</span> <span class="pre">lint</span></code>.</p></li>
+<li><p>Documentation: API pages for the Rust extension classes (<code class="docutils literal notranslate"><span class="pre">scarabaeus.rust</span></code>), with the equations each kernel evaluates and their references, and the equations of the ShapeHarmonics conversion.</p></li>
+<li><p>More descriptive error handling:</p>
+<ul>
+<li><p>SPKNotLoadedError: raised when ThreeBodyGravity is unable to query the requested third bodies due to no loaded S(pacecraft) and P(lanet) Kernel.</p></li>
+<li><p>MissingTrajectoryError: raised by Measurement when a deviation has to be mapped between two epochs and no reference trajectory has been attached.</p></li>
+<li><p>MissingImageIndexError: raised by CentroidingIdeal and AngularIdeal when the state carries a stacked per-image centroid or angular bias but set_image_epochs() was never called, so the epoch cannot be mapped to an image slot.</p></li>
+<li><p>UnknownThirdBodyError: raised by ForceModelTranslation when a third_bodies entry is neither a CelestialBody nor a name the constants library defines.</p></li>
+<li><p>NotAForceModelFileError: raised by ForceModelTranslation.load() when the file was not written by ForceModelTranslation.save() (a Propagator file, for instance).</p></li>
+<li><p>ConvergenceCriterionError: raised by FilterOD.fit() / MultiFilterOD.fit() when convergence_criterion is not one of “any”, “deviation”, “cost”, “both”.</p></li>
+<li><p>TimeSpanError: raised by MissionSequence when the grid a segment’s (t0, tf) tuple tspan produced does not reach the bounds it declared.</p></li>
+<li><p>GridToleranceError: raised by MissionSequence when grid_bound_tol is set to something other than a finite, non-negative number of seconds.</p></li>
+<li><p>EvenDegreeError: raised by SpiceManager when an even interpolation degree is asked of an SPK segment, whose type-13 Hermite polynomials are built from a position and a velocity per node and so always have odd degree.</p></li>
+<li><p>SidecarNotFoundError: raised by SpiceManager when no sidecar for the requested body, origin, and frame is found; the message lists every location that was searched.</p></li>
+<li><p>AuxDataError: raised by Measurement when the aux dictionary of a real DSN model is missing, lacks a required key, or has a per-epoch entry whose length does not match the measurement count.</p></li>
+<li><p>MissingSigmaError: raised by DopplerReal / SequentialRangingReal when noisy measurements are requested without a sigma.</p></li>
+<li><p>RampCoverageError: raised by RampTableManager.integrate() when the ramp table is empty or the window starts before its first record. The Real models catch it and flag the measurement (see Changed).</p></li>
+<li><p>RampTableYearError: raised by RampTableManager.integrate() when the ramp table or the window crosses a new year and no years were given, where days of year alone would integrate a year off.</p></li>
+<li><p>Propagator.IAS15STMError: raised when <code class="docutils literal notranslate"><span class="pre">propagate_STM=True</span></code> is combined with <code class="docutils literal notranslate"><span class="pre">integrator=&quot;IAS15&quot;</span></code>, which integrates the state alone. Subclasses NotImplementedError.</p></li>
+<li><p>CelestialBody.InvalidMassError: raised when a body’s mass is not a constant ArrayWUnits, so no GM can be derived from it.</p></li>
+<li><p>UnknownSerializationFormatError: raised by the save() / load() helpers when the requested file format is neither JSON nor pickle.</p></li>
+<li><p>IncompleteTroposphereError, TroposphereFileTypeError, MissingIonosphereFrequencyError: raised by MediaCorrections when only one of the two troposphere files is set, when a seasonal troposphere file is given as non-seasonal or the reverse, or when an ionosphere file is set without a link frequency to scale it. The first and last cases used to be skipped silently.</p></li>
+</ul>
+</li>
+<li><p>Propagator(n_densifier=…): resamples every integration step into that many sub-intervals, drawn from the integrator’s dense output. <strong>Defaults to 10</strong>; pass 1 for the previous behaviour of returning the solver’s own steps unchanged. It applies to a (t0, tf) tuple tspan, where the output sits on the adaptive steps: those grow long wherever the dynamics are quiet, and an SPK written on them leaves SPICE interpolating across the gaps. Splitting each step ten ways keeps the grid fine where the steps are short and coarse where they are long, rather than imposing one fixed interval over the whole arc. The extra epochs are interpolated, not integrated: DOP853 carries a dedicated 7th-order dense output, so they cost no function evaluations beyond the ones dense_output already required, and they are a degree below the 8th-order steps they sit between. The step endpoints are reproduced exactly, making the densified grid a superset of the undensified one. Because the default is on, a tuple-tspan propagation now returns about ten times as many epochs as before, which costs memory in the propagated states and STMs and size in any SPK written from them; set n_densifier=1 on long arcs where that matters. An EpochArray tspan and <code class="docutils literal notranslate"><span class="pre">integrator=&quot;IAS15&quot;</span></code> cannot be densified: leaving n_densifier at its default there does nothing, while asking for a value explicitly raises Propagator.DensifierGridError or Propagator.DensifierIntegratorError rather than silently ignoring it. Carried through reinitialize(), to_dict() and from_dict(); a file written without the field takes the default.</p>
+<ul>
+<li><p>TooFewStatesError: raised by SpiceManager when an SPK type 13 segment holds fewer than (degree_poly + 1) // 2 states, in place of CSPICE’s SPICE(TOOFEWSTATES).</p></li>
+<li><p>DensifierValueError, DensifierIntegratorError, DensifierGridError: raised by Propagator when n_densifier is not a whole number of at least 1, when it is asked of IAS15, which builds no dense output, or when it is combined with an EpochArray tspan that already fixes every output epoch.</p></li>
+<li><p>UnknownSigmaDatasetError, MeasurementSigmaUnitsError, SharedSigmaModelError: raised by FilterOD when a measurement sigma names a dataset the filter does not have, cannot be converted to its dataset’s units, or would give the datasets of one model two different sigmas. All subclass ValueError.</p></li>
+<li><p>SigmaUnitsError: raised by Measurement when the model’s sigma cannot be expressed in the units of the computed measurement.</p></li>
+<li><p>MeasurementSpec.RefitSigmaUnitsError: raised by MeasurementSpec.flag(), flag_outliers() and edit() when a refitted sigma cannot be converted to the units asked for. Nothing is flagged then. Subclasses ValueError.</p></li>
+<li><p>Measurement.ElevationMaskError: raised by Measurement.resolve_elevation_mask() for a mask that is not an angle, is outside 0 to 90 deg, or is a bare number that could be radians. Subclasses ValueError; MeasurementScheduler raises InvalidScheduleError from it.</p></li>
+<li><p>DynamicalUtils.InvalidFrameError, MissingBodyFixedFrameError, MissingEpochError: raised when an acceleration <code class="docutils literal notranslate"><span class="pre">frame</span></code> is not a key of DynamicalUtils.ACCELERATION_FRAME_AXES (“lvlh” included), when “body_fixed” is asked for without a <code class="docutils literal notranslate"><span class="pre">body_fixed_frame</span></code>, or when a body-fixed rotation or a <code class="docutils literal notranslate"><span class="pre">relative_body</span></code> offset is needed without an epoch. All subclass ValueError.</p></li>
+<li><p>DynamicalUtils.InvalidAttitudeModeError, InvalidFixedAttitudeError, MissingVelocityError, DegenerateGeometryError: raised when <code class="docutils literal notranslate"><span class="pre">attitudeMode</span></code> is not one of DynamicalUtils.ATTITUDE_MODES, when an “inertialFixedAttitude” spacecraft’s <code class="docutils literal notranslate"><span class="pre">fixedInertialAttitude</span></code> is not a 3x3 array, when a “nadirPointingSun” attitude or an RTN frame meets a state without the spacecraft velocity (a KeyError), or when the orbital angular momentum vanishes and the RTN triad is undefined.</p></li>
+<li><p>ThermalRadiation.InvalidThermalModelError, InvalidTemperatureTableError, InvalidSurfaceError, UnknownTemperatureTableError: raised when <code class="docutils literal notranslate"><span class="pre">thermal_model</span></code> is not a dict (or a JSON file of one) with “temperature_tables” and “surfaces” entries, when a temperature table or a surface is malformed, or when a surface names a table that is not defined.</p></li>
+<li><p>AntennaRadiationPressure.InvalidEmitterError: raised when <code class="docutils literal notranslate"><span class="pre">antenna_emitters</span></code> is not a non-empty list, or when an emitter lacks its name, power, beamwidth or boresight, gives its power or beamwidth without units, or has a negative power, a beamwidth outside [0, 360) degrees, a zero boresight or <code class="docutils literal notranslate"><span class="pre">on_intervals</span></code> that are not (start, end) pairs with start &lt; end.</p></li>
+<li><p>ForceModelTranslation.MissingEmissionModelError: raised when thermal_radiation or antenna_radiation_pressure is enabled without its <code class="docutils literal notranslate"><span class="pre">thermal_model</span></code> or <code class="docutils literal notranslate"><span class="pre">antenna_emitters</span></code>. Subclasses ValueError.</p></li>
+<li><p>Propagator.MissingScaleFactorModelError: raised when the state holds a scale factor (<code class="docutils literal notranslate"><span class="pre">eta_srp</span></code>, <code class="docutils literal notranslate"><span class="pre">eta_thermal</span></code> or <code class="docutils literal notranslate"><span class="pre">eta_antenna</span></code>) that no enabled force model applies, since it would be estimated with a zero partial. It replaces the bare ValueError raised for <code class="docutils literal notranslate"><span class="pre">eta_srp</span></code> and subclasses ValueError.</p></li>
+<li><p>FourierAcceleration.InvalidDegreeError, InvalidAngleError, MissingPeriodError, MissingEpochError, InvalidEpochError, CoefficientSizeError, DegenerateGeometryError: raised when the degree is not a non-negative integer, when the phase angle is not “time”, “argument_of_latitude” or “solar_longitude”, when a time phase has no positive <code class="docutils literal notranslate"><span class="pre">period</span></code> or no <code class="docutils literal notranslate"><span class="pre">t0</span></code>, when <code class="docutils literal notranslate"><span class="pre">t0</span></code> is neither an EpochArray nor a number, when the coefficients are not 3(2N+1) long, or when the phase is undefined (an equatorial orbit for the argument of latitude, the Sun along the frame’s third axis for the solar longitude). InvalidEpochError subclasses TypeError, the others ValueError.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="changed">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Changed</a><a class="headerlink" href="#changed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The Rust extension module is now <code class="docutils literal notranslate"><span class="pre">scarabaeus.rust</span></code> (it was <code class="docutils literal notranslate"><span class="pre">scarabaeus.scarabaeus_rust</span></code>); its classes are still available at the package top level (<code class="docutils literal notranslate"><span class="pre">scarabaeus.IAS15</span></code>, <code class="docutils literal notranslate"><span class="pre">scarabaeus.EphemerisCache</span></code>, …).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">scarabaeus</span></code> loads its classes lazily, on first access, instead of importing every subpackage up front.</p></li>
+<li><p>SphericalHarmonicsGravity and nPlateSRP evaluate their accelerations and partials in the Rust kernels SphericalHarmonicsCore and NPlateSRPCore; nPlateSRP is vectorised over its plates.</p></li>
+<li><p>The Sun-pointing nadir attitude mode is named “nadirPointingSun” everywhere: the <code class="docutils literal notranslate"><span class="pre">attitudeMode</span></code> string, DynamicalUtils.nadirPointingSun and Spacecraft.inertial_to_body_DCM_nadirPointingSun (was inertial_to_body_DCM_nadir_pointing_to_sun).</p></li>
+<li><p>DopplerReal / SequentialRangingReal: the solar-corona delay is added last in the light-time solution and evaluated at the transmit frequency at t1 read from the ramp table (Moyer 11-7, 13.2.8), instead of at the time-tag uplink frequency. Without a ramp covering t1 it keeps the uplink frequency. Adds RampTableManager.frequency_at().</p></li>
+<li><p>CelestialBody: a non-constant mass raises CelestialBody.InvalidMassError; mean_radius and base_frame may be None.</p></li>
+<li><p>ThreeBodyGravity:</p>
+<ul>
+<li><p>Caches non-propagated bodies by evaluating their SPK Chebyshev polynomials directly inside the integrator using EphemerisCache.</p></li>
+<li><p>Notable performance improvements from EphemerisCache for non-propagated third body accelerations.</p></li>
+</ul>
+</li>
+<li><p>EphemerisCache: build_ephemeris_cache() and NoLoadedSPKError moved from scarabaeus.dynamics.EphemerisCaching to scarabaeus.utils.EphemerisCache.</p></li>
+<li><p>Camera.camera_frame accepts either a SPICE frame name or a Frame, and always returns the name; use camera_frame_object where a Frame is needed.</p></li>
+<li><p>CentroidingIdeal:</p>
+<ul>
+<li><p>Pinhole projection and its Jacobian delegate to OpNavManager, so the projection and its derivative stay in step.</p></li>
+<li><p>The returned ArrayWFrame carries the camera Frame object instead of the frame name.</p></li>
+</ul>
+</li>
+<li><p>FilterOD attaches the reference trajectory to each measurement model before generating its dataset.</p></li>
+<li><p>Trajectory resolves its sidecars from its own SPK rather than from that SPK’s folder, so the files written beside it win over anything else sharing the folder.</p></li>
+<li><p>SPK segments are written as SPICE type 13 (unequally spaced Hermite) rather than type 9 (unequally spaced Lagrange). Type 13 holds the same (epoch, position, velocity) records in the same number of bytes, but the sampled velocities constrain the position curve, so the velocity SPICE returns is the exact derivative of the position it returns and the curve no longer steps where the interpolation window moves. Type 9 fitted position and velocity with two independent polynomials over a window re-centred on the request time; halfway between two nodes, where that window switches, the position curve jumped — the spikes seen when a trajectory is written on the integrator’s own adaptive grid. At the default degree_poly=3 a type-13 window spans two nodes, making the segment a piecewise cubic Hermite spline, continuous across every node.</p></li>
+<li><p>SpiceManager.write_spk_segment_type9() is now SpiceManager.write_spk_segment_type13(). No other signature changes; Trajectory.write_to_spk(), get_state() and the JSON sidecars are untouched, and .bsp files already on disk still read.</p></li>
+<li><p>degree_poly must now be odd (the default, 3, already is), because a type-13 polynomial is built from a position and a velocity per node. An even degree raises the new SpiceManager.EvenDegreeError. Only degree_poly=3 gives a true spline: at 5, 7 and up the window spans 3, 4, … nodes and moves again, so prefer a finer output grid over a higher degree.</p></li>
+<li><p>An SPK segment now needs (degree_poly + 1) // 2 states rather than degree_poly + 1, because each node carries a derivative as well as a value, so a Hermite window is half the width the same degree cost under type 9. Grids that SpiceManager.TooFewStatesError used to turn away are now written: in particular a default degree-3 segment writes from two nodes, so a leg that adopted only its (t0, tf) bounds no longer fails — though one cubic then spans the whole leg, so declaring <code class="docutils literal notranslate"><span class="pre">epochs</span></code> or <code class="docutils literal notranslate"><span class="pre">period</span></code> + <code class="docutils literal notranslate"><span class="pre">dt</span></code> still matters when the output density does.</p></li>
+<li><p>DopplerReal / SequentialRangingReal:</p>
+<ul>
+<li><p>A light-time solution that fails now raises (Measurement.LightTimeConvergenceError) instead of returning a zero round-trip light time.</p></li>
+<li><p>A measurement whose round trip starts before the first ramp record has no defined transmit frequency. It now gets a NaN computed value, one warning per model, and an outlier flag, instead of a zero transmit frequency (a silently wrong observable). Raising would lose the whole pass.</p></li>
+<li><p>The relativistic light-time delay takes Mars, Jupiter and Saturn at their system barycentres with the system GM, instead of at the planet centres. For a Mars orbiter this moves the round-trip light time by at most 0.63 mm of path and the 60 s Doppler by less than 1e-6 mHz; a Jupiter or Saturn orbiter should pass the planet centres through rlt_bodies.</p></li>
+<li><p>A target listed among the relativistic light-time bodies, where Moyer’s delay diverges, now raises Measurement.RLTBodyOnPathError instead of giving an infinite light time.</p></li>
+<li><p>The partials default to <code class="docutils literal notranslate"><span class="pre">partials_method=&quot;analytical&quot;</span></code> (the Moyer partials of the forward model’s own light-time solution). The analytical partials give zero columns for eta_srp and dv_man, as the finite-difference ones do, instead of raising NotImplementedError; the filter maps both through the STM.</p></li>
+<li><p>The forward model is several times faster on real tracking data, with results unchanged to the last bit: each media-calibration file is parsed once and its time tags converted once, the light-time solution reads each SPICE state it needs once, and SpiceManager.get_state() / get_state_precise() build their result without validating its units again. A one-iteration multi-pass OD on real DSN data went from 68 s to 10 s.</p></li>
+</ul>
+</li>
+<li><p>SequentialRangingReal: rows whose range is not a phase in [0, M) range units are flagged as outliers when the tracking file is read. These are the placeholder rows (range -1) that a DSN file opens a pass with, which carry no outlier flag.</p></li>
+<li><p>FilterOD.fit(): every iteration is written to the folder the filter was built with, as <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_it{n}.bsp</span></code> after the name it was built with, instead of a new timestamped <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;_traj_&lt;time&gt;.bsp</span></code> in <code class="docutils literal notranslate"><span class="pre">data/kernels/scenario/</span></code> on each pass.</p></li>
+<li><p>Measurement models take their numbers from Constants rather than from class or module attributes: the defaults of the simulated auxiliary data, the Earth rotation rate of the EOP partials (Constants.omega_Earth), the scheduler edge tolerance, the pass gaps and point counts of MeasurementEditing, and the day/hour/minute and deg/day-to-rad/s factors. Data-format keys stay on the class that reads them: the auxiliary-data layout of DopplerReal and SequentialRangingReal is each model’s <code class="docutils literal notranslate"><span class="pre">AUX_KEYS</span></code>, a Measurement.TrackingAuxKeys; the ramp-table keys are Measurement.RAMP_AUX_KEYS and RAMP_YEAR_KEY; the DSN complex antenna ranges are MediaCorrections.DSN_COMPLEX_ANTENNAS.</p></li>
+<li><p>Each measurement model lists the partials methods it implements in one PARTIALS_METHODS tuple; an unsupported partials_method raises a single ValueError naming that model’s methods.</p></li>
+<li><p>Measurement: the sigma property, the per-pass grouping (set_pass_epochs) and the bias lookup are defined once on the base class instead of in each of RangeIdeal, RangeRateIdeal, DopplerIdeal, DiffOneWayRangeIdeal, AngularIdeal, CentroidingIdeal and CustomMeasurement. MissingPassIndexError is Measurement.MissingPassIndexError.</p></li>
+<li><p>FilterSettings.measurement_sigmas is set once, when the filter is built and before the first editing pass, on the model behind each named dataset, instead of being written into the datasets’ sigma columns on every reinitialization. <code class="docutils literal notranslate"><span class="pre">model.sigma</span></code> now reports it, the construction-time editing is weighted by it, and a sigma set on the model later (FilterOD.set_measurement_sigmas(), MeasurementSpec.edit() / flag(), <code class="docutils literal notranslate"><span class="pre">model.sigma</span> <span class="pre">=</span> <span class="pre">...</span></code>) takes over from the next iteration, where the override used to beat it, including the sigma refitted by <code class="docutils literal notranslate"><span class="pre">edit(&quot;huber_mad_filter&quot;)</span></code>. Changing <code class="docutils literal notranslate"><span class="pre">settings.measurement_sigmas</span></code> after construction has no effect; call set_measurement_sigmas().</p></li>
+<li><p>MeasurementScheduler.build_epochs() takes <code class="docutils literal notranslate"><span class="pre">start</span></code> / <code class="docutils literal notranslate"><span class="pre">end</span></code> as an EpochArray, ET seconds or anything the scheduler’s <code class="docutils literal notranslate"><span class="pre">start</span></code> / <code class="docutils literal notranslate"><span class="pre">end</span></code> accept, and <code class="docutils literal notranslate"><span class="pre">cadence</span></code>, <code class="docutils literal notranslate"><span class="pre">pass_cadence</span></code>, <code class="docutils literal notranslate"><span class="pre">pass_duration</span></code>, <code class="docutils literal notranslate"><span class="pre">pass_offset</span></code> as an ArrayWUnits time or bare seconds. MeasurementScheduler.split_passes() takes <code class="docutils literal notranslate"><span class="pre">gap</span></code> the same way. The keywords dropped their <code class="docutils literal notranslate"><span class="pre">_et</span></code> / <code class="docutils literal notranslate"><span class="pre">_sec</span></code> suffixes (<code class="docutils literal notranslate"><span class="pre">start_et</span></code> → <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">cadence_sec</span></code> → <code class="docutils literal notranslate"><span class="pre">cadence</span></code>, <code class="docutils literal notranslate"><span class="pre">gap_sec</span></code> → <code class="docutils literal notranslate"><span class="pre">gap</span></code>, …); positional calls are unchanged. A zero or negative span, or <code class="docutils literal notranslate"><span class="pre">pass_cadence</span></code> without <code class="docutils literal notranslate"><span class="pre">pass_duration</span></code>, raises MeasurementScheduler.InvalidScheduleError instead of dividing by zero.</p></li>
+<li><p>MeasurementScheduler: <code class="docutils literal notranslate"><span class="pre">elevation_mask</span></code>, in the constructor and in visibility(), visible_epochs(), passes(), schedule(), generate() and visibility_on(), takes an ArrayWUnits angle, converted from its own units, or a bare number of degrees, through Measurement.resolve_elevation_mask(). A mask outside 0 to 90 deg or not an angle raises InvalidScheduleError. The <code class="docutils literal notranslate"><span class="pre">elevation_mask</span></code> property returns an ArrayWUnits in degrees instead of a float, like <code class="docutils literal notranslate"><span class="pre">cadence</span></code> and <code class="docutils literal notranslate"><span class="pre">pass_gap</span></code>.</p></li>
+<li><p>Measurement.resolve_elevation_mask() refuses a bare mask that is not a whole number of degrees and is no more than pi/2, such as 0.17, which could be degrees or radians; pass it as an ArrayWUnits. Whole degrees and anything above pi/2 are read as degrees, as before.</p></li>
+<li><p>GroundStation and the station displacement models return quantities with units instead of bare arrays. GroundStation.nominal_state(), displacement_state(), state_correction(), tide_correction(), iau_pole_correction() and eop_displacement() return an ArrayWFrame in km and km/s in the requested axes. location_partials(), rotation_partials(), inertial_rotation_partials(), tide_partials(), pole_tide_partials() and iau_pole_partials() return an ArrayWUnits whose rows are km and km/s per unit of each column, and the derivative from cylindrical_basis() is an ArrayWUnits per second (the basis stays a unitless array, like any direction cosine matrix). displacement(), state_displacement() and the <code class="docutils literal notranslate"><span class="pre">*_partials()</span></code> of SolidTide, PoleTide and OceanLoading, and BodyOrientation.displacement() / state_displacement(), return an ArrayWUnits. Read the numbers with <code class="docutils literal notranslate"><span class="pre">.values</span></code> (ArrayWUnits) or <code class="docutils literal notranslate"><span class="pre">.quantity.values</span></code> (ArrayWFrame). The measurement models call the numeric cores (<code class="docutils literal notranslate"><span class="pre">_nominal_state</span></code>, <code class="docutils literal notranslate"><span class="pre">_state_correction</span></code>, …), so their observables and partials are unchanged to the last bit.</p></li>
+<li><p>The same methods take positions, velocities, locations, rotation vectors, IAU pole values and the PoleTide pole_x / pole_y as an ArrayWUnits or ArrayWFrame in any units of the right dimension; bare numbers are still km, km/s, rad and, for pole_pm, deg/day. A location given as an ArrayWFrame is read in its own axes unless <code class="docutils literal notranslate"><span class="pre">location_frame</span></code> is passed.</p></li>
+<li><p>Frame: two Frame objects for the same SPICE frame compare equal and hash alike, by frame ID, where they compared by identity. Arithmetic between ArrayWFrame quantities built with separate <code class="docutils literal notranslate"><span class="pre">Frame(&quot;J2000&quot;)</span></code> objects used to raise ValueError.</p></li>
+<li><p>MeasurementSpec.edit(dataset_name=…) and flag() return entries only for the streams they address, instead of an empty array for every other stream, which overwrote real counts when results were merged with dict.update().</p></li>
+<li><p>MeasurementConfig.sc_transponder_delay_RU, MeasurementSpec.flag_outliers() and MeasurementEditing.residual_filter() document why they stay plain floats: a range unit’s length depends on each pass’s band and exciter scalars, and the outlier bounds are in the units of the residuals.</p></li>
+<li><p>LKF: with consider parameters the gain is the one of the estimate conditioned on the considered states’ a-priori values, K = Pxx Hxᵀ (Hx Pxx Hxᵀ + R)⁻¹, the consider analysis that SRIF, SRIFB and LSB run, instead of a gain built from the consider covariance Pc. The LKF and the SRIF now give the same estimate and consider covariance; consider sigmas change, and the postfit cost with consider parameters is no longer about 0. The innovation covariance saved for the NIS adds the considered states’ term Hy Pcc Hyᵀ, Hy = Hx Sx + Hc. On very precise data (Doppler) the covariance form can still be a few percent off the SRIF, whose square-root form keeps twice the digits.</p></li>
+<li><p>DynamicalModelCompensation: <code class="docutils literal notranslate"><span class="pre">beta</span></code> is optional. The filters discretize the noise with the decay rates the dynamics propagate with, the body’s <code class="docutils literal notranslate"><span class="pre">beta_fogm</span></code> state when there is one, else the <code class="docutils literal notranslate"><span class="pre">fogm_beta</span></code> of its ForceModelTranslation, evaluated on every interval and iteration, so an estimated decay rate is followed. <code class="docutils literal notranslate"><span class="pre">beta</span></code> is used only when no reference decay rates are given.</p></li>
+<li><p>Tutorial advanced_RealMSR_OSIRIS_REx_OD: rewritten as a multi-pass batch orbit determination on real DSN data (three OSIRIS-REx passes of June 2018 from DSS-65 and DSS-35): SRIFB with PFOGM stochastic accelerations, an estimated SRP scale factor and one range bias per pass, Huber + MAD editing with operational data weights, a three-day forward-prediction consistency test against the OD044 reconstruction, and the tuning of the PFOGM strength with that test. The two extra tracking files ship with the supplementary data.</p></li>
+</ul>
+</section>
+<section id="deprecated">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Deprecated</a><a class="headerlink" href="#deprecated" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>StateArray.from_components()</p></li>
+</ul>
+</section>
+<section id="removed">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Removed</a><a class="headerlink" href="#removed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>DatabaseManager is no longer part of the package.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">scarabaeus.scarabaeus_rust</span></code> module name; import <code class="docutils literal notranslate"><span class="pre">scarabaeus.rust</span></code>.</p></li>
+<li><p>The misspelled read option <code class="docutils literal notranslate"><span class="pre">sc_transpoder_delay_RU</span></code>; pass <code class="docutils literal notranslate"><span class="pre">sc_transponder_delay_RU</span></code>.</p></li>
+<li><p>Measurement.PARTIALS_METHODS_SUPPORTED, now PARTIALS_METHODS on each model.</p></li>
+<li><p>DopplerReal / SequentialRangingReal: the partials_finite_diff flag; pass <code class="docutils literal notranslate"><span class="pre">partials_method=&quot;fd&quot;</span></code>.</p></li>
+<li><p>RangeIdeal / RangeRateIdeal: set_pass_index() and _build_pass_index(). Group the epochs with set_pass_epochs(), or schedule with MeasurementScheduler.add(…, per_pass_bias=True).</p></li>
+<li><p>MeasurementDataSet.remove_outliers(), which nothing called; outliers are flagged and skipped through the dataset’s outlier_flag.</p></li>
+<li><p>DopplerReal / SequentialRangingReal: the “ideal” partials (the geometric derivative of an ideal range or range rate, which ignored the media, relativistic and station terms of the real observable); <code class="docutils literal notranslate"><span class="pre">partials_method=&quot;ideal&quot;</span></code> raises ValueError. Use “analytical” or “fd”.</p></li>
+<li><p>DopplerReal / SequentialRangingReal OPTIONAL_AUX_KEYS and RECORD_FIELDS, now the <code class="docutils literal notranslate"><span class="pre">optional</span></code> and <code class="docutils literal notranslate"><span class="pre">record_fields</span></code> of the models’ AUX_KEYS (a Measurement.TrackingAuxKeys, whose <code class="docutils literal notranslate"><span class="pre">required</span></code> is the old AUX_KEYS tuple); MeasurementScheduler.EDGE_TOLERANCE_SEC, and MeasurementEditing’s DEFAULT_PASS_GAP_SEC and DEFAULT_MIN_PASS_POINTS; use the Constants entries listed under Changed.</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Fixed</a><a class="headerlink" href="#fixed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>ForceModelTranslation dropped the central body’s point-mass gravity whenever a spherical-harmonics model was configured, even when the harmonic field belonged to another body.</p></li>
+<li><p>ForceModelTranslation: a body configured both as a spherical-harmonics field and as a third body was attracted twice. It is now dropped from the point-mass list, and a field whose body is not the propagation origin carries the indirect (frame) term itself, with its partials.</p></li>
+<li><p>SphericalHarmonicsGravity: the IAU body-to-J2000 rotation multiplied the three NAIF factors untransposed, so any run that estimated pole_ra, pole_dec or pole_pm rotated the field to the wrong orientation. It now matches SPICE pxform to 3e-12, and the RA and prime-meridian partial signs are corrected.</p></li>
+<li><p>SRIF: the covariance-analysis update without consider parameters crashed on a shape mismatch.</p></li>
+<li><p>MultiFilterOD: each arc’s deviation and covariance were mapped with the STM instead of its inverse, carrying them forward rather than back to the arc’s initial epoch, and SRIF arcs handed over the information matrix instead of the covariance.</p></li>
+<li><p>nPlateSRP: CK plates now apply the transpose of the C-matrix and are no longer rotated by the body attitude a second time; a body CK attitude uses the model’s frame instead of J2000; the SPICE error state is reset after a failed CK lookup. Under nadirPointingSun, CK and named-frame plates mixed with body-frame plates (solar arrays on their own CK on a nadir-pointed bus) keep their SPICE orientation, and the partials hold them fixed in the frame rather than in the body.</p></li>
+<li><p>MissionSequence: a segment <code class="docutils literal notranslate"><span class="pre">period</span></code> or <code class="docutils literal notranslate"><span class="pre">dt</span></code> given in days or hours is converted to seconds before the grid is built; a duration that is not a time raises TimeSpanError.</p></li>
+<li><p>Documentation: the API reference no longer duplicates docstring sections or lists nested exceptions as methods, inherited members link to their own class, every public class has a page, docstrings across all packages were corrected for numpydoc and Sphinx, and the landing-page icons render again under Font Awesome 7.</p></li>
+<li><p>Camera: the calibration matrix divided the focal length in pixels by the IFOV a second time, inflating the projected pixel coordinates by one factor of the pixel pitch.</p></li>
+<li><p>Camera: passing a Frame as camera_frame made get_rotation_to_camera() fall through to the identity attitude; the frame is now normalised to its name in the constructor.</p></li>
+<li><p>CentroidingIdeal: the observer body was handed to spkezr as a bare integer SPICE ID, which resolves to nothing; it is now passed as a string.</p></li>
+<li><p>CentroidingIdeal / AngularIdeal: the position partials of an explicit state definition had the wrong sign for both bodies, so an estimated spacecraft or imaged body was pulled away from the optical data instead of towards it. CentroidingIdeal had the camera’s spacecraft and the imaged body swapped; AngularIdeal’s (RA, Dec) Jacobian was the negative of the derivative with respect to r_target − r_observer. Both now match central differences of the observable. Without a state definition AngularIdeal returns the target’s partials, as its documentation and CentroidingIdeal already did; it used to return the observer’s.</p></li>
+<li><p>AngularIdeal: a stacked per-image <code class="docutils literal notranslate"><span class="pre">angular_bias</span></code> (dimension 2·N) with no epoch-to-image mapping produced two partial columns instead of 2·N, so every later state component’s partials landed in the wrong column. It now raises MissingImageIndexError, as CentroidingIdeal already did.</p></li>
+<li><p>AngularIdeal / CentroidingIdeal: with a stacked per-image bias (more than two elements) and no epoch-to-image mapping, <code class="docutils literal notranslate"><span class="pre">computed_measurements()</span></code> applied image 0’s pair to every epoch without a word, while the partials refused the same case. The forward model now raises MissingImageIndexError too.</p></li>
+<li><p>RangeIdeal / RangeRateIdeal: a stacked per-pass bias (dimension &gt; 1) with no epoch-to-pass mapping got one partial column instead of one per pass, so every later state component’s partials landed in the wrong column, while the forward model failed on a generic ArrayWUnits shape error. Both now raise MissingPassIndexError, as the optical models do for a stacked bias without an image mapping.</p></li>
+<li><p>Ideal measurement models (RangeIdeal, RangeRateIdeal, DopplerIdeal, DiffOneWayRangeIdeal, AngularIdeal): a numeric <code class="docutils literal notranslate"><span class="pre">meas_bias</span></code>, as documented and as <code class="docutils literal notranslate"><span class="pre">MeasurementSpec.build()</span></code> passes it (0.0 by default), raised <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> from <code class="docutils literal notranslate"><span class="pre">meas_bias.quantity</span></code> once <code class="docutils literal notranslate"><span class="pre">computed_measurements()</span></code> ran without a reference state. A number is now taken in the observable’s units (km, km/sec, Hz, km, rad), as DopplerReal does; an ArrayWUnits or ArrayWFrame keeps its own.</p></li>
+<li><p>Ideal measurement models (RangeIdeal, RangeRateIdeal, DopplerIdeal, DiffOneWayRangeIdeal, AngularIdeal): <code class="docutils literal notranslate"><span class="pre">meas_bias</span></code> was dropped as soon as a reference state was attached, even one with no bias entry for this station, so an OD run modelled no bias where the simulation had one. <code class="docutils literal notranslate"><span class="pre">meas_bias</span></code> now holds until the reference state carries this station’s bias, which then overrides it, as in DopplerReal.</p></li>
+<li><p>RangeIdeal, RangeRateIdeal, AngularIdeal, CentroidingIdeal: with a pass or image mapping set, a single bias (dimension 1, or 2 for the optical models) was sliced as if it were stacked, so only the first pass or image saw it in the forward model while the partials gave a column to a pass index the state did not have. A single bias is now global in both: it applies to every pass or image, with a unit partial everywhere.</p></li>
+<li><p>CustomMeasurement / MeasurementScheduler: each defined its own MissingSigmaError, CustomMeasurement’s shadowing the one it inherits, so <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">Measurement.MissingSigmaError</span></code> missed a custom model built without units or sigma and a noisy schedule without a sigma. Both now raise <code class="docutils literal notranslate"><span class="pre">Measurement.MissingSigmaError</span></code>; <code class="docutils literal notranslate"><span class="pre">CustomMeasurement.MissingSigmaError</span></code> and <code class="docutils literal notranslate"><span class="pre">MeasurementScheduler.MissingSigmaError</span></code> are that same class.</p></li>
+<li><p>Ideal measurement models (RangeIdeal, RangeRateIdeal, DopplerIdeal, DiffOneWayRangeIdeal, AngularIdeal, CentroidingIdeal, CustomMeasurement): <code class="docutils literal notranslate"><span class="pre">computed_measurements(epoch_start=...,</span> <span class="pre">epoch_end=...,</span> <span class="pre">tstep=...)</span></code> raised <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> from <code class="docutils literal notranslate"><span class="pre">EpochArray(...,</span> <span class="pre">timeFrame=...)</span></code> instead of building the grid. They now use <code class="docutils literal notranslate"><span class="pre">Measurement._resolve_epoch_array</span></code>, like the real models, and raise <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> (was <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code>) when neither epochs nor bounds are given.</p></li>
+<li><p>nPlateSRP: plate normals written as integers in a configuration (e.g. [1, 0, 0]) produced an int64 array that the Rust core rejects; the normals cache is now pinned to float.</p></li>
+<li><p>MissionSequence: a propagator whose tspan is a (t0, tf) tuple was silently collapsed to a two-epoch grid, so the leg propagated to two states and only failed later, inside spkw09, with SPICE(TOOFEWSTATES). Such a leg is now integrated between its bounds and adopts the integrator’s own grid (see Added), on DOP853 as well as IAS15.</p></li>
+<li><p>Propagator.propagate(): a (t0, tf) tuple tspan raised “Non-selective time steps currently unsupported for DOP853 integration” — the branch was a stub with its working lines commented out. DOP853 chooses its own steps like any adaptive integrator, so the tuple now passes t_eval=None to solve_ivp and the solver’s own output times are returned. States match an explicit-grid run bit for bit at shared epochs. The event-resume and convert_to_original_frame paths, which assumed tspan carried a grid, follow the produced epochs.</p></li>
+<li><p>Propagator.reinitialize(): allocated the integration storage from tspan.size, which a (t0, tf) tuple does not have, so reinitializing onto a tuple raised AttributeError. It now mirrors the constructor and allocates the initial condition only.</p></li>
+<li><p>ScenarioSetup: a segment left with a single sample after its endpoint was dropped at a node passed a scalar where an array was expected, raising TypeError while the totals were accumulated.</p></li>
+<li><p>Trajectory: a sequence propagated with propagate_STM=False hands one None per leg, a truthy list, which was dereferenced as an STM; STM-free sequences now write normally.</p></li>
+<li><p>SpiceManager.get_propagator_settings(): matched on <code class="docutils literal notranslate"><span class="pre">body_ID</span></code>, which a settings sidecar does not carry — Propagator.to_dict() records no body, origin, or frame — so reading back the settings written by Trajectory.write_to_spk() raised KeyError. Settings are now identified by the SPK they sit beside, and any identifiers a writer did record are still honoured.</p></li>
+<li><p>SpiceManager: the sidecars written beside one SPK share body_ID / origin_ID / reference_frame, so a lookup could return a neighbour’s payload — an STM sidecar answering a settings query, for instance. Each lookup now also checks that the file holds the payload it asked for.</p></li>
+<li><p>SpiceManager: a lookup pointed at a folder that does not exist raised a bare FileNotFoundError from os.listdir; missing locations are now skipped, and the failure names every location searched.</p></li>
+<li><p>SpiceManager.write_spk_segment_type13(): a segment with fewer states than the interpolation degree needs is now reported before the SPK is opened, instead of leaving an open handle behind and failing inside CSPICE.</p></li>
+<li><p>MultiFilterOD: _get_stm_final() indexed the measurement epochs with the length of the covariance history, which is a count, so every arc that was not a SRIF raised IndexError; the index is now derived correctly and clamped to the measurement epochs.</p></li>
+<li><p>ForceModelTranslation.to_dict() / from_dict(): the configured t0 was not written, so a reloaded model took each leg’s start as the PFOGM batch-grid anchor and the Fourier phase origin. It is now recorded and restored unless from_dict() is given one.</p></li>
+<li><p>ForceModelTranslation.to_dict() / from_dict(): only the polyhedral_gravity flag was written, so a reloaded model silently fell back to a point mass. The shape (its file path, or its vertices and facets), density, GM, body-fixed frame and scale are now recorded; a file carrying only the flag warns.</p></li>
+<li><p>DopplerReal: the two ends of the count interval were converted to time tags separately, and each conversion rounds differently, so their difference could be off by ~860 cycles (~17 Hz on 60 s X-band Doppler). Both ends now come from one conversion of t3.</p></li>
+<li><p>DopplerReal / RampTableManager: the transmit window ends were plain floats in seconds of day, which resolve only ~7e-12 s and moved the count in steps of ~0.5–1 mHz on 60 s X-band Doppler. They are now carried as (high, low) pairs through the ramp integration.</p></li>
+<li><p>RampTableManager: ramp records and window ends are placed on one continuous time axis, so a window or ramp segment that crosses midnight, or a new year when the years are given, integrates correctly.</p></li>
+<li><p>DopplerReal / SequentialRangingReal: noisy=True built a TypeError without raising it and added no noise, so the “noisy” values came back noise-free. White Gaussian noise of the model’s sigma is now added.</p></li>
+<li><p>DopplerReal / SequentialRangingReal: an estimated range or range-rate bias was added to the float observable as an ArrayWUnits, which raised TypeError. It is now added as a float in RU or Hz.</p></li>
+<li><p>DopplerReal / SequentialRangingReal: aux fields kept in their own SFDU records are aligned to the measurement epochs by time tag (Measurement.align_aux_to_epochs), and every per-epoch entry, the electronic delays included, is checked against the measurement count before use (AuxDataError) instead of being indexed by row whatever its length.</p></li>
+<li><p>Trajectory / SpiceManager: the parameters sidecar kept only parameters owned by the propagated body. A parameter whose owner is not propagated, such as a ground station’s range bias, was left out of every sidecar. SolutionOD therefore reported it as its deviation about 0, or misaligned the parameter vector. Such parameters now go into the first propagated body’s sidecar, so every parameter in the state vector is written to exactly one sidecar.</p></li>
+<li><p>SpiceManager: the STM sidecar’s parameters_def / parameters_body skipped the first two state entries and labelled everything after them a parameter. In a multi-body state, the second propagated body’s position and velocity were listed as parameters. The labels now list every entry that is not a position or a velocity.</p></li>
+<li><p>SpiceManager: a sequence leg’s parameters sidecar kept only the first parameter of the leg, so a maneuver epoch next to its delta-v, or a station’s range bias, was lost. Every parameter is now written. get_parameters reads a leg holding several parameters, which used to fail on the concatenated unit blocks. The stacked vector is dimensionless when the units differ, and per_parameter=True gives each parameter’s own values and units, as for a flat sidecar.</p></li>
+<li><p>SolutionOD: the parameter rows of the deviation were taken as dev[6:]. With a second propagated body, these rows held that body’s position and velocity, and the deviations were added to the wrong nominal parameters. The rows are now selected from the state definition, by the same rule that writes the sidecar, from a full, padded or estimated-only deviation.</p></li>
+<li><p>CustomMeasurement: a pass_epochs argument raised AttributeError, because the set_pass_epochs it forwards to was only defined on RangeIdeal and RangeRateIdeal.</p></li>
+<li><p>StateDefinition: range_bias_RU_[tag] and rangerate_bias_Hz_[tag] matched the range_bias_[tag] / rangerate_bias_[tag] patterns first and were validated as a length and a velocity.</p></li>
+<li><p>MeasurementEditing: the Huber detrending fitted residuals against raw ET (~1e8 s), which left the solver ill-conditioned and it aborted. The fit now runs in normalised coordinates, and points are flagged by their distance from the median of the detrended residuals.</p></li>
+<li><p>MeasurementSpec.summary(): counted only the flags of the observed data, missing the measurements the model could not compute.</p></li>
+<li><p>Trajectory: a trajectory built with neither a state nor legs, over a body already in the SPICE pool, failed in get_state(); it now reads the state from SPICE.</p></li>
+<li><p>MeasurementSpec.edit(): a refitted sigma, in the units of the dataset’s residuals, was labelled with the units of the model’s current sigma without conversion, so a model with <code class="docutils literal notranslate"><span class="pre">sigma=ArrayWUnits(5,</span> <span class="pre">m)</span></code> on a range in km got a 0.005 km refit stored as 0.005 m. It is now converted to <code class="docutils literal notranslate"><span class="pre">sigma_units</span></code>, else to the model sigma’s units, else kept in the dataset’s units. The refit lookup also failed with StopIteration on two-component streams.</p></li>
+<li><p>Measurement.generate_measurement_dataset(): the sigma column took the bare value of the model’s sigma whatever its units, so <code class="docutils literal notranslate"><span class="pre">sigma=ArrayWUnits(4,</span> <span class="pre">m)</span></code> on a range computed in km weighted the residuals by 4 km. The sigma is now converted to the units of the computed measurement.</p></li>
+<li><p>LKF: the consider sensitivity Sx was initialised from a gain on the first measurement, outside the loop that then processed that measurement again, and the a-priori correlation between estimated and considered states was dropped. It now starts from the a-priori, Sx = Pxc Pcc⁻¹ and Pxx = Pc − Sx Pxcᵀ, as at the sequence nodes.</p></li>
+<li><p>LKF: the Joseph-form covariance is symmetrized after each measurement update. Rounding left it slightly asymmetric, and with data much more precise than the a-priori (Doppler) the next gain amplified the asymmetry into covariances several times too large.</p></li>
+<li><p>StateNoiseCompensation: the constant acceleration was mapped into the position and velocity by Γ = [Δt³/2; Δt²] instead of [Δt²/2; Δt], one power of Δt too many, so the discrete noise Q_k was Δt² (in s²) times too large. SNC results change, and a Q tuned against the old form must be retuned.</p></li>
+<li><p>Tutorials: the supplementary data download fetches the DSN station kernels earthstns_fx_201023.bsp and earthstns_itrf93_201023.bsp from generic_kernels/spk/stations/a_old_versions/, where NAIF moved them; the old links returned 404.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../2-0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">2.0.x Releases</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../1-0.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">1.0.x Releases</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-notes">Release Notes</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#highlights">Highlights</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#added">Added</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changed">Changed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deprecated">Deprecated</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removed">Removed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed">Fixed</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

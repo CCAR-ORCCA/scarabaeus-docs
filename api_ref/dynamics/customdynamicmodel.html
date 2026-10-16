@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="CustomDynamicModel" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/api_ref/dynamics/customdynamicmodel.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+
+    <title>CustomDynamicModel &#8212; Scarabaeus 2.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api_ref/dynamics/customdynamicmodel';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CustomParameter" href="customparameter.html" />
+    <link rel="prev" title="CannonballSRP" href="cannonballsrp.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="dark">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../user_guide/user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Body</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/oceanloading.html"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/poletide.html"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtide.html"><code class="docutils literal notranslate"><span class="pre">SolidTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtideinfo.html"><code class="docutils literal notranslate"><span class="pre">SolidTideInfo</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../body/body.html"><code class="docutils literal notranslate"><span class="pre">Body</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/celestialbody.html"><code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/groundstation.html"><code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/oceanloading.html"><code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/poletide.html"><code class="docutils literal notranslate"><span class="pre">PoleTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtide.html"><code class="docutils literal notranslate"><span class="pre">SolidTide</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../body/solidtideinfo.html"><code class="docutils literal notranslate"><span class="pre">SolidTideInfo</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Dynamics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="antennaradiationpressure.html"><code class="docutils literal notranslate"><span class="pre">AntennaRadiationPressure</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="customparameter.html"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamicalutils.html"><code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="fourieracceleration.html"><code class="docutils literal notranslate"><span class="pre">FourierAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="piecewisepolynomialacceleration.html"><code class="docutils literal notranslate"><span class="pre">PiecewisePolynomialAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="polyhedralgravity.html"><code class="docutils literal notranslate"><span class="pre">PolyhedralGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="smoothedimpulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">SmoothedImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="thermalradiation.html"><code class="docutils literal notranslate"><span class="pre">ThermalRadiation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="antennaradiationpressure.html"><code class="docutils literal notranslate"><span class="pre">AntennaRadiationPressure</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="cannonballsrp.html"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="customparameter.html"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamicalutils.html"><code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamicmodel.html"><code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="finiteburn.html"><code class="docutils literal notranslate"><span class="pre">FiniteBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">FirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcemodel.html"><code class="docutils literal notranslate"><span class="pre">ForceModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcemodelrotation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcemodeltranslation.html"><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="fourieracceleration.html"><code class="docutils literal notranslate"><span class="pre">FourierAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">ImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="nplatesrp.html"><code class="docutils literal notranslate"><span class="pre">nPlateSRP</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="piecewisefirstordergaussmarkov.html"><code class="docutils literal notranslate"><span class="pre">PiecewiseFirstOrderGaussMarkov</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="piecewisepolynomialacceleration.html"><code class="docutils literal notranslate"><span class="pre">PiecewisePolynomialAcceleration</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="pointmassgravity.html"><code class="docutils literal notranslate"><span class="pre">PointMassGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="polyhedralgravity.html"><code class="docutils literal notranslate"><span class="pre">PolyhedralGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="smoothedimpulsiveburn.html"><code class="docutils literal notranslate"><span class="pre">SmoothedImpulsiveBurn</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphericalharmonicsgravity.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="thermalradiation.html"><code class="docutils literal notranslate"><span class="pre">ThermalRadiation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threebodygravity.html"><code class="docutils literal notranslate"><span class="pre">ThreeBodyGravity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="yarkovskyeffect.html"><code class="docutils literal notranslate"><span class="pre">YarkovskyEffect</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Environment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment/missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/trajectory.html"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../environment/missionsequence.html"><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/propagator.html"><code class="docutils literal notranslate"><span class="pre">Propagator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/scenariosetup.html"><code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statearray.html"><code class="docutils literal notranslate"><span class="pre">StateArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/statedefinition.html"><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../environment/trajectory.html"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Finite Burn</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuver.html"><code class="docutils literal notranslate"><span class="pre">Maneuver</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fb/maneuverparser.html"><code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../guidance/bplane.html"><code class="docutils literal notranslate"><span class="pre">Bplane</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/custommeasurement.html"><code class="docutils literal notranslate"><span class="pre">CustomMeasurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementconfig.html"><code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementscheduler.html"><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/obsdata.html"><code class="docutils literal notranslate"><span class="pre">ObsData</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/opnavmanager.html"><code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/angularideal.html"><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/centroidingideal.html"><code class="docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/custommeasurement.html"><code class="docutils literal notranslate"><span class="pre">CustomMeasurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/diffonewayrangeideal.html"><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerideal.html"><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/dopplerreal.html"><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurement.html"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementconfig.html"><code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementdataset.html"><code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementscheduler.html"><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/measurementspec.html"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/mediacorrections.html"><code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/obsdata.html"><code class="docutils literal notranslate"><span class="pre">ObsData</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/opnavmanager.html"><code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/ramptablemanager.html"><code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangeideal.html"><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/rangerateideal.html"><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/sequentialrangingreal.html"><code class="docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Orbit Determination</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/customfilter.html"><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/mcmc.html"><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/customfilter.html"><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/dynamicmodelcompensation.html"><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterdatamanager.html"><code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filterod.html"><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/filtersettings.html"><code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lkf.html"><code class="docutils literal notranslate"><span class="pre">LKF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/lsb.html"><code class="docutils literal notranslate"><span class="pre">LSB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/mcmc.html"><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/measurementediting.html"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/multifilterod.html"><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/outputsettings.html"><code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoise.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/processnoisesettings.html"><code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/solutionod.html"><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srif.html"><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/srifb.html"><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/statenoisecompensation.html"><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../orbit_det/utilsod.html"><code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spacecraft</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/actuator.html"><code class="docutils literal notranslate"><span class="pre">Actuator</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/antenna.html"><code class="docutils literal notranslate"><span class="pre">Antenna</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/camera.html"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/instrument.html"><code class="docutils literal notranslate"><span class="pre">Instrument</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/nplatemodel.html"><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spacecraft/spacecraft.html"><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time &amp; Frame</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/bodyorientation.html"><code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/arraywframe.html"><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/bodyorientation.html"><code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/epocharray.html"><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/frame.html"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_n_frame/spicemanager.html"><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Units</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../units/arraywunits.html"><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/dimensions.html"><code class="docutils literal notranslate"><span class="pre">Dimensions</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units/units.html"><code class="docutils literal notranslate"><span class="pre">Units</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Uncertainty Quantification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/montecarlosamples.html"><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uq/covariancematrix.html"><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/montecarlosamples.html"><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uq/uncertaintyquantification.html"><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Utilities</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/customcallable.html"><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/serialization.html"><code class="docutils literal notranslate"><span class="pre">Serialization</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/shapeharmonics.html"><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/solutioncloseness.html"><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../utils/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/customcallable.html"><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/noise.html"><code class="docutils literal notranslate"><span class="pre">Noise</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/orbitalelements.html"><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/pcinfo.html"><code class="docutils literal notranslate"><span class="pre">PCInfo</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/scbpolynomial.html"><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/serialization.html"><code class="docutils literal notranslate"><span class="pre">Serialization</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/shapeharmonics.html"><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/solutioncloseness.html"><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/utils.html"><code class="docutils literal notranslate"><span class="pre">Utils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/plotting/plotting.html"><code class="docutils literal notranslate"><span class="pre">Plotting</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Scarabaeus Rust</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rust/ephemeriscache.html"><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/integrationevent.html"><code class="docutils literal notranslate"><span class="pre">IntegrationEvent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/nplatesrpcore.html"><code class="docutils literal notranslate"><span class="pre">NPlateSRPCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedrongravitycore.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronGravityCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedronharmonics.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/sphericalharmonicscore.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsCore</span></code></a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../rust/ephemeriscache.html"><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/ias15.html"><code class="docutils literal notranslate"><span class="pre">IAS15</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/integrationevent.html"><code class="docutils literal notranslate"><span class="pre">IntegrationEvent</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/nplatesrpcore.html"><code class="docutils literal notranslate"><span class="pre">NPlateSRPCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedrongravitycore.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronGravityCore</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/polyhedronharmonics.html"><code class="docutils literal notranslate"><span class="pre">PolyhedronHarmonics</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rust/sphericalharmonicscore.html"><code class="docutils literal notranslate"><span class="pre">SphericalHarmonicsCore</span></code></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../api_ref_frontpage.html" class="nav-link"><span class="gold">Scarabaeus API</span></a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="dynamics_index.html" class="nav-link">&lt;no title&gt;</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="customdynamicmodel">
+<h1><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code><a class="headerlink" href="#customdynamicmodel" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CustomDynamicModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_by_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_by_velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depends_on_position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depends_on_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.CustomDynamicModel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.dynamics.DynamicModel.DynamicModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicModel</span></code></a></p>
+<p>User-supplied force model, defined entirely from a script.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code> turns a plain Python function into a first-class
+Scarabaeus force model: its acceleration is summed into the equations of
+motion alongside the built-in models, and the parameters it declares are
+propagated, differentiated, and estimated exactly like <code class="docutils literal notranslate"><span class="pre">eta_srp</span></code> or
+<code class="docutils literal notranslate"><span class="pre">a_fogm</span></code>.  Adding a force therefore requires no change to the library
+source — build the model in the script and hand it to
+<a class="reference internal" href="forcemodeltranslation.html#scarabaeus.ForceModelTranslation" title="scarabaeus.ForceModelTranslation"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a> through <code class="docutils literal notranslate"><span class="pre">custom_models</span></code>.</p>
+<p>The acceleration enters the equation of motion as one more term of</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\mathbf r} =
+    \sum_i \mathbf a_i(\mathbf r,\,\dot{\mathbf r},\,\mathbf p,\,t)\]</div>
+<p>and the model supplies the blocks of
+<span class="math notranslate nohighlight">\(\partial \mathbf f / \partial \mathbf p\)</span> needed by the variational
+equations: <span class="math notranslate nohighlight">\(\partial \mathbf a / \partial \mathbf r\)</span>,
+<span class="math notranslate nohighlight">\(\partial \mathbf a / \partial \dot{\mathbf r}\)</span> and, for each
+declared <a class="reference internal" href="customparameter.html#scarabaeus.CustomParameter" title="scarabaeus.CustomParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomParameter</span></code></a>,
+<span class="math notranslate nohighlight">\(\partial \mathbf a / \partial p\)</span>.  Any Jacobian the user does not
+provide analytically is evaluated by central finite differences of the user
+functions, so a model is usable from its acceleration alone.</p>
+<p><strong>Calling convention.</strong> Every user callable is invoked with keyword
+arguments; declare only the ones you need, in any order. The available names
+are:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">position</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> position of <em>body</em> w.r.t. the propagation origin, km</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">velocity</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(3,)</span></code> inertial velocity of <em>body</em>, km/s</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epoch</span></code></p></td>
+<td><p>current epoch, TDB seconds past J2000</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">params</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code> mapping this model’s parameter names to their
+current values (estimated value when in the state, else the
+parameter default)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>full propagated state, keyed by <code class="docutils literal notranslate"><span class="pre">(name,</span> <span class="pre">spice_id)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">body</span></code></p></td>
+<td><p>the body the acceleration acts on</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">spacecraft</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">primary_body</span></code> of the owning force model</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">origin</span></code></p></td>
+<td><p>central body of the propagation</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">frame</span></code></p></td>
+<td><p>base <a class="reference internal" href="../time_n_frame/frame.html#scarabaeus.Frame" title="scarabaeus.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a> of the propagation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mass</span></code></p></td>
+<td><p>mass of <code class="docutils literal notranslate"><span class="pre">spacecraft</span></code> at <code class="docutils literal notranslate"><span class="pre">epoch</span></code>, kg</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">model</span></code></p></td>
+<td><p>this <code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code> instance</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A callable declaring <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> receives all of them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Identifier of the model. Appears in
+<a class="reference internal" href="forcemodeltranslation.html#scarabaeus.ForceModelTranslation.dynamics_mode_list" title="scarabaeus.ForceModelTranslation.dynamics_mode_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dynamics_mode_list</span></code></a> and must be
+unique among the active force models.</p>
+</dd>
+<dt><strong>acceleration</strong><span class="classifier">callable</span></dt><dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">(3,)</span></code> acceleration contribution, in km/s^2. Required.</p>
+</dd>
+<dt><strong>parameters</strong><span class="classifier">list, optional</span></dt><dd><p>Solve-for parameters consumed by this model, given as
+<a class="reference internal" href="customparameter.html#scarabaeus.CustomParameter" title="scarabaeus.CustomParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">CustomParameter</span></code></a> objects or as plain names (which
+are registered as scalar, dimensionless parameters).</p>
+</dd>
+<dt><strong>partial_by_position</strong><span class="classifier">callable, optional</span></dt><dd><p>Returns <span class="math notranslate nohighlight">\(\partial \mathbf a / \partial \mathbf r\)</span> as <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">3)</span></code>.
+Defaults to a central finite difference of <em>acceleration</em>.</p>
+</dd>
+<dt><strong>partial_by_velocity</strong><span class="classifier">callable, optional</span></dt><dd><p>Returns <span class="math notranslate nohighlight">\(\partial \mathbf a / \partial \dot{\mathbf r}\)</span> as
+<code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">3)</span></code>. Defaults to a central finite difference of <em>acceleration</em>.</p>
+</dd>
+<dt><strong>depends_on_position</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether the acceleration depends on position. Inferred from the
+signature of <em>acceleration</em> when <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default); set it
+explicitly when the dependence is hidden, e.g. read out of <code class="docutils literal notranslate"><span class="pre">state</span></code>.</p>
+</dd>
+<dt><strong>depends_on_velocity</strong><span class="classifier">bool, optional</span></dt><dd><p>Same, for the velocity dependence. When it resolves to <code class="docutils literal notranslate"><span class="pre">False</span></code> the
+(structurally zero) <span class="math notranslate nohighlight">\(\partial \mathbf a / \partial \dot{\mathbf r}\)</span>
+block is skipped entirely.</p>
+</dd>
+<dt><strong>position_step</strong><span class="classifier">float, optional</span></dt><dd><p>Absolute finite-difference step on position, in km. Defaults to
+<code class="docutils literal notranslate"><span class="pre">1e-6</span> <span class="pre">*</span> <span class="pre">max(|r_i|,</span> <span class="pre">1)</span></code> per component.</p>
+</dd>
+<dt><strong>velocity_step</strong><span class="classifier">float, optional</span></dt><dd><p>Absolute finite-difference step on velocity, in km/s. Defaults to
+<code class="docutils literal notranslate"><span class="pre">1e-9</span> <span class="pre">*</span> <span class="pre">max(|v_i|,</span> <span class="pre">1)</span></code> per component.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.base_frame" title="scarabaeus.CustomDynamicModel.base_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">base_frame</span></code></a></dt><dd><p>Reference frame of the propagation, or <code class="docutils literal notranslate"><span class="pre">None</span></code> before binding.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.depends_on_position" title="scarabaeus.CustomDynamicModel.depends_on_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">depends_on_position</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when the acceleration is a function of position.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.depends_on_velocity" title="scarabaeus.CustomDynamicModel.depends_on_velocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">depends_on_velocity</span></code></a></dt><dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when the acceleration is a function of velocity.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.dynamic_parameters" title="scarabaeus.CustomDynamicModel.dynamic_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dynamic_parameters</span></code></a></dt><dd><p>Declared parameters that carry their own equation of motion.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.name" title="scarabaeus.CustomDynamicModel.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></dt><dd><p>Identifier of the model within the force model aggregator.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.origin" title="scarabaeus.CustomDynamicModel.origin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">origin</span></code></a></dt><dd><p>Central body of the propagation, or <code class="docutils literal notranslate"><span class="pre">None</span></code> before binding.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.parameters" title="scarabaeus.CustomDynamicModel.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameters</span></code></a></dt><dd><p>Declared solve-for parameters, keyed by name.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.CustomDynamicModel.primary_body" title="scarabaeus.CustomDynamicModel.primary_body"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primary_body</span></code></a></dt><dd><p>Spacecraft the owning force model acts on, or <code class="docutils literal notranslate"><span class="pre">None</span></code> before binding.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.CustomDynamicModel.compute_acceleration" title="scarabaeus.CustomDynamicModel.compute_acceleration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_acceleration</span></code></a>(position, ...)</p></td>
+<td><p>Evaluate the user-supplied acceleration contribution.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="customparameter.html#scarabaeus.CustomParameter" title="scarabaeus.CustomParameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.CustomParameter</span></code></a></dt><dd><p>Declaration of an estimable custom parameter.</p>
+</dd>
+<dt><a class="reference internal" href="forcemodeltranslation.html#scarabaeus.ForceModelTranslation" title="scarabaeus.ForceModelTranslation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.ForceModelTranslation</span></code></a></dt><dd><p>Aggregator that hosts custom models.</p>
+</dd>
+<dt><a class="reference internal" href="dynamicmodel.html#scarabaeus.DynamicModel" title="scarabaeus.DynamicModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scarabaeus.DynamicModel</span></code></a></dt><dd><p>Abstract base class of all force model components.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The model is bound to a concrete state and frame when the owning
+<a class="reference internal" href="forcemodeltranslation.html#scarabaeus.ForceModelTranslation" title="scarabaeus.ForceModelTranslation"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code></a> is initialized by the
+<a class="reference internal" href="../environment/propagator.html#scarabaeus.Propagator" title="scarabaeus.Propagator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Propagator</span></code></a>. Build one instance per force model: sharing
+an instance between force models built on different spacecraft (e.g. a truth
+run and a filter reference) raises
+<a class="reference internal" href="#scarabaeus.CustomDynamicModel.RebindError" title="scarabaeus.CustomDynamicModel.RebindError"><code class="xref py py-class docutils literal notranslate"><span class="pre">RebindError</span></code></a>.</p>
+<p>Accelerations must be returned in km/s^2 and positions/velocities are handed
+over in km and km/s — the internal units of the propagator.</p>
+<p class="rubric">Examples</p>
+<p>An exponential-atmosphere drag force with an estimated drag coefficient:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
+
+<span class="n">cd</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CustomParameter</span><span class="p">(</span><span class="s2">"drag_cd"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">2.2</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">drag</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">spacecraft</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">position</span><span class="p">)</span> <span class="o">-</span> <span class="mf">6378.0</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="mf">3.6e-4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">h</span> <span class="o">/</span> <span class="mf">88.667</span><span class="p">)</span>          <span class="c1"># kg/km**3</span>
+    <span class="n">area_over_mass</span> <span class="o">=</span> <span class="mf">1e-5</span>                        <span class="c1"># km**2/kg</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">velocity</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s2">"drag_cd"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">area_over_mass</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">speed</span> <span class="o">*</span> <span class="n">velocity</span>
+
+<span class="n">drag_model</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CustomDynamicModel</span><span class="p">(</span><span class="s2">"Drag"</span><span class="p">,</span> <span class="n">drag</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">[</span><span class="n">cd</span><span class="p">])</span>
+
+<span class="n">force_model</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ForceModelTranslation</span><span class="p">(</span>
+    <span class="n">primary_body</span><span class="o">=</span><span class="n">sc</span><span class="p">,</span>
+    <span class="n">custom_models</span><span class="o">=</span><span class="p">[</span><span class="n">drag_model</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The parameter is estimated by adding it to the state definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">state_def</span> <span class="o">=</span> <span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">StateDefinition</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">position</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">pos_0</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">vel_0</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">custom_param</span><span class="p">(</span><span class="s2">"drag_cd"</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.compute_acceleration">
+<span class="sig-name descname"><span class="pre">compute_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../body/celestialbody.html#scarabaeus.CelestialBody" title="scarabaeus.body.CelestialBody.CelestialBody"><span class="pre">CelestialBody</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a></span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.compute_acceleration" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate the user-supplied acceleration contribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>position</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>3x1 position of the body relative to the central body, in kilometers.</p>
+</dd>
+<dt><strong>current_state</strong><span class="classifier">dict</span></dt><dd><p>Dictionary containing the current state parameters.</p>
+</dd>
+<dt><strong>epoch</strong><span class="classifier">float</span></dt><dd><p>Current simulation epoch in seconds.</p>
+</dd>
+<dt><strong>body</strong><span class="classifier">CelestialBody</span></dt><dd><p>Body the acceleration acts on.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy.ndarray</dt><dd><p>3x1 acceleration contribution, in <span class="math notranslate nohighlight">\(\frac{km}{s^2}\)</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.base_frame">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">base_frame</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame/frame.html#scarabaeus.Frame" title="scarabaeus.timeAndFrame.Frame.Frame"><span class="pre">Frame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.base_frame" title="Link to this definition">#</a></dt>
+<dd><p>Reference frame of the propagation, or <code class="docutils literal notranslate"><span class="pre">None</span></code> before binding.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.depends_on_position">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">depends_on_position</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.depends_on_position" title="Link to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when the acceleration is a function of position.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.depends_on_velocity">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">depends_on_velocity</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.depends_on_velocity" title="Link to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> when the acceleration is a function of velocity.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.dynamic_parameters">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dynamic_parameters</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.dynamic_parameters" title="Link to this definition">#</a></dt>
+<dd><p>Declared parameters that carry their own equation of motion.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.name">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.name" title="Link to this definition">#</a></dt>
+<dd><p>Identifier of the model within the force model aggregator.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.origin">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.origin" title="Link to this definition">#</a></dt>
+<dd><p>Central body of the propagation, or <code class="docutils literal notranslate"><span class="pre">None</span></code> before binding.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.parameters">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parameters</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.parameters" title="Link to this definition">#</a></dt>
+<dd><p>Declared solve-for parameters, keyed by name.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.primary_body">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">primary_body</span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.primary_body" title="Link to this definition">#</a></dt>
+<dd><p>Spacecraft the owning force model acts on, or <code class="docutils literal notranslate"><span class="pre">None</span></code> before binding.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.DuplicateParameterError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DuplicateParameterError</span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.DuplicateParameterError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when the same parameter name is declared twice by one model.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.NotBoundError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NotBoundError</span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.NotBoundError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
+<p>Raised when the model is used before the force model initializes it.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.RebindError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">RebindError</span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.RebindError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#RuntimeError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RuntimeError</span></code></a></p>
+<p>Raised when one model instance is shared between two different spacecraft.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.CustomDynamicModel.ShapeError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ShapeError</span></span><a class="headerlink" href="#scarabaeus.CustomDynamicModel.ShapeError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when a user callable returns an array of unexpected shape.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cannonballsrp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">CannonballSRP</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="customparameter.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><code class="docutils literal notranslate"><span class="pre">CustomParameter</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel</span></code></a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.compute_acceleration"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.compute_acceleration()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.base_frame"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.base_frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.depends_on_position"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.depends_on_position</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.depends_on_velocity"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.depends_on_velocity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.dynamic_parameters"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.dynamic_parameters</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.name"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.origin"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.origin</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.parameters"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.parameters</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.primary_body"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.primary_body</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.DuplicateParameterError"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.DuplicateParameterError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.NotBoundError"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.NotBoundError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.RebindError"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.RebindError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.CustomDynamicModel.ShapeError"><code class="docutils literal notranslate"><span class="pre">CustomDynamicModel.ShapeError</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

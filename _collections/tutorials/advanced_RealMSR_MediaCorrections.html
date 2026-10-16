@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -16,7 +15,7 @@
 <meta property="og:image:alt" content="Scarabaeus" />
 <meta name="description" content="Scarabaeus OD Framework | Last revised 2026 What this notebook covers: This is a standalone notebook on atmospheric media corrections and DSN ramp tables using real OSIRIS-REx tracking data. These auxiliary data products must be applied to raw radiometric observables before they enter any orbit determination filter.,,#, Topic,,, 1, Setup — units, frames, SPICE kernels, ground stations,, 2, Tropospheric delay models — seasonal and non-seasonal components,, 3, DSN ramp table inspection and inte..." />
 
-    <title># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables &#8212; Scarabaeus  documentation</title>
+    <title># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables &#8212; Scarabaeus 2.0.0 documentation</title>
   
   
   
@@ -35,56 +34,65 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_RealMSR_MediaCorrections';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="# OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination" href="advanced_RealMSR_OSIRIS_REx_OD.html" />
+    <link rel="next" title="# OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination" href="advanced_RealMSR_OSIRIS_REx_OD.html" />
     <link rel="prev" title="# Sequential Orbit Determination — Complete Demo" href="advanced_IdealMSR_SequentialOD.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
-
+  <body data-default-mode="dark">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -110,9 +118,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -193,6 +201,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -204,7 +219,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -214,11 +229,33 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -227,7 +264,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -236,7 +273,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -307,6 +344,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -319,18 +363,48 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
         
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
         <div class="sidebar-primary-item">
+
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
@@ -525,7 +599,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced — Real Measurements</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
 
 
 
@@ -533,7 +607,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -545,7 +624,7 @@
 
 </ul>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
 
 
 
@@ -553,7 +632,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -577,6 +661,9 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -665,7 +752,7 @@
 <section id="1.-Setup">
 <h1>1. Setup<a class="headerlink" href="#1.-Setup" title="Link to this heading">#</a></h1>
 <p>Standard scientific imports plus <code class="docutils literal notranslate"><span class="pre">scarabaeus</span></code> and the tutorial <code class="docutils literal notranslate"><span class="pre">supplementary</span></code> helper. Units and frames are created once here and reused throughout all sections.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -676,57 +763,16 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">supplementary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">supp</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scarabaeus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">scb</span>
 
-<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;kg&quot;</span><span class="p">,</span> <span class="s2">&quot;km&quot;</span><span class="p">,</span> <span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="s2">&quot;unitless&quot;</span><span class="p">])</span>
+<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">"kg"</span><span class="p">,</span> <span class="s2">"km"</span><span class="p">,</span> <span class="s2">"sec"</span><span class="p">,</span> <span class="s2">"unitless"</span><span class="p">])</span>
 <span class="p">(</span><span class="n">J2000</span><span class="p">,</span> <span class="n">ITRF93</span><span class="p">,</span> <span class="n">ECLIPJ2000</span><span class="p">,</span> <span class="n">IAUEARTH</span><span class="p">)</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">generate_common_frames</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-    <span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-    <span class="s1">&#39;figure.dpi&#39;</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="s1">&#39;axes.grid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;grid.alpha&#39;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span> <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="s1">'font.size'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'axes.titlesize'</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">'axes.labelsize'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s1">'xtick.labelsize'</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">'ytick.labelsize'</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">'legend.fontsize'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s1">'figure.dpi'</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="s1">'axes.grid'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">'grid.alpha'</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span> <span class="s1">'grid.linestyle'</span><span class="p">:</span> <span class="s1">'--'</span><span class="p">,</span>
 <span class="p">})</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 5</span>
-<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pandas</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pd</span>
-<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">matplotlib</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">pyplot</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">plt</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supp</span>
-<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scb</span>
-<span class="ansi-green-fg">      8</span> kg, km, sec, unitless = scb.Units.get_units([<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">kg</span><span class="ansi-yellow-fg">&#34;</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">km</span><span class="ansi-yellow-fg">&#34;</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">sec</span><span class="ansi-yellow-fg">&#34;</span>, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">unitless</span><span class="ansi-yellow-fg">&#34;</span>])
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/__init__.py:10</span>
-<span class="ansi-green-fg">      8</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> file_gen
-<span class="ansi-green-fg">      9</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">supp_data</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> load_data
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">10</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">supplementary</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> supp_plotting <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> plotting
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_plotting.py:13</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder</span>
-<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># SPDX-License-Identifier: ISC</span>
-<span class="ansi-green-fg">      3</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
-<span class="ansi-green-fg">      4</span> <span class="ansi-yellow-fg">Supplementary Plotting</span>
-<span class="ansi-green-fg">      5</span>
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     11</span> <span class="ansi-yellow-fg">plotting code here instead.</span>
-<span class="ansi-green-fg">     12</span> <span class="ansi-yellow-fg">&#34;&#34;&#34;</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scb</span>
-<span class="ansi-green-fg">     15</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">pathlib</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Path
-<span class="ansi-green-fg">     16</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">dataclasses</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> dataclass
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scarabaeus/.venv/lib/python3.11/site-packages/scarabaeus/__init__.py:21</span>
-<span class="ansi-green-fg">     18</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">body</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Body</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Body
-<span class="ansi-green-fg">     19</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">timeAndFrame</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">SpiceManager</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> SpiceManager
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">21</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">scb_rust</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> *
-<span class="ansi-green-fg">     23</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">utils</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Constants</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Constants <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> constants
-<span class="ansi-green-fg">     24</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">scarabaeus</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">utils</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">Constants</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">import</span> PCInfo
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;scarabaeus.scb_rust&#39;
-</pre></div></div>
 </div>
 </section>
 <section id="1.1-—-SPICE-Kernels-and-Ground-Stations">
@@ -772,9 +818,9 @@
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel_from_mkfile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">OREx_real_data_mk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># Ground stations (one per DSN complex)</span>
-<span class="n">GS_C10</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-24&quot;</span><span class="p">)</span>  <span class="c1"># Goldstone, California</span>
-<span class="n">GS_C40</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-35&quot;</span><span class="p">)</span>  <span class="c1"># Canberra, Australia</span>
-<span class="n">GS_C60</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">&quot;DSS-65&quot;</span><span class="p">)</span>  <span class="c1"># Madrid, Spain</span>
+<span class="n">GS_C10</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">"DSS-24"</span><span class="p">)</span>  <span class="c1"># Goldstone, California</span>
+<span class="n">GS_C40</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">"DSS-35"</span><span class="p">)</span>  <span class="c1"># Canberra, Australia</span>
+<span class="n">GS_C60</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">"DSS-65"</span><span class="p">)</span>  <span class="c1"># Madrid, Spain</span>
 <br/></pre></div>
 </div>
 </div>
@@ -783,15 +829,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> data = <span class="ansi-yellow-bg">supp</span>.load_data()
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># load kernels</span>
-<span class="ansi-green-fg">      5</span> scb.SpiceManager.clear_kernels()
-
-<span class="ansi-red-fg">NameError</span>: name &#39;supp&#39; is not defined
+SCB supplementary data up to date.
 </pre></div></div>
 </div>
 </section>
@@ -844,36 +882,36 @@
 <span class="n">tropo_seasonal_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_seasonal_new</span><span class="o">.</span><span class="n">path</span>
 <span class="n">tropo_nonseasonal_path</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tropo_nonseasonal</span><span class="o">.</span><span class="n">path</span>
 
-<span class="c1">#tropo_seasonal_path    = &quot;data/measurements/media_correction/1972_001_2048_001_tro_modified.json&quot;</span>
-<span class="c1">#tropo_nonseasonal_path = &quot;data/measurements/media_correction/2010_001_2010_032_tro.json&quot;</span>
+<span class="c1">#tropo_seasonal_path    = "data/measurements/media_correction/1972_001_2048_001_tro_modified.json"</span>
+<span class="c1">#tropo_nonseasonal_path = "data/measurements/media_correction/2010_001_2010_032_tro.json"</span>
 
 <span class="n">tropo_seasonal_dict</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">tropo_seasonal_path</span><span class="p">)</span>
 <span class="n">tropo_dict</span>          <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">tropo_nonseasonal_path</span><span class="p">)</span>
 
 <span class="c1"># Query parameters</span>
-<span class="n">query_utc</span>      <span class="o">=</span> <span class="s2">&quot;2010-01-15 00:07:00 UTC&quot;</span>
-<span class="n">query_site</span>     <span class="o">=</span> <span class="s2">&quot;C60&quot;</span>   <span class="c1"># &quot;C10&quot; | &quot;C40&quot; | &quot;C60&quot;</span>
-<span class="n">query_wetordry</span> <span class="o">=</span> <span class="s2">&quot;DRY&quot;</span>   <span class="c1"># &quot;DRY&quot; | &quot;WET&quot;</span>
+<span class="n">query_utc</span>      <span class="o">=</span> <span class="s2">"2010-01-15 00:07:00 UTC"</span>
+<span class="n">query_site</span>     <span class="o">=</span> <span class="s2">"C60"</span>   <span class="c1"># "C10" | "C40" | "C60"</span>
+<span class="n">query_wetordry</span> <span class="o">=</span> <span class="s2">"DRY"</span>   <span class="c1"># "DRY" | "WET"</span>
 
 <span class="c1"># Convert UTC to SPICE ephemeris time</span>
 <span class="n">query_et</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="n">query_utc</span><span class="p">)</span>
 
 <span class="c1"># Retrieve coefficient sub-dictionaries for the query epoch</span>
 <span class="n">aux_seasonal</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
-    <span class="n">tropo_seasonal_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">query_site</span><span class="p">,</span> <span class="n">query_wetordry</span><span class="p">,</span> <span class="n">query_et</span>
+    <span class="n">tropo_seasonal_dict</span><span class="p">[</span><span class="s2">"aux_tropo"</span><span class="p">],</span> <span class="n">query_site</span><span class="p">,</span> <span class="n">query_wetordry</span><span class="p">,</span> <span class="n">query_et</span>
 <span class="p">)</span>
 <span class="n">aux_non_seasonal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
-    <span class="n">tropo_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">query_site</span><span class="p">,</span> <span class="n">query_wetordry</span><span class="p">,</span> <span class="n">query_et</span>
+    <span class="n">tropo_dict</span><span class="p">[</span><span class="s2">"aux_tropo"</span><span class="p">],</span> <span class="n">query_site</span><span class="p">,</span> <span class="n">query_wetordry</span><span class="p">,</span> <span class="n">query_et</span>
 <span class="p">)</span>
 
 <span class="c1"># Evaluate delay models (result in meters)</span>
 <span class="n">delta_m_seasonal</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_trig</span><span class="p">(</span><span class="n">aux_seasonal</span><span class="p">,</span> <span class="n">query_et</span><span class="p">)</span>
 <span class="n">delta_m_non_seasonal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_nrmpow</span><span class="p">(</span><span class="n">aux_non_seasonal</span><span class="p">,</span> <span class="n">query_et</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query:              </span><span class="si">{</span><span class="n">query_utc</span><span class="si">}</span><span class="s2">  |  Site: </span><span class="si">{</span><span class="n">query_site</span><span class="si">}</span><span class="s2">  |  Component: </span><span class="si">{</span><span class="n">query_wetordry</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seasonal delay:     </span><span class="si">{</span><span class="n">delta_m_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-seasonal delay: </span><span class="si">{</span><span class="n">delta_m_non_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total zenith delay: </span><span class="si">{</span><span class="n">delta_m_seasonal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_m_non_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Query:              </span><span class="si">{</span><span class="n">query_utc</span><span class="si">}</span><span class="s2">  |  Site: </span><span class="si">{</span><span class="n">query_site</span><span class="si">}</span><span class="s2">  |  Component: </span><span class="si">{</span><span class="n">query_wetordry</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Seasonal delay:     </span><span class="si">{</span><span class="n">delta_m_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Non-seasonal delay: </span><span class="si">{</span><span class="n">delta_m_non_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total zenith delay: </span><span class="si">{</span><span class="n">delta_m_seasonal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta_m_non_seasonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -882,15 +920,11 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> data = <span class="ansi-yellow-bg">supp</span>.load_data()
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># load kernels</span>
-<span class="ansi-green-fg">      5</span> scb.SpiceManager.clear_kernels()
-
-<span class="ansi-red-fg">NameError</span>: name &#39;supp&#39; is not defined
+SCB supplementary data up to date.
+Query:              2010-01-15 00:07:00 UTC  |  Site: C60  |  Component: DRY
+Seasonal delay:     2.118438 m
+Non-seasonal delay: -0.012684 m
+Total zenith delay: 2.105753 m
 </pre></div></div>
 </div>
 </section>
@@ -906,22 +940,22 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">et_to_utc</span><span class="p">(</span><span class="n">et_arr</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert array of SPICE ET values to list of UTC datetime objects.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Convert array of SPICE ET values to list of UTC datetime objects."""</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">et</span><span class="p">))[:</span><span class="mi">19</span><span class="p">])</span>
             <span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">et_arr</span><span class="p">]</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"%b </span><span class="si">%d</span><span class="s2">"</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">AutoDateLocator</span><span class="p">(</span><span class="n">minticks</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">maxticks</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="n">fmt</span><span class="p">))</span>
 
 <span class="c1"># Time span: Jan 1 – Feb 28, 2010</span>
-<span class="n">t_start_et</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">&quot;2010-01-01 00:00:00 UTC&quot;</span><span class="p">)</span>
-<span class="n">t_end_et</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">&quot;2010-02-28 23:59:00 UTC&quot;</span><span class="p">)</span>
+<span class="n">t_start_et</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">"2010-01-01 00:00:00 UTC"</span><span class="p">)</span>
+<span class="n">t_end_et</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">"2010-02-28 23:59:00 UTC"</span><span class="p">)</span>
 <span class="n">timespan_et</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t_start_et</span><span class="p">,</span> <span class="n">t_end_et</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">timespan_utc</span> <span class="o">=</span> <span class="n">et_to_utc</span><span class="p">(</span><span class="n">timespan_et</span><span class="p">)</span>
 
-<span class="n">queries_site</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C10&quot;</span><span class="p">,</span> <span class="s2">&quot;C40&quot;</span><span class="p">,</span> <span class="s2">&quot;C60&quot;</span><span class="p">]</span>
-<span class="n">queries_wetdry</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;DRY&quot;</span><span class="p">,</span> <span class="s2">&quot;WET&quot;</span><span class="p">]</span>
+<span class="n">queries_site</span>    <span class="o">=</span> <span class="p">[</span><span class="s2">"C10"</span><span class="p">,</span> <span class="s2">"C40"</span><span class="p">,</span> <span class="s2">"C60"</span><span class="p">]</span>
+<span class="n">queries_wetdry</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"DRY"</span><span class="p">,</span> <span class="s2">"WET"</span><span class="p">]</span>
 <span class="n">S</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries_site</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">timespan_et</span><span class="p">)</span>
 
 <span class="n">delta_m_seasonal</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">S</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
@@ -931,34 +965,34 @@
     <span class="k">for</span> <span class="n">wi</span><span class="p">,</span> <span class="n">wd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">ti</span><span class="p">,</span> <span class="n">et</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">timespan_et</span><span class="p">):</span>
             <span class="n">aux_s</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
-                <span class="n">tropo_seasonal_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">site</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">et</span>
+                <span class="n">tropo_seasonal_dict</span><span class="p">[</span><span class="s2">"aux_tropo"</span><span class="p">],</span> <span class="n">site</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">et</span>
             <span class="p">)</span>
             <span class="n">aux_n</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">get_media_data_for_et</span><span class="p">(</span>
-                <span class="n">tropo_dict</span><span class="p">[</span><span class="s2">&quot;aux_tropo&quot;</span><span class="p">],</span> <span class="n">site</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">et</span>
+                <span class="n">tropo_dict</span><span class="p">[</span><span class="s2">"aux_tropo"</span><span class="p">],</span> <span class="n">site</span><span class="p">,</span> <span class="n">wd</span><span class="p">,</span> <span class="n">et</span>
             <span class="p">)</span>
             <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ti</span><span class="p">]</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_trig</span><span class="p">(</span><span class="n">aux_s</span><span class="p">,</span> <span class="n">et</span><span class="p">)</span>     <span class="k">if</span> <span class="n">aux_s</span> <span class="k">else</span> <span class="mf">0.0</span>
             <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ti</span><span class="p">]</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">mediafun_nrmpow</span><span class="p">(</span><span class="n">aux_n</span><span class="p">,</span> <span class="n">et</span><span class="p">)</span>   <span class="k">if</span> <span class="n">aux_n</span> <span class="k">else</span> <span class="mf">0.0</span>
 
-<span class="n">site_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C10&quot;</span><span class="p">:</span> <span class="s2">&quot;Goldstone (C10)&quot;</span><span class="p">,</span> <span class="s2">&quot;C40&quot;</span><span class="p">:</span> <span class="s2">&quot;Canberra (C40)&quot;</span><span class="p">,</span> <span class="s2">&quot;C60&quot;</span><span class="p">:</span> <span class="s2">&quot;Madrid (C60)&quot;</span><span class="p">}</span>
-<span class="n">wd_labels</span>   <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;DRY&quot;</span><span class="p">:</span> <span class="s2">&quot;Dry&quot;</span><span class="p">,</span> <span class="s2">&quot;WET&quot;</span><span class="p">:</span> <span class="s2">&quot;Wet&quot;</span><span class="p">}</span>
-<span class="n">colors</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">]</span>
+<span class="n">site_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"C10"</span><span class="p">:</span> <span class="s2">"Goldstone (C10)"</span><span class="p">,</span> <span class="s2">"C40"</span><span class="p">:</span> <span class="s2">"Canberra (C40)"</span><span class="p">,</span> <span class="s2">"C60"</span><span class="p">:</span> <span class="s2">"Madrid (C60)"</span><span class="p">}</span>
+<span class="n">wd_labels</span>   <span class="o">=</span> <span class="p">{</span><span class="s2">"DRY"</span><span class="p">:</span> <span class="s2">"Dry"</span><span class="p">,</span> <span class="s2">"WET"</span><span class="p">:</span> <span class="s2">"Wet"</span><span class="p">}</span>
+<span class="n">colors</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">"C0"</span><span class="p">,</span> <span class="s2">"C1"</span><span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Zenith Tropospheric Delay — Jan–Feb 2010&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s2">"row"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Zenith Tropospheric Delay — Jan–Feb 2010"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">si</span><span class="p">,</span> <span class="n">site</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_site</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">wi</span><span class="p">,</span> <span class="n">wd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries_wetdry</span><span class="p">):</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">]</span>
         <span class="n">total</span> <span class="o">=</span> <span class="n">delta_m_non_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_utc</span><span class="p">,</span> <span class="n">delta_m_seasonal</span><span class="p">[</span><span class="n">si</span><span class="p">,</span> <span class="n">wi</span><span class="p">,</span> <span class="p">:],</span>
-                <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">wi</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal&quot;</span><span class="p">)</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">wi</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Seasonal"</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">timespan_utc</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span>
-                <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">wi</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seasonal + non-seasonal&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">site_labels</span><span class="p">[</span><span class="n">site</span><span class="p">]</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">wd_labels</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Delay [m]&quot;</span><span class="p">)</span>
+                <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">wi</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Seasonal + non-seasonal"</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">site_labels</span><span class="p">[</span><span class="n">site</span><span class="p">]</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">wd_labels</span><span class="p">[</span><span class="n">wd</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Delay [m]"</span><span class="p">)</span>
         <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">si</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"UTC"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">si</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
@@ -971,18 +1005,8 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 14</span>
-<span class="ansi-green-fg">     11</span>     ax.xaxis.set_major_formatter(mdates.DateFormatter(fmt))
-<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Time span: Jan 1 – Feb 28, 2010</span>
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> t_start_et  = <span class="ansi-yellow-bg">scb</span>.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2010-01-01 00:00:00 UTC</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">     15</span> t_end_et    = scb.SpiceManager.utc2et(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">2010-02-28 23:59:00 UTC</span><span class="ansi-yellow-fg">&#34;</span>)
-<span class="ansi-green-fg">     16</span> timespan_et = np.linspace(t_start_et, t_end_et, <span class="ansi-green-fg">1000</span>)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_9_0.png" />
+</div>
 </div>
 </section>
 <section id="2.3-—-Elevation-mapping-function">
@@ -1007,12 +1031,12 @@
     <span class="n">dry_mapping</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">wet_mapping</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">chao_mapping</span><span class="p">(</span><span class="n">el</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">dry_mapping</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dry&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">wet_mapping</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wet&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;10° cut-off&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mapping factor  m(E)  [—]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Chao (1972) Tropospheric Mapping Functions&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">dry_mapping</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Dry"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">E_rad</span><span class="p">),</span> <span class="n">wet_mapping</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Wet"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"10° cut-off"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Elevation angle [deg]"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Mapping factor  m(E)  [—]"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Chao (1972) Tropospheric Mapping Functions"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1023,18 +1047,8 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 7</span>
-<span class="ansi-green-fg">      4</span> wet_mapping = np.empty_like(E_rad)
-<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i, el <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">enumerate</span>(E_rad):
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     dry_mapping[i], wet_mapping[i] = <span class="ansi-yellow-bg">scb</span>.MediaCorrections.chao_mapping(el)
-<span class="ansi-green-fg">      9</span> fig, ax = plt.subplots(figsize=(<span class="ansi-green-fg">8</span>, <span class="ansi-green-fg">4</span>))
-<span class="ansi-green-fg">     10</span> ax.plot(np.degrees(E_rad), dry_mapping, lw=<span class="ansi-green-fg">1.5</span>, ls=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">--</span><span class="ansi-yellow-fg">&#34;</span>, color=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">C0</span><span class="ansi-yellow-fg">&#34;</span>, label=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Dry</span><span class="ansi-yellow-fg">&#34;</span>)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_11_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_11_0.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1080,31 +1094,31 @@
 
 <span class="c1"># Assemble ramp table list in the format expected by RampTableManager</span>
 <span class="n">ramp_data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;sec&quot;</span><span class="p">],</span>
-    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;doy&quot;</span><span class="p">],</span>
-    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">],</span>
-    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_rate&quot;</span><span class="p">],</span>
-    <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">][</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">][</span><span class="s2">"sec"</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">][</span><span class="s2">"doy"</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">][</span><span class="s2">"ramp_freq"</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">][</span><span class="s2">"ramp_rate"</span><span class="p">],</span>
+    <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">][</span><span class="s2">"ramp_type"</span><span class="p">],</span>
 <span class="p">]</span>
 
-<span class="n">s9</span>       <span class="o">=</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">]</span>
+<span class="n">s9</span>       <span class="o">=</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">]</span>
 <span class="c1"># Convert seconds-of-day to UTC datetimes (pass date: 2018 DoY 159 = Jun 8)</span>
-<span class="n">_day0</span>    <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;doy&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ramp_utc</span> <span class="o">=</span> <span class="p">[</span><span class="n">_day0</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;sec&quot;</span><span class="p">]]</span>
+<span class="n">_day0</span>    <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">"year"</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">"doy"</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ramp_utc</span> <span class="o">=</span> <span class="p">[</span><span class="n">_day0</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">s9</span><span class="p">[</span><span class="s2">"sec"</span><span class="p">]]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Ramp Table Contents — SFDU_9&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Ramp Table Contents — SFDU_9"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;doy&quot;</span><span class="p">],</span>       <span class="s2">&quot;C0o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Day of year&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">],</span> <span class="s2">&quot;C1o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Freq [Hz]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_rate&quot;</span><span class="p">],</span> <span class="s2">&quot;C3o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Rate [Hz/s]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">],</span> <span class="s2">&quot;C2o-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Type&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">"doy"</span><span class="p">],</span>       <span class="s2">"C0o-"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Day of year"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">"ramp_freq"</span><span class="p">],</span> <span class="s2">"C1o-"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Freq [Hz]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">"ramp_rate"</span><span class="p">],</span> <span class="s2">"C3o-"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Rate [Hz/s]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ramp_utc</span><span class="p">,</span> <span class="n">s9</span><span class="p">[</span><span class="s2">"ramp_type"</span><span class="p">],</span> <span class="s2">"C2o-"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.2</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Type"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"UTC"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
-    <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">"both"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+    <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1115,16 +1129,8 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> trk_file_path = <span class="ansi-yellow-bg">data</span>.trk_file.path
-<span class="ansi-green-fg">      2</span> trk_data  = scb.Utils.load_json(trk_file_path)
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Assemble ramp table list in the format expected by RampTableManager</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_14_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_14_0.png" />
+</div>
 </div>
 </section>
 <section id="3.2-—-Integrated-frequency-sensitivity">
@@ -1139,11 +1145,11 @@
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constants derived from the loaded ramp table</span>
 <span class="c1"># Skip ramp_type=0 entries — the integrator treats them as inactive intervals</span>
-<span class="n">s9</span>         <span class="o">=</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_9&quot;</span><span class="p">]</span>
-<span class="n">valid_idx</span>  <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;ramp_type&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">rt</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">s9</span>         <span class="o">=</span> <span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_9"</span><span class="p">]</span>
+<span class="n">valid_idx</span>  <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">"ramp_type"</span><span class="p">])</span> <span class="k">if</span> <span class="n">rt</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">RU</span>         <span class="o">=</span> <span class="mf">0.147530040053405</span>          <span class="c1"># Range Unit conversion factor (OREX X-band)</span>
-<span class="n">t1_sec</span>     <span class="o">=</span> <span class="n">s9</span><span class="p">[</span><span class="s2">&quot;sec&quot;</span><span class="p">][</span><span class="n">valid_idx</span><span class="p">]</span>       <span class="c1"># First active ramp epoch (sec of day)</span>
-<span class="n">t1_doy</span>     <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">&quot;doy&quot;</span><span class="p">][</span><span class="n">valid_idx</span><span class="p">])</span>
+<span class="n">t1_sec</span>     <span class="o">=</span> <span class="n">s9</span><span class="p">[</span><span class="s2">"sec"</span><span class="p">][</span><span class="n">valid_idx</span><span class="p">]</span>       <span class="c1"># First active ramp epoch (sec of day)</span>
+<span class="n">t1_doy</span>     <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s9</span><span class="p">[</span><span class="s2">"doy"</span><span class="p">][</span><span class="n">valid_idx</span><span class="p">])</span>
 <span class="n">t3_doy</span>     <span class="o">=</span> <span class="n">t1_doy</span>
 <span class="n">delta_t</span>    <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>   <span class="c1"># 13 log-spaced offsets [s]</span>
 
@@ -1155,11 +1161,11 @@
 <span class="n">f_int_RU</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_int_RU</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta_t</span><span class="p">,</span> <span class="n">f_int_RU</span><span class="p">,</span> <span class="s2">&quot;ko-&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Δt from t1 [s]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Integrated frequency [RU]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Integrated Frequency Sensitivity vs. Count Interval&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">delta_t</span><span class="p">,</span> <span class="n">f_int_RU</span><span class="p">,</span> <span class="s2">"ko-"</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Δt from t1 [s]"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Integrated frequency [RU]"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Integrated Frequency Sensitivity vs. Count Interval"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">"both"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1170,18 +1176,8 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Constants derived from the loaded ramp table</span>
-<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># Skip ramp_type=0 entries — the integrator treats them as inactive intervals</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> s9         = <span class="ansi-yellow-bg">trk_data</span>[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">aux_SFDU_9</span><span class="ansi-yellow-fg">&#34;</span>]
-<span class="ansi-green-fg">      4</span> valid_idx  = <span style="color: rgb(0,135,0)">next</span>(i <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i, rt <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">enumerate</span>(s9[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ramp_type</span><span class="ansi-yellow-fg">&#34;</span>]) <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> rt != <span class="ansi-green-fg">0</span>)
-<span class="ansi-green-fg">      5</span> RU         = <span class="ansi-green-fg">0.147530040053405</span>          <span style="color: rgb(95,135,135)"># Range Unit conversion factor (OREX X-band)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;trk_data&#39; is not defined
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_16_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_16_0.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1232,28 +1228,28 @@
 
 <span class="c1"># Read tracking data and identify the ground station</span>
 <span class="n">trk_data</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Utils</span><span class="o">.</span><span class="n">load_json</span><span class="p">(</span><span class="n">trk_file_path</span><span class="p">)</span>
-<span class="n">DSS_name</span> <span class="o">=</span> <span class="s2">&quot;DSS-&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;2W_doppler&quot;</span><span class="p">][</span><span class="s2">&quot;spice_id&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">DSS_name</span> <span class="o">=</span> <span class="s2">"DSS-"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">"2W_doppler"</span><span class="p">][</span><span class="s2">"spice_id"</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="n">DSS_name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ground station:&quot;</span><span class="p">,</span> <span class="n">DSS_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ground station:"</span><span class="p">,</span> <span class="n">DSS_name</span><span class="p">)</span>
 
 <span class="c1"># Build the uplink frequency array from the ramp table (used for RU conversion)</span>
-<span class="n">uplink_carrier_df</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">&quot;aux_SFDU_0&quot;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-<span class="n">frequency_values</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">uplink_carrier_df</span><span class="p">[</span><span class="s2">&quot;ramp_freq&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">uplink_carrier_df</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">trk_data</span><span class="p">[</span><span class="s2">"aux_SFDU_0"</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="n">frequency_values</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">uplink_carrier_df</span><span class="p">[</span><span class="s2">"ramp_freq"</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="n">frequency_array</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency_values</span><span class="p">),</span> <span class="n">sec</span><span class="o">**-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Create MediaCorrections object (seasonal file loaded now; non-seasonal set in 4.3)</span>
 <span class="n">media_correction</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GS1 SRA Media Corrections&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"GS1 SRA Media Corrections"</span><span class="p">,</span>
     <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span>
     <span class="n">tropo_seasonal_file_path</span><span class="o">=</span><span class="n">tropo_seasonal_path</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># Create the sequential ranging model and extract observed t3 epochs</span>
-<span class="n">SRA_model</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SequentialRangingReal</span><span class="p">(</span><span class="s2">&quot;GS1 SRA Model&quot;</span><span class="p">,</span> <span class="n">GS1</span><span class="p">)</span>
-<span class="n">SRA_t3</span><span class="p">,</span> <span class="n">meas_sec</span><span class="p">,</span> <span class="n">meas_obs</span><span class="p">,</span> <span class="n">meas_outliers</span> <span class="o">=</span> <span class="n">SRA_model</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
-    <span class="n">trk_file_path</span><span class="p">,</span> <span class="n">meas_name</span><span class="o">=</span><span class="s2">&quot;2W_sranging&quot;</span>
+<span class="n">SRA_model</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SequentialRangingReal</span><span class="p">(</span><span class="s2">"GS1 SRA Model"</span><span class="p">,</span> <span class="n">GS1</span><span class="p">)</span>
+<span class="n">SRA_t3</span><span class="p">,</span> <span class="n">meas_sec</span><span class="p">,</span> <span class="n">meas_obs</span><span class="p">,</span> <span class="n">meas_outliers</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">SRA_model</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
+    <span class="n">trk_file_path</span><span class="p">,</span> <span class="n">meas_name</span><span class="o">=</span><span class="s2">"2W_sranging"</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sequential ranging observations: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sequential ranging observations: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1262,14 +1258,9 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> trk_file_path       = <span class="ansi-yellow-bg">data</span>.trk_file.path
-<span class="ansi-green-fg">      2</span> tropo_seasonal_path = data.tropo_seasonal_new.path
-<span class="ansi-green-fg">      3</span> tropo_file_bucket   = os.path.dirname(data.tropo_nonseasonal.path)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
+Ground station: DSS-35
+  5 observation(s) in &#39;2W_sranging&#39; carry the -1 no-data sentinel and were flagged as outliers (indices [0, 1, 2, 3, 4])
+Sequential ranging observations: 99
 </pre></div></div>
 </div>
 </section>
@@ -1285,7 +1276,7 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;-64&quot;</span>   <span class="c1"># OSIRIS-REx NAIF ID</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="s2">"-64"</span>   <span class="c1"># OSIRIS-REx NAIF ID</span>
 <span class="n">frame</span>  <span class="o">=</span> <span class="n">ITRF93</span>
 
 <span class="c1"># Downlink one-way light time: spacecraft → ground at t3</span>
@@ -1294,7 +1285,7 @@
     <span class="n">epoch_time</span><span class="o">=</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
     <span class="n">reference_frame</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
     <span class="n">obsvr_bdy</span><span class="o">=</span><span class="n">GS1</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-    <span class="n">aberration_correction</span><span class="o">=</span><span class="s2">&quot;CN+S&quot;</span><span class="p">,</span>
+    <span class="n">aberration_correction</span><span class="o">=</span><span class="s2">"CN+S"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># Uplink one-way light time: ground → spacecraft (at the epoch when signal arrived)</span>
@@ -1303,14 +1294,14 @@
     <span class="n">epoch_time</span><span class="o">=</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">dl_rtlt</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
     <span class="n">reference_frame</span><span class="o">=</span><span class="n">frame</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
     <span class="n">obsvr_bdy</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
-    <span class="n">aberration_correction</span><span class="o">=</span><span class="s2">&quot;CN+S&quot;</span><span class="p">,</span>
+    <span class="n">aberration_correction</span><span class="o">=</span><span class="s2">"CN+S"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">rtlt</span>              <span class="o">=</span> <span class="n">ul_rtlt</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="n">dl_rtlt</span><span class="o">.</span><span class="n">values</span>
 <span class="n">SRA_t1_array</span>      <span class="o">=</span> <span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">rtlt</span>
-<span class="n">SRA_t1_epoch</span>      <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">SRA_t1_array</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">&quot;TDB&quot;</span><span class="p">)</span>
+<span class="n">SRA_t1_epoch</span>      <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">SRA_t1_array</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">"TDB"</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean RTLT: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> min  |  Range: [</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">] min&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean RTLT: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> min  |  Range: [</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">rtlt</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">] min"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1319,19 +1310,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> target = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">-64</span><span class="ansi-yellow-fg">&#34;</span>   <span style="color: rgb(95,135,135)"># OSIRIS-REx NAIF ID</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> frame  = <span class="ansi-yellow-bg">ITRF93</span>
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Downlink one-way light time: spacecraft → ground at t3</span>
-<span class="ansi-green-fg">      5</span> dl_rtlt = scb.SpiceManager.get_lighttime(
-<span class="ansi-green-fg">      6</span>     trgt_bdy=target,
-<span class="ansi-green-fg">      7</span>     epoch_time=SRA_t3.times.values,
-<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">     10</span>     aberration_correction=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">CN+S</span><span class="ansi-yellow-fg">&#34;</span>,
-<span class="ansi-green-fg">     11</span> )
-
-<span class="ansi-red-fg">NameError</span>: name &#39;ITRF93&#39; is not defined
+Mean RTLT: 6.08 min  |  Range: [6.07, 6.08] min
 </pre></div></div>
 </div>
 </section>
@@ -1347,25 +1326,25 @@
 <span class="n">year_q</span><span class="p">,</span> <span class="n">day_q</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">et2YDS</span><span class="p">([</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
 <span class="n">metadata_tropo</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">find_tro_metadata</span><span class="p">(</span><span class="n">tropo_file_bucket</span><span class="p">,</span> <span class="n">year_q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">day_q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">media_correction</span><span class="o">.</span><span class="n">tropo_non_seasonal_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="n">tropo_file_bucket</span><span class="p">,</span> <span class="n">metadata_tropo</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">]</span>
+    <span class="n">tropo_file_bucket</span><span class="p">,</span> <span class="n">metadata_tropo</span><span class="p">[</span><span class="s2">"file"</span><span class="p">]</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Non-seasonal file:&quot;</span><span class="p">,</span> <span class="n">metadata_tropo</span><span class="p">[</span><span class="s2">&quot;file&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Non-seasonal file:"</span><span class="p">,</span> <span class="n">metadata_tropo</span><span class="p">[</span><span class="s2">"file"</span><span class="p">])</span>
 
 <span class="c1"># Elevation angles at each t3 epoch</span>
-<span class="n">rad_unit</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">&quot;rad&quot;</span><span class="p">])</span>
+<span class="n">rad_unit</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">"rad"</span><span class="p">])</span>
 <span class="n">SRA_elevation_angles</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
     <span class="n">el_awu</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">get_elevation_angle</span><span class="p">(</span>
         <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
         <span class="n">et</span><span class="o">=</span><span class="n">et</span><span class="p">,</span>
         <span class="n">station</span><span class="o">=</span><span class="n">DSS_name</span><span class="p">,</span>
-        <span class="n">abcorr</span><span class="o">=</span><span class="s2">&quot;LT+S&quot;</span><span class="p">,</span>
+        <span class="n">abcorr</span><span class="o">=</span><span class="s2">"LT+S"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">el_rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">get_value_in_target_units</span><span class="p">(</span><span class="n">el_awu</span><span class="p">,</span> <span class="n">rad_unit</span><span class="p">)</span>
     <span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">el_rad</span><span class="p">))</span>
 
 <span class="n">SRA_elevation_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elevation angle range: </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">° – </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Elevation angle range: </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">° – </span><span class="si">{</span><span class="n">SRA_elevation_angles</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1374,23 +1353,14 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Find the non-seasonal correction file for this pass</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> year_q, day_q, _ = <span class="ansi-yellow-bg">scb</span>.SpiceManager.et2YDS([SRA_t3.times.values[<span class="ansi-green-fg">0</span>]])
-<span class="ansi-green-fg">      3</span> metadata_tropo = scb.MediaCorrections.find_tro_metadata(tropo_file_bucket, year_q[<span class="ansi-green-fg">0</span>], day_q[<span class="ansi-green-fg">0</span>])
-<span class="ansi-green-fg">      4</span> media_correction.tropo_non_seasonal_file_path = os.path.join(
-<span class="ansi-green-fg">      5</span>     tropo_file_bucket, metadata_tropo[<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">file</span><span class="ansi-yellow-fg">&#34;</span>]
-<span class="ansi-green-fg">      6</span> )
-
-<span class="ansi-red-fg">NameError</span>: name &#39;scb&#39; is not defined
+Non-seasonal file: 2018_152_2018_182_tro.json
+Elevation angle range: 30.1° – 82.2°
 </pre></div></div>
 </div>
 </section>
 <section id="4.4-—-Compute-RTLT-tropospheric-delays">
 <h2>4.4 — Compute RTLT tropospheric delays<a class="headerlink" href="#4.4-—-Compute-RTLT-tropospheric-delays" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">computed_rtlt_delays()</span></code> evaluates the full model (seasonal + non-seasonal, dry + wet, Chao-mapped) at a given ET and returns the one-way path-length correction in <strong>meters</strong>. The RTLT correction and unit chain are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">computed_rtlt_delays()</span></code> evaluates the full model (seasonal + non-seasonal, dry + wet, Chao-mapped) at a given ET and returns the one-way path delays <code class="docutils literal notranslate"><span class="pre">(p_tropo,</span> <span class="pre">p_iono)</span></code> as <code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> in <strong>meters</strong>. No ionosphere file is set here, so <code class="docutils literal notranslate"><span class="pre">p_iono</span></code> is zero. <code class="docutils literal notranslate"><span class="pre">MediaCorrections.path_delay_to_light_time()</span></code> does the meter → second step with the unit conversion checked. The RTLT correction and unit chain are:</p>
 <div class="math notranslate nohighlight">
 \[\Delta p\,[\mathrm{m}] = \Delta p(t_3) + \Delta p(t_1)
 \qquad
@@ -1402,32 +1372,30 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SRA_tropo_t3</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">SRA_tropo_t1</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meter</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">"m"</span><span class="p">])</span>
+<span class="n">SRA_delta_m</span>    <span class="o">=</span> <span class="p">[]</span>
+<span class="n">SRA_delta_rtlt</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">)):</span>
     <span class="n">t3</span> <span class="o">=</span> <span class="n">SRA_t3</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">SRA_t1_epoch</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
 
-    <span class="n">p_t3</span> <span class="o">=</span> <span class="n">media_correction</span><span class="o">.</span><span class="n">computed_rtlt_delays</span><span class="p">(</span><span class="n">query_time_et</span><span class="o">=</span><span class="n">t3</span><span class="p">,</span> <span class="n">target_spice_id</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
-    <span class="n">p_t1</span> <span class="o">=</span> <span class="n">media_correction</span><span class="o">.</span><span class="n">computed_rtlt_delays</span><span class="p">(</span><span class="n">query_time_et</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">target_spice_id</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+    <span class="c1"># one-way (tropo, iono) path delays at downlink (t3) and uplink (t1)</span>
+    <span class="n">p_t3</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">media_correction</span><span class="o">.</span><span class="n">computed_rtlt_delays</span><span class="p">(</span><span class="n">query_time_et</span><span class="o">=</span><span class="n">t3</span><span class="p">,</span> <span class="n">target_spice_id</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">p_t1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">media_correction</span><span class="o">.</span><span class="n">computed_rtlt_delays</span><span class="p">(</span><span class="n">query_time_et</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">target_spice_id</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
 
-    <span class="n">SRA_tropo_t3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_t3</span><span class="p">)</span>
-    <span class="n">SRA_tropo_t1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_t1</span><span class="p">)</span>
+    <span class="c1"># RTLT path-length correction [m] and RTLT time correction [s]</span>
+    <span class="n">p_rtlt</span> <span class="o">=</span> <span class="n">p_t3</span> <span class="o">+</span> <span class="n">p_t1</span>
+    <span class="n">SRA_delta_m</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="o">.</span><span class="n">get_value_in_target_units</span><span class="p">(</span><span class="n">p_rtlt</span><span class="p">,</span> <span class="n">meter</span><span class="p">))</span>
+    <span class="n">SRA_delta_rtlt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">path_delay_to_light_time</span><span class="p">(</span><span class="n">p_rtlt</span><span class="p">))</span>
 
-<span class="n">SRA_tropo_t3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_tropo_t3</span><span class="p">)</span>
-<span class="n">SRA_tropo_t1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_tropo_t1</span><span class="p">)</span>
-
-<span class="c1"># RTLT path-length correction [m]</span>
-<span class="n">SRA_delta_m</span>    <span class="o">=</span> <span class="n">SRA_tropo_t3</span> <span class="o">+</span> <span class="n">SRA_tropo_t1</span>
-
-<span class="c1"># Convert to RTLT time correction [s]  (Moyer 10-27: 1e-3 converts m → km)</span>
-<span class="n">SRA_delta_rtlt</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">SRA_delta_m</span> <span class="o">*</span> <span class="mf">1e-3</span><span class="p">)</span>
+<span class="n">SRA_delta_m</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_delta_m</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">SRA_delta_rtlt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">SRA_delta_rtlt</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
 <span class="c1"># Convert to Range Units</span>
 <span class="n">SRA_delta_RU</span>   <span class="o">=</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="n">frequency_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean RTLT tropo correction: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SRA_delta_rtlt</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> μs  /  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SRA_delta_RU</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> RU&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean RTLT tropo correction: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SRA_delta_rtlt</span><span class="p">)</span><span class="o">*</span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> μs  /  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">SRA_delta_RU</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> RU"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1436,16 +1404,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 4</span>
-<span class="ansi-green-fg">      1</span> SRA_tropo_t3 = []
-<span class="ansi-green-fg">      2</span> SRA_tropo_t1 = []
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> ii <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(0,135,0)">len</span>(<span class="ansi-yellow-bg">SRA_t3</span>.times.values)):
-<span class="ansi-green-fg">      5</span>     t3 = SRA_t3.times.values[ii]
-<span class="ansi-green-fg">      6</span>     t1 = SRA_t1_epoch.times.values[ii]
-
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
+Mean RTLT tropo correction: 0.018 μs  /  131.2790 RU
 </pre></div></div>
 </div>
 </section>
@@ -1486,58 +1445,56 @@
 
 <span class="c1"># ── Figure 1: corrections vs time (3 panels) ─────────────────────────────────</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Tropospheric RTLT Corrections vs Time — DSS-35 Pass (2018 DoY 159)&quot;</span><span class="p">,</span>
-             <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Tropospheric RTLT Corrections vs Time — DSS-35 Pass (2018 DoY 159)"</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;C0.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_m</span><span class="p">,</span>           <span class="s2">&quot;C1.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Path-length [m]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_RU</span><span class="p">,</span>          <span class="s2">&quot;C2.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Correction [RU]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">"C0."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"RTLT correction [μs]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_m</span><span class="p">,</span>           <span class="s2">"C1."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Path-length [m]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_delta_RU</span><span class="p">,</span>          <span class="s2">"C2."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Correction [RU]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"UTC"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
-    <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+    <span class="n">fmt_cal</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="c1"># ── Figure 2: geometry — elevation vs time, correction vs elevation ───────────</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Pass Geometry and Elevation Dependence&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Pass Geometry and Elevation Dependence"</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="s2">&quot;C3.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Elevation vs Time&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
-<span class="n">fmt_cal</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_utc</span><span class="p">,</span> <span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="s2">"C3."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"UTC"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Elevation angle [deg]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Elevation vs Time"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="n">fmt_cal</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"%H:%M</span><span class="se">\n</span><span class="s2">%b </span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
 
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">&quot;C0.&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Elevation angle [deg]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RTLT correction [μs]&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Correction vs Elevation&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">SRA_elevation_angles</span><span class="p">,</span> <span class="n">SRA_delta_rtlt</span> <span class="o">*</span> <span class="mf">1e6</span><span class="p">,</span> <span class="s2">"C0."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Elevation angle [deg]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"RTLT correction [μs]"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Correction vs Elevation"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_0.png" />
+</div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Convert ET receive epochs to UTC datetimes</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> t_utc = et_to_utc(<span class="ansi-yellow-bg">SRA_t3</span>.times.values)
-<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># ── Figure 1: corrections vs time (3 panels) ─────────────────────────────────</span>
-<span class="ansi-green-fg">      5</span> fig, axes = plt.subplots(<span class="ansi-green-fg">3</span>, <span class="ansi-green-fg">1</span>, figsize=(<span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">9</span>), sharex=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
-
-<span class="ansi-red-fg">NameError</span>: name &#39;SRA_t3&#39; is not defined
-</pre></div></div>
+<img alt="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_MediaCorrections_27_1.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1566,7 +1523,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</p>
+        <p class="prev-next-title"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1587,25 +1544,25 @@
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># OSIRIS-REx Real Data — Media Corrections &amp; Ramp Tables</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#What-this-notebook-covers">What this notebook covers</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Setup">1. Setup</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.1-—-SPICE-Kernels-and-Ground-Stations">1.1 — SPICE Kernels and Ground Stations</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Tropospheric-Delay-Models">2. Tropospheric Delay Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Tropospheric-Delay-Models">2. Tropospheric Delay Models</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.1-—-Single-station,-single-component-query">2.1 — Single-station, single-component query</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.2-—-Multi-station-time-series">2.2 — Multi-station time-series</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.3-—-Elevation-mapping-function">2.3 — Elevation mapping function</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-DSN-Ramp-Tables">3. DSN Ramp Tables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-DSN-Ramp-Tables">3. DSN Ramp Tables</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.1-—-Loading-and-inspecting-ramp-table-data">3.1 — Loading and inspecting ramp table data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.2-—-Integrated-frequency-sensitivity">3.2 — Integrated frequency sensitivity</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-RTLT-Media-Corrections-for-Sequential-Ranging">4. RTLT Media Corrections for Sequential Ranging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-RTLT-Media-Corrections-for-Sequential-Ranging">4. RTLT Media Corrections for Sequential Ranging</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.1-—-Load-tracking-data-and-set-up-the-ground-station">4.1 — Load tracking data and set up the ground station</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.2-—-Compute-transmit-epochs-t1">4.2 — Compute transmit epochs t1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.3-—-Resolve-the-non-seasonal-file-and-compute-elevation-angles">4.3 — Resolve the non-seasonal file and compute elevation angles</a></li>
@@ -1630,8 +1587,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1651,8 +1608,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -1665,7 +1621,7 @@
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

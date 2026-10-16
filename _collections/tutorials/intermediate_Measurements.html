@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -16,7 +15,7 @@
 <meta property="og:image:alt" content="Scarabaeus" />
 <meta name="description" content="Scarabaeus | Last revised 2026 What this notebook covers: The complete measurement simulation pipeline: initializing sensors and measurement models, simulating observations on a true trajectory, computing predicted measurements on a reference trajectory, evaluating partials and residuals, and packaging everything into filter-ready datasets. Topics:,,#, Topic,,, 1, True and reference trajectories,, 2, Sensors — ground stations and camera,, 3, Measurement models — Range, Range Rate, Centroiding..." />
 
-    <title># Measurement Simulation &#8212; Scarabaeus  documentation</title>
+    <title># Measurement Simulation &#8212; Scarabaeus 2.0.0 documentation</title>
   
   
   
@@ -35,24 +34,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +62,7 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_Measurements';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -70,22 +70,29 @@
     <link rel="next" title="# Mission Sequence and Finite-Burn Propagation Demo" href="intermediate_MissionSequence_and_FiniteBurn.html" />
     <link rel="prev" title="# N-Plate Model and Spacecraft Attitude" href="intermediate_nPlateModel_and_Attitude.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
-
+  <body data-default-mode="dark">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -111,9 +118,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -194,6 +201,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -205,7 +219,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -215,11 +229,33 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -228,7 +264,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -237,7 +273,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -308,6 +344,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -320,18 +363,48 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
         
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
         <div class="sidebar-primary-item">
+
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
@@ -388,7 +461,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Measurement Simulation</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"># Measurement Simulation</a></li>
 
 
 
@@ -429,7 +502,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"># Measurement Simulation</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"># Measurement Simulation</a></li>
 
 
 
@@ -534,7 +607,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -554,7 +632,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -578,6 +661,9 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -695,16 +781,16 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cm</span>
 
 <span class="c1"># define units and frame</span>
-<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="s1">&#39;km&#39;</span><span class="p">,</span> <span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;rad&#39;</span><span class="p">])</span>
-<span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">&#39;J2000&#39;</span><span class="p">)</span>
+<span class="n">kg</span><span class="p">,</span> <span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">'kg'</span><span class="p">,</span> <span class="s1">'km'</span><span class="p">,</span> <span class="s1">'sec'</span><span class="p">,</span> <span class="s1">'rad'</span><span class="p">])</span>
+<span class="n">J2000</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s1">'J2000'</span><span class="p">)</span>
 
 <span class="c1"># load tutorial data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
 <span class="c1"># tutorial output paths</span>
-<span class="n">tut_result_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s1">&#39;tutorial_results/meas_gen&#39;</span>
-<span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;optical&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tut_result_path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="o">/</span> <span class="s1">'tutorial_results/meas_gen'</span>
+<span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'radiometric'</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'optical'</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># load kernels</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">clear_kernels</span><span class="p">()</span>
@@ -749,8 +835,8 @@ SCB supplementary data up to date.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">earth</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">&#39;EARTH&#39;</span><span class="p">)</span>
-<span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">&#39;unitless&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">earth</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CelestialBody</span><span class="o">.</span><span class="n">from_constants</span><span class="p">(</span><span class="s1">'EARTH'</span><span class="p">)</span>
+<span class="n">unitless</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">(</span><span class="s1">'unitless'</span><span class="p">)</span>
 
 <span class="c1"># ── spacecraft ────────────────────────────────────────────────────</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_sc</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">spice_id</span><span class="p">):</span>
@@ -761,13 +847,13 @@ SCB supplementary data up to date.
         <span class="n">ref_coeff</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span>    <span class="n">unitless</span><span class="p">),</span>
     <span class="p">)</span>
 
-<span class="n">Orbiter</span>    <span class="o">=</span> <span class="n">make_sc</span><span class="p">(</span><span class="s1">&#39;Orbiter&#39;</span><span class="p">,</span>           <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">Orbiter_ref</span><span class="o">=</span> <span class="n">make_sc</span><span class="p">(</span><span class="s1">&#39;Orbiter_reference&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">Orbiter</span>    <span class="o">=</span> <span class="n">make_sc</span><span class="p">(</span><span class="s1">'Orbiter'</span><span class="p">,</span>           <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">Orbiter_ref</span><span class="o">=</span> <span class="n">make_sc</span><span class="p">(</span><span class="s1">'Orbiter_reference'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1001</span><span class="p">)</span>
 
 <span class="c1"># ── epoch array (1-hour arc, 2030-FEB-18) ─────────────────────────</span>
-<span class="n">t0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s1">&#39;2030-FEB-18 21:48:32.90210 TDB&#39;</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="s1">'2030-FEB-18 21:48:32.90210 TDB'</span><span class="p">)</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="mf">3600.0</span>
-<span class="n">epoch_prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+<span class="n">epoch_prop</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="n">tf</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">sys</span><span class="o">=</span><span class="s1">'TDB'</span><span class="p">)</span>
 
 <span class="c1"># ── initial conditions ─────────────────────────────────────────────</span>
 <span class="n">pos0</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]),</span>      <span class="n">km</span><span class="p">,</span>      <span class="n">J2000</span><span class="p">)</span>
@@ -781,8 +867,8 @@ SCB supplementary data up to date.
 <span class="c1"># ── propagate and write SPKs ──────────────────────────────────────</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">propagate_and_save</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">vel</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
     <span class="n">state_def</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateDefinition</span><span class="o">.</span><span class="n">from_components</span><span class="p">([</span>
-        <span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;estimated&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic&#39;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">pos</span><span class="p">),</span>
-        <span class="p">(</span><span class="s1">&#39;velocity&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;estimated&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic&#39;</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">vel</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'position'</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'estimated'</span><span class="p">,</span> <span class="s1">'dynamic'</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">pos</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">'velocity'</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'estimated'</span><span class="p">,</span> <span class="s1">'dynamic'</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">vel</span><span class="p">),</span>
     <span class="p">])</span>
     <span class="n">sv</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="n">epoch_prop</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">origin</span><span class="o">=</span><span class="n">earth</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state_def</span><span class="p">)</span>
     <span class="n">fm</span>   <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ForceModelTranslation</span><span class="p">(</span><span class="n">primary_body</span><span class="o">=</span><span class="n">sc</span><span class="p">)</span>
@@ -793,11 +879,11 @@ SCB supplementary data up to date.
     <span class="k">if</span> <span class="n">spk_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span> <span class="n">spk_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 
     <span class="n">scb</span><span class="o">.</span><span class="n">Trajectory</span><span class="p">(</span><span class="n">state_array</span><span class="o">=</span><span class="n">prop</span><span class="o">.</span><span class="n">propagated_state_array</span><span class="p">)</span><span class="o">.</span><span class="n">write_to_spk</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">spk_path</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  SPK written : </span><span class="si">{</span><span class="n">spk_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  SPK written : </span><span class="si">{</span><span class="n">spk_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">prop</span>
 
-<span class="n">prop_true</span> <span class="o">=</span> <span class="n">propagate_and_save</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span>     <span class="n">pos0</span><span class="p">,</span>    <span class="n">vel0</span><span class="p">,</span>    <span class="s1">&#39;meas_true.bsp&#39;</span><span class="p">)</span>
-<span class="n">prop_ref</span>  <span class="o">=</span> <span class="n">propagate_and_save</span><span class="p">(</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">pos_ref</span><span class="p">,</span> <span class="n">vel_ref</span><span class="p">,</span> <span class="s1">&#39;meas_ref.bsp&#39;</span><span class="p">)</span>
+<span class="n">prop_true</span> <span class="o">=</span> <span class="n">propagate_and_save</span><span class="p">(</span><span class="n">Orbiter</span><span class="p">,</span>     <span class="n">pos0</span><span class="p">,</span>    <span class="n">vel0</span><span class="p">,</span>    <span class="s1">'meas_true.bsp'</span><span class="p">)</span>
+<span class="n">prop_ref</span>  <span class="o">=</span> <span class="n">propagate_and_save</span><span class="p">(</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">pos_ref</span><span class="p">,</span> <span class="n">vel_ref</span><span class="p">,</span> <span class="s1">'meas_ref.bsp'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -822,10 +908,10 @@ SCB supplementary data up to date.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s1">&#39;DSS-14&#39;</span><span class="p">)</span>   <span class="c1"># Goldstone, CA</span>
-<span class="n">GS2</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s1">&#39;DSS-63&#39;</span><span class="p">)</span>   <span class="c1"># Madrid, Spain</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GS1 : </span><span class="si">{</span><span class="n">GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GS2 : </span><span class="si">{</span><span class="n">GS2</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s1">'DSS-14'</span><span class="p">)</span>   <span class="c1"># Goldstone, CA</span>
+<span class="n">GS2</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s1">'DSS-63'</span><span class="p">)</span>   <span class="c1"># Madrid, Spain</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GS1 : </span><span class="si">{</span><span class="n">GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GS2 : </span><span class="si">{</span><span class="n">GS2</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -877,15 +963,15 @@ GS2 : DSS-63
     <span class="n">focal_length</span>  <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">150e-6</span><span class="p">,</span> <span class="n">km</span><span class="p">),</span>                      <span class="c1"># 150 mm</span>
 <span class="p">)</span>
 
-<span class="n">Camera</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ORCCA_cam&#39;</span><span class="p">,</span>      <span class="n">associated_body_spice_id</span><span class="o">=</span><span class="n">Orbiter</span><span class="o">.</span><span class="n">spice_id</span><span class="p">,</span>     <span class="o">**</span><span class="n">cam_kwargs</span><span class="p">)</span>
-<span class="n">Camera_ref</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ORCCA_cam_ref&#39;</span><span class="p">,</span>  <span class="n">associated_body_spice_id</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="o">.</span><span class="n">spice_id</span><span class="p">,</span> <span class="o">**</span><span class="n">cam_kwargs</span><span class="p">)</span>
+<span class="n">Camera</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'ORCCA_cam'</span><span class="p">,</span>      <span class="n">associated_body_spice_id</span><span class="o">=</span><span class="n">Orbiter</span><span class="o">.</span><span class="n">spice_id</span><span class="p">,</span>     <span class="o">**</span><span class="n">cam_kwargs</span><span class="p">)</span>
+<span class="n">Camera_ref</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'ORCCA_cam_ref'</span><span class="p">,</span>  <span class="n">associated_body_spice_id</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="o">.</span><span class="n">spice_id</span><span class="p">,</span> <span class="o">**</span><span class="n">cam_kwargs</span><span class="p">)</span>
 
 <span class="n">Orbiter</span><span class="o">.</span><span class="n">add_instrument</span><span class="p">([</span><span class="n">Camera</span><span class="p">])</span>
 <span class="n">Orbiter_ref</span><span class="o">.</span><span class="n">add_instrument</span><span class="p">([</span><span class="n">Camera_ref</span><span class="p">])</span>
 
 <span class="c1"># ── optical navigation target body ───────────────────────────────</span>
-<span class="n">opnav_target</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;VENUS&#39;</span><span class="p">,</span> <span class="n">spice_id</span><span class="o">=</span><span class="mi">299</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav target : </span><span class="si">{</span><span class="n">opnav_target</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">opnav_target</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'VENUS'</span><span class="p">,</span> <span class="n">spice_id</span><span class="o">=</span><span class="mi">299</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"OpNav target : </span><span class="si">{</span><span class="n">opnav_target</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -950,16 +1036,16 @@ OpNav target : VENUS
 <span class="n">centroid_sigma</span>    <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]),</span> <span class="kc">None</span><span class="p">)</span>   <span class="c1"># pixels</span>
 
 <span class="c1"># ── radiometric models (DSS-14) ───────────────────────────────────</span>
-<span class="n">Range_GS1</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeIdeal</span><span class="p">(</span>    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;GS1 Range&#39;</span><span class="p">,</span>     <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">range_sigma</span><span class="p">)</span>
-<span class="n">RangeRate_GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeRateIdeal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;GS1 RangeRate&#39;</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">rangerate_sigma</span><span class="p">)</span>
+<span class="n">Range_GS1</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeIdeal</span><span class="p">(</span>    <span class="n">name</span><span class="o">=</span><span class="s1">'GS1 Range'</span><span class="p">,</span>     <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">range_sigma</span><span class="p">)</span>
+<span class="n">RangeRate_GS1</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeRateIdeal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'GS1 RangeRate'</span><span class="p">,</span> <span class="n">instrument</span><span class="o">=</span><span class="n">GS1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">rangerate_sigma</span><span class="p">)</span>
 
 <span class="c1"># ── optical navigation model ──────────────────────────────────────</span>
-<span class="n">Centroid</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CentroidingIdeal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;OpNav centroid&#39;</span><span class="p">,</span> <span class="n">camera</span><span class="o">=</span><span class="n">Camera</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">centroid_sigma</span><span class="p">)</span>
+<span class="n">Centroid</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">CentroidingIdeal</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'OpNav centroid'</span><span class="p">,</span> <span class="n">camera</span><span class="o">=</span><span class="n">Camera</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">centroid_sigma</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Models created:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">Range_GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">Centroid</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Models created:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">Range_GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">Centroid</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1012,27 +1098,27 @@ Models created:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── epoch arrays for each model (different cadences) ─────────────</span>
-<span class="n">ep_range</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span>  <span class="mi">50</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
-<span class="n">ep_rangerate</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
-<span class="n">ep_opnav</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span>  <span class="mi">10</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">&#39;TDB&#39;</span><span class="p">)</span>
+<span class="n">ep_range</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span>  <span class="mi">50</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">'TDB'</span><span class="p">)</span>
+<span class="n">ep_rangerate</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">'TDB'</span><span class="p">)</span>
+<span class="n">ep_opnav</span>     <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span>  <span class="mi">10</span><span class="p">),</span>  <span class="n">sys</span><span class="o">=</span><span class="s1">'TDB'</span><span class="p">)</span>
 
 <span class="c1"># ── write noisy observations on the true trajectory ───────────────</span>
 <span class="n">Range_GS1</span><span class="o">.</span><span class="n">write_observed_measurements</span><span class="p">(</span>
     <span class="n">target</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_range</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;meas_range&#39;</span><span class="p">,</span>
-    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">),</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">'meas_range'</span><span class="p">,</span>
+    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'radiometric'</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">write_observed_measurements</span><span class="p">(</span>
     <span class="n">target</span><span class="o">=</span><span class="n">Orbiter</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_rangerate</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;meas_rangerate&#39;</span><span class="p">,</span>
-    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">),</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">'meas_rangerate'</span><span class="p">,</span>
+    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'radiometric'</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">Centroid</span><span class="o">.</span><span class="n">write_observed_measurements</span><span class="p">(</span>
     <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_opnav</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;meas_opnav&#39;</span><span class="p">,</span>
-    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;optical&#39;</span><span class="p">),</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s1">'meas_opnav'</span><span class="p">,</span>
+    <span class="n">folder_path_override</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'optical'</span><span class="p">),</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Observed measurements written to </span><span class="si">{</span><span class="n">tut_result_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Observed measurements written to </span><span class="si">{</span><span class="n">tut_result_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
@@ -1041,7 +1127,7 @@ Models created:
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Observed measurements written to /Users/zael5647/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/tutorial_results/meas_gen
+Observed measurements written to tutorials/tutorial_results/meas_gen
 </pre></div></div>
 </div>
 </section>
@@ -1076,29 +1162,30 @@ Observed measurements written to /Users/zael5647/scarabaeus/docs/online_document
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric/meas_range.json&#39;</span><span class="p">),</span>
-    <span class="n">meas_name</span><span class="o">=</span><span class="s1">&#39;meas_ideal&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">km</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'radiometric/meas_range.json'</span><span class="p">),</span>
+    <span class="n">meas_name</span><span class="o">=</span><span class="s1">'meas_ideal'</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">km</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">obs_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;radiometric/meas_rangerate.json&#39;</span><span class="p">),</span>
-    <span class="n">meas_name</span><span class="o">=</span><span class="s1">&#39;meas_ideal&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'radiometric/meas_rangerate.json'</span><span class="p">),</span>
+    <span class="n">meas_name</span><span class="o">=</span><span class="s1">'meas_ideal'</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">km</span><span class="o">/</span><span class="n">sec</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">obs_opnav</span> <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">observed_measurements</span><span class="p">(</span>
-    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">&#39;optical/meas_opnav.json&#39;</span><span class="p">),</span>
-    <span class="n">meas_name</span><span class="o">=</span><span class="s1">&#39;meas_ideal&#39;</span><span class="p">,</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">tut_result_path</span> <span class="o">/</span> <span class="s1">'optical/meas_opnav.json'</span><span class="p">),</span>
+    <span class="n">meas_name</span><span class="o">=</span><span class="s1">'meas_ideal'</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># observed_measurements returns (epoch_et, epoch_sec, measurements, flags)</span>
-<span class="n">ep_range_et</span><span class="p">,</span>     <span class="n">_</span><span class="p">,</span> <span class="n">meas_range</span><span class="p">,</span>     <span class="n">_</span> <span class="o">=</span> <span class="n">obs_range</span>
-<span class="n">ep_rangerate_et</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">meas_rangerate</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">obs_rangerate</span>
-<span class="n">ep_opnav_et</span><span class="p">,</span>     <span class="n">_</span><span class="p">,</span> <span class="n">meas_opnav</span><span class="p">,</span>     <span class="n">_</span> <span class="o">=</span> <span class="n">obs_opnav</span>
+<span class="c1"># observed_measurements returns an ObsData named tuple:</span>
+<span class="c1"># (meas_time_et, meas_sec, meas_obs, meas_outliers, aux_dict)</span>
+<span class="n">ep_range_et</span><span class="p">,</span>     <span class="n">meas_range</span>     <span class="o">=</span> <span class="n">obs_range</span><span class="o">.</span><span class="n">meas_time_et</span><span class="p">,</span>     <span class="n">obs_range</span><span class="o">.</span><span class="n">meas_obs</span>
+<span class="n">ep_rangerate_et</span><span class="p">,</span> <span class="n">meas_rangerate</span> <span class="o">=</span> <span class="n">obs_rangerate</span><span class="o">.</span><span class="n">meas_time_et</span><span class="p">,</span> <span class="n">obs_rangerate</span><span class="o">.</span><span class="n">meas_obs</span>
+<span class="n">ep_opnav_et</span><span class="p">,</span>     <span class="n">meas_opnav</span>     <span class="o">=</span> <span class="n">obs_opnav</span><span class="o">.</span><span class="n">meas_time_et</span><span class="p">,</span>     <span class="n">obs_opnav</span><span class="o">.</span><span class="n">meas_obs</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_range_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;mean = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">meas_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range rate: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_rangerate_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;mean = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">meas_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> km/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_opnav_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  &quot;</span>
-      <span class="sa">f</span><span class="s2">&quot;shape = </span><span class="si">{</span><span class="n">meas_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">  (n_epochs × 2 px)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Range     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_range_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  "</span>
+      <span class="sa">f</span><span class="s2">"mean = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">meas_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> km"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Range rate: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_rangerate_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  "</span>
+      <span class="sa">f</span><span class="s2">"mean = </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">meas_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> km/s"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"OpNav     : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ep_opnav_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> epochs,  "</span>
+      <span class="sa">f</span><span class="s2">"shape = </span><span class="si">{</span><span class="n">meas_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">  (n_epochs × 2 px)"</span><span class="p">)</span>
 <br/></pre></div>
 </div>
 </div>
@@ -1108,7 +1195,7 @@ Observed measurements written to /Users/zael5647/scarabaeus/docs/online_document
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Range     : 50 epochs,  mean = 9524.317 km
-Range rate: 100 epochs,  mean = 2.275300 km/s
+Range rate: 100 epochs,  mean = 2.275299 km/s
 OpNav     : 10 epochs,  shape = (10, 2)  (n_epochs × 2 px)
 </pre></div></div>
 </div>
@@ -1128,9 +1215,9 @@ OpNav     : 10 epochs,  shape = (10, 2)  (n_epochs × 2 px)
 <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">comp_opnav</span>     <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">computed_measurements</span><span class="p">(</span>
     <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">epoch_array</span><span class="o">=</span><span class="n">ep_opnav_et</span><span class="p">,</span>   <span class="n">frame</span><span class="o">=</span><span class="n">J2000</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed range      shape : </span><span class="si">{</span><span class="n">comp_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed range rate shape : </span><span class="si">{</span><span class="n">comp_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Computed OpNav      shape : </span><span class="si">{</span><span class="n">comp_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Computed range      shape : </span><span class="si">{</span><span class="n">comp_range</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Computed range rate shape : </span><span class="si">{</span><span class="n">comp_rangerate</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Computed OpNav      shape : </span><span class="si">{</span><span class="n">comp_opnav</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1164,18 +1251,18 @@ Computed OpNav      shape : (10, 2)
 <span class="n">H_rangerate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">compute_partials</span><span class="p">(</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">ep_rangerate_et</span><span class="p">,</span> <span class="n">J2000</span><span class="p">))</span>
 <span class="n">H_opnav</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Centroid</span><span class="o">.</span><span class="n">compute_partials</span><span class="p">(</span>     <span class="n">opnav_target</span><span class="p">,</span> <span class="n">ep_opnav_et</span><span class="p">,</span>    <span class="n">J2000</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H range      : </span><span class="si">{</span><span class="n">H_range</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">      (n_meas × n_state)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H range rate : </span><span class="si">{</span><span class="n">H_rangerate</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">      (n_meas × n_state)&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;H opnav      : </span><span class="si">{</span><span class="n">H_opnav</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">   (2 × n_epochs × n_state)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"H range      : </span><span class="si">{</span><span class="n">H_range</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">      (n_meas × n_state)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"H range rate : </span><span class="si">{</span><span class="n">H_rangerate</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">      (n_meas × n_state)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"H opnav      : </span><span class="si">{</span><span class="n">H_opnav</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">   (2 × n_epochs × n_state)"</span><span class="p">)</span>
 
 <span class="c1"># ── residuals — residuals() returns ArrayWFrame; extract .quantity.values</span>
 <span class="n">res_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">residuals</span><span class="p">(</span>    <span class="n">meas_range</span><span class="p">,</span>     <span class="n">comp_range</span>    <span class="p">)</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 <span class="n">res_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">residuals</span><span class="p">(</span><span class="n">meas_rangerate</span><span class="p">,</span> <span class="n">comp_rangerate</span><span class="p">)</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 <span class="n">res_opnav</span>     <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">residuals</span><span class="p">(</span>     <span class="n">meas_opnav</span><span class="p">,</span>     <span class="n">comp_opnav</span>    <span class="p">)</span><span class="o">.</span><span class="n">quantity</span><span class="o">.</span><span class="n">values</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">RMS range residual     : </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMS range-rate residual: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_rangerate</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> km/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RMS opnav  residual    : </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_opnav</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> px&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">RMS range residual     : </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_range</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> km"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RMS range-rate residual: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_rangerate</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> km/s"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RMS opnav  residual    : </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">res_opnav</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> px"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1241,7 +1328,7 @@ H opnav      : (10, 2, 6)   (2 × n_epochs × n_state)
 
 RMS range residual     : 2.8034e+02 km
 RMS range-rate residual: 4.1090e-01 km/s
-RMS opnav  residual    : 1.0438e+00 px
+RMS opnav  residual    : 1.1112e+00 px
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1265,7 +1352,7 @@ RMS opnav  residual    : 1.0438e+00 px
 <h2><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> — filter-facing API<a class="headerlink" href="#MeasurementSpec-—-filter-facing-API" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> is the object passed to <code class="docutils literal notranslate"><span class="pre">FilterOD</span></code> (LKF, SRIF, LSB). It wraps the model and observed measurements together and handles dataset construction lazily when the filter initializes.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">measurements</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="o">.</span><span class="n">from_dict</span><span class="p">([</span>
-    <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="s1">&#39;observed_meas&#39;</span><span class="p">:</span> <span class="n">obs</span><span class="p">,</span> <span class="s1">&#39;dataset_name&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">'model'</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span> <span class="s1">'observed_meas'</span><span class="p">:</span> <span class="n">obs</span><span class="p">,</span> <span class="s1">'dataset_name'</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">},</span>
     <span class="o">...</span>
 <span class="p">])</span>
 </pre></div>
@@ -1276,25 +1363,25 @@ RMS opnav  residual    : 1.0438e+00 px
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── generate filter-ready MeasurementDataSets ─────────────────────</span>
 <span class="n">ds_range</span>     <span class="o">=</span> <span class="n">Range_GS1</span><span class="o">.</span><span class="n">generate_measurement_dataset</span><span class="p">(</span>
-    <span class="s1">&#39;GS1 Range&#39;</span><span class="p">,</span>     <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_range</span><span class="p">)</span>
+    <span class="s1">'GS1 Range'</span><span class="p">,</span>     <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_range</span><span class="p">)</span>
 <span class="n">ds_rangerate</span> <span class="o">=</span> <span class="n">RangeRate_GS1</span><span class="o">.</span><span class="n">generate_measurement_dataset</span><span class="p">(</span>
-    <span class="s1">&#39;GS1 RangeRate&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_rangerate</span><span class="p">)</span>
+    <span class="s1">'GS1 RangeRate'</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">Orbiter_ref</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_rangerate</span><span class="p">)</span>
 <span class="n">ds_opnav</span>     <span class="o">=</span> <span class="n">Centroid</span><span class="o">.</span><span class="n">generate_measurement_dataset</span><span class="p">(</span>
-    <span class="s1">&#39;OpNav&#39;</span><span class="p">,</span>         <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_opnav</span><span class="p">)</span>
+    <span class="s1">'OpNav'</span><span class="p">,</span>         <span class="n">target</span><span class="o">=</span><span class="n">opnav_target</span><span class="p">,</span> <span class="n">observed_meas</span><span class="o">=</span><span class="n">obs_opnav</span><span class="p">)</span>
 <span class="c1"># CentroidingIdeal returns a list — one dataset per pixel coordinate (RA, DEC)</span>
 <span class="n">ds_opnav_ra</span><span class="p">,</span> <span class="n">ds_opnav_dec</span> <span class="o">=</span> <span class="n">ds_opnav</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ds_opnav</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Range     dataset : </span><span class="si">{</span><span class="n">ds_range</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_range</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;RangeRate dataset : </span><span class="si">{</span><span class="n">ds_rangerate</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_rangerate</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav RA  dataset : </span><span class="si">{</span><span class="n">ds_opnav_ra</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_opnav_ra</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OpNav DEC dataset : </span><span class="si">{</span><span class="n">ds_opnav_dec</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,   </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_opnav_dec</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;t2&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Range     dataset : </span><span class="si">{</span><span class="n">ds_range</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_range</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">'t2'</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"RangeRate dataset : </span><span class="si">{</span><span class="n">ds_rangerate</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_rangerate</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">'t2'</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"OpNav RA  dataset : </span><span class="si">{</span><span class="n">ds_opnav_ra</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,    </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_opnav_ra</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">'t2'</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"OpNav DEC dataset : </span><span class="si">{</span><span class="n">ds_opnav_dec</span><span class="o">.</span><span class="n">set_name</span><span class="si">}</span><span class="s2">,   </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ds_opnav_dec</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">'t2'</span><span class="p">])</span><span class="si">}</span><span class="s2"> epochs"</span><span class="p">)</span>
 
 <span class="c1"># ── MeasurementSpec for a filter run ─────────────────────────────</span>
 <span class="n">measurements</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MeasurementSpec</span><span class="o">.</span><span class="n">from_dict</span><span class="p">([</span>
-    <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">Range_GS1</span><span class="p">,</span>     <span class="s1">&#39;observed_meas&#39;</span><span class="p">:</span> <span class="n">obs_range</span><span class="p">,</span>     <span class="s1">&#39;dataset_name&#39;</span><span class="p">:</span> <span class="s1">&#39;GS1 Range&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">RangeRate_GS1</span><span class="p">,</span> <span class="s1">&#39;observed_meas&#39;</span><span class="p">:</span> <span class="n">obs_rangerate</span><span class="p">,</span> <span class="s1">&#39;dataset_name&#39;</span><span class="p">:</span> <span class="s1">&#39;GS1 RangeRate&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">'model'</span><span class="p">:</span> <span class="n">Range_GS1</span><span class="p">,</span>     <span class="s1">'observed_meas'</span><span class="p">:</span> <span class="n">obs_range</span><span class="p">,</span>     <span class="s1">'dataset_name'</span><span class="p">:</span> <span class="s1">'GS1 Range'</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">'model'</span><span class="p">:</span> <span class="n">RangeRate_GS1</span><span class="p">,</span> <span class="s1">'observed_meas'</span><span class="p">:</span> <span class="n">obs_rangerate</span><span class="p">,</span> <span class="s1">'dataset_name'</span><span class="p">:</span> <span class="s1">'GS1 RangeRate'</span><span class="p">},</span>
 <span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">MeasurementSpec : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="si">}</span><span class="s2"> entries  → ready to pass to LKF / SRIF&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">MeasurementSpec : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="si">}</span><span class="s2"> entries  → ready to pass to LKF / SRIF"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1332,6 +1419,21 @@ Partials: 100%|█████████████████████�
 ================================================================================
         Generating computed measurements for the dataset &#34;GS1 RangeRate&#34;
 ================================================================================
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
 
 ================================================================================
               Generating _partials for the dataset &#34;GS1 RangeRate&#34;
@@ -1380,8 +1482,8 @@ Partials: 100%|█████████████████████�
 <div class="highlight"><pre>
 Range     dataset : GS1 Range,    50 epochs
 RangeRate dataset : GS1 RangeRate, 100 epochs
-OpNav RA  dataset : Opnav_u,    10 epochs
-OpNav DEC dataset : Opnav_v,   10 epochs
+OpNav RA  dataset : OpNav_sample,    10 epochs
+OpNav DEC dataset : OpNav_line,   10 epochs
 
 MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
 </pre></div></div>
@@ -1419,8 +1521,8 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
 <span class="c1"># row 2  : opnav x obs | opnav y obs | image-plane scatter</span>
 <span class="c1"># row 3  : opnav x O-C | opnav y O-C | (hidden)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Measurement Simulation  —  Observed Values and O−C Residuals&#39;</span><span class="p">,</span>
-             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">'Measurement Simulation  —  Observed Values and O−C Residuals'</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.60</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span>
               <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
 
@@ -1437,49 +1539,49 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
 
 <span class="c1"># helper: draw an O-C residuals panel with ±1σ reference lines</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_oc</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">unit_label</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;O−C&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>      <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;±1σ (</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">unit_label</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;O−C [</span><span class="si">{</span><span class="n">unit_label</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="s1">'-o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'O−C'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span>      <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'±1σ (</span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">unit_label</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span>   <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="n">sigma</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time from t₀ [min]'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'O−C [</span><span class="si">{</span><span class="n">unit_label</span><span class="si">}</span><span class="s1">]'</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 
 <span class="c1"># ── range ─────────────────────────────────────────────────────────</span>
-<span class="n">ax_r</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_r</span><span class="p">,</span> <span class="n">r_vals</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">)</span>
-<span class="n">ax_r</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_r</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Range [m]&#39;</span><span class="p">)</span>
-<span class="n">ax_r</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Range  (σ = </span><span class="si">{</span><span class="n">sigma_r</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> m,  DSS-14)&#39;</span><span class="p">);</span> <span class="n">ax_r</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax_r</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_r</span><span class="p">,</span> <span class="n">r_vals</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'observed'</span><span class="p">)</span>
+<span class="n">ax_r</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time from t₀ [min]'</span><span class="p">);</span> <span class="n">ax_r</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Range [m]'</span><span class="p">)</span>
+<span class="n">ax_r</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Range  (σ = </span><span class="si">{</span><span class="n">sigma_r</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> m,  DSS-14)'</span><span class="p">);</span> <span class="n">ax_r</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 
-<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_roc</span><span class="p">,</span> <span class="n">t_r</span><span class="p">,</span> <span class="n">res_range</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">sigma_r</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Range O−C&#39;</span><span class="p">)</span>
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_roc</span><span class="p">,</span> <span class="n">t_r</span><span class="p">,</span> <span class="n">res_range</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">sigma_r</span><span class="p">,</span> <span class="s1">'m'</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">'Range O−C'</span><span class="p">)</span>
 
 <span class="c1"># ── range rate ────────────────────────────────────────────────────</span>
-<span class="n">ax_rr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_rr</span><span class="p">,</span> <span class="n">rr_vals</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;observed&#39;</span><span class="p">)</span>
-<span class="n">ax_rr</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_rr</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Range Rate [mm/s]&#39;</span><span class="p">)</span>
-<span class="n">ax_rr</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Range Rate  (σ = </span><span class="si">{</span><span class="n">sigma_rr</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> mm/s,  DSS-14)&#39;</span><span class="p">);</span> <span class="n">ax_rr</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax_rr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_rr</span><span class="p">,</span> <span class="n">rr_vals</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'observed'</span><span class="p">)</span>
+<span class="n">ax_rr</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time from t₀ [min]'</span><span class="p">);</span> <span class="n">ax_rr</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Range Rate [mm/s]'</span><span class="p">)</span>
+<span class="n">ax_rr</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Range Rate  (σ = </span><span class="si">{</span><span class="n">sigma_rr</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> mm/s,  DSS-14)'</span><span class="p">);</span> <span class="n">ax_rr</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 
-<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_rroc</span><span class="p">,</span> <span class="n">t_rr</span><span class="p">,</span> <span class="n">res_rangerate</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">sigma_rr</span><span class="p">,</span> <span class="s1">&#39;mm/s&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Range-Rate O−C&#39;</span><span class="p">)</span>
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_rroc</span><span class="p">,</span> <span class="n">t_rr</span><span class="p">,</span> <span class="n">res_rangerate</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">sigma_rr</span><span class="p">,</span> <span class="s1">'mm/s'</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">'Range-Rate O−C'</span><span class="p">)</span>
 
 <span class="c1"># ── opnav observed centroids ──────────────────────────────────────</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t_o</span><span class="p">)))</span>
 
 <span class="n">ax_opx</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_o</span><span class="p">,</span> <span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax_opx</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_opx</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;x centroid [px]&#39;</span><span class="p">)</span>
-<span class="n">ax_opx</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;OpNav — x centroid&#39;</span><span class="p">)</span>
+<span class="n">ax_opx</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time from t₀ [min]'</span><span class="p">);</span> <span class="n">ax_opx</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'x centroid [px]'</span><span class="p">)</span>
+<span class="n">ax_opx</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'OpNav — x centroid'</span><span class="p">)</span>
 
 <span class="n">ax_opy</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_o</span><span class="p">,</span> <span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax_opy</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time from t₀ [min]&#39;</span><span class="p">);</span> <span class="n">ax_opy</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y centroid [px]&#39;</span><span class="p">)</span>
-<span class="n">ax_opy</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;OpNav — y centroid&#39;</span><span class="p">)</span>
+<span class="n">ax_opy</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Time from t₀ [min]'</span><span class="p">);</span> <span class="n">ax_opy</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'y centroid [px]'</span><span class="p">)</span>
+<span class="n">ax_opy</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'OpNav — y centroid'</span><span class="p">)</span>
 
 <span class="n">sc</span> <span class="o">=</span> <span class="n">ax_scat</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">o_vals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax_scat</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x centroid [px]&#39;</span><span class="p">);</span> <span class="n">ax_scat</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y centroid [px]&#39;</span><span class="p">)</span>
-<span class="n">ax_scat</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Image-plane track  (colour = time)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_scat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;time →&#39;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="n">ax_scat</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'x centroid [px]'</span><span class="p">);</span> <span class="n">ax_scat</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'y centroid [px]'</span><span class="p">)</span>
+<span class="n">ax_scat</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Image-plane track  (colour = time)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_scat</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'time →'</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
 
 <span class="c1"># ── opnav O-C residuals ───────────────────────────────────────────</span>
-<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_oxoc</span><span class="p">,</span> <span class="n">t_o</span><span class="p">,</span> <span class="n">res_opnav</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sigma_px</span><span class="p">,</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;OpNav x O−C&#39;</span><span class="p">)</span>
-<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_oyoc</span><span class="p">,</span> <span class="n">t_o</span><span class="p">,</span> <span class="n">res_opnav</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">sigma_px</span><span class="p">,</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;OpNav y O−C&#39;</span><span class="p">)</span>
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_oxoc</span><span class="p">,</span> <span class="n">t_o</span><span class="p">,</span> <span class="n">res_opnav</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sigma_px</span><span class="p">,</span> <span class="s1">'px'</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">'OpNav x O−C'</span><span class="p">)</span>
+<span class="n">plot_oc</span><span class="p">(</span><span class="n">ax_oyoc</span><span class="p">,</span> <span class="n">t_o</span><span class="p">,</span> <span class="n">res_opnav</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">sigma_px</span><span class="p">,</span> <span class="s1">'px'</span><span class="p">,</span> <span class="n">COLORS</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">'OpNav y O−C'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1491,7 +1593,7 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/var/folders/_q/_0gmy5p50pbf60yk0vzw402c0000gp/T/ipykernel_88998/550012588.py:86: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+/tmp/ipykernel_10146/550012588.py:86: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
   plt.tight_layout()
 </pre></div></div>
 </div>
@@ -1549,17 +1651,17 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"># Measurement Simulation</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#What-this-notebook-covers">What this notebook covers</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#What-this-notebook-covers">What this notebook covers</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Topics">Topics</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#How-to-run">How to run</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#0.-Imports-and-Setup">0. Imports and Setup</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Trajectories-—-True-and-Reference">1. Trajectories — True and Reference</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Sensors">2. Sensors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Sensors">2. Sensors</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Ground-Stations">Ground Stations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Camera">Camera</a></li>
 </ul>
@@ -1568,12 +1670,12 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Simulating-Observed-Measurements">4. Simulating Observed Measurements</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#5.-Reading-Back-Observed-Measurements">5. Reading Back Observed Measurements</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#6.-Computed-Measurements-on-the-Reference-Trajectory">6. Computed Measurements on the Reference Trajectory</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Partials-and-Residuals">7. Partials and Residuals</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#7.-Partials-and-Residuals">7. Partials and Residuals</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Partials-(H-matrix)">Partials (H matrix)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Residuals-(O-−-C)">Residuals (O − C)</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-Measurement-Datasets">8. Measurement Datasets</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#8.-Measurement-Datasets">8. Measurement Datasets</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate_measurement_dataset"><code class="docutils literal notranslate"><span class="pre">generate_measurement_dataset</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#MeasurementSpec-—-filter-facing-API"><code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> — filter-facing API</a></li>
 </ul>
@@ -1596,8 +1698,8 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1617,8 +1719,7 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -1631,7 +1732,7 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>

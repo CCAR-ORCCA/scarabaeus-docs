@@ -50,10 +50,25 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "id": "2",
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:44.843888Z",
+     "iopub.status.busy": "2026-10-16T18:12:44.843624Z",
+     "iopub.status.idle": "2026-10-16T18:12:45.378625Z",
+     "shell.execute_reply": "2026-10-16T18:12:45.378103Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "SCB supplementary data up to date.\n"
+     ]
+    }
+   ],
    "source": [
     "import scarabaeus as scb\n",
     "import supplementary as supp\n",
@@ -108,10 +123,44 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 2,
    "id": "4",
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:45.380225Z",
+     "iopub.status.busy": "2026-10-16T18:12:45.380089Z",
+     "iopub.status.idle": "2026-10-16T18:12:45.414494Z",
+     "shell.execute_reply": "2026-10-16T18:12:45.413899Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Parsed 15 burn segments from:\n",
+      "  example.mission_maneuver_spec\n",
+      "\n",
+      "Segment    Start (UTC)                      Duration [hr]\n",
+      "----------------------------------------------------------\n",
+      "0          2030 SEP 16 02:44:26.130 (TDB)           124.8 F = 0.0\n",
+      "1          2030 SEP 21 07:32:26.134 (TDB)           124.8 F = 0.0\n",
+      "2          2030 SEP 26 12:20:26.139 (TDB)           124.8 F = 0.0\n",
+      "3          2030 OCT 01 17:08:26.143 (TDB)           124.8 F = 0.0\n",
+      "4          2030 OCT 06 21:56:26.148 (TDB)           124.8 F = 0.0\n",
+      "5          2030 OCT 12 02:44:26.153 (TDB)           124.8 F = 0.0\n",
+      "6          2030 OCT 17 07:32:26.157 (TDB)           124.8 F = 0.0\n",
+      "7          2030 OCT 22 12:20:26.162 (TDB)           124.8 F = 0.0\n",
+      "8          2030 OCT 27 17:08:26.166 (TDB)           124.8 F = 0.0\n",
+      "9          2030 NOV 01 21:56:26.171 (TDB)           124.8 F = 0.0\n",
+      "10         2030 NOV 07 02:44:26.175 (TDB)           124.8 F = 0.0\n",
+      "11         2030 NOV 12 07:32:26.180 (TDB)           124.8 F = 0.0\n",
+      "12         2030 NOV 17 12:20:26.185 (TDB)           124.8 F = 0.0\n",
+      "13         2030 NOV 22 17:08:26.189 (TDB)           124.8 F = 0.0\n",
+      "14         2030 NOV 27 21:56:26.194 (TDB)           124.8 F = 0.0\n"
+     ]
+    }
+   ],
    "source": [
     "spec_path = data.example_meas_spec.path\n",
     "\n",
@@ -158,10 +207,30 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 3,
    "id": "6",
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:45.415861Z",
+     "iopub.status.busy": "2026-10-16T18:12:45.415761Z",
+     "iopub.status.idle": "2026-10-16T18:12:45.421572Z",
+     "shell.execute_reply": "2026-10-16T18:12:45.421104Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Coast start : 2030 SEP 15 02:44:26.130 (TDB)\n",
+      "Burn 0 start: 2030 SEP 16 02:44:26.130 (TDB)\n",
+      "Burn 0 end  : 2030 SEP 21 07:32:26.135 (TDB)\n",
+      "Burn 0 dur  : 5.2000000520836975 days\n",
+      "\n",
+      "Initial mass: 2000.0 kg\n"
+     ]
+    }
+   ],
    "source": [
     "# ── spacecraft ───────────────────────────────────────────────────\n",
     "dry_mass  = scb.ArrayWUnits(1500.0, kg)\n",
@@ -238,10 +307,33 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "id": "8",
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:45.423047Z",
+     "iopub.status.busy": "2026-10-16T18:12:45.422961Z",
+     "iopub.status.idle": "2026-10-16T18:12:46.094143Z",
+     "shell.execute_reply": "2026-10-16T18:12:46.093495Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Propagators built:\n",
+      "  Coast before       25 steps   2030 SEP 15 02:44:26.130  →  2030 SEP 16 02:44:26.130\n",
+      "  Burn 0            125 steps   2030 SEP 16 02:44:26.130  →  2030 SEP 21 06:44:26.130\n",
+      "  Final coast         7 steps   2030 SEP 21 06:44:26.130  →  2030 SEP 21 12:44:26.130\n",
+      "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n",
+      "Coast 0 last:  969029066.1305069\n",
+      "Burn 0 first: 969029066.1305069\n",
+      "Burn 0 last:  969475466.1305069\n",
+      "Coast f first: 969475466.1305069\n"
+     ]
+    }
+   ],
    "source": [
     "dt = scb.ArrayWUnits(1, hr)\n",
     "dt_sec = 3600.0 \n",
@@ -330,10 +422,1419 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 5,
    "id": "10",
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:46.095687Z",
+     "iopub.status.busy": "2026-10-16T18:12:46.095522Z",
+     "iopub.status.idle": "2026-10-16T18:12:46.266032Z",
+     "shell.execute_reply": "2026-10-16T18:12:46.265191Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Sequence types : ['Leg', 'Node', 'Finite Burn', 'Node', 'Leg']\n",
+      "Segment names  : ['Coast before burn 0', 'Burn 0', 'Final coast']\n",
+      "\n",
+      "--- Propagating Segment 1/5: 'Coast before burn 0' [Leg] ---\n",
+      "\n",
+      "[IC] segment='Coast before burn 0' type='Leg' epoch=968942666.1305069 sec (TDB)\n",
+      "  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-1.5e+08  9.0e+07  3.0e+07]\n",
+      "  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -8. -18.  -5.]\n",
+      "\n",
+      "================================================================================\n",
+      "                            Starting propagation...                             \n",
+      "================================================================================\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                       | 0.00/86400.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                       | 0.00/86400.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.01/86400.00 s [00:00<5:58:36]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                       | 0.00/86400.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.01/86400.00 s [00:00<7:37:45]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.06/86400.00 s [00:00<2:34:52]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.01/86400.00 s [00:00<12:01:15]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.06/86400.00 s [00:00<2:53:47]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.19/86400.00 s [00:00<1:08:46]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.06/86400.00 s [00:00<3:50:56]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.19/86400.00 s [00:00<1:12:41]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.53/86400.00 s [00:00<29:58]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.19/86400.00 s [00:00<1:30:07]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.53/86400.00 s [00:00<32:32]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 1.36/86400.00 s [00:00<14:31]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.53/86400.00 s [00:00<38:51]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 1.36/86400.00 s [00:00<15:42]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 3.33/86400.00 s [00:00<07:12]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 1.36/86400.00 s [00:00<18:15]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 3.33/86400.00 s [00:00<07:33]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 8.18/86400.00 s [00:00<03:29]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 3.33/86400.00 s [00:00<08:40]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 8.18/86400.00 s [00:00<03:36]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 19.24/86400.00 s [00:00<01:38]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 8.18/86400.00 s [00:00<03:56]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 19.24/86400.00 s [00:00<01:41]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 44.78/86400.00 s [00:00<00:47]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 19.24/86400.00 s [00:00<01:53]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 44.78/86400.00 s [00:00<00:49]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 107.07/86400.00 s [00:00<00:21]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 44.78/86400.00 s [00:00<00:52]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 107.07/86400.00 s [00:00<00:22]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                                | 257.55/86400.00 s [00:00<00:09]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 107.07/86400.00 s [00:00<00:24]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                                | 257.55/86400.00 s [00:00<00:10]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   1%|▍                                                | 704.35/86400.00 s [00:00<00:03]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                                | 257.55/86400.00 s [00:00<00:10]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   1%|▍                                                | 704.35/86400.00 s [00:00<00:03]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   3%|█▌                                              | 2717.01/86400.00 s [00:00<00:01]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   1%|▍                                                | 704.35/86400.00 s [00:00<00:04]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   3%|█▌                                              | 2717.01/86400.00 s [00:00<00:01]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  26%|████████████▍                                  | 22843.57/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   3%|█▌                                              | 2717.01/86400.00 s [00:00<00:01]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  26%|████████████▍                                  | 22843.57/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  26%|████████████▍                                  | 22843.57/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      " =================== DOP853 integration complete. ==================\n",
+      "Propagation complete.\n",
+      "\n",
+      "[GLOBAL STATE after 'Coast before burn 0']\n",
+      "  key=('position', 3, -60000, 'J2000', 0) -> global[0:3] = [-1.50677868e+08  8.84368593e+07  2.95653506e+07]\n",
+      "  key=('velocity', 3, -60000, 'J2000', 0) -> global[3:6] = [ -7.69091695 -18.18342328  -5.06122998]\n",
+      "\n",
+      "--- Propagating Segment 2/5: 'Burn 0 Start Node' [Node] ---\n",
+      "\n",
+      "--- Propagating Segment 3/5: 'Burn 0' [Finite Burn] ---\n",
+      "\n",
+      "[IC] segment='Burn 0' type='Finite Burn' epoch=969029066.1305069 sec (TDB)\n",
+      "  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-1.50677868e+08  8.84368593e+07  2.95653506e+07]\n",
+      "  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -7.69091695 -18.18342328  -5.06122998]\n",
+      "\n",
+      "================================================================================\n",
+      "                            Starting propagation...                             \n",
+      "================================================================================\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                      | 0.00/446400.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                      | 0.00/446400.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                               | 0.01/446400.00 s [00:00<40:42:09]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                      | 0.00/446400.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                               | 0.01/446400.00 s [00:00<53:05:03]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                               | 0.06/446400.00 s [00:00<16:34:27]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                               | 0.01/446400.00 s [00:00<78:46:07]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                               | 0.06/446400.00 s [00:00<18:45:16]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.19/446400.00 s [00:00<7:15:29]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                               | 0.06/446400.00 s [00:00<24:34:30]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.19/446400.00 s [00:00<7:43:03]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.53/446400.00 s [00:00<3:13:26]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.19/446400.00 s [00:00<9:21:56]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.53/446400.00 s [00:00<3:24:26]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 1.35/446400.00 s [00:00<1:31:57]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 0.53/446400.00 s [00:00<3:58:15]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 1.35/446400.00 s [00:00<1:35:14]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 3.41/446400.00 s [00:00<42:33]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 1.35/446400.00 s [00:00<1:49:12]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 3.41/446400.00 s [00:00<43:48]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 7.73/446400.00 s [00:00<21:26]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 3.41/446400.00 s [00:00<49:29]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 7.73/446400.00 s [00:00<22:02]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 19.20/446400.00 s [00:00<09:42]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 7.73/446400.00 s [00:00<24:22]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 19.20/446400.00 s [00:00<09:56]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 43.20/446400.00 s [00:00<04:47]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 19.20/446400.00 s [00:00<10:52]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 43.20/446400.00 s [00:00<04:52]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 94.02/446400.00 s [00:00<02:24]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 43.20/446400.00 s [00:00<05:19]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 94.02/446400.00 s [00:00<02:27]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 198.96/446400.00 s [00:00<01:14]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 94.02/446400.00 s [00:00<02:39]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 198.96/446400.00 s [00:00<01:16]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 537.06/446400.00 s [00:00<00:30]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 198.96/446400.00 s [00:00<01:22]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 537.06/446400.00 s [00:00<00:30]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                              | 2028.51/446400.00 s [00:00<00:08]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                | 537.06/446400.00 s [00:00<00:32]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                              | 2028.51/446400.00 s [00:00<00:08]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   4%|█▋                                            | 16011.03/446400.00 s [00:00<00:01]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                              | 2028.51/446400.00 s [00:00<00:09]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   4%|█▋                                            | 16011.03/446400.00 s [00:00<00:01]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  19%|████████▉                                     | 86211.76/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   4%|█▋                                            | 16011.03/446400.00 s [00:00<00:01]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  19%|████████▉                                     | 86211.76/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  39%|█████████████████▍                           | 173592.62/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  19%|████████▉                                     | 86211.76/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  39%|█████████████████▍                           | 173592.62/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  64%|████████████████████████████▋                | 284786.75/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  39%|█████████████████▍                           | 173592.62/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  64%|████████████████████████████▋                | 284786.75/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  94%|██████████████████████████████████████████   | 417457.36/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  64%|████████████████████████████▋                | 284786.75/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  94%|██████████████████████████████████████████   | 417457.36/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|█████████████████████████████████████████████| 446400.00/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  94%|██████████████████████████████████████████   | 417457.36/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|█████████████████████████████████████████████| 446400.00/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|█████████████████████████████████████████████| 446400.00/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|█████████████████████████████████████████████| 446400.00/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|█████████████████████████████████████████████| 446400.00/446400.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      " =================== DOP853 integration complete. ==================\n",
+      "Propagation complete.\n",
+      "\n",
+      "[GLOBAL STATE after 'Burn 0']\n",
+      "  key=('position', 3, -60000, 'J2000', 0) -> global[0:3] = [-1.53749554e+08  8.01100857e+07  2.72380593e+07]\n",
+      "  key=('velocity', 3, -60000, 'J2000', 0) -> global[3:6] = [ -6.05764965 -19.11231949  -5.36299273]\n",
+      "\n",
+      "--- Propagating Segment 4/5: 'Final coast Start Node' [Node] ---\n",
+      "\n",
+      "--- Propagating Segment 5/5: 'Final coast' [Leg] ---\n",
+      "\n",
+      "[IC] segment='Final coast' type='Leg' epoch=969475466.1305069 sec (TDB)\n",
+      "  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-1.53749554e+08  8.01100857e+07  2.72380593e+07]\n",
+      "  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -6.05764965 -19.11231949  -5.36299273]\n",
+      "\n",
+      "================================================================================\n",
+      "                            Starting propagation...                             \n",
+      "================================================================================\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                       | 0.00/21600.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                       | 0.00/21600.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.01/21600.00 s [00:00<46:18]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                       | 0.00/21600.00 s [00:00<?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.01/21600.00 s [00:00<1:00:08]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.06/21600.00 s [00:00<22:18]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                 | 0.01/21600.00 s [00:00<1:47:28]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.06/21600.00 s [00:00<25:58]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.19/21600.00 s [00:00<10:52]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.06/21600.00 s [00:00<37:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.19/21600.00 s [00:00<11:47]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.54/21600.00 s [00:00<05:03]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.19/21600.00 s [00:00<15:14]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.54/21600.00 s [00:00<05:29]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 1.43/21600.00 s [00:00<02:23]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 0.54/21600.00 s [00:00<06:32]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 1.43/21600.00 s [00:00<02:30]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 3.58/21600.00 s [00:00<01:08]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 1.43/21600.00 s [00:00<02:55]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 3.58/21600.00 s [00:00<01:11]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 7.92/21600.00 s [00:00<00:36]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 3.58/21600.00 s [00:00<01:22]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 7.92/21600.00 s [00:00<00:37]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 17.90/21600.00 s [00:00<00:18]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                   | 7.92/21600.00 s [00:00<00:42]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 17.90/21600.00 s [00:00<00:19]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 41.23/21600.00 s [00:00<00:09]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 17.90/21600.00 s [00:00<00:21]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 41.23/21600.00 s [00:00<00:09]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                                 | 93.57/21600.00 s [00:00<00:04]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|                                                  | 41.23/21600.00 s [00:00<00:10]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                                 | 93.57/21600.00 s [00:00<00:04]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   1%|▍                                                | 204.83/21600.00 s [00:00<00:02]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   0%|▏                                                 | 93.57/21600.00 s [00:00<00:04]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   1%|▍                                                | 204.83/21600.00 s [00:00<00:02]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   3%|█▎                                               | 580.63/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   1%|▍                                                | 204.83/21600.00 s [00:00<00:02]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   3%|█▎                                               | 580.63/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  11%|█████▎                                          | 2416.59/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:   3%|█▎                                               | 580.63/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  11%|█████▎                                          | 2416.59/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  92%|███████████████████████████████████████████▏   | 19840.35/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  11%|█████▎                                          | 2416.59/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  92%|███████████████████████████████████████████▏   | 19840.35/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 21600.00/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating:  92%|███████████████████████████████████████████▏   | 19840.35/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 21600.00/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 21600.00/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 21600.00/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\r",
+      "Integrating: 100%|███████████████████████████████████████████████| 21600.00/21600.00 s [00:00<00:00]"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      " =================== DOP853 integration complete. ==================\n",
+      "Propagation complete.\n",
+      "\n",
+      "[GLOBAL STATE after 'Final coast']\n",
+      "  key=('position', 3, -60000, 'J2000', 0) -> global[0:3] = [-1.53879518e+08  7.96968013e+07  2.71220628e+07]\n",
+      "  key=('velocity', 3, -60000, 'J2000', 0) -> global[3:6] = [ -5.97600807 -19.15473055  -5.37741934]\n",
+      "Done.\n",
+      "Total propagated steps : 155\n",
+      "Total duration         : 154.0 hr\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    }
+   ],
    "source": [
     "MS = scb.MissionSequence('FiniteBurnDemo')\n",
     "MS.addLeg(\n",
@@ -387,9 +1888,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 6,
    "id": "12",
-   "metadata": {},
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:46.267876Z",
+     "iopub.status.busy": "2026-10-16T18:12:46.267782Z",
+     "iopub.status.idle": "2026-10-16T18:12:46.270417Z",
+     "shell.execute_reply": "2026-10-16T18:12:46.269840Z"
+    }
+   },
    "outputs": [],
    "source": [
     "r = np.array(scenario.total_position.quantity.values, dtype=float)  # (N, 3)\n",
@@ -422,10 +1930,38 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 7,
    "id": "14",
-   "metadata": {},
-   "outputs": [],
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-10-16T18:12:46.272449Z",
+     "iopub.status.busy": "2026-10-16T18:12:46.272288Z",
+     "iopub.status.idle": "2026-10-16T18:12:46.581336Z",
+     "shell.execute_reply": "2026-10-16T18:12:46.580896Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Initial mass    : 2000.000 kg\n",
+      "Final mass      : 1997.323 kg\n",
+      "Propellant used : 2.677 kg\n",
+      "Mass-flow rate  : 0.0000e+00 kg/s\n"
+     ]
+    },
+    {
+     "data": {
+      "image/png": "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5tH2Tttvv32g1siXX34pr7/+unz99demP5Bzzz1XdttttxQ+CwAAAAAAGkY7P9WuHf72t78FpumP/3oODHc+iwGC66QvKk3RtMPVoqKiuhcAMlVVuUjxfBFNt7PyUl0aAAAAICVKyyrl1z82S4/u3aSgoDH6h4y/BkhTUFpaKr/++qv06NFDCgoKGnyOzp4FAAAAAACeRwACAAAAAAA8jwAEAAAAAAB4HgEIAAAAAADwPAIQAAAAAADgeQQgAAAAAADA8whAAAAAAACA5xGAAAAAAAAAzyMAAQAAAAAAnkcAAgAAAAAAEuKRRx6Rt99+29y+6aabZM6cOZIuclJdAAAAAAAAMoK/UsTyJ2HFVs16s0SycqovMbjtttvkiy++MLezs7Olc+fOMmLECNltt90kVR5++GG58cYbze27775bTjjhhLB5Xn31VXnttdckNzfXPL7//vs3StkIQAAAAAAAiCX82PSrSFVpkgIQSyQrXySnUKTFNjGFIJ988ols2rRJzjrrLKmsrDS1Lfbcc09599135cADD5TGVlFRId999530799flixZYu537949aJ7bb79dJk+eLFdccYUp+6GHHipPPPGEHH/88UkvHwEIAAAAAAB10RoaGn74Yq+hEXcA4suu3kYctUx69uxpan2oU045Rb7//nuZOnVqIAC58MIL5fTTT5ddd93V3N+wYYOMHj1aHnjgAWnVqpVcddVVpgbGr7/+amqTnHzyyXL//ffL1VdfLa+//rosWLBAdtxxRznnnHMkLy/PtQw631NPPWUCDb/fbwKZP//809y2a6RcdtllUlZWJv/85z9NzZDTTjvNLKu1QCZNmtQoAQh9gAAAAAAAEPNZtAYgeUm6NCxYqaqqkhUrVsiWW24ZFE4sW7YscF9DiOeff15KSkrMfa0tctJJJ8nXX38t++23n2y99dbm8aOOOkrKy8tNjZL77rtPLrrooojb3XbbbeXoo482AcngwYPNba2Rcswxx5jbe++9t5lPt1FcXCxHHHFEYNmhQ4fKL7/8ElTGZKEGiEcd+tKhsqZ0jbnt038+83/zT/9zm663ndMDt2uWCVuPPh6yjPPa5roNxzyhy0QqU6AMLvNHep6hZY20nkB53R6rWX/Ubbg8H7f9Engu0Z6n8zGX/RK2zyLsF7f1hB3/0PL5q8RXtlp82bkmfa6dx7GE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+/XrZ2p/aDMdm95u37696YMk2egDBAAAAACADO8DRAMP7bdDR4A58MADxefzmccHDRokt99+uxlKVkeDufzyy5NSjlmzZpkhbe3bxx9/fNg8OnStdo6qfYRoWKPNXq666iq5+OKLTeepyUYAAgAAAABArPzRh4StH0tEa2z4suNaqkuXLqbfDXv0lS222ML013HppZcG5tERWCZNmiT/+Mc/TP8c//rXv0xfITk51XGA1rxo3bp10Hp79+4t+fn5gfs6WotOi0ZHlbFDDw1lBg4c6Drf//3f/5lyapk0BNFARkehaQw+y64Xg4i0upAmVToesrMdFOA5VeUixfNFcgqrh+ECAAAAmqDSskr59Y/N0qN7NykoyK8NPjb9KlJVmrwAJCu/+rt4i20aPCSuF5SWlpomO1p7xe6QtSHn6OxRAAAAAADqooFE8x4ilj9JAYhfJLugejuEH0lBAAIAAAAAQCySFkzYAUieiI+xSpKFPQsAAAAAADyPAAQAAAAAAHgeAQgAAAAAAE41Q8gyZkhqJXr/E4AAAAAAAOCQm60BiCWbS0rYLym0efNmc63D5SYCnaACAAAAAOCQnZ0lrVvkyp+rVpv7zQoLxVdTKyS5naBq7RPqKViWZcKPP//8U1q3bi3Z2bpjGo4ABAAAAACAEB3aFYpIiTkJF0lm+KG0qYcl4ssNNL+BmPCjQ4cOCdsVBCAAAAAAAITQGh8dt2gmW7bxS0WV1tBIbH8UQawKkcoykRZdqofChWizl0TV/GhwALJu3bq4kxsAAAAAADKtOUyCz8PD+f0iWT6RggICkCSqdwDSpk2buOan91wAAAAAAJAqDWoC88UXX8Q03x577NGQzQAAAAAAAKQmAOndu7f0798/5nkBAAAAAABSpd7j68yfPz8p8wIAAAAAACRaUgYYLi4ulueee04+//zzZKweAAAAAACg8QOQqVOnyogRI8xtv98vBx54oIwaNUoGDhwoTz31VCI2AQAAAAAAkNoA5Prrr5errrrK3J4xY4asWrVKVq5cKS+//LLcfPPNidgEAAAAAABAagOQBQsWSM+ePc3t999/X4455hhp3ry5HHLIIfLLL79IMq1du1buuOMOOfvss0053CxbtkymTJkiF154oTz88MNSXl6e1DIBAAAAAAAPBiCdOnWSTz/9VCorK01zmIMOOshMX7JkiXTu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yy+/NH2B6G2ddsEFFyRiEwAAAAAAAKltAvPxxx/LokWLpFWrVoFpevuuu+6Snj17JmITAAAAAAAAqa0BkpubK5s3bw6bvmnTJvMYAAAAAABAxgcghx9+uIwcOVLmz58fmKadoZ522mnmMQAAAAAAgIwPQLSpi9b00E5Pi4qKzEVHgSkoKJA777wzEZsAAAAAAABIbR8g7du3l/fee890gPrDDz+Iz+czAYh2ggoAAAAAAOCJAMSmgQehBwAAAAAA8EwA8thjj8U8r/YPkiyWZZnaJ9r/yDHHHCOdO3eOOO8vv/wib775pvTr10/22WefpJUJAAAAAAB4JAC58sorUx6AvPLKK3LppZdKmzZt5PPPP5cdd9wxYgBSVlYmf//732XhwoUyevRoAhAAAAAAAJqQegcgS5culVRr3ry5TJs2TQoLC6Vr165R5x0/frwMHDiw0coGAAAAAAA82gdIYzv44INjCmNefvllef/992XOnDmEIAAAAAAANEEJGQZX/fjjjzJp0iQ54YQTAtNeeOEFKSkpkVRasmSJjBs3Tp5++mlp1qxZTMtoc5ni4uKgCwAAAAAAaOI1QLQT0mHDhpkaGa+99po8//zzZvp3330nv//+u+mnI9b1zJs3L+o8p556qrRq1Sqm9VVVVclJJ50kF110key2224SqylTpsjkyZNjnh8AAAAAADSBAOTyyy+XBx98UE455RTx+XyB6SeffLIJRmINQP744w8zmks0FRUVMZdLa33MnTtXjj/+eLnnnnvMtNWrV8u3335r7p977rlB5bVpTRbtM8SmNUDq6mMEAAAAAAB4PAD5/vvv5dhjjzW3nYHC1ltvLYsXL455PRqg6CVRunfvbta3YMGCoOYta9euNUGLDqHrFoDk5+ebCwAAAAAA8IaEBCAtW7Y0tTd69uwZFCjo0LSdOnWSVNlvv/3MxWnGjBlywAEHyB133JGycgEAAAAAgAwMQIYPHy4XXnihPP744+a+3++XTz75REaPHi0jRoyQZNFaHNOnT5d169YFRnvR2ih77rmnuQAAAAAAACRsFBjtNFRDj/bt25trrRGitSz69Okj//znP5O2p9evX29CkBUrVpj+PLTTU72v/XxEooHMvvvum7QyAQAAAACA9OOztCOMetK+NbbbbrvA/a+//lq+/PJLE4LoqCt77LGHeIF2gqojz2jg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AqmhnZvaoWXoD792DQ/9DqxBlfbVo81c9LvS+PHjA02MlX43vueee+Stt94yP/pqk2MNROLps4cABAAAAAAAeB59gAAAAAAAAM8jAAEAAAAAAJ5HAAIAAAAAADyPAAQAAAAAAHgeAQgAAAAAAPA8AhAAAAAAAOB5BCAAAAAAAMDzclJdAAAAELtXXnlF+vXrJ926dUvJblu+fLnMmTNHSkpKZPjw4SkpAxpu6dKlMmPGDHN7u+22k912201WrlwpH3zwgYwYMSLu9a1fv17efPNNc7tDhw5ywAEHcJgAAGmHAAQAgDTwxhtvSHFxccTH27ZtK4MHD5axY8fKrbfempIA5JNPPpEjjjhC9ttvP2nVqhUBSI3Vq1fL9OnTzf7Iyspq9OXrs75Zs2bJaaedJscee6wMGTLEBCBz586VE088sV4ByIYNG+R///uffPfdd9KpUycCEABAWiIAAQAgDbz33nuybNkyc/uvv/4yJ7CHHnqoCRpUz549TQBy9NFHS/fu3VNSxieeeEKGDRsmTz/9dEq2n67mz59vggM9NgUFBY2+fH3X16xZM3nuueckEbp06WLWNXHiRPnyyy8Tsk4AABKNAAQAgDRw2223Bf06rwHILbfcIjvuuGPQfIcddph07do1cP+ll16Svfbay9zWX9+Liopk4MCB4vP5ZNGiReZXfa0tos1mQpWVlcnMmTNl48aNssMOO0iPHj0ilu/VV1+Vb775xtRE0RNdDWF0u/b2Kysr5euvv5ZtttlGdt55Z7OMbl/LpCGOlik/Pz+wPru5xQknnCA//PCDmXf77beXbbfdVizLks8//1z+/PNPUzOhc+fOde4/DY1mz55tTuq1PKEn/tHKsmnTJnnttdfM7by8PPMcdtllF7MPnXQ+LZfut913313at29vaj5oeKVefPFFyc3NNftxwIABYWWMZ3k97nWVydlk5YsvvpDff/9d+vfvH3N5orGPSZ8+fcwxibbNAw88UNq1axfX+gEASAUCEAAAMkhoE5jTTz/dhARae0QDBO3XYdCgQeZE+JlnnpHevXvLRx99JOedd55MmTIlsB79lf6YY46RrbbaSjp27CifffaZnHLKKXLnnXe6bvftt9+WP/74w/T1oE0d9t13XxM06Pb32Wcf+emnn2TXXXeV448/3gQgl1xyidx///2mLHqSrCf92keEllHZzS3+/e9/S2lpqbRo0cKcWN90003mxF8DFT3x18Dg9ddfNyfZkdx+++1yxRVXmJBHgw9tAqJ9pdiBTl1l2bx5s3lOSh/TE3td9q233pLmzZub6RruaA0cDSI0uNCA4OqrrzbNR7RpkNJya5OT/fffPyxwiHd5na+uMtn78KmnnjLHplevXuZYxlKeaI488kizvi222ELef/99c0wuvPDCiNvU/U4AAgDICBYAAEgrM2fOtPRP9Ny5c8Me22qrrawnn3wycL958+bWfvvtZ5WVlZn7n3zyiVn2kEMOscrLy820N99808rJybH++usvc7+kpMTq3Lmzdf/99wfWs3z5cqt9+/bWyy+/HLFcRx11lHXuuecGTdPt77bbbtbGjRsD09577z0rOzvbmj17trlfUVFhDR061Np3330D87z77rumnFOmTAlMu/jii82022+/PTBt7Nix1oEHHhixTLotn89nvfbaa4FpCxYssH744YeYyxKqtLTU6t+/v3X99dcHpp1yyinWaaedFjTPG2+8EbTPdb9G0tDl3cpk78MJEyYEzRvL+l588UWrVatWQdPs9Tm38dBDD1nNmjUz+y3aNm06/aCDDoq4XQAAUokaIAAAZLiRI0ea2hJKa2VoM4kzzjjDNH9Qe++9t6lRoU0atAnLO++8Y5oytGnTRqZOnWqanOhFax1oLQztOyIeZ511VqBWgnr22WfloIMOkj333NPcz8nJMX1DaE0RHUVGO8l01mixaTm17GPGjAmapjVAInn88cdNDYehQ4cGpjmbbMRaFn3+Wktj8eLFpkaKNjPS2ie2wsJCWbhwoaxdu9bsN21Co82RYlWf5esqk+3888+XRBo3blzgto7mojVkdNQYZ98zid4mAACNgQAEAIAMpyfUNj3B12YPzml2fxd6Eq1+++03E468/PLLQevRE1ztbDVe2uzCSZuZhK7Hvq+POQOQ0HJqkKP9eDin2eV2o+GADuMaSSxl0b5GDj74YFmzZo1pvqP9qPz8889Boc4111xjgh6dX5sXaXhx7rnnBjqprUu8y8dSpkj7v6E0JIv02knWNgEAaAwEIAAANDF6Ml1RUWFqTzg7A62v0M5Cte8IPXF3su/rY4nUunVr0wFqJLGURftU0T5ItLZFdna2maZ9XmhntDbtiFX739AaHNqnivaLobVnvvrqq5jKGe/ysZQp0v5vDKnYJgAADdXwweYBAEBG0SYh6uGHHw6ars1ktOZBQ2nzknfffdeMcGLTEUm09kO0kWbqQzsW1Q5atUmPraqqKhByxFKWFStWmM487aBBOx0NbXZjD1GsNVa0idC1115rRsXReTWoUNFqqsS7fCxliiSW8gAA0BRRAwQAgCZG+5LQGgZao0BH9dAmGUuWLDE1EnRElUMOOaRB6x89erQ8+OCDpv+IUaNGmb5HdHSZJ5980jTRSSRtVvLCCy+Yvk/OOeccU6Pl+eefN89P+w+JpSwaSOjIJtoHSocOHeSxxx4ztUqctVUuvfRSEyjoaDTafEhHrxk2bJjZngYV2pRFR6LRwEXXEzrqSrzLx1KmSGIpDwAATRE1QAAASDN6knvCCSeY5h2h9MTY2RnlcccdJ126dAmaR5d19tGgtQh0mg6/arvgggvM0LctW7Y0w6bqPDp0bLTwQ4e+3X333YOmuW1fT/B1OF4dVlebbJSXl8uHH35oymDTk3rnfbuZyPDhw4Om6XC/xx57bMQyaZ8h2qmr9rExf/5806+HBhwafsRaFl3/f//7XzOs65w5c8yQwQ899FDQvnj66afltNNOkwULFsi3335r9p8GL3aNi/fee89sS4eedWvWEu/ysZTJbR/GWh6lzaCee+65wONu69P+WHSaNpuKtk0dHlnXNW/evIjHCgCAVPPpUDCpLgQAAAAaz+zZs01tHzVkyBAzalBD6Cgxl1xyibm90047mdonAACkGwIQAAAAAADgeTSBAQAAAAAAnkcAAgAAAAAAPI8ABAAAAAAAeB4BCAAAAAAA8DwCEAAAAAAA4HkEIAAAAAAAwPMIQP6/HTugAQAAQBhk/9T2+CAGAAAAQJ4AAQAAAPIECAAAAJAnQAAAAIA8AQIAAACs7mvafgpIgvj3AAAAAElFTkSuQmCC",
+      "text/plain": [
+       "<Figure size 1100x700 with 2 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
    "source": [
     "# Evaluate mass at every propagated epoch\n",
     "# Orbiter._mass_profile is updated by the propagator for each arc;\n",
@@ -499,7 +2035,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.11.9"
+   "version": "3.12.4"
   }
  },
  "nbformat": 4,

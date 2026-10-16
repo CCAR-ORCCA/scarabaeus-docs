@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Ground stations, body orientation, surface tides and their estimation in Scarabaeus." lang="en" name="description" xml:lang="en" />
+<meta content="Scarabaeus, ground station, Earth orientation parameters, EOP, solid tide, station estimation" name="keywords" />
+<meta property="og:title" content="Stations and Body Orientation" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/orientation_and_station_estimation.html" />
+<meta property="og:site_name" content="Scarabaeus" />
+<meta property="og:description" content="Last revised by G. Fereoli on 2026 OCT 11 A GroundStation sits on a rotating body. Where it is at an epoch depends on three things: its coordinates, the orientation of the body-fixed frame, and the surface displacements (tides) acting on it. Each can be modelled, and most can be estimated. Body orientation: All orientation models live in BodyOrientation.,, Constructor, Purpose,,, BodyOrientation(rotation_vector, body_fixed_frame), Small rigid rotation of a station, in radians, on any body.,, ..." />
+<meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
+<meta property="og:image:alt" content="Scarabaeus" />
+
+    <title>Stations and Body Orientation &#8212; Scarabaeus 2.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=73c15959" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
+
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/orientation_and_station_estimation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../_static/custom.js?v=8ab10226"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scarabaeus API" href="../api_ref/api_ref_frontpage.html" />
+    <link rel="prev" title="Solution Mapping and Analysis" href="solution_mapping_and_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="dark">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-dark" alt=""/>
+    <img src="../_static/scarabaeus_logo.png" class="logo__image only-light pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Scarabaeus</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="user_guide_frontpage.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api_ref/api_ref_frontpage.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/examples_frontpage.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../development/development_frontpage.html">
+    Development
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../about_scb/about_frontpage.html">
+    About
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_notes/release_frontpage.html">
+    Release Notes
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="what_is_scb.html"><span class="gold">What is Scarabaeus?</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html"><span class="gold">Installation</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/quickstart.html"><span class="gold">Scarabaeus Quickstart</span></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals and Concepts</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="the_od_process.html"><span class="gold">The Orbit Determination Process</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scb_data_flow.html"><span class="gold">Data Flow</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamics.html"><span class="gold">Dynamics</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="measurements.html"><span class="gold">Measurement Framework</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="estimation_framework.html"><span class="gold">Estimation Framework</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="solution_mapping_and_analysis.html"><span class="gold">Solution Mapping and Analysis</span></a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#"><span class="gold">Stations and Body Orientation</span></a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="user_guide_frontpage.html" class="nav-link"><span class="gold">Scarabaeus User Guide</span></a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="gold">Stations and Body Orientation</span></span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <span class="target" id="orientation-station-estimation"></span><style> .gold {color:rgb(207 184 124)} </style><section id="stations-and-body-orientation">
+<h1><span class="gold">Stations and Body Orientation</span><a class="headerlink" href="#stations-and-body-orientation" title="Link to this heading">#</a></h1>
+<p>Last revised by G. Fereoli on 2026 OCT 11</p>
+<p>A <a class="reference internal" href="../api_ref/body/groundstation.html#scarabaeus.GroundStation" title="scarabaeus.GroundStation"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroundStation</span></code></a> sits on a rotating body. Where it is at an epoch
+depends on three things: its coordinates, the orientation of the body-fixed frame, and
+the surface displacements (tides) acting on it. Each can be modelled, and most can be
+estimated.</p>
+<section id="body-orientation">
+<h2>Body orientation<a class="headerlink" href="#body-orientation" title="Link to this heading">#</a></h2>
+<p>All orientation models live in <a class="reference internal" href="../api_ref/time_n_frame/bodyorientation.html#scarabaeus.BodyOrientation" title="scarabaeus.BodyOrientation"><code class="xref py py-class docutils literal notranslate"><span class="pre">BodyOrientation</span></code></a>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 36.0%" />
+<col style="width: 64.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Constructor</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BodyOrientation(rotation_vector,</span> <span class="pre">body_fixed_frame)</span></code></p></td>
+<td><p>Small rigid rotation of a station, in radians, on any body.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">earth_correction(dxp,</span> <span class="pre">dyp,</span> <span class="pre">dut1)</span></code></p></td>
+<td><p>The same correction expressed as Earth polar motion and UT1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">celestial_pole_correction(dX,</span> <span class="pre">dY)</span></code></p></td>
+<td><p>Celestial pole offset (nutation correction).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">earth_eop(pole_x,</span> <span class="pre">pole_y,</span> <span class="pre">tai_minus_ut1,</span> <span class="pre">model=...)</span></code></p></td>
+<td><p>Absolute Earth orientation, written to an ITRF93 PCK.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">from_rotation(rotation,</span> <span class="pre">frame_class_id,</span> <span class="pre">base_frame=...)</span></code></p></td>
+<td><p>Absolute PCK for any body from a user rotation law.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">earth_eop</span></code> takes <code class="docutils literal notranslate"><span class="pre">model=&quot;EOP1&quot;</span></code> (ITRF93 legacy: IAU1976/1980, equinox-based) or
+<code class="docutils literal notranslate"><span class="pre">model=&quot;EOP2&quot;</span></code> (IERS 2010: IAU2006/2000A, CIO/ERA). Both PCKs use class ID 3000, so
+existing ITRF93 station SPKs follow the selected orientation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span><span class="s2">"data/kernels/locked/lsk/naif0012.tls"</span><span class="p">)</span>
+<span class="n">orientation</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">BodyOrientation</span><span class="o">.</span><span class="n">earth_eop</span><span class="p">(</span>
+    <span class="n">pole_x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mf">6.4125e-5</span><span class="p">),</span> <span class="n">pole_y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mf">1.341694444444444e-4</span><span class="p">),</span>
+    <span class="n">tai_minus_ut1</span><span class="o">=</span><span class="mf">37.00446633384733</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">"EOP1"</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">utc2et</span><span class="p">(</span><span class="s2">"2029 APR 25 00:00:00 UTC"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">orientation</span><span class="o">.</span><span class="n">write_pck</span><span class="p">(</span><span class="s2">"earth_absolute.bpc"</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="mf">86400.</span><span class="p">)</span>
+<span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>   <span class="c1"># load after any other Earth PCK</span>
+</pre></div>
+</div>
+<p>The PCK must cover every transmit and receive epoch, including Doppler count
+intervals.</p>
+<p><strong>Signs.</strong> A correction rotates the station by
+<span class="math notranslate nohighlight">\(\boldsymbol\varepsilon = (-\Delta y_p,\ -\Delta x_p,\ \omega_\oplus\Delta UT1)\)</span>,
+with <span class="math notranslate nohighlight">\(\Delta\mathbf r = \boldsymbol\varepsilon\times\mathbf r\)</span>. An estimated
+<span class="math notranslate nohighlight">\(\Delta UT1\)</span> maps to the absolute input as <span class="math notranslate nohighlight">\(\Delta(TAI-UT1) = -\Delta UT1\)</span>.</p>
+<p><strong>Time scale.</strong> <code class="docutils literal notranslate"><span class="pre">ut1_time_scale=&quot;TAI&quot;</span></code> (default) is correct. <code class="docutils literal notranslate"><span class="pre">&quot;TDB&quot;</span></code> skips TDB−TT
+(up to 1.66 ms, about 0.5 m at the equator). Use it only to reproduce a tool that
+makes the same omission.</p>
+</section>
+<section id="station-coordinates">
+<h2>Station coordinates<a class="headerlink" href="#station-coordinates" title="Link to this heading">#</a></h2>
+<p>By default a station is read from its SPK, which also carries plate motion. A station
+can instead be given from a table:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">km</span><span class="p">,</span> <span class="n">deg</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">"km"</span><span class="p">,</span> <span class="s2">"deg"</span><span class="p">])</span>
+<span class="n">station</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="o">.</span><span class="n">from_cylindrical</span><span class="p">(</span>
+    <span class="s2">"DSS-24"</span><span class="p">,</span> <span class="mi">399024</span><span class="p">,</span> <span class="n">body_fixed_frame</span><span class="o">=</span><span class="s2">"ITRF93"</span><span class="p">,</span>
+    <span class="n">longitude</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="o">-</span><span class="mf">116.8747939</span><span class="p">,</span> <span class="n">deg</span><span class="p">),</span>
+    <span class="n">cylindrical_radius</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">5209.482541999999</span><span class="p">,</span> <span class="n">km</span><span class="p">),</span>
+    <span class="n">z</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">3669.24231</span><span class="p">,</span> <span class="n">km</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">body_fixed_position=</span></code> accepts Cartesian coordinates instead. A table station has no
+SPK, so it is queried through <code class="docutils literal notranslate"><span class="pre">station.nominal_state</span></code>, and plate motion is the
+user’s to apply. <a class="reference internal" href="../api_ref/measurements/dopplerreal.html#scarabaeus.DopplerReal" title="scarabaeus.DopplerReal"><code class="xref py py-class docutils literal notranslate"><span class="pre">DopplerReal</span></code></a> and
+<a class="reference internal" href="../api_ref/measurements/sequentialrangingreal.html#scarabaeus.SequentialRangingReal" title="scarabaeus.SequentialRangingReal"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequentialRangingReal</span></code></a> need a station SPK and raise
+<code class="docutils literal notranslate"><span class="pre">Measurement.StationKernelRequiredError</span></code> without one.</p>
+<p>On another body, give the station its central body and frame:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">station</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">"MARS_STATION"</span><span class="p">,</span> <span class="mi">499001</span><span class="p">,</span>
+                            <span class="n">central_body</span><span class="o">=</span><span class="s2">"MARS"</span><span class="p">,</span> <span class="n">body_fixed_frame</span><span class="o">=</span><span class="s2">"IAU_MARS"</span><span class="p">)</span>
+<span class="n">station</span><span class="o">.</span><span class="n">body_orientation</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">BodyOrientation</span><span class="p">(</span>
+    <span class="n">rotation_vector</span><span class="o">=</span><span class="p">[</span><span class="mf">1e-7</span><span class="p">,</span> <span class="o">-</span><span class="mf">2e-7</span><span class="p">,</span> <span class="mf">3e-7</span><span class="p">],</span> <span class="n">body_fixed_frame</span><span class="o">=</span><span class="s2">"IAU_MARS"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="surface-displacement">
+<h2>Surface displacement<a class="headerlink" href="#surface-displacement" title="Link to this heading">#</a></h2>
+<p>Tides are part of where the station <em>is</em>, so they enter <code class="docutils literal notranslate"><span class="pre">nominal_state</span></code> rather than
+an estimated correction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">station</span><span class="o">.</span><span class="n">surface_displacement</span> <span class="o">=</span> <span class="p">[</span><span class="n">scb</span><span class="o">.</span><span class="n">SolidTide</span><span class="p">(),</span>
+                                <span class="n">scb</span><span class="o">.</span><span class="n">OceanLoading</span><span class="p">(</span><span class="n">amplitudes</span><span class="p">,</span> <span class="n">phases</span><span class="p">),</span>
+                                <span class="n">scb</span><span class="o">.</span><span class="n">PoleTide</span><span class="p">(</span><span class="n">pole_x</span><span class="o">=</span><span class="n">xp</span><span class="p">,</span> <span class="n">pole_y</span><span class="o">=</span><span class="n">yp</span><span class="p">)]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api_ref/body/solidtide.html#scarabaeus.SolidTide" title="scarabaeus.SolidTide"><code class="xref py py-class docutils literal notranslate"><span class="pre">SolidTide</span></code></a>: IERS degree-2 in-phase, up to about 0.4 m. Keep
+<code class="docutils literal notranslate"><span class="pre">remove_permanent_tide=False</span></code> for tide-free coordinates such as ITRF and DSN
+tables.</p></li>
+<li><p>The same object also perturbs the gravity field, through <span class="math notranslate nohighlight">\(k_2\)</span> instead of
+<span class="math notranslate nohighlight">\(h_2, l_2\)</span>: <code class="docutils literal notranslate"><span class="pre">sph_harm.solid_tide</span> <span class="pre">=</span> <span class="pre">tide</span></code>.</p></li>
+<li><p>Other bodies have no built-in Love numbers and raise <code class="docutils literal notranslate"><span class="pre">UnknownTidalResponseError</span></code>.
+Give them explicitly, for example
+<code class="docutils literal notranslate"><span class="pre">scb.SolidTide(central_body=&quot;MARS&quot;,</span> <span class="pre">love_h2=0.17,</span> <span class="pre">shida_l2=0.02,</span> <span class="pre">love_k={(2,</span> <span class="pre">0):</span> <span class="pre">0.169},</span> <span class="pre">tide_bodies=(&quot;SUN&quot;,</span> <span class="pre">&quot;PHOBOS&quot;))</span></code>.</p></li>
+<li><p>Omitted: degree 3 (~2 mm), out-of-phase terms (a few mm), step-2 corrections
+(up to ~13 mm), atmospheric loading.</p></li>
+</ul>
+</section>
+<section id="estimable-parameters">
+<h2>Estimable parameters<a class="headerlink" href="#estimable-parameters" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 14.0%" />
+<col style="width: 46.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gs_delta_location_ECEF_&lt;tag&gt;</span></code></p></td>
+<td><p>length (3)</p></td>
+<td><p>Cartesian station offset in its body-fixed frame</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">gs_delta_location_CYL_&lt;tag&gt;</span></code></p></td>
+<td><p>length (3)</p></td>
+<td><p><span class="math notranslate nohighlight">\((\Delta\rho,\ \rho\Delta\lambda,\ \Delta z)\)</span>; set
+<code class="docutils literal notranslate"><span class="pre">sigma_east</span> <span class="pre">=</span> <span class="pre">rho</span> <span class="pre">*</span> <span class="pre">sigma_lon</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eop_delta_pole_x</span></code>, <code class="docutils literal notranslate"><span class="pre">eop_delta_pole_y</span></code></p></td>
+<td><p>angle</p></td>
+<td><p>Polar motion correction</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eop_delta_ut1</span></code></p></td>
+<td><p>time</p></td>
+<td><p>UT1 correction</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eop_delta_celestial_pole_x</span></code>, <code class="docutils literal notranslate"><span class="pre">_y</span></code></p></td>
+<td><p>angle</p></td>
+<td><p>Celestial pole offset correction</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">body_orientation_delta</span></code></p></td>
+<td><p>angle (3)</p></td>
+<td><p>Rigid rotation of the station frame, any body</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pole_ra</span></code>, <code class="docutils literal notranslate"><span class="pre">pole_dec</span></code>, <code class="docutils literal notranslate"><span class="pre">pole_w0</span></code></p></td>
+<td><p>angle</p></td>
+<td><p>IAU pole and prime meridian of the central body</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pole_pm</span></code></p></td>
+<td><p>deg/day</p></td>
+<td><p>IAU prime-meridian rate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">love_h2</span></code>, <code class="docutils literal notranslate"><span class="pre">shida_l2</span></code></p></td>
+<td><p>—</p></td>
+<td><p>Solid-tide response of the body</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tropo_zenith_delay_&lt;tag&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">iono_zenith_delay_&lt;tag&gt;</span></code></p></td>
+<td><p>length</p></td>
+<td><p>Zenith delays (Chao wet mapping; ionosphere at 2295 MHz, scaled by
+<span class="math notranslate nohighlight">\((2295/f)^2\)</span>). Real radiometric models only.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The IAU pole parameters orient the central body’s gravity field, its optical shape and
+its stations together. Each estimate <em>replaces</em> its secular term, so start it from the
+secular value at the arc epoch, not from the PCK constant.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">km</span><span class="p">,</span> <span class="n">sec</span><span class="p">,</span> <span class="n">rad</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s2">"km"</span><span class="p">,</span> <span class="s2">"sec"</span><span class="p">,</span> <span class="s2">"rad"</span><span class="p">])</span>
+<span class="n">itrf</span><span class="p">,</span> <span class="n">earth</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="s2">"ITRF93"</span><span class="p">),</span> <span class="n">scb</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="s2">"EARTH"</span><span class="p">,</span> <span class="mi">399</span><span class="p">)</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">GroundStation</span><span class="p">(</span><span class="s2">"DSS-24"</span><span class="p">)</span>
+<span class="n">state_def</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateDefinition</span><span class="p">()</span>
+<span class="n">state_def</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s2">"gs_delta_location_CYL_DSS24"</span><span class="p">,</span> <span class="n">gs</span><span class="p">,</span>
+                <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">km</span><span class="p">,</span> <span class="n">itrf</span><span class="p">),</span> <span class="n">dynamics</span><span class="o">=</span><span class="s2">"static"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">unit</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">"eop_delta_pole_x"</span><span class="p">,</span> <span class="n">rad</span><span class="p">),</span> <span class="p">(</span><span class="s2">"eop_delta_pole_y"</span><span class="p">,</span> <span class="n">rad</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s2">"eop_delta_ut1"</span><span class="p">,</span> <span class="n">sec</span><span class="p">)]:</span>
+    <span class="n">state_def</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">earth</span><span class="p">,</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">unit</span><span class="p">,</span> <span class="n">itrf</span><span class="p">),</span>
+                    <span class="n">dynamics</span><span class="o">=</span><span class="s2">"static"</span><span class="p">)</span>
+<span class="n">reference</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">StateArray</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">sys</span><span class="o">=</span><span class="s2">"TDB"</span><span class="p">),</span> <span class="n">earth</span><span class="p">,</span> <span class="n">state_def</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">RangeIdeal</span><span class="p">(</span><span class="s2">"DSS24 range"</span><span class="p">,</span> <span class="n">gs</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">.001</span><span class="p">,</span> <span class="n">km</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">update_reference_state</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A parameter owned by the central body applies to all its stations; one owned by a
+station applies to that station only.</p>
+<p><strong>Partials</strong> are analytical. The geometric models use
+<span class="math notranslate nohighlight">\(\partial h/\partial p = -[\partial h/\partial\mathbf r,\ \partial h/\partial\mathbf v]\,\partial\mathbf X_{station}/\partial p\)</span>.
+The light-time models weight the station Jacobian at both ends of the light path,
+<span class="math notranslate nohighlight">\(\mathbf g_3\,\partial\mathbf r/\partial p(t_3) + \mathbf g_1\,\partial\mathbf r/\partial p(t_1)\)</span>.
+<code class="docutils literal notranslate"><span class="pre">partials_method=&quot;fd&quot;</span></code> uses <code class="docutils literal notranslate"><span class="pre">eps_dict</span></code>, falling back to
+<code class="docutils literal notranslate"><span class="pre">Measurement.station_eps_defaults</span></code>. The camera model
+(<a class="reference internal" href="../api_ref/measurements/centroidingideal.html#scarabaeus.CentroidingIdeal" title="scarabaeus.CentroidingIdeal"><code class="xref py py-class docutils literal notranslate"><span class="pre">CentroidingIdeal</span></code></a>) has no station, so its station columns are zero.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Station coordinates and a rigid orientation are strongly correlated: a rotation
+can be absorbed by shifting the stations. Constrain the station priors before
+solving for both.</p>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">IERS Conventions, Chapter 5</a></p></li>
+<li><p><a class="reference external" href="https://github.com/liberfa/erfa">ERFA</a> (<code class="docutils literal notranslate"><span class="pre">pyerfa&gt;=2.0</span></code>)</p></li>
+<li><p>NAIF <a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/pckw02_c.html">pckw02_c</a>
+and <a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/spkcvo_c.html">spkcvo_c</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="solution_mapping_and_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="gold">Solution Mapping and Analysis</span></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../api_ref/api_ref_frontpage.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="gold">Scarabaeus API</span></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#body-orientation">Body orientation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#station-coordinates">Station coordinates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-displacement">Surface displacement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimable-parameters">Estimable parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, ORCCA Laboratory, University of Colorado Boulder.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

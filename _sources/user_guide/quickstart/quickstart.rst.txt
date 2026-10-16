@@ -1,5 +1,6 @@
 .. SPDX-FileCopyrightText: 2026 Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder
 .. SPDX-License-Identifier: ISC
+
 .. create a gold color role
 .. raw:: html
 
@@ -102,7 +103,7 @@ spacecraft definition, force model, and propagation.
     prop_times = (epochs - epochs[0]).convert_to(hr)    # want as hours past t0
 
     # plot each state component
-    for ax, comp, lbl, in zip(axes.flatten(), prop.state.quantity.T, comp_lbls):
+    for ax, comp, lbl, in zip(axes.flatten(), prop.state.quantity.transpose(), comp_lbls):
         ax.plot(prop_times, comp.values, lw = 1.6)
 
         # formatting

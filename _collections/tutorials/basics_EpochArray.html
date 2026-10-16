@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -16,7 +15,7 @@
 <meta property="og:image:alt" content="Scarabaeus" />
 <meta name="description" content="Last revised 2026 MAY 8 Objectives: All time information in Scarabaeus (SCB) is managed by the EpochArray class. This tutorial will cover the basics of utilizing EpochArray, demonstrating common errors that may arise, performing operations with it, and converting between the many different time systems and their representations. See Also: SPICE Time Subsystem Required Reading. Imports and Set Up: First we’ll import the necessary libraries, define units, and load in supplementary data, which f..." />
 
-    <title>Scarabaeus Time System (EpochArray) &#8212; Scarabaeus  documentation</title>
+    <title>Scarabaeus Time System (EpochArray) &#8212; Scarabaeus 2.0.0 documentation</title>
   
   
   
@@ -35,24 +34,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8d21d3ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=73c15959" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=18bd87630a240e9c25be"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be" />
 
-    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/documentation_options.js?v=51b770b3"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -63,6 +62,7 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_EpochArray';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/custom.js?v=8ab10226"></script>
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -70,22 +70,29 @@
     <link rel="next" title="# SpiceManager, Celestial Bodies, and SCB Constants" href="basics_SpiceManager_CelestialBody_Constants.html" />
     <link rel="prev" title="# ArrayWUnits and ArrayWFrame" href="basics_AWU_and_AWF.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="color-scheme" content="light dark"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
+  <meta name="docsearch:version" content="2.0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
-
+  <body data-default-mode="dark">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -111,9 +118,9 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -194,6 +201,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
       
@@ -205,7 +219,7 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -215,11 +229,33 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -228,7 +264,7 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
  <i class="fa-solid fa-magnifying-glass"></i>
  <span class="search-button__default-text">Search</span>
  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -237,7 +273,7 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button type="button" class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -308,6 +344,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/CCAR-ORCCA/scarabaeus">
+    GitHub Repo
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -320,18 +363,48 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/CCAR-ORCCA/scarabaeus" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+</ul></div>
         
       </div>
     
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button type="button" id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar">
+  <svg class="pst-icon" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
         <div class="sidebar-primary-item">
+
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
@@ -349,7 +422,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Scarabaeus Time System (EpochArray)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
 
 
@@ -365,7 +438,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scarabaeus Time System (EpochArray)</a></li>
+<li class="toctree-l1 current active"><a aria-current="page" class="current reference internal" href="#">Scarabaeus Time System (EpochArray)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basics_SpiceManager_CelestialBody_Constants.html"># SpiceManager, Celestial Bodies, and SCB Constants</a></li>
 
 
@@ -534,7 +607,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -554,7 +632,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Single-Pass SRIF Orbit Determination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_RealMSR_OSIRIS_REx_OD.html"># OSIRIS-REx Real Data — Two-Pass Batch Orbit Determination</a></li>
+
+
+
+
+
 
 
 
@@ -578,6 +661,9 @@
           <a class="reference internal"
              href="../../genindex.html"
              accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
         </li>
   </ul>
 </nav></div>
@@ -654,12 +740,12 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># define units</span>
-<span class="n">sec</span><span class="p">,</span> <span class="n">hr</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">])</span>
+<span class="n">sec</span><span class="p">,</span> <span class="n">hr</span><span class="p">,</span> <span class="n">day</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Units</span><span class="o">.</span><span class="n">get_units</span><span class="p">([</span><span class="s1">'sec'</span><span class="p">,</span> <span class="s1">'hr'</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">])</span>
 
 <span class="c1"># load tutorial data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">supp</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 
-<span class="c1"># NOTE: it&#39;s generally good practice to load kernels here (we&#39;ll</span>
+<span class="c1"># NOTE: it's generally good practice to load kernels here (we'll</span>
 <span class="c1">#       need a leapsecond kernel (LSK) for this tutorial), but to</span>
 <span class="c1">#       illustrate EpochArray error handling, the LSK furnish will</span>
 <span class="c1">#       be omitted until later in the tutorial</span>
@@ -698,23 +784,23 @@ SCB supplementary data up to date.
 
 <span class="c1"># uniform systems work without an LSK as long as the format is also uniform</span>
 <span class="n">eparr_tdb</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># default system is TDB, default rep is NUM</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;** Uniform time systems/representations work without an LSK **</span><span class="se">\n</span><span class="si">{</span><span class="n">eparr_tdb</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'** Uniform time systems/representations work without an LSK **</span><span class="se">\n</span><span class="si">{</span><span class="n">eparr_tdb</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># throws error if missing leapseconds when providing non-uniform definition</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">)</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'2026 JUN 01'</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;** Providing a non-uniform time without a loaded leapsecond &#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;kernel will raise an error **</span><span class="se">\n</span><span class="s1">&#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'** Providing a non-uniform time without a loaded leapsecond '</span>
+          <span class="sa">f</span><span class="s1">'kernel will raise an error **</span><span class="se">\n</span><span class="s1">'</span>
+          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># or attempting to set a non-uniform representation even if the definiton is uniform</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;ISOC&#39;</span><span class="p">)</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'ISOC'</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;** Requesting a non-uniform time representation without a loaded &#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;leapsecond kernel will raise an error **</span><span class="se">\n</span><span class="s1">&#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'** Requesting a non-uniform time representation without a loaded '</span>
+          <span class="sa">f</span><span class="s1">'leapsecond kernel will raise an error **</span><span class="se">\n</span><span class="s1">'</span>
+          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -754,8 +840,8 @@ MissingLSKError: Cannot set requested time representation ISOC. The necessary le
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">lsk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># redo previous definitions to show that they work now</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;ISOC&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'2026 JUN 01'</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'ISOC'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -765,7 +851,7 @@ MissingLSKError: Cannot set requested time representation ISOC. The necessary le
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 833544000.0 sec (TDB)
-2000-01-01T11:58:55.8160 (TDB)
+2000-01-01T12:00:00.0000 (TDB)
 </pre></div></div>
 </div>
 </section>
@@ -779,19 +865,19 @@ MissingLSKError: Cannot set requested time representation ISOC. The necessary le
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># throws error if given an unrecognized format</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;I AM NOT A TIME&#39;</span><span class="p">)</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'I AM NOT A TIME'</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;** Providing an unrecognized time representation &#39;</span>
-          <span class="s1">&#39;will raise an error **</span><span class="se">\n</span><span class="s1">&#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'** Providing an unrecognized time representation '</span>
+          <span class="s1">'will raise an error **</span><span class="se">\n</span><span class="s1">'</span>
+          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="c1"># throws error if the time doesn&#39;t make sense</span>
+<span class="c1"># throws error if the time doesn't make sense</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 FEB 50&#39;</span><span class="p">)</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'2026 FEB 50'</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;** Providing a valid time represntation but invalid time &#39;</span>
-          <span class="s1">&#39;itself will raise an error **</span><span class="se">\n</span><span class="s1">&#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'** Providing a valid time represntation but invalid time '</span>
+          <span class="s1">'itself will raise an error **</span><span class="se">\n</span><span class="s1">'</span>
+          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -845,11 +931,11 @@ str2et_c --&gt; STR2ET
 
 <span class="c1"># throws error if missing SCLK kernel and SC ID</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;SCLK&#39;</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">)</span>  <span class="c1"># OSIRIS-REx ID</span>
+    <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">'SCLK'</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">)</span>  <span class="c1"># OSIRIS-REx ID</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;** Attempting to define an epoch in SCLK without an SCLK &#39;</span>
-          <span class="s1">&#39;kernel loaded will raise an error **</span><span class="se">\n</span><span class="s1">&#39;</span>
-          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'** Attempting to define an epoch in SCLK without an SCLK '</span>
+          <span class="s1">'kernel loaded will raise an error **</span><span class="se">\n</span><span class="s1">'</span>
+          <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -883,7 +969,7 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 <span class="n">scb</span><span class="o">.</span><span class="n">SpiceManager</span><span class="o">.</span><span class="n">load_kernel</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">OREx_sclk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># redo previously failed definitions and see that they work</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;SCLK&#39;</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">'SCLK'</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -905,7 +991,7 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the same epoch for simplicity</span>
-<span class="n">time_str</span>   <span class="o">=</span> <span class="s1">&#39;2026 JUN 01 00:00:00.000&#39;</span>
+<span class="n">time_str</span>   <span class="o">=</span> <span class="s1">'2026 JUN 01 00:00:00.000'</span>
 
 <span class="c1"># define and print different definition shapes</span>
 <span class="n">eparr_sclr</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="n">time_str</span><span class="p">)</span>                         <span class="c1"># scalar</span>
@@ -935,17 +1021,17 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># two day interval with points every 12 hours</span>
-<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;2026 JUN 03&#39;</span><span class="p">,</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">'2026 JUN 01'</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">'2026 JUN 03'</span><span class="p">,</span>
                                    <span class="n">dt</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">hr</span><span class="p">),</span>
-                                   <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TDB&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;CAL&#39;</span><span class="p">)</span>
+                                   <span class="n">sys</span> <span class="o">=</span> <span class="s1">'TDB'</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'CAL'</span><span class="p">)</span>
 <span class="n">dur</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="n">day</span><span class="p">)</span>  <span class="c1"># can also get the duration sequential times</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;** Step-defined epoch interval with duration </span><span class="si">{</span><span class="n">dur</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'** Step-defined epoch interval with duration </span><span class="si">{</span><span class="n">dur</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># two day interval with 3 total epochs</span>
-<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;2026 JUN 03&#39;</span><span class="p">,</span>
-                                   <span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TT&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;CAL&#39;</span><span class="p">)</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">start</span> <span class="o">=</span> <span class="s1">'2026 JUN 01'</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">'2026 JUN 03'</span><span class="p">,</span>
+                                   <span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">'UTC'</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'CAL'</span><span class="p">)</span>
 <span class="n">dur</span> <span class="o">=</span> <span class="n">epochs</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="n">day</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">** Count-defined epoch interval with duration </span><span class="si">{</span><span class="n">dur</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">** Count-defined epoch interval with duration </span><span class="si">{</span><span class="n">dur</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -955,12 +1041,12 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 ** Step-defined epoch interval with duration 1.5 day:
-[&#39;2026 MAY 31 23:58:50.815&#39; &#39;2026 JUN 01 11:58:50.815&#39;
- &#39;2026 JUN 01 23:58:50.815&#39; &#39;2026 JUN 02 11:58:50.815&#39;] (TDB)
+[&#39;2026 JUN 01 00:00:00.000&#39; &#39;2026 JUN 01 12:00:00.000&#39;
+ &#39;2026 JUN 02 00:00:00.000&#39; &#39;2026 JUN 02 12:00:00.000&#39;] (TDB)
 
 ** Count-defined epoch interval with duration 1.9999999994508646 day:
-[&#39;2026 MAY 31 23:58:50.815&#39; &#39;2026 JUN 01 23:58:50.815&#39;
- &#39;2026 JUN 02 23:58:50.815&#39;] (TT)
+[&#39;2026 JUN 01 00:00:00.000&#39; &#39;2026 JUN 01 23:59:59.999&#39;
+ &#39;2026 JUN 03 00:00:00.000&#39;] (UTC)
 </pre></div></div>
 </div>
 <p>Notice that the step defined interval is a half open interval [start, end) while the count defined interval is a closed interval [start, end].</p>
@@ -973,23 +1059,23 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 01&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;JDTDB&#39;</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2026 JUN 08&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;JDTDB&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'2026 JUN 01'</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'JDTDB'</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'2026 JUN 08'</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'JDTDB'</span><span class="p">)</span>
 
 <span class="c1"># add time to an epoch</span>
 <span class="n">a_plus_1_day</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a + 1 day = </span><span class="si">{</span><span class="n">a_plus_1_day</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'a + 1 day = </span><span class="si">{</span><span class="n">a_plus_1_day</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># subtract time from an epoch</span>
 <span class="n">a_minus_1_day</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a - 1 day = </span><span class="si">{</span><span class="n">a_minus_1_day</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'a - 1 day = </span><span class="si">{</span><span class="n">a_minus_1_day</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># subtract an epoch from an epoch to get a time</span>
 <span class="n">b_minus_a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;b - a = </span><span class="si">{</span><span class="n">b_minus_a</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'b - a = </span><span class="si">{</span><span class="n">b_minus_a</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1016,19 +1102,19 @@ b - a = 7.0 day
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_tdb_cal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">&#39;2000 JAN 01 12:00:00.000&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_tdb_cal</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="s1">'2000 JAN 01 12:00:00.000'</span><span class="p">)</span>
 
 <span class="c1"># convert to new system</span>
-<span class="n">eparr_gps_cal</span> <span class="o">=</span> <span class="n">eparr_tdb_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;GPS&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eparr_tdb_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">eparr_gps_cal</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">eparr_gps_cal</span> <span class="o">=</span> <span class="n">eparr_tdb_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sys</span> <span class="o">=</span> <span class="s1">'GPS'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">eparr_tdb_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">eparr_gps_cal</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># change representation</span>
-<span class="n">eparr_gps_num</span> <span class="o">=</span> <span class="n">eparr_gps_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;NUM&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eparr_gps_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">eparr_gps_num</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">eparr_gps_num</span> <span class="o">=</span> <span class="n">eparr_gps_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">rep</span> <span class="o">=</span> <span class="s1">'NUM'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">eparr_gps_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">eparr_gps_num</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
 <span class="c1"># can do both at the same time as well</span>
-<span class="n">epa_tai_jdutc</span> <span class="o">=</span> <span class="n">eparr_tdb_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TAI&#39;</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">&#39;JDUTC&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eparr_tdb_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">epa_tai_jdutc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">epa_tai_jdutc</span> <span class="o">=</span> <span class="n">eparr_tdb_cal</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">sys</span> <span class="o">=</span> <span class="s1">'TAI'</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="s1">'JDUTC'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">eparr_tdb_cal</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">epa_tai_jdutc</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1047,7 +1133,7 @@ b - a = 7.0 day
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_w_sc_id</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">31622464.183948725</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">&#39;TDB&#39;</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eparr_w_sc_id</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">EpochArray</span><span class="p">(</span><span class="mf">31622464.183948725</span><span class="p">,</span> <span class="n">sys</span> <span class="o">=</span> <span class="s1">'TDB'</span><span class="p">,</span> <span class="n">sc_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">64</span><span class="p">)</span>
 <span class="n">supp</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">plot_epocharray_table</span><span class="p">(</span><span class="n">eparr_w_sc_id</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">OREx_sclk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1108,13 +1194,13 @@ b - a = 7.0 day
     class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Objectives">Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#See-Also">See Also</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Imports-and-Set-Up">Imports and Set Up</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Creating-EpochArrays">Creating EpochArrays</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#EpochArray-Error-Handling">EpochArray Error Handling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Creating-EpochArrays">Creating EpochArrays</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#EpochArray-Error-Handling">EpochArray Error Handling</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#MissingLSKError">MissingLSKError</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#BadTimeError">BadTimeError</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#SCLKErorr">SCLKErorr</a></li>
@@ -1141,8 +1227,8 @@ b - a = 7.0 day
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=18bd87630a240e9c25be"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=18bd87630a240e9c25be"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1162,8 +1248,7 @@ b - a = 7.0 day
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
-    <br/>
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
   </p>
 </div>
       
@@ -1176,7 +1261,7 @@ b - a = 7.0 day
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.23.0.
 </p></div>
       
     </div>
