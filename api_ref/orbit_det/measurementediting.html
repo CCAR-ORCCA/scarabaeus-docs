@@ -790,7 +790,13 @@ default 5 sigma about the mean.</p></li>
 <dd class="field-even"><dl class="simple">
 <dt><a class="reference internal" href="#scarabaeus.MeasurementEditing.datasets" title="scarabaeus.MeasurementEditing.datasets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datasets</span></code></a></dt><dd><p>The list of managed datasets.</p>
 </dd>
+<dt><a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_min_points" title="scarabaeus.MeasurementEditing.isolation_forest_min_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">isolation_forest_min_points</span></code></a></dt><dd><p>Fewest active, finite points <a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_filter" title="scarabaeus.MeasurementEditing.isolation_forest_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isolation_forest_filter()</span></code></a> runs on; below this it flags only the non-finite points.</p>
+</dd>
 <dt><a class="reference internal" href="#scarabaeus.MeasurementEditing.outlier_flags" title="scarabaeus.MeasurementEditing.outlier_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">outlier_flags</span></code></a></dt><dd><p>Dict of {dataset_name: bool array} of current outlier flags.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_gap" title="scarabaeus.MeasurementEditing.pass_gap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pass_gap</span></code></a></dt><dd><p>Gap above which consecutive observations belong to separate passes in <a class="reference internal" href="#scarabaeus.MeasurementEditing.huber_mad_filter" title="scarabaeus.MeasurementEditing.huber_mad_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">huber_mad_filter()</span></code></a>, each detrended on its own.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_min_points" title="scarabaeus.MeasurementEditing.pass_min_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pass_min_points</span></code></a></dt><dd><p>Fewest points a pass may have in <a class="reference internal" href="#scarabaeus.MeasurementEditing.huber_mad_filter" title="scarabaeus.MeasurementEditing.huber_mad_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">huber_mad_filter()</span></code></a> before it is merged into its neighbour instead of being detrended alone.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.MeasurementEditing.refit_sigmas" title="scarabaeus.MeasurementEditing.refit_sigmas"><code class="xref py py-obj docutils literal notranslate"><span class="pre">refit_sigmas</span></code></a></dt><dd><p>Dict of {dataset_name: float} sigmas re-estimated by huber_mad_filter.</p>
 </dd>
@@ -878,6 +884,12 @@ internally and not written back until <a class="reference internal" href="#scara
 <a class="reference internal" href="#scarabaeus.MeasurementEditing.lasso_editor" title="scarabaeus.MeasurementEditing.lasso_editor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lasso_editor()</span></code></a>, <a class="reference internal" href="#scarabaeus.MeasurementEditing.chi_squared_filter" title="scarabaeus.MeasurementEditing.chi_squared_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">chi_squared_filter()</span></code></a> and
 <a class="reference internal" href="#scarabaeus.MeasurementEditing.kurtosis_filter" title="scarabaeus.MeasurementEditing.kurtosis_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">kurtosis_filter()</span></code></a>, for editing several datasets without blocking on
 one figure at a time.</p>
+<p>The pass splitting of <a class="reference internal" href="#scarabaeus.MeasurementEditing.huber_mad_filter" title="scarabaeus.MeasurementEditing.huber_mad_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">huber_mad_filter()</span></code></a> and the minimum sample of
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_filter" title="scarabaeus.MeasurementEditing.isolation_forest_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isolation_forest_filter()</span></code></a> are set per editor through
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_gap" title="scarabaeus.MeasurementEditing.pass_gap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pass_gap</span></code></a>, <a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_min_points" title="scarabaeus.MeasurementEditing.pass_min_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pass_min_points</span></code></a> and
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_min_points" title="scarabaeus.MeasurementEditing.isolation_forest_min_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isolation_forest_min_points</span></code></a>, which start from the class defaults
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.PASS_GAP" title="scarabaeus.MeasurementEditing.PASS_GAP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PASS_GAP</span></code></a>, <a class="reference internal" href="#scarabaeus.MeasurementEditing.PASS_MIN_POINTS" title="scarabaeus.MeasurementEditing.PASS_MIN_POINTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PASS_MIN_POINTS</span></code></a> and
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS" title="scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ISOLATION_FOREST_MIN_POINTS</span></code></a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.apply_flags">
 <span class="sig-name descname"><span class="pre">apply_flags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scarabaeus.MeasurementEditing.apply_flags" title="Link to this definition">#</a></dt>
@@ -1006,14 +1018,13 @@ number of sigmas. Pass 1.0 to threshold on the raw MAD instead.</p>
 record it in <a class="reference internal" href="#scarabaeus.MeasurementEditing.refit_sigmas" title="scarabaeus.MeasurementEditing.refit_sigmas"><code class="xref py py-attr docutils literal notranslate"><span class="pre">refit_sigmas</span></code></a>. The editor does not own the
 measurement models, so applying it is left to the caller.</p>
 </dd>
-<dt><strong>pass_gap_sec</strong><span class="classifier">float, optional</span></dt><dd><p>Gap above which consecutive observations belong to separate passes,
-each detrended on its own. Defaults to
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">Constants.PASS_GAP_DEFAULT</span></code> (6 h); raise or lower it for a mission
-whose tracking cadence differs from DSN deep-space passes.</p>
+<dt><strong>pass_gap_sec</strong><span class="classifier">float, optional</span></dt><dd><p>Gap [s] above which consecutive observations belong to separate
+passes, each detrended on its own, for this call only. Defaults
+to <a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_gap" title="scarabaeus.MeasurementEditing.pass_gap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pass_gap</span></code></a>.</p>
 </dd>
 <dt><strong>min_pass_points</strong><span class="classifier">int, optional</span></dt><dd><p>Fewest points a pass may have before it is merged into its
-neighbour instead of being detrended alone. Defaults to
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">Constants.PASS_MIN_POINTS_DEFAULT</span></code>.</p>
+neighbour instead of being detrended alone, for this call only.
+Defaults to <a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_min_points" title="scarabaeus.MeasurementEditing.pass_min_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pass_min_points</span></code></a>.</p>
 </dd>
 </dl>
 </dd>
@@ -1102,8 +1113,9 @@ for any other observable. Defaults to False.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>An observable with fewer than eight active points is left untouched —
-a forest cannot say anything useful about a handful of points.</p>
+<p>An observable with fewer than <a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_min_points" title="scarabaeus.MeasurementEditing.isolation_forest_min_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isolation_forest_min_points</span></code></a>
+(eight by default) active points is left untouched — a forest cannot
+say anything useful about a handful of points.</p>
 <p>A statistical label is not proof that a measurement is wrong. Refit and
 recompute residuals after rejecting, and check that the solution is not
 unduly sensitive to what was cut.</p>
@@ -1371,6 +1383,33 @@ call, excluding any that were already flagged.</p>
 <dd><p>Print a per-dataset summary of flagged vs. total measurements.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS">
+<span class="sig-name descname"><span class="pre">ISOLATION_FOREST_MIN_POINTS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS" title="Link to this definition">#</a></dt>
+<dd><p>Default fewest active, finite points the isolation-forest outlier
+filter runs on; below this it flags only the non-finite points. The
+starting <a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_min_points" title="scarabaeus.MeasurementEditing.isolation_forest_min_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isolation_forest_min_points</span></code></a> of an editor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.PASS_GAP">
+<span class="sig-name descname"><span class="pre">PASS_GAP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">21600.0</span> <span class="pre">sec</span></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.PASS_GAP" title="Link to this definition">#</a></dt>
+<dd><p>Default gap that splits measurements into passes for the Huber/MAD
+outlier filter; the starting <a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_gap" title="scarabaeus.MeasurementEditing.pass_gap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pass_gap</span></code></a> of an editor.</p>
+<p>Longer than any gap inside one tracking pass: over a 6.2 h pass the
+ranging has a median gap of 523 s and a largest one of 3300 s, the
+Doppler 60 s and 2498 s. A 300 s gap would cut that pass into 38 pieces.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.PASS_MIN_POINTS">
+<span class="sig-name descname"><span class="pre">PASS_MIN_POINTS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.PASS_MIN_POINTS" title="Link to this definition">#</a></dt>
+<dd><p>Default fewest points a pass segment may have before the Huber/MAD
+filter merges it into its neighbour rather than detrending it on its own:
+a fit to a near-empty segment absorbs the outliers it should flag. The
+starting <a class="reference internal" href="#scarabaeus.MeasurementEditing.pass_min_points" title="scarabaeus.MeasurementEditing.pass_min_points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pass_min_points</span></code></a> of an editor.</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.datasets">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">datasets</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.datasets" title="Link to this definition">#</a></dt>
@@ -1387,15 +1426,72 @@ call, excluding any that were already flagged.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.isolation_forest_min_points">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">isolation_forest_min_points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.isolation_forest_min_points" title="Link to this definition">#</a></dt>
+<dd><p>Fewest active, finite points <a class="reference internal" href="#scarabaeus.MeasurementEditing.isolation_forest_filter" title="scarabaeus.MeasurementEditing.isolation_forest_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isolation_forest_filter()</span></code></a> runs
+on; below this it flags only the non-finite points. Starts as
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS" title="scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ISOLATION_FOREST_MIN_POINTS</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>InvalidIsolationForestSettingsError</dt><dd><p>If the value is not a whole number of at least 1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.outlier_flags">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">outlier_flags</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.outlier_flags" title="Link to this definition">#</a></dt>
 <dd><p>Dict of {dataset_name: bool array} of current outlier flags.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.pass_gap">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pass_gap</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.pass_gap" title="Link to this definition">#</a></dt>
+<dd><p>Gap above which consecutive observations belong to separate passes
+in <a class="reference internal" href="#scarabaeus.MeasurementEditing.huber_mad_filter" title="scarabaeus.MeasurementEditing.huber_mad_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">huber_mad_filter()</span></code></a>, each detrended on its own. Starts as
+<a class="reference internal" href="#scarabaeus.MeasurementEditing.PASS_GAP" title="scarabaeus.MeasurementEditing.PASS_GAP"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PASS_GAP</span></code></a> (6 h); raise or lower it for a mission whose tracking
+cadence differs from DSN deep-space passes.</p>
+<p>Set an <code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> time, or a bare number of seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>InvalidHuberMadSettingsError</dt><dd><p>If the value is not one finite, positive time.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.pass_min_points">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pass_min_points</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.pass_min_points" title="Link to this definition">#</a></dt>
+<dd><p>Fewest points a pass may have in <a class="reference internal" href="#scarabaeus.MeasurementEditing.huber_mad_filter" title="scarabaeus.MeasurementEditing.huber_mad_filter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">huber_mad_filter()</span></code></a> before it
+is merged into its neighbour instead of being detrended alone. Starts
+as <a class="reference internal" href="#scarabaeus.MeasurementEditing.PASS_MIN_POINTS" title="scarabaeus.MeasurementEditing.PASS_MIN_POINTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PASS_MIN_POINTS</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>InvalidHuberMadSettingsError</dt><dd><p>If the value is not a whole number of at least 1.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.refit_sigmas">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">refit_sigmas</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.refit_sigmas" title="Link to this definition">#</a></dt>
 <dd><p>Dict of {dataset_name: float} sigmas re-estimated by huber_mad_filter.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="scarabaeus.MeasurementEditing.InvalidHuberMadSettingsError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">InvalidHuberMadSettingsError</span></span><a class="headerlink" href="#scarabaeus.MeasurementEditing.InvalidHuberMadSettingsError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.11/library/exceptions.html#ValueError" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when the Huber/MAD pass settings are not usable.</p>
 </dd></dl>
 
 <dl class="py exception">
@@ -1480,9 +1576,16 @@ call, excluding any that were already flagged.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.reset"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.reset()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.residual_filter"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.residual_filter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.summary"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.summary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.ISOLATION_FOREST_MIN_POINTS"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.ISOLATION_FOREST_MIN_POINTS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.PASS_GAP"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.PASS_GAP</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.PASS_MIN_POINTS"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.PASS_MIN_POINTS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.datasets"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.datasets</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.isolation_forest_min_points"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.isolation_forest_min_points</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.outlier_flags"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.outlier_flags</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.pass_gap"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.pass_gap</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.pass_min_points"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.pass_min_points</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.refit_sigmas"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.refit_sigmas</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.InvalidHuberMadSettingsError"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.InvalidHuberMadSettingsError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.InvalidIsolationForestSettingsError"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.InvalidIsolationForestSettingsError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MeasurementEditing.InvalidKurtosisSettingsError"><code class="docutils literal notranslate"><span class="pre">MeasurementEditing.InvalidKurtosisSettingsError</span></code></a></li>
 </ul>

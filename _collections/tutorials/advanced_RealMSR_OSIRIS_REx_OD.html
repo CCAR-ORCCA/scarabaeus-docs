@@ -885,7 +885,7 @@ the range unit and the reference frequency of the band. What the modelled delays
 <span class="c1"># observed_measurements takes the delay in Range Units and converts it back to</span>
 <span class="c1"># seconds with the range unit and the reference frequency of the band</span>
 <span class="c1"># (scb.Measurement.transponder_delay_seconds); the passes are X band</span>
-<span class="n">X_band</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">DSN_BANDS</span><span class="p">[</span><span class="s2">"X"</span><span class="p">]</span>
+<span class="n">X_band</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">Measurement</span><span class="o">.</span><span class="n">DSN_BANDS</span><span class="p">[</span><span class="s2">"X"</span><span class="p">]</span>
 <span class="n">scft_transpd_delay</span> <span class="o">=</span> <span class="n">scft_transpd_delay_s</span> <span class="o">*</span> <span class="n">X_band</span><span class="o">.</span><span class="n">range_unit</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">X_band</span><span class="o">.</span><span class="n">ru_reference_frequency</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># [RU]</span>
 
 <span class="c1"># Spacecraft. The cannonball SRP values are a starting point: the filter</span>
@@ -974,7 +974,7 @@ SCB supplementary data up to date.
 <section id="Auxiliary-data-(obs.aux_dict)">
 <h2>Auxiliary data (<code class="docutils literal notranslate"><span class="pre">obs.aux_dict</span></code>)<a class="headerlink" href="#Auxiliary-data-(obs.aux_dict)" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">observed_measurements()</span></code> reads the SFDU ancillary records along with the observables and attaches them to the returned observation as <strong>``obs.aux_dict``</strong>, one entry per observation epoch: ranging modulo and RU factor, uplink frequency, count time <code class="docutils literal notranslate"><span class="pre">Tc</span></code>, M₂ turnaround ratio, time-tag and station calibration delays, and the ramp table. <code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> hands this dictionary to the model, so the models below are built without one, and editing or slicing the observations keeps it aligned.</p>
-<p>To <strong>simulate</strong> measurements with these models (no tracking file), build the dictionary with <code class="docutils literal notranslate"><span class="pre">scb.SequentialRangingReal.default_seqranging_aux(tstart,</span> <span class="pre">tend)</span></code> or <code class="docutils literal notranslate"><span class="pre">scb.DopplerReal.default_doppler_aux(tstart,</span> <span class="pre">tend)</span></code>.</p>
+<p>To <strong>simulate</strong> measurements with these models (no tracking file), build the dictionary with the model’s own <code class="docutils literal notranslate"><span class="pre">default_seqranging_aux(tstart,</span> <span class="pre">tend)</span></code> or <code class="docutils literal notranslate"><span class="pre">default_doppler_aux(tstart,</span> <span class="pre">tend)</span></code>, which take the simulated ramp, calibration and transponder values from the model’s properties (<code class="docutils literal notranslate"><span class="pre">ramp_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">ul_station_cal</span></code>, <code class="docutils literal notranslate"><span class="pre">transponder_delay</span></code>, …).</p>
 </section>
 <section id="Optional-corrections">
 <h2>Optional corrections<a class="headerlink" href="#Optional-corrections" title="Link to this heading">#</a></h2>
@@ -1619,7 +1619,7 @@ Relative cost change: 8.188113e-04
 ✓ CONVERGED after 3 iteration(s)!
   Triggered by: cost function
 
-Nominal fit: 3 iterations, converged = True, 12 s
+Nominal fit: 3 iterations, converged = True, 9 s
 </pre></div></div>
 </div>
 </section>

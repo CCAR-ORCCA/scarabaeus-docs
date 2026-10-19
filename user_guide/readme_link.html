@@ -10,10 +10,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/readme_link.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Scarabaeus (SCB) is a Python framework for spacecraft navigation and orbit determination (OD). It provides a unified, mission-agnostic environment for: Building and propagating spacecraft trajectories with multiple force models, Simulating or ingesting radiometric and optical measurements, Running sequential and batch OD filters (SRIF, LKF, LSB, …), Estimating dynamical, measurement, and consider parameters, Performing maneuver planning and finite/impulsive burn modelling. SCB interfaces with..." />
+<meta property="og:description" content="Scarabaeus (SCB) is a Python framework for spacecraft navigation and orbit determination (OD). It provides a unified, mission-agnostic environment for: Building and propagating spacecraft trajectories with multiple force models, Simulating or ingesting radiometric and optical measurements, Running sequential and batch OD filters (LKF, SRIF, LSB, SRIFB, …) and sampling their posteriors with MCMC, Estimating dynamical, measurement, and consider parameters, Performing maneuver planning and finit..." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Scarabaeus (SCB) is a Python framework for spacecraft navigation and orbit determination (OD). It provides a unified, mission-agnostic environment for: Building and propagating spacecraft trajectories with multiple force models, Simulating or ingesting radiometric and optical measurements, Running sequential and batch OD filters (SRIF, LKF, LSB, …), Estimating dynamical, measurement, and consider parameters, Performing maneuver planning and finite/impulsive burn modelling. SCB interfaces with..." />
+<meta name="description" content="Scarabaeus (SCB) is a Python framework for spacecraft navigation and orbit determination (OD). It provides a unified, mission-agnostic environment for: Building and propagating spacecraft trajectories with multiple force models, Simulating or ingesting radiometric and optical measurements, Running sequential and batch OD filters (LKF, SRIF, LSB, SRIFB, …) and sampling their posteriors with MCMC, Estimating dynamical, measurement, and consider parameters, Performing maneuver planning and finit..." />
 
     <title>Scarabaeus &#8212; Scarabaeus 2.0.0 documentation</title>
   
@@ -458,7 +458,7 @@
 <ul class="simple">
 <li><p>Building and propagating spacecraft trajectories with multiple force models</p></li>
 <li><p>Simulating or ingesting radiometric and optical measurements</p></li>
-<li><p>Running sequential and batch OD filters (SRIF, LKF, LSB, …)</p></li>
+<li><p>Running sequential and batch OD filters (LKF, SRIF, LSB, SRIFB, …) and sampling their posteriors with MCMC</p></li>
 <li><p>Estimating dynamical, measurement, and consider parameters</p></li>
 <li><p>Performing maneuver planning and finite/impulsive burn modelling</p></li>
 </ul>
@@ -549,21 +549,23 @@
 </tbody>
 </table>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">ForceModelTranslation</span></code> assembles the models above for one spacecraft and is what <code class="docutils literal notranslate"><span class="pre">Propagator</span></code> takes as <code class="docutils literal notranslate"><span class="pre">force_models</span></code>. <code class="docutils literal notranslate"><span class="pre">DynamicModel</span></code> and <code class="docutils literal notranslate"><span class="pre">ForceModel</span></code> are their abstract base classes, and <code class="docutils literal notranslate"><span class="pre">DynamicalUtils</span></code> holds the attitude and component-frame geometry they share. <code class="docutils literal notranslate"><span class="pre">Maneuver</span></code> and <code class="docutils literal notranslate"><span class="pre">ManeuverParser</span></code> describe finite burns as time polynomials of thrust, mass flow and pointing. <code class="docutils literal notranslate"><span class="pre">ForceModelRotation</span></code> (attitude dynamics) is a placeholder and not implemented yet.</p>
 </section>
 <section id="integrators">
 <h3>Integrators<a class="headerlink" href="#integrators" title="Link to this heading">#</a></h3>
+<p>Selected with <code class="docutils literal notranslate"><span class="pre">Propagator(...,</span> <span class="pre">integrator=...)</span></code>:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Class</p></th>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">integrator</span></code></p></th>
 <th class="head"><p>Description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IAS15</span></code> <em>(Rust)</em></p></td>
-<td><p>Implicit adaptive 15th-order integrator (Rein &amp; Spiegel 2015)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;DOP853&quot;</span></code> (default)</p></td>
+<td><p>Dormand–Prince 8(5,3) via SciPy <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>, with the state transition matrix</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DOP853</span></code></p></td>
-<td><p>Dormand–Prince 8(5,3) via SciPy</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;IAS15&quot;</span></code> <em>(Rust)</em></p></td>
+<td><p>Implicit adaptive 15th-order integrator (Rein &amp; Spiegel 2015); state only, so pass <code class="docutils literal notranslate"><span class="pre">propagate_STM=False</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -579,13 +581,13 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RangeIdeal</span></code></p></td>
-<td><p>Two-way range (ideal/simulated)</p></td>
+<td><p>Range (geometric, no light time or media)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RangeRateIdeal</span></code></p></td>
-<td><p>Two-way range rate (ideal/simulated)</p></td>
+<td><p>Line-of-sight range rate (geometric, no light time or media)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DopplerIdeal</span></code></p></td>
-<td><p>Doppler range rate (ideal/simulated)</p></td>
+<td><p>Two- and three-way Doppler shift (no light time or media)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DopplerReal</span></code></p></td>
 <td><p>Doppler from real DSN tracking data</p></td>
@@ -594,7 +596,7 @@
 <td><p>Sequential ranging from real DSN tracking data</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DiffOneWayRangeIdeal</span></code></p></td>
-<td><p>Differential one-way range (DDOR)</p></td>
+<td><p>Differential one-way range (DOR) between two stations</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AngularIdeal</span></code></p></td>
 <td><p>Right ascension / declination optical measurements</p></td>
@@ -608,7 +610,7 @@
 </tbody>
 </table>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code> builds simulated tracking schedules; <code class="docutils literal notranslate"><span class="pre">MeasurementRegistry</span></code>, <code class="docutils literal notranslate"><span class="pre">MeasurementStream</span></code> and <code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code> describe real data streams; <code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code>, <code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code>, <code class="docutils literal notranslate"><span class="pre">SolidTide</span></code>, <code class="docutils literal notranslate"><span class="pre">PoleTide</span></code>, <code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code> and <code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code> model the media, ramps, station displacements and Earth orientation of the real DSN observables.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Measurement</span></code> is the base class of every model above. <code class="docutils literal notranslate"><span class="pre">MeasurementScheduler</span></code> builds simulated tracking schedules. <code class="docutils literal notranslate"><span class="pre">MeasurementRegistry</span></code> (with <code class="docutils literal notranslate"><span class="pre">MeasurementType</span></code>), <code class="docutils literal notranslate"><span class="pre">MeasurementStream</span></code> and <code class="docutils literal notranslate"><span class="pre">MeasurementConfig</span></code> describe real data streams, which are read into <code class="docutils literal notranslate"><span class="pre">ObsData</span></code>. <code class="docutils literal notranslate"><span class="pre">MeasurementSpec</span></code> and <code class="docutils literal notranslate"><span class="pre">MeasurementDataSet</span></code> package the measurements for the filters, and <code class="docutils literal notranslate"><span class="pre">OpNavManager</span></code> is the pinhole projection the optical models share. <code class="docutils literal notranslate"><span class="pre">MediaCorrections</span></code>, <code class="docutils literal notranslate"><span class="pre">RampTableManager</span></code>, <code class="docutils literal notranslate"><span class="pre">SolidTide</span></code>, <code class="docutils literal notranslate"><span class="pre">PoleTide</span></code>, <code class="docutils literal notranslate"><span class="pre">OceanLoading</span></code> and <code class="docutils literal notranslate"><span class="pre">BodyOrientation</span></code> model the media, ramps, station displacements and Earth orientation of the real DSN observables.</p>
 </section>
 <section id="orbit-determination">
 <h3>Orbit Determination<a class="headerlink" href="#orbit-determination" title="Link to this heading">#</a></h3>
@@ -619,67 +621,85 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></p></td>
-<td><p>Square Root Information Filter (forward pass)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LKF</span></code></p></td>
+<td><p>Linearised Kalman Filter (sequential), with a Rauch–Tung–Striebel smoother</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SRIF</span></code></p></td>
+<td><p>Square Root Information Filter (sequential), with a Bierman–Thornton backward smoother</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LSB</span></code></p></td>
+<td><p>Weighted least-squares batch estimator</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SRIFB</span></code></p></td>
-<td><p>Square Root Information Filter (smoother / backward pass)</p></td>
+<td><p>Square Root Information Filter in batch form (no process noise)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LKF</span></code></p></td>
-<td><p>Linearised Kalman Filter</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MCMC</span></code></p></td>
+<td><p>Markov chain Monte Carlo sampling (<code class="docutils literal notranslate"><span class="pre">emcee</span></code>) of the posterior about a converged filter solution</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LSB</span></code></p></td>
-<td><p>Least-squares batch estimator</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></p></td>
+<td><p>Multi-arc OD combining independent filters, each with its own propagator, data and settings</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MultiFilterOD</span></code></p></td>
-<td><p>Multi-arc OD over disjoint data windows</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CustomFilter</span></code></p></td>
 <td><p>User-supplied estimator run on the library’s residuals, partials and STMs</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></p></td>
-<td><p>Outlier detection and data editing</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MeasurementEditing</span></code></p></td>
+<td><p>Outlier editing: lasso selection, chi-squared, kurtosis, date ranges, isolation forest</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></p></td>
-<td><p>SNC process noise formulation</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">StateNoiseCompensation</span></code></p></td>
+<td><p>SNC process noise</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></p></td>
-<td><p>DMC process noise formulation</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DynamicalModelCompensation</span></code></p></td>
+<td><p>DMC process noise</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></p></td>
-<td><p>Saved OD solution with metadata, Keplerian covariance mapping</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SolutionOD</span></code></p></td>
+<td><p>OD solution with metadata, saved to JSON, with Keplerian covariance mapping</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SolutionCloseness</span></code></p></td>
 <td><p>Statistical distance between OD solutions</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">FilterOD</span></code> is the base class of the filters. A run is configured with <code class="docutils literal notranslate"><span class="pre">FilterSettings</span></code> (a-priori covariance, process noise, measurement noise, editing and output), <code class="docutils literal notranslate"><span class="pre">ProcessNoiseSettings</span></code> and <code class="docutils literal notranslate"><span class="pre">OutputSettings</span></code>. <code class="docutils literal notranslate"><span class="pre">ProcessNoise</span></code> is the base class of SNC and DMC, <code class="docutils literal notranslate"><span class="pre">FilterDataManager</span></code> combines and edits the measurement data sets, and <code class="docutils literal notranslate"><span class="pre">UtilsOD</span></code> holds static helpers for comparing and merging solutions.</p>
+</section>
+<section id="uncertainty-quantification">
+<h3>Uncertainty Quantification<a class="headerlink" href="#uncertainty-quantification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CovarianceMatrix</span></code> — covariance with units, standard deviations and correlations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MonteCarloSamples</span></code> — weighted sample clouds with their moments, percentiles and effective sample size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UncertaintyQuantification</span></code> — common base class of the two</p></li>
+</ul>
 </section>
 <section id="spacecraft-environment">
 <h3>Spacecraft &amp; Environment<a class="headerlink" href="#spacecraft-environment" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code>, <code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code>, <code class="docutils literal notranslate"><span class="pre">GroundStation</span></code> body hierarchy</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Body</span></code> — base class of <code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code>, <code class="docutils literal notranslate"><span class="pre">CelestialBody</span></code> and <code class="docutils literal notranslate"><span class="pre">GroundStation</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nPlateModel</span></code> — N-plate geometry with static and CK-frame (rotating) panels</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Camera</span></code>, <code class="docutils literal notranslate"><span class="pre">Antenna</span></code> instrument classes</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code> — chained propagation / manoeuvre / OD arcs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Instrument</span></code> — base class of the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and <code class="docutils literal notranslate"><span class="pre">Antenna</span></code> instruments; <code class="docutils literal notranslate"><span class="pre">Actuator</span></code> for thrusting components</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StateDefinition</span></code> / <code class="docutils literal notranslate"><span class="pre">StateArray</span></code> — build and hold the estimation state vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Propagator</span></code> — numerical propagation of the state and STM under a set of force models</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MissionSequence</span></code> — trajectory legs joined at nodes, with impulsive burns at the nodes; <code class="docutils literal notranslate"><span class="pre">ScenarioSetup</span></code> propagates it leg by leg</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code> — post-processing and visualisation of propagated states</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Propagator</span></code> — configurable propagator wrapping any force model</p></li>
 </ul>
 </section>
 <section id="utilities">
 <h3>Utilities<a class="headerlink" href="#utilities" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> / <code class="docutils literal notranslate"><span class="pre">Units</span></code> — dimension-safe arithmetic with full unit tracking</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code> — arrays with attached reference frames</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayWUnits</span></code> / <code class="docutils literal notranslate"><span class="pre">Units</span></code> / <code class="docutils literal notranslate"><span class="pre">Dimensions</span></code> — dimension-safe arithmetic with full unit tracking</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Frame</span></code> / <code class="docutils literal notranslate"><span class="pre">ArrayWFrame</span></code> — SPICE reference frames and arrays attached to them</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">EpochArray</span></code> — time object supporting UTC, TDB, TT, SCLK conversions</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SpiceManager</span></code> — unified SPICE wrapper (kernels, frames, ephemeris queries)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Constants</span></code> — physical and planetary constants</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">OrbitalElements</span></code> — Cartesian ↔ Keplerian conversions</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Bplane</span></code> — B-plane targeting utilities</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Noise</span></code> — Gaussian noise for simulated measurements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCBPolynomial</span></code> — polynomials for time-varying scalar profiles</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CustomCallable</span></code> — keyword-checked user functions behind the <code class="docutils literal notranslate"><span class="pre">Custom*</span></code> classes</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Plotting</span></code> — styled matplotlib helpers</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">EphemerisCache</span></code> <em>(Rust)</em> — Chebyshev ephemeris cache for third-body accelerations</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ShapeHarmonics</span></code> — spherical-harmonic coefficients of a polyhedral shape model</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Serialization</span></code> — JSON / pickle save and load helpers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Utils</span></code> — general array and file helpers</p></li>
 </ul>
 </section>
 </section>
@@ -689,18 +709,18 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>scarabaeus/
 ├── src/
 │   ├── scarabaeus/               # Python front-end
-│   │   ├── body/                 # Body, CelestialBody, GroundStation
-│   │   ├── dynamics/             # Force models and burn models
-│   │   ├── environment/          # Propagator, StateArray, Trajectory, MissionSequence
+│   │   ├── body/                 # Body, CelestialBody, GroundStation, station tides and ocean loading
+│   │   ├── dynamics/             # Force models, burn models, ForceModelTranslation
+│   │   ├── environment/          # Propagator, StateDefinition, StateArray, Trajectory, MissionSequence, ScenarioSetup
 │   │   ├── finiteBurn/           # Maneuver, ManeuverParser
 │   │   ├── guidance/             # B-plane targeting
-│   │   ├── measurements/         # Measurement model classes
-│   │   ├── orbitDetermination/   # Filter classes (SRIF, LKF, LSB, …)
-│   │   ├── spacecraft/           # Spacecraft, Instrument, Camera, Antenna, nPlateModel
-│   │   ├── timeAndFrame/         # EpochArray, Frame, ArrayWFrame, SpiceManager
-│   │   ├── uncertaintyQuantification/
+│   │   ├── measurements/         # Measurement models, scheduling, real data streams, media corrections
+│   │   ├── orbitDetermination/   # Filters (LKF, SRIF, LSB, SRIFB, MCMC, …), process noise, solutions
+│   │   ├── spacecraft/           # Spacecraft, Instrument, Camera, Antenna, Actuator, nPlateModel
+│   │   ├── timeAndFrame/         # EpochArray, Frame, ArrayWFrame, SpiceManager, BodyOrientation
+│   │   ├── uncertaintyQuantification/  # CovarianceMatrix, MonteCarloSamples
 │   │   ├── units/                # Units, Dimensions, ArrayWUnits
-│   │   └── utils/                # Plotting, OrbitalElements, EphemerisCache, Serialization, Utils
+│   │   └── utils/                # Constants, Plotting, OrbitalElements, EphemerisCache, ShapeHarmonics, SolutionCloseness, Serialization, Utils
 │   └── scarabaeus_rust/          # Rust back-end (compiled via maturin / PyO3)
 │       └── src/
 │           ├── ias15.rs          # IAS15 integrator
@@ -726,85 +746,84 @@
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
-<th class="head"><p>Version</p></th>
-<th class="head"><p>Notes</p></th>
+<th class="head"><p>Minimum</p></th>
+<th class="head"><p>Used for</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Python</p></td>
-<td><p>3.11+</p></td>
+<td><p>3.11.9</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>Rust / Cargo</p></td>
-<td><p>1.75+</p></td>
-<td><p>developer build only</p></td>
+<tr class="row-odd"><td><p>Rust (rustup)</p></td>
+<td><p>1.85</p></td>
+<td><p>compiling the Rust back-end, which <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> does (the crate uses the 2024 edition)</p></td>
 </tr>
-<tr class="row-even"><td><p>NumPy</p></td>
-<td><p>latest</p></td>
+<tr class="row-even"><td><p>NumPy / SciPy</p></td>
 <td><p></p></td>
+<td><p>arrays, linear algebra, DOP853 integration</p></td>
 </tr>
-<tr class="row-odd"><td><p>SciPy</p></td>
-<td><p>latest</p></td>
+<tr class="row-odd"><td><p>SpiceyPy</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>SpiceyPy</p></td>
-<td><p>latest</p></td>
 <td><p>SPICE toolkit Python bindings</p></td>
 </tr>
-<tr class="row-odd"><td><p>matplotlib</p></td>
-<td><p>latest</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>pandas</p></td>
-<td><p>latest</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>scikit-learn</p></td>
-<td><p>latest</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>trimesh</p></td>
-<td><p>latest</p></td>
-<td><p>mesh geometry (N-plate model)</p></td>
+<tr class="row-even"><td><p>pyerfa</p></td>
+<td><p>2.0</p></td>
+<td><p>Earth orientation (ERFA routines)</p></td>
 </tr>
 <tr class="row-odd"><td><p>autograd</p></td>
-<td><p>latest</p></td>
+<td><p></p></td>
 <td><p>automatic differentiation</p></td>
 </tr>
-<tr class="row-even"><td><p>tqdm</p></td>
-<td><p>latest</p></td>
+<tr class="row-even"><td><p>scikit-learn</p></td>
+<td><p></p></td>
+<td><p>isolation-forest measurement editing</p></td>
+</tr>
+<tr class="row-odd"><td><p>emcee / corner</p></td>
+<td><p></p></td>
+<td><p>MCMC sampling and its corner plots</p></td>
+</tr>
+<tr class="row-even"><td><p>matplotlib / mpld3</p></td>
+<td><p></p></td>
+<td><p>plotting</p></td>
+</tr>
+<tr class="row-odd"><td><p>tqdm</p></td>
+<td><p></p></td>
 <td><p>progress bars</p></td>
 </tr>
-<tr class="row-odd"><td><p>pymongo / ssh_pymongo</p></td>
-<td><p>latest</p></td>
-<td><p>optional MongoDB data back-end</p></td>
-</tr>
 <tr class="row-even"><td><p>ipykernel / ipympl</p></td>
-<td><p>latest</p></td>
+<td><p></p></td>
 <td><p>Jupyter notebook support</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>Only Python and Rust have to be installed beforehand: pip installs the Python packages, and the rest of the list in <a class="reference internal" href="#pyproject.toml"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></span></a>, automatically.</p>
 <blockquote>
-<div><p><strong>pip version</strong> — the developer install uses <code class="docutils literal notranslate"><span class="pre">--group</span> <span class="pre">dev</span></code> syntax, which requires <strong>pip ≥ 25</strong>. Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span></code> if you encounter an error.</p>
+<div><p><strong>pip version</strong> — the developer install uses <code class="docutils literal notranslate"><span class="pre">--group</span> <span class="pre">dev</span></code> syntax, which requires <strong>pip ≥ 25.1</strong>. Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span></code> if you encounter an error.</p>
 </div></blockquote>
-<p>Full dependency list is in <a class="reference internal" href="#pyproject.toml"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></span></a>.</p>
 </section>
 <hr class="docutils" />
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <section id="user-installation">
 <h3>User Installation<a class="headerlink" href="#user-installation" title="Link to this heading">#</a></h3>
+<section id="install-rust">
+<h4>1. Install Rust<a class="headerlink" href="#install-rust" title="Link to this heading">#</a></h4>
+<p>pip compiles the Rust back-end while it installs Scarabaeus, so Rust 1.85 or newer is needed. Follow the <a class="reference external" href="https://rustup.rs/">rustup installer</a> instructions, then verify:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rustc<span class="w"> </span>--version
+</pre></div>
+</div>
+</section>
 <section id="clone-the-repository">
-<h4>1. Clone the repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading">#</a></h4>
+<h4>2. Clone the repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ccar-orcca/scarabaeus.git
 <span class="nb">cd</span><span class="w"> </span>scarabaeus
 </pre></div>
 </div>
 </section>
 <section id="create-a-virtual-environment">
-<h4>2. Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">#</a></h4>
+<h4>3. Create a virtual environment<a class="headerlink" href="#create-a-virtual-environment" title="Link to this heading">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
 <span class="c1"># macOS / Linux</span>
 <span class="nb">source</span><span class="w"> </span>.venv/bin/activate
@@ -814,14 +833,11 @@
 </div>
 </section>
 <section id="install-scarabaeus">
-<h4>3. Install Scarabaeus<a class="headerlink" href="#install-scarabaeus" title="Link to this heading">#</a></h4>
+<h4>4. Install Scarabaeus<a class="headerlink" href="#install-scarabaeus" title="Link to this heading">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.
 </pre></div>
 </div>
-<p>Or, once the package is published on PyPI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>scarabaeus
-</pre></div>
-</div>
+<p>Scarabaeus is not published on PyPI yet, so it is installed from the clone.</p>
 <blockquote>
 <div><p><strong>SPICE kernels</strong> — SCB relies on SPICE kernels for ephemeris, frame, and spacecraft clock data. These are not distributed with the package. Load them in your script using <code class="docutils literal notranslate"><span class="pre">scb.SpiceManager.load_kernel_from_mkfile(path_to_metakernel)</span></code>.</p>
 </div></blockquote>
@@ -836,28 +852,21 @@
 <section id="follow-the-user-installation-steps-above">
 <h4>1. Follow the user installation steps above<a class="headerlink" href="#follow-the-user-installation-steps-above" title="Link to this heading">#</a></h4>
 </section>
-<section id="install-the-developer-extras">
-<h4>2. Install the developer extras<a class="headerlink" href="#install-the-developer-extras" title="Link to this heading">#</a></h4>
+<section id="install-in-editable-mode-with-the-developer-extras">
+<h4>2. Install in editable mode with the developer extras<a class="headerlink" href="#install-in-editable-mode-with-the-developer-extras" title="Link to this heading">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--group<span class="w"> </span>dev
 </pre></div>
 </div>
 </section>
-<section id="install-rust">
-<h4>3. Install Rust<a class="headerlink" href="#install-rust" title="Link to this heading">#</a></h4>
-<p>Follow the <a class="reference external" href="https://rustup.rs/">rustup installer</a> instructions, then verify:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rustc<span class="w"> </span>--version
-</pre></div>
-</div>
-</section>
-<section id="build-the-rust-back-end">
-<h4>4. Build the Rust back-end<a class="headerlink" href="#build-the-rust-back-end" title="Link to this heading">#</a></h4>
+<section id="rebuild-the-rust-back-end-after-rust-changes">
+<h4>3. Rebuild the Rust back-end after Rust changes<a class="headerlink" href="#rebuild-the-rust-back-end-after-rust-changes" title="Link to this heading">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>maturin<span class="w"> </span>develop
 </pre></div>
 </div>
-<p>This compiles the Rust code and binds it to the Python package. Re-run whenever Rust source files change.</p>
+<p>This recompiles the Rust code and binds it to the Python package. Re-run it whenever Rust source files change.</p>
 </section>
 <section id="install-commit-hooks">
-<h4>5. Install commit hooks<a class="headerlink" href="#install-commit-hooks" title="Link to this heading">#</a></h4>
+<h4>4. Install commit hooks<a class="headerlink" href="#install-commit-hooks" title="Link to this heading">#</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>install
 </pre></div>
 </div>
@@ -935,10 +944,10 @@
 <td><p>Sequential OD (LKF, SRIF, RTS smoother) with SNC/DMC process noise and consider parameters</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#tutorials/advanced_RealMSR_MediaCorrections.ipynb"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">advanced_RealMSR_MediaCorrections.ipynb</span></code></span></a></p></td>
-<td><p>OSIRIS-REx Pt 2 — tropospheric/ionospheric media corrections and DSN ramp table management</p></td>
+<td><p>OSIRIS-REx real data — tropospheric/ionospheric media corrections and DSN ramp table management</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#tutorials/advanced_RealMSR_OSIRIS_REx_OD.ipynb"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">advanced_RealMSR_OSIRIS_REx_OD.ipynb</span></code></span></a></p></td>
-<td><p>OSIRIS-REx OD with real DSN radiometric tracking data</p></td>
+<td><p>OSIRIS-REx two-pass batch OD with real DSN radiometric tracking data</p></td>
 </tr>
 </tbody>
 </table>
@@ -981,14 +990,15 @@ pytest<span class="w">                                          </span><span cla
 <hr class="docutils" />
 <section id="citing-scarabaeus">
 <h2>Citing Scarabaeus<a class="headerlink" href="#citing-scarabaeus" title="Link to this heading">#</a></h2>
-<p>If you use Scarabaeus in academic work, please cite it as:</p>
-<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@software</span><span class="p">{</span><span class="nl">scarabaeus2026</span><span class="p">,</span>
-<span class="w">  </span><span class="na">author</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{ORCCA Lab, University of Colorado Boulder}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">title</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">{Scarabaeus: Open-source spacecraft navigation \&amp; orbit determination framework}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">year</span><span class="w">         </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">version</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{2026.0.0}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">url</span><span class="w">          </span><span class="p">=</span><span class="w"> </span><span class="s">{https://ccar-orcca.github.io/scarabaeus-docs/}</span><span class="p">,</span>
-<span class="w">  </span><span class="na">license</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{ISC}</span><span class="p">,</span>
+<p>If you use Scarabaeus in academic work, please cite the paper:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">scarabaeus2026</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{McMahon, J. and Fereoli, G. and Wolf, T. and Ellis, Z. and Aldhanhani, B. and Kuleib, M. and Frank, W. and Pugliatti, M. and Almashjari, M. and Knittel, J.}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">{Scarabaeus: An Open-Source Tool for Interplanetary Spacecraft Navigation}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{30th International Symposium on Space Flight Dynamics (ISSFD)}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">address</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="s">{Toulouse, France}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">month</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="nv">jun</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="s">{2026}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">url</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">{https://www.researchgate.net/publication/404941039_Scarabaeus_An_Open-Source_Tool_for_Interplanetary_Spacecraft_Navigation}</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -997,7 +1007,8 @@ pytest<span class="w">                                          </span><span cla
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
 <p>Scarabaeus is distributed under the <a class="reference internal" href="#LICENSE"><span class="xref myst">ISC License</span></a>.</p>
-<p>Copyright (c) 2026 CCAR-ORCCA, University of Colorado Boulder.</p>
+<p>Copyright (c) 2026, Orbital Research Cluster for Celestial Applications (ORCCA) Lab, University of Colorado at Boulder.</p>
+<p>Some files are not covered by the ISC License and are included only so that the tutorials, tests and documentation work out of the box: the vendored numpydoc Sphinx extension (BSD-2-Clause, see its <code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code>), NASA/JPL NAIF kernels and Deep Space Network tracking and media calibration data, and the University of Colorado Boulder logos. Each stays under its owner’s terms; the logos are trademarks and may not be used to suggest endorsement.</p>
 </section>
 </section>
 
@@ -1036,6 +1047,7 @@ pytest<span class="w">                                          </span><span cla
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrators">Integrators</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement-models">Measurement Models</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orbit-determination">Orbit Determination</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-quantification">Uncertainty Quantification</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spacecraft-environment">Spacecraft &amp; Environment</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilities">Utilities</a></li>
 </ul>
@@ -1044,17 +1056,17 @@ pytest<span class="w">                                          </span><span cla
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#user-installation">User Installation</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-repository">1. Clone the repository</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-virtual-environment">2. Create a virtual environment</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-scarabaeus">3. Install Scarabaeus</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-rust">1. Install Rust</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-repository">2. Clone the repository</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-virtual-environment">3. Create a virtual environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-scarabaeus">4. Install Scarabaeus</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#developer-installation">Developer Installation</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#follow-the-user-installation-steps-above">1. Follow the user installation steps above</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-developer-extras">2. Install the developer extras</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-rust">3. Install Rust</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-rust-back-end">4. Build the Rust back-end</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-commit-hooks">5. Install commit hooks</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-in-editable-mode-with-the-developer-extras">2. Install in editable mode with the developer extras</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rebuild-the-rust-back-end-after-rust-changes">3. Rebuild the Rust back-end after Rust changes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#install-commit-hooks">4. Install commit hooks</a></li>
 </ul>
 </li>
 </ul>

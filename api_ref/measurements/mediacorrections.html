@@ -837,6 +837,10 @@ computing without one raises
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.default_dataset_name" title="scarabaeus.MediaCorrections.default_dataset_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_dataset_name</span></code></a></dt><dd><p>Dataset name used when the caller does not supply one.</p>
 </dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.dl_station_cal" title="scarabaeus.MediaCorrections.dl_station_cal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dl_station_cal</span></code></a></dt><dd><p>Downlink station calibration [RU] written into simulated auxiliary data.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.dsn_bands" title="scarabaeus.MediaCorrections.dsn_bands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dsn_bands</span></code></a></dt><dd><p>DSN frequency-band parameters of this model, a read-only mapping from band letter to <code class="xref py py-class docutils literal notranslate"><span class="pre">DSNBand</span></code>.</p>
+</dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.epoch_sec" title="scarabaeus.MediaCorrections.epoch_sec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">epoch_sec</span></code></a></dt><dd><p>Observation epochs expressed as seconds of day.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.instrument" title="scarabaeus.MediaCorrections.instrument"><code class="xref py py-obj docutils literal notranslate"><span class="pre">instrument</span></code></a></dt><dd><p>The instrument.</p>
@@ -847,11 +851,27 @@ computing without one raises
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.name" title="scarabaeus.MediaCorrections.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></dt><dd><p>The name of the model.</p>
 </dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_entries" title="scarabaeus.MediaCorrections.ramp_entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ramp_entries</span></code></a></dt><dd><p>Number of entries of a simulated ramp table, at least 2.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_margin" title="scarabaeus.MediaCorrections.ramp_margin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ramp_margin</span></code></a></dt><dd><p>Span [s] a simulated ramp table extends before the first and after the last observation.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_rate" title="scarabaeus.MediaCorrections.ramp_rate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ramp_rate</span></code></a></dt><dd><p>Uplink frequency ramp rate [Hz/s] of the ramp table the <code class="docutils literal notranslate"><span class="pre">default_*_aux</span></code> builders simulate.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_type" title="scarabaeus.MediaCorrections.ramp_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ramp_type</span></code></a></dt><dd><p>SFDU 9 <code class="docutils literal notranslate"><span class="pre">ramp_type</span></code> code of the segments of a simulated ramp table.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.rcv_time_tag_delay" title="scarabaeus.MediaCorrections.rcv_time_tag_delay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rcv_time_tag_delay</span></code></a></dt><dd><p>Receive time-tag delay [s] written into simulated auxiliary data.</p>
+</dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.sigma" title="scarabaeus.MediaCorrections.sigma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigma</span></code></a></dt><dd><p>The standard deviation of the measurement model.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.solar_corona_coefficient" title="scarabaeus.MediaCorrections.solar_corona_coefficient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">solar_corona_coefficient</span></code></a></dt><dd><p>Coefficient of the solar-corona group delay [us GHz^2 m^2] of a real model built with <code class="docutils literal notranslate"><span class="pre">solar_corona=True</span></code>.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.transponder_delay" title="scarabaeus.MediaCorrections.transponder_delay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transponder_delay</span></code></a></dt><dd><p>Spacecraft transponder delay [RU] written into simulated auxiliary data by the <code class="docutils literal notranslate"><span class="pre">default_*_aux</span></code> builders.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.tropo_non_seasonal_file_path" title="scarabaeus.MediaCorrections.tropo_non_seasonal_file_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tropo_non_seasonal_file_path</span></code></a></dt><dd><p>Absolute path to the non-seasonal (monthly NRMPOW) troposphere JSON, if set.</p>
 </dd>
 <dt><a class="reference internal" href="#scarabaeus.MediaCorrections.tropo_seasonal_file_path" title="scarabaeus.MediaCorrections.tropo_seasonal_file_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tropo_seasonal_file_path</span></code></a></dt><dd><p>Absolute path to the seasonal (TRIG) troposphere JSON, if set.</p>
+</dd>
+<dt><a class="reference internal" href="#scarabaeus.MediaCorrections.ul_station_cal" title="scarabaeus.MediaCorrections.ul_station_cal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ul_station_cal</span></code></a></dt><dd><p>Uplink station calibration [RU] written into simulated auxiliary data.</p>
 </dd>
 </dl>
 </dd>
@@ -865,82 +885,79 @@ computing without one raises
 <tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.chao_mapping" title="scarabaeus.MediaCorrections.chao_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chao_mapping</span></code></a>()</p></td>
 <td><p>Compute the tropospheric mapping functions for dry and wet delays using the Chao model.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.chao_mapping_at_epoch" title="scarabaeus.MediaCorrections.chao_mapping_at_epoch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chao_mapping_at_epoch</span></code></a>(query_time_et, ...)</p></td>
-<td><p>Dry and wet Chao tropospheric mapping functions evaluated at the target's elevation angle at <code class="docutils literal notranslate"><span class="pre">query_time_et</span></code>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.compute_partials" title="scarabaeus.MediaCorrections.compute_partials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_partials</span></code></a>(target, epoch_array, frame)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.compute_partials" title="scarabaeus.MediaCorrections.compute_partials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_partials</span></code></a>(target, epoch_array, frame)</p></td>
 <td><p>Stacks together measurement _partials for an epoch array at different epochs.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.computed_measurements" title="scarabaeus.MediaCorrections.computed_measurements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">computed_measurements</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.computed_measurements" title="scarabaeus.MediaCorrections.computed_measurements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">computed_measurements</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Evaluate the forward model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.computed_rtlt_delays" title="scarabaeus.MediaCorrections.computed_rtlt_delays"><code class="xref py py-obj docutils literal notranslate"><span class="pre">computed_rtlt_delays</span></code></a>(query_time_et, ...[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.computed_rtlt_delays" title="scarabaeus.MediaCorrections.computed_rtlt_delays"><code class="xref py py-obj docutils literal notranslate"><span class="pre">computed_rtlt_delays</span></code></a>(query_time_et, ...[, ...])</p></td>
 <td><p>Compute the radio signal path delays due to Earth's media at a given epoch.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.find_ion_metadata" title="scarabaeus.MediaCorrections.find_ion_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_ion_metadata</span></code></a>(folder, query_year, query_doy)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.find_ion_metadata" title="scarabaeus.MediaCorrections.find_ion_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_ion_metadata</span></code></a>(folder, query_year, query_doy)</p></td>
 <td><p>Locate ionosphere metadata files covering a given year and day-of-year.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.find_tro_metadata" title="scarabaeus.MediaCorrections.find_tro_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_tro_metadata</span></code></a>(folder, query_year, query_doy)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.find_tro_metadata" title="scarabaeus.MediaCorrections.find_tro_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_tro_metadata</span></code></a>(folder, query_year, query_doy)</p></td>
 <td><p>Locate troposphere metadata files covering a given year and day-of-year.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.for_pass" title="scarabaeus.MediaCorrections.for_pass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">for_pass</span></code></a>(instrument, start_epoch_et, ...[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.for_pass" title="scarabaeus.MediaCorrections.for_pass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">for_pass</span></code></a>(instrument, start_epoch_et, ...[, ...])</p></td>
 <td><p>Build a MediaCorrections for one pass, selecting the tropospheric and ionospheric files that cover the pass start date.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.generate_measurement_dataset" title="scarabaeus.MediaCorrections.generate_measurement_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_measurement_dataset</span></code></a>(dataset_name, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.generate_measurement_dataset" title="scarabaeus.MediaCorrections.generate_measurement_dataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_measurement_dataset</span></code></a>(dataset_name, ...)</p></td>
 <td><p>Generates a MeasurementDataSet object that can be used by filters downstream.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.get_media_data_for_et" title="scarabaeus.MediaCorrections.get_media_data_for_et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_media_data_for_et</span></code></a>(site_query, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.get_media_data_for_et" title="scarabaeus.MediaCorrections.get_media_data_for_et"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_media_data_for_et</span></code></a>(site_query, ...)</p></td>
 <td><p>Extract media-correction coefficients for a given DSN site and epoch, with optional wet/dry filtering.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.ionosphere_mapping" title="scarabaeus.MediaCorrections.ionosphere_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ionosphere_mapping</span></code></a>(E[, shell_height, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.ionosphere_mapping" title="scarabaeus.MediaCorrections.ionosphere_mapping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ionosphere_mapping</span></code></a>(E[, shell_height, ...])</p></td>
 <td><p>Thin-shell obliquity factor mapping a zenith ionospheric delay.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.mediafun_nrmpow" title="scarabaeus.MediaCorrections.mediafun_nrmpow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mediafun_nrmpow</span></code></a>(query_time_et)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.mediafun_nrmpow" title="scarabaeus.MediaCorrections.mediafun_nrmpow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mediafun_nrmpow</span></code></a>(query_time_et)</p></td>
 <td><p>Evaluate media correction function using a normalized power series expansion.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.mediafun_trig" title="scarabaeus.MediaCorrections.mediafun_trig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mediafun_trig</span></code></a>(query_time_et)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.mediafun_trig" title="scarabaeus.MediaCorrections.mediafun_trig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mediafun_trig</span></code></a>(query_time_et)</p></td>
 <td><p>Evaluate media correction function using a trigonometric series expansion.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.observed_measurements" title="scarabaeus.MediaCorrections.observed_measurements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observed_measurements</span></code></a>(file_name, meas_name, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.observed_measurements" title="scarabaeus.MediaCorrections.observed_measurements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">observed_measurements</span></code></a>(file_name, meas_name, ...)</p></td>
 <td><p>Reads measurements from a .json file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.path_delay_to_light_time" title="scarabaeus.MediaCorrections.path_delay_to_light_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">path_delay_to_light_time</span></code></a>(delay_m)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.path_delay_to_light_time" title="scarabaeus.MediaCorrections.path_delay_to_light_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">path_delay_to_light_time</span></code></a>(delay_m)</p></td>
 <td><p>Convert a media path delay in metres into the light-time delay it causes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.residuals" title="scarabaeus.MediaCorrections.residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">residuals</span></code></a>(observed_meas, computed_meas)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.residuals" title="scarabaeus.MediaCorrections.residuals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">residuals</span></code></a>(observed_meas, computed_meas)</p></td>
 <td><p>Generates the measurement model's residuals given observed and computed ArrayWFrames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.resolve_elevation_mask" title="scarabaeus.MediaCorrections.resolve_elevation_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_elevation_mask</span></code></a>(elevation_mask)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.resolve_elevation_mask" title="scarabaeus.MediaCorrections.resolve_elevation_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_elevation_mask</span></code></a>(elevation_mask)</p></td>
 <td><p>Normalise an elevation mask to degrees.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.rtlt_grad_pos_exact" title="scarabaeus.MediaCorrections.rtlt_grad_pos_exact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtlt_grad_pos_exact</span></code></a>(n_hat_dn, n_hat_up, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.rtlt_grad_pos_exact" title="scarabaeus.MediaCorrections.rtlt_grad_pos_exact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtlt_grad_pos_exact</span></code></a>(n_hat_dn, n_hat_up, ...)</p></td>
 <td><p>Exact round-trip light-time gradient with respect to the spacecraft position.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.rtlt_grad_station_exact" title="scarabaeus.MediaCorrections.rtlt_grad_station_exact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtlt_grad_station_exact</span></code></a>(n_hat_dn, n_hat_up, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.rtlt_grad_station_exact" title="scarabaeus.MediaCorrections.rtlt_grad_station_exact"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtlt_grad_station_exact</span></code></a>(n_hat_dn, n_hat_up, ...)</p></td>
 <td><p>Exact round-trip light-time gradients with respect to the station position.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.rtlt_leg_weights" title="scarabaeus.MediaCorrections.rtlt_leg_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtlt_leg_weights</span></code></a>(n_hat_dn, n_hat_up, v_sc, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.rtlt_leg_weights" title="scarabaeus.MediaCorrections.rtlt_leg_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rtlt_leg_weights</span></code></a>(n_hat_dn, n_hat_up, v_sc, ...)</p></td>
 <td><p>Sensitivity of the round-trip light time to a delay inside each leg's solution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.set_pass_epochs" title="scarabaeus.MediaCorrections.set_pass_epochs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pass_epochs</span></code></a>(pass_epochs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.set_pass_epochs" title="scarabaeus.MediaCorrections.set_pass_epochs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pass_epochs</span></code></a>(pass_epochs)</p></td>
 <td><p>Enable per-pass biases.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.set_trajectory" title="scarabaeus.MediaCorrections.set_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_trajectory</span></code></a>(trajectory)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.set_trajectory" title="scarabaeus.MediaCorrections.set_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_trajectory</span></code></a>(trajectory)</p></td>
 <td><p>Attach the reference trajectory supplying the STMs.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.transponder_delay_seconds" title="scarabaeus.MediaCorrections.transponder_delay_seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transponder_delay_seconds</span></code></a>(delay_RU, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.transponder_delay_seconds" title="scarabaeus.MediaCorrections.transponder_delay_seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transponder_delay_seconds</span></code></a>(delay_RU, ...)</p></td>
 <td><p>Convert a spacecraft transponder delay from range units to seconds.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.update_reference_state" title="scarabaeus.MediaCorrections.update_reference_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_reference_state</span></code></a>(state_vector)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.update_reference_state" title="scarabaeus.MediaCorrections.update_reference_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_reference_state</span></code></a>(state_vector)</p></td>
 <td><p>Attach the estimated state the model should read its parameters from.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.validate_aux" title="scarabaeus.MediaCorrections.validate_aux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_aux</span></code></a>(aux[, label])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.validate_aux" title="scarabaeus.MediaCorrections.validate_aux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_aux</span></code></a>(aux[, label])</p></td>
 <td><p>Check that an auxiliary-data dictionary is internally consistent.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.write_observed_measurements" title="scarabaeus.MediaCorrections.write_observed_measurements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_observed_measurements</span></code></a>(target, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.write_observed_measurements" title="scarabaeus.MediaCorrections.write_observed_measurements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_observed_measurements</span></code></a>(target, ...)</p></td>
 <td><p>Generates synthetic measurements and write them as a .json file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.zenith_delay_partials" title="scarabaeus.MediaCorrections.zenith_delay_partials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zenith_delay_partials</span></code></a>(query_time_et, ...[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#scarabaeus.MediaCorrections.zenith_delay_partials" title="scarabaeus.MediaCorrections.zenith_delay_partials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zenith_delay_partials</span></code></a>(query_time_et, ...[, ...])</p></td>
 <td><p>Derivatives of the one-way slant delays with respect to the estimated zenith delays at <code class="docutils literal notranslate"><span class="pre">query_time_et</span></code>.</p></td>
 </tr>
 </tbody>
@@ -1429,7 +1446,7 @@ of the clock the delay is counted against.</p>
 <dt><strong>delay_RU</strong><span class="classifier">float</span></dt><dd><p>Transponder delay as the mission specifies it [RU].</p>
 </dd>
 <dt><strong>reference_frequency</strong><span class="classifier">float</span></dt><dd><p>The band’s range-unit reference frequency [1/s], i.e.
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">ru_reference_frequency</span></code>.</p>
+<a class="reference internal" href="measurement.html#scarabaeus.Measurement.DSNBand.ru_reference_frequency" title="scarabaeus.Measurement.DSNBand.ru_reference_frequency"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Measurement.DSNBand.ru_reference_frequency</span></code></a>.</p>
 </dd>
 <dt><strong>range_unit</strong><span class="classifier">float</span></dt><dd><p>The range unit, from the pass’s exciter scalars.</p>
 </dd>
@@ -1495,7 +1512,7 @@ out is usually obvious once they are laid side by side.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">DopplerReal</span><span class="o">.</span><span class="n">default_doppler_aux</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s2">"S"</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">doppler_model</span><span class="o">.</span><span class="n">default_doppler_aux</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s2">"S"</span><span class="p">)</span>
 <span class="n">scb</span><span class="o">.</span><span class="n">Measurement</span><span class="o">.</span><span class="n">validate_aux</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"DSS-25 Range Rate"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1551,35 +1568,6 @@ of Deep Space Network Data Types for Navigation. JPL 00-7.</p>
 <span class="n">R_dry</span><span class="p">,</span> <span class="n">R_wet</span> <span class="o">=</span> <span class="n">scb</span><span class="o">.</span><span class="n">MediaCorrections</span><span class="o">.</span><span class="n">chao_mapping</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.chao_mapping_at_epoch">
-<span class="sig-name descname"><span class="pre">chao_mapping_at_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_time_et</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_spice_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.11/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.chao_mapping_at_epoch" title="Link to this definition">#</a></dt>
-<dd><p>Dry and wet Chao tropospheric mapping functions evaluated at the target’s
-elevation angle at <code class="docutils literal notranslate"><span class="pre">query_time_et</span></code>.</p>
-<p>This uses the <em>identical</em> elevation computation as <a class="reference internal" href="#scarabaeus.MediaCorrections.computed_rtlt_delays" title="scarabaeus.MediaCorrections.computed_rtlt_delays"><code class="xref py py-meth docutils literal notranslate"><span class="pre">computed_rtlt_delays()</span></code></a>
-(same <code class="docutils literal notranslate"><span class="pre">SpiceManager.get_elevation_angle</span></code> call and <code class="docutils literal notranslate"><span class="pre">abcorr</span></code>), so the mapping
-returned here is exactly the partial <span class="math notranslate nohighlight">\(\partial \Delta T_\rho / \partial \Delta \rho_z\)</span> of the delay
-produced by the forward model at that epoch (Moyer 10-7). It lets the
-measurement partials evaluate each light-path leg (downleg at t3, upleg at t1)
-at its own elevation, rather than approximating both legs by a single value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>query_time_et</strong><span class="classifier">float</span></dt><dd><p>Reception or transmission epoch [ET seconds].</p>
-</dd>
-<dt><strong>target_spice_id</strong><span class="classifier">str</span></dt><dd><p>SPICE name/ID of the tracked target.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>(R_dry, R_wet)</strong><span class="classifier">tuple[float, float]</span></dt><dd><p>Chao dry and wet mapping functions at the leg elevation.</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -2209,6 +2197,38 @@ dimensionless [m/m].</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.DL_STATION_CAL">
+<span class="sig-name descname"><span class="pre">DL_STATION_CAL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">850000.0</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.DL_STATION_CAL" title="Link to this definition">#</a></dt>
+<dd><p>Default downlink station calibration [RU] of simulated auxiliary data,
+the starting <a class="reference internal" href="#scarabaeus.MediaCorrections.dl_station_cal" title="scarabaeus.MediaCorrections.dl_station_cal"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dl_station_cal</span></code></a> of a model.</p>
+<p>Representative, not physical: real passes carry the station value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.DSN_BANDS">
+<span class="sig-name descname"><span class="pre">DSN_BANDS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'S':</span> <span class="pre">Measurement.DSNBand(name='S',</span> <span class="pre">uplink_multiplier=221,</span> <span class="pre">downlink_multiplier=240,</span> <span class="pre">turnaround_num=240,</span> <span class="pre">turnaround_den=221,</span> <span class="pre">exciter_scalar_num=221.0,</span> <span class="pre">exciter_scalar_den=7072.0,</span> <span class="pre">uplink_frequency=2110362223.0</span> <span class="pre">Hz,</span> <span class="pre">ru_reference_frequency=2303391185.181818</span> <span class="pre">Hz),</span> <span class="pre">'X':</span> <span class="pre">Measurement.DSNBand(name='X',</span> <span class="pre">uplink_multiplier=749,</span> <span class="pre">downlink_multiplier=880,</span> <span class="pre">turnaround_num=880,</span> <span class="pre">turnaround_den=749,</span> <span class="pre">exciter_scalar_num=221.0,</span> <span class="pre">exciter_scalar_den=23968.0,</span> <span class="pre">uplink_frequency=7152313596.9977</span> <span class="pre">Hz,</span> <span class="pre">ru_reference_frequency=8445767679.0</span> <span class="pre">Hz)}</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.DSN_BANDS" title="Link to this definition">#</a></dt>
+<dd><p>Default DSN frequency-band parameters, keyed by band letter, each a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">DSNBand</span></code>. A model starts with these as <a class="reference internal" href="#scarabaeus.MediaCorrections.dsn_bands" title="scarabaeus.MediaCorrections.dsn_bands"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dsn_bands</span></code></a>.</p>
+<p>Supported bands are <code class="docutils literal notranslate"><span class="pre">'X'</span></code> and <code class="docutils literal notranslate"><span class="pre">'S'</span></code>. <code class="docutils literal notranslate"><span class="pre">'X'</span></code> holds the values the
+measurement models used as literals before they were collected here, so
+it is the default everywhere and reproduces the previous numbers exactly.</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r400dee37dec4-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Moyer, T. D., Formulation for Observed and Computed Values of Deep
+Space Network Data Types for Navigation, JPL Publication 00-7,
+Monograph 2, Deep Space Communications and Navigation Series,
+Chapter 13.</p>
+</div>
+<div class="citation" id="r400dee37dec4-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>DSN Telecommunications Link Design Handbook, 810-005, Module 201,
+Frequency and Channel Assignments.</p>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="scarabaeus.MediaCorrections.DSN_COMPLEX_ANTENNAS">
 <span class="sig-name descname"><span class="pre">DSN_COMPLEX_ANTENNAS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'C10':</span> <span class="pre">range(11,</span> <span class="pre">31),</span> <span class="pre">'C40':</span> <span class="pre">range(31,</span> <span class="pre">51),</span> <span class="pre">'C60':</span> <span class="pre">range(51,</span> <span class="pre">71)}</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.DSN_COMPLEX_ANTENNAS" title="Link to this definition">#</a></dt>
 <dd><p>DSN antenna numbers of each complex, keyed by the complex code of the
@@ -2278,10 +2298,85 @@ ramp segment.</p>
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.RAMP_ENTRIES">
+<span class="sig-name descname"><span class="pre">RAMP_ENTRIES</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.RAMP_ENTRIES" title="Link to this definition">#</a></dt>
+<dd><p>Default number of entries of a simulated ramp table, the starting
+<a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_entries" title="scarabaeus.MediaCorrections.ramp_entries"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ramp_entries</span></code></a> of a model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.RAMP_MARGIN">
+<span class="sig-name descname"><span class="pre">RAMP_MARGIN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3600.0</span> <span class="pre">sec</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.RAMP_MARGIN" title="Link to this definition">#</a></dt>
+<dd><p>Default span a simulated ramp table extends before the first and after
+the last observation, the starting <a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_margin" title="scarabaeus.MediaCorrections.ramp_margin"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ramp_margin</span></code></a> of a model.</p>
+<p>The uplink transmit time precedes the first tag by the round-trip light
+time, so a table that starts at the first tag raises
+<a class="reference internal" href="ramptablemanager.html#scarabaeus.RampTableManager.RampCoverageError" title="scarabaeus.measurements.RampTableManager.RampTableManager.RampCoverageError"><code class="xref py py-class docutils literal notranslate"><span class="pre">RampCoverageError</span></code></a>.
+One hour clears a spacecraft out to the asteroid belt.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.RAMP_RATE">
+<span class="sig-name descname"><span class="pre">RAMP_RATE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2826</span> <span class="pre">sec^-2</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.RAMP_RATE" title="Link to this definition">#</a></dt>
+<dd><p>Default uplink frequency ramp rate of a simulated ramp table, the
+starting <a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_rate" title="scarabaeus.MediaCorrections.ramp_rate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ramp_rate</span></code></a> of a model.</p>
+<p>A representative DSN ramp slope, not a physical constant: real passes
+carry their measured rate in the ramp table.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.RAMP_TYPE">
+<span class="sig-name descname"><span class="pre">RAMP_TYPE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.RAMP_TYPE" title="Link to this definition">#</a></dt>
+<dd><p>Default ramp type of a simulated ramp table, the SFDU 9 <code class="docutils literal notranslate"><span class="pre">ramp_type</span></code>
+code of a ramped segment; the starting <a class="reference internal" href="#scarabaeus.MediaCorrections.ramp_type" title="scarabaeus.MediaCorrections.ramp_type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ramp_type</span></code></a> of a model.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="scarabaeus.MediaCorrections.RAMP_YEAR_KEY">
 <span class="sig-name descname"><span class="pre">RAMP_YEAR_KEY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ramp_year'</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.RAMP_YEAR_KEY" title="Link to this definition">#</a></dt>
 <dd><p>Auxiliary-data key of the year of each ramp segment. Optional: a table
 read without it is assumed to lie in the year of the observations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.RCV_TIME_TAG_DELAY">
+<span class="sig-name descname"><span class="pre">RCV_TIME_TAG_DELAY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0008</span> <span class="pre">sec</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.RCV_TIME_TAG_DELAY" title="Link to this definition">#</a></dt>
+<dd><p>Default receive time-tag delay of simulated auxiliary data, the
+starting <a class="reference internal" href="#scarabaeus.MediaCorrections.rcv_time_tag_delay" title="scarabaeus.MediaCorrections.rcv_time_tag_delay"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rcv_time_tag_delay</span></code></a> of a model.</p>
+<p>Representative, not physical: real passes carry the station value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.SOLAR_CORONA_DELAY_COEFF">
+<span class="sig-name descname"><span class="pre">SOLAR_CORONA_DELAY_COEFF</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.3446e-19</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.SOLAR_CORONA_DELAY_COEFF" title="Link to this definition">#</a></dt>
+<dd><p>Coefficient of the solar-corona group delay, in us GHz^2 m^2:
+delay [us] = <code class="docutils literal notranslate"><span class="pre">SOLAR_CORONA_DELAY_COEFF</span></code> * STEC [electrons/m^2] / f^2 [GHz^2].</p>
+<p>The default of <code class="xref py py-meth docutils literal notranslate"><span class="pre">_compute_SC_lt()</span></code>, and the starting
+<a class="reference internal" href="measurement.html#scarabaeus.Measurement.solar_corona_coefficient" title="scarabaeus.Measurement.solar_corona_coefficient"><code class="xref py py-attr docutils literal notranslate"><span class="pre">solar_corona_coefficient</span></code></a> of a radiometric
+model.</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rf2f15d75f44f-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Ho, C. M. (2010). 106, Rev. B, Solar Corona and Solar Wind
+Effects. DSN Telecommunications Link Design Handbook, Eq. (1).</p>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.TRANSPONDER_DELAY">
+<span class="sig-name descname"><span class="pre">TRANSPONDER_DELAY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1e-05</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.TRANSPONDER_DELAY" title="Link to this definition">#</a></dt>
+<dd><p>Default spacecraft transponder delay [RU] of simulated auxiliary data,
+the starting <a class="reference internal" href="#scarabaeus.MediaCorrections.transponder_delay" title="scarabaeus.MediaCorrections.transponder_delay"><code class="xref py py-attr docutils literal notranslate"><span class="pre">transponder_delay</span></code></a> of a model.</p>
+<p>Representative, not physical: real passes carry the calibrated delay.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.UL_STATION_CAL">
+<span class="sig-name descname"><span class="pre">UL_STATION_CAL</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5000.0</span></span><a class="headerlink" href="#scarabaeus.MediaCorrections.UL_STATION_CAL" title="Link to this definition">#</a></dt>
+<dd><p>Default uplink station calibration [RU] of simulated auxiliary data,
+the starting <a class="reference internal" href="#scarabaeus.MediaCorrections.ul_station_cal" title="scarabaeus.MediaCorrections.ul_station_cal"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ul_station_cal</span></code></a> of a model.</p>
+<p>Representative, not physical: real passes carry the station value.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -2322,6 +2417,34 @@ explicitly to tell them apart.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.dl_station_cal">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dl_station_cal</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.dl_station_cal" title="Link to this definition">#</a></dt>
+<dd><p>Downlink station calibration [RU] written into simulated auxiliary
+data. Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.DL_STATION_CAL" title="scarabaeus.MediaCorrections.DL_STATION_CAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DL_STATION_CAL</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.dsn_bands">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dsn_bands</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/types.html#types.MappingProxyType" title="(in Python v3.11)"><span class="pre">MappingProxyType</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.dsn_bands" title="Link to this definition">#</a></dt>
+<dd><p>DSN frequency-band parameters of this model, a read-only mapping from
+band letter to <code class="xref py py-class docutils literal notranslate"><span class="pre">DSNBand</span></code>. Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.DSN_BANDS" title="scarabaeus.MediaCorrections.DSN_BANDS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">DSN_BANDS</span></code></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">band</span></code> of a real model is looked up here, for the reference
+frequency that converts the transponder delay to seconds and the range
+unit of a tracking file without exciter scalars, and so is the band of
+the <code class="docutils literal notranslate"><span class="pre">default_*_aux</span></code> builders, which take its turnaround ratio,
+exciter scalars and uplink frequency.</p>
+<p>Set a whole new mapping to change it; its keys are upper-cased.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">dsn_bands</span><span class="p">[</span><span class="s2">"X"</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">dsn_bands</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">**</span><span class="n">model</span><span class="o">.</span><span class="n">dsn_bands</span><span class="p">,</span>
+    <span class="s2">"X"</span><span class="p">:</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">uplink_frequency</span><span class="o">=</span><span class="n">scb</span><span class="o">.</span><span class="n">ArrayWUnits</span><span class="p">(</span><span class="mf">7.18e9</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">sec</span><span class="p">)),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MediaCorrections.epoch_sec">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">epoch_sec</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../time_n_frame/epocharray.html#scarabaeus.EpochArray" title="scarabaeus.timeAndFrame.EpochArray.EpochArray"><span class="pre">EpochArray</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.epoch_sec" title="Link to this definition">#</a></dt>
 <dd><p>Observation epochs expressed as seconds of day.</p>
@@ -2352,9 +2475,59 @@ explicitly to tell them apart.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.ramp_entries">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ramp_entries</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.ramp_entries" title="Link to this definition">#</a></dt>
+<dd><p>Number of entries of a simulated ramp table, at least 2. Starts as
+<a class="reference internal" href="#scarabaeus.MediaCorrections.RAMP_ENTRIES" title="scarabaeus.MediaCorrections.RAMP_ENTRIES"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RAMP_ENTRIES</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.ramp_margin">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ramp_margin</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.ramp_margin" title="Link to this definition">#</a></dt>
+<dd><p>Span [s] a simulated ramp table extends before the first and after the
+last observation. Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.RAMP_MARGIN" title="scarabaeus.MediaCorrections.RAMP_MARGIN"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RAMP_MARGIN</span></code></a>; see
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">_default_aux_grids()</span></code> for why it is needed.</p>
+<p>Set an ArrayWUnits time, or a bare, non-negative number of seconds.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.ramp_rate">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ramp_rate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.ramp_rate" title="Link to this definition">#</a></dt>
+<dd><p>Uplink frequency ramp rate [Hz/s] of the ramp table the
+<code class="docutils literal notranslate"><span class="pre">default_*_aux</span></code> builders simulate. Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.RAMP_RATE" title="scarabaeus.MediaCorrections.RAMP_RATE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RAMP_RATE</span></code></a>.</p>
+<p>Set an ArrayWUnits, converted to 1/s^2, or a bare number in Hz/s.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.ramp_type">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ramp_type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.ramp_type" title="Link to this definition">#</a></dt>
+<dd><p>SFDU 9 <code class="docutils literal notranslate"><span class="pre">ramp_type</span></code> code of the segments of a simulated ramp table.
+Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.RAMP_TYPE" title="scarabaeus.MediaCorrections.RAMP_TYPE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RAMP_TYPE</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.rcv_time_tag_delay">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">rcv_time_tag_delay</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.rcv_time_tag_delay" title="Link to this definition">#</a></dt>
+<dd><p>Receive time-tag delay [s] written into simulated auxiliary data.
+Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.RCV_TIME_TAG_DELAY" title="scarabaeus.MediaCorrections.RCV_TIME_TAG_DELAY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">RCV_TIME_TAG_DELAY</span></code></a>.</p>
+<p>Set an ArrayWUnits time, or a bare number of seconds.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MediaCorrections.sigma">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">sigma</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../units/arraywunits.html#scarabaeus.ArrayWUnits" title="scarabaeus.units.ArrayWUnits.ArrayWUnits"><span class="pre">ArrayWUnits</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.sigma" title="Link to this definition">#</a></dt>
 <dd><p>The standard deviation of the measurement model.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.solar_corona_coefficient">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">solar_corona_coefficient</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.solar_corona_coefficient" title="Link to this definition">#</a></dt>
+<dd><p>Coefficient of the solar-corona group delay [us GHz^2 m^2] of a real
+model built with <code class="docutils literal notranslate"><span class="pre">solar_corona=True</span></code>. Starts as
+<a class="reference internal" href="#scarabaeus.MediaCorrections.SOLAR_CORONA_DELAY_COEFF" title="scarabaeus.MediaCorrections.SOLAR_CORONA_DELAY_COEFF"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MediaCorrections.SOLAR_CORONA_DELAY_COEFF</span></code></a>; see
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">MediaCorrections._compute_SC_lt</span></code>.</p>
+<p>A fixed change of the delay model. To estimate a correction from the
+data, estimate <code class="docutils literal notranslate"><span class="pre">solar_corona_scale</span></code> instead.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2376,6 +2549,17 @@ as large as needed.</p>
 </dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.transponder_delay">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transponder_delay</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.transponder_delay" title="Link to this definition">#</a></dt>
+<dd><p>Spacecraft transponder delay [RU] written into simulated auxiliary
+data by the <code class="docutils literal notranslate"><span class="pre">default_*_aux</span></code> builders. Starts as
+<a class="reference internal" href="#scarabaeus.MediaCorrections.TRANSPONDER_DELAY" title="scarabaeus.MediaCorrections.TRANSPONDER_DELAY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">TRANSPONDER_DELAY</span></code></a>.</p>
+<p>Only simulated data: a real pass takes the <code class="docutils literal notranslate"><span class="pre">sc_transponder_delay_RU</span></code>
+given to <code class="docutils literal notranslate"><span class="pre">observed_measurements</span></code>, or else the delay in its tracking
+file.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="scarabaeus.MediaCorrections.tropo_non_seasonal_file_path">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">tropo_non_seasonal_file_path</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.tropo_non_seasonal_file_path" title="Link to this definition">#</a></dt>
 <dd><p>Absolute path to the non-seasonal (monthly NRMPOW) troposphere JSON, if set.</p>
@@ -2385,6 +2569,13 @@ as large as needed.</p>
 <dt class="sig sig-object py" id="scarabaeus.MediaCorrections.tropo_seasonal_file_path">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">tropo_seasonal_file_path</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.tropo_seasonal_file_path" title="Link to this definition">#</a></dt>
 <dd><p>Absolute path to the seasonal (TRIG) troposphere JSON, if set.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="scarabaeus.MediaCorrections.ul_station_cal">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">ul_station_cal</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.11/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><a class="headerlink" href="#scarabaeus.MediaCorrections.ul_station_cal" title="Link to this definition">#</a></dt>
+<dd><p>Uplink station calibration [RU] written into simulated auxiliary data.
+Starts as <a class="reference internal" href="#scarabaeus.MediaCorrections.UL_STATION_CAL" title="scarabaeus.MediaCorrections.UL_STATION_CAL"><code class="xref py py-attr docutils literal notranslate"><span class="pre">UL_STATION_CAL</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py exception">
@@ -2473,7 +2664,6 @@ as large as needed.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.transponder_delay_seconds"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.transponder_delay_seconds()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.validate_aux"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.validate_aux()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.chao_mapping"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.chao_mapping()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.chao_mapping_at_epoch"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.chao_mapping_at_epoch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.compute_partials"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.compute_partials()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.computed_measurements"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.computed_measurements()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.computed_rtlt_delays"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.computed_rtlt_delays()</span></code></a></li>
@@ -2489,24 +2679,44 @@ as large as needed.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.write_observed_measurements"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.write_observed_measurements()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.zenith_delay_partials"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.zenith_delay_partials()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.AUX_KEYS"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.AUX_KEYS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.DL_STATION_CAL"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.DL_STATION_CAL</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.DSN_BANDS"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.DSN_BANDS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.DSN_COMPLEX_ANTENNAS"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.DSN_COMPLEX_ANTENNAS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.LIGHT_TIME_FRAMES"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.LIGHT_TIME_FRAMES</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.LIGHT_TIME_SETTINGS"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.LIGHT_TIME_SETTINGS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.PARTIALS_METHODS"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.PARTIALS_METHODS</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RAMP_AUX_KEYS"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RAMP_AUX_KEYS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RAMP_ENTRIES"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RAMP_ENTRIES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RAMP_MARGIN"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RAMP_MARGIN</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RAMP_RATE"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RAMP_RATE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RAMP_TYPE"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RAMP_TYPE</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RAMP_YEAR_KEY"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RAMP_YEAR_KEY</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.RCV_TIME_TAG_DELAY"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.RCV_TIME_TAG_DELAY</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.SOLAR_CORONA_DELAY_COEFF"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.SOLAR_CORONA_DELAY_COEFF</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.TRANSPONDER_DELAY"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.TRANSPONDER_DELAY</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.UL_STATION_CAL"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.UL_STATION_CAL</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.component_labels"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.component_labels</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.computed_measurements_dict"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.computed_measurements_dict</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.default_dataset_name"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.default_dataset_name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.dl_station_cal"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.dl_station_cal</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.dsn_bands"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.dsn_bands</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.epoch_sec"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.epoch_sec</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.instrument"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.instrument</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.iono_file_path"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.iono_file_path</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.media_corrections"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.media_corrections</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.name"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.ramp_entries"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.ramp_entries</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.ramp_margin"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.ramp_margin</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.ramp_rate"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.ramp_rate</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.ramp_type"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.ramp_type</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.rcv_time_tag_delay"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.rcv_time_tag_delay</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.sigma"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.sigma</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.solar_corona_coefficient"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.solar_corona_coefficient</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.station_eps_defaults"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.station_eps_defaults</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.transponder_delay"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.transponder_delay</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.tropo_non_seasonal_file_path"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.tropo_non_seasonal_file_path</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.tropo_seasonal_file_path"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.tropo_seasonal_file_path</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.ul_station_cal"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.ul_station_cal</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.IncompleteTroposphereError"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.IncompleteTroposphereError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.MissingIonosphereFrequencyError"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.MissingIonosphereFrequencyError</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scarabaeus.MediaCorrections.TroposphereFileTypeError"><code class="docutils literal notranslate"><span class="pre">MediaCorrections.TroposphereFileTypeError</span></code></a></li>
