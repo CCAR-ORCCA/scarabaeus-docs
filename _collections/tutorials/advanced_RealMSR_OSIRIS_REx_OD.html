@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/advanced_RealMSR_OSIRIS_REx_OD';</script>
@@ -900,12 +899,47 @@ the range unit and the reference frequency of the band. What the modelled delays
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> data = supp.load_data()
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># load kernels</span>
+<span class="ansi-green-fg">      5</span> scb.SpiceManager.clear_kernels()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -1143,10 +1177,15 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-  5 observation(s) in &#39;2W_sranging&#39; carry the -1 no-data sentinel and were flagged as outliers (indices [0, 1, 2, 3, 4])
-Pass 1: DSS-35, 2018-07-02T04:15 - 11:54 UTC, 150 range / 387 Doppler, uplink 7188.698 MHz, 1 RU = 0.1413 m one-way, transponder delay 1649.9 ns
-  5 observation(s) in &#39;2W_sranging&#39; carry the -1 no-data sentinel and were flagged as outliers (indices [0, 1, 2, 3, 4])
-Pass 2: DSS-35, 2018-07-04T02:24 - 07:29 UTC, 121 range / 266 Doppler, uplink 7188.691 MHz, 1 RU = 0.1413 m one-way, transponder delay 1649.9 ns
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> tropo_seasonal_file_path = data.tropo_seasonal_new.path
+<span class="ansi-green-fg">      2</span> media_bucket = os.path.dirname(data.tropo_seasonal_new.path)
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1211,10 +1250,16 @@ Pass 2: DSS-35, 2018-07-04T02:24 - 07:29 UTC, 121 range / 266 Doppler, uplink 71
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Start time (UTC):  2018-07-02T03:15:35.999998
-End time   (UTC):  2018-07-04T08:29:35.000001
-Arc length:        53.2 h
-Sun distance 1.311 AU, Earth distance 0.478 AU
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Scenario window: observation span of the two passes with a 1-hour pad on each side</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> all_et_obs = np.unique(np.concatenate([s.observed_meas.meas_time_et.times.values <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> s <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> specs]))
+<span class="ansi-green-fg">      3</span> et_min_obs, et_max_obs = all_et_obs[<span class="ansi-green-fg">0</span>], all_et_obs[-<span class="ansi-green-fg">1</span>]
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># Output grid of the propagation, at most 60 s apart. The integrator steps by</span>
+<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># its own tolerances and the filter interpolates the reference SPK and STMs at</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;specs&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1327,50 +1372,19 @@ is about 2025 RU (286 m).</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Dataset &#34;Range 1 DSS-35&#34;
-  Applying media corrections: tropo (149/150 measurements)
-  1 observation(s) could not be computed and were flagged as outliers (1 already flagged in the source file): index [0]
-Dataset &#34;Doppler 1 DSS-35&#34;
-  Applying media corrections: tropo (362/387 measurements)
-  25 observation(s) could not be computed and were flagged as outliers (0 already flagged in the source file): index [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
-Dataset &#34;Range 2 DSS-35&#34;
-  Applying media corrections: tropo (121/121 measurements)
-Dataset &#34;Doppler 2 DSS-35&#34;
-  Applying media corrections: tropo (266/266 measurements)
-UserWarning: SequentialRangingReal &#39;Range 1 DSS-35&#39;: 1 of 150 round trips have no ramp record at their transmit time (epoch indices [0]); their computed range is NaN and they are flagged as outliers.
-UserWarning: DopplerReal &#39;Doppler 1 DSS-35&#39;: 25 of 387 count intervals have no ramp record at their transmit time (epoch indices [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]); their computed Doppler is NaN and they are flagged as outliers.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      2</span> log = io.StringIO()
+<span class="ansi-green-fg">      3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> contextlib.redirect_stdout(log), contextlib.redirect_stderr(log), \
+<span class="ansi-green-fg">      4</span>         warnings.catch_warnings(record=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> caught:
+<span class="ansi-green-fg">      5</span>     warnings.simplefilter(<span class="ansi-yellow-fg">&#34;always&#34;</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span>     measurements.compute(target=Orbiter, frame=frame)
+<span class="ansi-green-fg">      7</span> <span style="color: rgb(95,135,135)"># The log draws a progress bar per dataset; keep the media-correction and flagging lines</span>
+<span class="ansi-green-fg">      8</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> line <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> log.getvalue().splitlines():
+<span class="ansi-green-fg">      9</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-yellow-fg">&#34;computed measurements for the dataset&#34;</span> <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> line:
 
-Before editing
-Range 1 DSS-35: 150 obs, 5 flagged, residual RMS (kept) = 1.896099e+01 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Doppler 1 DSS-35: 387 obs, 25 flagged, residual RMS (kept) = 2.565111e+04 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Range 2 DSS-35: 121 obs, 5 flagged, residual RMS (kept) = 1.749049e+01 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Doppler 2 DSS-35: 266 obs, 0 flagged, residual RMS (kept) = 8.629580e+06 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-[MeasurementEditing] Huber/MAD (5.0x): 0 new outliers flagged in &#39;Range 1 DSS-35&#39;.
-[MeasurementEditing] Outlier flags written back to all datasets.
-[MeasurementEditing] Huber/MAD (5.0x): 55 new outliers flagged in &#39;Doppler 1 DSS-35&#39;.
-[MeasurementEditing] Outlier flags written back to all datasets.
-[MeasurementEditing] Huber/MAD (5.0x): 0 new outliers flagged in &#39;Range 2 DSS-35&#39;.
-[MeasurementEditing] Outlier flags written back to all datasets.
-[MeasurementEditing] Huber/MAD (5.0x): 19 new outliers flagged in &#39;Doppler 2 DSS-35&#39;.
-[MeasurementEditing] Outlier flags written back to all datasets.
-
-After editing
-Range 1 DSS-35: 150 obs, 5 flagged, residual RMS (kept) = 1.896099e+01 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Doppler 1 DSS-35: 387 obs, 80 flagged, residual RMS (kept) = 6.289728e-04 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Range 2 DSS-35: 121 obs, 5 flagged, residual RMS (kept) = 1.749049e+01 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Doppler 2 DSS-35: 266 obs, 19 flagged, residual RMS (kept) = 9.313246e-04 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-
-Noise sigmas refitted by the editing
-  Range 1 DSS-35           3.52 RU  =    0.498 m one-way
-  Doppler 1 DSS-35       0.4634 mHz
-  Range 2 DSS-35          3.949 RU  =    0.558 m one-way
-  Doppler 2 DSS-35       0.9226 mHz
-
-Data weights used by the filter
-  Range 1 DSS-35          7.075 RU  =    1.000 m one-way
-  Doppler 1 DSS-35          5.6 mHz
-  Range 2 DSS-35          7.075 RU  =    1.000 m one-way
-  Doppler 2 DSS-35          5.6 mHz
+<span class="ansi-red-fg">NameError</span>: name &#39;measurements&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1600,26 +1614,19 @@ never shadows the OD044 kernel. It returns the filter, the solution, and the col
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-PFOGM: 5 batches of 26.6 h, 2 over the fit arc
-  pass 1 in batch 1 - 1
-  pass 2 in batch 2 - 2
-Cannonball SRP acceleration: 2.12e-11 km/s^2 (PFOGM sigma = 24% of it)
-A priori - OD044: |dr| = 7.84 km, |dv| = 11.94 mm/s
-ITERATION 1
-RMS State Deviation: 2.076647e+00
-Cost function J = Σ(r/σ)²: 8.392762e+01 (n = 815, J/n = 1.029787e-01)
-ITERATION 2
-RMS State Deviation: 3.349712e-01
-Cost function J = Σ(r/σ)²: 8.421159e+01 (n = 815, J/n = 1.033271e-01)
-Relative cost change: 3.383513e-03
-ITERATION 3
-RMS State Deviation: 8.196400e-02
-Cost function J = Σ(r/σ)²: 8.428054e+01 (n = 815, J/n = 1.034117e-01)
-Relative cost change: 8.188113e-04
-✓ CONVERGED after 3 iteration(s)!
-  Triggered by: cost function
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 10</span>
+<span class="ansi-green-fg">      6</span> filter_bias_sigma_m = <span class="ansi-green-fg">2.0</span>        <span style="color: rgb(95,135,135)"># [m]     one-way, per pass</span>
+<span class="ansi-green-fg">      7</span>
+<span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># PFOGM stochastic accelerations: the window is split in equal batches, one per pass</span>
+<span class="ansi-green-fg">      9</span> pfogm_sigma        = <span class="ansi-green-fg">5e-12</span>       <span style="color: rgb(95,135,135)"># [km/s^2] per axis and batch</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">10</span> pfogm_batch_length = (et_padded[-<span class="ansi-green-fg">1</span>] - et_padded[<span class="ansi-green-fg">0</span>]) / len(pass_files)   <span style="color: rgb(95,135,135)"># [s]</span>
+<span class="ansi-green-fg">     11</span> pfogm_tau          = <span class="ansi-green-fg">86400.0</span>     <span style="color: rgb(95,135,135)"># [s]     correlation time</span>
+<span class="ansi-green-fg">     12</span>
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Iterations</span>
 
-Nominal fit: 3 iterations, converged = True, 9 s
+<span class="ansi-red-fg">NameError</span>: name &#39;et_padded&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1678,16 +1685,19 @@ Nominal fit: 3 iterations, converged = True, 9 s
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Post-fit J/n = 0.103 over 815 measurements
-  Range 1 DSS-35     J/n = 0.256
-  Doppler 1 DSS-35   J/n = 0.009
-  Range 2 DSS-35     J/n = 0.319
-  Doppler 2 DSS-35   J/n = 0.029
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 12</span>
+<span class="ansi-green-fg">      8</span>     all_norm = np.concatenate(all_norm)
+<span class="ansi-green-fg">      9</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> np.mean(all_norm ** <span class="ansi-green-fg">2</span>), per_dataset, len(all_norm)
+<span class="ansi-green-fg">     10</span>
+<span class="ansi-green-fg">     11</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">12</span> J_all, J_ds, n_meas = normalized_cost(solution)
+<span class="ansi-green-fg">     13</span> print(<span class="ansi-yellow-fg">f&#34;Post-fit J/n = {J_all:.3f} over {n_meas} measurements&#34;</span>)
+<span class="ansi-green-fg">     14</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> name, J <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> J_ds.items():
+<span class="ansi-green-fg">     15</span>     print(<span class="ansi-yellow-fg">f&#34;  {name:&lt;18} J/n = {J:.3f}&#34;</span>)
 
-eta_srp = 1.263 +/- 0.214  (effective C_r = 1.01)
-Range biases (a priori 0 RU +/- 2 m):
-  Range 1 DSS-35       -6.5 +/- 13.4 RU   shift -0.91 +/- 1.90 m
-  Range 2 DSS-35        6.5 +/- 13.4 RU   shift +0.91 +/- 1.90 m
+<span class="ansi-red-fg">NameError</span>: name &#39;solution&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1739,23 +1749,21 @@ appear.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_16_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_16_0.png" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Post-fit residuals (mean / RMS, in units of the data weight):
-  Range 1 DSS-35     n =  145  mean  -0.00  RMS  0.51
-  Doppler 1 DSS-35   n =  307  mean  -0.03  RMS  0.10
-  Range 2 DSS-35     n =  116  mean  +0.00  RMS  0.56
-  Doppler 2 DSS-35   n =  247  mean  +0.01  RMS  0.17
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> palette = scb.Plotting.color_palettes[<span class="ansi-yellow-fg">&#34;scb_palette&#34;</span>]
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> pass_colors = dict(zip(range(<span class="ansi-green-fg">1</span>, len(pass_files) + <span class="ansi-green-fg">1</span>), [palette[<span class="ansi-green-fg">0</span>], palette[<span class="ansi-green-fg">2</span>], palette[<span class="ansi-green-fg">1</span>]]))
+<span class="ansi-green-fg">      3</span> band_units = {<span class="ansi-yellow-fg">&#34;range&#34;</span>: <span class="ansi-yellow-fg">&#34;RU&#34;</span>, <span class="ansi-yellow-fg">&#34;doppler&#34;</span>: <span class="ansi-yellow-fg">&#34;Hz&#34;</span>}
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># Prefits of the first iteration (against the a priori) and final postfits</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;pass_files&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1836,24 +1844,25 @@ Post-fit residuals (mean / RMS, in units of the data weight):
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Estimate - OD044 over the fit arc (RMS / mean 1-sigma):
-  R     position      2.3 m  /     1.9 m   velocity  0.334 /  0.338 mm/s
-  T     position   7364.7 m  /  7577.8 m   velocity  1.875 /  9.828 mm/s
-  N     position   9523.1 m  /  4802.1 m   velocity  4.203 /  9.897 mm/s
-Position chi^2: mean 6.04, max 7.63 (95 % bound 7.81)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_18_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_18_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 24</span>
+<span class="ansi-green-fg">     20</span>     chi2 = np.array([d @ np.linalg.solve(p[:<span class="ansi-green-fg">3</span>, :<span class="ansi-green-fg">3</span>], d) <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> d, p <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> zip(dr, P)])
+<span class="ansi-green-fg">     21</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> err_r, err_v, sig_r, sig_v, chi2
+<span class="ansi-green-fg">     22</span>
+<span class="ansi-green-fg">     23</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">24</span> fit_r, fit_v, fit_sr, fit_sv, fit_chi2 = compare_od044(solution, solution.timestamps)
+<span class="ansi-green-fg">     25</span> print(<span class="ansi-yellow-fg">&#34;Estimate - OD044 over the fit arc (RMS / mean 1-sigma):&#34;</span>)
+<span class="ansi-green-fg">     26</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> j, comp <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> enumerate([<span class="ansi-yellow-fg">&#34;R&#34;</span>, <span class="ansi-yellow-fg">&#34;T&#34;</span>, <span class="ansi-yellow-fg">&#34;N&#34;</span>]):
+<span class="ansi-green-fg">     27</span>     print(f&#34;  {comp:&lt;5} position {np.sqrt(np.mean(fit_r[:, j]**2)) * 1e3:8.1f} m  / {np.mean(fit_sr[:, j]) * 1e3:7.1f} m   &#34;
+
+<span class="ansi-red-fg">NameError</span>: name &#39;solution&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>
@@ -1915,27 +1924,20 @@ Position chi^2: mean 6.04, max 7.63 (95 % bound 7.81)
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_20_0.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_20_0.png" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_20_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_20_1.png" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Batches in the fit arc: sigma / a priori = 0.84 - 0.95, largest |estimate| = 1.7 nm/s^2
-Prediction batches: sigma / a priori = 1.00 - 1.00
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> meas_epochs = scb.EpochArray(solution.timestamps, sys=<span class="ansi-yellow-fg">&#34;TDB&#34;</span>)
+<span class="ansi-green-fg">      2</span> scb.Plotting.get_fig_handle(
+<span class="ansi-green-fg">      3</span>     scb.Plotting.plot_fogm_parameters_estimate(
+<span class="ansi-green-fg">      4</span>         solution, meas_epochs, <span class="ansi-green-fg">3</span>,
+
+<span class="ansi-red-fg">NameError</span>: name &#39;solution&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -2003,35 +2005,21 @@ Prediction batches: sigma / a priori = 1.00 - 1.00
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
- time   |      R pos err / 1-sigma [m]      |     T / N err [km] (1-sigma)      |  chi^2
-+  0 h  |      -3.1 /     1.9                 |   -7.13 (7.51) /  -9.44 (5.09)         |   7.55
-+  6 h  |      -4.0 /     2.1                 |   -7.09 (7.51) /  -9.42 (5.19)         |   6.57
-+ 12 h  |      -5.0 /     5.1                 |   -7.04 (7.53) /  -9.41 (5.30)         |   3.82
-+ 24 h  |      -9.9 /    20.7                 |   -6.90 (7.57) /  -9.39 (5.54)         |   3.04
-+ 48 h  |     -21.0 /    75.9                 |   -6.65 (7.71) /  -9.33 (6.08)         |   2.41
-+ 72 h  |     -36.6 /   155.9                 |   -6.40 (7.94) /  -9.27 (6.70)         |   1.96
-
-chi^2 over the prediction: mean 3.22, max 7.55, 100% below 7.81
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_22_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_22_1.png" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_22_2.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_22_2.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> t_pred = et_max_obs + np.arange(<span class="ansi-green-fg">0.0</span>, pred_span + <span class="ansi-green-fg">1.0</span>, <span class="ansi-green-fg">3600.0</span>)
+<span class="ansi-green-fg">      2</span> pr_r, pr_v, pr_sr, pr_sv, pr_chi2 = compare_od044(solution, t_pred)
+<span class="ansi-green-fg">      3</span> pred_h = (t_pred - et_max_obs) / <span class="ansi-green-fg">3600.0</span>
+<span class="ansi-green-fg">      4</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;et_max_obs&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="9.-Prediction-Test-on-a-Third-Pass">
@@ -2197,34 +2185,25 @@ before it processes a new pass.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-  6 observation(s) in &#39;2W_sranging&#39; carry the -1 no-data sentinel and were flagged as outliers (indices [0, 1, 2, 3, 4, 86])
-Pass 3: DSS-35, 2018-07-06T05:12 - 09:23 UTC, 45.7 h after the last fitted measurement
-Predicted SPK vs mapped solution: largest position difference 0.367 m
-
-Against OD044, after editing
-Range 3 DSS-35: 90 obs, 6 flagged, residual RMS (kept) = 1.740540e+01 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-Doppler 3 DSS-35: 200 obs, 19 flagged, residual RMS (kept) = 1.565137e-03 vs Orbiter[-64] via orx_180301_181201_180921_od044_v1.bsp
-
-Against the prediction
-Range 3 DSS-35: 90 obs, 6 flagged, residual RMS (kept) = 1.373946e+02 vs orbiter_pred[-1002] via orex_pass3_prediction.bsp
-Doppler 3 DSS-35: 200 obs, 19 flagged, residual RMS (kept) = 6.500868e-03 vs orbiter_pred[-1002] via orex_pass3_prediction.bsp
-
-dataset             n      mean       RMS  mean sigma  RMS/sigma in 3 sigma   RMS vs OD044
-Range 3 DSS-35     84   +19.408    19.419      76.940       0.25       100%       2.460 m
-Doppler 3 DSS-35  181    +6.274     6.501      46.680       0.14       100%       1.565 mHz
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_24_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_24_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 11</span>
+<span class="ansi-green-fg">      7</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">yield</span>
+<span class="ansi-green-fg">      8</span>
+<span class="ansi-green-fg">      9</span>
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(95,135,135)"># Pass 3: same station, models built as in Section 2, never handed to the filter</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">11</span> trk_file_3 = data.trk_file_187_dss35.path
+<span class="ansi-green-fg">     12</span> GS = stations[<span class="ansi-yellow-fg">&#34;DSS-35&#34;</span>]
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)"># Its bias is not estimated: the ranging model applies the delays of Section 2</span>
+<span class="ansi-green-fg">     14</span> <span style="color: rgb(95,135,135)"># and the a priori bias of the fitted passes</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
+</pre></div></div>
 </div>
 <section id="Result">
 <h2>Result<a class="headerlink" href="#Result" title="Link to this heading">#</a></h2>
@@ -2301,26 +2280,25 @@ line-of-sight (R) error with its sigma:</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-PFOGM sigma       it     J/n         eta_srp   chi2&lt;7.81 mean chi2  max chi2      R err / 1-sigma at +72 h
-no PFOGM           2  0.1036   1.282 +/- 0.060         47%      8.82     12.59           16.1 m /    9.9 m
-1.0e-12 km/s²      2  0.1034   1.285 +/- 0.075        100%      2.78      6.42           17.7 m /   34.1 m
-2.5e-12 km/s²      3  0.1033   1.283 +/- 0.126        100%      2.90      6.95           22.7 m /   81.1 m
-5.0e-12 km/s²      3  0.1034   1.263 +/- 0.214        100%      3.22      7.55           36.6 m /  155.9 m
-1.0e-11 km/s²      4  0.1041   1.198 +/- 0.339         93%      3.61      8.51           73.7 m /  285.5 m
-2.0e-11 km/s²      5  0.1053   1.095 +/- 0.439         93%      3.97      9.77          131.5 m /  507.0 m
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_27_1.png" src="../../_images/_collections_tutorials_advanced_RealMSR_OSIRIS_REx_OD_27_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[13]</span><span class="ansi-green-fg">, line 11</span>
+<span class="ansi-green-fg">      7</span>         sweep[sig] = dict(n_it=n_iters, J=J_all, eta=x_end[j], s_eta=np.sqrt(P_end[j, j]),
+<span class="ansi-green-fg">      8</span>                           err=pr_r, sig=pr_sr, chi2=pr_chi2)
+<span class="ansi-green-fg">      9</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">continue</span>
+<span class="ansi-green-fg">     10</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> quiet():
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">11</span>         _, sol_i, n_it_i, _, cols_i = run_batch_od(sig, <span class="ansi-yellow-fg">f&#34;tune{i}&#34;</span>, verbose=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>)
+<span class="ansi-green-fg">     12</span>         J_i = normalized_cost(sol_i)[<span class="ansi-green-fg">0</span>]
+<span class="ansi-green-fg">     13</span>         st_i, P_i = sol_i.propagate_state_covariance(t_end, use_smoothed=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>, use_all_data=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)[<span class="ansi-green-fg">0</span>]
+<span class="ansi-green-fg">     14</span>         <span style="color: rgb(95,135,135)"># Evaluated right after the fit, before the next one replaces its trajectory files</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;run_batch_od&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="11.-Summary">
@@ -2496,7 +2474,7 @@ no PFOGM           2  0.1036   1.282 +/- 0.060         47%      8.82     12.59  
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

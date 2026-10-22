@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_AWU_and_AWF';</script>
@@ -749,12 +748,50 @@
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> numpy <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> np
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">      6</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> data = supp.load_data()
+<span class="ansi-green-fg">      8</span>
+<span class="ansi-green-fg">      9</span> <span style="color: rgb(95,135,135)"># load kernels</span>
+<span class="ansi-green-fg">     10</span> scb.SpiceManager.clear_kernels()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -916,7 +953,7 @@ State vector (mixed units):
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -928,17 +965,6 @@ mass * 9.8   = 4900.0 kg
 
 Adding km + km/sec (should raise TypeError):
   Blocked: ValueError
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\ &#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\ &#39;
-/tmp/ipykernel_24029/3765444862.py:8: SyntaxWarning: invalid escape sequence &#39;\ &#39;
-  print(f&#34;pos1 \ dt    = {pos1 / dt}&#34;)     # km/sec
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1048,13 +1074,55 @@ Class ID:       1
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-DCM shape  : (3, 3)
-DCM (J2000→IAUEARTH):
-[[-7.63801e-01 -6.45449e-01  2.08100e-03]
- [ 6.45446e-01 -7.63803e-01 -1.77000e-03]
- [ 2.73200e-03 -9.00000e-06  9.99996e-01]]
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceMISSINGTIMEINFO</span>                      Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── Define an epoch ──────────────────────────────────────────────</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> et0    = scb.SpiceManager.jd2et(<span class="ansi-green-fg">2461809.72995654</span>)   <span style="color: rgb(95,135,135)"># arbitrary JD</span>
+<span class="ansi-green-fg">      3</span> epoch  = scb.EpochArray(np.array([et0]), sys=<span class="ansi-yellow-fg">&#39;TDB&#39;</span>)
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># ── Direction Cosine Matrix: J2000 → IAUEARTH ────────────────────</span>
 
-||R @ Rᵀ − I||₂ = 2.71e-16  (should be ~0)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py:2399</span>, in <span class="ansi-cyan-fg">SpiceManager.jd2et</span><span class="ansi-blue-fg">(jd)</span>
+<span class="ansi-green-fg">   2380</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-fg">   2381</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">jd2et</span>(jd: <span style="color: rgb(0,135,0)">float</span>) -&gt; <span style="color: rgb(0,135,0)">float</span>:
+<span class="ansi-green-fg">   2382</span> <span style="color: rgb(188,188,188)">    </span><span class="ansi-yellow-fg">&#34;&#34;&#34;Convert a Julian Date (JDTDB) to ephemeris time.</span>
+<span class="ansi-green-fg">   2383</span>
+<span class="ansi-green-fg">   2384</span> <span class="ansi-yellow-fg">    Parameters</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">   2397</span> <span class="ansi-yellow-fg">    the drift between JD and ET.</span>
+<span class="ansi-green-fg">   2398</span> <span class="ansi-yellow-fg">    &#34;&#34;&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2399</span>     var1 = <span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">unitim</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">jd</span><span class="ansi-black-fg ansi-yellow-bg">,</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">JDTDB</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">,</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">TDB</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   2400</span>     var2 = spice.deltet(var1, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ET</span><span class="ansi-yellow-fg">&#34;</span>)
+<span class="ansi-green-fg">   2401</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> var1 + var2
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    157</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    158</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    137</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    138</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    143</span>         )
+
+<span class="ansi-red-fg">SpiceMISSINGTIMEINFO</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(MISSINGTIMEINFO) --
+
+The following variables, needed to convert between the input uniform time scales, were not found in the kernel pool: DELTET/DELTA_T_A, DELTET/K, DELTET/EB, DELTET/M. Your program may have failed to load a leapseconds kernel. Other possible causes of this problem include loading an invalid leapseconds kernel---one that lacks an initial \begindata marker or final newline character, or is otherwise corrupted---or deleting previously loaded kernel pool variables via calls to routines that clear the kernel pool.
+
+unitim_c --&gt; UNITIM
+
+================================================================================
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1078,12 +1146,18 @@ DCM (J2000→IAUEARTH):
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Transformation matrix shape : (4, 4)
-Upper-left 3×3 (rotation):
-[[-7.63801e-01 -6.45449e-01  2.08100e-03]
- [ 6.45446e-01 -7.63803e-01 -1.77000e-03]
- [ 2.73200e-03 -9.00000e-06  9.99996e-01]]
-Translation column (km)  : [ 2.69516128e+07 -1.39474250e+08  3.83428136e+07]
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── Full state-transformation matrix (4×4 homogeneous) ───────────</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># get_transformation returns a list; each element is an ArrayWUnits</span>
+<span class="ansi-green-fg">      3</span> T_list = scb.Frame.get_transformation(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span>     source_frame=J2000, target_frame=IAUEARTH, epoch=epoch)
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">      6</span> T_mat = np.array(T_list[<span class="ansi-green-fg">0</span>].values)   <span style="color: rgb(95,135,135)"># (4, 4) numpy array</span>
+<span class="ansi-green-fg">      7</span> print(<span class="ansi-yellow-fg">f&#34;Transformation matrix shape : {T_mat.shape}&#34;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;epoch&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1153,12 +1227,19 @@ Form 2 (array + units + frame):
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[13]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># convert_to operates IN-PLACE and returns None — save original first</span>
+<span class="ansi-green-fg">      3</span> pos_j2k = scb.ArrayWFrame(np.array([<span class="ansi-green-fg">7000.0</span>, -<span class="ansi-green-fg">1200.0</span>, <span class="ansi-green-fg">3500.0</span>]), km, J2000)
+<span class="ansi-green-fg">      4</span> orig_vals = np.array(pos_j2k.quantity.values)   <span style="color: rgb(95,135,135)"># snapshot before conversion</span>
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> pos_j2k.convert_to(IAUEARTH, epoch)             <span style="color: rgb(95,135,135)"># in-place: frame updated</span>
+<span class="ansi-green-fg">      7</span> earth_vals = np.array(pos_j2k.quantity.values)
+<span class="ansi-green-fg">      8</span>
+<span class="ansi-green-fg">      9</span> print(<span class="ansi-yellow-fg">&#34;\nFrame conversion (J2000 → IAUEARTH):&#34;</span>)
 
-Frame conversion (J2000 → IAUEARTH):
-J2000    (before) : [ 7000. -1200.  3500.] km
-IAUEARTH (after)  : [-4564.782  5428.494  3519.122] km
-|r| J2000    = 7917.7017 km
-|r| IAUEARTH = 7917.7017 km  (must be equal)
+<span class="ansi-red-fg">NameError</span>: name &#39;epoch&#39; is not defined
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1262,8 +1343,14 @@ Cross-unit addition (km + km/s in J2000)  — should be blocked:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_basics_AWU_and_AWF_22_0.png" src="../../_images/_collections_tutorials_basics_AWU_and_AWF_22_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[15]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> supp.supp_plotting.plot_awu_awf_visuals(R)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;R&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 
@@ -1360,7 +1447,7 @@ Cross-unit addition (km + km/s in J2000)  — should be blocked:
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

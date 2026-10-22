@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_SpiceManager_CelestialBody_Constants';</script>
@@ -749,12 +748,50 @@
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> dataclasses <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> fields
+<span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> numpy <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> np
+<span class="ansi-green-fg">      6</span>
+<span class="ansi-green-fg">      7</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> data = supp.load_data()
+<span class="ansi-green-fg">      9</span>
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(95,135,135)">## define the units and frames we&#39;ll be using across the tutorial</span>
+<span class="ansi-green-fg">     11</span> km, AU, kg, sec, day = scb.Units.get_units([<span class="ansi-yellow-fg">&#39;km&#39;</span>, <span class="ansi-yellow-fg">&#39;AU&#39;</span>, <span class="ansi-yellow-fg">&#39;kg&#39;</span>, <span class="ansi-yellow-fg">&#39;sec&#39;</span>, <span class="ansi-yellow-fg">&#39;day&#39;</span>])
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -777,20 +814,30 @@ SCB supplementary data up to date.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 ECLIPJ2000 to J2000 :
-[[ 1.          0.          0.        ]
- [ 0.          0.91748206 -0.39777716]
- [ 0.          0.39777716  0.91748206]]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> et = <span class="ansi-green-fg">140254384.184625</span>   <span style="color: rgb(95,135,135)"># seconds past J2000</span>
+<span class="ansi-green-fg">      2</span> print(<span class="ansi-yellow-fg">&#34;ECLIPJ2000 to J2000 :&#34;</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> print(scb.SpiceManager.get_xfrm(ECLIPJ2000.name, J2000.name, et))
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> print(<span class="ansi-yellow-fg">&#34;\nECLIPJ2000 to IAU_EARTH :&#34;</span>)
+<span class="ansi-green-fg">      6</span> print(scb.SpiceManager.get_xfrm(ECLIPJ2000.name, IAU_EARTH.name, et))
 
-ECLIPJ2000 to IAU_EARTH :
-[[-9.72925256e-01 -2.11880898e-01  9.23197279e-02]
- [ 2.31119580e-01 -8.92681357e-01  3.86915668e-01]
- [ 4.32060908e-04  3.97776922e-01  9.17482062e-01]]
+<span class="ansi-red-fg">NameError</span>: name &#39;ECLIPJ2000&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -822,19 +869,16 @@ ECLIPJ2000 to IAU_EARTH :
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Position only:
-[-2.34128283e+07 -1.37716948e+08 -5.97056600e+07] [km ... km]
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Earth w.r.t. the Sun at the reference epoch</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> print(<span class="ansi-yellow-fg">f&#34;Position only:\n{scb.SpiceManager.get_pos(&#39;Earth&#39;, et, J2000.name, &#39;Sun&#39;)}\n&#34;</span>)
+<span class="ansi-green-fg">      3</span> print(<span class="ansi-yellow-fg">f&#34;Velocity only:\n{scb.SpiceManager.get_vel(&#39;Earth&#39;, et, J2000.name, &#39;Sun&#39;)}\n&#34;</span>)
+<span class="ansi-green-fg">      4</span> print(<span class="ansi-yellow-fg">f&#34;Full state vector:\n{scb.SpiceManager.get_state(&#39;Earth&#39;, et, J2000.name, &#39;Sun&#39;)}\n&#34;</span>)
+<span class="ansi-green-fg">      5</span> print(<span class="ansi-yellow-fg">f&#34;Light time:\n{scb.SpiceManager.get_lighttime(&#39;Earth&#39;, et, J2000.name, &#39;Sun&#39;)}\n&#34;</span>)
 
-Velocity only:
-[28.94979026 -4.32365438 -1.87551229] [km/sec ... km/sec]
-
-Full state vector:
-[-2.34128283e+07 -1.37716948e+08 -5.97056600e+07  2.89497903e+01
- -4.32365438e+00 -1.87551229e+00] [non-homogeneous]
-
-Light time:
-506.7417668236853 sec
-
+<span class="ansi-red-fg">NameError</span>: name &#39;J2000&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -972,35 +1016,24 @@ All PCInfo fields for Phobos:
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Querying MERCURY...
-Retrieved all states across 728.0 day interval
-Querying VENUS...
-Retrieved all states across 728.0 day interval
-Querying EARTH...
-Retrieved all states across 728.0 day interval
-Querying MARS...
-Retrieved all states across 728.0 day interval
-Querying JUPITER...
-Retrieved all states across 728.0 day interval
-Querying SATURN...
-Retrieved all states across 728.0 day interval
-Querying URANUS...
-Retrieved all states across 728.0 day interval
-Querying NEPTUNE...
-Retrieved all states across 728.0 day interval
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_basics_SpiceManager_CelestialBody_Constants_15_1.png" src="../../_images/_collections_tutorials_basics_SpiceManager_CelestialBody_Constants_15_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># 2 year time interval with weekly sample rate</span>
+<span class="ansi-green-fg">      2</span> epochs = scb.EpochArray.interval(start = &#39;2001 JAN 01 12:00:00.000&#39;,
+<span class="ansi-green-fg">      3</span>                                  end   = <span class="ansi-yellow-fg">&#39;2003 JAN 01 12:00:00.000&#39;</span>,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span>                                  dt    = scb.ArrayWUnits(<span class="ansi-green-fg">7</span>, day),
+<span class="ansi-green-fg">      5</span>                                  sys   = &#39;TDB&#39;)
+<span class="ansi-green-fg">      6</span>
+<span class="ansi-green-fg">      7</span> <span style="color: rgb(95,135,135)"># query heliocentric state for each planet</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;day&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>
@@ -1104,7 +1137,7 @@ Retrieved all states across 728.0 day interval
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

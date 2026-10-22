@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_Propagator_and_Trajectory';</script>
@@ -777,12 +776,50 @@
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 9</span>
+<span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> pathlib <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> Path
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> numpy <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> np
+<span class="ansi-green-fg">      7</span>
+<span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">9</span> data = supp.load_data()
+<span class="ansi-green-fg">     10</span>
+<span class="ansi-green-fg">     11</span> <span style="color: rgb(95,135,135)"># define units and frames</span>
+<span class="ansi-green-fg">     12</span> kg, m, km, sec, hr, day, rad, deg, N, unitless = scb.Units.get_units(
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -872,7 +909,15 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1000 ORCCA_SC
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> dry_mass  = scb.ArrayWUnits(<span class="ansi-green-fg">1500.0</span>, kg)
+<span class="ansi-green-fg">      2</span> fuel_mass = scb.ArrayWUnits(<span class="ansi-green-fg">500.0</span>,  kg)
+<span class="ansi-green-fg">      3</span> area      = scb.ArrayWUnits(<span class="ansi-green-fg">1e-6</span>,   km**<span class="ansi-green-fg">2</span>)
+<span class="ansi-green-fg">      4</span> ref_coeff = scb.ArrayWUnits(<span class="ansi-green-fg">1.5</span>,    unitless)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;kg&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -907,7 +952,19 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Span : 744 epochs,  30.958333333333332 day-day arc,  1-hour step
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> sun = scb.CelestialBody.from_constants(<span class="ansi-yellow-fg">&#39;SUN&#39;</span>)
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># ── initial position and velocity (J2000, Sun-centred) ────────────</span>
+<span class="ansi-green-fg">      4</span> pos0 = scb.ArrayWFrame(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span>     np.array([-<span class="ansi-green-fg">1.1123095885148e8</span>, <span class="ansi-green-fg">8.9094345479316e7</span>, <span class="ansi-green-fg">3.8656500948069e7</span>]), km, frame
+<span class="ansi-green-fg">      6</span> )
+<span class="ansi-green-fg">      7</span> vel0 = scb.ArrayWFrame(
+<span class="ansi-green-fg">      8</span>     np.array([-<span class="ansi-green-fg">20.6936999825159</span>, -<span class="ansi-green-fg">16.7800270812616</span>, -<span class="ansi-green-fg">6.6437327193572</span>]), km / sec, frame
+
+<span class="ansi-red-fg">NameError</span>: name &#39;km&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1024,9 +1081,15 @@ Span : 744 epochs,  30.958333333333332 day-day arc,  1-hour step
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-  est+dynamic (pos/vel)                   state dim = 6
-  est+static  (eta_srp est)               state dim = 7
-  considered  (eta_srp con)               state dim = 7
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> eta_val = scb.ArrayWFrame(scb.ArrayWUnits(np.array([<span class="ansi-green-fg">1.0</span>]), <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>), frame)
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># ── 1. estimated + dynamic  (standard pos/vel, propagated and filter-correctable)</span>
+<span class="ansi-green-fg">      4</span> state_dyn = scb.StateDefinition.from_components([
+
+<span class="ansi-red-fg">NameError</span>: name &#39;frame&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1100,42 +1163,20 @@ Span : 744 epochs,  30.958333333333332 day-day arc,  1-hour step
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-── Example 1: Keplerian ──────────────────────────────────
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████| 2674800.00/2674800.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> sv1    = scb.StateArray(epoch=epochs[<span class="ansi-green-fg">0</span>], origin=sun, state=state_dyn)
+<span class="ansi-green-fg">      2</span> fm1    = scb.ForceModelTranslation(primary_body=orcca_sc)
+<span class="ansi-green-fg">      3</span> prop1  = scb.Propagator(primary_body=orcca_sc, state_vector=sv1,
+<span class="ansi-green-fg">      4</span>                          tspan=epochs, force_models=fm1)
 
+<span class="ansi-red-fg">NameError</span>: name &#39;epochs&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1157,42 +1198,22 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-── Example 2: Third-body ─────────────────────────────────
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████| 2674800.00/2674800.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> third_bodies = scb.CelestialBody.from_constants([<span class="ansi-yellow-fg">&#39;MERCURY&#39;</span>, <span class="ansi-yellow-fg">&#39;VENUS&#39;</span>, <span class="ansi-yellow-fg">&#39;EARTH&#39;</span>])
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> sv2   = scb.StateArray(epoch=epochs[<span class="ansi-green-fg">0</span>], origin=sun, state=state_dyn)
+<span class="ansi-green-fg">      4</span> fm2   = scb.ForceModelTranslation(primary_body=orcca_sc, third_bodies=third_bodies)
+<span class="ansi-green-fg">      5</span> prop2 = scb.Propagator(primary_body=orcca_sc, state_vector=sv2,
+<span class="ansi-green-fg">      6</span>                         tspan=epochs, force_models=fm2)
 
+<span class="ansi-red-fg">NameError</span>: name &#39;epochs&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1213,42 +1234,20 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-── Example 3: Cannonball SRP ─────────────────────────────
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████| 2674800.00/2674800.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> sv3   = scb.StateArray(epoch=epochs[<span class="ansi-green-fg">0</span>], origin=sun, state=state_eta_est)
+<span class="ansi-green-fg">      2</span> fm3   = scb.ForceModelTranslation(primary_body=orcca_sc, cannonball_SRP=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">      3</span> prop3 = scb.Propagator(primary_body=orcca_sc, state_vector=sv3,
+<span class="ansi-green-fg">      4</span>                         tspan=epochs, force_models=fm3)
 
+<span class="ansi-red-fg">NameError</span>: name &#39;epochs&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1271,34 +1270,20 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-── Example 4: N-plate SRP ────────────────────────────────
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████| 2674800.00/2674800.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> sv4   = scb.StateArray(epoch=epochs[<span class="ansi-green-fg">0</span>], origin=sun, state=state_dyn)
+<span class="ansi-green-fg">      2</span> fm4   = scb.ForceModelTranslation(primary_body=orcca_sc, nplate_SRP=<span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">      3</span> prop4 = scb.Propagator(primary_body=orcca_sc, state_vector=sv4,
+<span class="ansi-green-fg">      4</span>                         tspan=epochs, force_models=fm4)
 
- =================== DOP853 integration complete. ==================
-Propagation complete.
+<span class="ansi-red-fg">NameError</span>: name &#39;epochs&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1332,51 +1317,22 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-src/scarabaeus/dynamics/SphericalHarmonicsGravity.py:279: RuntimeWarning: SPH gravity body is &#39;Earth&#39;, but propagation origin is &#39;Sun&#39;. The model will compute the relative vector r_eval/sph = r_eval/origin - r_sph/origin, taking r_sph/origin from SPICE.
-  warnings.warn(
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-── Example 5: Spherical harmonics ───────────────────────
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████| 2674800.00/2674800.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> sph = {
+<span class="ansi-green-fg">      2</span>     <span class="ansi-yellow-fg">&#39;order&#39;</span>    : <span class="ansi-green-fg">3</span>,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span>     <span class="ansi-yellow-fg">&#39;cs_file&#39;</span>  : data.earth_sph_config.path,
+<span class="ansi-green-fg">      4</span>     <span class="ansi-yellow-fg">&#39;body&#39;</span>     : scb.CelestialBody.from_constants(<span class="ansi-yellow-fg">&#39;EARTH&#39;</span>),
+<span class="ansi-green-fg">      5</span>     <span class="ansi-yellow-fg">&#39;norm_flag&#39;</span>: <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-fg">      6</span> }
 
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1413,20 +1369,25 @@ Propagation complete.
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-SPK written to tutorials/tutorial_results/prop_and_traj/keplerian_trajectory.bsp
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_Propagator_and_Trajectory_21_1.png" src="../../_images/_collections_tutorials_intermediate_Propagator_and_Trajectory_21_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      4</span> tut_result_path = Path.cwd() / <span class="ansi-yellow-fg">&#39;tutorial_results/prop_and_traj&#39;</span>
+<span class="ansi-green-fg">      5</span> tut_result_path.mkdir(parents = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>, exist_ok = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">      6</span> spk_path = tut_result_path / <span class="ansi-yellow-fg">&#39;keplerian_trajectory.bsp&#39;</span>
+<span class="ansi-green-fg">      7</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> spk_path.exists(): spk_path.unlink()  <span style="color: rgb(95,135,135)"># remove previous spk file if it exists</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> traj1 = scb.Trajectory(state_array=prop1.propagated_state_array)
+<span class="ansi-green-fg">      9</span> traj1.write_to_spk(str(spk_path))
+<span class="ansi-green-fg">     10</span> scb.SpiceManager.load_kernel_from_mkfile(str(spk_path))
+<span class="ansi-green-fg">     11</span> print(<span class="ansi-yellow-fg">f&#34;SPK written to {str(spk_path)}&#34;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;prop1&#39; is not defined
+</pre></div></div>
 </div>
 <section id="Force-Model-Position-Comparison">
 <h2>Force Model Position Comparison<a class="headerlink" href="#Force-Model-Position-Comparison" title="Link to this heading">#</a></h2>
@@ -1462,14 +1423,19 @@ SPK written to tutorials/tutorial_results/prop_and_traj/keplerian_trajectory.bsp
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 13</span>
+<span class="ansi-green-fg">      9</span>     tmp_bsp.unlink()
+<span class="ansi-green-fg">     10</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> np.array(pos)
+<span class="ansi-green-fg">     11</span>
+<span class="ansi-green-fg">     12</span> labels = [<span class="ansi-yellow-fg">&#39;Keplerian&#39;</span>, <span class="ansi-yellow-fg">&#39;Third-body&#39;</span>, <span class="ansi-yellow-fg">&#39;Cannonball SRP&#39;</span>, <span class="ansi-yellow-fg">&#39;N-plate SRP&#39;</span>, <span class="ansi-yellow-fg">&#39;Sph. harmonics&#39;</span>]
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">13</span> pos_f  = [final_pos_km(p, <span class="ansi-yellow-fg">f&#39;ex{i+1}&#39;</span>) <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i, p <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> enumerate([prop1, prop2, prop3, prop4, prop5])]
+<span class="ansi-green-fg">     14</span> pos_kep = pos_f[<span class="ansi-green-fg">0</span>]
+<span class="ansi-green-fg">     15</span>
+<span class="ansi-green-fg">     16</span> print(<span class="ansi-yellow-fg">f&#34;\n  {&#39;Force model&#39;:&lt;20}  {&#39;|Δr| vs Keplerian [km]&#39;:&gt;24}&#34;</span>)
 
-  Force model             |Δr| vs Keplerian [km]
-  ------------------------------------------------
-  Keplerian                            0.000 km
-  Third-body                         206.647 km
-  Cannonball SRP                      12.574 km
-  N-plate SRP                        117.691 km
-  Sph. harmonics                     156.651 km
+<span class="ansi-red-fg">NameError</span>: name &#39;prop1&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1553,33 +1519,24 @@ SPK written to tutorials/tutorial_results/prop_and_traj/keplerian_trajectory.bsp
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-src/scarabaeus/timeAndFrame/SpiceManager.py:1440: RuntimeWarning: Multiple matching JSON files found. Using most recently modified file: srp_trajectory_parameters.json
-  warnings.warn(
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Files written:
-  srp_trajectory.bsp  (45,056 bytes)
-  srp_trajectory_parameters.json  (43,876 bytes)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># ── write trajectory with eta_srp parameter (prop3 = cannonball SRP) ─</span>
+<span class="ansi-green-fg">      4</span> spk_params = Path.cwd() / <span class="ansi-yellow-fg">f&#39;tutorial_results/srp_trajectory.bsp&#39;</span>
+<span class="ansi-green-fg">      5</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> spk_params.exists(): spk_params.unlink()
+<span class="ansi-green-fg">      6</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> traj3 = scb.Trajectory(state_array=prop3.propagated_state_array)
+<span class="ansi-green-fg">      8</span> traj3.write_to_spk(str(spk_params))
+<span class="ansi-green-fg">      9</span>
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(95,135,135)"># ── show which sidecar files were created ────────────────────────────</span>
 
-parameters_def  : [&#39;eta_srp&#39;]
-n epochs stored : 744
-eta_srp  t=0    : [1.0]
-eta_srp  t=-1   : [1.0]
-
-Trajectory.get_state at epoch index 100:
-  position   (km)  : [-1.18379786e+08  8.28230641e+07  3.61645581e+07]
-  velocity (km/s)  : [-19.0117596  -18.03971812  -7.19196188]
-  parameters       : 0.9999999999999997 unitless
+<span class="ansi-red-fg">NameError</span>: name &#39;prop3&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1674,50 +1631,23 @@ Trajectory.get_state at epoch index 100:
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-                            Starting propagation...
-================================================================================
- =================== IAS15 integration complete. ==================
-Propagation complete.
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████| 2674800.00/2674800.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-  IAS15  runtime : 0.00 s
-  DOP853 runtime : 0.01 s
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[13]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── IAS15 propagation ─────────────────────────────────────────────</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># propagate_STM=False is required: IAS15 does not integrate the</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># variational equations and will crash if STM propagation is enabled.</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> sv_ias   = scb.StateArray(epoch=epochs[<span class="ansi-green-fg">0</span>], origin=sun, state=state_dyn)
+<span class="ansi-green-fg">      5</span> fm_ias   = scb.ForceModelTranslation(primary_body=orcca_sc)
+<span class="ansi-green-fg">      6</span>
+<span class="ansi-green-fg">      7</span> prop_ias = scb.Propagator(
 
+<span class="ansi-red-fg">NameError</span>: name &#39;epochs&#39; is not defined
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1748,8 +1678,19 @@ Propagation complete.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-  Max |Δr| DOP853 vs IAS15 over 30.958333333333332 day days : 6.358e-06 km
-  Mean|Δr|                                          : 4.109e-06 km
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[14]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      3</span>     <span style="color: rgb(95,135,135)"># propagated_state_array.state[0] = position entry</span>
+<span class="ansi-green-fg">      4</span>     <span style="color: rgb(95,135,135)"># .quantity.values has shape (n_epochs, 3)</span>
+<span class="ansi-green-fg">      5</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> np.array(prop.propagated_state_array.state[<span class="ansi-green-fg">0</span>][<span class="ansi-green-fg">5</span>].quantity.values)
+<span class="ansi-green-fg">      6</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> pos_dop = extract_pos(prop_dop)   <span style="color: rgb(95,135,135)"># (n, 3)</span>
+<span class="ansi-green-fg">      8</span> pos_ias = extract_pos(prop_ias)   <span style="color: rgb(95,135,135)"># (n, 3)</span>
+<span class="ansi-green-fg">      9</span>
+<span class="ansi-green-fg">     10</span> <span style="color: rgb(95,135,135)"># position difference at each epoch (km)</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;prop_dop&#39; is not defined
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1765,8 +1706,15 @@ Propagation complete.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_Propagator_and_Trajectory_29_0.png" src="../../_images/_collections_tutorials_intermediate_Propagator_and_Trajectory_29_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[15]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># comparison plot</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> supp.supp_plotting.plot_ias15_vs_dop853(pos_dop, pos_ias, t_hrs, diff_km, n, AU_km)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;pos_dop&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 </section>
@@ -1888,7 +1836,7 @@ Propagation complete.
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

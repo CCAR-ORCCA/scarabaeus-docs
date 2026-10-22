@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_BPlane';</script>
@@ -777,12 +776,50 @@
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 9</span>
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> numpy <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> np
+<span class="ansi-green-fg">      7</span>
+<span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">9</span> data = supp.load_data()
+<span class="ansi-green-fg">     10</span>
+<span class="ansi-green-fg">     11</span> <span style="color: rgb(95,135,135)"># define units and frame</span>
+<span class="ansi-green-fg">     12</span> km, sec = scb.Units.get_units([<span class="ansi-yellow-fg">&#39;km&#39;</span>, <span class="ansi-yellow-fg">&#39;sec&#39;</span>])
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -813,9 +850,54 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Closest-approach epoch : 2017-09-22T16:52:00.000000
-TCM epoch              : 2017-08-23T00:00:00.000000
-Time from TCM to C/A   : 30.70 days
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Closest approach: 2017-SEP-22  ~16:52 UTC</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># TCM epoch       : 30 days prior</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> time_ca  = scb.SpiceManager.str2et(<span class="ansi-yellow-fg">&#34;2017-SEP-22 16:52:00.000 UTC&#34;</span>)
+<span class="ansi-green-fg">      4</span> time_tcm = scb.SpiceManager.str2et(<span class="ansi-yellow-fg">&#34;2017-AUG-23 00:00:00.000 UTC&#34;</span>)
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">      6</span> epoch_ca  = scb.EpochArray(time_ca,  sys=<span class="ansi-yellow-fg">&#34;TDB&#34;</span>)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py:2166</span>, in <span class="ansi-cyan-fg">SpiceManager.str2et</span><span class="ansi-blue-fg">(s)</span>
+<span class="ansi-green-fg">   2148</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-fg">   2149</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">str2et</span>(s: <span style="color: rgb(0,135,0)">str</span>) -&gt; <span style="color: rgb(0,135,0)">float</span>:
+<span class="ansi-green-fg">   2150</span> <span style="color: rgb(188,188,188)">    </span><span class="ansi-yellow-fg">&#34;&#34;&#34;Convert a time string to ephemeris time (TDB seconds past J2000).</span>
+<span class="ansi-green-fg">   2151</span>
+<span class="ansi-green-fg">   2152</span> <span class="ansi-yellow-fg">    Thin wrapper around ``spice.str2et``.  Accepts a wide range of</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">   2164</span> <span class="ansi-yellow-fg">        TDB seconds past J2000 corresponding to *s*.</span>
+<span class="ansi-green-fg">   2165</span> <span class="ansi-yellow-fg">    &#34;&#34;&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2166</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">str2et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">s</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    157</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    158</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    137</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    138</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    143</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+str2et_c --&gt; STR2ET --&gt; TTRANS
+
+================================================================================
 </pre></div></div>
 </div>
 </section>
@@ -846,9 +928,17 @@ Time from TCM to C/A   : 30.70 days
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Reference position  [km]   : [17731688.93064772  1001193.75749685   632957.29574122]
-Reference velocity  [km/s] : [-7.45175201  0.13743609 -0.02286813]
-|r| = 1.777e+07 km   |v| = 7.4531 km/s
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> state_ref_tcm = scb.SpiceManager.get_state(
+<span class="ansi-green-fg">      2</span>     trgt_bdy       = <span class="ansi-yellow-fg">&#34;-64&#34;</span>,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span>     epoch_time     = epoch_tcm.times.values,
+<span class="ansi-green-fg">      4</span>     reference_frame= <span class="ansi-yellow-fg">&#34;J2000&#34;</span>,
+<span class="ansi-green-fg">      5</span>     obsvr_bdy      = <span class="ansi-yellow-fg">&#34;3&#34;</span>,
+<span class="ansi-green-fg">      6</span> )
+
+<span class="ansi-red-fg">NameError</span>: name &#39;epoch_tcm&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -891,7 +981,19 @@ Reference velocity  [km/s] : [-7.45175201  0.13743609 -0.02286813]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-B-plane object created.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 7</span>
+<span class="ansi-green-fg">      3</span> bplane_path = tut_result_path / <span class="ansi-yellow-fg">&#39;OREX_EARTH_bplane.tf&#39;</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> bplane_path.exists(): bplane_path.unlink()
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">      6</span> BplaneObj = scb.Bplane(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span>     epoch          = epoch_tcm,
+<span class="ansi-green-fg">      8</span>     bplane_name    = <span class="ansi-yellow-fg">&#34;OREX_EARTH_BPLANE&#34;</span>,
+<span class="ansi-green-fg">      9</span>     bplane_spice_id= <span class="ansi-green-fg">12345678</span>,
+<span class="ansi-green-fg">     10</span>     sc_name        = <span class="ansi-yellow-fg">&#34;OSIRIS-REx&#34;</span>,
+
+<span class="ansi-red-fg">NameError</span>: name &#39;epoch_tcm&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -923,13 +1025,15 @@ B-plane object created.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-───────────────────────────────────────────────────────
-  [TARGET]  Reference B-plane parameters
-───────────────────────────────────────────────────────
-  B·T*  =    1328001.604  km
-  B·R*  =    -578614.263  km
-  |B|   =    1448579.555  km  (miss-distance proxy)
-  ltof* =    2376484.777  s  (27.51 days to C/A)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> bpar_ref = BplaneObj.compute_parameters(sc_rel_state_j2000=state_ref_tcm)
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> BT_ref   = float(bpar_ref.values[<span class="ansi-green-fg">0</span>])
+<span class="ansi-green-fg">      4</span> BR_ref   = float(bpar_ref.values[<span class="ansi-green-fg">1</span>])
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BplaneObj&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -996,14 +1100,19 @@ B-plane object created.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-─────────────────────────────────────────────────────────────────
-  [PERTURBED]  B-plane parameters after navigation error
-─────────────────────────────────────────────────────────────────
-  B·T  =    1327978.691  km   (error: -22.914 km)
-  B·R  =    -578614.557  km   (error: -0.294 km)
-  ltof =    2376488.402  s    (error: +3.625 s)
-  |B|  =    1448558.666  km
-  B-plane miss from target: 22.916 km
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 14</span>
+<span class="ansi-green-fg">     10</span>         vel_1sigma * np.random.randn(),
+<span class="ansi-green-fg">     11</span>         vel_1sigma * np.random.randn(),
+<span class="ansi-green-fg">     12</span>         vel_1sigma * np.random.randn(),
+<span class="ansi-green-fg">     13</span>     ]),
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span>     [km, km, km, km/sec, km/sec, km/sec],
+<span class="ansi-green-fg">     15</span> )
+<span class="ansi-green-fg">     16</span>
+<span class="ansi-green-fg">     17</span> state_pert_tcm = state_ref_tcm + nav_error
+
+<span class="ansi-red-fg">NameError</span>: name &#39;km&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1046,16 +1155,15 @@ B-plane object created.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-linear_targeting converged in 2 iterations. Residual = 4.657e-10
-─────────────────────────────────────────────────────────────────
-  [LINEAR TCM]  Newton iteration on Jacobian
-─────────────────────────────────────────────────────────────────
-  TCM ΔV  = [-0.00001119,  +0.00000985,  -0.00000016]  km/s
-  |ΔV|   =  0.014908  m/s
-  Post-TCM residuals:
-    ΔB·T  = +5.37e+02  km
-    ΔB·R  = -2.34e+02  km
-    Δltof = +0.00e+00  s
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> DV_lin = BplaneObj.linear_targeting(sc_rel_state_j2000=state_pert_tcm)
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> state_corr_lin = scb.ArrayWUnits(
+<span class="ansi-green-fg">      4</span>     np.concatenate([
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BplaneObj&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1098,19 +1206,15 @@ linear_targeting converged in 2 iterations. Residual = 4.657e-10
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Optimization terminated successfully.
-         Current function value: 0.000000
-         Iterations: 115
-         Function evaluations: 211
-─────────────────────────────────────────────────────────────────
-  [NONLINEAR TCM]  Nelder-Mead optimiser
-─────────────────────────────────────────────────────────────────
-  TCM ΔV  = [-0.00001119,  +0.00000985,  -0.00000016]  km/s
-  |ΔV|   =  0.014908  m/s
-  Post-TCM residuals:
-    ΔB·T  = +5.37e+02  km
-    ΔB·R  = -2.34e+02  km
-    Δltof = -2.97e-06  s
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> DV_nl = BplaneObj.nonlinear_targeting(sc_rel_state_j2000=state_pert_tcm)
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> state_corr_nl = scb.ArrayWUnits(
+<span class="ansi-green-fg">      4</span>     np.concatenate([
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BplaneObj&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1141,14 +1245,15 @@ Optimization terminated successfully.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-───────────────────────────────────────────────────────
-Method                   |ΔV| [m/s]  B-plane miss [km]
-───────────────────────────────────────────────────────
-Linear                     0.014908           5.85e+02
-Nonlinear                  0.014908           5.85e+02
-───────────────────────────────────────────────────────
-Pre-TCM B-plane miss   : 22.916 km
-|ΔV| difference        : 4.83e-06 mm/s
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> miss_pre  = np.linalg.norm([BT_pert - BT_ref, BR_pert - BR_ref])
+<span class="ansi-green-fg">      2</span> miss_lin  = np.linalg.norm([BT_lin  - BT_ref, BR_lin  - BR_ref])
+<span class="ansi-green-fg">      3</span> miss_nl   = np.linalg.norm([BT_nl   - BT_ref, BR_nl   - BR_ref])
+<span class="ansi-green-fg">      4</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BT_pert&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1193,13 +1298,19 @@ Pre-TCM B-plane miss   : 22.916 km
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-───────────────────────────────────────────────────────
-  1-σ B-plane uncertainties (mapped from OD covariance)
-───────────────────────────────────────────────────────
-  σ(B·T)  =  10.0000  km
-  σ(B·R)  =  10.0000  km
-  σ(ltof) =  3.4594  s
-  ρ(B·T, B·R) = +0.0000
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 6</span>
+<span class="ansi-green-fg">      2</span>     pos_1sigma**<span class="ansi-green-fg">2</span>, pos_1sigma**<span class="ansi-green-fg">2</span>, pos_1sigma**<span class="ansi-green-fg">2</span>,
+<span class="ansi-green-fg">      3</span>     vel_1sigma**<span class="ansi-green-fg">2</span>, vel_1sigma**<span class="ansi-green-fg">2</span>, vel_1sigma**<span class="ansi-green-fg">2</span>,
+<span class="ansi-green-fg">      4</span> ])
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">6</span> P_bplane = BplaneObj.target_covariance(sv_cov, sc_rel_state_j2000=state_pert_tcm)
+<span class="ansi-green-fg">      7</span>
+<span class="ansi-green-fg">      8</span> sigma_bt   = np.sqrt(float(P_bplane.values[<span class="ansi-green-fg">0</span>, <span class="ansi-green-fg">0</span>]))
+<span class="ansi-green-fg">      9</span> sigma_br   = np.sqrt(float(P_bplane.values[<span class="ansi-green-fg">1</span>, <span class="ansi-green-fg">1</span>]))
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BplaneObj&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1235,8 +1346,16 @@ Pre-TCM B-plane miss   : 22.916 km
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># 2×2 B-plane covariance (B·T, B·R)</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> P2 = np.array(P_bplane.values[:<span class="ansi-green-fg">2</span>, :<span class="ansi-green-fg">2</span>], dtype=float)   <span style="color: rgb(95,135,135)"># fix: .values first, then slice</span>
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> ev, evec = np.linalg.eigh(P2)
+<span class="ansi-green-fg">      5</span> ev       = np.maximum(ev, <span class="ansi-green-fg">0.0</span>)
 
-σ(B·T) = 10.000 km   σ(B·R) = 10.000 km   ρ = +0.000
+<span class="ansi-red-fg">NameError</span>: name &#39;P_bplane&#39; is not defined
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1251,8 +1370,14 @@ Pre-TCM B-plane miss   : 22.916 km
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_BPlane_23_0.png" src="../../_images/_collections_tutorials_intermediate_BPlane_23_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[12]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> supp.supp_plotting.plot_bplane_covariance(BT_ref, BR_ref, BT_pert, BR_pert, BT_lin, BR_lin, BT_nl, BR_nl, rho_btbr, evec, ev, P2, maxsig, sigma_bt, sigma_br)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;BT_ref&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="Summary">
@@ -1384,7 +1509,7 @@ Pre-TCM B-plane miss   : 22.916 km
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_MissionSequence_and_FiniteBurn';</script>
@@ -784,12 +783,50 @@
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 9</span>
+<span class="ansi-green-fg">      5</span>
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> numpy <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> np
+<span class="ansi-green-fg">      7</span>
+<span class="ansi-green-fg">      8</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">9</span> data = supp.load_data()
+<span class="ansi-green-fg">     10</span>
+<span class="ansi-green-fg">     11</span> <span style="color: rgb(95,135,135)"># load kernels</span>
+<span class="ansi-green-fg">     12</span> scb.SpiceManager.clear_kernels()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -882,26 +919,15 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Parsed 15 burn segments from:
-  example.mission_maneuver_spec
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> spec_path = data.example_meas_spec.path
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> parser = scb.ManeuverParser()
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> open(spec_path) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> fh:
 
-Segment    Start (UTC)                      Duration [hr]
-----------------------------------------------------------
-0          2030 SEP 16 02:44:26.130 (TDB)           124.8 F = 0.0
-1          2030 SEP 21 07:32:26.134 (TDB)           124.8 F = 0.0
-2          2030 SEP 26 12:20:26.139 (TDB)           124.8 F = 0.0
-3          2030 OCT 01 17:08:26.143 (TDB)           124.8 F = 0.0
-4          2030 OCT 06 21:56:26.148 (TDB)           124.8 F = 0.0
-5          2030 OCT 12 02:44:26.153 (TDB)           124.8 F = 0.0
-6          2030 OCT 17 07:32:26.157 (TDB)           124.8 F = 0.0
-7          2030 OCT 22 12:20:26.162 (TDB)           124.8 F = 0.0
-8          2030 OCT 27 17:08:26.166 (TDB)           124.8 F = 0.0
-9          2030 NOV 01 21:56:26.171 (TDB)           124.8 F = 0.0
-10         2030 NOV 07 02:44:26.175 (TDB)           124.8 F = 0.0
-11         2030 NOV 12 07:32:26.180 (TDB)           124.8 F = 0.0
-12         2030 NOV 17 12:20:26.185 (TDB)           124.8 F = 0.0
-13         2030 NOV 22 17:08:26.189 (TDB)           124.8 F = 0.0
-14         2030 NOV 27 21:56:26.194 (TDB)           124.8 F = 0.0
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -964,12 +990,16 @@ Segment    Start (UTC)                      Duration [hr]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Coast start : 2030 SEP 15 02:44:26.130 (TDB)
-Burn 0 start: 2030 SEP 16 02:44:26.130 (TDB)
-Burn 0 end  : 2030 SEP 21 07:32:26.135 (TDB)
-Burn 0 dur  : 5.2000000520836975 days
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── spacecraft ───────────────────────────────────────────────────</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> dry_mass  = scb.ArrayWUnits(<span class="ansi-green-fg">1500.0</span>, kg)
+<span class="ansi-green-fg">      3</span> fuel_mass = scb.ArrayWUnits(<span class="ansi-green-fg">500.0</span>,  kg)
+<span class="ansi-green-fg">      4</span> area      = scb.ArrayWUnits(<span class="ansi-green-fg">1e-6</span>,   km**<span class="ansi-green-fg">2</span>)
+<span class="ansi-green-fg">      5</span> cr        = scb.ArrayWUnits(<span class="ansi-green-fg">1.5</span>,    <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>)
 
-Initial mass: 2000.0 kg
+<span class="ansi-red-fg">NameError</span>: name &#39;kg&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1086,15 +1116,15 @@ Initial mass: 2000.0 kg
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Propagators built:
-  Coast before       25 steps   2030 SEP 15 02:44:26.130  →  2030 SEP 16 02:44:26.130
-  Burn 0            125 steps   2030 SEP 16 02:44:26.130  →  2030 SEP 21 06:44:26.130
-  Final coast         7 steps   2030 SEP 21 06:44:26.130  →  2030 SEP 21 12:44:26.130
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Coast 0 last:  969029066.1305069
-Burn 0 first: 969029066.1305069
-Burn 0 last:  969475466.1305069
-Coast f first: 969475466.1305069
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> dt = scb.ArrayWUnits(<span class="ansi-green-fg">1</span>, hr)
+<span class="ansi-green-fg">      2</span> dt_sec = <span class="ansi-green-fg">3600.0</span>
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> empty_state(spacecraft, origin, frame):
+
+<span class="ansi-red-fg">NameError</span>: name &#39;hr&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1146,124 +1176,23 @@ Coast f first: 969475466.1305069
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Sequence types : [&#39;Leg&#39;, &#39;Node&#39;, &#39;Finite Burn&#39;, &#39;Node&#39;, &#39;Leg&#39;]
-Segment names  : [&#39;Coast before burn 0&#39;, &#39;Burn 0&#39;, &#39;Final coast&#39;]
-
---- Propagating Segment 1/5: &#39;Coast before burn 0&#39; [Leg] ---
-
-[IC] segment=&#39;Coast before burn 0&#39; type=&#39;Leg&#39; epoch=968942666.1305069 sec (TDB)
-  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-1.5e+08  9.0e+07  3.0e+07]
-  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -8. -18.  -5.]
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 86400.00/86400.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-[GLOBAL STATE after &#39;Coast before burn 0&#39;]
-  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-1.50677868e+08  8.84368593e+07  2.95653506e+07]
-  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -7.69091695 -18.18342328  -5.06122998]
-
---- Propagating Segment 2/5: &#39;Burn 0 Start Node&#39; [Node] ---
-
---- Propagating Segment 3/5: &#39;Burn 0&#39; [Finite Burn] ---
-
-[IC] segment=&#39;Burn 0&#39; type=&#39;Finite Burn&#39; epoch=969029066.1305069 sec (TDB)
-  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-1.50677868e+08  8.84368593e+07  2.95653506e+07]
-  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -7.69091695 -18.18342328  -5.06122998]
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|█████████████████████████████████████████████| 446400.00/446400.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-[GLOBAL STATE after &#39;Burn 0&#39;]
-  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-1.53749554e+08  8.01100857e+07  2.72380593e+07]
-  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -6.05764965 -19.11231949  -5.36299273]
-
---- Propagating Segment 4/5: &#39;Final coast Start Node&#39; [Node] ---
-
---- Propagating Segment 5/5: &#39;Final coast&#39; [Leg] ---
-
-[IC] segment=&#39;Final coast&#39; type=&#39;Leg&#39; epoch=969475466.1305069 sec (TDB)
-  position     n= 3 sid=-60000 frame=J2000 vals[:6]=[-1.53749554e+08  8.01100857e+07  2.72380593e+07]
-  velocity     n= 3 sid=-60000 frame=J2000 vals[:6]=[ -6.05764965 -19.11231949  -5.36299273]
-
-================================================================================
-                            Starting propagation...
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Integrating: 100%|███████████████████████████████████████████████| 21600.00/21600.00 s [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
- =================== DOP853 integration complete. ==================
-Propagation complete.
-
-[GLOBAL STATE after &#39;Final coast&#39;]
-  key=(&#39;position&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[0:3] = [-1.53879518e+08  7.96968013e+07  2.71220628e+07]
-  key=(&#39;velocity&#39;, 3, -60000, &#39;J2000&#39;, 0) -&gt; global[3:6] = [ -5.97600807 -19.15473055  -5.37741934]
-Done.
-Total propagated steps : 155
-Total duration         : 154.0 hr
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      1</span> MS = scb.MissionSequence(<span class="ansi-yellow-fg">&#39;FiniteBurnDemo&#39;</span>)
+<span class="ansi-green-fg">      2</span> MS.addLeg(
+<span class="ansi-green-fg">      3</span>     <span class="ansi-yellow-fg">&#39;Coast before burn 0&#39;</span>,
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span>     state_vector=initial_state,
+<span class="ansi-green-fg">      5</span>     prop=prop_coast0,
+<span class="ansi-green-fg">      6</span>     dt=dt,
+<span class="ansi-green-fg">      7</span> )
 
+<span class="ansi-red-fg">NameError</span>: name &#39;initial_state&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1275,7 +1204,7 @@ Total duration         : 154.0 hr
 </pre></div>
 </div>
 <p>The grey bands mark the finite-burn arc.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -1287,6 +1216,22 @@ Total duration         : 154.0 hr
 <span class="n">h_burn_end</span>   <span class="o">=</span> <span class="p">(</span><span class="n">t_burn0_end</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">rep</span> <span class="o">=</span> <span class="s1">'NUM'</span><span class="p">)</span><span class="o">.</span><span class="n">times</span>    <span class="o">-</span> <span class="n">t_all</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mf">3600.0</span>
 <br/><br/></pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> r = np.array(scenario.total_position.quantity.values, dtype=float)  <span style="color: rgb(95,135,135)"># (N, 3)</span>
+<span class="ansi-green-fg">      2</span> v = np.array(scenario.total_velocity.quantity.values, dtype=float)  <span style="color: rgb(95,135,135)"># (N, 3)</span>
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># burn window in hours-from-start</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;scenario&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="7.-Mass-Evolution-During-Finite-Burns">
@@ -1327,23 +1272,25 @@ Total duration         : 154.0 hr
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Initial mass    : 2000.000 kg
-Final mass      : 1997.323 kg
-Propellant used : 2.677 kg
-Mass-flow rate  : 0.0000e+00 kg/s
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_MissionSequence_and_FiniteBurn_14_1.png" src="../../_images/_collections_tutorials_intermediate_MissionSequence_and_FiniteBurn_14_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># Evaluate mass at every propagated epoch</span>
+<span class="ansi-green-fg">      2</span> <span style="color: rgb(95,135,135)"># Orbiter._mass_profile is updated by the propagator for each arc;</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># mass(t) dispatches to the correct arc polynomial via get_mass().</span>
+<span class="ansi-green-fg">      4</span> mass_vals = np.array(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span>     [float(np.asarray(Orbiter.mass(float(t)).values).ravel()[<span class="ansi-green-fg">0</span>]) <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> t <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> t_all]
+<span class="ansi-green-fg">      6</span> )
+<span class="ansi-green-fg">      7</span>
+<span class="ansi-green-fg">      8</span> m0     = mass_vals[<span class="ansi-green-fg">0</span>]
+
+<span class="ansi-red-fg">NameError</span>: name &#39;t_all&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 <section id="9.-Notes-and-Common-Pitfalls">
@@ -1454,7 +1401,7 @@ Mass-flow rate  : 0.0000e+00 kg/s
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

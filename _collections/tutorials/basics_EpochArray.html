@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/basics_EpochArray';</script>
@@ -752,12 +751,50 @@
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 10</span>
+<span class="ansi-green-fg">      6</span> <span style="color: rgb(95,135,135)"># define units</span>
+<span class="ansi-green-fg">      7</span> sec, hr, day = scb.Units.get_units([<span class="ansi-yellow-fg">&#39;sec&#39;</span>, <span class="ansi-yellow-fg">&#39;hr&#39;</span>, <span class="ansi-yellow-fg">&#39;day&#39;</span>])
+<span class="ansi-green-fg">      8</span>
+<span class="ansi-green-fg">      9</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">10</span> data = supp.load_data()
+<span class="ansi-green-fg">     11</span>
+<span class="ansi-green-fg">     12</span> <span style="color: rgb(95,135,135)"># NOTE: it&#39;s generally good practice to load kernels here (we&#39;ll</span>
+<span class="ansi-green-fg">     13</span> <span style="color: rgb(95,135,135)">#       need a leapsecond kernel (LSK) for this tutorial), but to</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -850,8 +887,16 @@ MissingLSKError: Cannot set requested time representation ISOC. The necessary le
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-833544000.0 sec (TDB)
-2000-01-01T12:00:00.0000 (TDB)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load light second kernel</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> scb.SpiceManager.load_kernel(data.lsk.path)
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># redo previous definitions to show that they work now</span>
+<span class="ansi-green-fg">      5</span> print(scb.EpochArray(<span class="ansi-yellow-fg">&#39;2026 JUN 01&#39;</span>))
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -944,20 +989,17 @@ str2et_c --&gt; STR2ET
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-** Attempting to define an epoch in SCLK without an SCLK kernel loaded will raise an error **
-SpiceKERNELVARNOTFOUND:
-================================================================================
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># make sure the kernel pool is clean (and reload LSK again since we cleared it)</span>
+<span class="ansi-green-fg">      2</span> scb.SpiceManager.clear_kernels()
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> scb.SpiceManager.load_kernel(data.lsk.path)
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">      5</span> <span style="color: rgb(95,135,135)"># throws error if missing SCLK kernel and SC ID</span>
+<span class="ansi-green-fg">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
 
-Toolkit version: CSPICE_N0067
-
-SPICE(KERNELVARNOTFOUND) --
-The Variable Was not Found in the Kernel Pool.
-Kernel variable SCLK_DATA_TYPE_64 was not found in the kernel pool.
-
-sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
-
-================================================================================
-
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 <p>Just like for the LSK, loading an SCLK kernel will allow the previously failed definitions to pass:</p>
@@ -978,7 +1020,16 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-100000.0 unitless (SCLK)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># load spacecraft clock kernel</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> scb.SpiceManager.load_kernel(data.OREx_sclk.path)
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># redo previously failed definitions and see that they work</span>
+<span class="ansi-green-fg">      5</span> print(scb.EpochArray(<span class="ansi-green-fg">100000</span>, sys = <span class="ansi-yellow-fg">&#39;SCLK&#39;</span>, sc_id = -<span class="ansi-green-fg">64</span>))
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1009,10 +1060,62 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-833544000.0 sec (TDB)
-[8.33544e+08 8.33544e+08 8.33544e+08] [sec ... sec] (TDB)
-[[8.33544e+08 8.33544e+08]
- [8.33544e+08 8.33544e+08]]  [sec ... sec]] (TDB)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># use the same epoch for simplicity</span>
+<span class="ansi-green-fg">      2</span> time_str   = <span class="ansi-yellow-fg">&#39;2026 JUN 01 00:00:00.000&#39;</span>
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># define and print different definition shapes</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> eparr_sclr = scb.EpochArray(time_str)                         <span style="color: rgb(95,135,135)"># scalar</span>
+<span class="ansi-green-fg">      6</span> eparr_vec  = scb.EpochArray([time_str, time_str, time_str])   <span style="color: rgb(95,135,135)"># vector (1D array)</span>
+<span class="ansi-green-fg">      7</span> eparr_mat  = scb.EpochArray(np.array([[time_str, time_str],   # matrix (nD array)
+<span class="ansi-green-fg">      8</span>                                         [time_str, time_str]]))
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:160</span>, in <span class="ansi-cyan-fg">EpochArray.__init__</span><span class="ansi-blue-fg">(self, times, sys, rep, prec, disp_len, sc_id)</span>
+<span class="ansi-green-fg">    158</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_system(sys)
+<span class="ansi-green-fg">    159</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_rep(rep)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">160</span> <span class="ansi-black-fg ansi-yellow-bg">self</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">_validate_and_set_to_et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">times</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    162</span> <span style="color: rgb(95,135,135)"># precision and display</span>
+<span class="ansi-green-fg">    163</span> <span style="color: rgb(0,135,0)">self</span>._prec = prec
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:324</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_to_et</span><span class="ansi-blue-fg">(self, times)</span>
+<span class="ansi-green-fg">    321</span> <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> <span style="color: rgb(0,135,0)">self</span>._system:
+<span class="ansi-green-fg">    322</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">TDB</span><span class="ansi-yellow-fg">&#34;</span> | <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ET</span><span class="ansi-yellow-fg">&#34;</span>:
+<span class="ansi-green-fg">    323</span>         <span style="color: rgb(95,135,135)"># append TDB so spice knows its TDB</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">324</span>         et_vals.append(<span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">str2et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">f</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">{</span><span class="ansi-black-fg ansi-yellow-bg">t</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">}</span><span class="ansi-black-fg ansi-yellow-bg"> TDB</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>)
+<span class="ansi-green-fg">    325</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">UTC</span><span class="ansi-yellow-fg">&#34;</span>:
+<span class="ansi-green-fg">    326</span>         <span style="color: rgb(95,135,135)"># str2et already assumes UTC</span>
+<span class="ansi-green-fg">    327</span>         et_vals.append(spice.str2et(t))
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    157</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    158</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    137</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    138</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    143</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+str2et_c --&gt; STR2ET --&gt; TTRANS
+
+================================================================================
 </pre></div></div>
 </div>
 <p>Additionally, instead of manually creating every entry in a vector of times, use <code class="docutils literal notranslate"><span class="pre">EpochArray.interval()</span></code>. This function supports two different interval construction methods, one that defines the interval using a given time step <code class="docutils literal notranslate"><span class="pre">dt</span></code>, and the other where it defines the interval using a given number of total epochs <code class="docutils literal notranslate"><span class="pre">n_epochs</span></code>. Both are shown below:</p>
@@ -1040,13 +1143,66 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-** Step-defined epoch interval with duration 1.5 day:
-[&#39;2026 JUN 01 00:00:00.000&#39; &#39;2026 JUN 01 12:00:00.000&#39;
- &#39;2026 JUN 02 00:00:00.000&#39; &#39;2026 JUN 02 12:00:00.000&#39;] (TDB)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># two day interval with points every 12 hours</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> epochs = scb.EpochArray.interval(start = &#39;2026 JUN 01&#39;, end = &#39;2026 JUN 03&#39;,
+<span class="ansi-green-fg">      3</span>                                    dt = scb.ArrayWUnits(<span class="ansi-green-fg">12</span>, hr),
+<span class="ansi-green-fg">      4</span>                                    sys = &#39;TDB&#39;, rep = &#39;CAL&#39;)
+<span class="ansi-green-fg">      5</span> dur = epochs.duration(units = day)  <span style="color: rgb(95,135,135)"># can also get the duration sequential times</span>
 
-** Count-defined epoch interval with duration 1.9999999994508646 day:
-[&#39;2026 JUN 01 00:00:00.000&#39; &#39;2026 JUN 01 23:59:59.999&#39;
- &#39;2026 JUN 03 00:00:00.000&#39;] (UTC)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:1310</span>, in <span class="ansi-cyan-fg">EpochArray.interval</span><span class="ansi-blue-fg">(start, end, dt, n_epochs, sys, rep, sc_id)</span>
+<span class="ansi-green-fg">   1308</span> <span style="color: rgb(95,135,135)">## convert start and end if neccessary and get in TDB floats</span>
+<span class="ansi-green-fg">   1309</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(start, EpochArray):
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1310</span>     start = <span class="ansi-black-fg ansi-yellow-bg">EpochArray</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">start</span><span class="ansi-black-fg ansi-yellow-bg">,</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">sys</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">=</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">sys</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">   1312</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">isinstance</span>(end, EpochArray):
+<span class="ansi-green-fg">   1313</span>     end = EpochArray(end, sys = sys)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:160</span>, in <span class="ansi-cyan-fg">EpochArray.__init__</span><span class="ansi-blue-fg">(self, times, sys, rep, prec, disp_len, sc_id)</span>
+<span class="ansi-green-fg">    158</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_system(sys)
+<span class="ansi-green-fg">    159</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_rep(rep)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">160</span> <span class="ansi-black-fg ansi-yellow-bg">self</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">_validate_and_set_to_et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">times</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    162</span> <span style="color: rgb(95,135,135)"># precision and display</span>
+<span class="ansi-green-fg">    163</span> <span style="color: rgb(0,135,0)">self</span>._prec = prec
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:324</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_to_et</span><span class="ansi-blue-fg">(self, times)</span>
+<span class="ansi-green-fg">    321</span> <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> <span style="color: rgb(0,135,0)">self</span>._system:
+<span class="ansi-green-fg">    322</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">TDB</span><span class="ansi-yellow-fg">&#34;</span> | <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ET</span><span class="ansi-yellow-fg">&#34;</span>:
+<span class="ansi-green-fg">    323</span>         <span style="color: rgb(95,135,135)"># append TDB so spice knows its TDB</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">324</span>         et_vals.append(<span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">str2et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">f</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">{</span><span class="ansi-black-fg ansi-yellow-bg">t</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">}</span><span class="ansi-black-fg ansi-yellow-bg"> TDB</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>)
+<span class="ansi-green-fg">    325</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">UTC</span><span class="ansi-yellow-fg">&#34;</span>:
+<span class="ansi-green-fg">    326</span>         <span style="color: rgb(95,135,135)"># str2et already assumes UTC</span>
+<span class="ansi-green-fg">    327</span>         et_vals.append(spice.str2et(t))
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    157</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    158</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    137</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    138</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    143</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+str2et_c --&gt; STR2ET --&gt; TTRANS
+
+================================================================================
 </pre></div></div>
 </div>
 <p>Notice that the step defined interval is a half open interval [start, end) while the count defined interval is a closed interval [start, end].</p>
@@ -1084,14 +1240,66 @@ sct2e_c --&gt; SCT2E --&gt; SCTYPE --&gt; SCTY01
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-a = 2461192.5 (TDB)
-a + 1 day = 2461193.5 (TDB)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceMISSINGTIMEINFO</span>                      Traceback (most recent call last)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:589</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_rep</span><span class="ansi-blue-fg">(self, rep)</span>
+<span class="ansi-green-fg">    588</span> <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">589</span>     <span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">et2utc</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">0.0</span><span class="ansi-black-fg ansi-yellow-bg">,</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">C</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">,</span><span class="ansi-black-fg ansi-yellow-bg"> </span><span class="ansi-black-fg ansi-yellow-bg">30</span><span class="ansi-black-fg ansi-yellow-bg">)</span>  <span style="color: rgb(95,135,135)"># dummy et to check for LSK</span>
+<span class="ansi-green-fg">    590</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">Exception</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
 
-a = 2461192.5 (TDB)
-a - 1 day = 2461191.5 (TDB)
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
 
-a = 2461192.5 (TDB), b = 2461199.5 (TDB)
-b - a = 7.0 day
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+
+<span class="ansi-red-fg">SpiceMISSINGTIMEINFO</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(MISSINGTIMEINFO) --
+
+The following variables, needed to convert between the input uniform time scales, were not found in the kernel pool: DELTET/DELTA_T_A, DELTET/K, DELTET/EB, DELTET/M. Your program may have failed to load a leapseconds kernel. Other possible causes of this problem include loading an invalid leapseconds kernel---one that lacks an initial \begindata marker or final newline character, or is otherwise corrupted---or deleting previously loaded kernel pool variables via calls to routines that clear the kernel pool.
+
+et2utc_c --&gt; ET2UTC --&gt; UNITIM
+
+================================================================================
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">MissingLSKError</span>                           Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> a = scb.EpochArray(<span class="ansi-yellow-fg">&#39;2026 JUN 01&#39;</span>, rep = <span class="ansi-yellow-fg">&#39;JDTDB&#39;</span>)
+<span class="ansi-green-fg">      2</span> b = scb.EpochArray(<span class="ansi-yellow-fg">&#39;2026 JUN 08&#39;</span>, rep = <span class="ansi-yellow-fg">&#39;JDTDB&#39;</span>)
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span style="color: rgb(95,135,135)"># add time to an epoch</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:159</span>, in <span class="ansi-cyan-fg">EpochArray.__init__</span><span class="ansi-blue-fg">(self, times, sys, rep, prec, disp_len, sc_id)</span>
+<span class="ansi-green-fg">    157</span> <span style="color: rgb(95,135,135)"># times, system, and representation info</span>
+<span class="ansi-green-fg">    158</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_system(sys)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">159</span> <span class="ansi-black-fg ansi-yellow-bg">self</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">_validate_and_set_rep</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">rep</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    160</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_to_et(times)
+<span class="ansi-green-fg">    162</span> <span style="color: rgb(95,135,135)"># precision and display</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:598</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_rep</span><span class="ansi-blue-fg">(self, rep)</span>
+<span class="ansi-green-fg">    591</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">SPICE(MISSINGTIMEINFO)</span><span class="ansi-yellow-fg">&#34;</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">str</span>(e):
+<span class="ansi-green-fg">    592</span>     <span style="color: rgb(95,135,135)"># no loaded LSK</span>
+<span class="ansi-green-fg">    593</span>     err_str = (
+<span class="ansi-green-fg">    594</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">Cannot set requested time representation </span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>rep<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-yellow-fg">. </span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    595</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">The necessary leapsecond kernel (LSK) could not </span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    596</span>         <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">be located in the kernel pool. -- SPICE(MISSINGTIMEINFO)</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">    597</span>     )
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">598</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span style="color: rgb(0,135,0)">type</span>(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">MissingLSKError</span><span class="ansi-yellow-fg">&#34;</span>, (<span class="ansi-bold" style="color: rgb(215,95,95)">Exception</span>,), {})(err_str)
+<span class="ansi-green-fg">    599</span> <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">    600</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> e
+
+<span class="ansi-red-fg">MissingLSKError</span>: Cannot set requested time representation JDTDB. The necessary leapsecond kernel (LSK) could not be located in the kernel pool. -- SPICE(MISSINGTIMEINFO)
 </pre></div></div>
 </div>
 </section>
@@ -1123,9 +1331,58 @@ b - a = 7.0 day
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.0 sec (TDB) = -51.18392726322383 sec (GPS)
--51.18392726322383 sec (GPS) = -51.18392726322383 (GPS)
-0.0 sec (TDB) = JD 2451544.9992571 (TAI)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> eparr_tdb_cal = scb.EpochArray(<span class="ansi-yellow-fg">&#39;2000 JAN 01 12:00:00.000&#39;</span>)
+<span class="ansi-green-fg">      2</span>
+<span class="ansi-green-fg">      3</span> <span style="color: rgb(95,135,135)"># convert to new system</span>
+<span class="ansi-green-fg">      4</span> eparr_gps_cal = eparr_tdb_cal.to(sys = <span class="ansi-yellow-fg">&#39;GPS&#39;</span>)
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:160</span>, in <span class="ansi-cyan-fg">EpochArray.__init__</span><span class="ansi-blue-fg">(self, times, sys, rep, prec, disp_len, sc_id)</span>
+<span class="ansi-green-fg">    158</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_system(sys)
+<span class="ansi-green-fg">    159</span> <span style="color: rgb(0,135,0)">self</span>._validate_and_set_rep(rep)
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">160</span> <span class="ansi-black-fg ansi-yellow-bg">self</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">_validate_and_set_to_et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">times</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    162</span> <span style="color: rgb(95,135,135)"># precision and display</span>
+<span class="ansi-green-fg">    163</span> <span style="color: rgb(0,135,0)">self</span>._prec = prec
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/EpochArray.py:324</span>, in <span class="ansi-cyan-fg">EpochArray._validate_and_set_to_et</span><span class="ansi-blue-fg">(self, times)</span>
+<span class="ansi-green-fg">    321</span> <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> <span style="color: rgb(0,135,0)">self</span>._system:
+<span class="ansi-green-fg">    322</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">TDB</span><span class="ansi-yellow-fg">&#34;</span> | <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">ET</span><span class="ansi-yellow-fg">&#34;</span>:
+<span class="ansi-green-fg">    323</span>         <span style="color: rgb(95,135,135)"># append TDB so spice knows its TDB</span>
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">324</span>         et_vals.append(<span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">str2et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">f</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">{</span><span class="ansi-black-fg ansi-yellow-bg">t</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">}</span><span class="ansi-black-fg ansi-yellow-bg"> TDB</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>)
+<span class="ansi-green-fg">    325</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">UTC</span><span class="ansi-yellow-fg">&#34;</span>:
+<span class="ansi-green-fg">    326</span>         <span style="color: rgb(95,135,135)"># str2et already assumes UTC</span>
+<span class="ansi-green-fg">    327</span>         et_vals.append(spice.str2et(t))
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    157</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    158</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    137</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    138</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    143</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+str2et_c --&gt; STR2ET --&gt; TTRANS
+
+================================================================================
 </pre></div></div>
 </div>
 <p>Finally, as an easy reference, we’ll create a table of all the possible time systems and representations. We’ll pass the June 1st, 2026 EpochArray we’ve been using to a supplementary plotting function that will loop through each time system and display all of its representations along a row of the table.</p>
@@ -1142,8 +1399,15 @@ b - a = 7.0 day
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_basics_EpochArray_23_0.png" src="../../_images/_collections_tutorials_basics_EpochArray_23_0.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> eparr_w_sc_id = scb.EpochArray(<span class="ansi-green-fg">31622464.183948725</span>, sys = <span class="ansi-yellow-fg">&#39;TDB&#39;</span>, sc_id = -<span class="ansi-green-fg">64</span>)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> supp.plotting.plot_epocharray_table(eparr_w_sc_id, data.OREx_sclk.path)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;data&#39; is not defined
+</pre></div></div>
 </div>
 <p>We can see that we’ve checked the synonym systems like TDB and ET, as well as the sibling representations like NUM and AWU, so there will be a few identical rows and columns, but this is a good visual for all of the different combinations possible within EpochArray. Notice that plotting function has omitted representations that are are undefined for different systems, for example a JTDB representation of a TAI epoch.</p>
 </section>
@@ -1248,7 +1512,7 @@ b - a = 7.0 day
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

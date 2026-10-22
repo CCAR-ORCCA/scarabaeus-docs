@@ -10,10 +10,10 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ccar-orcca.github.io/scarabaeus-docs/user_guide/install.html" />
 <meta property="og:site_name" content="Scarabaeus" />
-<meta property="og:description" content="Requirements:,,, Dependency, Version, Notes,,, Python, 3.11+, Required,, NumPy, latest, Array mathematics,, SciPy, latest, Integrators and linear algebra,, SpiceyPy, latest, SPICE toolkit Python wrapper,, matplotlib, latest, Plotting utilities,, Rust / Cargo, 1.75+, Developer builds only — not required for users,,,, The full dependency list is managed in pyproject.toml and is installed automatically by pip. User Installation: 1. Clone the repository 2. Create a virtual environment 3. Install ..." />
+<meta property="og:description" content="User Installation: 1. Clone the repository 2. Create a virtual environment 3. Install Scarabaeus Currently, Scarabaeus can only be installed in developer mode, see the Dev Environment Guide for more on how to do this. Developer mode includes all SCB functionality in addition to tools for developing tests and Rust binding." />
 <meta property="og:image" content="https://ccar-orcca.github.io/scarabaeus-docs/_images/scarabaeus_logo.png" />
 <meta property="og:image:alt" content="Scarabaeus" />
-<meta name="description" content="Requirements:,,, Dependency, Version, Notes,,, Python, 3.11+, Required,, NumPy, latest, Array mathematics,, SciPy, latest, Integrators and linear algebra,, SpiceyPy, latest, SPICE toolkit Python wrapper,, matplotlib, latest, Plotting utilities,, Rust / Cargo, 1.75+, Developer builds only — not required for users,,,, The full dependency list is managed in pyproject.toml and is installed automatically by pip. User Installation: 1. Clone the repository 2. Create a virtual environment 3. Install ..." />
+<meta name="description" content="User Installation: 1. Clone the repository 2. Create a virtual environment 3. Install Scarabaeus Currently, Scarabaeus can only be installed in developer mode, see the Dev Environment Guide for more on how to do this. Developer mode includes all SCB functionality in addition to tools for developing tests and Rust binding." />
 
     <title>Installation &#8212; Scarabaeus 2.0.0 documentation</title>
   
@@ -38,7 +38,7 @@
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=18bd87630a240e9c25be" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -57,7 +57,6 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/install';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../_static/custom.js?v=8ab10226"></script>
@@ -492,50 +491,6 @@
 <p class="admonition-title">Note</p>
 <p>Scarabaeus has not been added to PyPi yet. You will need to compile Rust source code in order for it to function correctly, see <a class="reference internal" href="../development/contributing/dev_environ.html#devenviron"><span class="std std-ref">the developer guide</span></a> for further instructions.</p>
 </div>
-<section id="requirements">
-<h2><span class="gold">Requirements</span><a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<colgroup>
-<col style="width: 30.0%" />
-<col style="width: 20.0%" />
-<col style="width: 50.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Dependency</p></th>
-<th class="head"><p>Version</p></th>
-<th class="head"><p>Notes</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Python</p></td>
-<td><p>3.11+</p></td>
-<td><p>Required</p></td>
-</tr>
-<tr class="row-odd"><td><p>NumPy</p></td>
-<td><p>latest</p></td>
-<td><p>Array mathematics</p></td>
-</tr>
-<tr class="row-even"><td><p>SciPy</p></td>
-<td><p>latest</p></td>
-<td><p>Integrators and linear algebra</p></td>
-</tr>
-<tr class="row-odd"><td><p>SpiceyPy</p></td>
-<td><p>latest</p></td>
-<td><p>SPICE toolkit Python wrapper</p></td>
-</tr>
-<tr class="row-even"><td><p>matplotlib</p></td>
-<td><p>latest</p></td>
-<td><p>Plotting utilities</p></td>
-</tr>
-<tr class="row-odd"><td><p>Rust / Cargo</p></td>
-<td><p>1.75+</p></td>
-<td><p><strong>Developer builds only</strong> — not required for users</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>The full dependency list is managed in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> and is installed automatically by <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
-</section>
 <section id="user-installation">
 <h2><span class="gold">User Installation</span><a class="headerlink" href="#user-installation" title="Link to this heading">#</a></h2>
 <p><strong>1. Clone the repository</strong></p>
@@ -544,15 +499,17 @@
 </pre></div>
 </div>
 <p><strong>2. Create a virtual environment</strong></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="c1"># macOS / Linux</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1"># macOS / Linux</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
 <span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+
 <span class="c1"># Windows</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
 .venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
 </pre></div>
 </div>
 <p><strong>3. Install Scarabaeus</strong></p>
-<p>Currently, Scarabaeus can only be installed in developer mode, see <a class="reference internal" href="../development/contributing/dev_environ.html#devenviron"><span class="std std-ref">the Dev Environment Guide</span></a> for more on how to do this.</p>
+<p>Currently, Scarabaeus can only be installed in developer mode, see <a class="reference internal" href="../development/contributing/dev_environ.html#devenviron"><span class="std std-ref">the Dev Environment Guide</span></a> for more on how to do this. Developer mode includes all SCB functionality in addition to tools for developing tests and Rust binding.</p>
 </section>
 </section>
 
@@ -603,7 +560,6 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements"><span class="gold">Requirements</span></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-installation"><span class="gold">User Installation</span></a></li>
 </ul>
   </nav></div>
@@ -642,7 +598,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       

@@ -58,7 +58,6 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/tutorials/intermediate_Measurements';</script>
@@ -801,12 +800,50 @@
 <br/></pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SCB supplementary data out of date.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-SCB supplementary data up to date.
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 15</span>
+<span class="ansi-green-fg">     11</span> kg, km, sec, rad = scb.Units.get_units([<span class="ansi-yellow-fg">&#39;kg&#39;</span>, <span class="ansi-yellow-fg">&#39;km&#39;</span>, <span class="ansi-yellow-fg">&#39;sec&#39;</span>, <span class="ansi-yellow-fg">&#39;rad&#39;</span>])
+<span class="ansi-green-fg">     12</span> J2000 = scb.Frame(<span class="ansi-yellow-fg">&#39;J2000&#39;</span>)
+<span class="ansi-green-fg">     13</span>
+<span class="ansi-green-fg">     14</span> <span style="color: rgb(95,135,135)"># load tutorial data</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">15</span> data = supp.load_data()
+<span class="ansi-green-fg">     16</span>
+<span class="ansi-green-fg">     17</span> <span style="color: rgb(95,135,135)"># tutorial output paths</span>
+<span class="ansi-green-fg">     18</span> tut_result_path = Path.cwd() / <span class="ansi-yellow-fg">&#39;tutorial_results/meas_gen&#39;</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/docs/online_documentation/sphinx_files/_collections/tutorials/supplementary/supp_data.py:433</span>, in <span class="ansi-cyan-fg">load_data</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">    431</span> waiting = <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-fg">    432</span> <span class="ansi-bold" style="color: rgb(0,135,0)">while</span> waiting:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">433</span>     response = <span class="ansi-black-fg ansi-yellow-bg">input</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-intense-fg ansi-yellow-bg ansi-bold">\n</span><span class="ansi-black-fg ansi-yellow-bg">Download and generate missing files? (y/n): </span><span class="ansi-black-fg ansi-yellow-bg">&#34;</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    434</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">match</span> response.strip().lower():
+<span class="ansi-green-fg">    435</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">case</span> <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">y</span><span class="ansi-yellow-fg">&#34;</span>:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/ipykernel/kernelbase.py:1514</span>, in <span class="ansi-cyan-fg">Kernel.raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-fg">   1512</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span>._allow_stdin:
+<span class="ansi-green-fg">   1513</span>     msg = <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">raw_input was called, but this frontend does not support input requests.</span><span class="ansi-yellow-fg">&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1514</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> StdinNotImplementedError(msg)
+<span class="ansi-green-fg">   1515</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span>._input_request(
+<span class="ansi-green-fg">   1516</span>     <span style="color: rgb(0,135,0)">str</span>(prompt),
+<span class="ansi-green-fg">   1517</span>     <span style="color: rgb(0,135,0)">self</span>._get_shell_context_var(<span style="color: rgb(0,135,0)">self</span>._shell_parent_ident),
+<span class="ansi-green-fg">   1518</span>     <span style="color: rgb(0,135,0)">self</span>.get_parent(<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">shell</span><span class="ansi-yellow-fg">&#34;</span>),
+<span class="ansi-green-fg">   1519</span>     password=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
+<span class="ansi-green-fg">   1520</span> )
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
 </pre></div></div>
 </div>
 </section>
@@ -892,8 +929,56 @@ SCB supplementary data up to date.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-  SPK written : meas_true.bsp
-  SPK written : meas_ref.bsp
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>                        Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 17</span>
+<span class="ansi-green-fg">     13</span> Orbiter    = make_sc(<span class="ansi-yellow-fg">&#39;Orbiter&#39;</span>,           -<span class="ansi-green-fg">1000</span>)
+<span class="ansi-green-fg">     14</span> Orbiter_ref= make_sc(<span class="ansi-yellow-fg">&#39;Orbiter_reference&#39;</span>, -<span class="ansi-green-fg">1001</span>)
+<span class="ansi-green-fg">     15</span>
+<span class="ansi-green-fg">     16</span> <span style="color: rgb(95,135,135)"># ── epoch array (1-hour arc, 2030-FEB-18) ─────────────────────────</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">17</span> t0 = scb.SpiceManager.str2et(<span class="ansi-yellow-fg">&#39;2030-FEB-18 21:48:32.90210 TDB&#39;</span>)
+<span class="ansi-green-fg">     18</span> tf = t0 + <span class="ansi-green-fg">3600.0</span>
+<span class="ansi-green-fg">     19</span> epoch_prop = scb.EpochArray(np.linspace(t0 - <span class="ansi-green-fg">10</span>, tf + <span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">200</span>), sys=<span class="ansi-yellow-fg">&#39;TDB&#39;</span>)
+<span class="ansi-green-fg">     20</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/src/scarabaeus/timeAndFrame/SpiceManager.py:2166</span>, in <span class="ansi-cyan-fg">SpiceManager.str2et</span><span class="ansi-blue-fg">(s)</span>
+<span class="ansi-green-fg">   2148</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-fg">   2149</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-fg">str2et</span>(s: <span style="color: rgb(0,135,0)">str</span>) -&gt; <span style="color: rgb(0,135,0)">float</span>:
+<span class="ansi-green-fg">   2150</span> <span style="color: rgb(188,188,188)">    </span><span class="ansi-yellow-fg">&#34;&#34;&#34;Convert a time string to ephemeris time (TDB seconds past J2000).</span>
+<span class="ansi-green-fg">   2151</span>
+<span class="ansi-green-fg">   2152</span> <span class="ansi-yellow-fg">    Thin wrapper around ``spice.str2et``.  Accepts a wide range of</span>
+<span class="ansi-green-fg">   (...)</span><span class="ansi-green-fg">   2164</span> <span class="ansi-yellow-fg">        TDB seconds past J2000 corresponding to *s*.</span>
+<span class="ansi-green-fg">   2165</span> <span class="ansi-yellow-fg">    &#34;&#34;&#34;</span>
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">2166</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-black-fg ansi-yellow-bg">spice</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">str2et</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">s</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:161</span>, in <span class="ansi-cyan-fg">spice_error_check.&lt;locals&gt;.with_errcheck</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-fg">    157</span>             res = f(*args, **kwargs)
+<span class="ansi-green-fg">    158</span>             check_for_spice_error(f)
+<span class="ansi-green-fg">    159</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> res
+<span class="ansi-green-fg">    160</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> BaseException:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">161</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/scb_public/scarabaeus/.venv/lib/python3.11/site-packages/spiceypy/spiceypy.py:141</span>, in <span class="ansi-cyan-fg">check_for_spice_error</span><span class="ansi-blue-fg">(f)</span>
+<span class="ansi-green-fg">    137</span>         explain = getmsg(<span class="ansi-yellow-fg">&#34;EXPLAIN&#34;</span>, <span class="ansi-green-fg">100</span>).strip()
+<span class="ansi-green-fg">    138</span>         long = getmsg(<span class="ansi-yellow-fg">&#34;LONG&#34;</span>, <span class="ansi-green-fg">1841</span>).strip()
+<span class="ansi-green-fg">    139</span>         traceback = qcktrc(<span class="ansi-green-fg">200</span>)
+<span class="ansi-green-fg">    140</span>         reset()
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">141</span>         raise dynamically_instantiate_spiceyerror(
+<span class="ansi-green-fg">    142</span>             short=short, explain=explain, long=long, traceback=traceback
+<span class="ansi-green-fg">    143</span>         )
+
+<span class="ansi-red-fg">SpiceNOLEAPSECONDS</span>:
+================================================================================
+
+Toolkit version: CSPICE_N0067
+
+SPICE(NOLEAPSECONDS) --
+
+The variable that points to the leapseconds (DELTET/DELTA_AT) could not be located in the kernel pool.  It is likely that the leapseconds kernel has not been loaded.
+
+str2et_c --&gt; STR2ET --&gt; TTRANS
+
+================================================================================
 </pre></div></div>
 </div>
 </section>
@@ -1127,7 +1212,16 @@ Models created:
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Observed measurements written to tutorials/tutorial_results/meas_gen
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── epoch arrays for each model (different cadences) ─────────────</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> ep_range     = scb.EpochArray(np.linspace(t0, tf,  <span class="ansi-green-fg">50</span>),  sys=<span class="ansi-yellow-fg">&#39;TDB&#39;</span>)
+<span class="ansi-green-fg">      3</span> ep_rangerate = scb.EpochArray(np.linspace(t0, tf, <span class="ansi-green-fg">100</span>),  sys=<span class="ansi-yellow-fg">&#39;TDB&#39;</span>)
+<span class="ansi-green-fg">      4</span> ep_opnav     = scb.EpochArray(np.linspace(t0, tf,  <span class="ansi-green-fg">10</span>),  sys=<span class="ansi-yellow-fg">&#39;TDB&#39;</span>)
+<span class="ansi-green-fg">      5</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;t0&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1194,9 +1288,16 @@ Observed measurements written to tutorials/tutorial_results/meas_gen
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Range     : 50 epochs,  mean = 9524.317 km
-Range rate: 100 epochs,  mean = 2.275299 km/s
-OpNav     : 10 epochs,  shape = (10, 2)  (n_epochs × 2 px)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> obs_range     = Range_GS1.observed_measurements(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     file_name=str(tut_result_path / <span class="ansi-yellow-fg">&#39;radiometric/meas_range.json&#39;</span>),
+<span class="ansi-green-fg">      3</span>     meas_name=<span class="ansi-yellow-fg">&#39;meas_ideal&#39;</span>, units=km,
+<span class="ansi-green-fg">      4</span> )
+<span class="ansi-green-fg">      5</span> obs_rangerate = RangeRate_GS1.observed_measurements(
+
+<span class="ansi-red-fg">NameError</span>: name &#39;tut_result_path&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1226,9 +1327,16 @@ OpNav     : 10 epochs,  shape = (10, 2)  (n_epochs × 2 px)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Computed range      shape : (50,)
-Computed range rate shape : (100,)
-Computed OpNav      shape : (10, 2)
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[8]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> _, _, _, comp_range     = Range_GS1.computed_measurements(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     target=Orbiter_ref, epoch_array=ep_range_et,     frame=J2000)
+<span class="ansi-green-fg">      3</span> _, _, _, comp_rangerate = RangeRate_GS1.computed_measurements(
+<span class="ansi-green-fg">      4</span>     target=Orbiter_ref, epoch_array=ep_rangerate_et, frame=J2000)
+<span class="ansi-green-fg">      5</span> _, _, _, comp_opnav     = Centroid.computed_measurements(
+
+<span class="ansi-red-fg">NameError</span>: name &#39;ep_range_et&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1266,77 +1374,21 @@ Computed OpNav      shape : (10, 2)
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-Generating _partials computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Partials: 100%|████████████████████████████████████████████████████████████| 50/50 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-Generating _partials computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Partials: 100%|██████████████████████████████████████████████████████████| 100/100 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-Generating _partials computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Partials: 100%|████████████████████████████████████████████████████████████| 10/10 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-H range      : (50, 6)      (n_meas × n_state)
-H range rate : (100, 6)      (n_meas × n_state)
-H opnav      : (10, 2, 6)   (2 × n_epochs × n_state)
-
-RMS range residual     : 2.8034e+02 km
-RMS range-rate residual: 4.1090e-01 km/s
-RMS opnav  residual    : 9.2625e-01 px
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[9]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── partials — compute_partials returns a list of lists → stack to ndarray</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> H_range     = np.array(Range_GS1.compute_partials(    Orbiter_ref, ep_range_et,     J2000))
+<span class="ansi-green-fg">      3</span> H_rangerate = np.array(RangeRate_GS1.compute_partials(Orbiter_ref, ep_rangerate_et, J2000))
+<span class="ansi-green-fg">      4</span> H_opnav     = np.array(Centroid.compute_partials(     opnav_target, ep_opnav_et,    J2000))
+<span class="ansi-green-fg">      5</span>
 
+<span class="ansi-red-fg">NameError</span>: name &#39;ep_range_et&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1385,115 +1437,22 @@ RMS opnav  residual    : 9.2625e-01 px
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-          Generating computed measurements for the dataset &#34;GS1 Range&#34;
-================================================================================
-
-================================================================================
-                Generating _partials for the dataset &#34;GS1 Range&#34;
-================================================================================
-
-Generating _partials computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Partials: 100%|████████████████████████████████████████████████████████████| 50/50 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-        Generating computed measurements for the dataset &#34;GS1 RangeRate&#34;
-================================================================================
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-              Generating _partials for the dataset &#34;GS1 RangeRate&#34;
-================================================================================
-
-Generating _partials computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Partials: 100%|██████████████████████████████████████████████████████████| 100/100 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-================================================================================
-            Generating computed measurements for the dataset &#34;OpNav&#34;
-================================================================================
-
-================================================================================
-                  Generating _partials for the dataset &#34;OpNav&#34;
-================================================================================
-
-Generating _partials computed measurements...
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Partials: 100%|████████████████████████████████████████████████████████████| 10/10 obs [00:00&lt;00:00]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Range     dataset : GS1 Range,    50 epochs
-RangeRate dataset : GS1 RangeRate, 100 epochs
-OpNav RA  dataset : OpNav_sample,    10 epochs
-OpNav DEC dataset : OpNav_line,   10 epochs
-
-MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── generate filter-ready MeasurementDataSets ─────────────────────</span>
+<span class="ansi-green-fg">      2</span> ds_range     = Range_GS1.generate_measurement_dataset(
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span>     &#39;GS1 Range&#39;,     target=Orbiter_ref, observed_meas=obs_range)
+<span class="ansi-green-fg">      4</span> ds_rangerate = RangeRate_GS1.generate_measurement_dataset(
+<span class="ansi-green-fg">      5</span>     &#39;GS1 RangeRate&#39;, target=Orbiter_ref, observed_meas=obs_rangerate)
+<span class="ansi-green-fg">      6</span> ds_opnav     = Centroid.generate_measurement_dataset(
 
+<span class="ansi-red-fg">NameError</span>: name &#39;obs_range&#39; is not defined
 </pre></div></div>
 </div>
 </section>
@@ -1596,21 +1555,25 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/tmp/ipykernel_24043/550012588.py:86: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.tight_layout()
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_tutorials_intermediate_Measurements_22_1.png" src="../../_images/_collections_tutorials_intermediate_Measurements_22_1.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[11]</span><span class="ansi-green-fg">, line 5</span>
+<span class="ansi-green-fg">      1</span> <span style="color: rgb(95,135,135)"># ── time axes: minutes from arc start ────────────────────────────</span>
+<span class="ansi-green-fg">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> to_min(ep_et):
+<span class="ansi-green-fg">      3</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> (np.asarray(ep_et.times.values) - t0) / <span class="ansi-green-fg">60.0</span>
+<span class="ansi-green-fg">      4</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">5</span> t_r  = to_min(ep_range_et)
+<span class="ansi-green-fg">      6</span> t_rr = to_min(ep_rangerate_et)
+<span class="ansi-green-fg">      7</span> t_o  = to_min(ep_opnav_et)
+<span class="ansi-green-fg">      8</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;ep_range_et&#39; is not defined
+</pre></div></div>
 </div>
 </section>
 
@@ -1727,7 +1690,7 @@ MeasurementSpec : 2 entries  → ready to pass to LKF / SRIF
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
   </p>
 </div>
       
